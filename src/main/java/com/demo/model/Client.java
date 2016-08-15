@@ -114,5 +114,30 @@ public class Client implements Serializable{
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+	public String getFaxNumber() {
+		return faxNumber;
+	}
+	public void setFaxNumber(String faxNumber) {
+		this.faxNumber = faxNumber;
+	}
+	public String getCellNumber() {
+		return cellNumber;
+	}
+	public void setCellNumber(String cellNumber) {
+		this.cellNumber = cellNumber;
+	}
+	public String getContactPerson() {
+		return contactPerson;
+	}
+	public void setContactPerson(String contactPerson) {
+		this.contactPerson = contactPerson;
+	}
+	public String getFloorNumber() {
+		return floorNumber;
+	}
+	public void setFloorNumber(String floorNumber) {
+		this.floorNumber = floorNumber;
+	}
+	
 	
 }

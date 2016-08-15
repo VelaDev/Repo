@@ -61,16 +61,12 @@ public class EmployeeDao implements EmployeeDaoInt{
 		 }
 		return empList;
 	}
-	
-	
-	private String generatePassword()
-	{
-		return "";
-	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getTechniciansByProvince(String province) {
 		
+		@SuppressWarnings("rawtypes")
 		ArrayList<?> aList = new ArrayList();
 		ArrayList<Employee> empList = new ArrayList<Employee>();
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);

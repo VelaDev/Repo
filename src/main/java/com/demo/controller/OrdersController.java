@@ -23,6 +23,7 @@ public class OrdersController {
 	@Autowired
 	private HttpSession session;
 	private ModelAndView model = null;
+	@SuppressWarnings("unused")
 	private String retMessage =null;
 	
 	@RequestMapping(value="order",method=RequestMethod.GET)

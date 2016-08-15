@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.TicketsBean;
 import com.demo.model.Client;
-import com.demo.model.Orders;
 import com.demo.model.Product;
 import com.demo.model.Tickets;
 import com.demo.service.ClientServiceInt;
@@ -40,6 +39,7 @@ public class LogTicketController {
 	
 	//private Employee employee = null;
 	private Product product = null;
+	@SuppressWarnings("unused")
 	private Client client = null;
 	
 	
@@ -92,6 +92,7 @@ public class LogTicketController {
 	@RequestMapping("ticketDetails")
     public ModelAndView loadTicketdetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
+		@SuppressWarnings("unused")
 		ModelAndView model = new ModelAndView();
 		ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 	    return new ModelAndView("ticketDetails", "ticketObject", ticket);

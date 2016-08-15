@@ -29,6 +29,7 @@ public class ClientController {
 	private ProductServiceInt productServiceInt;
 	@Autowired
 	private HttpSession session;
+	@SuppressWarnings("unused")
 	private String retMessage = null;
 	
 	@RequestMapping(value="addClient",method=RequestMethod.GET)

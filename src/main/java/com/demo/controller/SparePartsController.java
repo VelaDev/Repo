@@ -16,6 +16,7 @@ public class SparePartsController {
 	
 	@Autowired
 	private SparePartsServeceInt sparePartsServeceInt;
+	@SuppressWarnings("unused")
 	private String retMessage = null;
 	
 	@RequestMapping(value="addParts", method=RequestMethod.GET)

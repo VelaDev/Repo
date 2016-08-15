@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.ProductBean;
-import com.demo.model.Client;
 import com.demo.model.Product;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;

@@ -128,6 +128,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 		return ticketList;
 	}
 
+	@SuppressWarnings("unused")
 	private Employee assingACallToTechnician() {
 
 		List<Employee> getTechnician = employeeDaoInt.getAllTechnicians();
@@ -151,12 +152,14 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 		
 		   Calendar cal = Calendar.getInstance();
 		   
-		   int currentHour = cal.getTime().getHours();
+		   @SuppressWarnings("deprecation")
+		int currentHour = cal.getTime().getHours();
 		   
 		   List<Tickets> openTickets= getAllOpenTickets();
 		   for(Tickets openTicket:openTickets){
 			   
-			   int slaStartedHour = openTicket.getSlaAcknowledgeDateTime().getTime().getHours();
+			   @SuppressWarnings("deprecation")
+			int slaStartedHour = openTicket.getSlaAcknowledgeDateTime().getTime().getHours();
 			  long diffHours = slaStartedHour - currentHour;
 			  System.out.println("SLA started hour: "+ " "+  slaStartedHour);
 			  System.out.println(diffHours);

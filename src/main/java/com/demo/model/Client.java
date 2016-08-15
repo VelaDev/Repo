@@ -38,7 +38,14 @@ public class Client implements Serializable{
 	private String province;
 	@Column(name="ZipeCode")
 	private String zipcode;
-
+	@Column(name="Fax_No")
+	private String faxNumber;
+	@Column(name="Cell_No")
+	private String cellNumber;
+	@Column(name="Contact_Person")
+	private String contactPerson;
+	@Column(name="Floor_No")
+	private String floorNumber;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;

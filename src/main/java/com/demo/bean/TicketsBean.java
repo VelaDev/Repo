@@ -2,7 +2,6 @@ package com.demo.bean;
 
 import java.util.Calendar;
 
-import com.demo.model.Client;
 import com.demo.model.Employee;
 import com.demo.model.Product;
 

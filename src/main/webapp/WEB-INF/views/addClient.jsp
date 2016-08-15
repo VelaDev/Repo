@@ -25,6 +25,12 @@
     </div>
   </div>
   <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 form-control-label">Contact Person</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="contactPerson">
+    </div>
+  </div>
+  <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 form-control-label">Province</label>
     <div class="col-sm-10">
       <select name="province" class="form-control">
@@ -44,7 +50,7 @@
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 form-control-label">City/Town</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="cityTown">
+      <input type="text" class="form-control" name="city_town">
     </div>
   </div>
    <div class="form-group row">
@@ -56,13 +62,31 @@
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 form-control-label">Area Code</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="areaCode">
+      <input type="text" class="form-control" name="zipcode">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 form-control-label">Floor No</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="floorNumber">
     </div>
   </div>
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 form-control-label">Telephone No</label>
     <div class="col-sm-10">
       <input type="text" class="form-control" name="tellphoneNumber">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 form-control-label">Fax No</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="faxNumber">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword3" class="col-sm-2 form-control-label">Cell No</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="cellNumber">
     </div>
   </div>
   <div class="form-group row">

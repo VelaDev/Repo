@@ -7,10 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.engine.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -24,7 +21,6 @@ import com.demo.model.Employee;
 import com.demo.model.Orders;
 import com.demo.model.Parts;
 import com.demo.model.Product;
-import com.demo.service.ProductServiceInt;
 
 
 
@@ -54,6 +50,7 @@ public class OrdersDao implements OrdersDaoInt{
 	private Product product=null;
 	
 
+	@SuppressWarnings("static-access")
 	@Override
 	public String makeOrder(Orders orders) {
 		
@@ -149,6 +146,7 @@ public class OrdersDao implements OrdersDaoInt{
 		return (Orders) sessionFactory.getCurrentSession().get(Orders.class, orderNum);
 	}
 	
+	@SuppressWarnings("unused")
 	private String generateOrderNum(){
 		incrementNo = (int) session.getAttribute("incrementedNo");
 		
@@ -167,6 +165,7 @@ public class OrdersDao implements OrdersDaoInt{
 		//session.setAttribute("incrementedNo", incrementNo);
 		return orderNum;
 	}
+	@SuppressWarnings("null")
 	private String lastOrder(){
 		Orders last = null;
 		/*try{

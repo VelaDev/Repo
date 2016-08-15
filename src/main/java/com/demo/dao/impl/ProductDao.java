@@ -17,8 +17,6 @@ import com.demo.dao.ClientDaoInt;
 import com.demo.dao.ProductDaoInt;
 import com.demo.model.Client;
 import com.demo.model.Product;
-import com.demo.model.Tickets;
-
 
 @Repository("productDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -31,6 +29,7 @@ public class ProductDao implements ProductDaoInt {
 	@Autowired
 	private HttpSession session;
 	
+	@SuppressWarnings("unused")
 	private Date currentDate =null;
 	@Override
 	public void saveProduct(Product product) {

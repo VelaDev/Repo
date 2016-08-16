@@ -35,9 +35,9 @@
           <ul class="dropdown-menu">
             <li><a href='<c:url value="addClient.html"/>'>Add Client</a></li>
             <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Products<span></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href='<c:url value="addProduct.html"/>'>Add Product</a></li>
+                  <li><a href='<c:url value="addProduct.html"/>'>Product Installation</a></li>
                 <%--   <li><a href='<c:url value="clientInformation.html"/>'>Search Client</a></li> --%>
                 </ul>
               </li>

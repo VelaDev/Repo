@@ -11,13 +11,153 @@
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <div align="center"><b>Add Product</b> </div>
+                <div align="center"><b>Product Installation</b> </div>
                 <!-- <div align="right"><a href="">Think of something</a></div> -->
             </h3>
         </div>
    <div class="panel-body">
+    <form action="searchClientforProduct" method="post">
+   <div class="row">
+  
+   <div class="col-sm-12" align="center">
    
-   <div class="col-lg-10">
+    <fieldset class="form-group row col-sm-8">
+     <input type="text" name=clientName id="clientName" class="form-control"  placeholder="search"> 
+    
+    </fieldset>
+     <div class="col-sm-4">
+      <input class="btn btn-success" class="form-control" type='submit' value='Search'/>
+     </div>
+    </div>
+   </div>
+   <br><br>
+   <div class="row">
+   <div class="col-sm-12">
+   <div class="form-group row col-sm-1">
+    <label >Contact Person:</label>
+     
+   </div>
+   <div class="col-sm-2">
+   <input type="text" class="form-control" value="${client.contactPerson}" disabled="disabled">
+   </div>
+   
+      <div class="form-group row col-sm-1">
+    <label  >Tel:</label>
+     
+   </div>
+   <div class="col-sm-2">
+   <input type="text" class="form-control" value="${client.tellphoneNumber}" disabled="disabled">
+   </div>
+  
+   
+    <div class="form-group row col-sm-1">
+    <label >Cell:</label>
+     
+   </div>
+   <div class="col-sm-2">
+   <input type="text" class="form-control" value="${client.cellNumber}" disabled="disabled">
+   </div>
+    <div class="form-group row col-sm-1">
+    <label>Email</label>
+     
+   </div>
+   <div class="col-sm-3">
+   <input type="text" class="form-control" value="${client.email}" disabled="disabled">
+   </div>
+   </div>
+   
+   </div>
+   
+      <div class="row">
+  <div class="col-sm-12">
+   <div class="form-group row col-sm-1">
+    <label>Fax:</label>
+     
+   </div>
+   <div class="col-sm-2">
+   <input type="text" class="form-control" value="${client.faxNumber}" disabled="disabled">
+   </div>
+   
+      <div class="form-group row col-sm-1">
+    <label>Street Name:</label>
+     
+   </div>
+   <div class="col-sm-2">
+   <input type="text" class="form-control" value="${client.streetName}" disabled="disabled">
+   </div>
+  
+   
+    <div class="form-group row col-sm-1">
+    <label>Street No:</label>
+     
+   </div>
+   <div class="col-sm-2">
+   <input type="text" class="form-control" value="${client.tellphoneNumber}" disabled="disabled">
+   </div>
+    <div class="form-group row col-sm-1">
+    <label>Suburb:</label>
+     
+   </div>
+   <div class="col-sm-3">
+   <input type="text" class="form-control" value="${client.city_town}" disabled="disabled">
+   </div>
+   </div>
+   
+   </div>
+   
+    
+   <div class="row">
+   <div class="col-sm-12">
+   <div class="form-group row col-sm-1">
+    <label >Floor No:</label>
+     
+   </div>
+   <div class="col-sm-3">
+   <input type="text" class="form-control" value="${client.floorNumber}" disabled="disabled">
+   </div>
+   
+      <div class="form-group row col-sm-1">
+    <label  >Machine Model:</label>
+     
+   </div>
+   <div class="col-sm-3">
+   <input type="text" class="form-control" name="productModel">
+   </div>
+  
+   
+    <div class="form-group row col-sm-1">
+    <label >Serial Number:</label>
+     
+   </div>
+   <div class="col-sm-3">
+   <input type="text" class="form-control" name="serialNumber">
+   </div>
+    <!-- <div class="form-group row col-sm-1">
+    <label>email</label>
+     
+   </div> -->
+   <!-- <div class="col-sm-2">
+   <input type="text" class="form-control">
+   </div> -->
+   </div>
+   
+   </div>
+   <div class="row">
+   <div class="col-sm-4">
+   </div>
+   <div class="col-sm-4">
+                                                <input type="submit" value="Submit"
+                                                       class="btn btn-primary btn-block btn-lg" tabindex="9"
+                                                       id="submit">
+                                         </div>
+   <div class="col-sm-4">
+   </div>
+   </div>
+   
+   </form>
+   
+   
+  <%--  <div class="col-lg-10">
           <form action="searchClientforProduct" method="post">
                     <div class="form-group row">
                       <div class="col-md-11">
@@ -39,7 +179,7 @@
     <div class="col-sm-10">
       <input type="text" class="form-control" name="client" value="${client.clientName}" disabled="disabled">
     </div>
-  </div>
+ </div>
       <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 form-control-label">Serial Number</label>
     <div class="col-sm-10">
@@ -57,11 +197,11 @@
     <div class="col-sm-10">
       <select name="productType" class="form-control">
         <option value="">Product Type<option>
-								  
-								     <option value="Printer">Printer</option>
-								     <option value="Scanner">Scanner</option>
-								     <option value="Laptop">Laptop</option>
-								     
+                                                         
+                                                            <option value="Printer">Printer</option>
+                                                            <option value="Scanner">Scanner</option>
+                                                            <option value="Laptop">Laptop</option>
+                                                            
       </select>
     </div>
   </div>
@@ -73,19 +213,21 @@
   </div>
    
   <div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" value="Submit"
-								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
-						</div>
-					</div>
+                                         <div class="col-sm-offset-2 col-sm-10">
+                                                <input type="submit" value="Submit"
+                                                       class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
+                                         </div>
+                                  </div>
    </form:form>
-   </div>
+   </div> --%>
+  
   </div>
   </div>
+  
 </div>
 </body>
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />" ></script>
 <script type="text/javascript"src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script> 
 <link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
+       rel="stylesheet" type="text/css" />
 </html>

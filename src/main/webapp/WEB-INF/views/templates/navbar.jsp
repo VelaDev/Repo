@@ -25,7 +25,7 @@
             <li><a href='<c:url value="registerEmployee.html"/>'>Add Employee</a></li>
             <!-- <li><a href="#">Update Employee</a></li>
             <li><a href="#">Show All Employees</a></li>
-            <li><a href="#">All Technicians</a></li -->>
+            <li><a href="#">All Technicians</a></li -->
             <!-- <li role="separator" class="divider"></li> -->
           </ul>
         </li>

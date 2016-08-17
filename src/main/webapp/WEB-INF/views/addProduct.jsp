@@ -28,7 +28,6 @@
             </div>
   
           </div>
- 
    <hr>
    </form>
    <form method="POST" action="account.php">
@@ -134,7 +133,7 @@
    </div>
    </div>
 	</div><br>	
-	<!-- <div class="row">
+ <div class="row">
 	  <div class="col-xs-12">
    <div class="col-xs-2 form-control-label">
     <label>Installed Date:</label>
@@ -145,14 +144,14 @@
    </div>
    
       <div class="col-xs-2 form-control-label">
-    <label  >Floor No</label>
+    <label  >Date</label>
      
    </div>
    <div class="col-xs-3">
    <input type="text" class="form-control input-sm" >
    </div>
    </div>
-	</div> -->
+	</div>
 	
 	</fieldset><br><br>	
 	<fieldset>

@@ -67,7 +67,7 @@ public class ProductController {
 		model = new ModelAndView();
 		product = productServiceInt.getProductBySerialNumber(serialNumber);
 		if(product != null){
-			session.setAttribute("serialNumber", product.getSerialNumber());
+			//session.setAttribute("serialNumber", product.getSerialNumber());
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("product", product);
 		}

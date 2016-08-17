@@ -72,7 +72,7 @@ public class ClientController {
 	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
 		ModelAndView model = new ModelAndView();
 		client = clientServiceInt.getClientByClientName(clientName);
-		session.setAttribute("client", client);
+		//session.setAttribute("client", client);
 		model.addObject("client", client);
 		model.setViewName("addProduct");
 		

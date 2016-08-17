@@ -19,9 +19,9 @@
     <form action="searchClientforProduct" method="post">
         <div class="row">
         
-           <div class="col-xs-2 form-control-label" align="center">Search Client</div>
+           <div class="col-xs-2 form-control-label" align="center">Search Customer</div>
             <div class="col-xs-3">
-                <input type="text" class="form-control input-sm">
+                <input type="text" class="form-control input-sm" name="clientName" id="clientName">
             </div>
             <div class="col-xs-2">
                <input class="btn btn-success" type='submit' value='Search'/>
@@ -33,7 +33,7 @@
    </form>
    <form method="POST" action="account.php">
    
-   <fieldset>	<legend>Client Details</legend>					
+   <fieldset>	<legend>Customer Details</legend>					
 	<div class="row">
                     <div class="col-xs-12">
    <div class="col-xs-2 form-control-label">
@@ -41,7 +41,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.contactPerson}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.clientName}" disabled="disabled">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -49,7 +49,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.contactPerson}" disabled="disabled">
    </div>
    </div>
 	</div>
@@ -62,7 +62,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.contactPerson}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}" disabled="disabled">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -70,7 +70,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.cellNumber}" disabled="disabled">
    </div>
    </div>
 	</div>
@@ -82,7 +82,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.contactPerson}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.email}" disabled="disabled">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -90,7 +90,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.faxNumber}" disabled="disabled">
    </div>
    </div>
 	</div>
@@ -102,7 +102,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.contactPerson}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="" disabled="disabled">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -110,7 +110,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.streetName}" disabled="disabled">
    </div>
    </div>
 	</div>
@@ -122,7 +122,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.contactPerson}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.city_town}" disabled="disabled">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -130,11 +130,31 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.floorNumber}" disabled="disabled">
    </div>
    </div>
-	</div>
-	</fieldset>	
+	</div><br>	
+	<!-- <div class="row">
+	  <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label>Installed Date:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" id="dateinstalled" name="dateinstalled" placeholder="MM/DD/YYY" type="text">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Floor No</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" >
+   </div>
+   </div>
+	</div> -->
+	
+	</fieldset><br><br>	
 	<fieldset>
 	  <legend>Machine Details</legend>
 	  <br>	
@@ -257,18 +277,24 @@ document.getElementById('credenzaserial').onchange = function() {
     document.getElementById('credenza').disabled = !this.checked;
 };
 </script>
-   </div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#dateinstalled').datepicker({
+            format: "dd/mm/yyyy"
+        });
+    });
+</script>
    </div>
    </div>
  
   
 </body>
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />" ></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />" ></script>
 <script type="text/javascript"src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script> 
 <link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
        rel="stylesheet" type="text/css" />
-      <%--  <link href="<c:url value="/resources/bootstrap-3.3.6/styles/style.css" />"
-       rel="stylesheet" type="text/css" /> --%>
        
        <link href="style.css" rel="stylesheet" type="text/css"/>
     <link href="lib/css/bootstrap.min.css" rel="stylesheet"  type="text/css"/>

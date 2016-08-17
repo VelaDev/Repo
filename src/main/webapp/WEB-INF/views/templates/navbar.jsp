@@ -31,17 +31,17 @@
         </li>
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clients<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customers<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href='<c:url value="addClient.html"/>'>Add Client</a></li>
+            <li><a href='<c:url value="addClient.html"/>'>Add Customer</a></li>
             <li class="dropdown-submenu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Installation<span></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href='<c:url value="addProduct.html"/>'>Product Installation</a></li>
+                  <li><a href='<c:url value="addProduct.html"/>'>Device Installation</a></li>
                 <%--   <li><a href='<c:url value="clientInformation.html"/>'>Search Client</a></li> --%>
                 </ul>
               </li>
-              <li><a href='<c:url value="clientInformation.html"/>'>Search Client</a></li>
+              <li><a href='<c:url value="clientInformation.html"/>'>Search Customer</a></li>
              <!--  <li><a href="#">Update Client</a></li>
             <li><a href="#">Show All Clients</a></li>
             <li><a href="#">Deactivate Client</a></li> -->

@@ -133,7 +133,7 @@
    </div>
    </div>
 	</div><br>	
- <div class="row">
+ <!-- <div class="row">
 	  <div class="col-xs-12">
    <div class="col-xs-2 form-control-label">
     <label>Installed Date:</label>
@@ -151,7 +151,7 @@
    <input type="text" class="form-control input-sm" >
    </div>
    </div>
-	</div>
+	</div> -->
 	
 	</fieldset><br><br>	
 	<fieldset>

@@ -30,7 +30,7 @@
           </div>
    <hr>
    </form>
-   <form method="POST" action="account.php">
+   <form:form method="POST" action="saveProduct" modelAttribute="saveProduct">
    
    <fieldset>	<legend>Customer Details</legend>					
 	<div class="row">
@@ -133,26 +133,6 @@
    </div>
    </div>
 	</div><br>	
- <!-- <div class="row">
-	  <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label>Installed Date:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" id="dateinstalled" name="dateinstalled" placeholder="MM/DD/YYY" type="text">
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label  >Date</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" >
-   </div>
-   </div>
-	</div> -->
-	
 	</fieldset><br><br>	
 	<fieldset>
 	  <legend>Machine Details</legend>
@@ -173,6 +153,25 @@
    </div>
    <div class="col-xs-3">
    <input type="text" class="form-control input-sm">
+   </div>
+   </div>
+	</div><br>
+	 <div class="row">
+	  <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label>Start Date:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" id="startDate" name="startDate" placeholder="YYYY-MM-DD" type="text">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label>End Date</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" id="endDate" name="endDate" placeholder="YYYY-MM-DD" type="text">
    </div>
    </div>
 	</div>
@@ -243,7 +242,7 @@
 								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
 						</div>
 					</div>
-	</form>
+	</form:form>
 						
 	
 
@@ -277,13 +276,7 @@ document.getElementById('credenzaserial').onchange = function() {
 };
 </script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#dateinstalled').datepicker({
-            format: "dd/mm/yyyy"
-        });
-    });
-</script>
+
    </div>
    </div>
  
@@ -303,7 +296,22 @@ document.getElementById('credenzaserial').onchange = function() {
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
- --><style type="text/css">
+ -->
+ <script type="text/javascript">
+    $(document).ready(function () {
+        $('#startDate').datepicker({
+            format: "yyyy-mm-dd"
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#endDate').datepicker({
+            format: "yyyy-mm-dd"
+        });
+    });
+</script>
+ <style type="text/css">
     .bs-example{
     	margin: 20px;
     }

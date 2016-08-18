@@ -40,7 +40,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.clientName}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.clientName}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -48,7 +48,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.contactPerson}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.contactPerson}" >
    </div>
    </div>
 	</div>
@@ -61,7 +61,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.tellphoneNumber}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -69,7 +69,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.cellNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.cellNumber}">
    </div>
    </div>
 	</div>
@@ -81,7 +81,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.email}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.email}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -89,7 +89,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.faxNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.faxNumber}">
    </div>
    </div>
 	</div>
@@ -101,7 +101,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="" >
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -109,7 +109,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.streetName}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.streetName}">
    </div>
    </div>
 	</div>
@@ -121,7 +121,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.city_town}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.city_town}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -129,7 +129,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.floorNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${client.floorNumber}">
    </div>
    </div>
 	</div><br>	
@@ -159,7 +159,7 @@
 	 <div class="row">
 	  <div class="col-xs-12">
    <div class="col-xs-2 form-control-label">
-    <label>Start Date:</label>
+    <label>Contract Start Date:</label>
      
    </div>
    <div class="col-xs-3">
@@ -167,7 +167,7 @@
    </div>
    
       <div class="col-xs-2 form-control-label">
-    <label>End Date</label>
+    <label>Contract End Date</label>
      
    </div>
    <div class="col-xs-3">

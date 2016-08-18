@@ -59,8 +59,10 @@ public class ProductController {
 	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Product product){
 	   model = new ModelAndView();
 	   product = productServiceInt.getProductBySerialNumber(serialNumber);
-	   
-	   return new ModelAndView("detailedProduct", "productObject", product);
+	   model.addObject("accessories", productServiceInt.accessories(serialNumber));
+	   model.addObject("productObject", product);
+	   model.setViewName("detailedProduct");
+	   return model;
 	}
 	@RequestMapping(value="searchSerialNumber")
 	public ModelAndView searchClientforProduct(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Product product) {

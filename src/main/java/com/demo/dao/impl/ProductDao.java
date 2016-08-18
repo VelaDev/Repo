@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.ProductDaoInt;
+import com.demo.model.Accessories;
 import com.demo.model.Client;
 import com.demo.model.Product;
 
@@ -80,4 +81,49 @@ public class ProductDao implements ProductDaoInt {
 		}
 		return productList;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Accessories> accessories(String serialNumber) {
+		ArrayList list = new ArrayList<Accessories>();
+		Accessories accessory = new Accessories();
+		
+		accessory.setBridgeUnitSerial("TTR12");
+		accessory.setBridgeUnitSerialType("Bridge Unit");
+		accessory.setProd(serialNumber);
+		list.add(accessory);
+		
+		Accessories accessory1 = new Accessories();
+		accessory1.setBridgeUnitSerial("CREZ12");
+		accessory1.setBridgeUnitSerialType("CREDENZA");
+		accessory1.setProd(serialNumber);
+		list.add(accessory1);
+		
+		Accessories accessory2 = new Accessories();
+		accessory2.setBridgeUnitSerial("LTC21");
+		accessory2.setBridgeUnitSerialType("LTC");
+		accessory2.setProd(serialNumber);
+		list.add(accessory2);
+		
+		Accessories accessory3 = new Accessories();
+		accessory3.setBridgeUnitSerial("OBT122");
+		accessory3.setBridgeUnitSerialType("One Bin Tray");
+		accessory3.setProd(serialNumber);
+		list.add(accessory3);
+		
+		Accessories accessory4 = new Accessories();
+		accessory4.setBridgeUnitSerial("FU122");
+		accessory4.setBridgeUnitSerialType("Fax Unit");
+		accessory4.setProd(serialNumber);
+		list.add(accessory4);
+		
+		Accessories accessory5 = new Accessories();
+		accessory5.setBridgeUnitSerial("FN122");
+		accessory5.setBridgeUnitSerialType("Finisher");
+		accessory5.setProd(serialNumber);
+		list.add(accessory5);
+		
+		return list;
+	}
+	
 }

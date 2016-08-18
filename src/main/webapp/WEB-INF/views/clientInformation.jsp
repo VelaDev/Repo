@@ -30,20 +30,20 @@
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <div align="left"><b>Products</b> </div>
+                <div align="left"><b>Machine Details</b> </div>
                 <!-- <div align="right"><a href="">Think of something</a></div> -->
             </h3>
         </div>
         <div class="panel-body">
         <div class="col-lg-10">
           <form action="searchClient" method="post">
-                    <div class="form-group row">
-                      <div class="col-md-11">
-                         <div class="col-sm-2 form-control-label" for="inputEmail3">Search Client:</div>
-                          <div class="col-md-8"> 
+                    <div class="row">
+                      <div class="col-xs-11">
+                         <div class="col-xs-4 form-control-label" for="inputEmail3">Search Customer</div>
+                          <div class="col-xs-5"> 
                             <input type="text" name=clientName id="clientName" class="form-control"> 
                           </div>
-                           <div class="col-sm-2"><input class="btn btn-success" type='submit' value='Search'/></div>
+                           <div class="col-xs-2"><input class="btn btn-success" type='submit' value='Search'/></div>
                        </div>
                     </div>
                     <br>
@@ -58,7 +58,7 @@
 	         <div class="groupdetails-row-padding">
 				<div class="groupproductdetails">
 					<div class="content"> 
-					 <legend>Products</legend>						                     
+					 <legend>Devices</legend>						                     
 							<table class="table table-hover ">
 								<thead style="background-color: #D6F1F6;">
 								<tr class='clickable-row'>
@@ -71,7 +71,7 @@
 								<c:forEach items="${productList}" var="product">
 									<tr>
 										<th><c:out value="${product.serialNumber}"/></th>
-										<th><c:out value="${product.productName}"/></th>
+										<th><c:out value="${product.productModel}"/></th>
 										<th><a href="detailedProduct?serialNumber=<c:out value='${product.serialNumber}'/>">Detail</a></th>
 																 
 									</tr>
@@ -82,10 +82,10 @@
 					</div>					
 			    </div>
 			    <div class="groupclientdetails">
-					<legend>Client Details</legend>
+					<legend>Customer Details</legend>
 				<form action="">
 				    <div class="form-group row">
-                         <label for="inputEmail3" class="col-sm-6 form-control-label" >Name</label>
+                         <label for="inputEmail3" class="col-sm-6 form-control-label" >Company Name</label>
                              <div class="col-sm-10">
                                 <input type="text" class="form-control" name="client" value="${client.clientName}" disabled="disabled">
                               </div>

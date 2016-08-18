@@ -27,8 +27,8 @@ public class ClientController {
 	private ClientServiceInt clientServiceInt;
 	@Autowired
 	private ProductServiceInt productServiceInt;
-	@Autowired
-	private HttpSession session;
+	/*@Autowired
+	private HttpSession session;*/
 	@SuppressWarnings("unused")
 	private String retMessage = null;
 	

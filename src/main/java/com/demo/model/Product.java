@@ -38,20 +38,22 @@ public class Product implements Serializable{
 	@Column(name="END_DATE")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date endDate;
+	
 	@ManyToOne
 	@JoinColumn(name="CLIENTNAME")
 	private Client client;
-	@OneToMany(mappedBy ="product", cascade= CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<Accessories> accessories;
+	
+	/*@OneToMany(mappedBy ="product", cascade= CascadeType.ALL,fetch=FetchType.EAGER)*/
+	/*private Set<Accessories> accessories;*/
 	
 
-	public Set<Accessories> getAccessories() {
+	/*public Set<Accessories> getAccessories() {
 		return accessories;
 	}
 
 	public void setAccessories(Set<Accessories> accessories) {
 		this.accessories = accessories;
-	}
+	}*/
 
 	public String getSerialNumber() {
 		return serialNumber;

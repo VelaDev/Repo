@@ -54,13 +54,13 @@
           </ul>
         </li>
         
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Device Management<span class="caret"></span></a>
+        <li class="dropdown-submenu">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customer<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href='<c:url value="addClient.html"/>'>Add Device</a></li>
-             <li><a href='<c:url value=""/>'>Edit Device</a></li>
-              <li><a href='<c:url value=""/>'>Delete Device</a></li>
-               <li><a href='<c:url value=""/>'>Search Device</a></li>
+            <li><a href='<c:url value=""/>'>Customer Management</a></li>
+            
+             <li><a href='<c:url value=""/>'>Device Management</a></li>
+              
          
           </ul>
         </li>

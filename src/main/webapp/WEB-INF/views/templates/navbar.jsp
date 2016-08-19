@@ -33,17 +33,29 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customers<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a href='<c:url value="addClient.html"/>'>Add Customer</a></li>
-             <li><a href='<c:url value=""/>'>Edit Customer</a></li>
-              <li><a href='<c:url value=""/>'>Delete Customer</a></li>
+           <!-- <li><a href='<c:url value="addClient.html"/>'>Add Customer</a></li> -->
             <li class="dropdown-submenu">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdownrole="button" aria-haspopup="true" aria-expanded="false">Installation<span></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customer Management<span></span></a>
                 <ul class="dropdown-menu">
-                  <li><a href='<c:url value="addProduct.html"/>'>Device Installation</a></li>
+                  <li><a href='<c:url value="addProduct.html"/>'>Add Customer</a></li>
+				  <li><a href='<c:url value="addProduct.html"/>'>Edit Customer</a></li>
+				  <li><a href='<c:url value="addProduct.html"/>'>Delete Customer</a></li>
+				   <li><a href='<c:url value="addProduct.html"/>'>Search Customer</a></li>
                 <%--   <li><a href='<c:url value="clientInformation.html"/>'>Search Client</a></li> --%>
                 </ul>
               </li>
-              <li><a href='<c:url value="clientInformation.html"/>'>Search Customer</a></li>
+			  
+			   <li class="dropdown-submenu">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Device Management<span></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href='<c:url value="addProduct.html"/>'>add Device</a></li>
+				  <li><a href='<c:url value="addProduct.html"/>'>Edit Device</a></li>
+				  <li><a href='<c:url value="addProduct.html"/>'>Delete Device</a></li>
+				   <li><a href='<c:url value="addProduct.html"/>'>Search Device</a></li>
+                <%--   <li><a href='<c:url value="clientInformation.html"/>'>Search Client</a></li> --%>
+                </ul>
+              </li>
+            <!--  <li><a href='<c:url value="clientInformation.html"/>'>Search Customer</a></li> -->
              <!--  <li><a href="#">Update Client</a></li>
             <li><a href="#">Show All Clients</a></li>
             <li><a href="#">Deactivate Client</a></li> -->
@@ -51,17 +63,6 @@
             <!-- <li><a href="#">Separated link</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="#">One more separated link</a></li> -->
-          </ul>
-        </li>
-        
-        <li class="dropdown-submenu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Customer<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href='<c:url value=""/>'>Customer Management</a></li>
-            
-             <li><a href='<c:url value=""/>'>Device Management</a></li>
-              
-         
           </ul>
         </li>
         

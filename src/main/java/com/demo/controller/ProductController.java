@@ -92,5 +92,14 @@ public class ProductController {
 		return "searchDevice";
 		
 	}
-	
+	@RequestMapping(value="searchDeviceSerialNumber")
+	public ModelAndView searchDeviceBySerialNo(@RequestParam("serialNumber") String serialNumber,Product product){
+		model= new ModelAndView();
+		
+		product = productServiceInt.getProductBySerialNumber(serialNumber);
+		
+		model.addObject("productObject", product);
+		model.setViewName("updateDevice");
+		return model;
+	}
 }

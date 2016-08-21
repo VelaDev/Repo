@@ -31,11 +31,12 @@ public class ClientController {
 	private HttpSession session;*/
 	@SuppressWarnings("unused")
 	private String retMessage = null;
+	ModelAndView model = null;
 	
 	@RequestMapping(value="addClient",method=RequestMethod.GET)
 	public ModelAndView loadAddClient() {
 		
-		ModelAndView model = new ModelAndView("addClient");
+	    model = new ModelAndView("addClient");
 		model.addObject("saveClient", new ClientBean());
 		model.setViewName("addClient");
 		
@@ -45,7 +46,7 @@ public class ClientController {
 	public ModelAndView addClient(@ModelAttribute("saveClient")Client client)
 	{
 		retMessage =clientServiceInt.saveClient(client);
-		ModelAndView model = new ModelAndView();
+	    model = new ModelAndView();
 		//model.addObject("client",retMessage);
 		model.setViewName("redirect:home");
 		return model;
@@ -54,14 +55,14 @@ public class ClientController {
 	@RequestMapping(value="clientInformation",method=RequestMethod.GET)
 	public ModelAndView loadClientInformation() {
 		
-		ModelAndView model = new ModelAndView("clientInformation.jsp");
+	    model = new ModelAndView("clientInformation.jsp");
 		model.setViewName("clientInformation");
 		
 		return model;
 	}
 	@RequestMapping(value="searchClient")
 	public ModelAndView searchClient(@RequestParam("clientName") String clientName,@ModelAttribute Product product) {
-		ModelAndView model = new ModelAndView();
+		model = new ModelAndView();
 		
 		model.addObject("productList", productServiceInt.getProductListByClientName(clientName));
 		model.setViewName("clientInformation");
@@ -70,11 +71,36 @@ public class ClientController {
 	}
 	@RequestMapping(value="searchClientforProduct")
 	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
-		ModelAndView model = new ModelAndView();
+		model = new ModelAndView();
 		client = clientServiceInt.getClientByClientName(clientName);
 		//session.setAttribute("client", client);
 		model.addObject("client", client);
 		model.setViewName("addProduct");
+		
+		return model;
+	}
+	@RequestMapping(value="updateCustomer",method=RequestMethod.GET)
+	public ModelAndView loadUpdateCustomerPage(){
+		
+		model = new ModelAndView("updateCustomer");
+		model.addObject("updateCustomerData", new ClientBean());
+		model.setViewName("updateCustomer");
+		return model;
+	}
+	@RequestMapping(value="updateCustomerData",method=RequestMethod.POST)
+	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Client client){
+		model = new ModelAndView();
+		retMessage =clientServiceInt.updateCustomer(client); 
+		return model;
+	}
+	
+	@RequestMapping(value="searchCustomer")
+	public ModelAndView searchCustomer(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
+		model = new ModelAndView();
+		client = clientServiceInt.getClientByClientName(clientName);
+		//session.setAttribute("client", client);
+		model.addObject("client", client);
+		model.setViewName("updateCustomer");
 		
 		return model;
 	}

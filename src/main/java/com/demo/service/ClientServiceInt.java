@@ -9,5 +9,6 @@ public interface ClientServiceInt {
 	String saveClient(Client client);
 	Client getClientByClientName(String clientName);
 	List<Client> getClientList();
+	String updateCustomer(Client client);
 
 }

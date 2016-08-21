@@ -9,6 +9,7 @@ public interface ClientDaoInt {
 	String saveClient(Client client);
 	Client getClientByClientName(String clientName);
 	List<Client> getClientList();
+	String updateClient(Client client);
 	
 
 }

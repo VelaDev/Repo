@@ -34,4 +34,10 @@ public class ClientService implements ClientServiceInt{
 		return clientDAO.getClientList();
 	}
 
+	@Override
+	public String updateCustomer(Client client) {
+		retMessage = clientDAO.updateClient(client);
+		return retMessage;
+	}
+
 }

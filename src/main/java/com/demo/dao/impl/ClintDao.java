@@ -42,4 +42,10 @@ public class ClintDao implements ClientDaoInt{
 		return (List<Client>)criteria.list();
 	}
 
+	@Override
+	public String updateClient(Client client) {
+		sessionFactory.getCurrentSession().update(client);
+		return ""+ client.getClientName()+ " is successfully updated";
+	}
+
 }

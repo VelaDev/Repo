@@ -24,7 +24,7 @@ public class ProductController {
 	private ProductServiceInt productServiceInt;
     @Autowired
     private ClientServiceInt clientServiceInt;
-    @Autowired HttpSession session;
+   /* @Autowired HttpSession session;*/
     @Autowired
 	private EmployeeServiceInt employeeServiceInt;
     

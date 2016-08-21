@@ -144,21 +144,21 @@ $(document).ready(function(){
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Customer Management</a>
 								<ul class="dropdown-menu">
                                    
-									<li><a href="#">Add Customer</a></li>
+									<li><a href='<c:url value="addClient.html"/>'>Add Customer</a></li>
 									<li><a href="#">Update Customer</a></li>
 									<li><a href="#">Delete Customer</a></li>
-									<li><a href="#">Search Customer</a></li>
+									<li><a href='<c:url value="clientInformation.html"/>'>Search Devices for a customer</a></li>
                                                                       
 								</ul>
 							</li>
                           
                             <li class="dropdown dropdown-submenu"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Device Management</a>
 								<ul class="dropdown-menu">
-                                    <li><a href="#">Add Device</a></li>
+                                    <li><a href='<c:url value="addProduct.html"/>'>Add Device</a></li>
 									<li><a href="#">Update Device</a></li>
 									<li><a href="#">Delete Device</a></li>
 									<li><a href="#">Search Device</a></li>
-									<li><a href='<c:url value="clientInformation.html"/>'>Search Client</a></li>
+									
 								                         
 								</ul>
 							</li>                                   

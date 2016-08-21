@@ -11,7 +11,7 @@
 </head>
  <c:import url="templates/navbar.jsp"></c:import>
 <body class=".container-fluid">
-<div class="container myrow-container">
+<div class="container myrow-container" style="width:90%">
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -55,7 +55,7 @@
                 </table>
             </c:if>
         </div>
-    </div>
+    </div></div>
 
 </body>
 <link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"

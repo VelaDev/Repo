@@ -11,12 +11,11 @@
 
    <c:import url="templates/navbar.jsp"></c:import>
    <body class=".container-fluid">
-<div class="container myrow-container" style="width:100%">
+<div class="container myrow-container" style="width:90%">
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <div align="left"><b>Pending Orders</b> </div>
-                <!-- <div align="right"><a href="">Think of something</a></div> -->
             </h3>
         </div>
 

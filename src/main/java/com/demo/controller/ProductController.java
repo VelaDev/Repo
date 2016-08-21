@@ -80,4 +80,17 @@ public class ProductController {
 		
 		return model;
 	}
+	@RequestMapping(value="updateDevice",method=RequestMethod.GET)
+	public String updateDevice()
+	{
+		return "updateDevice";
+		
+	}
+	@RequestMapping(value="searchDevice",method=RequestMethod.GET)
+	public String searchDevice()
+	{
+		return "searchDevice";
+		
+	}
+	
 }

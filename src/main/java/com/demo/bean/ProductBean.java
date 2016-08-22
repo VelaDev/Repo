@@ -14,8 +14,12 @@ public class ProductBean {
 	private String prductDescription;
 	private String productModel;
 	private String productStatus;
-	private Date arrivedDate;
+	private Date startDate;
+	private Date endDate;
 	private Client client;
+	private String accessoryName;
+	private String accessorySerial;
+	
 	public String getSerialNumber() {
 		return serialNumber;
 	}
@@ -52,17 +56,35 @@ public class ProductBean {
 	public void setProductStatus(String productStatus) {
 		this.productStatus = productStatus;
 	}
-	public Date getArrivedDate() {
-		return arrivedDate;
-	}
-	public void setArrivedDate(Date arrivedDate) {
-		this.arrivedDate = arrivedDate;
-	}
 	public Client getClient() {
 		return client;
 	}
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	public String getAccessoryName() {
+		return accessoryName;
+	}
+	public void setAccessoryName(String accessoryName) {
+		this.accessoryName = accessoryName;
+	}
+	public String getAccessorySerial() {
+		return accessorySerial;
+	}
+	public void setAccessorySerial(String accessorySerial) {
+		this.accessorySerial = accessorySerial;
 	}
 	
 }

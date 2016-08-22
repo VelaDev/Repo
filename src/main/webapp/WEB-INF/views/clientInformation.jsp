@@ -26,7 +26,7 @@
 <html>
 <body class=".container-fluid">
 
-<div class="container myrow-container">
+<div class="container myrow-container" style="width:90%">
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">

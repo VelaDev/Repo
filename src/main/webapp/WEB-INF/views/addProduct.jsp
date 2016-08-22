@@ -144,7 +144,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm">
+   <input type="text" class="form-control input-sm" name="serialNumber">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -152,7 +152,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm">
+   <input type="text" class="form-control input-sm" name="productName">
    </div>
    </div>
 	</div><br>

@@ -9,7 +9,7 @@
 <title>Log a ticket</title>
 <c:import url="templates/usernavbar.jsp"></c:import>
 <body>
-<div class="container myrow-container">
+<div class="container myrow-container" style="width:90%">
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">

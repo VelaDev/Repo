@@ -39,9 +39,9 @@ public class ProductService implements ProductServiceInt {
 	}
 
 	@Override
-	public List<Accessories> accessories(String serialNumber) {
+	public List<Accessories> accessories(Product product) {
 		// TODO Auto-generated method stub
-		return productDAO.accessories(serialNumber);
+		return productDAO.accessories(product);
 	}
 
 }

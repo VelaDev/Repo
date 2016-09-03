@@ -58,7 +58,7 @@ public class ProductController {
 	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Product product){
 	   model = new ModelAndView();
 	   product = productServiceInt.getProductBySerialNumber(serialNumber);
-	   model.addObject("accessories", productServiceInt.accessories(serialNumber));
+	   model.addObject("accessories", productServiceInt.accessories(product));
 	   model.addObject("productObject", product);
 	   model.setViewName("detailedProduct");
 	   return model;

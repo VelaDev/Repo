@@ -89,7 +89,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <input type="text" class="form-control input-sm" value="${productObject.startDate.toString().substring(0,10)}" disabled="disabled">
+                      <input type="text" class="form-control input-sm" value="${productObject.startDate}" disabled="disabled">
                   </div>
    </div>
 	</div>
@@ -100,7 +100,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <input type="text" class="form-control input-sm" value="${productObject.endDate.toString().substring(0,10)}" disabled="disabled">
+                      <input type="text" class="form-control input-sm" value="${productObject.endDate}" disabled="disabled">
                   </div>
    </div>
 	</div>

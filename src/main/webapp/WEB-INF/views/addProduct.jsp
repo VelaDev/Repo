@@ -40,7 +40,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${client.clientName}">
+   <input type="text" class="form-control input-sm" value="${client.clientName}" name="clientName">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -152,7 +152,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" name="productName">
+   <input type="text" class="form-control input-sm" name="productModel">
    </div>
    </div>
 	</div><br>
@@ -175,67 +175,70 @@
    </div>
    </div>
 	</div>
-	</fieldset><br><br><fieldset>
-	<legend align="right">Machine Accessories</legend>
+	</fieldset>
+	
+	<br><br><fieldset>
+	<legend align="left">Machine Accessories</legend>
 	<div class="row">
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="bridgeunitserial" />Bridge unit</label>
+	    <label for="serailNo"><input type="checkbox" id="bridgeunitserial" name="bridgeUnitSerialType"/>&nbsp;Bridge unit</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="bridgeunit">Serial Number:</label><input type="text" id="bridgeunit"  disabled/>
+        <label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="bridgeunit"  disabled name="bridgeUnitSerialTypeSerialNo"/>
         </div>
         
         <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="faxunit" />Fax Unit:</label>
+	    <label for="serailNo"><input type="checkbox" id="faxunit" name="faxUnitSerialType"/>&nbsp;Fax Unit:</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="faxunitserial">Serial Number:</label><input type="text" id="faxunitserial"  disabled/>
+        <label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="faxunitserial"  disabled name="faxUnitSerialTypeSerialNo"/>
         </div>
 	</div>
 	<br>
 	<div class="row">
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="onebintrayserial" />One bin tray</label>
+	    <label for="serailNo"><input type="checkbox" id="onebintrayserial" name="bridgeUnitSerialType"/>&nbsp;One bin tray</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="onebintray">Serial Number:</label><input type="text" id="onebintray"  disabled/>
+        <label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="onebintray"  disabled name="OneBinTrayTypeSerialNo"/>
         </div>
         
         <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="finisher" />Finisher:</label>
+	    <label for="serailNo"><input type="checkbox" id="finisher" name="finisherType" />&nbsp;Finisher:</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="finisherserial">Serial Number:</label><input type="text" id="finisherserial"  disabled/>
+        <label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="finisherserial"  disabled name="finisherTypeSerialNo"/>
         </div>
 	</div>
 	<br>
 	<div class="row">
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="ltcserial" />LCT</label>
+	    <label for="serailNo"><input type="checkbox" id="ltcserial" name="ltcType"/>&nbsp;LCT</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="ltc">Serial Number:</label><input type="text" id="ltc"  disabled/>
+        <label for="ltc">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="ltc" name="ltcTypeSerial" disabled/>
         </div>
         
         
         <div class="row">
 	   <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="credenzaserial" />Credenza</label>
+	    <label for="serailNo"><input type="checkbox" id="credenzaserial" name="credenza"/>&nbsp;Credenza</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="credenza">Serial Number:</label><input type="text" id="credenza"  disabled/>
+        <label for="credenza">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="credenza"  name="credenzaSerialNo" disabled/>
         </div>
 	
 	</div>
         <br>
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="additionalPaperTrays" />Additional paper trays:</label>
+	    <label for="serailNo"><input type="checkbox"  id="additionalPaperTrays"  name="additionalPaperTrays"/>&nbsp;&nbsp;Additional paper trays:</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="additionalserial">Serial Number:</label><input type="text" id="additionalserial"  disabled/>
+        <label for="additionalserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="additionalserial"  name="additionalPaperTraysTypeSerial"disabled/>
         </div>
 	</div>
-	</fieldset><br>
+	</fieldset><br><br>
+	<br>
 	<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<input type="submit" value="Submit"

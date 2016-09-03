@@ -11,7 +11,7 @@ public interface ProductDaoInt {
 	Product getProductBySerialNumbuer(String serialNumber);
 	List<Product> getProductList();
 	List<Product> getProductListByClientName(String clientName);
-	List<Accessories> accessories(String serialNumber);
+	List<Accessories> accessories(Product product);
 	
 
 }

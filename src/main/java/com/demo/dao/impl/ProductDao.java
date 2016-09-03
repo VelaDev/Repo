@@ -35,8 +35,25 @@ public class ProductDao implements ProductDaoInt {
 	@Override
 	public void saveProduct(Product product) {
 		
-		Client client = (Client) session.getAttribute("client");
+		Client client = clientDaoInt.getClientByClientName(product.getClientName());
 		product.setClient(client);
+		if(product.getAdditionalPaperTraysTypeSerial()!=null){
+			product.setAdditionalPaperTrays("Additional Paper Trays");
+		}
+		if(product.getBridgeUnitSerialTypeSerialNo()!=null){
+			product.setBridgeUnitSerialType("Bridge unit");
+		}
+		if(product.getCredenzaSerialNo()!= null){
+			product.setCredenza("Credenza");
+		}if(product.getFaxUnitSerialTypeSerialNo()!=null){
+			product.setFaxUnitSerialType("Fax Unit");
+		}if(product.getFinisherTypeSerialNo()!=null){
+			product.setFinisherType("Finisher");
+		}if(product.getLtcTypeSerial()!=null){
+			product.setLtcType("LCT");
+		}if(product.getOneBinTrayTypeSerialNo()!=null){
+			product.setOneBinTrayType("One Bin Tray");
+		}
 		sessionFactory.getCurrentSession().save(product);
 		
 	}
@@ -84,44 +101,64 @@ public class ProductDao implements ProductDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Accessories> accessories(String serialNumber) {
+	public List<Accessories> accessories(Product product) {
 		ArrayList list = new ArrayList<Accessories>();
 		Accessories accessory = new Accessories();
+		if(product.getAdditionalPaperTraysTypeSerial()!=null){
+			accessory.setBridgeUnitSerial(product.getAdditionalPaperTraysTypeSerial());
+			accessory.setBridgeUnitSerialType(product.getAdditionalPaperTrays());
+			accessory.setProd(product.getSerialNumber());
+			list.add(accessory);
+		}
+		if(product.getBridgeUnitSerialTypeSerialNo()!=null){
+			Accessories accessory1 = new Accessories();
+			accessory1.setBridgeUnitSerial(product.getBridgeUnitSerialTypeSerialNo());
+			accessory1.setBridgeUnitSerialType(product.getBridgeUnitSerialType());
+			accessory1.setProd(product.getSerialNumber());
+			list.add(accessory1);
+		}
 		
-		accessory.setBridgeUnitSerial("TTR12");
-		accessory.setBridgeUnitSerialType("Bridge Unit");
-		accessory.setProd(serialNumber);
-		list.add(accessory);
+		if(product.getCredenzaSerialNo() != null){
+			Accessories accessory2 = new Accessories();
+			accessory2.setBridgeUnitSerial(product.getCredenzaSerialNo());
+			accessory2.setBridgeUnitSerialType(product.getCredenza());
+			accessory2.setProd(product.getSerialNumber());
+			list.add(accessory2);
+		}
 		
-		Accessories accessory1 = new Accessories();
-		accessory1.setBridgeUnitSerial("CREZ12");
-		accessory1.setBridgeUnitSerialType("CREDENZA");
-		accessory1.setProd(serialNumber);
-		list.add(accessory1);
 		
-		Accessories accessory2 = new Accessories();
-		accessory2.setBridgeUnitSerial("LTC21");
-		accessory2.setBridgeUnitSerialType("LTC");
-		accessory2.setProd(serialNumber);
-		list.add(accessory2);
+		if(product.getFaxUnitSerialTypeSerialNo()!= null){
+			Accessories accessory3 = new Accessories();
+			accessory3.setBridgeUnitSerial(product.getFaxUnitSerialTypeSerialNo());
+			accessory3.setBridgeUnitSerialType(product.getFaxUnitSerialType());
+			accessory3.setProd(product.getSerialNumber());
+			list.add(accessory3);
+		}
 		
-		Accessories accessory3 = new Accessories();
-		accessory3.setBridgeUnitSerial("OBT122");
-		accessory3.setBridgeUnitSerialType("One Bin Tray");
-		accessory3.setProd(serialNumber);
-		list.add(accessory3);
+		if(product.getFinisherTypeSerialNo()!= null){
+			Accessories accessory4 = new Accessories();
+			accessory4.setBridgeUnitSerial(product.getFinisherTypeSerialNo());
+			accessory4.setBridgeUnitSerialType(product.getFinisherType());
+			accessory4.setProd(product.getSerialNumber());
+			list.add(accessory4);
+		}
 		
-		Accessories accessory4 = new Accessories();
-		accessory4.setBridgeUnitSerial("FU122");
-		accessory4.setBridgeUnitSerialType("Fax Unit");
-		accessory4.setProd(serialNumber);
-		list.add(accessory4);
+		if(product.getLtcTypeSerial()!=null){
+			Accessories accessory5 = new Accessories();
+			accessory5.setBridgeUnitSerial(product.getLtcTypeSerial());
+			accessory5.setBridgeUnitSerialType(product.getLtcType());
+			accessory5.setProd(product.getSerialNumber());
+			list.add(accessory5);
+		}
 		
-		Accessories accessory5 = new Accessories();
-		accessory5.setBridgeUnitSerial("FN122");
-		accessory5.setBridgeUnitSerialType("Finisher");
-		accessory5.setProd(serialNumber);
-		list.add(accessory5);
+		if(product.getOneBinTrayTypeSerialNo()!= null){
+			Accessories accessory6 = new Accessories();
+			accessory6.setBridgeUnitSerial(product.getOneBinTrayTypeSerialNo());
+			accessory6.setBridgeUnitSerialType(product.getOneBinTrayType());
+			accessory6.setProd(product.getSerialNumber());
+			list.add(accessory6);
+		}
+		
 		
 		return list;
 	}

@@ -14,11 +14,25 @@ public class ProductBean {
 	private String prductDescription;
 	private String productModel;
 	private String productStatus;
-	private Date startDate;
-	private Date endDate;
+	private String startDate;
+	private String endDate;
 	private Client client;
 	private String accessoryName;
 	private String accessorySerial;
+	
+	private String credenza;
+	private String bridgeUnitSerialType;
+	private String faxUnitSerialType;
+	private String OneBinTrayType;
+	private String finisherType;
+	
+	
+	
+	private String credenzaSerialNo;
+	private String bridgeUnitSerialTypeSerialNo;
+	private String faxUnitSerialTypeSerialNo;
+	private String OneBinTrayTypeSerialNo;
+	private String finisherTypeSerialNo;
 	
 	public String getSerialNumber() {
 		return serialNumber;
@@ -62,16 +76,16 @@ public class ProductBean {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-	public Date getStartDate() {
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
 	public String getAccessoryName() {
@@ -85,6 +99,66 @@ public class ProductBean {
 	}
 	public void setAccessorySerial(String accessorySerial) {
 		this.accessorySerial = accessorySerial;
+	}
+	public String getCredenza() {
+		return credenza;
+	}
+	public void setCredenza(String credenza) {
+		this.credenza = credenza;
+	}
+	public String getBridgeUnitSerialType() {
+		return bridgeUnitSerialType;
+	}
+	public void setBridgeUnitSerialType(String bridgeUnitSerialType) {
+		this.bridgeUnitSerialType = bridgeUnitSerialType;
+	}
+	public String getFaxUnitSerialType() {
+		return faxUnitSerialType;
+	}
+	public void setFaxUnitSerialType(String faxUnitSerialType) {
+		this.faxUnitSerialType = faxUnitSerialType;
+	}
+	public String getOneBinTrayType() {
+		return OneBinTrayType;
+	}
+	public void setOneBinTrayType(String oneBinTrayType) {
+		OneBinTrayType = oneBinTrayType;
+	}
+	public String getFinisherType() {
+		return finisherType;
+	}
+	public void setFinisherType(String finisherType) {
+		this.finisherType = finisherType;
+	}
+	public String getCredenzaSerialNo() {
+		return credenzaSerialNo;
+	}
+	public void setCredenzaSerialNo(String credenzaSerialNo) {
+		this.credenzaSerialNo = credenzaSerialNo;
+	}
+	public String getBridgeUnitSerialTypeSerialNo() {
+		return bridgeUnitSerialTypeSerialNo;
+	}
+	public void setBridgeUnitSerialTypeSerialNo(String bridgeUnitSerialTypeSerialNo) {
+		this.bridgeUnitSerialTypeSerialNo = bridgeUnitSerialTypeSerialNo;
+	}
+	public String getFaxUnitSerialTypeSerialNo() {
+		return faxUnitSerialTypeSerialNo;
+	}
+	public void setFaxUnitSerialTypeSerialNo(String faxUnitSerialTypeSerialNo) {
+		this.faxUnitSerialTypeSerialNo = faxUnitSerialTypeSerialNo;
+	}
+	public String getOneBinTrayTypeSerialNo() {
+		return OneBinTrayTypeSerialNo;
+	}
+	public void setOneBinTrayTypeSerialNo(String oneBinTrayTypeSerialNo) {
+		OneBinTrayTypeSerialNo = oneBinTrayTypeSerialNo;
+	}
+	public String getFinisherTypeSerialNo() {
+		return finisherTypeSerialNo;
+	}
+	public void setFinisherTypeSerialNo(String finisherTypeSerialNo) {
+		this.finisherTypeSerialNo = finisherTypeSerialNo;
 	}
 	
 }

@@ -148,7 +148,7 @@ $(document).ready(function(){
 									<li><a href='<c:url value="updateCustomer.html"/>'>Update Customer</a></li>
 									<li><a href='<c:url value="displayCustomers.html"/>'>Display Customers</a></li>
 									<li><a href='<c:url value="clientInformation.html"/>'>Search Devices for a customer</a></li>
-                                     <li><a href="#">Delete Customer</a></li>                                 
+                                     <li><a href="#">Deactivate Customer</a></li>                                 
 								</ul>
 							</li>
                           

@@ -113,4 +113,13 @@ public class ProductController {
 		model.setViewName("searchDevice");
 		return model;
 	}
+	
+	@RequestMapping(value="updateProduct")
+	public ModelAndView updateProduct()
+	{
+		model = new ModelAndView();
+		
+		model.setViewName("Home");
+		return model;
+	}
 }

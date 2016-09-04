@@ -11,7 +11,7 @@
 
    <c:import url="templates/navbar.jsp"></c:import>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Update Customer Details</title>
 </head>
 
 <body class=".container-fluid">

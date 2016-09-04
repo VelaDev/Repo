@@ -1,6 +1,8 @@
 package com.demo.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class ClientController {
 	@SuppressWarnings("unused")
 	private String retMessage = null;
 	ModelAndView model = null;
+	List<Product> productList =null;
+	Client client = null;
 	
 	@RequestMapping(value="addClient",method=RequestMethod.GET)
 	public ModelAndView loadAddClient() {
@@ -55,8 +59,8 @@ public class ClientController {
 	@RequestMapping(value="clientInformation",method=RequestMethod.GET)
 	public ModelAndView loadClientInformation() {
 		
-	    model = new ModelAndView("clientInformation.jsp");
-		model.setViewName("clientInformation");
+	    model = new ModelAndView("clientInformation");
+		//model.setViewName("clientInformation");
 		
 		return model;
 	}
@@ -64,7 +68,13 @@ public class ClientController {
 	public ModelAndView searchClient(@RequestParam("clientName") String clientName,@ModelAttribute Product product) {
 		model = new ModelAndView();
 		
-		model.addObject("productList", productServiceInt.getProductListByClientName(clientName));
+		
+		productList = productServiceInt.getProductListByClientName(clientName);
+		for(Product prod:productList){
+			client = prod.getClient();
+		}
+		model.addObject("productList",productList );
+		model.addObject("client", client);
 		model.setViewName("clientInformation");
 		
 		return model;
@@ -73,7 +83,6 @@ public class ClientController {
 	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
 		model = new ModelAndView();
 		client = clientServiceInt.getClientByClientName(clientName);
-		//session.setAttribute("client", client);
 		model.addObject("client", client);
 		model.setViewName("addProduct");
 		
@@ -91,6 +100,7 @@ public class ClientController {
 	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Client client){
 		model = new ModelAndView();
 		retMessage =clientServiceInt.updateCustomer(client); 
+		model.setViewName("home");
 		return model;
 	}
 	

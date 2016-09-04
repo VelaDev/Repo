@@ -27,12 +27,14 @@ public class ProductDao implements ProductDaoInt {
 	private SessionFactory sessionFactory;
 	@Autowired
 	private ClientDaoInt clientDaoInt;
-	
+	private String retMessage = null;
 	@SuppressWarnings("unused")
 	private Date currentDate =null;
 	ArrayList<Product> productList = null;
 	ArrayList<?> aList = null;
 	Client client = null;
+	
+	
 	@Override
 	public void saveProduct(Product product) {
 		
@@ -160,6 +162,18 @@ public class ProductDao implements ProductDaoInt {
 		
 		
 		return list;
+	}
+
+	@Override
+	public String updateProduct(Product product) {
+		try{
+			sessionFactory.getCurrentSession().update(product);
+			retMessage = "Product "+product.getSerialNumber()+ " is successfully updated";
+		}
+		catch(Exception e){
+			retMessage = "Product "+product.getSerialNumber()+ " is not updated";
+		}
+		return retMessage;
 	}
 	
 }

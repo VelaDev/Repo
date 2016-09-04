@@ -12,6 +12,7 @@ public interface ProductDaoInt {
 	List<Product> getProductList();
 	List<Product> getProductListByClientName(String clientName);
 	List<Accessories> accessories(Product product);
+	String updateProduct(Product product);
 	
 
 }

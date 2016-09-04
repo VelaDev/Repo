@@ -15,6 +15,7 @@ public class ProductService implements ProductServiceInt {
 	
 	@Autowired
 	private ProductDaoInt productDAO;
+	private String retMessage = null;
 
 	@Override
 	public void saveProduct(Product product) {
@@ -42,6 +43,12 @@ public class ProductService implements ProductServiceInt {
 	public List<Accessories> accessories(Product product) {
 		// TODO Auto-generated method stub
 		return productDAO.accessories(product);
+	}
+
+	@Override
+	public String updateProduct(Product product) {
+		retMessage = productDAO.updateProduct(product);
+		return retMessage;
 	}
 
 }

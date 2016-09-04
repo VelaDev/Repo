@@ -24,6 +24,8 @@ public class ProductController {
     @Autowired
     private ClientServiceInt clientServiceInt;
    /* @Autowired HttpSession session;*/
+    
+    private String retMessage = null;
     @Autowired
 	private EmployeeServiceInt employeeServiceInt;
     
@@ -115,11 +117,11 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="updateProduct")
-	public ModelAndView updateProduct()
+	public ModelAndView updateProduct(@ModelAttribute("updateProduct")Product product)
 	{
 		model = new ModelAndView();
-		
-		model.setViewName("Home");
+		retMessage = productServiceInt.updateProduct(product);
+		model.setViewName("home");
 		return model;
 	}
 }

@@ -47,7 +47,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.clientName}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.clientName}" name="clientName">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -55,7 +55,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.contactPerson}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.contactPerson}" >
    </div>
    </div>
 	</div>
@@ -68,7 +68,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.tellphoneNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.tellphoneNumber}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -76,7 +76,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.cellNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.cellNumber}">
    </div>
    </div>
 	</div>
@@ -88,7 +88,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.email}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.email}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -96,7 +96,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.faxNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.faxNumber}">
    </div>
    </div>
 	</div>
@@ -108,7 +108,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="" >
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -116,7 +116,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.streetName}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.streetName}">
    </div>
    </div>
 	</div>
@@ -128,7 +128,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.city_town}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.city_town}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -136,7 +136,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.floorNumber}" disabled="disabled">
+   <input type="text" class="form-control input-sm" value="${productObject.client.floorNumber}">
    </div>
    </div>
 	</div><br>	
@@ -151,7 +151,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" disabled="disabled" value="${productObject.serialNumber }">
+   <input type="text" class="form-control input-sm" name="serialNumber" value="${productObject.serialNumber }">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -159,7 +159,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.productModel }">
+   <input type="text" class="form-control input-sm" name="productModel" value="${productObject.productModel }">
    </div>
    </div>
 	</div><br>
@@ -170,7 +170,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" id="startDate" name="startDate" value="${productObject.startDate.toString().substring(0,10) }">
+   <input type="text" class="form-control input-sm" id="startDate" name="startDate" type="text" value="${productObject.startDate.toString().substring(0,10) }">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -178,84 +178,82 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" id="endDate" name="endDate" value="${productObject.endDate.toString().substring(0,10) }">
+   <input type="text" class="form-control input-sm" id="endDate" name="endDate" type="text" value="${productObject.endDate.toString().substring(0,10) }">
    </div>
    </div>
 	</div>
-	</fieldset><br><br><fieldset>
-	<legend align="right">Machine Accessories</legend>
+	</fieldset>
+	
+	<br><br><fieldset>
+	<legend align="left">Machine Accessories</legend>
 	<div class="row">
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="bridgeunitserial" />Bridge unit</label>
+	    <label for="serailNo"><input type="checkbox" id="bridgeunitserial" name="bridgeUnitSerialType"/>&nbsp;Bridge unit</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="bridgeunit">Serial Number:</label><input type="text" id="bridgeunit" />
+        <label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="bridgeunit" name="bridgeUnitSerialTypeSerialNo" value="${productObject.bridgeUnitSerialTypeSerialNo }"/>
         </div>
         
         <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="faxunit" />Fax Unit:</label>
+	    <label for="serailNo"><input type="checkbox" id="faxunit" name="faxUnitSerialType"/>&nbsp;Fax Unit:</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="faxunitserial">Serial Number:</label><input type="text" id="faxunitserial"  />
+        <label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="faxunitserial"  name="faxUnitSerialTypeSerialNo" value="${productObject.faxUnitSerialTypeSerialNo }"/>
         </div>
 	</div>
 	<br>
 	<div class="row">
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="onebintrayserial" />One bin tray</label>
+	    <label for="serailNo"><input type="checkbox" id="onebintrayserial" name="bridgeUnitSerialType"/>&nbsp;One bin tray</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="onebintray">Serial Number:</label><input type="text" id="onebintray"/>
+        <label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="onebintray"  name="oneBinTrayTypeSerialNo" value="${productObject.oneBinTrayTypeSerialNo }"/>
         </div>
         
         <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="finisher" />Finisher:</label>
+	    <label for="serailNo"><input type="checkbox" id="finisher" name="finisherType" />&nbsp;Finisher:</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="finisherserial">Serial Number:</label><input type="text" id="finisherserial"/>
+        <label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="finisherserial" name="finisherTypeSerialNo" value="${productObject.finisherTypeSerialNo }"/>
         </div>
 	</div>
 	<br>
 	<div class="row">
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="ltcserial" />LCT</label>
+	    <label for="serailNo"><input type="checkbox" id="ltcserial" name="ltcType"/>&nbsp;LCT</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="ltc">Serial Number:</label><input type="text" id="ltc"/>
+        <label for="ltc">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="ltc" name="ltcTypeSerial" value="${productObject.ltcTypeSerial }"/>
         </div>
         
         
         <div class="row">
 	   <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="credenzaserial" />Credenza</label>
+	    <label for="serailNo"><input type="checkbox" id="credenzaserial" name="credenza"/>&nbsp;Credenza</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="credenza">Serial Number:</label><input type="text" id="credenza"/>
+        <label for="credenza">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="credenza"  name="credenzaSerialNo" value="${productObject.credenzaSerialNo }"/>
         </div>
 	
 	</div>
         <br>
 	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="additionalPaperTrays" />Additional paper trays:</label>
+	    <label for="serailNo"><input type="checkbox"  id="additionalPaperTrays"  name="additionalPaperTrays"/>&nbsp;&nbsp;Additional paper trays:</label>
 	    </div>
 	    <div class="col-xs-3">
-        <label for="additionalserial">Serial Number:</label><input type="text" id="additionalserial"/>
+        <label for="additionalserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="additionalserial"  name="additionalPaperTraysTypeSerial" value="${productObject.additionalPaperTraysTypeSerial }"/>
         </div>
 	</div>
-	</fieldset><br>
+	</fieldset><br><br>
+	<br>
 	<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<input type="submit" value="Submit"
 								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
 						</div>
 					</div>
+   
 	</form:form>
-						
-	
-
-
-
-	
 
 </div>
  

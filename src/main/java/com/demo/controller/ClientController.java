@@ -3,6 +3,7 @@ package com.demo.controller;
 
 import java.util.List;
 
+import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +113,13 @@ public class ClientController {
 		model.addObject("client", client);
 		model.setViewName("updateCustomer");
 		
+		return model;
+	}
+	@RequestMapping(value="displayCustomers",method=RequestMethod.GET)
+	public ModelAndView displayCustomers(){
+		model= new ModelAndView();
+		model.addObject("customerList", clientServiceInt.getClientList());
+		model.setViewName("displayCustomers");
 		return model;
 	}
 }

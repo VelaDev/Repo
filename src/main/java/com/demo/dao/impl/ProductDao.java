@@ -167,6 +167,26 @@ public class ProductDao implements ProductDaoInt {
 	@Override
 	public String updateProduct(Product product) {
 		try{
+			
+			Client client = clientDaoInt.getClientByClientName(product.getClientName());
+			product.setClient(client);
+			if(product.getAdditionalPaperTraysTypeSerial()!=null && product.getCredenzaSerialNo()!=""){
+				product.setAdditionalPaperTrays("Additional Paper Trays");
+			}
+			if(product.getBridgeUnitSerialTypeSerialNo()!=null && product.getBridgeUnitSerialTypeSerialNo()!=""){
+				product.setBridgeUnitSerialType("Bridge unit");
+			}
+			if(product.getCredenzaSerialNo()!= null && product.getCredenzaSerialNo()!=""){
+				product.setCredenza("Credenza");
+			}if(product.getFaxUnitSerialTypeSerialNo()!=null && product.getFaxUnitSerialTypeSerialNo()!=""){
+				product.setFaxUnitSerialType("Fax Unit");
+			}if(product.getFinisherTypeSerialNo()!=null && product.getFinisherTypeSerialNo()!=""){
+				product.setFinisherType("Finisher");
+			}if(product.getLtcTypeSerial()!=null && product.getLtcTypeSerial()!=""){
+				product.setLtcType("LCT");
+			}if(product.getOneBinTrayTypeSerialNo()!=null && product.getOneBinTrayTypeSerialNo()!=""){
+				product.setOneBinTrayType("One Bin Tray");
+			}
 			sessionFactory.getCurrentSession().update(product);
 			retMessage = "Product "+product.getSerialNumber()+ " is successfully updated";
 		}

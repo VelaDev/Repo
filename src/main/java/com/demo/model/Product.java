@@ -54,7 +54,7 @@ public class Product implements Serializable{
 	private String credenzaSerialNo;
 	private String bridgeUnitSerialTypeSerialNo;
 	private String faxUnitSerialTypeSerialNo;
-	private String OneBinTrayTypeSerialNo;
+	private String oneBinTrayTypeSerialNo;
 	private String finisherTypeSerialNo;
 	private String ltcTypeSerial;
 	private String additionalPaperTraysTypeSerial;
@@ -213,14 +213,6 @@ public class Product implements Serializable{
 		this.faxUnitSerialTypeSerialNo = faxUnitSerialTypeSerialNo;
 	}
 
-	public String getOneBinTrayTypeSerialNo() {
-		return OneBinTrayTypeSerialNo;
-	}
-
-	public void setOneBinTrayTypeSerialNo(String oneBinTrayTypeSerialNo) {
-		OneBinTrayTypeSerialNo = oneBinTrayTypeSerialNo;
-	}
-
 	public String getFinisherTypeSerialNo() {
 		return finisherTypeSerialNo;
 	}
@@ -235,6 +227,14 @@ public class Product implements Serializable{
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+
+	public String getOneBinTrayTypeSerialNo() {
+		return oneBinTrayTypeSerialNo;
+	}
+
+	public void setOneBinTrayTypeSerialNo(String oneBinTrayTypeSerialNo) {
+		this.oneBinTrayTypeSerialNo = oneBinTrayTypeSerialNo;
 	}
 	
 }

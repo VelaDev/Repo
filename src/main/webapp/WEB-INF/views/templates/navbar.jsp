@@ -130,6 +130,10 @@ $(document).ready(function(){
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Employees<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href='<c:url value="registerEmployee.html"/>'>Add Employee</a></li>
+            <li><a href='<c:url value="#"/>'>Update Employee</a></li>
+            <li><a href='<c:url value="#"/>'>Display Employee</a></li>
+            <li><a href='<c:url value="#"/>'>Reset Password</a></li>
+            <li><a href='<c:url value="#"/>'>Deactivate Employee</a></li>
           
           </ul>
         </li>

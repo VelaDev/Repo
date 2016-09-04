@@ -13,7 +13,48 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body class=".container-fluid">
+<body>
+<div class="container myrow-container" style="width:90%">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <div align="center"><b>Customer List</b> </div>
+                <!-- <div align="right"><a href="">Think of something</a></div> -->
+            </h3>
+        </div>
+   <div class="panel-body">
+   
+      <div class="row">   
+                 <div class="content">                     
+                <table class="table table-hover ">
+                    <thead style="background-color: #bce8f1;">
+                    <tr class='clickable-row'>
+                        <th>Customer Name</th>
+                        <th>Contact Person</th>
+                        <th>Email</th>
+                        <th>Tel</th>
+                         
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${customerList}" var="customer">
+                        <tr>
+                            <th><c:out value="${customer.clientName}"/></th>
+                            <th><c:out value="${customer.contactPerson}"/></th>
+                            <th><c:out value="${customer.email}"/></th>
+                            <th><c:out value="${customer.tellphoneNumber}"/></th> 
+                                                     
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+                </div>
+                </div>
+   
+   
+   </div>
+   </div>
+   </div>
 
 </body>
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />" ></script>

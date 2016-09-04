@@ -174,6 +174,7 @@ $(document).ready(function(){
           <ul class="dropdown-menu">
             <li><a href='<c:url value="addParts.html"/>'>Add Spares</a></li>
             <li><a href="#">Approved Orders</a></li>
+            <li><a href="#">Display Orders</a></li>
           </ul>
         </li>
         

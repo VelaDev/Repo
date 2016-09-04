@@ -30,8 +30,22 @@ public class ClintDao implements ClientDaoInt{
 
 	@Override
 	public Client getClientByClientName(String clientName) {
+		
+		Client client = null;
+		try{
+			if(!clientName.equals("")&& clientName!=null){
+				client = (Client) sessionFactory.getCurrentSession().get(Client.class,clientName);
+			}
+			else{
+				client = null;
+			}
+		}
+		catch(Exception e)
+		{
+			client = null;
+		}
 	
-		return (Client) sessionFactory.getCurrentSession().get(Client.class,clientName);
+		return client;
 	}
 
 	@SuppressWarnings("unchecked")

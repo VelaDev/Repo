@@ -27,11 +27,12 @@ public class ProductDao implements ProductDaoInt {
 	private SessionFactory sessionFactory;
 	@Autowired
 	private ClientDaoInt clientDaoInt;
-	@Autowired
-	private HttpSession session;
 	
 	@SuppressWarnings("unused")
 	private Date currentDate =null;
+	ArrayList<Product> productList = null;
+	ArrayList<?> aList = null;
+	Client client = null;
 	@Override
 	public void saveProduct(Product product) {
 		
@@ -74,24 +75,22 @@ public class ProductDao implements ProductDaoInt {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Product> getProductListByClientName(String clientName) {
-		ArrayList<Product> productList = null;
+		String name = clientName;
 		try{
-			Client client = null;
-			ArrayList<?> aList = new ArrayList<Object>();
+			
+		    aList = new ArrayList<Object>();
 		     productList = new ArrayList<Product>();
 			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Product.class);
 			aList.addAll(criteria.list());
 			for (Object pro : aList) {
 				if (pro instanceof Product) {
-					if (((Product) pro).getClient().getClientName()!=null&&((Product) pro).getClient().getClientName().startsWith(clientName) ) {
+					if (((Product) pro).getClient().getClientName()!=null&&((Product) pro).getClient().getClientName().startsWith(name) ) {
 						productList.add((Product) pro);
 						System.out.println(((Product) pro).getClient().getClientName());
 						 client = ((Product) pro).getClient();
 					}
 				}
 			}
-			session.setAttribute("client", client);
-			
 		}
 		catch(Exception e){
 			return null;

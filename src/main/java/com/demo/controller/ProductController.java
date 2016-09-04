@@ -102,4 +102,15 @@ public class ProductController {
 		model.setViewName("updateDevice");
 		return model;
 	}
+	
+	@RequestMapping(value="searchDeviceBySerialNo")
+	public ModelAndView searchDeviceBySerialNo1(@RequestParam("SerialNo") String serialNumber,Product product){
+		model= new ModelAndView();
+		product = productServiceInt.getProductBySerialNumber(serialNumber);
+		
+		model.addObject("productObject", product);
+	    model.addObject("accessories", productServiceInt.accessories(product));
+		model.setViewName("searchDevice");
+		return model;
+	}
 }

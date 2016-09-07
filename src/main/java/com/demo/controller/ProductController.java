@@ -42,9 +42,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="saveProduct", method=RequestMethod.POST)
-	public String saveProduct(@ModelAttribute("saveProduct")Product product){
-		productServiceInt.saveProduct(product);
-		return "redirect:home";
+	public ModelAndView saveProduct(@ModelAttribute("saveProduct")Product product){
+		retMessage =productServiceInt.saveProduct(product);
+		model = new ModelAndView();
+		model.addObject("retMessage", retMessage);
+		model.setViewName("addProduct");
+		return model;
 	}
 	
 	@RequestMapping(value = {"showProducts"})
@@ -121,7 +124,8 @@ public class ProductController {
 	{
 		model = new ModelAndView();
 		retMessage = productServiceInt.updateProduct(product);
-		model.setViewName("home");
+		model.addObject("retMessage", retMessage);
+		model.setViewName("updateDevice");
 		return model;
 	}
 }

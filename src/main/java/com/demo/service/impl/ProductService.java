@@ -18,8 +18,9 @@ public class ProductService implements ProductServiceInt {
 	private String retMessage = null;
 
 	@Override
-	public void saveProduct(Product product) {
-		productDAO.saveProduct(product);
+	public String saveProduct(Product product) {
+		retMessage =productDAO.saveProduct(product);
+		return retMessage;
 		
 	}
 

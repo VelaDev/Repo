@@ -7,7 +7,7 @@ import com.demo.model.Product;
 
 public interface ProductDaoInt {
 	
-	void saveProduct(Product product);
+	String saveProduct(Product product);
 	Product getProductBySerialNumbuer(String serialNumber);
 	List<Product> getProductList();
 	List<Product> getProductListByClientName(String clientName);

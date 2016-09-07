@@ -84,7 +84,15 @@ public class ClientController {
 	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
 		model = new ModelAndView();
 		client = clientServiceInt.getClientByClientName(clientName);
-		model.addObject("client", client);
+		if(client != null){
+			model.addObject("client", client);
+		}
+		else
+		{
+			model.addObject("retMessage", "Customer : " + clientName + " does not exist");
+			model.addObject("client", null);
+		}
+	
 		model.setViewName("addProduct");
 		
 		return model;

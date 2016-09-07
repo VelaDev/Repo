@@ -73,7 +73,7 @@ public class ProductController {
 		model = new ModelAndView();
 		product = productServiceInt.getProductBySerialNumber(serialNumber);
 		if(product != null){
-			//session.setAttribute("serialNumber", product.getSerialNumber());
+			
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("product", product);
 		}
@@ -102,8 +102,14 @@ public class ProductController {
 		model= new ModelAndView();
 		
 		product = productServiceInt.getProductBySerialNumber(serialNumber);
+		if(product != null)
+		{
 		
-		model.addObject("productObject", product);
+		    model.addObject("productObject", product);
+		}
+		else{
+			model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
+		}
 		model.setViewName("updateDevice");
 		return model;
 	}
@@ -112,9 +118,15 @@ public class ProductController {
 	public ModelAndView searchDeviceBySerialNo1(@RequestParam("SerialNo") String serialNumber,Product product){
 		model= new ModelAndView();
 		product = productServiceInt.getProductBySerialNumber(serialNumber);
+		if(product != null){
+			model.addObject("productObject", product);
+		    model.addObject("accessories", productServiceInt.accessories(product));
+		}
+		else{
+			model.addObject("retMessage", "Device : "+ serialNumber + " does not exist");
+		    
+		}
 		
-		model.addObject("productObject", product);
-	    model.addObject("accessories", productServiceInt.accessories(product));
 		model.setViewName("searchDevice");
 		return model;
 	}

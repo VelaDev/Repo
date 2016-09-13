@@ -103,8 +103,8 @@ public class EmployeeController {
 	{
 		model = new ModelAndView();
 		retMessage = employeeService.saveEmployee(employee);
-		//model.addObject("client", retMessage);
-		model.setViewName("redirect:home");
+		model.addObject("retMessage", retMessage);
+		model.setViewName("registerEmployee");
 		return model;
 	}
 		

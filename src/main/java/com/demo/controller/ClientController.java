@@ -52,8 +52,8 @@ public class ClientController {
 	{
 		retMessage =clientServiceInt.saveClient(client);
 	    model = new ModelAndView();
-		//model.addObject("client",retMessage);
-		model.setViewName("redirect:home");
+		model.addObject("retMessage",retMessage);
+		model.setViewName("addClient");
 		return model;
 	}
 	
@@ -109,7 +109,8 @@ public class ClientController {
 	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Client client){
 		model = new ModelAndView();
 		retMessage =clientServiceInt.updateCustomer(client); 
-		model.setViewName("home");
+		model.addObject("retMessage", retMessage);
+		model.setViewName("updateCustomer");
 		return model;
 	}
 	

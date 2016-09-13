@@ -8,7 +8,7 @@ import org.hibernate.id.IdentifierGenerator;
 
 import com.mysql.jdbc.ResultSet;
 
-public class OrderNumGenerator implements IdentifierGenerator{
+public class TicketNumberGenerator implements IdentifierGenerator{
 
 	@Override
 	public Serializable generate(org.hibernate.engine.SessionImplementor session,

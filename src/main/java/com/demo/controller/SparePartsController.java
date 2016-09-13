@@ -18,23 +18,24 @@ public class SparePartsController {
 	private SparePartsServeceInt sparePartsServeceInt;
 	@SuppressWarnings("unused")
 	private String retMessage = null;
+	ModelAndView model = null;
 	
 	@RequestMapping(value="addParts", method=RequestMethod.GET)
 	public ModelAndView loadSaveSpareParts()
 	{
-		ModelAndView model = new ModelAndView("addParts");
+	    model = new ModelAndView("addParts");
 		model.addObject("saveSpareParts", new SparePartsBean());
 		model.setViewName("addParts");
 		return model;
 	}
 	
 	@RequestMapping(value="saveSpareParts", method=RequestMethod.POST)
-	public String saveSaveSpareParts(@ModelAttribute("saveSpareParts")Parts spareParts){
-		String redirect ="";
+	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveSpareParts")Parts spareParts){
+		model = new ModelAndView();
 		retMessage = sparePartsServeceInt.saveSpareparts(spareParts);
-		redirect="redirect:home";
-		
-		return redirect;
+		model.addObject("retMessage", retMessage);
+		model.setViewName("addParts");
+		return model;
 	}
 
 }

@@ -35,12 +35,13 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value="makeOrder",method=RequestMethod.POST)
-	public String makeOrder(@ModelAttribute("makeOrder")Orders order)
+	public ModelAndView makeOrder(@ModelAttribute("makeOrder")Orders order)
 	{
-		String retRedirect ="";
+		model = new ModelAndView();
 		retMessage =ordersServiceInt.makeOrder(order);
-		retRedirect ="redirect:technicianHome";
-		return  retRedirect;
+		model.addObject("retMessage", retMessage);
+		model.setViewName("order");
+		return  model;
 	} 
 	
 	@RequestMapping("approveOrder")

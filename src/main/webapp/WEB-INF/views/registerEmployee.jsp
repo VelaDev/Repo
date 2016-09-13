@@ -8,33 +8,49 @@
 <c:import url="templates/navbar.jsp"></c:import>
 <body class=".container-fluid">
 <div class="container myrow-container" style="width:90%">
+<div class="alert alert-info" role="alert">
+<c:if test="${not empty retMessage }">
+  <c:out value="${ retMessage}">
+ </c:out>
+ </c:if>
+ </div>
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
                 <div align="center"><b>Add Employee</b> </div>
-                <!-- <div align="right"><a href="">Think of something</a></div> -->
             </h3>
         </div>
    <div class="panel-body">
-   
-   <div class="col-lg-10">
    <form:form method="post" action="addEmployee"  modelAttribute="addEmployee">
-      <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 form-control-label">First Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="firstName">
-    </div>
-  </div>
-   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Last Name</label>
-    <div class="col-sm-10">
-      <input type="text" name="lastName" class="form-control">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Title</label>
-    <div class="col-sm-10">
-      <select name="title" class="form-control">
+   
+      <div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >First Name:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="firstName">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Last Name:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="lastName">
+   </div>
+   </div>
+	</div>
+	<br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Title:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <select name="title" class="form-control">
         <option value="">Title<option>
 								  
 								     <option value="Mr" >Mr</option>
@@ -42,42 +58,59 @@
 								     <option value="Mrs" >Mrs</option>
 								     <option value="Doc" >Doc</option>
       </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Gender</label>
-    <div class="col-sm-10">
-      <select name="gender" class="form-control">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Gender:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <select name="gender" class="form-control">
         <option value="">Gender<option>
 								   
 								     <option value="Male" >Male</option>
 								     <option value="Female" >Female</option>
       </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Username</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="username">
-    </div>
-  </div>
-   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" name="password">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Email</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="email">
-    </div>
-  </div>
-  
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Role</label>
-    <div class="col-sm-10">
-      <select name="role" class="form-control">
+   </div>
+   </div>
+	</div>
+	<br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Username:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="username">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Password:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="password" class="form-control input-sm" name="password">
+   </div>
+   </div>
+	</div>
+	<br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Email:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="email">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Role:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <select name="role" class="form-control">
         <option value="">Role<option>
 								  
 								     <option value="Admin" >Admin</option>
@@ -85,16 +118,17 @@
 								     <option value="Technician" >Technician</option>
 								     <option value="User" >User</option>
       </select>
-    </div>
-  </div>
-  <div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-10">
+   </div>
+   </div>
+	</div>
+	<br>
+	<div class="form-group row">
+						<div class="col-sm-offset-2 col-sm-8">
 							<input type="submit" value="Submit"
-								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
-						</div>
+								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">						</div>
 					</div>
    </form:form>
-   </div>
+   
   </div>
   </div>
 </div>

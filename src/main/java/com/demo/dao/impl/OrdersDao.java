@@ -1,5 +1,6 @@
 package com.demo.dao.impl;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.engine.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -48,17 +50,15 @@ public class OrdersDao implements OrdersDaoInt{
 	private Calendar cal = null;
 	private Parts part = null;
 	private Product product=null;
+	SessionImplementor imp = null;
+	Object data = null;
 	
 
 	@SuppressWarnings("static-access")
 	@Override
 	public String makeOrder(Orders orders) {
 		
-		  /* String orderNumber=null;
-		   OrderNumGenerator orderNo = null;*/
-			
-		try{
-			
+			try{
 			//orderNo = new OrderNumGenerator();
 			String user = (String) session.getAttribute("loggedInUser");
 			emp=employeeDaoInt.getEmployeeByEmpNum(user);
@@ -69,7 +69,9 @@ public class OrdersDao implements OrdersDaoInt{
 			
 			//orderNumber = generateOrderNum();
 			//orders.setOrderNum(orderNumber);
-			
+			OrderNumberGenerator gen = new OrderNumberGenerator();
+			Serializable ser = gen.generate(imp, data);
+			orders.setOrderNum((String) ser);
 			orders.setPart(part);
 			orders.setEmployee(emp);
 			orders.setProduct(product);

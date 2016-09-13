@@ -26,10 +26,10 @@ public class SparePartsDao implements SparePartsDaoInt{
 		
 		try{
 			   sessionFactory.getCurrentSession().save(spareParts);
-			   retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ "is successfully added";
+			   retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ " is successfully added";
 		}
 		catch(Exception e){
-			retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ "is not added";
+			retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ "is not added " + e.getMessage();
 		}
 		return retMessage;
 	}

@@ -25,7 +25,6 @@ public class Orders implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE) 
 	@Column(name="ORDER_NUMBER")
 	private String orderNum;
 	@Column(name="QUANTITY")

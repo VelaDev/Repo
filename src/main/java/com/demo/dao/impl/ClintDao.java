@@ -20,12 +20,19 @@ public class ClintDao implements ClientDaoInt{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	private String retMessage = null;
 
 	@Override
 	public String saveClient(Client client) {
+		try{
+			sessionFactory.getCurrentSession().save(client);
+			retMessage =  "Customer "+ client.getClientName() + " "+ "Was successfully added";
+		}
+		catch(Exception e){
+			retMessage = "Customer "+ client.getClientName() + " is not added\n" + e.getMessage();
+		}
 		
-		sessionFactory.getCurrentSession().save(client);
-		return client.getClientName() + " "+ "Was successfully added";
+		return retMessage;
 	}
 
 	@Override
@@ -58,8 +65,14 @@ public class ClintDao implements ClientDaoInt{
 
 	@Override
 	public String updateClient(Client client) {
-		sessionFactory.getCurrentSession().update(client);
-		return ""+ client.getClientName()+ " is successfully updated";
+		try{
+			sessionFactory.getCurrentSession().update(client);
+			retMessage = "Customer "+ client.getClientName()+ " is successfully updated";
+		}
+		catch( Exception e){
+			retMessage = "Customer "+ client.getClientName() + " is not updated\n" + e.getMessage();
+		}
+		return retMessage;
 	}
 
 }

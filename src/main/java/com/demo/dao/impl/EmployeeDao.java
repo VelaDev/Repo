@@ -27,11 +27,11 @@ public class EmployeeDao implements EmployeeDaoInt{
 		String retMessage = null;
 		try{
 		sessionFactory.getCurrentSession().save(employee);
-		retMessage = "Employee"+ " "+ employee.getUsername()+ " " + "is successfully added";
+		retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
 		}
 		catch(Exception e)
 		{
-			retMessage = "Employee"+ " "+ employee.getUsername()+ " " + "is not added";
+			retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is not added\n" + e.getMessage();
 		}
 		return retMessage;
 	}

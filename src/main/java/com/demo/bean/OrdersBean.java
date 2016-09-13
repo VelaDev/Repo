@@ -23,7 +23,6 @@ public class OrdersBean {
 	private String partP;
 	private Product product;
 	private String prod;
-	
 	public long getOrderNum() {
 		return orderNum;
 	}
@@ -108,4 +107,6 @@ public class OrdersBean {
 	public void setProd(String prod) {
 		this.prod = prod;
 	}
+	
+	
 }

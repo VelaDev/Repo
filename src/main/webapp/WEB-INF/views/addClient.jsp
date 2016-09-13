@@ -7,6 +7,12 @@
 <c:import url="templates/navbar.jsp"></c:import>
 <body>
 <div class="container myrow-container" style="width:90%">
+<div class="alert alert-info" role="alert">
+<c:if test="${not empty retMessage }">
+  <c:out value="${ retMessage}">
+ </c:out>
+ </c:if>
+ </div>
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -18,26 +24,38 @@
    
    <div class="col-lg-10">
    <form:form method="post" action="saveClient"  modelAttribute="saveClient">
-      <div class="form-group row">
-    <label for="inputEmail3" class="col-sm-2 form-control-label">Client Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="clientName">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Contact Person</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="contactPerson">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Province</label>
-    <div class="col-sm-10">
-      <select name="province" class="form-control">
+       <div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Client Name:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="clientName">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Contact Person:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="contactPerson">
+   </div>
+   </div>
+	</div><br>
+	
+	 <div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Province:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <select name="province" class="form-control">
         <option value="">Province<option>
 								     <option value="Gauteng" >Gauteng</option>
 								     <option value="Limpopo" >Limpopo</option>
-								     <option value="Nort hWest" >North West</option>
+								     <option value="Nort West" >North West</option>
 								     <option value="Free State" >Free State</option>
 								     <option value="Mpumalanga">Mpumalanga</option>
 								     <option value="KwaZulu Natal" >KwaZulu Natal</option>
@@ -45,61 +63,99 @@
 								     <option value="Eastern Cape" >Eastern Cape</option>
 								     <option value="Mpumalanga" >Western Cape</option>
       </select>
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">City/Town</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="city_town">
-    </div>
-  </div>
-   <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Street Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="streetName">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Area Code</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="zipcode">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Floor No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="floorNumber">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Telephone No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="tellphoneNumber">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Fax No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="faxNumber">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Cell No</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="cellNumber">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Email</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="email">
-    </div>
-  </div>
-  <div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-10">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >City/Town:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="city_town">
+   </div>
+   </div>
+	</div> <br>
+	
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Street Name:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="streetName">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Area Code:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name=zipcode>
+   </div>
+   </div>
+	</div><br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Floor No:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="floorNumber">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Telephone No:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name=tellphoneNumber>
+   </div>
+   </div>
+	</div><br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Fax No:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="faxNumber">
+   </div>
+   
+      <div class="col-xs-2 form-control-label">
+    <label  >Cell No:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name=cellNumber>
+   </div>
+   </div>
+	</div><br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Email:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name="email">
+   </div>
+   
+      <!-- <div class="col-xs-2 form-control-label">
+    <label  >Cell No:</label>
+     
+   </div> -->
+   <!-- <div class="col-xs-3">
+   <input type="text" class="form-control input-sm" name=cellNumber>
+   </div> -->
+   </div>
+	</div><br>
+	
+	<div class="form-group row">
+						<div class="col-sm-offset-2 col-sm-8">
 							<input type="submit" value="Submit"
-								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
-						</div>
+								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">						</div>
 					</div>
    </form:form>
    </div>

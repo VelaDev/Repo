@@ -21,36 +21,36 @@
 				    <div class="col-lg-5">
                          <label for="inputEmail3" class="control-label" >Order No</label>
                              
-                         <input type="text" name=""class="form-control" name="orderNum" value="${orderObject.orderNum}" disabled="disabled">
+                         <input type="text" name=""class="form-control" name="orderNum" value="${orderObject.orderNum}">
                               
                        </div>
                        <div class="col-lg-5">
                        <label for="inputEmail3" class="form-control-label" >Serial Number</label>
                            
-                               <input type="text" name=""class="form-control" name="prod" value="${orderObject.product.serialNumber}" disabled="disabled">
+                               <input type="text" name=""class="form-control" name="prod" value="${orderObject.product.serialNumber}">
                           
                           </div>
                            <div class="col-lg-5">
                        <label for="inputEmail3" class="form-control-label" >Part No</label>
                            
-                               <input type="text" name=""class="form-control" name="partP" value="${orderObject.part.partNumber}" disabled="disabled">
+                               <input type="text" name=""class="form-control" name="partP" value="${orderObject.part.partNumber}" >
                             
                           </div>
                            <div class="col-lg-5">
                        <label for="inputEmail3" class="form-control-label" >Quantity</label>
                             
-                               <input type="text" name=""class="form-control" name="quantity" value="${orderObject.quantity}" disabled="disabled">
+                               <input type="text" name=""class="form-control" name="quantity" value="${orderObject.quantity}">
                            
                           </div>
                        <div class="col-lg-5">
                             <label for="inputEmail3" class="form-control-label" >Customer Name</label>
                               
-                                <input type="text" class="form-control" value="${orderObject.product.client.clientName}" disabled="disabled">
+                                <input type="text" class="form-control" value="${orderObject.product.client.clientName}">
                               
                           </div> <div class="col-lg-5">
                        <label for="inputEmail3" class="form-control-label" >Ordered By</label>
                           
-                               <input type="text" class="form-control" name="" value="${orderObject.employee.username} ${orderObject.employee.lastName}" disabled="disabled">
+                               <input type="text" class="form-control" name="" value="${orderObject.employee.username} ${orderObject.employee.lastName}">
                            
                           </div>
              
@@ -58,12 +58,12 @@
                        <label for="inputEmail3" class="form-control-label" >Customer Contacts</label>
                             
                         
-                                <textarea rows="2" cols="50" disabled="disabled">${orderObject.product.client.email}, ${orderObject.product.client.tellphoneNumber}</textarea>
+                                <textarea rows="2" cols="50">${orderObject.product.client.email}, ${orderObject.product.client.tellphoneNumber}</textarea>
                           </div>
                   <div class="col-lg-5">
                                  <label for="inputEmail3" class="form-control-label" >Customer Address</label>
                                  
-                                   <textarea rows="2" cols="50" disabled="disabled">${orderObject.product.client.streetName}, ${orderObject.product.client.city_town},${orderObject.product.client.province}</textarea>
+                                   <textarea rows="2" cols="50">${orderObject.product.client.streetName}, ${orderObject.product.client.city_town},${orderObject.product.client.province}</textarea>
                                  
                                </div>
                            
@@ -71,13 +71,13 @@
                            <div class="col-lg-5">
                        <label for="inputEmail3" class="form-control-label" >Order Date</label>
                            
-                               <input type="text" class="form-control" name="dateOrdered" value="${orderObject.getDateOrdered().getTime().toLocaleString()}" disabled="disabled">
+                               <input type="text" class="form-control" name="dateOrdered" value="${orderObject.getDateOrdered().getTime().toLocaleString()}">
                            
                           </div>
                            <div class="col-lg-5">
                        <label for="inputEmail3" class="form-control-label" >ItemType</label>
                          
-                               <input type="text" class="form-control" value="${orderObject.part.itemType}" disabled="disabled">
+                               <input type="text" class="form-control" value="${orderObject.part.itemType}">
                            
                           </div>
                           <br>
@@ -86,7 +86,7 @@
                        <label for="inputEmail3" class="form-control-label" >Problem Description</label>
                             
                         
-                                <textarea rows="2" cols="115" disabled="disabled" name="description">${orderObject.description}</textarea>
+                                <textarea rows="2" cols="115" name="description">${orderObject.description}</textarea>
                           </div><br><br>
                                                     <div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-10"></div></div>

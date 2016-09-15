@@ -8,6 +8,8 @@ import java.util.Random;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,7 @@ import com.demo.dao.LogTicketsDaoInt;
 import com.demo.dao.ProductDaoInt;
 import com.demo.model.Client;
 import com.demo.model.Employee;
+import com.demo.model.Orders;
 import com.demo.model.Product;
 import com.demo.model.Tickets;
 
@@ -41,34 +44,52 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	private ProductDaoInt productDaoInt;
 	@Autowired
 	private HttpSession session = null;
+	private Session session2;
 
-	Employee technician = null;
-	Client client = null;
-	Product product = null;
+	private Employee technician = null;
+	private Client client = null;
+	private Product product = null;
 	Calendar cal = Calendar.getInstance();
-
+    private String retMessage="";
+    private String ticketNum ="TIC-VEL-";
 	@Override
-	public void logTicket(Tickets tickets) {
+	public String logTicket(Tickets tickets) {
+		String ticketNumber = ""; 
 		try {
 
-			
 			technician = employeeDaoInt.getEmployeeByEmpNum(tickets.getTechnicianUserName());
-			tickets.setEmployee(technician);
-			tickets.setStatus("Open");
-			tickets.setSlaStart("Not Started");
+			if(technician != null){
+				product = productDaoInt.getProductBySerialNumbuer(tickets.getProductS());
+				if(product !=null){
+					ticketNumber = newTicketNumber();
+					tickets.setTicketNumber(ticketNumber);
+					tickets.setEmployee(technician);
+					tickets.setStatus("Open");
+					tickets.setSlaStart("Not Started");
+					
+					tickets.setProduct(product);
+					tickets.setEscalate(false);
+					sessionFactory.getCurrentSession().save(tickets);
+					retMessage = "Ticket "+tickets.getTicketNumber()+ "is assigned to technician "+ tickets.getEmployee().getFirstName()+"\nAn email has been sent to customer "+tickets.getProduct().getClient().getClientName();
+					JavaMail.sendFromGMail(tickets);
+				}
+				else{
+					retMessage="Device "+product.getSerialNumber()+" does not exist. Ticket "+tickets.getTicketNumber()+" cannot be logged";
+				}
+				
+			}
+			else{
+				retMessage = "Ticket "+tickets.getTicketNumber() +" is assigned to non-existant technician ";
+			}
 			
-			//tickets.setTechnicianAcknowledged(false);
-			tickets.setEscalate(false);
-			sessionFactory.getCurrentSession().save(tickets);
-			
-			JavaMail.sendFromGMail(tickets);
 		} catch (Exception e) {
-			e.printStackTrace();
+			retMessage = "Ticket " +tickets.getTicketNumber()+" was not logged "+ e.getMessage();
 		}
+		return retMessage;
 	}
 
 	@Override
-	public Tickets getLoggedTicketsByTicketNumber(int ticketNumber) {
+	public Tickets getLoggedTicketsByTicketNumber(String ticketNumber) {
 
 		return (Tickets) sessionFactory.getCurrentSession().get(Tickets.class, ticketNumber);
 	}
@@ -202,4 +223,38 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 		
 		return null;
 	}
+	
+private String generateTicketNumber(){
+		
+		session2=sessionFactory.openSession();
+		String result ="";
+		Query query = session2.createQuery("from Tickets order by ticketNumber DESC");
+		query.setMaxResults(1);
+		Tickets ticketNumber = (Tickets) query.uniqueResult();
+		if(ticketNumber != null){
+			result = ticketNumber.getTicketNumber();
+		}
+		else{
+			result = null;
+		}
+		return result;
+	}
+	private String newTicketNumber(){
+		String tempTicket = "";
+		int tempTicketNum = 0;
+		String newTicketNum = generateTicketNumber();
+		
+		if (newTicketNum != null){
+			tempTicket = newTicketNum.substring(8);
+			tempTicketNum = Integer.parseInt(tempTicket)+1;
+			newTicketNum = ticketNum+ tempTicketNum;
+		}
+		else{
+			newTicketNum = "TIC-VEL-1";
+		}
+		
+		return newTicketNum;
+	}
+
+	
 }

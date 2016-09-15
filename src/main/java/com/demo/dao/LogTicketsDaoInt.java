@@ -6,8 +6,8 @@ import com.demo.model.Tickets;
 
 public interface LogTicketsDaoInt {
 	
-	void logTicket(Tickets tickets);
-	Tickets getLoggedTicketsByTicketNumber(int ticketNumber);
+	String logTicket(Tickets tickets);
+	Tickets getLoggedTicketsByTicketNumber(String ticketNumber);
 	List<Tickets> getAllLoggedTickets();
 	List<Tickets> getAllOpenTickets();
 	List<Tickets> getAssignedCallsToTechnician();

@@ -41,7 +41,7 @@ public class OrdersDao implements OrdersDaoInt{
 	private SessionFactory sessionFactory;
 	@Autowired
 	private HttpSession session;
-	Session session2;
+	private Session session2;
 	@Autowired
 	private EmployeeDaoInt employeeDaoInt;
 	@Autowired
@@ -51,15 +51,11 @@ public class OrdersDao implements OrdersDaoInt{
 	
 	private String orderNum ="ORD-VEL-";
 	
-	int incrementNo =0;
-	
 	private String retMessage = null;
 	private Employee emp = null;
 	private Calendar cal = null;
 	private Parts part = null;
 	private Product product=null;
-	SessionImplementor imp = null;
-	Object data = null;
 	DateFormat dateFormat = null;
 	Date date = null;
 	

@@ -29,7 +29,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" name=""class="form-control" name="orderNum" value="${orderObject.orderNum}">
+   <input type="text" class="form-control" name="orderNum" value="${orderObject.orderNum}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -37,7 +37,7 @@
      
    </div>
    <div class="col-xs-3">
-     <input type="text" name=""class="form-control" name="prod" value="${orderObject.product.serialNumber}">
+     <input type="text" class="form-control" name="prod" value="${orderObject.product.serialNumber}">
    </div>
    </div>
 	</div><br>
@@ -49,7 +49,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" name=""class="form-control" name="partP" value="${orderObject.part.partNumber}" >
+   <input type="text" class="form-control" name="partP" value="${orderObject.part.partNumber}" >
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -57,7 +57,7 @@
      
    </div>
    <div class="col-xs-3">
-     <input type="text" name=""class="form-control" name="quantity" value="${orderObject.quantity}">
+     <input type="text" class="form-control" name="quantity" value="${orderObject.quantity}">
    </div>
    </div>
 	</div><br>
@@ -109,7 +109,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control" name="dateOrdered" value="${orderObject.getDateOrdered().getTime().toLocaleString()}">
+   <input type="text" class="form-control" name="dateOrdered" value="${orderObject.getDateOrdered()}">
    </div>
    
       <div class="col-xs-2 form-control-label">
@@ -132,10 +132,37 @@
    </div>
    </div>
 	</div><br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Status:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <label class="radio-inline">
+      <input type="radio" name="status">Accept
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="status">Reject
+    </label>
+   </div>
+   </div>
+	</div><br>
+	<div class="row">
+                    <div class="col-xs-12">
+   <div class="col-xs-2 form-control-label">
+    <label >Reason for Rejection:</label>
+     
+   </div>
+   <div class="col-xs-3">
+   <textarea rows="2" cols="120" name="comment"></textarea>
+   </div>
+   </div>
+	</div><br>
 	
 	<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Approve Order"
+							<input type="submit" value="Submit"
 								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">						</div>
 					</div>
       </form>

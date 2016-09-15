@@ -9,8 +9,8 @@ import com.demo.model.Tickets;
 
 public interface LogTicketsServiceInt {
 	
-	void logTicket(Tickets tickets);
-	Tickets getLoggedTicketByTicketNumber(int ticketNumber);
+	String logTicket(Tickets tickets);
+	Tickets getLoggedTicketByTicketNumber(String ticketNumber);
 	List<Tickets> getAllLoggedTickets();
 	List<Tickets> getAllOpenTickets();
 	List<Tickets> getAssignedCallsToTechnician();

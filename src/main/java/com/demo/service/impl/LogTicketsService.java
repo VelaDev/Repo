@@ -16,16 +16,18 @@ public class LogTicketsService implements LogTicketsServiceInt{
 	
 	@Autowired
 	private LogTicketsDaoInt logTicketsDAO;
+	private String retMessage ="";
 
 	@Override
-	public void logTicket(Tickets tickets) {
+	public String logTicket(Tickets tickets) {
 
-		logTicketsDAO.logTicket(tickets);
+		retMessage =logTicketsDAO.logTicket(tickets);
+		return retMessage;
 		
 	}
 
 	@Override
-	public Tickets getLoggedTicketByTicketNumber(int ticketNumber) {
+	public Tickets getLoggedTicketByTicketNumber(String ticketNumber) {
 		
 		return logTicketsDAO.getLoggedTicketsByTicketNumber(ticketNumber);
 	}

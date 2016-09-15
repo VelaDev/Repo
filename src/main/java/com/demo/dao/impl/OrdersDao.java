@@ -1,13 +1,18 @@
 package com.demo.dao.impl;
 
 import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,12 +41,15 @@ public class OrdersDao implements OrdersDaoInt{
 	private SessionFactory sessionFactory;
 	@Autowired
 	private HttpSession session;
+	Session session2;
 	@Autowired
 	private EmployeeDaoInt employeeDaoInt;
 	@Autowired
 	private SparePartsDaoInt sparePartsDaoInt;
 	@Autowired
 	private ProductDaoInt productDaoInt;
+	
+	private String orderNum ="ORD-VEL-";
 	
 	int incrementNo =0;
 	
@@ -52,31 +60,31 @@ public class OrdersDao implements OrdersDaoInt{
 	private Product product=null;
 	SessionImplementor imp = null;
 	Object data = null;
+	DateFormat dateFormat = null;
+	Date date = null;
+	
 	
 
 	@SuppressWarnings("static-access")
 	@Override
 	public String makeOrder(Orders orders) {
-		
+		String orderNumber = null;
 			try{
+				dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				date = new Date();
 			//orderNo = new OrderNumGenerator();
 			String user = (String) session.getAttribute("loggedInUser");
 			emp=employeeDaoInt.getEmployeeByEmpNum(user);
 			part = sparePartsDaoInt.getSparePartBySerial(orders.getPartP());
 			product = productDaoInt.getProductBySerialNumbuer(orders.getProd());
 			
-			//orderNumber =(String) orderNo.generate(imp, null);
-			
-			//orderNumber = generateOrderNum();
-			//orders.setOrderNum(orderNumber);
-			OrderNumberGenerator gen = new OrderNumberGenerator();
-			Serializable ser = gen.generate(imp, data);
-			orders.setOrderNum((String) ser);
+			orderNumber = newOrderNumber();
+			orders.setOrderNum(orderNumber);
 			orders.setPart(part);
 			orders.setEmployee(emp);
 			orders.setProduct(product);
 			orders.setApproved(false);
-			orders.setDateOrdered(cal.getInstance());
+			orders.setDateOrdered(dateFormat.format(date));
 			  sessionFactory.getCurrentSession().save(orders);
 			  retMessage = "Order"+" "+ orders.getOrderNum()+ " "+"is created";
 		}
@@ -89,24 +97,31 @@ public class OrdersDao implements OrdersDaoInt{
 	@Override
 	public String updateOrder(Orders order) {
 		boolean isSpareAvailable;
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
+		String n = " ";
 		try{
-			isSpareAvailable = isAvailableSpares(order.getPart().getPartNumber(),order.getQuantity());
-			if(isSpareAvailable==true){
-				
+			/*isSpareAvailable = isAvailableSpares(order.getPartP(),order.getQuantity());*/
+			/*if(isSpareAvailable==true){*/
+			part= sparePartsDaoInt.getSparePartBySerial(order.getPartP());
+			product = productDaoInt.getProductBySerialNumbuer(order.getProd());
+			if(part != null){
 				order.setApproved(true);
-				//order.setDateApproved(dateApproved);
+				order.setDateApproved(dateFormat.format(date));
 				order.setReceived(true);
+				order.setPart(part);
+				order.setProduct(product);
 				String approvedBy = (String) session.getAttribute("loggedInUser");
 				order.setApprodedBy(approvedBy);
 				
 				sessionFactory.getCurrentSession().update(order);
-				retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is updated";
+				retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is approved";
 			}else{
-				retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is not updated";
+				retMessage = "Order"+" "+n+ order.getOrderNum()+ " "+"is not approved because " + order.getPart().getItemType()+ " is not available in store." ;
 			}
 		
 		}catch (Exception e){
-			retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is not updated";
+			retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is not updated " + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -147,39 +162,6 @@ public class OrdersDao implements OrdersDaoInt{
 		
 		return (Orders) sessionFactory.getCurrentSession().get(Orders.class, orderNum);
 	}
-	
-	@SuppressWarnings("unused")
-	private String generateOrderNum(){
-		incrementNo = (int) session.getAttribute("incrementedNo");
-		
-		if(incrementNo>0){
-			
-			
-		    incrementNo++;
-		}
-		else{
-			incrementNo++;
-			
-		}
-		String lastRecord = lastOrder();
-		
-		String orderNum ="OD-VEL-0"+incrementNo;
-		//session.setAttribute("incrementedNo", incrementNo);
-		return orderNum;
-	}
-	@SuppressWarnings("null")
-	private String lastOrder(){
-		Orders last = null;
-		/*try{
-		       Query query =  sessionhibernate.createQuery("from spareorders by ORDER_NUMBER DESC");
-		       query.setMaxResults(1);
-		       last = (Orders) query.uniqueResult();
-		}
-		catch(Exception e){
-			e.getStackTrace();
-		}*/
-		return last.getOrderNum();
-	}
 	private boolean isAvailableSpares(String serialNum,int quantity)
 	{
 		boolean retFlag = false;
@@ -201,5 +183,32 @@ public class OrdersDao implements OrdersDaoInt{
 		}
 		return retFlag;
 	}
+	
+	private String generateOrderNumber(){
+		
+		session2=sessionFactory.openSession();
+		
+		Query query = session2.createQuery("from Orders order by orderNum DESC");
+		query.setMaxResults(1);
+		Orders orderNumber = (Orders) query.uniqueResult();
+		return orderNumber.getOrderNum();
+	}
+	private String newOrderNumber(){
+		String tempOrder = "";
+		int tempOrderNum = 0;
+		String newOrderNum = generateOrderNumber();
+		
+		if (newOrderNum != null){
+			tempOrder = newOrderNum.substring(8);
+			tempOrderNum = Integer.parseInt(tempOrder)+1;
+			newOrderNum = orderNum+ tempOrderNum;
+		}
+		else{
+			orderNum = "ORD-VEL-1";
+		}
+		
+		return newOrderNum;
+	}
+
 
 }

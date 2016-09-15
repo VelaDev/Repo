@@ -14,7 +14,7 @@ public class OrdersBean {
 	private boolean delivery;
 	private boolean delivered;
 	private boolean received;
-	private Calendar dateOrdered;
+	private String dateOrdered;
 	private Calendar dateApproved;
 	private String description;
 	private String comments;
@@ -53,10 +53,10 @@ public class OrdersBean {
 	public void setReceived(boolean received) {
 		this.received = received;
 	}
-	public Calendar getDateOrdered() {
+	public String getDateOrdered() {
 		return dateOrdered;
 	}
-	public void setDateOrdered(Calendar dateOrdered) {
+	public void setDateOrdered(String dateOrdered) {
 		this.dateOrdered = dateOrdered;
 	}
 	public Calendar getDateApproved() {

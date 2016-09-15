@@ -25,9 +25,8 @@ public class Tickets implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="TicketNumber")
-	private int ticketNumber;
+	private String ticketNumber;
 	@Column(name="Comments")
 	private String comments;
 	@Column(name="Status")
@@ -64,11 +63,11 @@ public class Tickets implements Serializable{
 	@JoinColumn(name="SERIAL_NUMBER")
 	private Product product;
 	
-	public int getTicketNumber() {
+	public String getTicketNumber() {
 		return ticketNumber;
 	}
 
-	public void setTicketNumber(int ticketNumber) {
+	public void setTicketNumber(String ticketNumber) {
 		this.ticketNumber = ticketNumber;
 	}
 

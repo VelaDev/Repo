@@ -22,7 +22,7 @@
                         <div class="panel-body">
                             <ul class="nav nav-pills">
                                 <li class="active"><a href="#general-pills" data-toggle="tab">General</a></li>
-                                <li><a href="#clientDetails-pills" data-toggle="tab">Client Details</a></li>
+                                <li><a href="clientDetails-pills" data-toggle="tab">Client Details</a></li>
                                 <li><a href="#productDetails-pills" data-toggle="tab">Product Details</a></li>
                                 <li><a href="#solutions-pills" data-toggle="tab">Solutions</a></li>
                                 <li><a href="#history-pills" data-toggle="tab">History</a></li>
@@ -167,18 +167,7 @@
       <input type="text" class="form-control" name="product" value="${ticketObject.getProduct().getSerialNumber()}">
     </div>
   </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Product Name</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" value="${ticketObject.getProduct().getProductName()}">
-    </div>
-  </div>
-  <div class="form-group row">
-    <label for="inputPassword3" class="col-sm-2 form-control-label">Product Type</label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" value="${ticketObject.getProduct().getProductType()}">
-    </div>
-  </div>
+  
   	
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 form-control-label">Model</label>

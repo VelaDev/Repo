@@ -127,10 +127,15 @@
      
    </div>
    <div class="col-xs-3">
-     <textarea rows="3" cols="120" name="description"></textarea>
+     <textarea rows="3" cols="103" name="description"></textarea>
    </div>
    </div>
 	</div><br>	
+		<div class="form-group row">
+						<div class="col-sm-offset-2 col-sm-8">
+							<input type="submit" value="Submit"
+								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">						</div>
+					</div>
 	</form:form>
    </div>
   </div>

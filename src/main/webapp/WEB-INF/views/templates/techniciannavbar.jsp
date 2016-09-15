@@ -139,7 +139,7 @@ $(document).ready(function(){
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Order Spares<span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href='<c:url value="order.html"/>'>Make Order</a></li>
-            <li><a href='<c:url value=""/>'>Approved Orders</a></li>
+            <li><a href='<c:url value="approvedOrders"/>'>Approved Orders</a></li>
            
           </ul>
         </li>

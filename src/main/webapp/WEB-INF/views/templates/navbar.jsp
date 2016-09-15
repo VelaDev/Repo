@@ -183,7 +183,7 @@ $(document).ready(function(){
 					<ul class="dropdown-menu">
 						<li><a href='<c:url value="monitoringTickets.html"/>'>Escalated
 								Tickets</a></li>
-						<li><a href='<c:url value="#"/>'>Log Ticket</a></li>
+						<li><a href='<c:url value="ticket"/>'>Log Ticket</a></li>
 					</ul></li>
 					
 				</ul>

@@ -41,6 +41,8 @@ public class LogTicketController {
 	private Product product = null;
 	@SuppressWarnings("unused")
 	private Client client = null;
+	ModelAndView model = null;
+	String userName= null;
 	
 	
 	Calendar cal = Calendar.getInstance();
@@ -48,11 +50,17 @@ public class LogTicketController {
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
 	public ModelAndView loadTicket() {
        
-		ModelAndView model = new ModelAndView("ticket");
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
 		model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 		model.addObject("logTicket", new TicketsBean());
 		
 		model.setViewName("ticket");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		
 		return model;     
@@ -60,9 +68,12 @@ public class LogTicketController {
 	}	
 	
 	@RequestMapping(value="/logTicket",method=RequestMethod.POST)
-	public String logTicket(@ModelAttribute("logTicket")Tickets logTickets){
+	public ModelAndView logTicket(@ModelAttribute("logTicket")Tickets logTickets){
 	
+		model = new ModelAndView();
 		String serialNo = (String) session.getAttribute("serialNumber");
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
 		product = productServiceInt.getProductBySerialNumber(serialNo);
 			if( product !=null)
 			{
@@ -72,40 +83,63 @@ public class LogTicketController {
 				logTicketService.logTicket(logTickets);
 			}else
 			{
-				//model.addObject("error", "Invalid username and password!");
-				System.out.println("Product not exist");
+				model.setViewName("ticket");
 			}
-			
-		return "redirect:ticket";
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
 		
 	}
 
 	@RequestMapping(value = {"monitoringTickets"})
     public ModelAndView displayLoggedTickets() {
 		
-		ModelAndView model = new ModelAndView();
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
 		model.addObject("ticketList", logTicketService.getAllOpenTickets());
 		model.setViewName("monitoringTickets");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
        
     }
 	@RequestMapping("ticketDetails")
     public ModelAndView loadTicketdetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
-		@SuppressWarnings("unused")
-		ModelAndView model = new ModelAndView();
-		ticket = logTicketService.getLoggedTicketByTicketNumber(id);
-	    return new ModelAndView("ticketDetails", "ticketObject", ticket);
 		
+		 model = new ModelAndView();
+		 userName = (String) session.getAttribute("loggedInUser");
+			if(userName !=null){
+		ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+		model.addObject("ticketObject", ticket);
+		model.setViewName("ticketDetails");
+			}
+			else{
+				model.setViewName("login");
+			}
+		return model;
     }
 	@RequestMapping(value="/updateTicket",method=RequestMethod.POST)
-	public String updateTicket(@ModelAttribute("updateTicket")Tickets updateTicket){
+	public ModelAndView updateTicket(@ModelAttribute("updateTicket")Tickets updateTicket){
 		
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
 		if(updateTicket.getTicketNumber()>0 && updateTicket.isTechnicianAcknowledged()==true){
 			
 			logTicketService.updateTicket(updateTicket);
+			model.setViewName("technicianHome");
+		   }
+		}else{
+			model.setViewName("login");
 		}
-		return "redirect:technicianHome";
+		
+		return model;
 		
 	}
 	@RequestMapping("searchTechnician")

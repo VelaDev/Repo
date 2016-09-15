@@ -29,6 +29,8 @@ public class EmployeeController {
 	private OrdersServiceInt ordersServiceInt;
 	String retMessage =null;
 	ModelAndView model = null;
+	String userName = null;
+	String retPage = null;
 	
 	
 	@RequestMapping({"/login", "/"})
@@ -81,19 +83,33 @@ public class EmployeeController {
 	@RequestMapping(value="home",method=RequestMethod.GET)
 	public ModelAndView loadAdminPage() {
 		
-		ModelAndView model = new ModelAndView();
-		model.addObject("orderList",ordersServiceInt.getOpenOrders());
-		model.setViewName("home");
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			model.addObject("orderList",ordersServiceInt.getOpenOrders());
+			model.setViewName("home");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
-		
 	}
 	
 	@RequestMapping(value="registerEmployee",method=RequestMethod.GET)
 	public ModelAndView loadAddEmployee() {
 		
-		ModelAndView model = new ModelAndView("registerEmployee");
-		model.addObject("addEmployee", new EmployeeBean());
-		model.setViewName("registerEmployee");
+		userName = (String) session.getAttribute("loggedInUser");
+		model = new ModelAndView("registerEmployee");
+		if(userName !=null){
+			
+			model.addObject("addEmployee", new EmployeeBean());
+			model.setViewName("registerEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
 		
 		return model;
 		
@@ -102,26 +118,47 @@ public class EmployeeController {
 	public ModelAndView addEmployee(@ModelAttribute("addEmployee")Employee employee)
 	{
 		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		retMessage = employeeService.saveEmployee(employee);
 		model.addObject("retMessage", retMessage);
 		model.setViewName("registerEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 		
 	@RequestMapping(value = {"technicianHome"})
     public ModelAndView displayLoggedTickets() {
 		String user = (String) session.getAttribute("loggedInUser");
-		ModelAndView model = new ModelAndView();
+		 model = new ModelAndView();
+		 userName = (String) session.getAttribute("loggedInUser");
+			if(userName != null){
 		model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(user));
 		model.setViewName("technicianHome");
+			}
+			else{
+				model.setViewName("login");
+			}
 		return model;
        
     }
 	@RequestMapping(value="userHome",method=RequestMethod.GET)
 	public ModelAndView loadUserPage() {
-		
-		ModelAndView model = new ModelAndView();
-		model.setViewName("userHome");
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model = new ModelAndView();
+			
+			model.setViewName("userHome");
+		}
+		else
+		{
+			model.setViewName("login");
+			
+		}
+		 
 		return model;
 		
 	}

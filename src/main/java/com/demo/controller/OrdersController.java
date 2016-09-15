@@ -25,44 +25,72 @@ public class OrdersController {
 	private ModelAndView model = null;
 	@SuppressWarnings("unused")
 	private String retMessage =null;
+	private String userName = null;
 	
 	@RequestMapping(value="order",method=RequestMethod.GET)
 	public ModelAndView loadOrder(){
-	    model = new ModelAndView("order");
-		model.addObject("makeOrder", new OrdersBean());
-		model.setViewName("order");
+		
+		model = new ModelAndView("order");
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			model.addObject("makeOrder", new OrdersBean());
+			model.setViewName("order");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
 	@RequestMapping(value="makeOrder",method=RequestMethod.POST)
 	public ModelAndView makeOrder(@ModelAttribute("makeOrder")Orders order)
 	{
+		
 		model = new ModelAndView();
-		retMessage =ordersServiceInt.makeOrder(order);
-		model.addObject("retMessage", retMessage);
-		model.setViewName("order");
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+			retMessage =ordersServiceInt.makeOrder(order);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("order");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return  model;
 	} 
 	
 	@RequestMapping("approveOrder")
     public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute Orders order) {
 	    model = new ModelAndView();
-		order = ordersServiceInt.getOrder(id);
-		session.setAttribute("approveOrder", order);
-		if(order !=null){
-	        return new ModelAndView("orderUpdate", "orderObject", order);
+	    userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+		      order = ordersServiceInt.getOrder(id);
+		      if(order !=null){
+	           return new ModelAndView("orderUpdate", "orderObject", order);
 		}
 		else{
 			
+		    }
+		}
+		else{
+			model.setViewName("login");
 		}
 		return model;
     }
 	@RequestMapping("updateOrder")
     public ModelAndView updateOrder(Orders order){
 		model = new ModelAndView();
-		order= (Orders) session.getAttribute("approveOrder");
+		 userName = (String) session.getAttribute("loggedInUser");
+			if(userName != null){
 		retMessage = ordersServiceInt.updateOrder(order);
-       model.addObject("home");
+        model.addObject("retMessage",retMessage);
+        model.setViewName("orderUpdate");
+			}
+			else{
+				model.setViewName("login");
+			}
 		return model;
 		
 	}

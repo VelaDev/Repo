@@ -30,20 +30,27 @@ public class ClientController {
 	private ClientServiceInt clientServiceInt;
 	@Autowired
 	private ProductServiceInt productServiceInt;
-	/*@Autowired
-	private HttpSession session;*/
+	@Autowired
+	private HttpSession session;
 	@SuppressWarnings("unused")
 	private String retMessage = null;
 	ModelAndView model = null;
 	List<Product> productList =null;
 	Client client = null;
+	String userName = null;
 	
 	@RequestMapping(value="addClient",method=RequestMethod.GET)
 	public ModelAndView loadAddClient() {
 		
 	    model = new ModelAndView("addClient");
+	    userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		model.addObject("saveClient", new ClientBean());
 		model.setViewName("addClient");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
@@ -52,16 +59,26 @@ public class ClientController {
 	{
 		retMessage =clientServiceInt.saveClient(client);
 	    model = new ModelAndView();
+	    userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		model.addObject("retMessage",retMessage);
 		model.setViewName("addClient");
+		}else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 	
 	@RequestMapping(value="clientInformation",method=RequestMethod.GET)
 	public ModelAndView loadClientInformation() {
 		
-	    model = new ModelAndView("clientInformation");
-		//model.setViewName("clientInformation");
+	    model = new ModelAndView();
+	    userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+		model.setViewName("clientInformation");
+		}else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
@@ -69,7 +86,8 @@ public class ClientController {
 	public ModelAndView searchClient(@RequestParam("clientName") String clientName,@ModelAttribute Product product) {
 		model = new ModelAndView();
 		
-		
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		productList = productServiceInt.getProductListByClientName(clientName);
 		for(Product prod:productList){
 			client = prod.getClient();
@@ -77,12 +95,18 @@ public class ClientController {
 		model.addObject("productList",productList );
 		model.addObject("client", client);
 		model.setViewName("clientInformation");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
 	@RequestMapping(value="searchClientforProduct")
 	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
 		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		client = clientServiceInt.getClientByClientName(clientName);
 		if(client != null){
 			model.addObject("client", client);
@@ -94,6 +118,10 @@ public class ClientController {
 		}
 	
 		model.setViewName("addProduct");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
@@ -101,34 +129,58 @@ public class ClientController {
 	public ModelAndView loadUpdateCustomerPage(){
 		
 		model = new ModelAndView("updateCustomer");
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		model.addObject("updateCustomerData", new ClientBean());
 		model.setViewName("updateCustomer");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 	@RequestMapping(value="updateCustomerData",method=RequestMethod.POST)
 	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Client client){
 		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		retMessage =clientServiceInt.updateCustomer(client); 
 		model.addObject("retMessage", retMessage);
 		model.setViewName("updateCustomer");
+		}
+		else
+		{
+			model.setViewName("login");
+		}
 		return model;
 	}
 	
 	@RequestMapping(value="searchCustomer")
 	public ModelAndView searchCustomer(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
 		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		client = clientServiceInt.getClientByClientName(clientName);
-		//session.setAttribute("client", client);
 		model.addObject("client", client);
 		model.setViewName("updateCustomer");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
 	@RequestMapping(value="displayCustomers",method=RequestMethod.GET)
 	public ModelAndView displayCustomers(){
 		model= new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		model.addObject("customerList", clientServiceInt.getClientList());
 		model.setViewName("displayCustomers");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 }

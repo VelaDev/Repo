@@ -1,6 +1,8 @@
 package com.demo.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,30 +25,45 @@ public class ProductController {
 	private ProductServiceInt productServiceInt;
     @Autowired
     private ClientServiceInt clientServiceInt;
-   /* @Autowired HttpSession session;*/
+   @Autowired 
+   HttpSession session;
     
     private String retMessage = null;
     @Autowired
 	private EmployeeServiceInt employeeServiceInt;
     
     private	ModelAndView model = null;
+    private String userName = null;
 	
 	
 	@RequestMapping(value="addProduct", method=RequestMethod.GET)
 	public ModelAndView loadSaveProduct()
 	{
-	    model = new ModelAndView("addProduct");
+	    model = new ModelAndView();
+	    userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		model.addObject("saveProduct", new ProductBean());
 		model.setViewName("addProduct");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 	
 	@RequestMapping(value="saveProduct", method=RequestMethod.POST)
 	public ModelAndView saveProduct(@ModelAttribute("saveProduct")Product product){
-		retMessage =productServiceInt.saveProduct(product);
+		
 		model = new ModelAndView();
+		 userName = (String) session.getAttribute("loggedInUser");
+			if(userName != null){
+				retMessage =productServiceInt.saveProduct(product);
 		model.addObject("retMessage", retMessage);
 		model.setViewName("addProduct");
+			}
+			else{
+				model.setViewName("login");
+			}
 		return model;
 	}
 	
@@ -54,23 +71,37 @@ public class ProductController {
     public ModelAndView showProducts() {
 		
 		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		model.addObject("productList", productServiceInt.getProductList());
 		model.setViewName("showProducts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
 		return model;
        
     } 
 	@RequestMapping(value="detailedProduct")
 	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Product product){
 	   model = new ModelAndView();
+	   userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 	   product = productServiceInt.getProductBySerialNumber(serialNumber);
 	   model.addObject("accessories", productServiceInt.accessories(product));
 	   model.addObject("productObject", product);
 	   model.setViewName("detailedProduct");
+	   }else{
+		   model.setViewName("login");
+	   }
 	   return model;
 	}
 	@RequestMapping(value="searchSerialNumber")
 	public ModelAndView searchClientforProduct(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Product product) {
 		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		product = productServiceInt.getProductBySerialNumber(serialNumber);
 		if(product != null){
 			
@@ -82,24 +113,47 @@ public class ProductController {
 		}
 		
 		model.setViewName("ticket");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
 	@RequestMapping(value="updateDevice",method=RequestMethod.GET)
-	public String updateDevice()
+	public ModelAndView updateDevice()
 	{
-		return "updateDevice";
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+		model.setViewName("updateDevice");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
 		
 	}
 	@RequestMapping(value="searchDevice",method=RequestMethod.GET)
-	public String searchDevice()
+	public ModelAndView searchDevice()
 	{
-		return "searchDevice";
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.setViewName("searchDevice");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
 		
 	}
 	@RequestMapping(value="searchDeviceSerialNumber")
 	public ModelAndView searchDeviceBySerialNo(@RequestParam("serialNumber") String serialNumber,Product product){
 		model= new ModelAndView();
+		
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		
 		product = productServiceInt.getProductBySerialNumber(serialNumber);
 		if(product != null)
@@ -111,12 +165,19 @@ public class ProductController {
 			model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
 		}
 		model.setViewName("updateDevice");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 	
 	@RequestMapping(value="searchDeviceBySerialNo")
 	public ModelAndView searchDeviceBySerialNo1(@RequestParam("SerialNo") String serialNumber,Product product){
 		model= new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
 		product = productServiceInt.getProductBySerialNumber(serialNumber);
 		if(product != null){
 			model.addObject("productObject", product);
@@ -128,6 +189,10 @@ public class ProductController {
 		}
 		
 		model.setViewName("searchDevice");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 	
@@ -135,9 +200,15 @@ public class ProductController {
 	public ModelAndView updateProduct(@ModelAttribute("updateProduct")Product product)
 	{
 		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
 		retMessage = productServiceInt.updateProduct(product);
 		model.addObject("retMessage", retMessage);
 		model.setViewName("updateDevice");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 }

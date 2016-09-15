@@ -41,8 +41,9 @@ public class LogTicketController {
 	private Product product = null;
 	@SuppressWarnings("unused")
 	private Client client = null;
-	ModelAndView model = null;
-	String userName= null;
+	private ModelAndView model = null;
+	private String userName= null;
+	private String retMessage ="";
 	
 	
 	Calendar cal = Calendar.getInstance();
@@ -71,20 +72,11 @@ public class LogTicketController {
 	public ModelAndView logTicket(@ModelAttribute("logTicket")Tickets logTickets){
 	
 		model = new ModelAndView();
-		String serialNo = (String) session.getAttribute("serialNumber");
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		product = productServiceInt.getProductBySerialNumber(serialNo);
-			if( product !=null)
-			{
-				//logTickets.setClient(client);
-				logTickets.setProduct(product);
-				logTickets.setDateTime(cal);
-				logTicketService.logTicket(logTickets);
-			}else
-			{
-				model.setViewName("ticket");
-			}
+			retMessage = logTicketService.logTicket(logTickets);
+		   model.addObject("retMessage", retMessage);
+		   model.setViewName("ticket");
 		}
 		else{
 			model.setViewName("login");
@@ -109,7 +101,7 @@ public class LogTicketController {
        
     }
 	@RequestMapping("ticketDetails")
-    public ModelAndView loadTicketdetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
 		
 		
 		 model = new ModelAndView();
@@ -130,11 +122,11 @@ public class LogTicketController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		if(updateTicket.getTicketNumber()>0 && updateTicket.isTechnicianAcknowledged()==true){
+		/*if(updateTicket.getTicketNumber()>0 && updateTicket.isTechnicianAcknowledged()==true){
 			
 			logTicketService.updateTicket(updateTicket);
 			model.setViewName("technicianHome");
-		   }
+		   }*/
 		}else{
 			model.setViewName("login");
 		}

@@ -5,8 +5,6 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -36,19 +34,19 @@ public class Orders implements Serializable{
 	@Column(name="RECEIVED")
 	private boolean received;
 	@Column(name="DATE_ORDERED")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateOrdered;
+	private String dateOrdered;
 	@Column(name="APPROVED")
 	private boolean approved;
 	@Column(name="DATE_APPROVED")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Calendar dateApproved;
+	private String dateApproved;
 	@Column(name="COMMENTS")
 	private String comments;
 	@Column(name="DESCRIPTION")
 	private String description;
 	@Column(name="APPROVEDBY")
 	private String approdedBy;
+	@Column(name="Status")
+	private String status;
 	
 	private String partP;
 	private String prod;
@@ -106,19 +104,19 @@ public class Orders implements Serializable{
 		this.received = received;
 	}
 
-	public Calendar getDateOrdered() {
+	public String getDateOrdered() {
 		return dateOrdered;
 	}
 
-	public void setDateOrdered(Calendar dateOrdered) {
+	public void setDateOrdered(String dateOrdered) {
 		this.dateOrdered = dateOrdered;
 	}
 
-	public Calendar getDateApproved() {
+	public String getDateApproved() {
 		return dateApproved;
 	}
 
-	public void setDateApproved(Calendar dateApproved) {
+	public void setDateApproved(String dateApproved) {
 		this.dateApproved = dateApproved;
 	}
 
@@ -200,6 +198,14 @@ public class Orders implements Serializable{
 
 	public void setProd(String prod) {
 		this.prod = prod;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

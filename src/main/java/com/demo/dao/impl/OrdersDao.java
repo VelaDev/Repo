@@ -206,5 +206,23 @@ public class OrdersDao implements OrdersDaoInt{
 		return newOrderNum;
 	}
 
+	@Override
+	public List<Orders> getAllOrders(String orderedBy) {
+		ArrayList<?> aList = new ArrayList<Object>();
+		ArrayList<Orders> orderList = new ArrayList<Orders>();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Orders.class);
+		 
+		 aList.addAll(criteria.list());
+		 for(Object order:aList)
+		 {
+			 if(order instanceof Orders){
+				 if(((Orders) order).getEmployee().getUsername().equalsIgnoreCase(orderedBy)){
+					 orderList.add((Orders) order);
+				 }
+			 }
+		 }
+		return orderList;
+	}
+
 
 }

@@ -56,5 +56,10 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.getOrder(orderNum);
 	}
 
+	@Override
+	public List<Orders> getAllOrders(String orderedBy) {
+		return ordersDAO.getAllOrders(orderedBy);
+	}
+
 
 }

@@ -94,4 +94,12 @@ public class OrdersController {
 		return model;
 		
 	}
+	@RequestMapping("approvedOrders")
+	public ModelAndView approvedOrders(){
+		model = new ModelAndView();
+		
+		
+		model.setViewName("approvedOrders");
+		return model;
+	}
 }

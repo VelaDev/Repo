@@ -11,5 +11,6 @@ public interface OrdersServiceInt {
 	public List<Orders> getApprovedOrders();
 	public List<Orders> getOpenOrders();
 	public Orders getOrder(String orderNum);
+	public List<Orders> getAllOrders(String orderedBy);
 
 }

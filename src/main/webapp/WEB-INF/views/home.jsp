@@ -15,7 +15,7 @@
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <div align="left"><b>Pending Orders</b> </div>
+                <div align="center"><b>Pending Orders</b> </div>
             </h3>
         </div>
 
@@ -38,7 +38,6 @@
                         <tr>
                             <th><c:out value="${order.orderNum}"/></th>
                             <th><c:out value="${order.description}"/></th>
-                             <%-- <th><c:out value="${ticket.getDateTime()}"/></th> --%>
                             <th><c:out value="${order.part.modelNumber}"/></th>
                             <th><c:out value="${order.quantity}"/></th> 
                             <th><c:out value="${order.employee.firstName}"/></th> 
@@ -50,20 +49,10 @@
                 </table>
                 </div>
                 </div>
-            <%-- </c:if> --%>
         </div>
         </div>
         </div>
 </body>
-<!-- <script type="text/javascript">
-$(document).ready(function(){
-	$('.table > tbody > tr').click(function() {
-		 window.location="orderUpdate.html";
-		
-	});
-});	
-
-</script> -->
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />" ></script>
 <script type="text/javascript"src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script> 
 <link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"

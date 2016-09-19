@@ -22,7 +22,7 @@
                         <div class="panel-body">
                             <ul class="nav nav-pills">
                                 <li class="active"><a href="#general-pills" data-toggle="tab">General</a></li>
-                                <li><a href="clientDetails-pills" data-toggle="tab">Client Details</a></li>
+                                <li><a href="#clientDetails-pills" data-toggle="tab">Client Details</a></li>
                                 <li><a href="#productDetails-pills" data-toggle="tab">Product Details</a></li>
                                 <li><a href="#solutions-pills" data-toggle="tab">Solutions</a></li>
                                 <li><a href="#history-pills" data-toggle="tab">History</a></li>

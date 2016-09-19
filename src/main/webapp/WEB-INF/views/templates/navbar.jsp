@@ -2,17 +2,6 @@
 <%@include file="taglibs.jsp"%>
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
-<script>
-$(document).ready(function(){
-	//$('ul.nav li.dropdown').hover(function() {
-  //$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
-//}, function() {
- // $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
-//});
-});
-
-
-</script>
 
 <style>
 .container {

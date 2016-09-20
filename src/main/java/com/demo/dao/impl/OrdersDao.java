@@ -129,7 +129,7 @@ public class OrdersDao implements OrdersDaoInt{
 	}
 
 	@Override
-	public List<Orders> getApprovedOrders() {
+	public List<Orders> getApprovedOrdersByTechnicianName(String userName) {
 		// TODO Auto-generated method stub
 		return null;
 	}

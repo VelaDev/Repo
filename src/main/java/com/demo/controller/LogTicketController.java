@@ -37,16 +37,12 @@ public class LogTicketController {
 	@Autowired
 	private HttpSession session = null;
 	
-	//private Employee employee = null;
-	private Product product = null;
 	@SuppressWarnings("unused")
 	private Client client = null;
 	private ModelAndView model = null;
 	private String userName= null;
 	private String retMessage ="";
 	
-	
-	Calendar cal = Calendar.getInstance();
 	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
 	public ModelAndView loadTicket() {
@@ -101,13 +97,13 @@ public class LogTicketController {
        
     }
 	@RequestMapping("ticketDetails")
-    public ModelAndView loadTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadTicketdetails( @RequestParam String ticketNum,@ModelAttribute Tickets ticket) {
 		
 		
 		 model = new ModelAndView();
 		 userName = (String) session.getAttribute("loggedInUser");
 			if(userName !=null){
-		ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+		ticket = logTicketService.getLoggedTicketByTicketNumber(ticketNum);
 		model.addObject("ticketObject", ticket);
 		model.setViewName("ticketDetails");
 			}
@@ -138,5 +134,19 @@ public class LogTicketController {
     public ModelAndView searchEmployee(@RequestParam("searchName") String searchName) {  
         return new ModelAndView("");      
     }
+	
+	@RequestMapping("clientInfo")
+	public ModelAndView clientInfo(){
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model.addObject("", "");
+			model.setViewName("clientInfo");
+		}
+		else{
+			  model.setViewName("login");
+		}
+		return model;
+	}
 	
 }

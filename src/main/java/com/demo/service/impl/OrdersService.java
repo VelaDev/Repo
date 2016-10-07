@@ -41,8 +41,8 @@ public class OrdersService implements OrdersServiceInt{
 
 	@Override
 	public List<Orders> getApprovedOrdersByTechnicianName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return ordersDAO.getApprovedOrdersByTechnicianName(userName);
 	}
 
 	@Override

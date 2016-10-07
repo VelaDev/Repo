@@ -23,7 +23,6 @@ public class OrdersController {
 	@Autowired
 	private HttpSession session;
 	private ModelAndView model = null;
-	@SuppressWarnings("unused")
 	private String retMessage =null;
 	private String userName = null;
 	
@@ -98,8 +97,15 @@ public class OrdersController {
 	public ModelAndView approvedOrders(){
 		model = new ModelAndView();
 		
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model.addObject("ApprovedOrderList", ordersServiceInt.getApprovedOrdersByTechnicianName(userName));
+			model.setViewName("approvedOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
-		model.setViewName("approvedOrders");
 		return model;
 	}
 }

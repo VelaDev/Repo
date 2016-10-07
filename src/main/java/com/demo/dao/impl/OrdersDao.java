@@ -1,6 +1,6 @@
 package com.demo.dao.impl;
 
-import java.io.Serializable;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,7 +14,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.engine.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -68,7 +67,6 @@ public class OrdersDao implements OrdersDaoInt{
 			try{
 				dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				date = new Date();
-			//orderNo = new OrderNumGenerator();
 			String user = (String) session.getAttribute("loggedInUser");
 			emp=employeeDaoInt.getEmployeeByEmpNum(user);
 			part = sparePartsDaoInt.getSparePartBySerial(orders.getPartP());
@@ -128,10 +126,24 @@ public class OrdersDao implements OrdersDaoInt{
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Orders> getApprovedOrdersByTechnicianName(String userName) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		ArrayList<?> aList = new ArrayList<Object>();
+		ArrayList<Orders> orderList = new ArrayList<Orders>();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Orders.class);
+		 
+		 aList.addAll(criteria.list());
+		 for(Object order:aList)
+		 {
+			 if(order instanceof Orders){
+				 if(((Orders) order).getEmployee().getUsername().equalsIgnoreCase(userName)&& ((Orders)order).isApproved()==true){
+					 orderList.add((Orders) order);
+				 }
+			 }
+		 }
+		return orderList;
 	}
 
 	@SuppressWarnings("unchecked")

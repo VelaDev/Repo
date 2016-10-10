@@ -62,7 +62,7 @@ public class Orders implements Serializable{
 	private Client client;
 	@ManyToOne
 	@JoinColumn(name="SERIALNUMBER")
-	private Product product;
+	private Device device;
 
 	public String getOrderNum() {
 		return orderNum;
@@ -184,12 +184,12 @@ public class Orders implements Serializable{
 		this.client = client;
 	}
 
-	public Product getProduct() {
-		return product;
+	public Device getProduct() {
+		return device;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProduct(Device device) {
+		this.device = device;
 	}
 
 	public String getProd() {

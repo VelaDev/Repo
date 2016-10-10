@@ -57,6 +57,9 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 				 <value>com.demo.model.Orders</value>
 				 <value>com.demo.model.Address</value>
 				 <value>com.demo.model.Accessories</value>
+				 <value>com.demo.model.Manager</value>
+				 <value>com.demo.model.Technician</value>
+				 <value>com.demo.model.User</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

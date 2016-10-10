@@ -5,8 +5,13 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,6 +21,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="EMPLOYEE")
+@Inheritance(strategy= InheritanceType.SINGLE_TABLE)  
+@DiscriminatorColumn(name="Type",discriminatorType= DiscriminatorType.STRING)  
+@DiscriminatorValue(value="employee")  
 public class Employee implements Serializable{
 	
 	/**

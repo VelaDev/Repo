@@ -7,48 +7,48 @@ import org.springframework.stereotype.Service;
 
 import com.demo.dao.ProductDaoInt;
 import com.demo.model.Accessories;
-import com.demo.model.Product;
-import com.demo.service.ProductServiceInt;
+import com.demo.model.Device;
+import com.demo.service.DeviceServiceInt;
 
 @Service("productService")
-public class ProductService implements ProductServiceInt {
+public class ProductService implements DeviceServiceInt {
 	
 	@Autowired
 	private ProductDaoInt productDAO;
 	private String retMessage = null;
 
 	@Override
-	public String saveProduct(Product product) {
-		retMessage =productDAO.saveProduct(product);
+	public String saveProduct(Device device) {
+		retMessage =productDAO.saveProduct(device);
 		return retMessage;
 		
 	}
 
 	@Override
-	public Product getProductBySerialNumber(String serialNumber) {
+	public Device getProductBySerialNumber(String serialNumber) {
 		
 		return productDAO.getProductBySerialNumbuer(serialNumber);
 	}
 
 	@Override
-	public List<Product> getProductList() {
+	public List<Device> getProductList() {
 		return productDAO.getProductList();
 	}
 
 	@Override
-	public List<Product> getProductListByClientName(String clientName) {
+	public List<Device> getProductListByClientName(String clientName) {
 		return productDAO.getProductListByClientName(clientName);
 	}
 
 	@Override
-	public List<Accessories> accessories(Product product) {
+	public List<Accessories> accessories(Device device) {
 		// TODO Auto-generated method stub
-		return productDAO.accessories(product);
+		return productDAO.accessories(device);
 	}
 
 	@Override
-	public String updateProduct(Product product) {
-		retMessage = productDAO.updateProduct(product);
+	public String updateProduct(Device device) {
+		retMessage = productDAO.updateProduct(device);
 		return retMessage;
 	}
 

@@ -107,7 +107,7 @@
 									</div>
 								</form:form>
 							</div>
-						</div>
+					
 						<!--Clients tab-->
 						<div class="tab-pane" id="clientDetails">
 							Sheba Client
@@ -184,22 +184,6 @@
 											value="${ticketObject.getProduct().getSerialNumber()}">
 									</div>
 								</div>
-								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 form-control-label">Product
-										Name</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control"
-											value="${ticketObject.getProduct().getProductName()}">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 form-control-label">Product
-										Type</label>
-									<div class="col-sm-10">
-										<input type="text" class="form-control"
-											value="${ticketObject.getProduct().getProductType()}">
-									</div>
-								</div>
 
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Model</label>
@@ -210,6 +194,7 @@
 								</div>
 							</form:form>
 						</div>
+						
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
 							Sheba Solution
@@ -270,17 +255,21 @@
 							</div>
 						</div>
 					</div>
-					<!--/close tab-content -->
+					</div><!--/close tab-content -->
 				</div>
 			</div>
 		</div>
 	</div>
-</body>
-
+</body><!--  
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" />-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 </html>

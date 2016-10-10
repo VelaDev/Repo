@@ -5,21 +5,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.dao.ProductDaoInt;
+import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
 import com.demo.service.DeviceServiceInt;
 
 @Service("productService")
-public class ProductService implements DeviceServiceInt {
+public class DeviceService implements DeviceServiceInt {
 	
 	@Autowired
-	private ProductDaoInt productDAO;
+	private DeviceDaoInt deviceDAO;
 	private String retMessage = null;
 
 	@Override
 	public String saveDevice(Device device) {
-		retMessage =productDAO.saveProduct(device);
+		retMessage =deviceDAO.saveDevice(device);
 		return retMessage;
 		
 	}
@@ -27,28 +27,28 @@ public class ProductService implements DeviceServiceInt {
 	@Override
 	public Device getDeviceBySerialNumber(String serialNumber) {
 		
-		return productDAO.getProductBySerialNumbuer(serialNumber);
+		return deviceDAO.getDeviceBySerialNumbuer(serialNumber);
 	}
 
 	@Override
 	public List<Device> getDeviceList() {
-		return productDAO.getProductList();
+		return deviceDAO.getDeviceList();
 	}
 
 	@Override
 	public List<Device> getDeviceListByClientName(String clientName) {
-		return productDAO.getProductListByClientName(clientName);
+		return deviceDAO.getDeviceListByClientName(clientName);
 	}
 
 	@Override
 	public List<Accessories> accessories(Device device) {
 		// TODO Auto-generated method stub
-		return productDAO.accessories(device);
+		return deviceDAO.accessories(device);
 	}
 
 	@Override
 	public String updateDevice(Device device) {
-		retMessage = productDAO.updateProduct(device);
+		retMessage = deviceDAO.updateDevice(device);
 		return retMessage;
 	}
 

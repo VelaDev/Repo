@@ -18,25 +18,25 @@ public class ProductService implements DeviceServiceInt {
 	private String retMessage = null;
 
 	@Override
-	public String saveProduct(Device device) {
+	public String saveDevice(Device device) {
 		retMessage =productDAO.saveProduct(device);
 		return retMessage;
 		
 	}
 
 	@Override
-	public Device getProductBySerialNumber(String serialNumber) {
+	public Device getDeviceBySerialNumber(String serialNumber) {
 		
 		return productDAO.getProductBySerialNumbuer(serialNumber);
 	}
 
 	@Override
-	public List<Device> getProductList() {
+	public List<Device> getDeviceList() {
 		return productDAO.getProductList();
 	}
 
 	@Override
-	public List<Device> getProductListByClientName(String clientName) {
+	public List<Device> getDeviceListByClientName(String clientName) {
 		return productDAO.getProductListByClientName(clientName);
 	}
 
@@ -47,7 +47,7 @@ public class ProductService implements DeviceServiceInt {
 	}
 
 	@Override
-	public String updateProduct(Device device) {
+	public String updateDevice(Device device) {
 		retMessage = productDAO.updateProduct(device);
 		return retMessage;
 	}

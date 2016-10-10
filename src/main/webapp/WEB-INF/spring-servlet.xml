@@ -50,7 +50,7 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 		<property name="annotatedClasses">
 			<list>
 				 <value>com.demo.model.Employee</value> 
-				 <value>com.demo.model.Product</value>
+				 <value>com.demo.model.Device</value>
 				 <value>com.demo.model.Client</value>
 				 <value>com.demo.model.Parts</value>
 				 <value>com.demo.model.Tickets</value>

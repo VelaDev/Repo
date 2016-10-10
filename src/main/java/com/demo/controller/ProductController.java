@@ -12,17 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.ProductBean;
-import com.demo.model.Product;
+import com.demo.model.Device;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;
-import com.demo.service.ProductServiceInt;
+import com.demo.service.DeviceServiceInt;
 
 
 @Controller
 public class ProductController {
 	
 	@Autowired
-	private ProductServiceInt productServiceInt;
+	private DeviceServiceInt deviceServiceInt;
     @Autowired
     private ClientServiceInt clientServiceInt;
    @Autowired 
@@ -52,12 +52,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="saveProduct", method=RequestMethod.POST)
-	public ModelAndView saveProduct(@ModelAttribute("saveProduct")Product product){
+	public ModelAndView saveProduct(@ModelAttribute("saveProduct")Device device){
 		
 		model = new ModelAndView();
 		 userName = (String) session.getAttribute("loggedInUser");
 			if(userName != null){
-				retMessage =productServiceInt.saveProduct(product);
+				retMessage =deviceServiceInt.saveDevice(device);
 		model.addObject("retMessage", retMessage);
 		model.setViewName("addProduct");
 			}
@@ -73,7 +73,7 @@ public class ProductController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("productList", productServiceInt.getProductList());
+		model.addObject("productList", deviceServiceInt.getDeviceList());
 		model.setViewName("showProducts");
 		}
 		else{
@@ -84,13 +84,13 @@ public class ProductController {
        
     } 
 	@RequestMapping(value="detailedProduct")
-	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Product product){
+	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Device device){
 	   model = new ModelAndView();
 	   userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-	   product = productServiceInt.getProductBySerialNumber(serialNumber);
-	   model.addObject("accessories", productServiceInt.accessories(product));
-	   model.addObject("productObject", product);
+	   device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+	   model.addObject("accessories", deviceServiceInt.accessories(device));
+	   model.addObject("productObject", device);
 	   model.setViewName("detailedProduct");
 	   }else{
 		   model.setViewName("login");
@@ -98,15 +98,15 @@ public class ProductController {
 	   return model;
 	}
 	@RequestMapping(value="searchSerialNumber")
-	public ModelAndView searchClientforProduct(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Product product) {
+	public ModelAndView searchClientforProduct(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		product = productServiceInt.getProductBySerialNumber(serialNumber);
-		if(product != null){
+		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		if(device != null){
 			
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-			model.addObject("product", product);
+			model.addObject("product", device);
 		}
 		else{
 			model.addObject("product", null);
@@ -149,17 +149,17 @@ public class ProductController {
 		
 	}
 	@RequestMapping(value="searchDeviceSerialNumber")
-	public ModelAndView searchDeviceBySerialNo(@RequestParam("serialNumber") String serialNumber,Product product){
+	public ModelAndView searchDeviceBySerialNo(@RequestParam("serialNumber") String serialNumber,Device device){
 		model= new ModelAndView();
 		
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-		product = productServiceInt.getProductBySerialNumber(serialNumber);
-		if(product != null)
+		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		if(device != null)
 		{
 		
-		    model.addObject("productObject", product);
+		    model.addObject("productObject", device);
 		}
 		else{
 			model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
@@ -173,15 +173,15 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="searchDeviceBySerialNo")
-	public ModelAndView searchDeviceBySerialNo1(@RequestParam("SerialNo") String serialNumber,Product product){
+	public ModelAndView searchDeviceBySerialNo1(@RequestParam("SerialNo") String serialNumber,Device device){
 		model= new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-		product = productServiceInt.getProductBySerialNumber(serialNumber);
-		if(product != null){
-			model.addObject("productObject", product);
-		    model.addObject("accessories", productServiceInt.accessories(product));
+		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		if(device != null){
+			model.addObject("productObject", device);
+		    model.addObject("accessories", deviceServiceInt.accessories(device));
 		}
 		else{
 			model.addObject("retMessage", "Device : "+ serialNumber + " does not exist");
@@ -197,12 +197,12 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="updateProduct")
-	public ModelAndView updateProduct(@ModelAttribute("updateProduct")Product product)
+	public ModelAndView updateProduct(@ModelAttribute("updateProduct")Device device)
 	{
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		retMessage = productServiceInt.updateProduct(product);
+		retMessage = deviceServiceInt.updateDevice(device);
 		model.addObject("retMessage", retMessage);
 		model.setViewName("updateDevice");
 		}

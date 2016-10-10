@@ -14,12 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.TicketsBean;
 import com.demo.model.Client;
-import com.demo.model.Product;
+import com.demo.model.Device;
 import com.demo.model.Tickets;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LogTicketsServiceInt;
-import com.demo.service.ProductServiceInt;
+import com.demo.service.DeviceServiceInt;
 
 
 @Controller
@@ -30,7 +30,7 @@ public class LogTicketController {
 	@Autowired
 	private ClientServiceInt clientServiceInt;
 	@Autowired
-	private ProductServiceInt productServiceInt;
+	private DeviceServiceInt deviceServiceInt;
 	@Autowired
 	private EmployeeServiceInt employeeServiceInt;
 	
@@ -97,20 +97,13 @@ public class LogTicketController {
        
     }
 	@RequestMapping("ticketDetails")
-    public ModelAndView loadTicketdetails( @RequestParam String ticketNum,@ModelAttribute Tickets ticket) {
+    public ModelAndView loadTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
 		
+		@SuppressWarnings("unused")
+		ModelAndView model = new ModelAndView();
+		ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+	    return new ModelAndView("ticketDetails", "ticketObject", ticket);
 		
-		 model = new ModelAndView();
-		 userName = (String) session.getAttribute("loggedInUser");
-			if(userName !=null){
-		ticket = logTicketService.getLoggedTicketByTicketNumber(ticketNum);
-		model.addObject("ticketObject", ticket);
-		model.setViewName("ticketDetails");
-			}
-			else{
-				model.setViewName("login");
-			}
-		return model;
     }
 	@RequestMapping(value="/updateTicket",method=RequestMethod.POST)
 	public ModelAndView updateTicket(@ModelAttribute("updateTicket")Tickets updateTicket){

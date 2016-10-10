@@ -16,9 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.ClientBean;
 import com.demo.model.Client;
-import com.demo.model.Product;
+import com.demo.model.Device;
 import com.demo.service.ClientServiceInt;
-import com.demo.service.ProductServiceInt;
+import com.demo.service.DeviceServiceInt;
 
 
 
@@ -29,13 +29,13 @@ public class ClientController {
 	@Autowired
 	private ClientServiceInt clientServiceInt;
 	@Autowired
-	private ProductServiceInt productServiceInt;
+	private DeviceServiceInt deviceServiceInt;
 	@Autowired
 	private HttpSession session;
 	@SuppressWarnings("unused")
 	private String retMessage = null;
 	ModelAndView model = null;
-	List<Product> productList =null;
+	List<Device> productList =null;
 	Client client = null;
 	String userName = null;
 	
@@ -83,13 +83,13 @@ public class ClientController {
 		return model;
 	}
 	@RequestMapping(value="searchClient")
-	public ModelAndView searchClient(@RequestParam("clientName") String clientName,@ModelAttribute Product product) {
+	public ModelAndView searchClient(@RequestParam("clientName") String clientName,@ModelAttribute Device device) {
 		model = new ModelAndView();
 		
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		productList = productServiceInt.getProductListByClientName(clientName);
-		for(Product prod:productList){
+		productList = deviceServiceInt.getDeviceListByClientName(clientName);
+		for(Device prod:productList){
 			client = prod.getClient();
 		}
 		model.addObject("productList",productList );

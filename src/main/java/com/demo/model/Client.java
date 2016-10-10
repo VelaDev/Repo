@@ -46,12 +46,14 @@ public class Client implements Serializable{
 	private String contactPerson;
 	@Column(name="Floor_No")
 	private String floorNumber;
+	@Column(name="Room_No")
+	private String roomNumber;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
 	@OneToMany(mappedBy ="client", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
-	private Set<Product> products;
+	private Set<Device> devices;
 
 	
 	public String getClientName() {
@@ -84,11 +86,11 @@ public class Client implements Serializable{
 	public void setAddress(Address address) {
 		this.address = address;
 	}
-	public Set<Product> getProducts() {
-		return products;
+	public Set<Device> getProducts() {
+		return devices;
 	}
-	public void setProducts(Set<Product> products) {
-		this.products = products;
+	public void setProducts(Set<Device> devices) {
+		this.devices = devices;
 	}
 	public String getStreetName() {
 		return streetName;
@@ -137,6 +139,18 @@ public class Client implements Serializable{
 	}
 	public void setFloorNumber(String floorNumber) {
 		this.floorNumber = floorNumber;
+	}
+	public String getRoomNumber() {
+		return roomNumber;
+	}
+	public void setRoomNumber(String roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+	public Set<Device> getDevices() {
+		return devices;
+	}
+	public void setDevices(Set<Device> devices) {
+		this.devices = devices;
 	}
 	
 	

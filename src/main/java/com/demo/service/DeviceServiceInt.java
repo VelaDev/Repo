@@ -7,11 +7,11 @@ import com.demo.model.Device;
 
 public interface DeviceServiceInt {
 	
-	String saveProduct(Device device);
-	Device getProductBySerialNumber(String serialNumber);
-	List<Device> getProductList();
-	List<Device> getProductListByClientName(String clientName);
+	String saveDevice(Device device);
+	Device getDeviceBySerialNumber(String serialNumber);
+	List<Device> getDeviceList();
+	List<Device> getDeviceListByClientName(String clientName);
 	List<Accessories> accessories(Device device);
-	String updateProduct(Device device);
+	String updateDevice(Device device);
 
 }

@@ -13,5 +13,6 @@ public interface DeviceServiceInt {
 	List<Device> getDeviceListByClientName(String clientName);
 	List<Accessories> accessories(Device device);
 	String updateDevice(Device device);
+	
 
 }

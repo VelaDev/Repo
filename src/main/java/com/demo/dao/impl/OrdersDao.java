@@ -21,12 +21,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.OrdersDaoInt;
-import com.demo.dao.ProductDaoInt;
+import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.SparePartsDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.Orders;
 import com.demo.model.Parts;
-import com.demo.model.Product;
+import com.demo.model.Device;
 
 
 
@@ -46,7 +46,7 @@ public class OrdersDao implements OrdersDaoInt{
 	@Autowired
 	private SparePartsDaoInt sparePartsDaoInt;
 	@Autowired
-	private ProductDaoInt productDaoInt;
+	private DeviceDaoInt deviceDaoInt;
 	
 	private String orderNum ="ORD-VEL-";
 	
@@ -54,7 +54,7 @@ public class OrdersDao implements OrdersDaoInt{
 	private Employee emp = null;
 	private Calendar cal = null;
 	private Parts part = null;
-	private Product product=null;
+	private Device device=null;
 	DateFormat dateFormat = null;
 	Date date = null;
 	
@@ -70,13 +70,13 @@ public class OrdersDao implements OrdersDaoInt{
 			String user = (String) session.getAttribute("loggedInUser");
 			emp=employeeDaoInt.getEmployeeByEmpNum(user);
 			part = sparePartsDaoInt.getSparePartBySerial(orders.getPartP());
-			product = productDaoInt.getProductBySerialNumbuer(orders.getProd());
+			device = deviceDaoInt.getProductBySerialNumbuer(orders.getProd());
 			
 			orderNumber = newOrderNumber();
 			orders.setOrderNum(orderNumber);
 			orders.setPart(part);
 			orders.setEmployee(emp);
-			orders.setProduct(product);
+			orders.setProduct(device);
 			orders.setApproved(false);
 			orders.setDateOrdered(dateFormat.format(date));
 			  sessionFactory.getCurrentSession().save(orders);
@@ -98,13 +98,13 @@ public class OrdersDao implements OrdersDaoInt{
 			/*isSpareAvailable = isAvailableSpares(order.getPartP(),order.getQuantity());*/
 			/*if(isSpareAvailable==true){*/
 			part= sparePartsDaoInt.getSparePartBySerial(order.getPartP());
-			product = productDaoInt.getProductBySerialNumbuer(order.getProd());
+			device = deviceDaoInt.getProductBySerialNumbuer(order.getProd());
 			if(part != null){
 				order.setApproved(true);
 				order.setDateApproved(dateFormat.format(date));
 				order.setReceived(true);
 				order.setPart(part);
-				order.setProduct(product);
+				order.setProduct(device);
 				String approvedBy = (String) session.getAttribute("loggedInUser");
 				order.setApprodedBy(approvedBy);
 				

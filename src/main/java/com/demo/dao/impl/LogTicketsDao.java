@@ -21,11 +21,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LogTicketsDaoInt;
-import com.demo.dao.ProductDaoInt;
+import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Client;
 import com.demo.model.Employee;
 import com.demo.model.Orders;
-import com.demo.model.Product;
+import com.demo.model.Device;
 import com.demo.model.Tickets;
 
 @Repository("LogTicketsDAO")
@@ -41,14 +41,14 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	@Autowired
 	private ClientDaoInt clientDaoInt;
 	@Autowired
-	private ProductDaoInt productDaoInt;
+	private DeviceDaoInt deviceDaoInt;
 	@Autowired
 	private HttpSession session = null;
 	private Session session2;
 
 	private Employee technician = null;
 	private Client client = null;
-	private Product product = null;
+	private Device device = null;
 	Calendar cal = Calendar.getInstance();
     private String retMessage="";
     private String ticketNum ="TIC-VEL-";
@@ -59,22 +59,22 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 
 			technician = employeeDaoInt.getEmployeeByEmpNum(tickets.getTechnicianUserName());
 			if(technician != null){
-				product = productDaoInt.getProductBySerialNumbuer(tickets.getProductS());
-				if(product !=null){
+				device = deviceDaoInt.getProductBySerialNumbuer(tickets.getProductS());
+				if(device !=null){
 					ticketNumber = newTicketNumber();
 					tickets.setTicketNumber(ticketNumber);
 					tickets.setEmployee(technician);
 					tickets.setStatus("Open");
 					tickets.setSlaStart("Not Started");
 					
-					tickets.setProduct(product);
+					tickets.setProduct(device);
 					tickets.setEscalate(false);
 					sessionFactory.getCurrentSession().save(tickets);
 					retMessage = "Ticket "+tickets.getTicketNumber()+ "is assigned to technician "+ tickets.getEmployee().getFirstName()+"\nAn email has been sent to customer "+tickets.getProduct().getClient().getClientName();
 					JavaMail.sendFromGMail(tickets);
 				}
 				else{
-					retMessage="Device "+product.getSerialNumber()+" does not exist. Ticket "+tickets.getTicketNumber()+" cannot be logged";
+					retMessage="Device "+device.getSerialNumber()+" does not exist. Ticket "+tickets.getTicketNumber()+" cannot be logged";
 				}
 				
 			}
@@ -203,8 +203,8 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 		
 		technician = employeeDaoInt.getEmployeeByEmpNum(technicianTemp);
 		client = clientDaoInt.getClientByClientName(clientTemp);
-		product = productDaoInt.getProductBySerialNumbuer(productTemp);
-		ticket.setProduct(product);
+		device = deviceDaoInt.getProductBySerialNumbuer(productTemp);
+		ticket.setProduct(device);
 		ticket.setEmployee(technician);
 		ticket.setSlaStart("Started");
 		ticket.setSlaAcknowledgeDateTime(cal);

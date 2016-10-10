@@ -14,14 +14,14 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.ClientDaoInt;
-import com.demo.dao.ProductDaoInt;
+import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Client;
-import com.demo.model.Product;
+import com.demo.model.Device;
 
 @Repository("productDAO")
 @Transactional(propagation=Propagation.REQUIRED)
-public class ProductDao implements ProductDaoInt {
+public class ProductDao implements DeviceDaoInt {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -30,19 +30,19 @@ public class ProductDao implements ProductDaoInt {
 	private String retMessage = null;
 	@SuppressWarnings("unused")
 	private Date currentDate =null;
-	ArrayList<Product> productList = null;
+	ArrayList<Device> productList = null;
 	ArrayList<?> aList = null;
 	Client client = null;
 	
 	
 	@Override
-	public String saveProduct(Product product) {
+	public String saveProduct(Device device) {
 		
 		try{
 		
-		Client client = clientDaoInt.getClientByClientName(product.getClientName());
-		product.setClient(client);
-		if(product.getAdditionalPaperTraysTypeSerial()!=null){
+		/*Client client = clientDaoInt.getClientByClientName(product.getClientName());
+		product.setClient(client);*/
+		/*if(product.getAdditionalPaperTraysTypeSerial()!=null){
 			product.setAdditionalPaperTrays("Additional Paper Trays");
 		}
 		if(product.getBridgeUnitSerialTypeSerialNo()!=null){
@@ -58,12 +58,12 @@ public class ProductDao implements ProductDaoInt {
 			product.setLtcType("LCT");
 		}if(product.getOneBinTrayTypeSerialNo()!=null){
 			product.setOneBinTrayType("One Bin Tray");
-		}
-		sessionFactory.getCurrentSession().save(product);
-		retMessage = "Device "+ product.getSerialNumber() + " is succefully added. The device belongs to customer :" + product.getClient().getClientName();
+		}*/
+		sessionFactory.getCurrentSession().save(device);
+		retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getClient().getClientName();
 		}catch(Exception e)
 		{
-			retMessage = "Device "+ product.getSerialNumber() + " is not added\n" + e.getMessage();
+			retMessage = "Device "+ device.getSerialNumber() + " is not added\n" + e.getMessage();
 		}
 		
 		return retMessage;
@@ -71,34 +71,34 @@ public class ProductDao implements ProductDaoInt {
 	}
 
 	@Override
-	public Product getProductBySerialNumbuer(String serialNumber) {
+	public Device getProductBySerialNumbuer(String serialNumber) {
 		
-		return (Product) sessionFactory.getCurrentSession().get(Product.class, serialNumber);
+		return (Device) sessionFactory.getCurrentSession().get(Device.class, serialNumber);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> getProductList() {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Product.class);
-		return (List<Product>)criteria.list();
+	public List<Device> getProductList() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Device.class);
+		return (List<Device>)criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Product> getProductListByClientName(String clientName) {
+	public List<Device> getProductListByClientName(String clientName) {
 		String name = clientName;
 		try{
 			
 		    aList = new ArrayList<Object>();
-		     productList = new ArrayList<Product>();
-			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Product.class);
+		     productList = new ArrayList<Device>();
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Device.class);
 			aList.addAll(criteria.list());
 			for (Object pro : aList) {
-				if (pro instanceof Product) {
-					if (((Product) pro).getClient().getClientName()!=null&&((Product) pro).getClient().getClientName().startsWith(name) ) {
-						productList.add((Product) pro);
-						System.out.println(((Product) pro).getClient().getClientName());
-						 client = ((Product) pro).getClient();
+				if (pro instanceof Device) {
+					if (((Device) pro).getClient().getClientName()!=null&&((Device) pro).getClient().getClientName().startsWith(name) ) {
+						productList.add((Device) pro);
+						System.out.println(((Device) pro).getClient().getClientName());
+						 client = ((Device) pro).getClient();
 					}
 				}
 			}
@@ -111,11 +111,11 @@ public class ProductDao implements ProductDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Accessories> accessories(Product product) {
+	public List<Accessories> accessories(Device device) {
 		ArrayList list = new ArrayList<Accessories>();
 		Accessories accessory = new Accessories();
 		
-		if(product.getAdditionalPaperTrays()!=null && product.getAdditionalPaperTraysTypeSerial()!=""){
+		/*if(product.getAdditionalPaperTrays()!=null && product.getAdditionalPaperTraysTypeSerial()!=""){
 			accessory.setBridgeUnitSerial(product.getAdditionalPaperTraysTypeSerial());
 			accessory.setBridgeUnitSerialType(product.getAdditionalPaperTrays());
 			accessory.setProd(product.getSerialNumber());
@@ -168,19 +168,19 @@ public class ProductDao implements ProductDaoInt {
 			accessory6.setBridgeUnitSerialType(product.getOneBinTrayType());
 			accessory6.setProd(product.getSerialNumber());
 			list.add(accessory6);
-		}
+		}*/
 		
 		
 		return list;
 	}
 
 	@Override
-	public String updateProduct(Product product) {
+	public String updateProduct(Device device) {
 		try{
 			
-			Client client = clientDaoInt.getClientByClientName(product.getClientName());
-			product.setClient(client);
-			if(product.getAdditionalPaperTraysTypeSerial()!=null && product.getAdditionalPaperTraysTypeSerial()!=""){
+			/*Client client = clientDaoInt.getClientByClientName(product.getClientName());
+			product.setClient(client);*/
+			/*if(product.getAdditionalPaperTraysTypeSerial()!=null && product.getAdditionalPaperTraysTypeSerial()!=""){
 				product.setAdditionalPaperTrays("Additional Paper Trays");
 			}
 			if(product.getBridgeUnitSerialTypeSerialNo()!=null && product.getBridgeUnitSerialTypeSerialNo()!=""){
@@ -196,12 +196,12 @@ public class ProductDao implements ProductDaoInt {
 				product.setLtcType("LCT");
 			}if(product.getOneBinTrayTypeSerialNo()!=null && product.getOneBinTrayTypeSerialNo()!=""){
 				product.setOneBinTrayType("One Bin Tray");
-			}
-			sessionFactory.getCurrentSession().update(product);
-			retMessage = "Device "+product.getSerialNumber()+ " is successfully updated. Device belongs to customer : " + product.getClient().getClientName();
+			}*/
+			sessionFactory.getCurrentSession().update(device);
+			retMessage = "Device "+device.getSerialNumber()+ " is successfully updated. Device belongs to customer : " + device.getClient().getClientName();
 		}
 		catch(Exception e){
-			retMessage = "Device "+product.getSerialNumber()+ " is not updated\n"+ e.getMessage();
+			retMessage = "Device "+device.getSerialNumber()+ " is not updated\n"+ e.getMessage();
 		}
 		return retMessage;
 	}

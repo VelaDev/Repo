@@ -70,7 +70,7 @@ public class OrdersDao implements OrdersDaoInt{
 			String user = (String) session.getAttribute("loggedInUser");
 			emp=employeeDaoInt.getEmployeeByEmpNum(user);
 			part = sparePartsDaoInt.getSparePartBySerial(orders.getPartP());
-			device = deviceDaoInt.getProductBySerialNumbuer(orders.getProd());
+			device = deviceDaoInt.getDeviceBySerialNumbuer(orders.getProd());
 			
 			orderNumber = newOrderNumber();
 			orders.setOrderNum(orderNumber);
@@ -98,7 +98,7 @@ public class OrdersDao implements OrdersDaoInt{
 			/*isSpareAvailable = isAvailableSpares(order.getPartP(),order.getQuantity());*/
 			/*if(isSpareAvailable==true){*/
 			part= sparePartsDaoInt.getSparePartBySerial(order.getPartP());
-			device = deviceDaoInt.getProductBySerialNumbuer(order.getProd());
+			device = deviceDaoInt.getDeviceBySerialNumbuer(order.getProd());
 			if(part != null){
 				order.setApproved(true);
 				order.setDateApproved(dateFormat.format(date));

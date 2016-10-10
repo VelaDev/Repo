@@ -21,7 +21,7 @@ import com.demo.model.Device;
 
 @Repository("productDAO")
 @Transactional(propagation=Propagation.REQUIRED)
-public class ProductDao implements DeviceDaoInt {
+public class DeviceDao implements DeviceDaoInt {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -36,7 +36,7 @@ public class ProductDao implements DeviceDaoInt {
 	
 	
 	@Override
-	public String saveProduct(Device device) {
+	public String saveDevice(Device device) {
 		
 		try{
 		
@@ -71,21 +71,21 @@ public class ProductDao implements DeviceDaoInt {
 	}
 
 	@Override
-	public Device getProductBySerialNumbuer(String serialNumber) {
+	public Device getDeviceBySerialNumbuer(String serialNumber) {
 		
 		return (Device) sessionFactory.getCurrentSession().get(Device.class, serialNumber);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Device> getProductList() {
+	public List<Device> getDeviceList() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Device.class);
 		return (List<Device>)criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Device> getProductListByClientName(String clientName) {
+	public List<Device> getDeviceListByClientName(String clientName) {
 		String name = clientName;
 		try{
 			
@@ -175,7 +175,7 @@ public class ProductDao implements DeviceDaoInt {
 	}
 
 	@Override
-	public String updateProduct(Device device) {
+	public String updateDevice(Device device) {
 		try{
 			
 			/*Client client = clientDaoInt.getClientByClientName(product.getClientName());

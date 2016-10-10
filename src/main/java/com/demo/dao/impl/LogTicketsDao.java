@@ -59,7 +59,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 
 			technician = employeeDaoInt.getEmployeeByEmpNum(tickets.getTechnicianUserName());
 			if(technician != null){
-				device = deviceDaoInt.getProductBySerialNumbuer(tickets.getProductS());
+				device = deviceDaoInt.getDeviceBySerialNumbuer(tickets.getProductS());
 				if(device !=null){
 					ticketNumber = newTicketNumber();
 					tickets.setTicketNumber(ticketNumber);
@@ -203,7 +203,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 		
 		technician = employeeDaoInt.getEmployeeByEmpNum(technicianTemp);
 		client = clientDaoInt.getClientByClientName(clientTemp);
-		device = deviceDaoInt.getProductBySerialNumbuer(productTemp);
+		device = deviceDaoInt.getDeviceBySerialNumbuer(productTemp);
 		ticket.setProduct(device);
 		ticket.setEmployee(technician);
 		ticket.setSlaStart("Started");

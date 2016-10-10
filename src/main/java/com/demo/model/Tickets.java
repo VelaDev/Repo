@@ -61,8 +61,8 @@ public class Tickets implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="SERIAL_NUMBER")
-	private Product product;
-	
+	private Device device;
+
 	public String getTicketNumber() {
 		return ticketNumber;
 	}
@@ -118,37 +118,6 @@ public class Tickets implements Serializable{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	/*public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}*/
-
-	public String getProductS() {
-		return productS;
-	}
-
-	public void setProductS(String productS) {
-		this.productS = productS;
-	}
-
-	public String getTechnicianUserName() {
-		return technicianUserName;
-	}
-
-	public void setTechnicianUserName(String technicianUserName) {
-		this.technicianUserName = technicianUserName;
-	}
 
 	public boolean isTechnicianAcknowledged() {
 		return technicianAcknowledged;
@@ -190,12 +159,37 @@ public class Tickets implements Serializable{
 		this.slaAcknowledgeDateTime = slaAcknowledgeDateTime;
 	}
 
-	public Product getProduct() {
-		return product;
+	public String getProductS() {
+		return productS;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProductS(String productS) {
+		this.productS = productS;
 	}
+
+	public String getTechnicianUserName() {
+		return technicianUserName;
+	}
+
+	public void setTechnicianUserName(String technicianUserName) {
+		this.technicianUserName = technicianUserName;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Device getProduct() {
+		return device;
+	}
+
+	public void setProduct(Device device) {
+		this.device = device;
+	}
+	
 	
 }

@@ -170,27 +170,6 @@ public class OrdersDao implements OrdersDaoInt{
 		
 		return (Orders) sessionFactory.getCurrentSession().get(Orders.class, orderNum);
 	}
-	private boolean isAvailableSpares(String serialNum,int quantity)
-	{
-		boolean retFlag = false;
-		Parts parts = null;
-		int tempQuantity;
-		try{
-			
-			 parts= sparePartsDaoInt.getSparePartBySerial(serialNum);
-			 
-			 if(quantity <= parts.getQuantity()){
-				 retFlag = true;
-				 tempQuantity = parts.getQuantity()-quantity;
-				 parts.setQuantity(tempQuantity);
-				 sparePartsDaoInt.updateSpareParts(parts);
-			 }
-		}
-		catch(Exception e){
-			retFlag=false;
-		}
-		return retFlag;
-	}
 	
 	private String generateOrderNumber(){
 		

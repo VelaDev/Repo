@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 import com.demo.model.Employee;
 import com.demo.model.Parts;
-import com.demo.model.Product;
+import com.demo.model.Device;
 
 
 public class OrdersBean {
@@ -21,7 +21,7 @@ public class OrdersBean {
 	private Employee employee;
 	private Parts part;
 	private String partP;
-	private Product product;
+	private Device device;
 	private String prod;
 	public long getOrderNum() {
 		return orderNum;
@@ -95,11 +95,11 @@ public class OrdersBean {
 	public void setPartP(String partP) {
 		this.partP = partP;
 	}
-	public Product getProduct() {
-		return product;
+	public Device getProduct() {
+		return device;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProduct(Device device) {
+		this.device = device;
 	}
 	public String getProd() {
 		return prod;

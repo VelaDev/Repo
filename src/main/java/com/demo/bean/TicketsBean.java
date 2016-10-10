@@ -3,7 +3,7 @@ package com.demo.bean;
 import java.util.Calendar;
 
 import com.demo.model.Employee;
-import com.demo.model.Product;
+import com.demo.model.Device;
 
 public class TicketsBean {
 	
@@ -15,7 +15,7 @@ public class TicketsBean {
 	private String group;
 	private Calendar date;
     private Employee employee;
-	private Product product;
+	private Device device;
 	private String comments;
 	private String clientC;
 	private String productS;
@@ -73,11 +73,11 @@ public class TicketsBean {
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
 	}
-	public Product getProduct() {
-		return product;
+	public Device getProduct() {
+		return device;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setProduct(Device device) {
+		this.device = device;
 	}
 	public String getComments() {
 		return comments;

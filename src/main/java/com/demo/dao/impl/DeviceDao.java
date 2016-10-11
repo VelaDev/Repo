@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.DeviceBean;
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
@@ -32,38 +34,19 @@ public class DeviceDao implements DeviceDaoInt {
 	ArrayList<Device> productList = null;
 	ArrayList<?> aList = null;
 	Client client = null;
+	Device device = null;
 	
 	
 	@Override
 	public String saveDevice(Device device) {
 		
 		try{
-		
-		/*Client client = clientDaoInt.getClientByClientName(product.getClientName());
-		product.setClient(client);*/
-		/*if(product.getAdditionalPaperTraysTypeSerial()!=null){
-			product.setAdditionalPaperTrays("Additional Paper Trays");
-		}
-		if(product.getBridgeUnitSerialTypeSerialNo()!=null){
-			product.setBridgeUnitSerialType("Bridge unit");
-		}
-		if(product.getCredenzaSerialNo()!= null){
-			product.setCredenza("Credenza");
-		}if(product.getFaxUnitSerialTypeSerialNo()!=null){
-			product.setFaxUnitSerialType("Fax Unit");
-		}if(product.getFinisherTypeSerialNo()!=null){
-			product.setFinisherType("Finisher");
-		}if(product.getLtcTypeSerial()!=null){
-			product.setLtcType("LCT");
-		}if(product.getOneBinTrayTypeSerialNo()!=null){
-			product.setOneBinTrayType("One Bin Tray");
-		}*/
-		sessionFactory.getCurrentSession().save(device);
-		retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getClient().getClientName();
-		}catch(Exception e)
-		{
-			retMessage = "Device "+ device.getSerialNumber() + " is not added\n" + e.getMessage();
-		}
+			
+		       sessionFactory.getCurrentSession().save(device);
+		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getClient().getClientName();
+		   }catch(Exception e){
+			    retMessage = "Device "+ device.getSerialNumber() + " is not added\n" + e.getMessage();
+		   }
 		
 		return retMessage;
 		
@@ -202,6 +185,27 @@ public class DeviceDao implements DeviceDaoInt {
 		catch(Exception e){
 			retMessage = "Device "+device.getSerialNumber()+ " is not updated\n"+ e.getMessage();
 		}
+		return retMessage;
+	}
+
+	@Override
+	public String prepareDeviceData(DeviceBean deviceBean) {
+		//Purpose	: This method prepares the device data before inserting into the table
+		
+		device = new Device();
+		device.setEndDate(deviceBean.getEndDate());
+		device.setProductModel(deviceBean.getProductModel());
+		device.setSerialNumber(deviceBean.getSerialNumber());
+		device.setStartDate(deviceBean.getStartDate());
+		client = clientDaoInt.getClientByClientName(deviceBean.getClient());
+		if(client != null){
+			device.setClient(client);
+			retMessage = saveDevice(device);
+		}
+		else{
+			retMessage = "Client "+ client.getClientName() +" does not exist on database. Please make sure that the client exist before assigning a device" ;
+		}
+		
 		return retMessage;
 	}
 	

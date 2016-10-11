@@ -20,7 +20,6 @@ public class SparePartsController {
 	private SparePartsServeceInt sparePartsServeceInt;
 	@Autowired
 	private HttpSession session = null;
-	@SuppressWarnings("unused")
 	private String retMessage = null;
 	private ModelAndView model = null;
 	private String userName = null;

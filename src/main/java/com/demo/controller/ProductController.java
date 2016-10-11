@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.bean.ProductBean;
+import com.demo.bean.DeviceBean;
 import com.demo.model.Device;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;
@@ -42,7 +42,7 @@ public class ProductController {
 	    model = new ModelAndView();
 	    userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("saveProduct", new ProductBean());
+		model.addObject("saveProduct", new DeviceBean());
 		model.setViewName("addProduct");
 		}
 		else{
@@ -52,14 +52,14 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="saveProduct", method=RequestMethod.POST)
-	public ModelAndView saveProduct(@ModelAttribute("saveProduct")Device device){
+	public ModelAndView saveProduct(@ModelAttribute("saveProduct")DeviceBean deviceBean){
 		
 		model = new ModelAndView();
 		 userName = (String) session.getAttribute("loggedInUser");
 			if(userName != null){
-				retMessage =deviceServiceInt.saveDevice(device);
-		model.addObject("retMessage", retMessage);
-		model.setViewName("addProduct");
+				retMessage =deviceServiceInt.prepareDeviceData(deviceBean);
+		        model.addObject("retMessage", retMessage);
+		        model.setViewName("addProduct");
 			}
 			else{
 				model.setViewName("login");

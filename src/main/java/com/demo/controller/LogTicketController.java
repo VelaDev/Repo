@@ -1,6 +1,5 @@
 package com.demo.controller;
 
-import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.TicketsBean;
 import com.demo.model.Client;
-import com.demo.model.Device;
 import com.demo.model.Tickets;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;

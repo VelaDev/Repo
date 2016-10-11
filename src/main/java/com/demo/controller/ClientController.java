@@ -3,7 +3,6 @@ package com.demo.controller;
 
 import java.util.List;
 
-import javax.jws.WebParam.Mode;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,6 @@ public class ClientController {
 	private DeviceServiceInt deviceServiceInt;
 	@Autowired
 	private HttpSession session;
-	@SuppressWarnings("unused")
 	private String retMessage = null;
 	ModelAndView model = null;
 	List<Device> productList =null;

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.bean.DeviceBean;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
@@ -49,6 +50,12 @@ public class DeviceService implements DeviceServiceInt {
 	@Override
 	public String updateDevice(Device device) {
 		retMessage = deviceDAO.updateDevice(device);
+		return retMessage;
+	}
+
+	@Override
+	public String prepareDeviceData(DeviceBean deviceBean) {
+		retMessage = deviceDAO.prepareDeviceData(deviceBean);
 		return retMessage;
 	}
 

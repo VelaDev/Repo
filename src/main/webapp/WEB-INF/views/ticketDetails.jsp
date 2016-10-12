@@ -6,7 +6,8 @@
 </head>
 <body>
 	<c:import url="templates/techniciannavbar.jsp"></c:import>
-<body class=".container-fluid">
+
+  	<body class=".container-fluid">
 	<div class="container myrow-container" style="width: 90%">
 		<div class="panel panel-success">
 			<div class="panel-heading">
@@ -32,8 +33,6 @@
 
 							<!--general tab-->
 							<div class="tab-pane active" id="generalDetails">
-								Sheba General
-
 								<h4 align="center">General Info</h4>
 
 								<form:form action="updateTicket" modelAttribute="updateTicket"
@@ -58,7 +57,7 @@
 										<label for="inputPassword3"
 											class="col-sm-2 form-control-label">Description</label>
 										<div class="col-sm-10">
-											<textarea rows="5" cols="111" name="description">${ticketObject.description }</textarea>
+											<textarea rows="5" cols="85" name="description">${ticketObject.description }</textarea>
 											<%-- <input type="text" class="form-control" value="${ticketObject.status}" name="status"> --%>
 										</div>
 									</div>
@@ -110,9 +109,7 @@
 					
 						<!--Clients tab-->
 						<div class="tab-pane" id="clientDetails">
-							Sheba Client
-
-							<h4 align="center">Client Details</h4>
+						 <h4 align="center">Client Details</h4>
 							
 							<form:form>
 								<div class="form-group row">
@@ -172,7 +169,7 @@
 						</div>
 						<!--products tab-->
 						<div class="tab-pane" id="productDetails">
-							Shepa Product
+							
 							<h4 align="center">Product Details</h4>
 							
 							<form:form>
@@ -197,15 +194,14 @@
 						
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
-							Sheba Solution
-
+							
 							<h4 align="center">Solution Details</h4>
 							
 							<form:form>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Resolution</label>
 									<div class="col-sm-10">
-										<textarea rows="4" cols="111"></textarea>
+										<textarea rows="4" cols="85" class="required" required="required"></textarea>
 										<%-- <input type="text" class="form-control" value="${ticketObject.status}" name="status"> --%>
 									</div>
 								</div>
@@ -213,7 +209,7 @@
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Solution</label>
 									<div class="col-sm-10">
-										<textarea rows="4" cols="111"></textarea>
+										<textarea rows="4" cols="85" class="required" required="required"></textarea>
 										<%-- <input type="text" class="form-control" value="${ticketObject.status}" name="status"> --%>
 									</div>
 								</div>
@@ -231,7 +227,7 @@
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Escalate
 										Reason</label>
 									<div class="col-sm-10">
-										<textarea rows="4" cols="111" name="escalateReason"></textarea>
+										<textarea rows="4" cols="85" name="escalateReason" class="required" required="required"></textarea>
 										<%-- <input type="text" class="form-control" value="${ticketObject.status}" name="status"> --%>
 									</div>
 								</div>
@@ -247,7 +243,7 @@
 						</div>
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
-							Sheba History
+							
 							<h4>History Details</h4>
 
 							<div class="row">
@@ -260,16 +256,23 @@
 			</div>
 		</div>
 	</div>
-</body><!--  
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" />-->
+</body>
 
+<!-- Comment 3.3.6 BootStrap -->
+<%-- <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
+<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
+<link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
+ --%>
+ 
+<!-- Add 3.3.7 BootStrap locally -->
+<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"> </script>
+<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"> </script>
+<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
+
+<!-- Comment the one from the cloud --><!-- 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 
 
 </html>

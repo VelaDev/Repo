@@ -29,7 +29,7 @@
 			<div class="panel-body">
 				<div class="col-lg-10">
 					<form:form method="post" action="saveClient"
-						modelAttribute="saveClient">
+						modelAttribute="saveClient" id="saveClient">
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="col-xs-2 form-control-label">
@@ -175,6 +175,9 @@
 	</div>
 </body>
 
+
+
+
 <%-- <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
 <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
 <link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
@@ -183,6 +186,10 @@
 <script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
 <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" />
+
+<!-- Validator -->
+<link href="<c:url value="/resources/bootstrapvalidator/css/bootstrapValidator.min.css" />"rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/bootstrapvalidator/js/bootstrapValidator.min.js" />"rel="stylesheet" type="text/css" />
 
 
 </html>

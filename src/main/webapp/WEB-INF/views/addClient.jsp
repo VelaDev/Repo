@@ -175,7 +175,107 @@
 	</div>
 </body>
 
-
+<script>
+$(document).ready(function() {
+    $('#saveClient').bootstrapValidator({
+        container: '#messages',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	clientName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Client Name is required and cannot be empty'
+                    }
+                }
+            },
+            contactPerson: {
+                validators: {
+                    notEmpty: {
+                        message: 'Contact Person is required and cannot be empty'
+                    }
+                }
+            },
+            province: {
+                validators: {
+                    notEmpty: {
+                        message: 'Provice is required and cannot be empty'
+                    }
+                }
+            },
+            city_town: {
+                validators: {
+                    notEmpty: {
+                        message: 'City is required and cannot be empty'
+                    }
+                }
+            },
+            streetName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Street Name is required and cannot be empty'
+                    }
+                }
+            },
+            zipcode: {
+                validators: {
+                    notEmpty: {
+                        message: 'Zipcode is required and cannot be empty'
+                    }
+                }
+            },
+            floorNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Floor Number is required and cannot be empty'
+                    }
+                }
+            },
+            tellphoneNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Tellphone Number is required and cannot be empty'
+                    }
+                }
+            },
+            faxNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Fax Number is required and cannot be empty'
+                    }
+                }
+            },
+            cellNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Cell Number is required and cannot be empty'
+                    }
+                }
+            },
+            faxNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Fax Number is required and cannot be empty'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required and cannot be empty'
+                    },
+                    emailAddress: {
+                        message: 'The email address is not valid'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
 
 
 <%-- <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>

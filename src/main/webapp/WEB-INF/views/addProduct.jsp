@@ -122,7 +122,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="streetNo" value="${client.streetNo}">
+										name="streetNumber" value="${client.streetNumber}">
 								</div>
 
 								<div class="col-xs-2 form-control-label">

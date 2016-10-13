@@ -178,9 +178,9 @@
 					data-toggle="dropdown" role="button" aria-haspopup="true"
 					aria-expanded="false">Tickets<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href='<c:url value="monitoringTickets.html"/>'>Escalated
+						<li><a href='<c:url value="monitoringTickets.html"/>'>Open
 								Tickets</a></li>
-						<li><a href='<c:url value="ticket"/>'>Log Ticket</a></li>
+						<li><a href='<c:url value="#"/>'>Log Ticket</a></li>
 					</ul></li>
 					
 				</ul>

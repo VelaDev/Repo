@@ -163,4 +163,18 @@ public class EmployeeController {
 		return model;
 		
 	}
+	
+	@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
+	public ModelAndView displayCustomers(){
+		model= new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+		model.addObject("employeeList", employeeService.getAllEmployees());
+		model.setViewName("displayEmployees");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
 }

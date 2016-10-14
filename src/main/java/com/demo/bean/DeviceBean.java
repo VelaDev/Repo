@@ -16,7 +16,7 @@ public class DeviceBean {
 	private String productStatus;
 	private String startDate;
 	private String endDate;
-	private String client;
+	private String clientName;
 	private String accessoryName;
 	private String accessorySerial;
 	
@@ -25,6 +25,8 @@ public class DeviceBean {
 	private String faxUnitSerialType;
 	private String OneBinTrayType;
 	private String finisherType;
+	private String additionalPaperTrays;
+	private String ltcType;
 	
 	
 	
@@ -33,6 +35,8 @@ public class DeviceBean {
 	private String faxUnitSerialTypeSerialNo;
 	private String OneBinTrayTypeSerialNo;
 	private String finisherTypeSerialNo;
+	private String LtcTypeSerial;
+	private String additionalPaperTraysTypeSerial;
 	
 	public String getSerialNumber() {
 		return serialNumber;
@@ -70,11 +74,11 @@ public class DeviceBean {
 	public void setProductStatus(String productStatus) {
 		this.productStatus = productStatus;
 	}
-	public String getClient() {
-		return client;
+	public String getClientName() {
+		return clientName;
 	}
-	public void setClient(String client) {
-		this.client = client;
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
 	}
 	public String getStartDate() {
 		return startDate;
@@ -159,6 +163,32 @@ public class DeviceBean {
 	}
 	public void setFinisherTypeSerialNo(String finisherTypeSerialNo) {
 		this.finisherTypeSerialNo = finisherTypeSerialNo;
+	}
+	public String getAdditionalPaperTrays() {
+		return additionalPaperTrays;
+	}
+	public void setAdditionalPaperTrays(String additionalPaperTrays) {
+		this.additionalPaperTrays = additionalPaperTrays;
+	}
+	
+	public String getLtcType() {
+		return ltcType;
+	}
+	public void setLtcType(String ltcType) {
+		this.ltcType = ltcType;
+	}
+	public String getLtcTypeSerial() {
+		return LtcTypeSerial;
+	}
+	public void setLtcTypeSerial(String ltcTypeSerial) {
+		LtcTypeSerial = ltcTypeSerial;
+	}
+	public String getAdditionalPaperTraysTypeSerial() {
+		return additionalPaperTraysTypeSerial;
+	}
+	public void setAdditionalPaperTraysTypeSerial(
+			String additionalPaperTraysTypeSerial) {
+		this.additionalPaperTraysTypeSerial = additionalPaperTraysTypeSerial;
 	}
 	
 }

@@ -68,11 +68,11 @@
 								</tr>
 								</thead>
 								<tbody>
-								<c:forEach items="${productList}" var="product">
+								<c:forEach items="${deviceList}" var="device">
 									<tr>
-										<th><c:out value="${product.serialNumber}"/></th>
-										<th><c:out value="${product.productModel}"/></th>
-										<th><a href="detailedProduct?serialNumber=<c:out value='${product.serialNumber}'/>">Detail</a></th>
+										<th><c:out value="${device.serialNumber}"/></th>
+										<th><c:out value="${device.productModel}"/></th>
+										<th><a href="detailedProduct?serialNumber=<c:out value='${device.serialNumber}'/>">Detail</a></th>
 																 
 									</tr>
 								</c:forEach>

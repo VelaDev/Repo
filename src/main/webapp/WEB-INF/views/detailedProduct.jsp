@@ -47,8 +47,8 @@
 								<tbody>
 								<c:forEach items="${accessories}" var="accessory">
 									<tr>
-										<th><h6><c:out value="${accessory.bridgeUnitSerialType}"/></h6></th>
-										<th><h6><c:out value="${accessory.bridgeUnitSerial}"/></h6></th>
+										<th><h6><c:out value="${accessory.accessotyType}"/></h6></th>
+										<th><h6><c:out value="${accessory.serial}"/></h6></th>
 																 
 									</tr>
 								</c:forEach>
@@ -67,7 +67,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <input type="text" class="form-control input-sm" value="${productObject.serialNumber}" disabled="disabled">
+                      <input type="text" class="form-control input-sm" value="${device.serialNumber}" disabled="disabled">
                   </div>
    </div>
 	</div>
@@ -78,7 +78,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <input type="text" class="form-control input-sm" value="${productObject.productModel}" disabled="disabled">
+                      <input type="text" class="form-control input-sm" value="${device.productModel}" disabled="disabled">
                   </div>
    </div>
 	</div>
@@ -89,7 +89,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <input type="text" class="form-control input-sm" value="${productObject.startDate}" disabled="disabled">
+                      <input type="text" class="form-control input-sm" value="${device.startDate}" disabled="disabled">
                   </div>
    </div>
 	</div>
@@ -100,7 +100,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <input type="text" class="form-control input-sm" value="${productObject.endDate}" disabled="disabled">
+                      <input type="text" class="form-control input-sm" value="${device.endDate}" disabled="disabled">
                   </div>
    </div>
 	</div>
@@ -111,7 +111,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <input type="text" class="form-control input-sm" value="${productObject.client.getClientName()}" disabled="disabled">
+                      <input type="text" class="form-control input-sm" value="${device.client.getClientName()}" disabled="disabled">
                   </div>
    </div>
 	</div>
@@ -122,7 +122,7 @@
      
                     </div>
                   <div class="col-xs-8">
-                      <textarea rows="3" cols="29" disabled="disabled">${productObject.client.streetName}, ${productObject.client.city_town},${productObject.client.province}</textarea>
+                      <textarea rows="3" cols="29" disabled="disabled">${device.client.streetName}, ${device.client.city_town},${device.client.province}</textarea>
                   </div>
    </div>
 	</div>

@@ -8,9 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Error Page</title>
-<script src="/resources/bootstrap-3.3.6/js/jquery-3.0.0.min.js"></script>
-        <script type="text/javascript"src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script> 
-        <link rel="stylesheet" type="text/css" href="/resources/bootstrap-3.3.6/css/bootstrap.min.css">
 </head>
 <body>
 <form action="error" method="post">
@@ -23,4 +20,8 @@
  </table>
  </form>
 </body>
+
+<script src="/resources/bootstrap-3.3.6/js/jquery-3.0.0.min.js"></script>
+        <script type="text/javascript"src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script> 
+        <link rel="stylesheet" type="text/css" href="/resources/bootstrap-3.3.6/css/bootstrap.min.css">
 </html>

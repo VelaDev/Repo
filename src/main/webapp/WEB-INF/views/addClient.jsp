@@ -176,6 +176,7 @@
 </body>
 
 <script>
+
 $(document).ready(function() {
     $('#saveClient').bootstrapValidator({
         container: '#messages',

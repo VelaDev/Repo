@@ -8,12 +8,14 @@
 <c:import url="templates/navbar.jsp"></c:import>
 <body>
 	<div class="container myrow-container" style="width: 90%">
-		<div class="alert alert-info" role="alert">
+		
 			<c:if test="${not empty retMessage }">
-				<c:out value="${ retMessage}">
-				</c:out>
+				 <div class="alert alert-info" role="alert">
+				   <c:out value="${ retMessage}">
+			 	   </c:out>
+				</div>
 			</c:if>
-		</div>
+		
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">
@@ -25,7 +27,7 @@
 			</div>
 			<div class="panel-body">
 				<form:form method="post" action="saveSpareParts"
-					modelAttribute="saveSpareParts">
+					modelAttribute="saveSpareParts" id="saveSpareParts">
 					<br>
 					<div class="row">
 						<div class="col-xs-12">
@@ -34,7 +36,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="partNumber" class="form-control" tabindex="1">
+								<select name="partNumber" class="form-control" tabindex="1" required="required">
 									<option value="">Part Number
 									<option>
 									<option value="CLT-R806K">CLT-R806K</option>
@@ -48,7 +50,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="itemType" class="form-control" tabindex="1">
+								<select name="itemType" class="form-control" tabindex="1" required="required">
 									<option value="">Item Type
 									<option>
 									<option value="Toner">Toner</option>
@@ -66,7 +68,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="modelNumber" class="form-control" tabindex="2">
+								<select name="modelNumber" class="form-control" tabindex="2" required="required">
 									<option value="">Model Number
 									<option>
 									<option value="MultiXpress X7500LX">MultiXpress
@@ -81,7 +83,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="description" class="form-control" tabindex="3">
+								<select name="description" class="form-control" tabindex="3" required="required">
 									<option value="">Description
 									<option>
 									<option value="Black Imaging Unit">Black Imaging Unit</option>
@@ -106,11 +108,17 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript"
+
+<%-- <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
 <link
 	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
+	rel="stylesheet" type="text/css" /> --%>
+	
+<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
+<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" />
+	
 </html>

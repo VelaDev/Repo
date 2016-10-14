@@ -39,4 +39,10 @@ public class EmployeeService implements EmployeeServiceInt {
 		return employeeDAO.getAllTechnicians();
 	}
 
+	@Override
+	public List<Employee> getAllEmployees() {
+		
+		return employeeDAO.getAllEmployees();
+	}
+
 }

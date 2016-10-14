@@ -8,5 +8,6 @@ public interface EmployeeServiceInt {
 	String saveEmployee(Employee employee);
 	Employee getEmployeeByEmpNumber(String empUsername);
 	List<Employee> getAllTechnicians();
+	List<Employee> getAllEmployees();
 
 }

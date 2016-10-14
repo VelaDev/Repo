@@ -82,4 +82,11 @@ public class EmployeeDao implements EmployeeDaoInt{
 		 }
 		return empList;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employee> getAllEmployees() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+		return (List<Employee>)criteria.list();
+	}
 }

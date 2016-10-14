@@ -6,6 +6,7 @@ import java.util.List;
 
 
 
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.DeviceBean;
+import com.demo.dao.AccessoriesDaoInt;
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
@@ -28,11 +30,16 @@ public class DeviceDao implements DeviceDaoInt {
 	private SessionFactory sessionFactory;
 	@Autowired
 	private ClientDaoInt clientDaoInt;
+	@Autowired
+	private AccessoriesDaoInt accessoriesDaoInt;
+	
+	
 	private String retMessage = null;
 	@SuppressWarnings("unused")
 	private Date currentDate =null;
 	ArrayList<Device> productList = null;
 	ArrayList<?> aList = null;
+	ArrayList list = null;
 	Client client = null;
 	Device device = null;
 	
@@ -44,7 +51,8 @@ public class DeviceDao implements DeviceDaoInt {
 			
 		       sessionFactory.getCurrentSession().save(device);
 		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getClient().getClientName();
-		   }catch(Exception e){
+		   }
+		catch(Exception e){
 			    retMessage = "Device "+ device.getSerialNumber() + " is not added\n" + e.getMessage();
 		   }
 		
@@ -192,15 +200,79 @@ public class DeviceDao implements DeviceDaoInt {
 	public String prepareDeviceData(DeviceBean deviceBean) {
 		//Purpose	: This method prepares the device data before inserting into the table
 		
+		String retAccessory = null;
 		device = new Device();
 		device.setEndDate(deviceBean.getEndDate());
 		device.setProductModel(deviceBean.getProductModel());
 		device.setSerialNumber(deviceBean.getSerialNumber());
 		device.setStartDate(deviceBean.getStartDate());
-		client = clientDaoInt.getClientByClientName(deviceBean.getClient());
+		client = clientDaoInt.getClientByClientName(deviceBean.getClientName());
 		if(client != null){
 			device.setClient(client);
+			
+		    list = new ArrayList<Accessories>();
+			Accessories accessory = new Accessories();
+			
+			if(deviceBean.getAdditionalPaperTrays()!=null && deviceBean.getAdditionalPaperTraysTypeSerial()!=""){
+				accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
+				accessory.setAccessotyType(deviceBean.getAdditionalPaperTrays());
+				accessory.setDevice(device);
+				list.add(accessory);
+			}
+			if(deviceBean.getBridgeUnitSerialType()!=null && deviceBean.getBridgeUnitSerialTypeSerialNo()!=""){
+				Accessories accessory1 = new Accessories();
+				accessory1.setSerial(deviceBean.getBridgeUnitSerialTypeSerialNo());
+				accessory1.setAccessotyType(deviceBean.getBridgeUnitSerialType());
+				accessory1.setDevice(device);
+				list.add(accessory1);
+			}
+			
+			if(deviceBean.getCredenza() != null && deviceBean.getCredenzaSerialNo() !=""){
+				Accessories accessory2 = new Accessories();
+				accessory2.setSerial(deviceBean.getCredenzaSerialNo());
+				accessory2.setAccessotyType(deviceBean.getCredenza());
+				accessory2.setDevice(device);
+				list.add(accessory2);
+			}
+			
+			
+			if(deviceBean.getFaxUnitSerialType()!= null && deviceBean.getFaxUnitSerialTypeSerialNo()!=""){
+				Accessories accessory3 = new Accessories();
+				accessory3.setSerial(deviceBean.getFaxUnitSerialTypeSerialNo());
+				accessory3.setAccessotyType(deviceBean.getFaxUnitSerialType());
+				accessory3.setDevice(device);
+				list.add(accessory3);
+			}
+			
+			if(deviceBean.getFinisherType()!= null && deviceBean.getFinisherTypeSerialNo()!=""){
+				Accessories accessory4 = new Accessories();
+				accessory4.setSerial(deviceBean.getFinisherTypeSerialNo());
+				accessory4.setAccessotyType(deviceBean.getFinisherType());
+				accessory4.setDevice(device);
+				list.add(accessory4);
+			}
+			
+			if(deviceBean.getLtcType()!=null && deviceBean.getLtcTypeSerial()!=""){
+				Accessories accessory5 = new Accessories();
+				accessory5.setSerial(deviceBean.getLtcTypeSerial());
+				accessory5.setAccessotyType(deviceBean.getLtcType());
+				accessory5.setDevice(device);
+				list.add(accessory5);
+			}
+			
+			if(deviceBean.getOneBinTrayType()!= null && deviceBean.getOneBinTrayTypeSerialNo()!=""){
+				Accessories accessory6 = new Accessories();
+				accessory6.setSerial(deviceBean.getOneBinTrayTypeSerialNo());
+				accessory6.setAccessotyType(deviceBean.getOneBinTrayType());
+				accessory6.setDevice(device);
+				list.add(accessory6);
+			}
+			
 			retMessage = saveDevice(device);
+			retAccessory =accessoriesDaoInt.saveAccessories(list);
+			if(retAccessory.equalsIgnoreCase("Error")){
+				retMessage ="Device not inserted into the table";
+			}
 		}
 		else{
 			retMessage = "Client "+ client.getClientName() +" does not exist on database. Please make sure that the client exist before assigning a device" ;

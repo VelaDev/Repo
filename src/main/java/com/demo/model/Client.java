@@ -46,8 +46,8 @@ public class Client implements Serializable{
 	private String contactPerson;
 	@Column(name="Floor_No")
 	private String floorNumber;
-	@Column(name="Room_No")
-	private String roomNumber;
+	@Column(name="Street_No")
+	private String streetNumber;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
@@ -140,11 +140,11 @@ public class Client implements Serializable{
 	public void setFloorNumber(String floorNumber) {
 		this.floorNumber = floorNumber;
 	}
-	public String getRoomNumber() {
-		return roomNumber;
+	public String getStreetNumber() {
+		return streetNumber;
 	}
-	public void setRoomNumber(String roomNumber) {
-		this.roomNumber = roomNumber;
+	public void setStreetNumber(String streetNumber) {
+		this.streetNumber = streetNumber;
 	}
 	public Set<Device> getDevices() {
 		return devices;

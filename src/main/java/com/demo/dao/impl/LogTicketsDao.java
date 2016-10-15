@@ -1,7 +1,10 @@
 package com.demo.dao.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +21,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.TicketsBean;
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LogTicketsDaoInt;
@@ -49,29 +53,39 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	private Employee technician = null;
 	private Client client = null;
 	private Device device = null;
+	 private Tickets ticket = null;
 	Calendar cal = Calendar.getInstance();
+	DateFormat dateFormat = null;
+	Date date = null;
     private String retMessage="";
     private String ticketNum ="TIC-VEL-";
+   
 	@Override
-	public String logTicket(Tickets tickets) {
+	public String logTicket(TicketsBean tickets) {
 		String ticketNumber = ""; 
+		ticket = new Tickets();
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
 		try {
 
 			technician = employeeDaoInt.getEmployeeByEmpNum(tickets.getTechnicianUserName());
 			if(technician != null){
-				device = deviceDaoInt.getDeviceBySerialNumbuer(tickets.getProductS());
+				device = deviceDaoInt.getDeviceBySerialNumbuer(tickets.getDevice());
 				if(device !=null){
 					ticketNumber = newTicketNumber();
-					tickets.setTicketNumber(ticketNumber);
-					tickets.setEmployee(technician);
-					tickets.setStatus("Open");
-					tickets.setSlaStart("Not Started");
+					ticket.setTicketNumber(ticketNumber);
+					ticket.setEmployee(technician);
+					ticket.setStatus("Open");
+					ticket.setSlaStart("Not Started");
+					ticket.setDescription(tickets.getDescription());
+					ticket.setPriority(tickets.getPriority());
+					ticket.setDateTime(dateFormat.format(date));
 					
-					tickets.setProduct(device);
-					tickets.setEscalate(false);
-					sessionFactory.getCurrentSession().save(tickets);
-					retMessage = "Ticket "+tickets.getTicketNumber()+ "is assigned to technician "+ tickets.getEmployee().getFirstName()+"\nAn email has been sent to customer "+tickets.getProduct().getClient().getClientName();
-					JavaMail.sendFromGMail(tickets);
+					ticket.setProduct(device);
+					ticket.setEscalate(false);
+					sessionFactory.getCurrentSession().save(ticket);
+					retMessage = "Ticket "+tickets.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getProduct().getClient().getClientName();
+					JavaMail.sendFromGMail(ticket);
 				}
 				else{
 					retMessage="Device "+device.getSerialNumber()+" does not exist. Ticket "+tickets.getTicketNumber()+" cannot be logged";
@@ -180,13 +194,13 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 		   for(Tickets openTicket:openTickets){
 			   
 			   @SuppressWarnings("deprecation")
-			int slaStartedHour = openTicket.getSlaAcknowledgeDateTime().getTime().getHours();
+			  int slaStartedHour = openTicket.getSlaAcknowledgeDateTime().getTime().getHours();
 			  long diffHours = slaStartedHour - currentHour;
-			  System.out.println("SLA started hour: "+ " "+  slaStartedHour);
+			  System.out.println("SLA started at: "+ " "+  slaStartedHour);
 			  System.out.println(diffHours);
 			  
-			  if(diffHours >=4){
-				  System.out.println(" Update ticket");
+			  if(diffHours <=1){
+				  
 				  openTicket.setStatus("Unresolved");
 				  openTicket.setComments("The ticket is closed because technician was drunk");
 				  updateSLA(openTicket);
@@ -195,27 +209,41 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	}
 
 	@Override
-	public void updateTicket(Tickets ticket) {
-		
-		String technicianTemp = (String) session.getAttribute("loggedInUser");
-		String clientTemp =   (String) session.getAttribute("client");
-		String productTemp = (String) session.getAttribute("product");
-		
-		technician = employeeDaoInt.getEmployeeByEmpNum(technicianTemp);
-		client = clientDaoInt.getClientByClientName(clientTemp);
-		device = deviceDaoInt.getDeviceBySerialNumbuer(productTemp);
-		ticket.setProduct(device);
-		ticket.setEmployee(technician);
-		ticket.setSlaStart("Started");
-		ticket.setSlaAcknowledgeDateTime(cal);
-		sessionFactory.getCurrentSession().update(ticket);
-		
+	public String updateTicket(TicketsBean tickets) {
+		ticket = new  Tickets();
+		try{
+			
+			  ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
+			  
+			   if(ticket.getSlaStart().equalsIgnoreCase("Started") && tickets.getEscalateReason()!=null || tickets.getEscalateReason()!=null){
+				  ticket.setComments(tickets.getComments());
+				  ticket.setEscalateReason(tickets.getEscalateReason());
+				  ticket.setEscalate(true);
+				  sessionFactory.getCurrentSession().update(ticket);
+				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
+			  }
+			  else{
+				  ticket.setSlaStart("Started");
+				  ticket.setSlaAcknowledgeDateTime(cal);
+				  ticket.setTechnicianAcknowledged(true);
+				  sessionFactory.getCurrentSession().update(ticket);
+				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
+				  
+			  }
+			  
+			
+		}catch(Exception e){
+			retMessage = "SLA did not start because of "+ e.getMessage();
+		}
+		return retMessage;
 	}
 	@Override
 	public void updateSLA(Tickets tickets)
 	{
-		sessionFactory.getCurrentSession().update(tickets);
-		System.out.print("Updated "+ " "+ tickets.getTicketNumber());
+		System.out.println(tickets.getStatus()+" and " + tickets.getComments()+ " "+ tickets.getTicketNumber());
+		System.out.println("About to insert");
+		sessionFactory.getCurrentSession().update(ticket);
+		System.out.println("Updated "+ " "+ tickets.getTicketNumber());
 	}
 
 	@Override

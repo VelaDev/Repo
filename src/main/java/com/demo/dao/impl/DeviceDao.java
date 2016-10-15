@@ -215,14 +215,14 @@ public class DeviceDao implements DeviceDaoInt {
 			
 			if(deviceBean.getAdditionalPaperTrays()!=null && deviceBean.getAdditionalPaperTraysTypeSerial()!=""){
 				accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
-				accessory.setAccessotyType(deviceBean.getAdditionalPaperTrays());
+				accessory.setAccessotyType("Additional Paper Trays");
 				accessory.setDevice(device);
 				list.add(accessory);
 			}
 			if(deviceBean.getBridgeUnitSerialType()!=null && deviceBean.getBridgeUnitSerialTypeSerialNo()!=""){
 				Accessories accessory1 = new Accessories();
 				accessory1.setSerial(deviceBean.getBridgeUnitSerialTypeSerialNo());
-				accessory1.setAccessotyType(deviceBean.getBridgeUnitSerialType());
+				accessory1.setAccessotyType("Bridge Unit");
 				accessory1.setDevice(device);
 				list.add(accessory1);
 			}
@@ -230,7 +230,7 @@ public class DeviceDao implements DeviceDaoInt {
 			if(deviceBean.getCredenza() != null && deviceBean.getCredenzaSerialNo() !=""){
 				Accessories accessory2 = new Accessories();
 				accessory2.setSerial(deviceBean.getCredenzaSerialNo());
-				accessory2.setAccessotyType(deviceBean.getCredenza());
+				accessory2.setAccessotyType("Credenza");
 				accessory2.setDevice(device);
 				list.add(accessory2);
 			}
@@ -239,7 +239,7 @@ public class DeviceDao implements DeviceDaoInt {
 			if(deviceBean.getFaxUnitSerialType()!= null && deviceBean.getFaxUnitSerialTypeSerialNo()!=""){
 				Accessories accessory3 = new Accessories();
 				accessory3.setSerial(deviceBean.getFaxUnitSerialTypeSerialNo());
-				accessory3.setAccessotyType(deviceBean.getFaxUnitSerialType());
+				accessory3.setAccessotyType("Fax Unit");
 				accessory3.setDevice(device);
 				list.add(accessory3);
 			}
@@ -247,7 +247,7 @@ public class DeviceDao implements DeviceDaoInt {
 			if(deviceBean.getFinisherType()!= null && deviceBean.getFinisherTypeSerialNo()!=""){
 				Accessories accessory4 = new Accessories();
 				accessory4.setSerial(deviceBean.getFinisherTypeSerialNo());
-				accessory4.setAccessotyType(deviceBean.getFinisherType());
+				accessory4.setAccessotyType("Finisher");
 				accessory4.setDevice(device);
 				list.add(accessory4);
 			}
@@ -255,7 +255,7 @@ public class DeviceDao implements DeviceDaoInt {
 			if(deviceBean.getLtcType()!=null && deviceBean.getLtcTypeSerial()!=""){
 				Accessories accessory5 = new Accessories();
 				accessory5.setSerial(deviceBean.getLtcTypeSerial());
-				accessory5.setAccessotyType(deviceBean.getLtcType());
+				accessory5.setAccessotyType("LTC");
 				accessory5.setDevice(device);
 				list.add(accessory5);
 			}
@@ -263,7 +263,7 @@ public class DeviceDao implements DeviceDaoInt {
 			if(deviceBean.getOneBinTrayType()!= null && deviceBean.getOneBinTrayTypeSerialNo()!=""){
 				Accessories accessory6 = new Accessories();
 				accessory6.setSerial(deviceBean.getOneBinTrayTypeSerialNo());
-				accessory6.setAccessotyType(deviceBean.getOneBinTrayType());
+				accessory6.setAccessotyType("One bin tray");
 				accessory6.setDevice(device);
 				list.add(accessory6);
 			}

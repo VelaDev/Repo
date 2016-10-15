@@ -1,6 +1,9 @@
 package com.demo.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 
 
@@ -25,6 +28,12 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 
 	@Autowired
 	SessionFactory sessionFactory;
+	
+	
+	List<Accessories> accessoriesList = null;
+	ArrayList<?> aList = null;
+	ArrayList list = null;
+	Accessories acc= null;
 	
 	private String retMessage = null;
 	@Override
@@ -59,9 +68,26 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Accessories> getAccessoriesByDeviceSerial() {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Accessories.class);
-		return (List<Accessories>)criteria.list();
+	public List<Accessories> getAccessoriesByDeviceSerial(String serialNo) {
+		String name = serialNo;
+		try{
+			
+		    aList = new ArrayList<Object>();
+		     accessoriesList = new ArrayList<Accessories>();
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Accessories.class);
+			aList.addAll(criteria.list());
+			for (Object access : aList) {
+				if (access instanceof Accessories) {
+					if (((Accessories) access).getDevice().getSerialNumber()!=null&&((Accessories) access).getDevice().getSerialNumber().startsWith(name) ) {
+						accessoriesList.add((Accessories) access);
+						/*System.out.println(((Accessories) access).getClient().getClientName());*/
+						/*acc = ((Accessories) access).getSerial();*/
+					}
+				}
+			}
+	}catch(Exception ex){
+		return null;
 	}
-
+		return accessoriesList;
+	}
 }

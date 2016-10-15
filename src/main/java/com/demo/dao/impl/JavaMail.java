@@ -20,22 +20,23 @@ public class JavaMail {
  
   public static void sendFromGMail( Tickets ticket) {
 	  String []to = {ticket.getEmployee().getEmail(),ticket.getProduct().getClient().getEmail()};
-	  String from="cassino.happies@gmail.com";
-      String pass="C@ss@no27";
+	  String from="velatp2016@gmail.com";
+      String pass="Vel@ph@nd@";
       String body = "Hi "+ ticket.getEmployee().getFirstName()+","+ "\n\nTicket " + ticket.getTicketNumber() + " is assigned to you.\n\nProduct "+ ticket.getProduct().getSerialNumber()+" with description "+ ticket.getDescription() +"\n\nKind Regards\nVelaphanda Team";
       String subject ="Ticket No "+ ticket.getTicketNumber();
+      Properties props = System.getProperties();
+      String host = "smtp.gmail.com";
+      props.put("mail.smtp.starttls.enable", "true");
+      props.put("mail.smtp.host", host);
+      props.put("mail.smtp.user", from);
+      props.put("mail.smtp.password", pass);
+      props.put("mail.smtp.port", "587");
+      props.put("mail.smtp.auth", "true");
 
-    Properties props = System.getProperties();
-    String host = "smtp.gmail.com";
-    props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.host", host);
-    props.put("mail.smtp.user", from);
-    props.put("mail.smtp.password", pass);
-    props.put("mail.smtp.port", "587");
-    props.put("mail.smtp.auth", "true");
+      Session session = Session.getDefaultInstance(props);
+      MimeMessage message = new MimeMessage(session);
 
-    Session session = Session.getDefaultInstance(props);
-    MimeMessage message = new MimeMessage(session);
+    
 
     try {
         message.setFrom(new InternetAddress(from));

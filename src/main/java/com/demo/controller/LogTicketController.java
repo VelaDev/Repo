@@ -63,7 +63,7 @@ public class LogTicketController {
 	}	
 	
 	@RequestMapping(value="/logTicket",method=RequestMethod.POST)
-	public ModelAndView logTicket(@ModelAttribute("logTicket")Tickets logTickets){
+	public ModelAndView logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
 	
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
@@ -103,18 +103,18 @@ public class LogTicketController {
 	    return new ModelAndView("ticketDetails", "ticketObject", ticket);
 		
     }
-	@RequestMapping(value="/updateTicket",method=RequestMethod.POST)
-	public ModelAndView updateTicket(@ModelAttribute("updateTicket")Tickets updateTicket){
+	@RequestMapping("updateTicket")
+	public ModelAndView updateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
 		
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		/*if(updateTicket.getTicketNumber()>0 && updateTicket.isTechnicianAcknowledged()==true){
-			
-			logTicketService.updateTicket(updateTicket);
-			model.setViewName("technicianHome");
-		   }*/
-		}else{
+		     
+			retMessage = logTicketService.updateTicket(updateTicket);
+		    model.addObject("retMessage", retMessage);
+			model.setViewName("ticketDetails");
+		}
+		else{
 			model.setViewName("login");
 		}
 		

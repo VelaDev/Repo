@@ -1,6 +1,8 @@
 package com.demo.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.DeviceBean;
+import com.demo.model.Accessories;
 import com.demo.model.Device;
+import com.demo.service.AccessoriesInt;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.DeviceServiceInt;
@@ -25,16 +29,19 @@ public class ProductController {
 	private DeviceServiceInt deviceServiceInt;
     @Autowired
     private ClientServiceInt clientServiceInt;
-   @Autowired 
-   HttpSession session;
-    
-    private String retMessage = null;
     @Autowired
 	private EmployeeServiceInt employeeServiceInt;
+    @Autowired
+    private AccessoriesInt accessoriesInt;
     
+    @Autowired 
+    HttpSession session;
+    
+    private List<Accessories> accessories=null;
+    private Device device = null;
     private	ModelAndView model = null;
     private String userName = null;
-	
+    private String retMessage = null;
 	
 	@RequestMapping(value="addProduct", method=RequestMethod.GET)
 	public ModelAndView loadSaveProduct()
@@ -84,14 +91,19 @@ public class ProductController {
        
     } 
 	@RequestMapping(value="detailedProduct")
-	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Device device){
+	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Accessories accessory){
 	   model = new ModelAndView();
 	   userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-	   device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
-	   model.addObject("accessories", deviceServiceInt.accessories(device));
-	   model.addObject("productObject", device);
-	   model.setViewName("detailedProduct");
+			
+			accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
+			for(Accessories devices:accessories){
+				device = devices.getDevice();
+				break;
+			}
+	        model.addObject("accessories", accessories);
+	        model.addObject("device", device);
+	        model.setViewName("detailedProduct");
 	   }else{
 		   model.setViewName("login");
 	   }

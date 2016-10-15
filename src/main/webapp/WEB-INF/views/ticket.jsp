@@ -48,7 +48,7 @@
      
    </div>
    <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" name="productS" value="${product.serialNumber }">
+   <input type="text" class="form-control input-sm" name="device" value="${product.serialNumber }">
    </div>
    
       <div class="col-xs-2 form-control-label">

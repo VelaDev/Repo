@@ -21,10 +21,10 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<c:if test="${empty employeeList}">
+				<c:if test="${empty ticketList}">
                 There are no tickets at the moment
             </c:if>
-				<c:if test="${not empty employeeList}">
+				<c:if test="${not empty ticketList}">
 
 					<form action="searchEmployee">
 						<div class="row">

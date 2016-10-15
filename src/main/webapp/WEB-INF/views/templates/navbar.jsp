@@ -32,7 +32,18 @@
 	-moz-border-radius: 0 6px 6px 6px;
 	border-radius: 0 6px 6px 6px;
 }
+#navbar{
+	margin-left:4%;	
+}
+.velatp_logo{
 
+	margin-left:5.5%;	
+}
+.userloggedin {
+	margin-right:6%;
+	margin-bottom:5%;
+	margin-top:-4%;
+}	
 .dropdown-submenu>a:after {
 	border-color: transparent transparent transparent #333;
 	border-style: solid;
@@ -50,9 +61,6 @@
 	float: right;
 }
 
-#userloggein {
-	float: right;
-}
 
 .dropdown-submenu:hover>a:after {
 	border-left-color: #555;
@@ -113,8 +121,15 @@
 }
 </style>
 <div class="velatp_logo">
-	<img src="resources/bootstrap-3.3.6/images/velatp.jpg">
+ 	<a href="home.html"><img src="resources/bootstrap-3.3.6/images/velatp.jpg"></a>
+ <div class="userloggedin">
+	<ul class="nav navbar-nav navbar-right">
+			<li><span class="glyphicon glyphicon-user btn-lg ">${loggedInUser}</span></li>
+			<li><a href='<c:url value="login.html" ></c:url>'><span	class="glyphicon glyphicon-off"></span> Log Out</a></li>							
+	</ul>
+	</div>
 </div>
+
 <div id="navbar">
 	<nav class="avbar navbar-default navbar-static-top">
 		<div class="container-fluid">
@@ -192,11 +207,7 @@
 						</ul></li>
 
 				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li><span class="glyphicon glyphicon-user btn-lg ">${loggedInUser}</span></li>
-					<li><a href='<c:url value="login.html" ></c:url>'><span
-							class="glyphicon glyphicon-off"></span> Log Out</a></li>
-				</ul>
+				
 			</div>
 		</div>
 	</nav>

@@ -12,7 +12,7 @@
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					<div align="left">
+					<div align="center">
 						<b>Ticket Details</b>
 					</div>
 					<!-- <div align="right"><a href="">Think of something</a></div> -->

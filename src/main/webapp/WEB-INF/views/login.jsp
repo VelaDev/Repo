@@ -131,8 +131,8 @@ form[role=login]>div {
 				<section class="login-form">
 					<form:form method="post" action="authenticate" role="login"
 						modelAttribute="authenticate">
-						<img src="resources/bootstrap-3.3.6/images/image001.jpg"
-							class="img-responsive" alt="" width="110" />
+						<img src="resources/bootstrap-3.3.6/images/logo.jpg"
+							class="img-responsive" alt="" />
 
 						<input type="text" id="txtUsername" name="username"
 							placeholder="Username" required class="form-control input-lg"

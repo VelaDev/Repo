@@ -88,7 +88,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<textarea rows="5" cols="120" name="description" required="required"></textarea>
+								<textarea rows="5" cols="102" name="description" required="required"></textarea>
 							</div>
 						</div>
 					</div>

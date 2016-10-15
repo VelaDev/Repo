@@ -43,20 +43,20 @@
 					<table class="table table-hover table-bordered">
 						<thead style="background-color: #bce8f1;">
 							<tr>
-								<th>Id</th>
-								<th>Name</th>
-								<th>Age</th>
-								<th>Salary</th>
+								<th>Ticket No</th>
+								<th>Assigned Technician</th>
+								<th>Description</th>
+								<th>Date</th>
 
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${employeeList}" var="emp">
+							<c:forEach items="${ticketList}" var="tickets">
 								<tr>
-									<th><c:out value="${emp.id}" /></th>
-									<th><c:out value="${emp.name}" /></th>
-									<th><c:out value="${emp.age}" /></th>
-									<th><c:out value="${emp.salary}" /></th>
+									<th><c:out value="${tickets.ticketNumber}" /></th>
+									<th><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></th>
+									<th><c:out value="${tickets.description}" /></th>
+									<th><c:out value="${tickets.dateTime}" /></th>
 
 								</tr>
 							</c:forEach>

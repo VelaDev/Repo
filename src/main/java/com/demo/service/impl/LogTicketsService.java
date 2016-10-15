@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.TicketsBean;
 import com.demo.dao.LogTicketsDaoInt;
 import com.demo.model.Tickets;
 import com.demo.service.LogTicketsServiceInt;
@@ -19,7 +20,7 @@ public class LogTicketsService implements LogTicketsServiceInt{
 	private String retMessage ="";
 
 	@Override
-	public String logTicket(Tickets tickets) {
+	public String logTicket(TicketsBean tickets) {
 
 		retMessage =logTicketsDAO.logTicket(tickets);
 		return retMessage;
@@ -55,8 +56,9 @@ public class LogTicketsService implements LogTicketsServiceInt{
 	}
 
 	@Override
-	public void updateTicket(Tickets ticket) {
-		logTicketsDAO.updateTicket(ticket);
+	public String updateTicket(TicketsBean ticket) {
+		retMessage =logTicketsDAO.updateTicket(ticket);
+		return retMessage;
 		
 	}
 

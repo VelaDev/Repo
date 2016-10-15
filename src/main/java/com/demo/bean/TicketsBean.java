@@ -9,16 +9,15 @@ public class TicketsBean {
 	
 	private String ticketNumber;
 	private String description;
-	private  String type;
+	private String type;
 	private String status;
 	private String priority;
 	private String group;
-	private Calendar date;
-    private Employee employee;
-	private Device device;
+	private String date;
+    private String employee;
+	private String device;
 	private String comments;
-	private String clientC;
-	private String productS;
+	private String client;
 	private String technicianUserName;
 	private boolean technicianAcknowledged;
 	private boolean escalate;
@@ -61,22 +60,23 @@ public class TicketsBean {
 	public void setGroup(String group) {
 		this.group = group;
 	}
-	public Calendar getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Calendar date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public Employee getEmployee() {
+	public String getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(String employee) {
 		this.employee = employee;
 	}
-	public Device getProduct() {
+	
+	public String getDevice() {
 		return device;
 	}
-	public void setProduct(Device device) {
+	public void setDevice(String device) {
 		this.device = device;
 	}
 	public String getComments() {
@@ -85,17 +85,11 @@ public class TicketsBean {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public String getClientC() {
-		return clientC;
+	public String getClient() {
+		return client;
 	}
-	public void setClientC(String clientC) {
-		this.clientC = clientC;
-	}
-	public String getProductS() {
-		return productS;
-	}
-	public void setProductS(String productS) {
-		this.productS = productS;
+	public void setClient(String client) {
+		this.client = client;
 	}
 	public String getTechnicianUserName() {
 		return technicianUserName;

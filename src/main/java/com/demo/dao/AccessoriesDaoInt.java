@@ -8,6 +8,6 @@ public interface AccessoriesDaoInt {
 	
 	String saveAccessories(List<Accessories> accessories);
 	String updateAccessories(List<Accessories> accessories);
-	List<Accessories> getAccessoriesByDeviceSerial();
+	List<Accessories> getAccessoriesByDeviceSerial(String serialNo);
 
 }

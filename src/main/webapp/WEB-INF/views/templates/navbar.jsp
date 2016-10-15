@@ -1,7 +1,14 @@
 
 <%@include file="taglibs.jsp"%>
+
 <script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
+	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
+<link
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css" />
+
 
 <style>
 .container {
@@ -105,6 +112,9 @@
 	}
 }
 </style>
+<div class="velatp_logo">
+	<img src="resources/bootstrap-3.3.6/images/velatp.jpg">
+</div>
 <div id="navbar">
 	<nav class="avbar navbar-default navbar-static-top">
 		<div class="container-fluid">
@@ -126,13 +136,11 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="registerEmployee.html"/>'>Add
 									Employee</a></li>
-									<li><a href='<c:url value="displayEmployees.html"/>'>Display
+							<li><a href='<c:url value="displayEmployees.html"/>'>Display
 									Employee</a></li>
-									<li><a href='<c:url value="#html"/>'>Update
-									Employee</a></li>
-									<li><a href='<c:url value="#.html"/>'>Password Reset
-									</a></li>
-									<li><a href='<c:url value="#.html"/>'>Deactivate
+							<li><a href='<c:url value="#html"/>'>Update Employee</a></li>
+							<li><a href='<c:url value="#.html"/>'>Password Reset </a></li>
+							<li><a href='<c:url value="#.html"/>'>Deactivate
 									Employee</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -166,31 +174,32 @@
 
 								</ul></li>
 						</ul></li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Spare Parts<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href='<c:url value="addParts.html"/>'>Add Spares</a></li>
-						<li><a href="#">Approved Orders</a></li>
-					</ul></li>
-						
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown" role="button" aria-haspopup="true"
-					aria-expanded="false">Tickets<span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a href='<c:url value="monitoringTickets.html"/>'>Open
-								Tickets</a></li>
-						<li><a href='<c:url value="logTicket.html"/>'>Log Ticket</a></li>
-						<li><a href='<c:url value="#.html"/>'>Escalated Ticket</a></li>
-					</ul></li>
-					
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Spare Parts<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="addParts.html"/>'>Add Spares</a></li>
+							<li><a href="#">Approved Orders</a></li>
+						</ul></li>
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Tickets<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="monitoringTickets.html"/>'>Open
+									Tickets</a></li>
+							<li><a href='<c:url value="#"/>'>Log Ticket</a></li>
+						</ul></li>
+
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><span class="glyphicon glyphicon-user btn-lg ">${loggedInUser}</span></li>
-					<li><a href='<c:url value="login.html" ></c:url>'><span	class="glyphicon glyphicon-off"></span> Log Out</a></li>		
+					<li><a href='<c:url value="login.html" ></c:url>'><span
+							class="glyphicon glyphicon-off"></span> Log Out</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 </div>
+
 

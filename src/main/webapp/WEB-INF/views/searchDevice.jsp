@@ -25,7 +25,7 @@ style type ="text/css">.myrow-container {
 
 <c:import url="templates/navbar.jsp"></c:import>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Search Device</title>
 </head>
 <body class=".container-fluid">
 

@@ -2,12 +2,16 @@ package com.demo.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,6 +62,9 @@ public class Tickets implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="SERIAL_NUMBER")
 	private Device device;
+	
+	@OneToMany(mappedBy= "tickets",cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<TicketHistory> ticketHistory; 
 
 	public String getTicketNumber() {
 		return ticketNumber;

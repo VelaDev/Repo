@@ -60,6 +60,7 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 				 <value>com.demo.model.Manager</value>
 				 <value>com.demo.model.Technician</value>
 				 <value>com.demo.model.User</value>
+				  <value>com.demo.model.TicketHistory</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

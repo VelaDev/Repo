@@ -55,6 +55,9 @@ public class Employee implements Serializable{
 	
 	@OneToMany(mappedBy="employee",cascade=CascadeType.ALL)
 	private Set<Orders> orders;
+	
+	@OneToMany(mappedBy="employee",cascade=CascadeType.ALL)
+	private Set<TicketHistory> ticketHistory;
 
 	public String getUsername() {
 		return username;
@@ -158,6 +161,14 @@ public class Employee implements Serializable{
 		this.logTickets = logTickets;
 	}
 	
+
+	public Set<TicketHistory> getTicketHistory() {
+		return ticketHistory;
+	}
+
+	public void setTicketHistory(Set<TicketHistory> ticketHistory) {
+		this.ticketHistory = ticketHistory;
+	}
 
 	public Employee() {
 	}

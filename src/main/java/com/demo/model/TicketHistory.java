@@ -28,6 +28,10 @@ public class TicketHistory implements Serializable{
 	private String escalatedReason;
 	@Column(name="EscalatedDate")
 	private String escalatedDate;
+	@Column(name="Resolution")
+	private String resolution;
+	@Column(name="Solution")
+	private String solution;
 	
 	@ManyToOne
 	@JoinColumn(name="EscalatedTo")
@@ -75,6 +79,22 @@ public class TicketHistory implements Serializable{
 
 	public void setTickets(Tickets tickets) {
 		this.tickets = tickets;
+	}
+
+	public String getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(String resolution) {
+		this.resolution = resolution;
+	}
+
+	public String getSolution() {
+		return solution;
+	}
+
+	public void setSolution(String solution) {
+		this.solution = solution;
 	}
 	
 }

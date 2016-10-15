@@ -31,9 +31,8 @@ public class Tickets implements Serializable{
 	private String status;
 	@Column(name="Priority")
 	private String priority;
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="LoggedDate")
-	private Calendar dateTime;
+	private String dateTime;
 	@Column(name="EscalatedTo")
 	private String escalatedTo;
 	@Column(name="Description")
@@ -50,8 +49,7 @@ public class Tickets implements Serializable{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar slaAcknowledgeDateTime;
 	
-	private String productS;
-	private String technicianUserName;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="AssignedTechnician")
@@ -93,11 +91,11 @@ public class Tickets implements Serializable{
 		this.priority = priority;
 	}
 
-	public Calendar getDateTime() {
+	public String getDateTime() {
 		return dateTime;
 	}
 
-	public void setDateTime(Calendar dateTime) {
+	public void setDateTime(String dateTime) {
 		this.dateTime = dateTime;
 	}
 
@@ -155,22 +153,6 @@ public class Tickets implements Serializable{
 
 	public void setSlaAcknowledgeDateTime(Calendar slaAcknowledgeDateTime) {
 		this.slaAcknowledgeDateTime = slaAcknowledgeDateTime;
-	}
-
-	public String getProductS() {
-		return productS;
-	}
-
-	public void setProductS(String productS) {
-		this.productS = productS;
-	}
-
-	public String getTechnicianUserName() {
-		return technicianUserName;
-	}
-
-	public void setTechnicianUserName(String technicianUserName) {
-		this.technicianUserName = technicianUserName;
 	}
 
 	public Employee getEmployee() {

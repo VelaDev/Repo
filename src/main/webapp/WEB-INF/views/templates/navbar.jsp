@@ -180,7 +180,8 @@
 					<ul class="dropdown-menu">
 						<li><a href='<c:url value="monitoringTickets.html"/>'>Open
 								Tickets</a></li>
-						<li><a href='<c:url value="#"/>'>Log Ticket</a></li>
+						<li><a href='<c:url value="logTicket.html"/>'>Log Ticket</a></li>
+						<li><a href='<c:url value="#.html"/>'>Escalated Ticket</a></li>
 					</ul></li>
 					
 				</ul>

@@ -139,5 +139,20 @@ public class LogTicketController {
 		}
 		return model;
 	}
-	
+	@RequestMapping(value="logTicket",method=RequestMethod.GET)
+	public ModelAndView loadTicketAdmin() {
+       
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+		model.addObject("logTicket", new TicketsBean());
+		
+		model.setViewName("logTicket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
 }

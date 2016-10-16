@@ -47,7 +47,7 @@
 								<th>Assigned Technician</th>
 								<th>Description</th>
 								<th>Date</th>
-
+                                <th>Option</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -57,6 +57,7 @@
 									<th><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></th>
 									<th><c:out value="${tickets.description}" /></th>
 									<th><c:out value="${tickets.dateTime}" /></th>
+									<th><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>">option</a></th>
 
 								</tr>
 							</c:forEach>

@@ -153,7 +153,7 @@
 									Employee</a></li>
 							<li><a href='<c:url value="displayEmployees.html"/>'>Display
 									Employee</a></li>
-							<li><a href='<c:url value="#html"/>'>Update Employee</a></li>
+							<li><a href='<c:url value="updateEmployee.html"/>'>Update Employee</a></li>
 							<li><a href='<c:url value="#.html"/>'>Password Reset </a></li>
 							<li><a href='<c:url value="#.html"/>'>Deactivate
 									Employee</a></li>

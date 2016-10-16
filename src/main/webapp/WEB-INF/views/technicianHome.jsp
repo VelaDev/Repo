@@ -37,8 +37,8 @@
                     <c:forEach items="${technicianTickets}" var="ticket">
                         <tr>
                             <th><c:out value="${ticket.ticketNumber}"/></th>
-                            <th><c:out value="${ticket.product.client.clientName}"/></th> 
-                            <th><c:out value="${ticket.product.client.getTellphoneNumber()} "/></th>  
+                            <th><c:out value="${ticket.device.client.clientName}"/></th> 
+                            <th><c:out value="${ticket.device.client.getTellphoneNumber()} "/></th>  
                             <th><a href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>">Ticket Details</a></th>                 
                         </tr>
                     </c:forEach>

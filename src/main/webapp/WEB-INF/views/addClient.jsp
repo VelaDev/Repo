@@ -38,7 +38,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="clientName" class="required" required="required">
+										name="clientName" class="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -47,7 +47,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="contactPerson" class="required" required="required">
+										name="contactPerson" class="required">
 								</div>
 							</div>
 						</div>
@@ -60,8 +60,7 @@
 									<label>Province:</label>
 								</div>
 								<div class="col-xs-3">
-									<select name="province" class="form-control" class="required"
-										required="required">
+									<select name="province" class="form-control" class="required">
 										<option value="">Province
 										<option>
 										<option value="Gauteng">Gauteng</option>
@@ -82,7 +81,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="city_town" class="required" required="required">
+										name="city_town" class="required">
 								</div>
 							</div>
 						</div>
@@ -96,7 +95,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="streetName" class="required" required="required">
+										name="streetName" class="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -104,8 +103,7 @@
 
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" name="zipcode"
-										class="required" required>
+									<input type="text" class="form-control input-sm" name="zipcode">
 								</div>
 							</div>
 						</div>
@@ -117,8 +115,7 @@
 
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										name="floorNumber" class="required" required="required">
+									<input type="text" class="form-control input-sm" name="floorNumber" class="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -126,8 +123,7 @@
 
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										name="tellphoneNumber" class="required" required="required">
+									<input type="text" class="form-control input-sm" name="tellphoneNumber" class="required">
 								</div>
 							</div>
 						</div>
@@ -138,15 +134,14 @@
 									<label>Fax No:</label>
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										name="faxNumber" class="required" required="required">
+									<input type="text" class="form-control input-sm" name="faxNumber" class="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
 									<label>Cell No:</label>
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" name="cellNumber" required="required">
+									<input type="text" class="form-control input-sm" name="cellNumber">
 								</div>
 							</div>
 						</div>
@@ -157,7 +152,7 @@
 									<label>Email:</label>
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" name="email" class="required" required="required">
+									<input type="text" class="form-control input-sm" name="email" class="required">
 								</div>
 							</div>
 						</div>

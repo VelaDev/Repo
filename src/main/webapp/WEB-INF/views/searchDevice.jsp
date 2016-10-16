@@ -18,7 +18,7 @@
 }
 
 <
-style type ="text/css">.myrow-container {
+style type ="text /css">.myrow-container {
 	margin: 20px;
 }
 </style>
@@ -51,7 +51,8 @@ style type ="text/css">.myrow-container {
 			<div class="panel-body">
 
 
-				<form action="searchDeviceBySerialNo" method="post">
+				<form action="searchDeviceBySerialNo" method="post"
+					id="searchDevice">
 					<div class="row">
 
 						<div class="col-xs-2 form-control-label" align="center">Search
@@ -62,6 +63,12 @@ style type ="text/css">.myrow-container {
 						</div>
 						<div class="col-xs-2">
 							<input class="btn btn-success" type='submit' value='Search' />
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8">
+								<div id="messages"></div>
+							</div>
 						</div>
 
 					</div>
@@ -199,11 +206,54 @@ style type ="text/css">.myrow-container {
 	</div>
 
 </body>
+
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$('#searchDevice')
+								.bootstrapValidator(
+										{
+											container : '#messages',
+											feedbackIcons : {
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											fields : {
+												SerialNo : {
+													validators : {
+														notEmpty : {
+															message : 'Serial Number is required to search and cannot be empty'
+														}
+													}
+												},
+											}
+										});
+					});
+</script>
+
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" />
+<script type="text/javascript"
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+	
+</script>
+
+<%-- 
+
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
 <link
 	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
+	rel="stylesheet" type="text/css" /> --%>
 </html>

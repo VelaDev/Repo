@@ -3,306 +3,412 @@
 <html>
 <head>
 <style type="text/css">
-        .myrow-container {
-            margin: 20px;
-           
-        }
-    </style>
+.myrow-container {
+	margin: 20px;
+}
+</style>
 
-   <c:import url="templates/navbar.jsp"></c:import>
+<c:import url="templates/navbar.jsp"></c:import>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Update Device</title>
 </head>
 <body class=".container-fluid">
-<div class="container" style="width:90%">
-<c:if test="${not empty retMessage }">
-				 <div class="alert alert-info" role="alert">
-				   <c:out value="${ retMessage}">
-			 	   </c:out>
-				</div>
-			</c:if>
-    <div class="panel panel-success">
-        <div class="panel-heading">
-            <h3 class="panel-title">
-                <div align="center"><b>Update Device Installation</b> </div>
-                <!-- <div align="right"><a href="">Think of something</a></div> -->
-            </h3>
-        </div>
-   <div class="panel-body">
-    <form action="searchDeviceSerialNumber" method="post">
-        <div class="row">
-        
-           <div class="col-xs-2 form-control-label" align="center">Search Device</div>
-            <div class="col-xs-3">
-                <input type="text" class="form-control input-sm" name="serialNumber" id="serialNumber" placeholder="Serial No">
-            </div>
-            <div class="col-xs-2">
-               <input class="btn btn-success" type='submit' value='Search'/>
-            </div>
-  
-          </div>
-   <hr>
-   </form>
-   <form:form method="POST" action="updateProduct" modelAttribute="updateProduct">
-   
-   <fieldset>	<legend>Customer Details</legend>					
-	<div class="row">
-                    <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label >Company Name:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.clientName}" name="clientName">
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label  >Contact Person</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.contactPerson}" >
-   </div>
-   </div>
-	</div>
-	
-	<br>	
-	<div class="row">
-	  <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label >Tel:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.tellphoneNumber}">
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label  >Cell</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.cellNumber}">
-   </div>
-   </div>
-	</div>
-	<br>	
-	<div class="row">
-	  <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label >Email:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.email}">
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label  >Fax</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.faxNumber}">
-   </div>
-   </div>
-	</div>
-	<br>	
-	<div class="row">
-	  <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label >Street No:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="" >
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label  >Street Name</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.streetName}">
-   </div>
-   </div>
-	</div>
-	<br>	
-	<div class="row">
-	  <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label >Surbub:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.city_town}">
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label  >Floor No</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" value="${productObject.client.floorNumber}">
-   </div>
-   </div>
-	</div><br>	
-	</fieldset><br><br>	
-	<fieldset>
-	  <legend>Machine Details</legend>
-	  <br>	
-	<div class="row">
-	  <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label >Serial No:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" name="serialNumber" value="${productObject.serialNumber }">
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label  >Machine Model</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" name="productModel" value="${productObject.productModel }">
-   </div>
-   </div>
-	</div><br>
-	 <div class="row">
-	  <div class="col-xs-12">
-   <div class="col-xs-2 form-control-label">
-    <label>Contract Start Date:</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" id="startDate" name="startDate" type="text" value="${productObject.startDate.toString().substring(0,10) }">
-   </div>
-   
-      <div class="col-xs-2 form-control-label">
-    <label>Contract End Date</label>
-     
-   </div>
-   <div class="col-xs-3">
-   <input type="text" class="form-control input-sm" id="endDate" name="endDate" type="text" value="${productObject.endDate.toString().substring(0,10) }">
-   </div>
-   </div>
-	</div>
-	</fieldset>
-	
-	<br><br><fieldset>
-	<legend align="left">Machine Accessories</legend>
-	<div class="row">
-	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="bridgeunitserial" name="bridgeUnitSerialType"/>&nbsp;Bridge unit</label>
-	    </div>
-	    <div class="col-xs-3">
-        <label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="bridgeunit" name="bridgeUnitSerialTypeSerialNo" value="${productObject.bridgeUnitSerialTypeSerialNo }"/>
-        </div>
-        
-        <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="faxunit" name="faxUnitSerialType"/>&nbsp;Fax Unit:</label>
-	    </div>
-	    <div class="col-xs-3">
-        <label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="faxunitserial"  name="faxUnitSerialTypeSerialNo" value="${productObject.faxUnitSerialTypeSerialNo }"/>
-        </div>
-	</div>
-	<br>
-	<div class="row">
-	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="onebintrayserial" name="bridgeUnitSerialType"/>&nbsp;One bin tray</label>
-	    </div>
-	    <div class="col-xs-3">
-        <label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="onebintray"  name="oneBinTrayTypeSerialNo" value="${productObject.oneBinTrayTypeSerialNo }"/>
-        </div>
-        
-        <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="finisher" name="finisherType" />&nbsp;Finisher:</label>
-	    </div>
-	    <div class="col-xs-3">
-        <label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="finisherserial" name="finisherTypeSerialNo" value="${productObject.finisherTypeSerialNo }"/>
-        </div>
-	</div>
-	<br>
-	<div class="row">
-	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="ltcserial" name="ltcType"/>&nbsp;LCT</label>
-	    </div>
-	    <div class="col-xs-3">
-        <label for="ltc">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="ltc" name="ltcTypeSerial" value="${productObject.ltcTypeSerial }"/>
-        </div>
-        
-        
-        <div class="row">
-	   <div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox" id="credenzaserial" name="credenza"/>&nbsp;Credenza</label>
-	    </div>
-	    <div class="col-xs-3">
-        <label for="credenza">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="credenza"  name="credenzaSerialNo" value="${productObject.credenzaSerialNo }"/>
-        </div>
-	
-	</div>
-        <br>
-	<div class="col-xs-2 form-control-label">
-	    <label for="serailNo"><input type="checkbox"  id="additionalPaperTrays"  name="additionalPaperTrays"/>&nbsp;&nbsp;Additional paper trays:</label>
-	    </div>
-	    <div class="col-xs-3">
-        <label for="additionalserial">Serial Number:&nbsp;&nbsp;</label><input type="text" class="form-control input-sm"  id="additionalserial"  name="additionalPaperTraysTypeSerial" value="${productObject.additionalPaperTraysTypeSerial }"/>
-        </div>
-	</div>
-	</fieldset><br><br>
-	<br>
-	<div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Submit"
-								class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
+	<div class="container" style="width: 90%">
+		<c:if test="${not empty retMessage }">
+			<div class="alert alert-info" role="alert">
+				<c:out value="${ retMessage}">
+				</c:out>
+			</div>
+		</c:if>
+		<div class="panel panel-success">
+			<div class="panel-heading">
+				<h3 class="panel-title">
+					<div align="center">
+						<b>Update Device Installation</b>
+					</div>
+					<!-- <div align="right"><a href="">Think of something</a></div> -->
+				</h3>
+			</div>
+			<div class="panel-body">
+				<form action="searchDeviceSerialNumber" method="post">
+					<div class="row">
+
+						<div class="col-xs-2 form-control-label" align="center">Search
+							Device</div>
+						<div class="col-xs-3">
+							<input type="text" class="form-control input-sm"
+								name="serialNumber" id="serialNumber" placeholder="Serial No">
+						</div>
+						<div class="col-xs-2">
+							<input class="btn btn-success" type='submit' value='Search' />
+						</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-8">
+								<div id="messages"></div>
+							</div>
 						</div>
 					</div>
-   
-	</form:form>
+					<hr>
+				</form>
+				<form:form method="POST" action="updateProduct"
+					modelAttribute="updateProduct">
 
-</div>
- 
-<script>
-	document.getElementById('bridgeunitserial').onchange = function() {
-    document.getElementById('bridgeunit').disabled = !this.checked;
-};
-document.getElementById('faxunit').onchange = function() {
-    document.getElementById('faxunitserial').disabled = !this.checked;
-};
-document.getElementById('onebintrayserial').onchange = function() {
-    document.getElementById('onebintray').disabled = !this.checked;
-};
-document.getElementById('finisher').onchange = function() {
-    document.getElementById('finisherserial').disabled = !this.checked;
-};
-document.getElementById('ltcserial').onchange = function() {
-    document.getElementById('ltc').disabled = !this.checked;
-};
-document.getElementById('additionalPaperTrays').onchange = function() {
-    document.getElementById('additionalserial').disabled = !this.checked;
-};
-document.getElementById('credenzaserial').onchange = function() {
-    document.getElementById('credenza').disabled = !this.checked;
-};
+					<fieldset>
+						<legend>Customer Details</legend>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-2 form-control-label">
+									<label>Company Name:</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.clientName}" name="clientName">
+								</div>
+
+								<div class="col-xs-2 form-control-label">
+									<label>Contact Person</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.contactPerson}">
+								</div>
+							</div>
+						</div>
+
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-2 form-control-label">
+									<label>Tel:</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.tellphoneNumber}">
+								</div>
+
+								<div class="col-xs-2 form-control-label">
+									<label>Cell</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.cellNumber}">
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-2 form-control-label">
+									<label>Email:</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.email}">
+								</div>
+
+								<div class="col-xs-2 form-control-label">
+									<label>Fax</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.faxNumber}">
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-2 form-control-label">
+									<label>Street No:</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm" value="">
+								</div>
+
+								<div class="col-xs-2 form-control-label">
+									<label>Street Name</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.streetName}">
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-2 form-control-label">
+									<label>Surbub:</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.city_town}">
+								</div>
+
+								<div class="col-xs-2 form-control-label">
+									<label>Floor No</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										value="${productObject.client.floorNumber}">
+								</div>
+							</div>
+						</div>
+						<br>
+					</fieldset>
+					<br>
+					<br>
+					<fieldset>
+						<legend>Machine Details</legend>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-2 form-control-label">
+									<label>Serial No:</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										name="serialNumber" value="${productObject.serialNumber }">
+								</div>
+
+								<div class="col-xs-2 form-control-label">
+									<label>Machine Model</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm"
+										name="productModel" value="${productObject.productModel }">
+								</div>
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="col-xs-2 form-control-label">
+									<label>Contract Start Date:</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm" id="startDate"
+										name="startDate" type="text"
+										value="${productObject.startDate.toString().substring(0,10) }">
+								</div>
+
+								<div class="col-xs-2 form-control-label">
+									<label>Contract End Date</label>
+
+								</div>
+								<div class="col-xs-3">
+									<input type="text" class="form-control input-sm" id="endDate"
+										name="endDate" type="text"
+										value="${productObject.endDate.toString().substring(0,10) }">
+								</div>
+							</div>
+						</div>
+					</fieldset>
+
+					<br>
+					<br>
+					<fieldset>
+						<legend align="left">Machine Accessories</legend>
+						<div class="row">
+							<div class="col-xs-2 form-control-label">
+								<label for="serailNo"><input type="checkbox"
+									id="bridgeunitserial" name="bridgeUnitSerialType" />&nbsp;Bridge
+									unit</label>
+							</div>
+							<div class="col-xs-3">
+								<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
+									type="text" class="form-control input-sm" id="bridgeunit"
+									name="bridgeUnitSerialTypeSerialNo"
+									value="${productObject.bridgeUnitSerialTypeSerialNo }" />
+							</div>
+
+							<div class="col-xs-2 form-control-label">
+								<label for="serailNo"><input type="checkbox"
+									id="faxunit" name="faxUnitSerialType" />&nbsp;Fax Unit:</label>
+							</div>
+							<div class="col-xs-3">
+								<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
+									type="text" class="form-control input-sm" id="faxunitserial"
+									name="faxUnitSerialTypeSerialNo"
+									value="${productObject.faxUnitSerialTypeSerialNo }" />
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-2 form-control-label">
+								<label for="serailNo"><input type="checkbox"
+									id="onebintrayserial" name="bridgeUnitSerialType" />&nbsp;One
+									bin tray</label>
+							</div>
+							<div class="col-xs-3">
+								<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
+									type="text" class="form-control input-sm" id="onebintray"
+									name="oneBinTrayTypeSerialNo"
+									value="${productObject.oneBinTrayTypeSerialNo }" />
+							</div>
+
+							<div class="col-xs-2 form-control-label">
+								<label for="serailNo"><input type="checkbox"
+									id="finisher" name="finisherType" />&nbsp;Finisher:</label>
+							</div>
+							<div class="col-xs-3">
+								<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
+									type="text" class="form-control input-sm" id="finisherserial"
+									name="finisherTypeSerialNo"
+									value="${productObject.finisherTypeSerialNo }" />
+							</div>
+						</div>
+						<br>
+						<div class="row">
+							<div class="col-xs-2 form-control-label">
+								<label for="serailNo"><input type="checkbox"
+									id="ltcserial" name="ltcType" />&nbsp;LCT</label>
+							</div>
+							<div class="col-xs-3">
+								<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
+									type="text" class="form-control input-sm" id="ltc"
+									name="ltcTypeSerial" value="${productObject.ltcTypeSerial }" />
+							</div>
+
+
+							<div class="row">
+								<div class="col-xs-2 form-control-label">
+									<label for="serailNo"><input type="checkbox"
+										id="credenzaserial" name="credenza" />&nbsp;Credenza</label>
+								</div>
+								<div class="col-xs-3">
+									<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
+										type="text" class="form-control input-sm" id="credenza"
+										name="credenzaSerialNo"
+										value="${productObject.credenzaSerialNo }" />
+								</div>
+
+							</div>
+							<br>
+							<div class="col-xs-2 form-control-label">
+								<label for="serailNo"><input type="checkbox"
+									id="additionalPaperTrays" name="additionalPaperTrays" />&nbsp;&nbsp;Additional
+									paper trays:</label>
+							</div>
+							<div class="col-xs-3">
+								<label for="additionalserial">Serial Number:&nbsp;&nbsp;</label><input
+									type="text" class="form-control input-sm" id="additionalserial"
+									name="additionalPaperTraysTypeSerial"
+									value="${productObject.additionalPaperTraysTypeSerial }" />
+							</div>
+						</div>
+					</fieldset>
+					<br>
+					<br>
+					<br>
+					<div class="form-group row">
+						<div class="col-sm-offset-2 col-sm-8">
+							<input type="submit" value="Submit"
+								class="btn btn-primary btn-block btn-lg" tabindex="9"
+								id="submit">
+						</div>
+					</div>
+
+				</form:form>
+
+			</div>
+		</div>
+	</div>
+
+
+</body>
+<!-- Disable serial number if checkbox is not checked -->
+<script type="text/javascript">
+				document.getElementById('bridgeunitserial').onchange = function() {
+					document.getElementById('bridgeunit').disabled = !this.checked;
+				};
+				document.getElementById('faxunit').onchange = function() {
+					document.getElementById('faxunitserial').disabled = !this.checked;
+				};
+				document.getElementById('onebintrayserial').onchange = function() {
+					document.getElementById('onebintray').disabled = !this.checked;
+				};
+				document.getElementById('finisher').onchange = function() {
+					document.getElementById('finisherserial').disabled = !this.checked;
+				};
+				document.getElementById('ltcserial').onchange = function() {
+					document.getElementById('ltc').disabled = !this.checked;
+				};
+				document.getElementById('additionalPaperTrays').onchange = function() {
+					document.getElementById('additionalserial').disabled = !this.checked;
+				};
+				document.getElementById('credenzaserial').onchange = function() {
+					document.getElementById('credenza').disabled = !this.checked;
+				};
 </script>
 
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$('#searchDevice')
+								.bootstrapValidator(
+										{
+											container : '#messages',
+											feedbackIcons : {
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											fields : {
+												SerialNo : {
+													validators : {
+														notEmpty : {
+															message : 'Serial Number is required to search and cannot be empty'
+														}
+													}
+												},
+											}
+										});
+					});
+</script>
 
-   </div>
-   </div>
- 
-  
-</body>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />" ></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />" ></script>
-<script type="text/javascript"src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script> 
-<link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-       rel="stylesheet" type="text/css" />
-       
-       <link href="style.css" rel="stylesheet" type="text/css"/>
-    <link href="lib/css/bootstrap.min.css" rel="stylesheet"  type="text/css"/>
-       
- <script type="text/javascript">
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<link
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" />
+<script type="text/javascript"
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
+	
+</script>
+
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
+<link
+	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css" />
+
+<link href="style.css" rel="stylesheet" type="text/css" />
+<link href="lib/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
     $(document).ready(function () {
         $('#startDate').datepicker({
             format: "yyyy-mm-dd"
@@ -316,9 +422,9 @@ document.getElementById('credenzaserial').onchange = function() {
         });
     });
 </script>
- <style type="text/css">
-    .bs-example{
-    	margin: 20px;
-    }
+<style type="text/css">
+.bs-example {
+	margin: 20px;
+}
 </style>
 </html>

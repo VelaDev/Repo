@@ -194,7 +194,7 @@
 						aria-expanded="false">Spare Parts<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="addParts.html"/>'>Add Spares</a></li>
-							<li><a href="#">Approved Orders</a></li>
+							<li><a href='<c:url value="displayOrders.html"/>'>Display Orders</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

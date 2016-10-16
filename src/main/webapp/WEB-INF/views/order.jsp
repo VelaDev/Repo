@@ -37,14 +37,14 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control" name="serialNumber" required="required">
+								<input type="text" class="form-control" name="device" required="required">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
 								<label>Part Number:</label>
 							</div>
 							<div class="col-xs-3">
-								<select name="partP" class="form-control" tabindex="1" required="required">
+								<select name="part" class="form-control" tabindex="1" required="required">
 									<option value="">Part Number
 									<option>
 									<option value="CLT-R806K">CLT-R806K</option>

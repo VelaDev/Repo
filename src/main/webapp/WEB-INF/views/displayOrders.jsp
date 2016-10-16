@@ -9,14 +9,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Approved Orders</title>
 </head>
-<c:import url="templates/techniciannavbar.jsp"></c:import>
+<c:import url="templates/navbar.jsp"></c:import>
 <body class=".container-fluid">
 	<div class="container" style="width: 90%">
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					<div align="center">
-						<b>Approved Orders</b>
+						<b>Orders</b>
 					</div>
 				</h3>
 			</div>
@@ -35,16 +35,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${ApprovedOrderList}" var="order">
+								<%-- <c:forEach items="${orderList}" var="order">
                         <tr>
                             <th><c:out value="${order.orderNum}"/></th>
-                            <th><c:out value="${order.part.itemType}"/></th>
+                            <th><c:out value="${order.description}"/></th>
+                            <th><c:out value="${order.part.modelNumber}"/></th>
                             <th><c:out value="${order.quantity}"/></th> 
-                            <th><c:out value="${order.approdedBy}"/></th> 
-                            <th><c:out value="${order.dateApproved}"/></th>
+                            <th><c:out value="${order.employee.firstName}"/></th> 
+                            <th><a href="approveOrder?id=<c:out value='${order.orderNum}'/>">approve</a></th>
                                                      
                         </tr>
-                    </c:forEach>
+                    </c:forEach> --%>
 							</tbody>
 						</table>
 					</div>

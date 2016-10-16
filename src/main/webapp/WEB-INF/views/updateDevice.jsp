@@ -14,14 +14,13 @@
 <title>Update Device</title>
 </head>
 <body class=".container-fluid">
-<div class="container myrow-container" style="width:90%">
-<div class="alert alert-info" role="alert">
+<div class="container" style="width:90%">
 <c:if test="${not empty retMessage }">
-  <c:out value="${ retMessage}">
- 
- </c:out>
- </c:if>
- </div>
+				 <div class="alert alert-info" role="alert">
+				   <c:out value="${ retMessage}">
+			 	   </c:out>
+				</div>
+			</c:if>
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">

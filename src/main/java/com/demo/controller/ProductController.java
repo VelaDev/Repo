@@ -49,8 +49,9 @@ public class ProductController {
 	    model = new ModelAndView();
 	    userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("saveProduct", new DeviceBean());
-		model.setViewName("addProduct");
+		
+			model.addObject("saveProduct", new DeviceBean());
+			model.setViewName("addProduct");
 		}
 		else{
 			model.setViewName("login");
@@ -80,8 +81,9 @@ public class ProductController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("productList", deviceServiceInt.getDeviceList());
-		model.setViewName("showProducts");
+		
+			model.addObject("productList", deviceServiceInt.getDeviceList());
+			model.setViewName("showProducts");
 		}
 		else{
 			model.setViewName("login");
@@ -138,7 +140,7 @@ public class ProductController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.setViewName("updateDevice");
+		    model.setViewName("updateDevice");
 		}
 		else{
 			model.setViewName("login");
@@ -167,16 +169,25 @@ public class ProductController {
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
-		if(device != null)
-		{
+		     device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		     if(device != null)
+				{
+				
+				    model.addObject("productObject", device);
+				}
+				else{
+					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
+				}
+				model.setViewName("updateDevice");if(device != null)
+				{
+					
+				    model.addObject("productObject", device);
+				}
+				else{
+					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
+				}
+				model.setViewName("updateDevice");
 		
-		    model.addObject("productObject", device);
-		}
-		else{
-			model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
-		}
-		model.setViewName("updateDevice");
 		}
 		else{
 			model.setViewName("login");
@@ -214,9 +225,10 @@ public class ProductController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		retMessage = deviceServiceInt.updateDevice(device);
-		model.addObject("retMessage", retMessage);
-		model.setViewName("updateDevice");
+		
+			retMessage = deviceServiceInt.updateDevice(device);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("updateDevice");
 		}
 		else{
 			model.setViewName("login");

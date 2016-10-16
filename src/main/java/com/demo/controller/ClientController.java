@@ -46,8 +46,9 @@ public class ClientController {
 	    model = new ModelAndView("addClient");
 	    userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("saveClient", new ClientBean());
-		model.setViewName("addClient");
+			model.addObject("saveClient", new ClientBean());
+			model.setViewName("addClient");
+		
 		}
 		else{
 			model.setViewName("login");
@@ -62,8 +63,9 @@ public class ClientController {
 	    model = new ModelAndView();
 	    userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("retMessage",retMessage);
-		model.setViewName("addClient");
+		
+			model.addObject("retMessage",retMessage);
+			model.setViewName("addClient");
 		}else{
 			model.setViewName("login");
 		}
@@ -76,7 +78,8 @@ public class ClientController {
 	    model = new ModelAndView();
 	    userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.setViewName("clientInformation");
+		
+			model.setViewName("clientInformation");
 		}else{
 			model.setViewName("login");
 		}
@@ -90,13 +93,14 @@ public class ClientController {
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 			deviceList = deviceServiceInt.getDeviceListByClientName(clientName);
-		for(Device dev:deviceList){
-			client = dev.getClient();
-			break;
-		}
-		model.addObject("deviceList",deviceList );
-		model.addObject("client", client);
-		model.setViewName("clientInformation");
+		      for(Device dev:deviceList){
+			       client = dev.getClient();
+			      break;
+		      }
+		
+		        model.addObject("deviceList",deviceList );
+				model.addObject("client", client);
+				model.setViewName("clientInformation");
 		}
 		else{
 			model.setViewName("login");
@@ -109,17 +113,18 @@ public class ClientController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		client = clientServiceInt.getClientByClientName(clientName);
-		if(client != null){
-			model.addObject("client", client);
-		}
-		else
-		{
-			model.addObject("retMessage", "Customer : " + clientName + " does not exist");
-			model.addObject("client", null);
-		}
-	
-		model.setViewName("addProduct");
+		
+			client = clientServiceInt.getClientByClientName(clientName);
+			if(client != null){
+				model.addObject("client", client);
+			}
+			else
+			{
+				model.addObject("retMessage", "Customer : " + clientName + " does not exist");
+				model.addObject("client", null);
+			}
+		
+			model.setViewName("addProduct");
 		}
 		else{
 			model.setViewName("login");
@@ -133,8 +138,9 @@ public class ClientController {
 		model = new ModelAndView("updateCustomer");
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("updateCustomerData", new ClientBean());
-		model.setViewName("updateCustomer");
+		
+			model.addObject("updateCustomerData", new ClientBean());
+			model.setViewName("updateCustomer");
 		}
 		else{
 			model.setViewName("login");
@@ -146,9 +152,10 @@ public class ClientController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		retMessage =clientServiceInt.updateCustomer(client); 
-		model.addObject("retMessage", retMessage);
-		model.setViewName("updateCustomer");
+		
+			retMessage =clientServiceInt.updateCustomer(client); 
+			model.addObject("retMessage", retMessage);
+			model.setViewName("updateCustomer");
 		}
 		else
 		{
@@ -162,9 +169,10 @@ public class ClientController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		client = clientServiceInt.getClientByClientName(clientName);
-		model.addObject("client", client);
-		model.setViewName("updateCustomer");
+		
+			client = clientServiceInt.getClientByClientName(clientName);
+			model.addObject("client", client);
+			model.setViewName("updateCustomer");
 		}
 		else{
 			model.setViewName("login");
@@ -177,8 +185,9 @@ public class ClientController {
 		model= new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("customerList", clientServiceInt.getClientList());
-		model.setViewName("displayCustomers");
+		
+			model.addObject("customerList", clientServiceInt.getClientList());
+			model.setViewName("displayCustomers");
 		}
 		else{
 			model.setViewName("login");

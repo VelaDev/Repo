@@ -170,12 +170,20 @@ public class Tickets implements Serializable{
 		this.employee = employee;
 	}
 
-	public Device getProduct() {
+	public Device getDevice() {
 		return device;
 	}
 
-	public void setProduct(Device device) {
+	public void setDevice(Device device) {
 		this.device = device;
+	}
+
+	public Set<TicketHistory> getTicketHistory() {
+		return ticketHistory;
+	}
+
+	public void setTicketHistory(Set<TicketHistory> ticketHistory) {
+		this.ticketHistory = ticketHistory;
 	}
 	
 	

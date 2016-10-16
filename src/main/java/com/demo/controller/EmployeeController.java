@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
+import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LogTicketsServiceInt;
@@ -121,9 +122,10 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		retMessage = employeeService.saveEmployee(employee);
-		model.addObject("retMessage", retMessage);
-		model.setViewName("registerEmployee");
+		
+			retMessage = employeeService.saveEmployee(employee);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("registerEmployee");
 		}
 		else{
 			model.setViewName("login");
@@ -136,9 +138,10 @@ public class EmployeeController {
 		String user = (String) session.getAttribute("loggedInUser");
 		 model = new ModelAndView();
 		 userName = (String) session.getAttribute("loggedInUser");
-			if(userName != null){
-		model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(user));
-		model.setViewName("technicianHome");
+		if(userName != null){
+		
+			model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(user));
+			model.setViewName("technicianHome");
 			}
 			else{
 				model.setViewName("login");
@@ -169,12 +172,67 @@ public class EmployeeController {
 		model= new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("employeeList", employeeService.getAllEmployees());
-		model.setViewName("displayEmployees");
+		 
+			model.addObject("employeeList", employeeService.getAllEmployees());
+			model.setViewName("displayEmployees");
 		}
 		else{
 			model.setViewName("login");
 		}
 		return model;
 	}
+	@RequestMapping(value="updateEmployee",method=RequestMethod.GET)
+	public ModelAndView loadUpdateEmployee() {
+		
+		userName = (String) session.getAttribute("loggedInUser");
+		model = new ModelAndView("registerEmployee");
+		if(userName !=null){
+			
+			model.addObject("updateEmployee", new EmployeeBean());
+			model.setViewName("updateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="searchEmployeeByName")
+	public ModelAndView searchEmployee(@RequestParam("userName") String userName,@ModelAttribute Employee employee) {
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+			employee = employeeService.getEmployeeByEmpNumber(userName);
+		if(employee != null){
+			
+			model.addObject("employeeObject", employee);
+		}
+		else{
+			model.addObject("", null);
+		}
+		
+		model.setViewName("updateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="updateEmployee",method=RequestMethod.POST)
+	public ModelAndView updateEmployee(@ModelAttribute("updateEmployee")Employee employee)
+	{
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			retMessage = employeeService.updateEmployee(employee);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("updateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+		
 }

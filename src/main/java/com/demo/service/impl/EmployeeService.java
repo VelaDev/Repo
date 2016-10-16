@@ -19,11 +19,11 @@ public class EmployeeService implements EmployeeServiceInt {
 	
 	@Autowired
 	private EmployeeDaoInt employeeDAO;
-	
+	private String retMessage = null;
 	
 	public String saveEmployee(Employee employee) {
 		
-		String retMessage = employeeDAO.saveEmployee(employee);
+	   retMessage = employeeDAO.saveEmployee(employee);
 		return retMessage;
 		
 	}
@@ -43,6 +43,12 @@ public class EmployeeService implements EmployeeServiceInt {
 	public List<Employee> getAllEmployees() {
 		
 		return employeeDAO.getAllEmployees();
+	}
+
+	@Override
+	public String updateEmployee(Employee employee) {
+		retMessage = employeeDAO.updateEmployee(employee);
+		return retMessage;
 	}
 
 }

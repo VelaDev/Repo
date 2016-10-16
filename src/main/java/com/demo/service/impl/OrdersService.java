@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.OrdersBean;
 import com.demo.dao.OrdersDaoInt;
 import com.demo.model.Orders;
 import com.demo.service.OrdersServiceInt;
@@ -19,7 +20,7 @@ public class OrdersService implements OrdersServiceInt{
 	private String retMessage = null;
 
 	@Override
-	public String makeOrder(Orders orders) {
+	public String makeOrder(OrdersBean orders) {
 		try{
 			retMessage = ordersDAO.makeOrder(orders);
 		}
@@ -28,7 +29,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public String updateOrder(Orders order) {
+	public String updateOrder(OrdersBean order) {
 		
 		return retMessage= ordersDAO.updateOrder(order);
 	}

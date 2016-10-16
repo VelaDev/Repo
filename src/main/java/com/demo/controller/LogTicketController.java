@@ -48,10 +48,11 @@ public class LogTicketController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-		model.addObject("logTicket", new TicketsBean());
 		
-		model.setViewName("ticket");
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("logTicket", new TicketsBean());
+			
+			model.setViewName("ticket");
 		}
 		else{
 			model.setViewName("login");
@@ -85,8 +86,9 @@ public class LogTicketController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		model.addObject("ticketList", logTicketService.getAllOpenTickets());
-		model.setViewName("monitoringTickets");
+		
+			model.addObject("ticketList", logTicketService.getAllOpenTickets());
+			model.setViewName("monitoringTickets");
 		}
 		else{
 			model.setViewName("login");
@@ -97,11 +99,17 @@ public class LogTicketController {
 	@RequestMapping("ticketDetails")
     public ModelAndView loadTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
 		
-		@SuppressWarnings("unused")
-		ModelAndView model = new ModelAndView();
-		ticket = logTicketService.getLoggedTicketByTicketNumber(id);
-	    return new ModelAndView("ticketDetails", "ticketObject", ticket);
-		
+	    model = new ModelAndView();
+	    userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.setViewName("ticketDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
     }
 	@RequestMapping("updateTicket")
 	public ModelAndView updateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
@@ -145,14 +153,31 @@ public class LogTicketController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-		model.addObject("logTicket", new TicketsBean());
 		
-		model.setViewName("logTicket");
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("logTicket", new TicketsBean());
+			
+			model.setViewName("logTicket");
 		}
 		else{
 			model.setViewName("login");
 		}
 		return model;
 	}
+	@RequestMapping("AssignTicketToOtherTechnician")
+    public ModelAndView assignTicketToAnotherTechnicia(@RequestParam String ticketNumber, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			ticket = logTicketService.getLoggedTicketByTicketNumber(ticketNumber);
+			model.addObject("ticketupdate", ticket);
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.setViewName("ticketUpdate");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
 }

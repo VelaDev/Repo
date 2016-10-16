@@ -43,7 +43,7 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value="makeOrder",method=RequestMethod.POST)
-	public ModelAndView makeOrder(@ModelAttribute("makeOrder")Orders order)
+	public ModelAndView makeOrder(@ModelAttribute("makeOrder")OrdersBean order)
 	{
 		
 		model = new ModelAndView();
@@ -67,8 +67,9 @@ public class OrdersController {
 			
 		      order = ordersServiceInt.getOrder(id);
 		      if(order !=null){
-	           return new ModelAndView("orderUpdate", "orderObject", order);
-		}
+		    	  model.setViewName("orderUpdate");
+		          model.addObject("orderObject", order);
+		      }
 		else{
 			
 		    }
@@ -79,13 +80,14 @@ public class OrdersController {
 		return model;
     }
 	@RequestMapping("updateOrder")
-    public ModelAndView updateOrder(Orders order){
+    public ModelAndView updateOrder(OrdersBean order){
 		model = new ModelAndView();
 		 userName = (String) session.getAttribute("loggedInUser");
 			if(userName != null){
-		retMessage = ordersServiceInt.updateOrder(order);
-        model.addObject("retMessage",retMessage);
-        model.setViewName("orderUpdate");
+		
+				retMessage = ordersServiceInt.updateOrder(order);
+		        model.addObject("retMessage",retMessage);
+		        model.setViewName("orderUpdate");
 			}
 			else{
 				model.setViewName("login");
@@ -101,6 +103,21 @@ public class OrdersController {
 		if(userName !=null){
 			model.addObject("ApprovedOrderList", ordersServiceInt.getApprovedOrdersByTechnicianName(userName));
 			model.setViewName("approvedOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("displayOrders")
+	public ModelAndView displayOrders(){
+		model = new ModelAndView();
+		
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model.addObject("ApprovedOrderList", ordersServiceInt.getAllOrders());
+			model.setViewName("displayOrders");
 		}
 		else{
 			model.setViewName("login");

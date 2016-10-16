@@ -81,23 +81,24 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 					ticket.setPriority(tickets.getPriority());
 					ticket.setDateTime(dateFormat.format(date));
 					
-					ticket.setProduct(device);
+					ticket.setDevice(device);
 					ticket.setEscalate(false);
 					sessionFactory.getCurrentSession().save(ticket);
-					retMessage = "Ticket "+tickets.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getProduct().getClient().getClientName();
+					
+					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getClient().getClientName();
 					JavaMail.sendFromGMail(ticket);
 				}
 				else{
-					retMessage="Device "+device.getSerialNumber()+" does not exist. Ticket "+tickets.getTicketNumber()+" cannot be logged";
+					retMessage="Device "+device.getSerialNumber()+" does not exist. Ticket "+ticket.getTicketNumber()+" cannot be logged";
 				}
 				
 			}
 			else{
-				retMessage = "Ticket "+tickets.getTicketNumber() +" is assigned to non-existant technician ";
+				retMessage = "Ticket "+ticket.getTicketNumber() +" is assigned to non-existant technician ";
 			}
 			
 		} catch (Exception e) {
-			retMessage = "Ticket " +tickets.getTicketNumber()+" was not logged "+ e.getMessage();
+			retMessage = "Ticket " +ticket.getTicketNumber()+" was not logged "+ e.getMessage();
 		}
 		return retMessage;
 	}
@@ -219,7 +220,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 				  ticket.setComments(tickets.getComments());
 				  ticket.setEscalateReason(tickets.getEscalateReason());
 				  ticket.setEscalate(true);
-				  sessionFactory.getCurrentSession().update(ticket);
+				  sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
 			  }
 			  else{
@@ -240,10 +241,17 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	@Override
 	public void updateSLA(Tickets tickets)
 	{
-		System.out.println(tickets.getStatus()+" and " + tickets.getComments()+ " "+ tickets.getTicketNumber());
-		System.out.println("About to insert");
-		sessionFactory.getCurrentSession().update(ticket);
-		System.out.println("Updated "+ " "+ tickets.getTicketNumber());
+		try{
+			
+			System.out.println(tickets.getStatus()+" and " + tickets.getComments()+ " "+ tickets.getTicketNumber()+ " "+ tickets.getDevice().getProductModel());
+			System.out.println("About to insert");
+			sessionFactory.getCurrentSession().saveOrUpdate(tickets);
+			sessionFactory.getCurrentSession().beginTransaction().commit();
+			System.out.println("Updated Now now"+ " "+ tickets.getTicketNumber());
+		}
+		catch(Exception e){
+			System.out.println(e.getMessage());
+		}
 	}
 
 	@Override

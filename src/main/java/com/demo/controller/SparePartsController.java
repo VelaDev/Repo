@@ -30,8 +30,9 @@ public class SparePartsController {
 	    model = new ModelAndView("addParts");
 	    userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		model.addObject("saveSpareParts", new SparePartsBean());
-		model.setViewName("addParts");
+		
+			model.addObject("saveSpareParts", new SparePartsBean());
+			model.setViewName("addParts");
 		}
 		else{
 			model.setViewName("login");
@@ -44,9 +45,10 @@ public class SparePartsController {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-		retMessage = sparePartsServeceInt.saveSpareparts(spareParts);
-		model.addObject("retMessage", retMessage);
-		model.setViewName("addParts");
+		
+			retMessage = sparePartsServeceInt.saveSpareparts(spareParts);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("addParts");
 		}
 		else{
 			model.setViewName("login");

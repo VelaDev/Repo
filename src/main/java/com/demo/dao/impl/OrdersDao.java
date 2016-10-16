@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.OrdersBean;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.DeviceDaoInt;
@@ -55,32 +56,37 @@ public class OrdersDao implements OrdersDaoInt{
 	private Calendar cal = null;
 	private Parts part = null;
 	private Device device=null;
+	private Orders order = null;
 	DateFormat dateFormat = null;
 	Date date = null;
 	
 	
-
-	@SuppressWarnings("static-access")
 	@Override
-	public String makeOrder(Orders orders) {
+	public String makeOrder(OrdersBean orders) {
 		String orderNumber = null;
+		order = new Orders();
 			try{
 				dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				date = new Date();
-			String user = (String) session.getAttribute("loggedInUser");
-			emp=employeeDaoInt.getEmployeeByEmpNum(user);
-			part = sparePartsDaoInt.getSparePartBySerial(orders.getPartP());
-			device = deviceDaoInt.getDeviceBySerialNumbuer(orders.getProd());
+				
+				String user = (String) session.getAttribute("loggedInUser");
+				emp=employeeDaoInt.getEmployeeByEmpNum(user);
+				part = sparePartsDaoInt.getSparePartBySerial(orders.getPart());
+				device = deviceDaoInt.getDeviceBySerialNumbuer(orders.getDevice());
 			
-			orderNumber = newOrderNumber();
-			orders.setOrderNum(orderNumber);
-			orders.setPart(part);
-			orders.setEmployee(emp);
-			orders.setProduct(device);
-			orders.setApproved(false);
-			orders.setDateOrdered(dateFormat.format(date));
-			  sessionFactory.getCurrentSession().save(orders);
-			  retMessage = "Order"+" "+ orders.getOrderNum()+ " "+"is created";
+				orderNumber = newOrderNumber();
+				order.setOrderNum(orderNumber);
+				order.setPart(part);
+				order.setEmployee(emp);
+				order.setProduct(device);
+				order.setApproved(false);
+				order.setDateOrdered(dateFormat.format(date));
+				order.setDescription(orders.getDescription());
+				order.setQuantity(orders.getQuantity());
+			
+			
+			     sessionFactory.getCurrentSession().save(order);
+			     retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is created";
 		}
 		catch(Exception e){
 			retMessage = "Order"+" "+ orders.getOrderNum()+ " "+"is not created";
@@ -89,16 +95,17 @@ public class OrdersDao implements OrdersDaoInt{
 	}
 
 	@Override
-	public String updateOrder(Orders order) {
-		boolean isSpareAvailable;
+	public String updateOrder(OrdersBean orders) {
+		
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 		String n = " ";
+		order = new Orders();
 		try{
-			/*isSpareAvailable = isAvailableSpares(order.getPartP(),order.getQuantity());*/
-			/*if(isSpareAvailable==true){*/
-			part= sparePartsDaoInt.getSparePartBySerial(order.getPartP());
-			device = deviceDaoInt.getDeviceBySerialNumbuer(order.getProd());
+			
+			part= sparePartsDaoInt.getSparePartBySerial(orders.getPart());
+			device = deviceDaoInt.getDeviceBySerialNumbuer(orders.getDevice());
+			emp =employeeDaoInt.getEmployeeByEmpNum(orders.getEmployee());
 			if(part != null){
 				order.setApproved(true);
 				order.setDateApproved(dateFormat.format(date));
@@ -107,6 +114,11 @@ public class OrdersDao implements OrdersDaoInt{
 				order.setProduct(device);
 				String approvedBy = (String) session.getAttribute("loggedInUser");
 				order.setApprodedBy(approvedBy);
+				order.setOrderNum(orders.getOrderNum());
+				order.setDescription(orders.getDescription());
+				order.setQuantity(orders.getQuantity());
+				order.setEmployee(emp);
+				order.setDateOrdered(orders.getDateOrdered());
 				
 				sessionFactory.getCurrentSession().update(order);
 				retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is approved";
@@ -122,7 +134,6 @@ public class OrdersDao implements OrdersDaoInt{
 
 	@Override
 	public List<Orders> getAllOrders() {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -130,7 +141,7 @@ public class OrdersDao implements OrdersDaoInt{
 	@Override
 	public List<Orders> getApprovedOrdersByTechnicianName(String userName) {
 		
-		ArrayList<?> aList = new ArrayList<Object>();
+		ArrayList<Orders> aList = new ArrayList<Orders>();
 		ArrayList<Orders> orderList = new ArrayList<Orders>();
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Orders.class);
 		 
@@ -174,11 +185,18 @@ public class OrdersDao implements OrdersDaoInt{
 	private String generateOrderNumber(){
 		
 		session2=sessionFactory.openSession();
-		
+		String result = "";
 		Query query = session2.createQuery("from Orders order by orderNum DESC");
 		query.setMaxResults(1);
 		Orders orderNumber = (Orders) query.uniqueResult();
-		return orderNumber.getOrderNum();
+		
+		if(orderNumber != null){
+			result = orderNumber.getOrderNum();
+		}
+		else{
+			result = null;
+		}
+		return result;
 	}
 	private String newOrderNumber(){
 		String tempOrder = "";
@@ -191,7 +209,7 @@ public class OrdersDao implements OrdersDaoInt{
 			newOrderNum = orderNum+ tempOrderNum;
 		}
 		else{
-			orderNum = "ORD-VEL-1";
+			newOrderNum = "ORD-VEL-1";
 		}
 		
 		return newOrderNum;

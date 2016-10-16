@@ -21,13 +21,13 @@ public class EmployeeDao implements EmployeeDaoInt{
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+	String retMessage = null;
 	
 	public String saveEmployee(Employee employee) {
-		String retMessage = null;
+		
 		try{
-		sessionFactory.getCurrentSession().save(employee);
-		retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
+		      sessionFactory.getCurrentSession().save(employee);
+		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
 		}
 		catch(Exception e)
 		{
@@ -37,7 +37,6 @@ public class EmployeeDao implements EmployeeDaoInt{
 	}
 
 	public Employee getEmployeeByEmpNum(String empUsername) {
-
 
 		return (Employee) sessionFactory.getCurrentSession().get(Employee.class, empUsername);
 	}
@@ -88,5 +87,18 @@ public class EmployeeDao implements EmployeeDaoInt{
 	public List<Employee> getAllEmployees() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
 		return (List<Employee>)criteria.list();
+	}
+
+	@Override
+	public String updateEmployee(Employee employee) {
+		try{
+			
+			sessionFactory.getCurrentSession().update(employee);
+		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully updated";
+		}
+		catch(Exception e){
+			retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is not updated\n" + e.getMessage();
+		}
+		return retMessage;
 	}
 }

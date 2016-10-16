@@ -42,11 +42,9 @@ public class Orders implements Serializable{
 	private String description;
 	@Column(name="APPROVEDBY")
 	private String approdedBy;
-	@Column(name="Status")
+	@Column(name="STATUS")
 	private String status;
 	
-	private String partP;
-	private String prod;
 	@ManyToOne
 	@JoinColumn(name="ORDEREDBY")
 	private Employee employee;
@@ -157,14 +155,6 @@ public class Orders implements Serializable{
 		this.approved = approved;
 	}
 
-	public String getPartP() {
-		return partP;
-	}
-
-	public void setPartP(String partP) {
-		this.partP = partP;
-	}
-
 	public String getApprodedBy() {
 		return approdedBy;
 	}
@@ -187,14 +177,6 @@ public class Orders implements Serializable{
 
 	public void setProduct(Device device) {
 		this.device = device;
-	}
-
-	public String getProd() {
-		return prod;
-	}
-
-	public void setProd(String prod) {
-		this.prod = prod;
 	}
 
 	public String getStatus() {

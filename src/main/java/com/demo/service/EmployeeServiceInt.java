@@ -9,5 +9,6 @@ public interface EmployeeServiceInt {
 	Employee getEmployeeByEmpNumber(String empUsername);
 	List<Employee> getAllTechnicians();
 	List<Employee> getAllEmployees();
+	String updateEmployee (Employee employee);
 
 }

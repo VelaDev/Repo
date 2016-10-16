@@ -161,6 +161,11 @@
 								</div>
 							</div>
 						</div>
+						<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-8">
+							<div id="messages"></div>
+						</div>
+						</div>
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">

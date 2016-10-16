@@ -7,7 +7,7 @@
 </head>
 <c:import url="templates/navbar.jsp"></c:import>
 <body>
-	<div class="container myrow-container" style="width: 90%">
+	<div class="container" style="width: 90%">
 		
 			<c:if test="${not empty retMessage }">
 				 <div class="alert alert-info" role="alert">
@@ -95,6 +95,11 @@
 							</div>
 						</div>
 					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-8">
+							<div id="messages"></div>
+						</div>
+						</div>
 					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
@@ -109,6 +114,56 @@
 	</div>
 </body>
 
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $('#saveSpareParts').bootstrapValidator({
+        container: '#messages',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	partNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Part number is required and cannot be empty'
+                    }
+                }
+            },
+            itemType: {
+                validators: {
+                    notEmpty: {
+                        message: 'Item type is required and cannot be empty'
+                    }
+                }
+            },
+            modelNumber: {
+                validators: {
+                    notEmpty: {
+                        message: 'Model mumber is required and cannot be empty'
+                    }
+                }
+            },
+            description: {
+                validators: {
+                    notEmpty: {
+                        message: 'Description is required and cannot be empty'
+                    }
+                }
+            },            
+        }
+    });
+});
+</script>
+	
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  
+<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
+<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+
 <%-- <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
 <script type="text/javascript"
@@ -116,9 +171,10 @@
 <link
 	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
 	rel="stylesheet" type="text/css" /> --%>
-	
+
+<%-- 
 <script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
 <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" />
-	
+ --%>	
 </html>

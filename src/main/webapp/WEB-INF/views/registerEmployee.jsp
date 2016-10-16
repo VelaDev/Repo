@@ -3,11 +3,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Register Employee</title>
 </head>
 <c:import url="templates/navbar.jsp"></c:import>
+
 <body class=".container-fluid">
-	<div class="container myrow-container" style="width: 90%">
+	<div class="container" style="width: 90%">
 	
 		
 			<c:if test="${not empty retMessage }">
@@ -37,7 +38,7 @@
 							</div>
 							<div class="col-xs-3">
 								<input type="text" class="form-control input-sm"
-									name="firstName">
+									name="firstName" required="required">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -45,7 +46,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="lastName">
+								<input type="text" class="form-control input-sm" name="lastName" required="required" >
 							</div>
 						</div>
 					</div>
@@ -72,7 +73,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="gender" class="form-control">
+								<select name="gender" class="form-control"required="required">
 									<option value="">Gender
 									<option>
 									<option value="Male">Male</option>
@@ -89,7 +90,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="username">
+								<input type="text" class="form-control input-sm" name="username" required="required">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -110,15 +111,15 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="email">
+								<input type="text" class="form-control input-sm" name="email" required="required">
 							</div>
 
-							<div class="col-xs-2 form-control-label">
+							<div class="col-xs-2 form-control-label" >
 								<label>Role:</label>
 
 							</div>
 							<div class="col-xs-3">
-								<select name="role" class="form-control">
+								<select name="role" class="form-control" required="required">
 									<option value="">Role
 									<option>
 									<option value="Admin">Admin</option>
@@ -151,8 +152,8 @@
 	</div>
 </body>
 
-
-<script>
+<!-- Validatev register employee -->
+<script type="text/javascript">
 
 $(document).ready(function() {
     $('#addEmployee').bootstrapValidator({
@@ -225,7 +226,8 @@ $(document).ready(function() {
         }
     });
 });
-</script>	
+</script>
+	
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  
 <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  

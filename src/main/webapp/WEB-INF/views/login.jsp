@@ -24,50 +24,23 @@
 }
 
 {
--webkit-box-sizing
-:
- 
-border-box
-;
-
-	   
--moz-box-sizing
-:
- 
-border-box
-;
-
-	        
-box-sizing
-:
- 
-border-box
-;
-
-	
-outline
-:
- 
-none
-;
-
-
+-webkit-box-sizing:border-box;   
+-moz-box-sizing:border-box;	        
+box-sizing:border-box;	
+outline:none;
 }
 .form-control {
 	position: relative;
 	font-size: 16px;
 	height: auto;
 	padding: 10px;
-	@
-	include
+	@include
 	box-sizing(border-box);
 	&:
 	focus
 	{
-	z-index
-	:
-	2;
-}
+	z-index:2;
+	}
 
 }
 body {
@@ -113,7 +86,6 @@ form[role=login]>div {
 	margin-top: 1em;
 	margin-bottom: 50px;
 }
-
 .form-links a {
 	color: #fff;
 }
@@ -123,7 +95,6 @@ form[role=login]>div {
 	rel="stylesheet" type="text/css" />
 <body>
 	<div class="container">
-
 		<div class="row" id="pwd-container">
 			<div class="col-md-4"></div>
 
@@ -152,11 +123,8 @@ form[role=login]>div {
 					</div>
 				</section>
 			</div>
-
-			<div class="col-md-4"></div>
-
+		  <div class="col-md-4"></div>
 		</div>
-
 	</div>
-</body>
+  </body>
 </html>

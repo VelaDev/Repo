@@ -28,7 +28,6 @@ import com.demo.dao.LogTicketsDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Client;
 import com.demo.model.Employee;
-import com.demo.model.Orders;
 import com.demo.model.Device;
 import com.demo.model.Tickets;
 
@@ -58,7 +57,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	DateFormat dateFormat = null;
 	Date date = null;
     private String retMessage="";
-    private String ticketNum ="TIC-VEL-";
+    private String ticketNum ="INC000";
    
 	@Override
 	public String logTicket(TicketsBean tickets) {
@@ -223,6 +222,14 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 				  sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
 			  }
+			   else if(ticket.getSlaStart().equalsIgnoreCase("Started")){
+				   
+				      ticket.setSlaStart("Not Started");
+					  //ticket.setSlaAcknowledgeDateTime(cal);
+					  //ticket.setTechnicianAcknowledged(true);
+					  sessionFactory.getCurrentSession().update(ticket);
+					  retMessage = "Ticket "+ ticket.getTicketNumber()+ " is now assigned to " ;
+				  }
 			  else{
 				  ticket.setSlaStart("Started");
 				  ticket.setSlaAcknowledgeDateTime(cal);
@@ -281,12 +288,13 @@ private String generateTicketNumber(){
 		String newTicketNum = generateTicketNumber();
 		
 		if (newTicketNum != null){
-			tempTicket = newTicketNum.substring(8);
+			tempTicket = newTicketNum.substring(6);
 			tempTicketNum = Integer.parseInt(tempTicket)+1;
 			newTicketNum = ticketNum+ tempTicketNum;
 		}
 		else{
-			newTicketNum = "TIC-VEL-1";
+			/*newTicketNum = "TIC-VEL-1";*/
+			newTicketNum = "INC0001";
 		}
 		
 		return newTicketNum;

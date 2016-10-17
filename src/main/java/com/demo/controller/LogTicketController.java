@@ -180,4 +180,23 @@ public class LogTicketController {
 		}
 		return model;
     }
+	
+	@RequestMapping("updateTicketAdmin")
+	public ModelAndView updateTicketAdmin(@ModelAttribute("updateTicket")TicketsBean updateTicket){
+		
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+			retMessage = logTicketService.updateTicket(updateTicket);
+		    model.addObject("retMessage", retMessage);
+			model.setViewName("ticketUpdate");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+		
+	}
 }

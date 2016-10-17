@@ -38,7 +38,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="device"
+								<input type="text" class="form-control input-sm" name="ticketNumber"
 									value="${ticketupdate.ticketNumber }">
 							</div>
 

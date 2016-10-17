@@ -131,11 +131,11 @@
 						</div>
 					</div>
 					<br>
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<div class="col-sm-offset-2 col-sm-8">
 							<div id="messages"></div>
 						</div>
-					</div>
+					</div> -->
 					
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
@@ -157,77 +157,7 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() {
-    $('#addEmployee').bootstrapValidator({
-        container: '#messages',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-        	firstName: {
-                validators: {
-                    notEmpty: {
-                        message: 'First Name is required and cannot be empty'
-                    }
-                }
-            },
-            lastName: {
-                validators: {
-                    notEmpty: {
-                        message: 'Last Name is required and cannot be empty'
-                    }
-                }
-            },
-            title: {
-                validators: {
-                    notEmpty: {
-                        message: 'Title is required and cannot be empty'
-                    }
-                }
-            },
-            gender: {
-                validators: {
-                    notEmpty: {
-                        message: 'Gender is required and cannot be empty'
-                    }
-                }
-            },
-            username: {
-                validators: {
-                    notEmpty: {
-                        message: 'Username is required and cannot be empty'
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-                        message: 'Password is required and cannot be empty'
-                    }
-                }
-            },
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'The email address is required and cannot be empty'
-                    },
-                    emailAddress: {
-                        message: 'The email address is not valid'
-                    }
-                }
-            },
-            role: {
-                validators: {
-                    notEmpty: {
-                        message: 'Role is required and cannot be empty'
-                    }
-                }
-            },
-        }
-    });
-});
+
 </script>
 	
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  

@@ -22,14 +22,14 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					<div align="center">
-						<b>Log Ticket</b>
+						<b>Change Technician</b>
 					</div>
 					<!-- <div align="right"><a href="">Think of something</a></div> -->
 				</h3>
 			</div>
 			<div class="panel-body">
-				<form:form method="post" action="logTicket" role="form"
-					modelAttribute="logTicket" id="form">
+				<form:form method="post" action="updateTicketAdmin" role="form"
+					modelAttribute="updateTicketAdmin" id="form">
 
 					<div class="row">
 						<div class="col-xs-12">

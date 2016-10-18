@@ -26,6 +26,7 @@ import com.demo.dao.ClientDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LogTicketsDaoInt;
 import com.demo.dao.DeviceDaoInt;
+import com.demo.dao.TicketHistoryDaoInt;
 import com.demo.model.Client;
 import com.demo.model.Employee;
 import com.demo.model.Device;
@@ -46,8 +47,11 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	@Autowired
 	private DeviceDaoInt deviceDaoInt;
 	@Autowired
+	private TicketHistoryDaoInt historyDaoInt;
+	@Autowired
 	private HttpSession session = null;
 	private Session session2;
+	
 
 	private Employee technician = null;
 	private Client client = null;
@@ -83,6 +87,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 					ticket.setDevice(device);
 					ticket.setEscalate(false);
 					sessionFactory.getCurrentSession().save(ticket);
+					historyDaoInt.insertTicketHistory(ticket);
 					
 					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getClient().getClientName();
 					JavaMail.sendFromGMail(ticket);
@@ -220,21 +225,27 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 				  ticket.setEscalateReason(tickets.getEscalateReason());
 				  ticket.setEscalate(true);
 				  sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+				  historyDaoInt.insertTicketHistory(ticket);
 				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
 			  }
 			   else if(ticket.getSlaStart().equalsIgnoreCase("Started")){
 				   
+				      technician = employeeDaoInt.getEmployeeByEmpNum(tickets.getTechnicianUserName());
+				      ticket.setEmployee(technician);
+				      ticket.setComments("Assigned to next available technician");
 				      ticket.setSlaStart("Not Started");
 					  //ticket.setSlaAcknowledgeDateTime(cal);
 					  //ticket.setTechnicianAcknowledged(true);
 					  sessionFactory.getCurrentSession().update(ticket);
-					  retMessage = "Ticket "+ ticket.getTicketNumber()+ " is now assigned to " ;
+					  historyDaoInt.insertTicketHistory(ticket);
+					  retMessage = "Ticket "+ ticket.getTicketNumber()+ " is now assigned to " + ticket.getEmployee().getUsername() ;
 				  }
 			  else{
 				  ticket.setSlaStart("Started");
 				  ticket.setSlaAcknowledgeDateTime(cal);
 				  ticket.setTechnicianAcknowledged(true);
 				  sessionFactory.getCurrentSession().update(ticket);
+				  historyDaoInt.insertTicketHistory(ticket);
 				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
 				  
 			  }

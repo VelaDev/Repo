@@ -204,7 +204,8 @@ public class ProductController {
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		if(device != null){
 			model.addObject("productObject", device);
-		    model.addObject("accessories", deviceServiceInt.accessories(device));
+		    model.addObject("accessories", accessoriesInt.getAccessoriesByDeviceSerial(serialNumber));
+		    
 		}
 		else{
 			model.addObject("retMessage", "Device : "+ serialNumber + " does not exist");

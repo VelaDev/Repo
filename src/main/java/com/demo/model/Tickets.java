@@ -52,6 +52,8 @@ public class Tickets implements Serializable{
 	@Column(name="SLA_ACKNOWLEDGE_DATETIME")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar slaAcknowledgeDateTime;
+	@Column (name="Solution")
+	private String solution;
 	
 	
 	
@@ -184,6 +186,14 @@ public class Tickets implements Serializable{
 
 	public void setTicketHistory(Set<TicketHistory> ticketHistory) {
 		this.ticketHistory = ticketHistory;
+	}
+
+	public String getSolution() {
+		return solution;
+	}
+
+	public void setSolution(String solution) {
+		this.solution = solution;
 	}
 	
 	

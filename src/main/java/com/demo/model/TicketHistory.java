@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,9 +22,11 @@ public class TicketHistory implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="TicketHistoryID")
 	private int historyId;
+	@Column(name="TicketNumber")
+	private String ticketNumber;
 	@Column(name="EscalatedResoan")
 	private String escalatedReason;
 	@Column(name="EscalatedDate")
@@ -32,6 +35,9 @@ public class TicketHistory implements Serializable{
 	private String resolution;
 	@Column(name="Solution")
 	private String solution;
+	@Column(name="Comment")
+	private String comment;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="EscalatedTo")
@@ -95,6 +101,22 @@ public class TicketHistory implements Serializable{
 
 	public void setSolution(String solution) {
 		this.solution = solution;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
+	public String getTicketNumber() {
+		return ticketNumber;
+	}
+
+	public void setTicketNumber(String ticketNumber) {
+		this.ticketNumber = ticketNumber;
 	}
 	
 }

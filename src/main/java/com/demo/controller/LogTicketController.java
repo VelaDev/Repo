@@ -18,6 +18,7 @@ import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LogTicketsServiceInt;
 import com.demo.service.DeviceServiceInt;
+import com.demo.service.TicketHistoryInt;
 
 
 @Controller
@@ -31,6 +32,8 @@ public class LogTicketController {
 	private DeviceServiceInt deviceServiceInt;
 	@Autowired
 	private EmployeeServiceInt employeeServiceInt;
+	@Autowired
+	private TicketHistoryInt ticketHistoryInt;
 	
 	@Autowired
 	private HttpSession session = null;
@@ -104,6 +107,7 @@ public class LogTicketController {
 		if(userName !=null){
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
 			model.setViewName("ticketDetails");
 		}
 		else{

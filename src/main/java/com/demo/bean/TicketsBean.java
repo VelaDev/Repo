@@ -23,6 +23,7 @@ public class TicketsBean {
 	private boolean escalate;
 	private String escalateReason;
 	private Calendar slaAcknowledgeDateTime;
+	private String solution;
 	
 	public String getTicketNumber() {
 		return ticketNumber;
@@ -120,6 +121,12 @@ public class TicketsBean {
 	}
 	public void setSlaAcknowledgeDateTime(Calendar slaAcknowledgeDateTime) {
 		this.slaAcknowledgeDateTime = slaAcknowledgeDateTime;
+	}
+	public String getSolution() {
+		return solution;
+	}
+	public void setSolution(String solution) {
+		this.solution = solution;
 	}
 	
 	

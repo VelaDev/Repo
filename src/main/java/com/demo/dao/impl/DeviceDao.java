@@ -130,12 +130,31 @@ public class DeviceDao implements DeviceDaoInt {
 		//Purpose	: This method prepares the device data before inserting into the table
 		
 		String retAccessory = null;
+		client = new Client();
 		device = new Device();
 		device.setEndDate(deviceBean.getEndDate());
 		device.setProductModel(deviceBean.getProductModel());
 		device.setSerialNumber(deviceBean.getSerialNumber());
 		device.setStartDate(deviceBean.getStartDate());
+		
+		
+		client.setCellNumber(deviceBean.getCellNumber());
+		client.setCity_town(deviceBean.getCity_town());
+		client.setContactPerson(deviceBean.getContactPerson());
+		client.setEmail(deviceBean.getEmail());
+		client.setFaxNumber(deviceBean.getFaxNumber());
+		client.setFloorNumber(deviceBean.getFloorNumber());
+		client.setProvince(deviceBean.getProvince());
+		client.setStreetName(deviceBean.getStreetName());
+		client.setTellphoneNumber(deviceBean.getTellphoneNumber());
+		client.setZipcode(deviceBean.getZipcode());
+		client.setClientName(deviceBean.getClientName());
+		
+		retMessage = clientDaoInt.saveClient(client);
 		client = clientDaoInt.getClientByClientName(deviceBean.getClientName());
+		
+		
+		
 		if(client != null){
 			device.setClient(client);
 			
@@ -196,6 +215,7 @@ public class DeviceDao implements DeviceDaoInt {
 				accessory6.setDevice(device);
 				list.add(accessory6);
 			}
+			
 			
 			retMessage = saveDevice(device);
 			retAccessory =accessoriesDaoInt.saveAccessories(list);

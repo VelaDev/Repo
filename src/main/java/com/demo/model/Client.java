@@ -24,6 +24,9 @@ public class Client implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	/*@GeneratedValue(strategy=GenerationType.TABLE)
+	@Column(name="CCLIENTID")
+	private int clientID;*/
 	@Column(name="CLIENT_Name")
 	private String clientName;
 	@Column(name="IsACTIVE")

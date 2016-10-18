@@ -335,7 +335,37 @@
 							<h4>History Details</h4>
 
 							<div class="row">
-								<form class="form-horizontal"></form>
+								<form class="form-horizontal">
+								<div class="panel-body">
+				<div class="row">
+					<div class="content">
+						<table class="table table-hover ">
+							<thead style="background-color: #bce8f1;">
+								<tr class='clickable-row'>
+									<th>Ticket No</th>
+									<th>Date</th>
+								<!-- 	<th>Assigned To</th> -->
+									<th>Comment</th>
+								
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${ticketHistoryList}" var="history">
+									<tr>
+										<th><c:out value="${history.ticketNumber}" /></th>
+										<th><c:out value="${history.escalatedDate}" /></th>
+										<%-- <th><c:out value="${history.part.modelNumber}" /></th> --%>
+										<th><c:out value="${history.comment}" /></th>
+										
+										
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+								</form>
 							</div>
 						</div>
 					</div>

@@ -29,7 +29,7 @@ style type ="text /css">.myrow-container {
 </head>
 <body class=".container-fluid">
 
-	<div class="container myrow-container" style="width: 90%">
+	<div class="container" style="width: 90%">
 
 
 		<c:if test="${not empty retMessage }">
@@ -49,36 +49,29 @@ style type ="text /css">.myrow-container {
 				</h3>
 			</div>
 			<div class="panel-body">
-
-
 				<form action="searchDeviceBySerialNo" method="post"
 					id="searchDevice">
 					<div class="row">
-
-						<div class="col-xs-2 form-control-label" align="center">Search
-							Device</div>
-						<div class="col-xs-3">
-							<input type="text" class="form-control input-sm" name="SerialNo"
+   					  <div class="col-xs-2 form-control-label" align="center">Search
+							Device
+					  </div>
+					  <div class="col-xs-3">
+						<input type="text" class="form-control input-sm" name="SerialNo"
 								id="SerialNo" placeholder="Serial No">
-						</div>
-						<div class="col-xs-2">
+					   </div>
+					   <div class="col-xs-2">
 							<input class="btn btn-success" type='submit' value='Search' />
-						</div>
-
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-8">
+					    </div>
+						<div class="col-sm-offset-2 col-sm-8">
 								<div id="messages"></div>
-							</div>
 						</div>
+					</div>
 
 					</div>
 					<br>
 					<hr>
 					<br>
 				</form>
-
-
-
 				<form action="">
 					<div class="groupdetails-row-padding">
 
@@ -233,22 +226,17 @@ style type ="text /css">.myrow-container {
 					});
 </script>
 
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<link
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<link rel="stylesheet"
-	href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css" />
-<script type="text/javascript"
-	src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js">
-	
-</script>
+
+
+
+<script type="text/javascript" src=<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script>
+<script type="text/javascript" src=<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src=<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+
+<link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
+<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
 
 <%-- 
-
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
 <script type="text/javascript"

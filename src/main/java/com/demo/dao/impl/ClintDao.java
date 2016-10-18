@@ -3,6 +3,7 @@ package com.demo.dao.impl;
 
 
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -21,11 +22,12 @@ public class ClintDao implements ClientDaoInt{
 	@Autowired
 	private SessionFactory sessionFactory;
 	private String retMessage = null;
+	List<Client> clientList = null;
 
 	@Override
 	public String saveClient(Client client) {
 		try{
-			sessionFactory.getCurrentSession().save(client);
+			sessionFactory.getCurrentSession().saveOrUpdate(client);
 			retMessage =  "Customer "+ client.getClientName() + " "+ "Was successfully added";
 		}
 		catch(Exception e){
@@ -40,11 +42,15 @@ public class ClintDao implements ClientDaoInt{
 		
 		Client client = null;
 		try{
-			if(!clientName.equals("")&& clientName!=null){
-				client = (Client) sessionFactory.getCurrentSession().get(Client.class,clientName);
-			}
-			else{
-				client = null;
+			
+			clientList = getClientList();
+			for(Client tempClient:clientList)
+			{
+				if(tempClient.getClientName().equalsIgnoreCase(clientName))
+				{
+					client= tempClient;
+					break;
+				}
 			}
 		}
 		catch(Exception e)

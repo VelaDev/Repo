@@ -19,7 +19,7 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<div class="col-lg-10">
+				<!-- <div class="col-lg-10"> -->
 					<div class="panel-body">
 						<ul class="nav nav-tabs">
 							<li class="active"><a href="#generalDetails"
@@ -289,7 +289,7 @@
 							
 							<h4 align="center">Solution Details</h4><br>
 							
-							<form:form>
+							<form:form action="escalateTicket" modelAttribute="escalateTicket">
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Resolution</label>
 									<div class="col-sm-10">
@@ -344,7 +344,7 @@
 								<tr class='clickable-row'>
 									<th>Ticket No</th>
 									<th>Date</th>
-								<!-- 	<th>Assigned To</th> -->
+									<th>Assigned To</th>
 									<th>Comment</th>
 								
 								</tr>
@@ -373,7 +373,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	<!-- </div> -->
 </body>
 
 <!-- Comment 3.3.6 BootStrap -->

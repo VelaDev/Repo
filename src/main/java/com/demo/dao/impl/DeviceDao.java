@@ -105,60 +105,7 @@ public class DeviceDao implements DeviceDaoInt {
 		ArrayList list = new ArrayList<Accessories>();
 		Accessories accessory = new Accessories();
 		
-		/*if(product.getAdditionalPaperTrays()!=null && product.getAdditionalPaperTraysTypeSerial()!=""){
-			accessory.setBridgeUnitSerial(product.getAdditionalPaperTraysTypeSerial());
-			accessory.setBridgeUnitSerialType(product.getAdditionalPaperTrays());
-			accessory.setProd(product.getSerialNumber());
-			list.add(accessory);
-		}
-		if(product.getBridgeUnitSerialType()!=null && product.getBridgeUnitSerialTypeSerialNo()!=""){
-			Accessories accessory1 = new Accessories();
-			accessory1.setBridgeUnitSerial(product.getBridgeUnitSerialTypeSerialNo());
-			accessory1.setBridgeUnitSerialType(product.getBridgeUnitSerialType());
-			accessory1.setProd(product.getSerialNumber());
-			list.add(accessory1);
-		}
 		
-		if(product.getCredenza() != null && product.getCredenzaSerialNo() !=""){
-			Accessories accessory2 = new Accessories();
-			accessory2.setBridgeUnitSerial(product.getCredenzaSerialNo());
-			accessory2.setBridgeUnitSerialType(product.getCredenza());
-			accessory2.setProd(product.getSerialNumber());
-			list.add(accessory2);
-		}
-		
-		
-		if(product.getFaxUnitSerialType()!= null && product.getFaxUnitSerialTypeSerialNo()!=""){
-			Accessories accessory3 = new Accessories();
-			accessory3.setBridgeUnitSerial(product.getFaxUnitSerialTypeSerialNo());
-			accessory3.setBridgeUnitSerialType(product.getFaxUnitSerialType());
-			accessory3.setProd(product.getSerialNumber());
-			list.add(accessory3);
-		}
-		
-		if(product.getFinisherType()!= null && product.getFinisherTypeSerialNo()!=""){
-			Accessories accessory4 = new Accessories();
-			accessory4.setBridgeUnitSerial(product.getFinisherTypeSerialNo());
-			accessory4.setBridgeUnitSerialType(product.getFinisherType());
-			accessory4.setProd(product.getSerialNumber());
-			list.add(accessory4);
-		}
-		
-		if(product.getLtcType()!=null && product.getLtcTypeSerial()!=""){
-			Accessories accessory5 = new Accessories();
-			accessory5.setBridgeUnitSerial(product.getLtcTypeSerial());
-			accessory5.setBridgeUnitSerialType(product.getLtcType());
-			accessory5.setProd(product.getSerialNumber());
-			list.add(accessory5);
-		}
-		
-		if(product.getOneBinTrayType()!= null && product.getOneBinTrayTypeSerialNo()!=""){
-			Accessories accessory6 = new Accessories();
-			accessory6.setBridgeUnitSerial(product.getOneBinTrayTypeSerialNo());
-			accessory6.setBridgeUnitSerialType(product.getOneBinTrayType());
-			accessory6.setProd(product.getSerialNumber());
-			list.add(accessory6);
-		}*/
 		
 		
 		return list;
@@ -168,25 +115,7 @@ public class DeviceDao implements DeviceDaoInt {
 	public String updateDevice(Device device) {
 		try{
 			
-			/*Client client = clientDaoInt.getClientByClientName(product.getClientName());
-			product.setClient(client);*/
-			/*if(product.getAdditionalPaperTraysTypeSerial()!=null && product.getAdditionalPaperTraysTypeSerial()!=""){
-				product.setAdditionalPaperTrays("Additional Paper Trays");
-			}
-			if(product.getBridgeUnitSerialTypeSerialNo()!=null && product.getBridgeUnitSerialTypeSerialNo()!=""){
-				product.setBridgeUnitSerialType("Bridge unit");
-			}
-			if(product.getCredenzaSerialNo()!= null && product.getCredenzaSerialNo()!=""){
-				product.setCredenza("Credenza");
-			}if(product.getFaxUnitSerialTypeSerialNo()!=null && product.getFaxUnitSerialTypeSerialNo()!=""){
-				product.setFaxUnitSerialType("Fax Unit");
-			}if(product.getFinisherTypeSerialNo()!=null && product.getFinisherTypeSerialNo()!=""){
-				product.setFinisherType("Finisher");
-			}if(product.getLtcTypeSerial()!=null && product.getLtcTypeSerial()!=""){
-				product.setLtcType("LCT");
-			}if(product.getOneBinTrayTypeSerialNo()!=null && product.getOneBinTrayTypeSerialNo()!=""){
-				product.setOneBinTrayType("One Bin Tray");
-			}*/
+			
 			sessionFactory.getCurrentSession().update(device);
 			retMessage = "Device "+device.getSerialNumber()+ " is successfully updated. Device belongs to customer : " + device.getClient().getClientName();
 		}

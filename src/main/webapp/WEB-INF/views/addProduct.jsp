@@ -55,7 +55,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.clientName}" name="clientName">
+										value="${client.clientName}" name="clientName" class="required" required>
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -64,7 +64,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.contactPerson}">
+										value="${client.contactPerson}" value="contactPerson">
 								</div>
 							</div>
 						</div>
@@ -78,7 +78,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.tellphoneNumber}">
+										value="${client.tellphoneNumber}" value="tellphoneNumber">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -87,7 +87,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.cellNumber}">
+										value="${client.cellNumber}" value="cellNumber">
 								</div>
 							</div>
 						</div>
@@ -100,7 +100,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.email}">
+										value="${client.email}" value="email">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -109,7 +109,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.faxNumber}">
+										value="${client.faxNumber}" value="faxNumber">
 								</div>
 							</div>
 						</div>
@@ -122,7 +122,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="streetNumber" value="${client.streetNumber}">
+										name="streetNumber" value="${client.streetNumber}" value="streetNumber">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -131,7 +131,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.streetName}">
+										value="${client.streetName}" value="streetName">
 								</div>
 							</div>
 						</div>
@@ -144,7 +144,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.city_town}">
+										value="${client.city_town}" value="city_town" >
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -153,7 +153,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${client.floorNumber}">
+										value="${client.floorNumber}" value="floorNumber">
 								</div>
 							</div>
 						</div>

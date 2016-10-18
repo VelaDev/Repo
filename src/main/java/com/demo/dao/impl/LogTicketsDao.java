@@ -87,6 +87,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 					ticket.setDevice(device);
 					ticket.setEscalate(false);
 					sessionFactory.getCurrentSession().save(ticket);
+					
 					historyDaoInt.insertTicketHistory(ticket);
 					
 					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getClient().getClientName();

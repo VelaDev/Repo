@@ -178,14 +178,6 @@ public class ProductController {
 				else{
 					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
 				}
-				model.setViewName("updateDevice");if(device != null)
-				{
-					
-				    model.addObject("productObject", device);
-				}
-				else{
-					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
-				}
 				model.setViewName("updateDevice");
 		
 		}
@@ -234,6 +226,29 @@ public class ProductController {
 		else{
 			model.setViewName("login");
 		}
+		return model;
+	}
+	@RequestMapping(value="searchSerialNumberLogtickr")
+	public ModelAndView searchProductForLogTicket(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName != null){
+		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		if(device != null){
+			
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("product", device);
+		}
+		else{
+			model.addObject("product", null);
+		}
+		
+		model.setViewName("logTicket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
 		return model;
 	}
 }

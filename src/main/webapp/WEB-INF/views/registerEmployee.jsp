@@ -38,7 +38,7 @@
 							</div>
 							<div class="col-xs-3">
 								<input type="text" class="form-control input-sm"
-									name="firstName">
+									name="firstName" class="required" required="required">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -46,7 +46,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="lastName" >
+								<input type="text" class="form-control input-sm" name="lastName" class="required" required="required">
 							</div>
 						</div>
 					</div>
@@ -58,7 +58,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="title" class="form-control">
+								<select name="title" class="form-control" class="required" required="required">
 									<option value="">Title
 									<option>
 									<option value="Mr">Mr</option>
@@ -73,7 +73,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="gender" class="form-control">
+								<select name="gender" class="form-control" class="required" required="required">
 									<option value="">Gender
 									<option>
 									<option value="Male">Male</option>
@@ -90,7 +90,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="username">
+								<input type="text" class="form-control input-sm" name="username" class="required" required="required">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -99,7 +99,7 @@
 							</div>
 							<div class="col-xs-3">
 								<input type="password" class="form-control input-sm"
-									name="password">
+									name="password" class="required" required="required">
 							</div>
 						</div>
 					</div>
@@ -111,7 +111,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="email" >
+								<input type="text" class="form-control input-sm" name="email" class="required" required="required">
 							</div>
 
 							<div class="col-xs-2 form-control-label" >
@@ -119,7 +119,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="role" class="form-control" >
+								<select name="role" class="form-control" class="required" required="required">
 									<option value="">Role
 									<option>
 									<option value="Admin">Admin</option>
@@ -131,11 +131,11 @@
 						</div>
 					</div>
 					<br>
-					 <div class="form-group">
+					 <!-- <div class="form-group">
 						<div class="col-sm-offset-2 col-sm-8">
 							<div id="messages"></div>
 						</div>
-					</div> 
+					</div -->> 
 					
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
@@ -156,7 +156,7 @@
 <!-- Validatev register employee -->
 
 <script>
-$(document).ready(function() {
+/* $(document).ready(function() {
     $('#addEmployee').bootstrapValidator({
        container: '#messages',
        feedbackIcons: {
@@ -227,7 +227,7 @@ $(document).ready(function() {
         }
     });
 });
-
+ */
 </script>
 
 <!-- Validator -->

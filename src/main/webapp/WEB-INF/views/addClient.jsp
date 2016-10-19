@@ -38,7 +38,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="clientName" class="required">
+										name="clientName" class="required" required="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -47,7 +47,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="contactPerson" class="required">
+										name="contactPerson" class="required" required="required">
 								</div>
 							</div>
 						</div>
@@ -60,7 +60,7 @@
 									<label>Province:</label>
 								</div>
 								<div class="col-xs-3">
-									<select name="province" class="form-control" class="required">
+									<select name="province" class="form-control" class="required" required="required">
 										<option value="">Province
 										<option>
 										<option value="Gauteng">Gauteng</option>
@@ -81,7 +81,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="city_town" class="required">
+										name="city_town" class="required" required="required">
 								</div>
 							</div>
 						</div>
@@ -95,7 +95,7 @@
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										name="streetName" class="required">
+										name="streetName" class="required" required="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -115,7 +115,7 @@
 
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" name="floorNumber" class="required">
+									<input type="text" class="form-control input-sm" name="floorNumber" class="required" required="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -123,7 +123,7 @@
 
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" name="tellphoneNumber" class="required">
+									<input type="text" class="form-control input-sm" name="tellphoneNumber" class="required" required="required">
 								</div>
 							</div>
 						</div>
@@ -134,7 +134,7 @@
 									<label>Fax No:</label>
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" name="faxNumber" class="required">
+									<input type="text" class="form-control input-sm" name="faxNumber" class="required" required="required">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
@@ -152,7 +152,7 @@
 									<label>Email:</label>
 								</div>
 								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" name="email" class="required">
+									<input type="text" class="form-control input-sm" name="email" class="required" required="required">
 								</div>
 							</div>
 						</div>
@@ -164,7 +164,7 @@
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
-								<input type="submit" value="Add Client"
+								<input type="submit" value="Submit"
 									class="btn btn-primary btn-block btn-lg" tabindex="9" id="addClient">
 							</div>
 						</div>
@@ -177,7 +177,7 @@
 
 <script>
 
-$(document).ready(function() {
+/* $(document).ready(function() {
     $('#saveClient').bootstrapValidator({
         container: '#messages',
      //   live:enable,
@@ -276,7 +276,7 @@ $(document).ready(function() {
             }
         }
     });
-});
+}); */
 </script>
 
 

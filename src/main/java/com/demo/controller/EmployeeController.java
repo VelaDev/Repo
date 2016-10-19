@@ -54,7 +54,7 @@ public class EmployeeController {
 		
 		if(employee != null){
 			
-			session.setAttribute("loggedInUser", employee.getUsername());
+			session.setAttribute("loggedInUser", employee.getFirstName());
 			model.addObject("loggedInUser", employee.getUsername());
 			if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password)||
 					employee.getRole().equalsIgnoreCase("Manager") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password)){

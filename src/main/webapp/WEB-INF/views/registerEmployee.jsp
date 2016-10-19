@@ -64,7 +64,7 @@
 									<option value="Mr">Mr</option>
 									<option value="Miss">Miss</option>
 									<option value="Mrs">Mrs</option>
-									<option value="Doc">Doc</option>
+									<option value="Doc">Dr</option>
 								</select>
 							</div>
 
@@ -135,7 +135,7 @@
 						<div class="col-sm-offset-2 col-sm-8">
 							<div id="messages"></div>
 						</div>
-					</div -->> 
+					</div -->
 					
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">

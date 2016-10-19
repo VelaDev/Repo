@@ -36,7 +36,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="partNumber" class="form-control" tabindex="1" required="required">
+								<select name="partNumber" class="form-control" tabindex="1" class="required" required="required">
 									<option value="">Part Number
 									<option>
 									<option value="CLT-R806K">CLT-R806K</option>
@@ -50,7 +50,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="itemType" class="form-control" tabindex="1" required="required">
+								<select name="itemType" class="form-control" tabindex="1" class="required" required="required">
 									<option value="">Item Type
 									<option>
 									<option value="Toner">Toner</option>
@@ -68,7 +68,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="modelNumber" class="form-control" tabindex="2" required="required">
+								<select name="modelNumber" class="form-control" tabindex="2" class="required" required="required">
 									<option value="">Model Number
 									<option>
 									<option value="MultiXpress X7500LX">MultiXpress
@@ -83,7 +83,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="description" class="form-control" tabindex="3" required="required">
+								<select name="description" class="form-control" tabindex="3" class="required" required="required">
 									<option value="">Description
 									<option>
 									<option value="Black Imaging Unit">Black Imaging Unit</option>
@@ -116,7 +116,7 @@
 
 <script type="text/javascript">
 
-$(document).ready(function() {
+/* $(document).ready(function() {
     $('#saveSpareParts').bootstrapValidator({
         container: '#messages',
         feedbackIcons: {
@@ -155,7 +155,7 @@ $(document).ready(function() {
             },            
         }
     });
-});
+}); */
 </script>
 	
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  

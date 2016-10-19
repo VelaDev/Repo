@@ -113,7 +113,7 @@
 
 								</div>
 								<div class="col-xs-3">
-									<textarea rows="3" cols="78" name="description">${ticketObject.description }</textarea>
+									<textarea rows="3" cols="98" name="description">${ticketObject.description }</textarea>
 								</div>
 							</div>
 						</div>
@@ -289,7 +289,7 @@
 							
 							<h4 align="center">Solution Details</h4><br>
 							
-							<form:form action="escalateTicket" modelAttribute="escalateTicket">
+							<form:form>
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Resolution</label>
 									<div class="col-sm-10">

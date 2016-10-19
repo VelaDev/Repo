@@ -38,7 +38,7 @@
 							</div>
 							<div class="col-xs-3">
 								<input type="text" class="form-control input-sm"
-									name="firstName" required="required">
+									name="firstName">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -46,7 +46,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="lastName" required="required" >
+								<input type="text" class="form-control input-sm" name="lastName" >
 							</div>
 						</div>
 					</div>
@@ -73,7 +73,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="gender" class="form-control"required="required">
+								<select name="gender" class="form-control">
 									<option value="">Gender
 									<option>
 									<option value="Male">Male</option>
@@ -90,7 +90,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="username" required="required">
+								<input type="text" class="form-control input-sm" name="username">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -111,7 +111,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="email" required="required">
+								<input type="text" class="form-control input-sm" name="email" >
 							</div>
 
 							<div class="col-xs-2 form-control-label" >
@@ -119,7 +119,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<select name="role" class="form-control" required="required">
+								<select name="role" class="form-control" >
 									<option value="">Role
 									<option>
 									<option value="Admin">Admin</option>
@@ -131,17 +131,17 @@
 						</div>
 					</div>
 					<br>
-					<!-- <div class="form-group">
-						<div class="col-sm-offset-2 col-sm-8">
-							<div id="messages"></div>
-						</div>
-					</div> -->
+					 <div class="form-group">
+					  <div class="col-md-9 col-md-offset-3">
+						<div id="messages"></div><br>
+					  </div>
+				    </div> 
 					
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Submit"
+							<input type="submit" value="Register Employee"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="submit">
+								id="registerEmployee">
 						</div>
 					</div>
 					
@@ -155,16 +155,89 @@
 
 <!-- Validatev register employee -->
 
-<script type="text/javascript">
-
+<script>
+$(document).ready(function() {
+    $('#addEmployee').bootstrapValidator({
+       container: '#messages',
+       feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	firstName: {
+                validators: {
+                    notEmpty: {
+                        message: 'First Name is required and cannot be empty'
+                    }
+                }
+            },
+            lastName: {
+                validators: {
+                    notEmpty: {
+                        message: 'Last Name is required and cannot be empty'
+                    }
+                }
+            },
+            title: {
+                validators: {
+                    notEmpty: {
+                        message: 'Title is required and cannot be empty'
+                    }
+                }
+            },
+            gender: {
+                validators: {
+                    notEmpty: {
+                        message: 'Gender is required and cannot be empty'
+                    }
+                }
+            },
+            username: {
+                validators: {
+                    notEmpty: {
+                        message: 'Username is required and cannot be empty'
+                    }
+                }
+            },
+            password: {
+                validators: {
+                    notEmpty: {
+                        message: 'Password is required and cannot be empty'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'The email address is required and cannot be empty'
+                    },
+                     emailAddress: {
+                        message: 'The email address is not valid'
+                    } 
+                }
+            },
+            role: {
+                validators: {
+                    notEmpty: {
+                        message: 'Role is required and cannot be empty'
+                    }
+                }
+            },
+        }
+    });
+});
 
 </script>
-	
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
+
+<!-- Validator -->
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script> 
+ <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+ 
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
+<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
 
 </html>
 

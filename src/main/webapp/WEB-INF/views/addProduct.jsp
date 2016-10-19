@@ -26,14 +26,14 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<form action="searchClientforProduct" method="post">
+				<form action="searchClientforProduct" method="post" id="searchClientforProduct">
 					<div class="row">
 
 						<div class="col-xs-2 form-control-label" align="center">Search
 							Customer</div>
 						<div class="col-xs-3">
 							<input type="text" class="form-control input-sm"
-								name="clientName" id="clientName" class="required" required>
+								name="clientName" id="clientName" >
 						</div>
 						<div class="col-xs-2">
 							<input class="btn btn-success" type='submit' value='Search' />
@@ -303,9 +303,9 @@
 					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Submit"
+							<input type="submit" value="Add Product"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="submit">
+								id="addProduct">
 						</div>
 					</div>
 				</form:form>
@@ -318,16 +318,48 @@
 
 
 </body>
-
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function() {
+						$('#searchClientforProduct')
+								.bootstrapValidator(
+										{
+											container : '#messages',
+											feedbackIcons : {
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											fields : {
+												clientName : {
+													validators : {
+														notEmpty : {
+															message : 'Client name is required to search and cannot be empty'
+														}
+													}
+												},
+											}
+							   });
+					});
+</script>
 <%-- 
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
 <link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" /> --%>
+
+
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+
+<link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
+<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
+
 	
 <script type="text/javascript"  src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
-<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
-<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" />
+
+
 	
 <script type="text/javascript">
 	$(document).ready(function() {

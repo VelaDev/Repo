@@ -164,8 +164,8 @@
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
-								<input type="submit" value="Submit"
-									class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
+								<input type="submit" value="Add Client"
+									class="btn btn-primary btn-block btn-lg" tabindex="9" id="addClient">
 							</div>
 						</div>
 					</form:form>
@@ -180,6 +180,7 @@
 $(document).ready(function() {
     $('#saveClient').bootstrapValidator({
         container: '#messages',
+     //   live:enable,
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -283,14 +284,20 @@ $(document).ready(function() {
 <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
 <link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
  --%>
-
+<!-- 
 <script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
 <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" />
-
+ -->
+ 
+ 
 <!-- Validator -->
-<link href="<c:url value="/resources/bootstrapvalidator/css/bootstrapValidator.min.css" />"rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/bootstrapvalidator/js/bootstrapValidator.min.js" />"rel="stylesheet" type="text/css" />
-
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script> 
+ <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+ 
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
+<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
 
 </html>

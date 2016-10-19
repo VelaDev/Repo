@@ -198,8 +198,7 @@ style type ="text /css">.myrow-container {
 		</div>
 	</div>
 
-</body>
-	1`	
+</body>	
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -229,9 +228,9 @@ style type ="text /css">.myrow-container {
 
 
 
-<script type="text/javascript" src=<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script>
-<script type="text/javascript" src=<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src=<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 
 <link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
 <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 

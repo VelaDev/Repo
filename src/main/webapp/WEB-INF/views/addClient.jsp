@@ -177,7 +177,7 @@
 
 <script>
 
-$(document).ready(function() {
+/* $(document).ready(function() {
     $('#saveClient').bootstrapValidator({
         container: '#messages',
      //   live:enable,
@@ -276,7 +276,7 @@ $(document).ready(function() {
             }
         }
     });
-});
+}); */
 </script>
 
 

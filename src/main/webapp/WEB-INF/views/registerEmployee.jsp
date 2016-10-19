@@ -156,7 +156,7 @@
 <!-- Validatev register employee -->
 
 <script>
-$(document).ready(function() {
+/* $(document).ready(function() {
     $('#addEmployee').bootstrapValidator({
        container: '#messages',
        feedbackIcons: {
@@ -226,7 +226,7 @@ $(document).ready(function() {
             },
         }
     });
-});
+}); */
 
 </script>
 

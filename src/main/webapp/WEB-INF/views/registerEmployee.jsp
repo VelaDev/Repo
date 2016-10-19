@@ -132,16 +132,16 @@
 					</div>
 					<br>
 					 <div class="form-group">
-					  <div class="col-md-9 col-md-offset-3">
-						<div id="messages"></div><br>
-					  </div>
-				    </div> 
+						<div class="col-sm-offset-2 col-sm-8">
+							<div id="messages"></div>
+						</div>
+					</div> 
 					
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<input type="submit" value="Register Employee"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="registerEmployee">
+								id="registere">
 						</div>
 					</div>
 					
@@ -156,7 +156,7 @@
 <!-- Validatev register employee -->
 
 <script>
-/* $(document).ready(function() {
+$(document).ready(function() {
     $('#addEmployee').bootstrapValidator({
        container: '#messages',
        feedbackIcons: {
@@ -226,7 +226,7 @@
             },
         }
     });
-}); */
+});
 
 </script>
 

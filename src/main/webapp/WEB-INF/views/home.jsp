@@ -188,7 +188,6 @@
     new google.visualization.PieChart(
 
       document.getElementById('ticket_details_pie')).draw(data, options);
-
   }
 
 </script>

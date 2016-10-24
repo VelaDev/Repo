@@ -1,0 +1,86 @@
+@import ulr("href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'>")
+a{
+	text-decoration:none;
+}
+.pie_chart{
+	padding: 15px;
+    margin-left: 25%;
+}
+.open_tickets{
+	background-color:blue;
+	padding: 8px;
+    margin-left: 10%;
+    margin-right: 94%;
+    margin-top: -2%;
+}
+.closed_tickets{
+	background-color:green;
+	padding: 8px;
+	margin-left: 10%;
+    margin-right: 94%;
+    margin-top: -2%;
+}
+.escalated_tickets{
+	background-color:orange;
+	padding: 8px;
+	margin-left: 10%;
+    margin-right: 94%;
+    margin-top: -2%;
+}
+.logged_tickets{
+	background-color:red;
+	padding: 8px;
+	margin-left: 10%;
+    margin-right: 94%;
+    margin-top: -2%;
+}
+
+.pie_content{
+	
+	
+}
+.sidebar{
+	width:250px;
+	height:auto;
+	margin-left:-6%;
+	margin-top:5%;
+	background-color:#2980b9;
+	float:left;	
+}
+#content
+{
+	width:auto;
+	margin-left:250px;
+	height:100%;
+	padding:15px;
+}
+.searchalign {
+	    margin: 2% 2% 10px ;		
+}
+ul#nav{
+	padding:9px;
+}
+ul#nav li{
+	list-style: none;
+}
+ul#nav li a{
+	color:#ccc;
+	display:block;
+	padding:10px;
+	font-size:0.8em;
+	border-bottom:1px solid #ecf0f1;
+	webkit-transition: 0.2s;
+	-moz-transition:02.2s;
+	-o-transition:0.2s;
+	transition:0.2s;	
+}
+ul#nav li a:hover{
+	background-color:#2c3e50;
+	color:#fff;
+}
+ul#nav li a.selected{
+	background-color:#2c3e50;
+	color:#fff;
+}
+
+

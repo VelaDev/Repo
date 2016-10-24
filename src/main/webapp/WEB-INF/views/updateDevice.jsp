@@ -67,7 +67,7 @@
 								</div>
 
 								<div class="col-xs-2 form-control-label">
-									<label>Contact Person</label>
+									<label>Contact Person:</label>
 
 								</div>
 								<div class="col-xs-3">
@@ -76,21 +76,20 @@
 								</div>
 							</div>
 						</div>
-
 						<br>
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="col-xs-2 form-control-label">
-									<label>Tel:</label>
+									<label>Tell:</label>
 
 								</div>
 								<div class="col-xs-3">
 									<input type="text" class="form-control input-sm"
-										value="${productObject.client.tellphoneNumber}">
+										value="${productObject.client.tellphoneNumber}" name="clientName">
 								</div>
 
 								<div class="col-xs-2 form-control-label">
-									<label>Cell</label>
+									<label>Cell:</label>
 
 								</div>
 								<div class="col-xs-3">
@@ -99,75 +98,10 @@
 								</div>
 							</div>
 						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Email:</label>
 
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${productObject.client.email}">
-								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Fax</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${productObject.client.faxNumber}">
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Street No:</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" value="">
-								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Street Name</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${productObject.client.streetName}">
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Surbub:</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${productObject.client.city_town}">
-								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Floor No</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${productObject.client.floorNumber}">
-								</div>
-							</div>
-						</div>
 						<br>
 					</fieldset>
-					<br>
-					<br>
+					
 					<fieldset>
 						<legend>Machine Details</legend>
 						<br>
@@ -217,8 +151,7 @@
 							</div>
 						</div>
 					</fieldset>
-
-					<br>
+					
 					<br>
 					<fieldset>
 						<legend align="left">Machine Accessories</legend>
@@ -231,8 +164,7 @@
 							<div class="col-xs-3">
 								<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
 									type="text" class="form-control input-sm" id="bridgeunit"
-									name="bridgeUnitSerialTypeSerialNo"
-									value="${productObject.bridgeUnitSerialTypeSerialNo }" />
+									disabled name="bridgeUnitSerialTypeSerialNo" />
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -242,8 +174,7 @@
 							<div class="col-xs-3">
 								<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
 									type="text" class="form-control input-sm" id="faxunitserial"
-									name="faxUnitSerialTypeSerialNo"
-									value="${productObject.faxUnitSerialTypeSerialNo }" />
+									disabled name="faxUnitSerialTypeSerialNo" />
 							</div>
 						</div>
 						<br>
@@ -256,8 +187,7 @@
 							<div class="col-xs-3">
 								<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
 									type="text" class="form-control input-sm" id="onebintray"
-									name="oneBinTrayTypeSerialNo"
-									value="${productObject.oneBinTrayTypeSerialNo }" />
+									disabled name="OneBinTrayTypeSerialNo" />
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -267,8 +197,7 @@
 							<div class="col-xs-3">
 								<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
 									type="text" class="form-control input-sm" id="finisherserial"
-									name="finisherTypeSerialNo"
-									value="${productObject.finisherTypeSerialNo }" />
+									disabled name="finisherTypeSerialNo" />
 							</div>
 						</div>
 						<br>
@@ -280,7 +209,7 @@
 							<div class="col-xs-3">
 								<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
 									type="text" class="form-control input-sm" id="ltc"
-									name="ltcTypeSerial" value="${productObject.ltcTypeSerial }" />
+									name="ltcTypeSerial" disabled />
 							</div>
 
 
@@ -292,8 +221,7 @@
 								<div class="col-xs-3">
 									<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
 										type="text" class="form-control input-sm" id="credenza"
-										name="credenzaSerialNo"
-										value="${productObject.credenzaSerialNo }" />
+										name="credenzaSerialNo" disabled />
 								</div>
 
 							</div>
@@ -306,11 +234,10 @@
 							<div class="col-xs-3">
 								<label for="additionalserial">Serial Number:&nbsp;&nbsp;</label><input
 									type="text" class="form-control input-sm" id="additionalserial"
-									name="additionalPaperTraysTypeSerial"
-									value="${productObject.additionalPaperTraysTypeSerial }" />
+									name="additionalPaperTraysTypeSerial" disabled />
 							</div>
 						</div>
-					</fieldset>
+						</fieldset>
 					<br>
 					<br>
 					<br>

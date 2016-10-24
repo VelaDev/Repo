@@ -1,7 +1,15 @@
 @import ulr("href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,600,400italic,600italic,700' rel='stylesheet' type='text/css'>")
+*{
+	margin:0px;
+	padding:0px;
+	box-sizing: border-box;
+}
 a{
 	text-decoration:none;
 }
+
+	
+/*Pie Chart*/
 .pie_chart{
 	padding: 15px;
     margin-left: 25%;
@@ -34,28 +42,36 @@ a{
     margin-right: 94%;
     margin-top: -2%;
 }
-
 .pie_content{
-	
-	
+	margin-left:5%;
+	margin-top:2%;
 }
+#ticket_details_pie{
+	
+}		
+/*Pie Chart*/
+
+div#container{
+	width:100%;
+	margin:0 auto;
+}
+.content{
+	background-color:#ecf0f1;
+    margin-left: 200px;
+    height: 500px;
+    width: auto;
+    position: relative;
+    overflow: auto;
+    z-index: 1;
+ }
+/*sidebar nav*/
 .sidebar{
 	width:250px;
-	height:auto;
-	margin-left:-6%;
-	margin-top:5%;
 	background-color:#2980b9;
 	float:left;	
-}
-#content
-{
-	width:auto;
-	margin-left:250px;
-	height:100%;
-	padding:15px;
-}
-.searchalign {
-	    margin: 2% 2% 10px ;		
+	position: fixed;
+    height: 400px;
+     
 }
 ul#nav{
 	padding:9px;
@@ -82,5 +98,5 @@ ul#nav li a.selected{
 	background-color:#2c3e50;
 	color:#fff;
 }
-
+/*/ Sidebar nav*/
 

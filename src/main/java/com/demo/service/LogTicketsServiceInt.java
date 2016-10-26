@@ -6,6 +6,8 @@ import java.util.List;
 
 
 
+
+import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Tickets;
 
@@ -19,6 +21,6 @@ public interface LogTicketsServiceInt {
 	List<Tickets> getAssignedCallsToTechnician(String username);
 	String updateTicket(TicketsBean ticket);
 	List<Tickets> getAllEmployees(String searchName);
-	TicketsBean ticketsResults();
+	List<PieChart> ticketsResults();
 
 }

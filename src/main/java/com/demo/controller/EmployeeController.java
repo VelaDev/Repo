@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
+import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Device;
 import com.demo.model.Employee;
@@ -29,10 +32,12 @@ public class EmployeeController {
 	private LogTicketsServiceInt logTicketsServiceInt;
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
+	private List<PieChart> beanList = null;
 	String retMessage =null;
 	ModelAndView model = null;
 	String userName = null;
 	String retPage = null;
+	
 	
 	
 	@RequestMapping({"/login", "/"})
@@ -90,15 +95,8 @@ public class EmployeeController {
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
-			TicketsBean be = logTicketsServiceInt.ticketsResults();
-			
-			System.out.println("Minister testing");
-			System.out.println(be.getOpenTickets());
-			System.out.println(be.getClosedTickets());
-			System.out.println(be.getEscalatedTickets());
-			System.out.println(be.getLoggedTickets());
-			/*model.addObject("orderList",ordersServiceInt.getOpenOrders());*/
-			model.addObject("ticketResults",logTicketsServiceInt.ticketsResults());
+			beanList = logTicketsServiceInt.ticketsResults();
+			model.addObject("ticketResults",beanList);
 			model.setViewName("home");
 		}
 		else{

@@ -24,36 +24,36 @@ public class TicketsBean {
 	private String escalateReason;
 	private Calendar slaAcknowledgeDateTime;
 	private String solution;
-	private double openTickets;
-	private double escalatedTickets;
-	private double closedTickets;
-	private double loggedTickets;
+	private int openTickets;
+	private int escalatedTickets;
+	private int closedTickets;
+	private int loggedTickets;
 	
 	
 	
 	
-	public double getLoggedTickets() {
+	public int getLoggedTickets() {
 		return loggedTickets;
 	}
-	public void setLoggedTickets(double loggedTickets) {
+	public void setLoggedTickets(int loggedTickets) {
 		this.loggedTickets = loggedTickets;
 	}
-	public double getOpenTickets() {
+	public int getOpenTickets() {
 		return openTickets;
 	}
-	public void setOpenTickets(double openTickets) {
+	public void setOpenTickets(int openTickets) {
 		this.openTickets = openTickets;
 	}
-	public double getEscalatedTickets() {
+	public int getEscalatedTickets() {
 		return escalatedTickets;
 	}
-	public void setEscalatedTickets(double escalatedTickets) {
+	public void setEscalatedTickets(int escalatedTickets) {
 		this.escalatedTickets = escalatedTickets;
 	}
-	public double getClosedTickets() {
+	public int getClosedTickets() {
 		return closedTickets;
 	}
-	public void setClosedTickets(double closedTickets) {
+	public void setClosedTickets(int closedTickets) {
 		this.closedTickets = closedTickets;
 	}
 	public String getTicketNumber() {

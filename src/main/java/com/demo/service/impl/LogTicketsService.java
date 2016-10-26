@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.dao.LogTicketsDaoInt;
 import com.demo.model.Tickets;
@@ -69,7 +70,7 @@ public class LogTicketsService implements LogTicketsServiceInt{
 	}
 
 	@Override
-	public TicketsBean ticketsResults() {
+	public List<PieChart> ticketsResults() {
 		return logTicketsDAO.ticketsResults();
 	}
 

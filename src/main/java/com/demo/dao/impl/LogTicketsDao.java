@@ -21,6 +21,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.EmployeeDaoInt;
@@ -63,7 +64,11 @@ public class LogTicketsDao implements LogTicketsDaoInt {
     private String retMessage="";
     private String ticketNum ="INC000";
     private List<Tickets> ticketList = null;
-    private TicketsBean ticketBean = null;
+    private PieChart pieChart = null;
+    private PieChart pieChart1 = null;
+    private PieChart pieChart2 = null;
+    private PieChart pieChart3 = null;
+    private List<PieChart> beanList = null;
    
 	@Override
 	public String logTicket(TicketsBean tickets) {
@@ -316,17 +321,22 @@ private String generateTicketNumber(){
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public TicketsBean ticketsResults() {
-		double openTickets = 0;
-		double closedTickets = 0;
-		double escalatedTickets = 0;
-		double loggedTickets = 0;
-		double totalTickets = 0;
-		double totalOpenTickets = 0;
+	public List<PieChart> ticketsResults() {
+		int openTickets = 0;
+		int closedTickets = 0;
+		int escalatedTickets = 0;
+		int loggedTickets = 0;
+		int totalTickets = 0;
+		/*double totalOpenTickets = 0;
 		double totalclosedTickets = 0;
 		double totalEscalatedTickets = 0;
-		double totalLoggegedTickets = 0;
-		ticketBean = new TicketsBean();
+		double totalLoggegedTickets = 0;*/
+		
+		pieChart = new PieChart();
+		pieChart1 = new PieChart();
+	    pieChart2 = new PieChart();
+	    pieChart3 = new PieChart();
+		beanList = new ArrayList<PieChart>();
 		try{
 			
 			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tickets.class);
@@ -342,27 +352,49 @@ private String generateTicketNumber(){
 				}
 				else if(ticket.getSlaStart().equalsIgnoreCase("Closed")){
 					closedTickets ++;
+					
 				}
 				else {
 					loggedTickets++;
+				
 				}
 				totalTickets ++;
+				
 			}
-			 totalOpenTickets = (openTickets/totalTickets)*100;
-			 totalclosedTickets = (closedTickets/totalTickets)*100;
-			 totalEscalatedTickets = (escalatedTickets/totalTickets)*100;
-			 totalLoggegedTickets = (loggedTickets/totalTickets)*100;
 			
-			ticketBean.setOpenTickets(totalOpenTickets);
-			ticketBean.setClosedTickets(totalclosedTickets);
-			ticketBean.setEscalatedTickets(totalEscalatedTickets);
-			ticketBean.setLoggedTickets(totalLoggegedTickets);
+			pieChart.setNumberTicket(openTickets);
+			pieChart.setStatus("Open Tickets");
+			beanList.add(pieChart);
+			
+			pieChart1.setNumberTicket(escalatedTickets);
+			pieChart1.setStatus("Escalated Tickets");
+			beanList.add(pieChart1);
+			
+			pieChart2.setNumberTicket(closedTickets);
+			pieChart2.setStatus("Closed Tickets");
+			beanList.add(pieChart2);
+			
+			pieChart3.setNumberTicket(loggedTickets);
+			pieChart3.setStatus("Logged Tickets");
+			beanList.add(pieChart3);
 		}
 		catch(Exception ex)
 		{
 			
 		}
-		return ticketBean;
+		return beanList;
+	}
+
+	@Override
+	public List<Tickets> getAllLoggedTickets(String startDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Tickets> getAllLoggedTickets(String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

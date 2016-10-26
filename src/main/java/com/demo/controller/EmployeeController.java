@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
+import com.demo.bean.TicketsBean;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.EmployeeServiceInt;
@@ -89,7 +90,15 @@ public class EmployeeController {
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
-			model.addObject("orderList",ordersServiceInt.getOpenOrders());
+			TicketsBean be = logTicketsServiceInt.ticketsResults();
+			
+			System.out.println("Minister testing");
+			System.out.println(be.getOpenTickets());
+			System.out.println(be.getClosedTickets());
+			System.out.println(be.getEscalatedTickets());
+			System.out.println(be.getLoggedTickets());
+			/*model.addObject("orderList",ordersServiceInt.getOpenOrders());*/
+			model.addObject("ticketResults",logTicketsServiceInt.ticketsResults());
 			model.setViewName("home");
 		}
 		else{

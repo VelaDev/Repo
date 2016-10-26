@@ -62,6 +62,8 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	Date date = null;
     private String retMessage="";
     private String ticketNum ="INC000";
+    private List<Tickets> ticketList = null;
+    private TicketsBean ticketBean = null;
    
 	@Override
 	public String logTicket(TicketsBean tickets) {
@@ -310,6 +312,57 @@ private String generateTicketNumber(){
 		}
 		
 		return newTicketNum;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public TicketsBean ticketsResults() {
+		double openTickets = 0;
+		double closedTickets = 0;
+		double escalatedTickets = 0;
+		double loggedTickets = 0;
+		double totalTickets = 0;
+		double totalOpenTickets = 0;
+		double totalclosedTickets = 0;
+		double totalEscalatedTickets = 0;
+		double totalLoggegedTickets = 0;
+		ticketBean = new TicketsBean();
+		try{
+			
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tickets.class);
+			
+			ticketList = (List<Tickets>)criteria.list();
+			
+			for(Tickets ticket:ticketList){
+				if(ticket.getSlaStart().equalsIgnoreCase("Started")){
+					openTickets ++;
+				}
+				else if(ticket.getSlaStart().equalsIgnoreCase("Escalated")){
+					escalatedTickets ++;
+				}
+				else if(ticket.getSlaStart().equalsIgnoreCase("Closed")){
+					closedTickets ++;
+				}
+				else {
+					loggedTickets++;
+				}
+				totalTickets ++;
+			}
+			 totalOpenTickets = (openTickets/totalTickets)*100;
+			 totalclosedTickets = (closedTickets/totalTickets)*100;
+			 totalEscalatedTickets = (escalatedTickets/totalTickets)*100;
+			 totalLoggegedTickets = (loggedTickets/totalTickets)*100;
+			
+			ticketBean.setOpenTickets(totalOpenTickets);
+			ticketBean.setClosedTickets(totalclosedTickets);
+			ticketBean.setEscalatedTickets(totalEscalatedTickets);
+			ticketBean.setLoggedTickets(totalLoggegedTickets);
+		}
+		catch(Exception ex)
+		{
+			
+		}
+		return ticketBean;
 	}
 
 	

@@ -17,5 +17,6 @@ public interface LogTicketsDaoInt {
 	String updateTicket(TicketsBean ticket);
 	void updateSLA(Tickets tickets);
 	List<Tickets> getAllEmployees(String searchName);
+	TicketsBean ticketsResults();
 
 }

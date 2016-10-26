@@ -68,4 +68,9 @@ public class LogTicketsService implements LogTicketsServiceInt{
 		return logTicketsDAO.getAllEmployees(searchName);
 	}
 
+	@Override
+	public TicketsBean ticketsResults() {
+		return logTicketsDAO.ticketsResults();
+	}
+
 }

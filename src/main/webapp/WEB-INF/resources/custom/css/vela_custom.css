@@ -9,10 +9,7 @@ a{
 }
 	
 /*Pie Chart*/
-.pie_chart{
-	padding: 15px;
-    margin-left: 25%;
-}
+
 .open_tickets{
 	background-color:blue;
 	padding: 8px;
@@ -43,21 +40,16 @@ a{
 }
 .pie_content{
 	margin-left:5%;
-	margin-top:2%;
-}
-#ticket_details_pie{
-	
 }		
-/*Pie Chart*/
+/* Closed Pie Chart*/
 
 div#container{
 	width:100%;
 	margin:0 auto;
 }
 .content{
-	background-color:#ecf0f1;
-    margin-left: 200px;
-    height: 500px;
+	margin-left: 200px;
+    height: auto;
     width: auto;
     position: relative;
     overflow: auto;

@@ -2,6 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<title>Home</title>
 </head>
 <body>
 	<div id="container">
@@ -15,21 +16,12 @@
 			<div class="container">
 				<c:import url="templates/navbar.jsp"></c:import>
 				<div class="pie_content">
-					<div id="ticket_details_pie" style="width: 500px; height: 300px">
-
-					</div>
+					<div id="ticket_details_pie" style="width: 900px; height: 500px;"></div>
 				</div>
-
-			</div>
-			<!--/Container class-->
-		</div>
-		<!--/Content-->
-
+			</div><!--/Container class-->
+		</div><!--/Content-->
 	</div><!-- Container id-->
-
-
 </body>
-
 
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script>
@@ -58,7 +50,9 @@
 
     var options = {
 
-      title: 'Tickets overall'
+      title: 'Tickets overall',
+      is3D: true,
+     
 
     };
 
@@ -79,7 +73,7 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
 	rel="stylesheet" type="text/css" />
 
-<link href="<c:url value="/resources/custom/css/pie_chart.css" />"
+<link href="<c:url value="/resources/custom/css/vela_custom.css" />"
 	rel="stylesheet" type="text/css" />
 	<link href="<c:url value="/resources/custom/css/homenav.css" />"
 	rel="stylesheet" type="text/css" />

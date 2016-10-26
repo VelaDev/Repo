@@ -8,8 +8,7 @@
 <c:import url="templates/navbar.jsp"></c:import>
 
 <body class=".container-fluid">
-	<div class="container" style="width: 90%">
-	
+	<div class="container" style="width: 90%">	
 		
 			<c:if test="${not empty retMessage }">
 			<div class="alert alert-info" role="alert">
@@ -17,7 +16,7 @@
 				</c:out>
 			</div>
 			</c:if>
-		
+		<br/>
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">

@@ -16,7 +16,7 @@
 			<div class="container">
 				<c:import url="templates/navbar.jsp"></c:import>
 				<div class="pie_content">
-					<div id="ticket_details_pie" style="width: 900px; height: 500px;"></div>
+					<div id="ticket_details_pie"></div>
 				</div>
 			</div><!--/Container class-->
 		</div><!--/Content-->
@@ -48,6 +48,8 @@
 
       title: 'Tickets overall',
       is3D: true,
+      'width' : 950,
+      'height' : 600
      
 
     };

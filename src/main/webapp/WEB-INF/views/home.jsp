@@ -38,13 +38,9 @@
 
       ['Tickts', 'Percent'],
       
-      ['Open Tickets', 17.36],
-
-      ['Closed Tickets', 15.62],
-
-      ['Logged Tickets', 13.63],
-
-      ['Escalated Tickets', 11.25]
+       <c:forEach items="${ticketResults}" var="pie">
+		[ '${pie.status}', ${pie.numberTicket}],
+	  </c:forEach> 
      
     ]);
 

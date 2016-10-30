@@ -370,7 +370,7 @@
 						</div>
 					</div>
 					</div><!--/close tab-content -->
-				</div>
+				</div><!--/Close panel body-->
 			</div>
 		</div>
 	<!-- </div> -->

@@ -202,5 +202,22 @@ public class LogTicketController {
 		
 		return model;
 	}
-	//escalateTicket
+	
+	@RequestMapping(value="/logTicketAdmin",method=RequestMethod.POST)
+	public ModelAndView logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
+	
+		model = new ModelAndView();
+		userName = (String) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			retMessage = logTicketService.logTicket(logTickets);
+		   model.addObject("retMessage", retMessage);
+		   model.setViewName("logTicket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+		
+	}
+
 }

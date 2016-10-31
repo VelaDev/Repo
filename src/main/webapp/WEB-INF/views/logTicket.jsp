@@ -39,7 +39,7 @@
    <hr>
    </form>
    
-   <form:form method="post" action="logTicket" role="form" modelAttribute="logTicket" id="form">
+   <form:form method="post" action="logTicketAdmin" role="form" modelAttribute="logTicketAdmin" id="form">
 					
 		 <div class="row">
                     <div class="col-xs-12">

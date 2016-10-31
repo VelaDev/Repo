@@ -455,8 +455,8 @@
 
      title: 'Tickets overall',
      is3D: true,
-     'width' : 950,
-     'height' : 600
+     'width' : 800,
+     'height' : 450
      
     };
      // Create and draw the visualization.

@@ -68,6 +68,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
     private PieChart pieChart1 = null;
     private PieChart pieChart2 = null;
     private PieChart pieChart3 = null;
+    private PieChart pieChart4 = null;
     private List<PieChart> beanList = null;
    
 	@Override
@@ -327,15 +328,13 @@ private String generateTicketNumber(){
 		int escalatedTickets = 0;
 		int loggedTickets = 0;
 		int totalTickets = 0;
-		/*double totalOpenTickets = 0;
-		double totalclosedTickets = 0;
-		double totalEscalatedTickets = 0;
-		double totalLoggegedTickets = 0;*/
+		int slaBrigged = 0;
 		
 		pieChart = new PieChart();
 		pieChart1 = new PieChart();
 	    pieChart2 = new PieChart();
 	    pieChart3 = new PieChart();
+	    pieChart4 = new PieChart();
 		beanList = new ArrayList<PieChart>();
 		try{
 			
@@ -352,6 +351,9 @@ private String generateTicketNumber(){
 				}
 				else if(ticket.getSlaStart().equalsIgnoreCase("Closed")){
 					closedTickets ++;
+					
+				}else if(ticket.getSlaStart().equalsIgnoreCase("SLA Bridged")){
+					slaBrigged ++;
 					
 				}
 				else {
@@ -377,6 +379,10 @@ private String generateTicketNumber(){
 			pieChart3.setNumberTicket(loggedTickets);
 			pieChart3.setStatus("Logged Tickets");
 			beanList.add(pieChart3);
+			
+			pieChart4.setNumberTicket(slaBrigged);
+			pieChart4.setStatus("SLA bridged");
+			beanList.add(pieChart4);
 		}
 		catch(Exception ex)
 		{

@@ -452,6 +452,7 @@
     ]);
 
     var options = {
+   
 
      title: 'Tickets overall',
      is3D: true,

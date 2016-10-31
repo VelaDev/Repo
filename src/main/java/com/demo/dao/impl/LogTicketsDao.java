@@ -381,7 +381,7 @@ private String generateTicketNumber(){
 			beanList.add(pieChart3);
 			
 			pieChart4.setNumberTicket(slaBrigged);
-			pieChart4.setStatus("SLA bridged");
+			pieChart4.setStatus("SLA Bridged");
 			beanList.add(pieChart4);
 		}
 		catch(Exception ex)
@@ -393,13 +393,13 @@ private String generateTicketNumber(){
 
 	@Override
 	public List<Tickets> getAllLoggedTickets(String startDate) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public List<Tickets> getAllLoggedTickets(String startDate, String endDate) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

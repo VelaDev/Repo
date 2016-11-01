@@ -8,7 +8,8 @@
 <c:import url="templates/navbar.jsp"></c:import>
 <body>
 	<div class="container" style="width: 90%">
-		
+	
+			<br/>
 			<c:if test="${not empty retMessage }">
 				 <div class="alert alert-info" role="alert">
 				   <c:out value="${ retMessage}">
@@ -103,9 +104,9 @@
 					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Submit"
+							<input type="submit" value="Add Spares"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="submit">
+								id="addSpares">
 						</div>
 					</div>
 				</form:form>

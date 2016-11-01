@@ -9,11 +9,12 @@
 	<div class="container myrow-container" style="width: 90%">
 	
 		
+			<br/>
 			<c:if test="${not empty retMessage }">
-				 <div class="alert alert-info" role="alert">
-				   <c:out value="${ retMessage}">
-			 	   </c:out>
-				</div>
+			<div class="alert alert-info" role="alert">
+				<c:out value="${ retMessage}">
+				</c:out>
+			</div>
 			</c:if>
 		
 
@@ -164,7 +165,7 @@
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
-								<input type="submit" value="Submit"
+								<input type="submit" value="Add Client"
 									class="btn btn-primary btn-block btn-lg" tabindex="9" id="addClient">
 							</div>
 						</div>

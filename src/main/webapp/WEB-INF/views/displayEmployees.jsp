@@ -14,11 +14,13 @@
 </head>
 <body>
 	<div class="container" style="width: 90%">
+		
 		<div class="panel panel-success">
 			<div class="panel-heading">
+			<br/>
 				<h3 class="panel-title">
 					<div align="center">
-						<b>Customer List</b>
+						<b>Employees List</b>
 					</div>
 					<!-- <div align="right"><a href="">Think of something</a></div> -->
 				</h3>

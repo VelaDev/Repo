@@ -40,7 +40,7 @@
 									<!-- <div class="col-lg-10"> -->
 									<div class="panel-body">
 										<div class="pie_content">
-											<div id="ticket_details_pie" align='center'></div>
+											<div id="ticket_details_pie"  align='center'></div>
 										</div>
 									</div>
 								</div><!-- /panel body -->
@@ -126,8 +126,8 @@
     // Set chart options
 		var options = {
 			'title' : 'Ticket Overall',
-			is3D : true,
-			pieSliceText: 'label',
+			 is3D : true,
+			//pieSliceText: 'label',
 			tooltip :  {showColorCode: true},
 			'width' : 700,
 			'height' : 400

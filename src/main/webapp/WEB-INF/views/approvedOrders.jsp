@@ -12,6 +12,7 @@
 <c:import url="templates/techniciannavbar.jsp"></c:import>
 <body class=".container-fluid">
 	<div class="container" style="width: 90%">
+		  <br/>
 		<div class="panel panel-success">
 			<div class="panel-heading">
 				<h3 class="panel-title">

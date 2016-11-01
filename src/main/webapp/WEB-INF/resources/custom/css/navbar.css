@@ -1,5 +1,27 @@
 @CHARSET "ISO-8859-1";
-
+`
+ /* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+   margin-bottom: 0;
+   border-radius: 0;
+}
+.velaphanda_containter{
+   margin-left:20px;
+   margin-right:20px;
+}
+.userloggedin {
+	/* margin-right:6%;
+	margin-bottom:5%;
+	margin-top:-4%;
+	 */
+	margin-right: 1%;
+    margin-bottom: 9%;
+    margin-top: -8%;
+}
+.loggedin {
+	float: right;
+}
+		
 .container {
 	width: 100%;
 }
@@ -21,15 +43,7 @@
 	-moz-border-radius: 0 6px 6px 6px;
 	border-radius: 0 6px 6px 6px;
 }
-.userloggedin {
-	/* margin-right:6%;
-	margin-bottom:5%;
-	margin-top:-4%;
-	 */
-	margin-right: 1%;
-    margin-bottom: 9%;
-    margin-top: -8%;
-}	
+
 .dropdown-submenu>a:after {
 	border-color: transparent transparent transparent #333;
 	border-style: solid;
@@ -42,11 +56,6 @@
 	margin-top: 5px;
 	width: 0;
 }
-
-.loggedin {
-	float: right;
-}
-
 
 .dropdown-submenu:hover>a:after {
 	border-left-color: #555;
@@ -104,4 +113,9 @@
 	#navbar {
 		text-align: center;
 	}
+}
+/* Add a gray background color and some padding to the footer */
+footer {
+   background-color: #f2f2f2;
+   padding: 25px;
 }

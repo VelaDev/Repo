@@ -42,7 +42,9 @@ a{
 	margin-left:5%;
 }		
 /* Closed Pie Chart*/
-
+#ticket_details_pie{
+	
+}
 div#container{
 	width:100%;
 	margin:0 auto;

@@ -8,7 +8,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 			<br />
 			<div class="panel panel-success">
@@ -305,13 +305,13 @@
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Escalate
 										Reason</label>
 									<div class="col-sm-10">
-										<textarea rows="3" cols="79" name="escalateReason"
+										<textarea rows="3" cols="82" name="escalateReason"
 											class="required" required="required"></textarea>
 									</div>
 								</div>
 								<br>
 								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
+									<div class="col-sm-offset-2 col-sm-6">
 										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="submit">
@@ -331,7 +331,7 @@
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Resolution</label>
 									<div class="col-sm-10">
-										<textarea rows="3" cols="79" class="required"
+										<textarea rows="3" cols="82" class="required"
 											required="required"></textarea>
 									</div>
 								</div>
@@ -339,13 +339,13 @@
 								<div class="form-group row">
 									<label for="inputPassword3" class="col-sm-2 form-control-label">Solution</label>
 									<div class="col-sm-10">
-										<textarea rows="3" cols="79" class="required"
+										<textarea rows="3" cols="82" class="required"
 											required="required"></textarea>
 									</div>
 								</div>
 								<br />
 								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
+									<div class="col-sm-offset-2 col-sm-6">
 										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="submit">

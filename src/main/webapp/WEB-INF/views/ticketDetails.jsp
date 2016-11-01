@@ -26,6 +26,7 @@
 								data-toggle="tab">General</a></li>
 							<li><a href="#clientDetails" data-toggle="tab">Client</a></li>
 							<li><a href="#productDetails" data-toggle="tab">Product</a></li>
+							<li><a href="#escalationDetails" data-toggle="tab">Escalate</a></li>
 							<li><a href="#solutionsDetails" data-toggle="tab">Solution</a></li>
 							<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 						</ul>
@@ -285,6 +286,40 @@
 						</div>
 						
 						<!--solution tab-->
+						<div class="tab-pane" id="escalationDetails">
+							
+							<h4 align="center">Escalate Ticket</h4><br>
+							
+							<form:form>
+								
+								<div class="form-group row">
+									<label class="col-sm-2">Escalate</label>
+									<div class="col-sm-10">
+										<div class="checkbox">
+											<label> <input type="checkbox" name="escalate"
+												value="true">
+											</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-group row">
+									<label for="inputPassword3" class="col-sm-2 form-control-label">Escalate
+										Reason</label>
+									<div class="col-sm-10">
+										<textarea rows="3" cols="79" name="escalateReason" class="required" required="required"></textarea>
+									</div>
+								</div><br>
+								<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<input type="submit" value="Submit"
+									class="btn btn-primary btn-block btn-lg" tabindex="9" id="submit">
+							</div>
+						</div>
+							</form:form>
+
+						</div>
+						
+						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
 							
 							<h4 align="center">Solution Details</h4><br>
@@ -303,23 +338,7 @@
 										<textarea rows="3" cols="79" class="required" required="required"></textarea>
 									</div>
 								</div>
-								<div class="form-group row">
-									<label class="col-sm-2">Escalate</label>
-									<div class="col-sm-10">
-										<div class="checkbox">
-											<label> <input type="checkbox" name="escalate"
-												value="true">
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 form-control-label">Escalate
-										Reason</label>
-									<div class="col-sm-10">
-										<textarea rows="3" cols="79" name="escalateReason" class="required" required="required"></textarea>
-									</div>
-								</div><br>
+								<br/>
 								<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
 								<input type="submit" value="Submit"

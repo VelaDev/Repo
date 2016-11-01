@@ -61,7 +61,30 @@
 								<div class="panel-body">
 									<!-- <div class="col-lg-10"> -->
 									<div class="panel-body">
-										
+									<%-- 	<table class="table table-striped custab">
+												<thead style="background-color: #bce8f1;">
+													<tr>
+														<th>Ticket No</th>
+														<th>Description</th>
+														<!-- <th>Date</th> -->
+														<th>Status</th>
+														<th>Technician</th>
+														<th>Edit</th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach items="${ticketList}" var="ticket">
+														<tr>
+															<th><c:out value="${ticket.ticketNumber}" /></th>
+															<th><c:out value="${ticket.description}" /></th>
+															<th><c:out value="${ticket.dateTime}"/></th>
+															<th><c:out value="${ticket.status}" /></th>
+															<th><c:out value="${ticket.employee.getUsername()}" /></th>
+															<th><a href="editEmployee?id=<c:out value='${emp.id}'/>">Edit</a></th>
+														</tr>
+													</c:forEach>
+												</tbody>
+										</table> --%>
 									</div>
 								</div><!-- /panel body -->
 							</div><!-- /panel panel-success -->
@@ -69,16 +92,14 @@
 						</div><!-- Ticket Detials -->
 						
 					</div><!-- /tab-content -->
-					
-				</div><!-- /Content -->
-			</div><!--/Container class-->
-		</div>
-
-	<footer class="container-fluid text-center">
-		<p><b>Velaphanda Trading & Projects</b> BBB-EE Level 1 <br/> All software is copyright © by <a href="www.velatp.co.za">www.velatp.co.za</a><p/>
-	</footer>
-
-	</div>
+									
+				</div><!-- /panel body -->
+			</div><!--/panel success class-->
+		</div><!-- /Container -->
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
+	</div><!-- / velaphanda_containter -->
 
 	
 <script type="text/javascript" src="https://www.google.com/jsapi"></script> 

@@ -3,8 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -27,9 +25,7 @@ src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
 							class="img-responsive" alt="" />
 							<div class="errorLogin">
 								 <h2>You are not registered to use the system. Consults Administrator</h2> or <a href="login.html">Login</a> with correct credentials
-							</div>
-							
-											
+							</div>				
 					</form>
 					
 					<div class="form-links" style="margin-right: 160px">

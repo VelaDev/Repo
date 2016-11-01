@@ -12,87 +12,9 @@
 
 <script src="/resources/bootstrap-3.3.6/js/jquery-3.0.0.min.js"></script>
 <script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link rel="stylesheet" type="text/css"
-	href="/resources/bootstrap-3.3.6/css/bootstrap.min.css">
-
-<style type="text/css">
-@CHARSET "UTF-8";
-
-.progress-bar {
-	color: #333;
-}
-
-{
--webkit-box-sizing:border-box;   
--moz-box-sizing:border-box;	        
-box-sizing:border-box;	
-outline:none;
-}
-.form-control {
-	position: relative;
-	font-size: 16px;
-	height: auto;
-	padding: 10px;
-	@include
-	box-sizing(border-box);
-	&:
-	focus
-	{
-	z-index:2;
-	}
-
-}
-body {
-	background: url(http://i.imgur.com/GHr12sH.jpg) no-repeat center center
-		fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}
-
-.login-form {
-	margin-top: 60px;
-}
-
-form[role=login] {
-	color: #5d5d5d;
-	background: #f2f2f2;
-	padding: 26px;
-	border-radius: 10px;
-	-moz-border-radius: 10px;
-	-webkit-border-radius: 10px;
-	width: 380px;
-}
-
-form[role=login] img {
-	display: block;
-	margin: 0 auto;
-	margin-bottom: 35px;
-}
-
-form[role=login] input, form[role=login] button {
-	font-size: 20px;
-	margin: 18px 0;
-}
-
-form[role=login]>div {
-	text-align: center;
-}
-
-.form-links {
-	text-align: center;
-	margin-top: 1em;
-	margin-bottom: 50px;
-}
-.form-links a {
-	color: #fff;
-}
-</style>
-<link
-	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
+src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/login.css" />" />
 <body>
 	<div class="container">
 		<div class="row" id="pwd-container">

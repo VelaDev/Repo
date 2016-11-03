@@ -1,141 +1,167 @@
-<%@ include file="templates/taglibs.jsp"%>
+<%@include file="templates/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Register Employee</title>
+  <title>Register Employee | Velaphanda Trading & Projects</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
+	
+  <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" /> 
+  <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
+	
 </head>
-<c:import url="templates/navbar.jsp"></c:import>
-
-<body class=".container-fluid">
-	<div class="container" style="width: 90%">	
-			<br/>
-			<c:if test="${not empty retMessage }">
+<body>
+	<div class="velaphanda_containter">	
+		<c:import url="templates/navbar.jsp"></c:import>
+		<div class="container">
+		<br/>
+		<c:if test="${not empty retMessage }">
 			<div class="alert alert-info" role="alert">
 				<c:out value="${ retMessage}">
 				</c:out>
 			</div>
 			</c:if>
-		
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<div align="center">
+			<div class="panel panel-success">    
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="center">
 						<b>Add Employee</b>
 					</div>
-				</h3>
-			</div>
-			<div class="panel-body">
-				<form:form method="post" action="addEmployee"
+					</h3>
+				</div>
+				<div class="panel-body">					
+					<div class="tab-content">
+					
+				<form:form class="well form-horizontal" method="post" action="addEmployee"
 					modelAttribute="addEmployee" id="addEmployee">
 
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>First Name:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm"
-									name="firstName" class="required" required="required">
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Last Name:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="lastName" class="required" required="required">
+					
+					<!--First column-->
+					<div class="col-sm-6">
+					
+						<!-- Text input First Name-->	
+						<div class="form-group">
+							<label class="col-md-3 control-label">First Name</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
+										placeholder="First Name" class="form-control" type="text">
+								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Title:</label>
 
-							</div>
-							<div class="col-xs-3">
-								<select name="title" class="form-control" class="required" required="required">
-									<option value="">Title
-									<option>
-									<option value="Mr">Mr</option>
-									<option value="Miss">Miss</option>
-									<option value="Mrs">Mrs</option>
-									<option value="Doc">Dr</option>
-								</select>
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Gender:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<select name="gender" class="form-control" class="required" required="required">
-									<option value="">Gender
-									<option>
-									<option value="Male">Male</option>
-									<option value="Female">Female</option>
-								</select>
+						<!-- Text input Last Name-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Last Name</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
+										placeholder="Last Name" class="form-control" type="text">
+								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Username:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="username" class="required" required="required">
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Password:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="password" class="form-control input-sm"
-									name="password" class="required" required="required">
+						
+						<!-- Select type Title-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Title</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span> <select name="title"
+										class="form-control selectpicker">
+										<option value=" ">Select Title</option>
+										<option value="Mr">Mr</option>
+										<option value="Miss">Miss</option>
+										<option value="Mrs">Mrs</option>
+										<option value="Doc">Dr</option>
+									</select>
+								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Email:</label>
-
+						
+						<!-- Select type Gender-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Gender</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span> <select name="gender"
+										class="form-control selectpicker">
+										<option value=" ">Select Gender</option>
+										<option value="Mr">Male</option>
+										<option value="Miss">Female</option>
+										
+									</select>
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="email" class="required" required="required">
+						</div>
+								
+					</div><!-- / F column -->	
+					
+					<!--Second column-->		
+					<div class="col-sm-6">
+					
+					<!-- Text input Username-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Username</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-envelope"></i></span> <input name="username"
+										placeholder="Username" class="form-control" type="text">
+								</div>
 							</div>
-
-							<div class="col-xs-2 form-control-label" >
-								<label>Role:</label>
-
+						</div>
+						
+					<!-- Text input password-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Password</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-lock"></i></span> <input name="password"
+										placeholder="Password" class="form-control" type="password">
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<select name="role" class="form-control" class="required" required="required">
-									<option value="">Role
-									<option>
-									<option value="Admin">Admin</option>
+						</div>
+						
+					<!-- Text input email-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">E-Mail</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
+										placeholder="E-Mail Address" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						
+						<!-- Select type Role-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Role</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span> <select name="role"
+										class="form-control selectpicker">
+										<option value=" ">Select Role</option>
+										<option value="Admin">Admin</option>
 									<option value="Manager">Manager</option>
 									<option value="Technician">Technician</option>
 									<option value="User">User</option>
-								</select>
+										
+									</select>
+								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-					 <!-- <div class="form-group">
-						<div class="col-sm-offset-2 col-sm-8">
-							<div id="messages"></div>
-						</div>
-					</div -->
+						
+					</div><!-- /S column  -->
 					
+					<br>
+					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<input type="submit" value="Register Employee"
@@ -146,19 +172,27 @@
 					
 					
 				</form:form>
+						
+					</div><!-- /tab-content -->									
+				</div><!-- /panel body -->
+			</div><!--/panel success class-->
+		</div><!-- /Container -->
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
+	</div><!-- / velaphanda_containter -->
+	
+<!-- Validator -->
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 
-			</div>
-		</div>
-	</div>
-</body>
 
 <!-- Validatev register employee -->
-
 <script>
-/* $(document).ready(function() {
+ $(document).ready(function() {
     $('#addEmployee').bootstrapValidator({
-       container: '#messages',
-       feedbackIcons: {
+         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
@@ -166,6 +200,9 @@
         fields: {
         	firstName: {
                 validators: {
+					stringLength : {
+						min : 2,
+					},
                     notEmpty: {
                         message: 'First Name is required and cannot be empty'
                     }
@@ -173,6 +210,9 @@
             },
             lastName: {
                 validators: {
+					stringLength : {
+						min : 2,
+					},
                     notEmpty: {
                         message: 'Last Name is required and cannot be empty'
                     }
@@ -195,6 +235,9 @@
             username: {
                 validators: {
                     notEmpty: {
+					stringLength : {
+						min : 2,
+					},
                         message: 'Username is required and cannot be empty'
                     }
                 }
@@ -202,6 +245,9 @@
             password: {
                 validators: {
                     notEmpty: {
+					stringLength : {
+						min : 4,
+					},
                         message: 'Password is required and cannot be empty'
                     }
                 }
@@ -226,17 +272,8 @@
         }
     });
 });
- */
+
 </script>
 
-<!-- Validator -->
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script> 
- <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
- 
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-<link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
-<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
-
+</body>
 </html>
-

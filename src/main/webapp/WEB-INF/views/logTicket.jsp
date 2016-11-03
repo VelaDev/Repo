@@ -24,7 +24,7 @@
             </h3>
         </div>
    <div class="panel-body">
-       <form action="searchSerialNumberLogtickr" method="post">
+       <form action="searchSerialNumberLogtickr" method="post" id="logTicket">
         <div class="row">
         
            <div class="col-xs-2 form-control-label" align="center">Serial Number:</div>

@@ -158,7 +158,7 @@
 							</div>
 						</div>
 						
-					</div><!-- /S column  -->
+					</div><!-- S .Column -->
 					
 					<br>
 					<br>

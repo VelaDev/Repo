@@ -48,7 +48,7 @@
 								</div>								
 							</div>
 							<div class="col-md-2">
-									<input class="btn btn-success" type='submit' name="search" />
+									<input class="btn btn-success" type='submit' name="search" value='Search' />
 							</div>
 							</div>
 					</div>

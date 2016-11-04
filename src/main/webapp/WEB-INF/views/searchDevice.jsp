@@ -1,4 +1,4 @@
-<%@include file="templates/taglibs.jsp"%>
+<%@ include file="templates/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,70 +9,56 @@
 
 .groupproductdetails {
 	float: right;
-	margin-right: +15%;
+	margin-right: +10%;
 }
 
 .content {
-	margin-left: -75%;
+	margin-left: -61%;
 	width: 180%;
 }
-
-<
-style type ="text /css">.myrow-container {
-	margin: 20px;
-}
 </style>
-
-<c:import url="templates/navbar.jsp"></c:import>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Search Device</title>
+<title>Search Device | Velaphanda Trading & Projects</title>
 </head>
-<body class=".container-fluid">
 
-	<div class="container" style="width: 90%">
-
-		<br/>
-		<c:if test="${not empty retMessage }">
-			<div class="alert alert-info" role="alert">
-				<c:out value="${ retMessage}">
-
-				</c:out>
-			</div>
-		</c:if>
-
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<div align="center">
-						<b>Machine Details</b>
-					</div>
-				</h3>
-			</div>
-			<div class="panel-body">
-				<form action="searchDeviceBySerialNo" method="post"
-					id="searchDevice">
-					<div class="row">
-   					  <div class="col-xs-2 form-control-label" align="center">Search
-							Device
-					  </div>
-					  <div class="col-xs-3">
-						<input type="text" class="form-control input-sm" name="SerialNo"
-								id="SerialNo" placeholder="Serial No">
-					   </div>
-					   <div class="col-xs-2">
-							<input class="btn btn-success" type='submit' value='Search' />
-					    </div>
-						<div class="col-sm-offset-2 col-sm-8">
-								<div id="messages"></div>
+<body>
+	<div class="velaphanda_containter">
+		<c:import url="templates/navbar.jsp"></c:import>
+		<div class="container">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="left">
+							<b>Machine Details</b>
 						</div>
-					</div>
-
-					</div>
-					<br>
-					<hr>
-					<br>
-				</form>
-				<form action="">
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="tab-content">
+						<form action="searchDeviceBySerialNo" method="post"
+						id="searchDevice">
+								<div class="row">
+									<!-- Text input Search-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Search Device </label>
+										<div class="col-md-4 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-hdd"></i></span> <input
+													name="SerialNo" id="SerialNo" class="form-control"
+													type="text" placeholder='Search By Serial Number'>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<input class="btn btn-success" type='submit' value='Search' />
+										</div>
+									</div>
+								</div>
+							<hr>
+						</form>
+								
+						<div class="col-xs-10">
+							<form action="">
 					<div class="groupdetails-row-padding">
 
 						<div class="groupproductdetails">
@@ -194,11 +180,27 @@ style type ="text /css">.myrow-container {
 
 					</div>
 				</form>
-			</div>
-		</div>
-	</div>
-
-</body>	
+						</div>
+				  </div><!-- /tab-content -->
+				</div><!-- /panel body -->
+			  </div><!--/panel success class-->
+			</div><!-- /Container -->
+		
+	   <!-- Footer -->
+	  <c:import url="templates/footer.jsp"></c:import>
+	 <!--/ Footer -->
+	 
+	</div><!-- / velaphanda_containter -->
+	
+	<!-- Script -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<!-- /Script -->
+	
 <script type="text/javascript">
 	$(document)
 			.ready(
@@ -206,7 +208,6 @@ style type ="text /css">.myrow-container {
 						$('#searchDevice')
 								.bootstrapValidator(
 										{
-											container : '#messages',
 											feedbackIcons : {
 												valid : 'glyphicon glyphicon-ok',
 												invalid : 'glyphicon glyphicon-remove',
@@ -224,20 +225,5 @@ style type ="text /css">.myrow-container {
 							   });
 					});
 </script>
-
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
-<link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
-<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
-
-<%-- 
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link
-	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" /> --%>
+</body>
 </html>

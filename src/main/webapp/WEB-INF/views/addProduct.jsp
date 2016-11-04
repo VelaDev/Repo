@@ -3,160 +3,213 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Product</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+<title>Add Product | Velaphanda Trading & Projects</title>
 </head>
-<c:import url="templates/navbar.jsp"></c:import>
-<body class=".container-fluid">
-	<div class="container myrow-container" style="width: 90%">
-		
-		<c:if test="${not empty retMessage }">
-				 <div class="alert alert-info" role="alert">
-				   <c:out value="${ retMessage}">
-			 	   </c:out>
-				 </div>
-		</c:if>
-		
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<div align="center">
+<body>
+	<div class="velaphanda_containter">
+		<c:import url="templates/navbar.jsp"></c:import>
+		<div class="container">
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="center">
 						<b>Device Installation</b>
-					</div>
-					<!-- <div align="right"><a href="">Think of something</a></div> -->
-				</h3>
-			</div>
-			<div class="panel-body">
-				<form action="searchClientforProduct" method="post" id="searchClientforProduct">
-					<div class="row">
-
-						<div class="col-xs-2 form-control-label" align="center">Search
-							Customer</div>
-						<div class="col-xs-3">
-							<input type="text" class="form-control input-sm"
-								name="clientName" id="clientName" >
 						</div>
-						<div class="col-xs-2">
-							<input class="btn btn-success" type='submit' value='Search' />
-						</div>
-
-					</div>
-					<hr>
-				</form>
-				<form:form method="POST" action="saveProduct"
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="tab-content">
+						<form action="searchClientforProduct" method="post" id="searchClientforProduct">
+							<div class="row">
+								<!-- Text input Search-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Search Client </label>
+									<div class="col-md-4 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												name="clientName" id="clientName" class="form-control"
+												type="text" placeholder='Search By Client Name'>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<input class="btn btn-success" type='submit' value='Search' />
+									</div>
+								</div>
+							</div>
+							<hr>
+						</form><!--Search-->
+				<form:form class="well form-horizontal" method="POST" action="saveProduct"
 					modelAttribute="saveProduct">
 
 					<fieldset>
 						<legend>Customer Details</legend>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Company Name:</label>
+								<!--First column-->
+							<div class="col-sm-6">
 
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.clientName}" name="clientName" class="required" required>
+								<!-- Text input Client Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Client Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												name="clientName" placeholder="Client Name"
+												class="form-control" value="${client.clientName}"
+												type="text">
+										</div>
+									</div>
 								</div>
 
-								<div class="col-xs-2 form-control-label">
-									<label>Contact Person</label>
-
+								<!-- Text input Contact Person-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contact Person</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												name="contactPerson" placeholder="Contact Person"
+												class="form-control" value="${client.contactPerson}"
+												type="text">
+										</div>
+									</div>
 								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.contactPerson}" name="contactPerson">
+
+								<!-- Select type Province-->
+								
+						<div class="form-group">
+							<label class="col-md-3 control-label">Province</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span> <select name="province"
+										class="form-control selectpicker">
+										<option value=" ">${client.province}</option>
+										<option value="Gauteng">Gauteng</option>
+										<option value="Limpopo">Limpopo</option>
+										<option value="Nort West">North West</option>
+										<option value="Free State">Free State</option>
+										<option value="Mpumalanga">Mpumalanga</option>
+										<option value="KwaZulu Natal">KwaZulu Natal</option>
+										<option value="Northern Cape">Northern Cape</option>
+										<option value="Eastern Cape">Eastern Cape</option>
+										<option value="Mpumalanga">Western Cape</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+
+								<!-- Text input City or Town-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">City/Town</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="city_town" placeholder="City / Town"
+												class="form-control" value="${client.city_town}" type="text">
+										</div>
+									</div>
+								</div>
+
+								<!-- Text input Street Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Street Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="streetName" placeholder="Street Name"
+												class="form-control" value="${client.streetName}"
+												type="text">
+										</div>
+									</div>
+								</div>
+						<!-- Text input Area Code-->
+						 <div class="form-group">
+							<label class="col-md-3 control-label">Area Code</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+										placeholder="Area Code" class="form-control" value="${client.zipcode}" type="text">
 								</div>
 							</div>
 						</div>
 
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Tel:</label>
+					</div><!-- / F column -->
 
+							<!--Second column-->
+							<div class="col-sm-6">
+								<!-- Text input Floor Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Floor No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="floorNumber" placeholder="Floor Number"
+												class="form-control" value="${client.floorNumber}"
+												type="text">
+										</div>
+									</div>
 								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.tellphoneNumber}" name="tellphoneNumber">
+								<!-- Text input Tellphone Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Telephone No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="tellphoneNumber" placeholder="Tellphone Number"
+												class="form-control" value="${client.tellphoneNumber}"
+												type="text">
+										</div>
+									</div>
 								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Cell</label>
-
+								<!-- Text input Fax Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Fax Number</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="faxNumber" placeholder="Fax Number"
+												class="form-control" value="${client.faxNumber}" type="text">
+										</div>
+									</div>
 								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.cellNumber}" name="cellNumber">
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Email:</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.email}" name="email">
-								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Fax</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.faxNumber}" name="faxNumber">
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Street No:</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										name="streetNumber" value="${client.streetNumber}" name="streetNumber">
-								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Street Name</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.streetName}" name="streetName">
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Surbub:</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.city_town}" name="city_town" >
+								<!-- Text input Cellphone Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Mobile Number</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="cellNumber" placeholder="Mobile Number"
+												class="form-control" value="${client.cellNumber}"
+												type="text">
+										</div>
+									</div>
 								</div>
 
-								<div class="col-xs-2 form-control-label">
-									<label>Floor No</label>
-
+								<!-- Text input Email-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">E-Mail</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-envelope"></i></span> <input
+												name="email" placeholder="E-Mail Address"
+												class="form-control" value="${client.email}" type="text">
+										</div>
+									</div>
 								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										value="${client.floorNumber}" name="floorNumber">
-								</div>
-							</div>
-						</div>
+								
+							</div><!-- /S Column -->
 						<br>
 					</fieldset>
 					<br>
@@ -164,51 +217,65 @@
 					<fieldset>
 						<legend>Machine Details</legend>
 						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Serial No:</label>
+						<!--First Column-->
+						<div class="col-md-6">
+								<!-- Text input Serial No-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Serial No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="serialNumber" placeholder="Serial Number"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text input Contract Start Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract Start Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="startDate" id="startDate" placeholder="YYYY-MM-DD"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+							
+						</div><!--/F Column-->
+												
+						<!--Second column-->
+							<div class="col-sm-6">
+								<!-- Text input Machine Model-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Machine Model</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="productModel" placeholder="Product Model"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
 
+								<!-- Text input Contract End Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract End Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="endDate" id="endDate" placeholder="YYYY-MM-DD"
+												class="form-control" type="text">
+										</div>
+									</div>
 								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										name="serialNumber" class="required" required="required">
-								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Machine Model</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm"
-										name="productModel" class="required" required="required">
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xs-12">
-								<div class="col-xs-2 form-control-label">
-									<label>Contract Start Date:</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" id="startDate"
-										name="startDate" placeholder="YYYY-MM-DD" class="required"
-										required="required">
-								</div>
-
-								<div class="col-xs-2 form-control-label">
-									<label>Contract End Date</label>
-
-								</div>
-								<div class="col-xs-3">
-									<input type="text" class="form-control input-sm" id="endDate"
-										name="endDate" placeholder="YYYY-MM-DD" class="required"
-										required="required">
-								</div>
-							</div>
-						</div>
+							</div><!--/S Column-->
+						
 					</fieldset>
 
 					<br>
@@ -309,16 +376,26 @@
 						</div>
 					</div>
 				</form:form>
-			</div>
+			  </div><!-- /tab-content -->
+			</div><!-- /panel body -->
+		 </div><!--/panel success class-->
+		</div><!-- /Container -->
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
+	</div><!-- / velaphanda_containter -->
 
+	<!-- Script -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>		
+	<script type="text/javascript"  src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+	<!-- /Script -->
 
-
-		</div>
-	</div>
-
-
-</body>
-<script type="text/javascript">
+<script>
 	$(document)
 			.ready(
 					function() {
@@ -343,21 +420,6 @@
 							   });
 					});
 </script>
-<%-- 
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" /> --%>
-
-
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.10.2/jquery-1.10.2.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.5/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
-<link href="<c:url value="/resources/bootstrap-3.3.5/css/bootstrap.min.css" />"	rel="stylesheet" type="text/css" /> 
-<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
-
-	
-<script type="text/javascript"  src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
 
 
 	
@@ -400,10 +462,4 @@
 	};
 </script>
 
-
-<style type="text/css">
-.bs-example {
-	margin: 20px;
-}
-</style>
 </html>

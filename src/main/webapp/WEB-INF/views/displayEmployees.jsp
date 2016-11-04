@@ -1,33 +1,25 @@
 <%@include file="templates/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
-<style type="text/css">
-.myrow-container {
-	margin: 20px;
-}
-</style>
-
-<c:import url="templates/navbar.jsp"></c:import>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Display Employees</title>
+  <title>Display Employees | Velaphanda Trading & Projects</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
 </head>
 <body>
-	<div class="container" style="width: 90%">
+	<div class="velaphanda_containter">	
+		<c:import url="templates/navbar.jsp"></c:import>
+		<div class="container">
 		
-		<div class="panel panel-success">
-			<div class="panel-heading">
-			<br/>
-				<h3 class="panel-title">
-					<div align="center">
-						<b>Employees List</b>
-					</div>
-					<!-- <div align="right"><a href="">Think of something</a></div> -->
-				</h3>
-			</div>
-			<div class="panel-body">
-
-				<div class="row">
+			<div class="panel panel-success">    
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="center"><b>Employees List</b> </div>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="tab-content">
+							<div class="row">
 					<div class="content">
 						<table class="table table-hover ">
 							<thead style="background-color: #bce8f1;">
@@ -53,22 +45,16 @@
 						</table>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+						
+					</div><!-- /tab-content -->
+									
+				</div><!-- /panel body -->
+			</div><!--/panel success class-->
+		</div><!-- /Container -->
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
+	</div><!-- / velaphanda_containter -->
 
 </body>
-<%-- 
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link
-	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" /> --%>
-		
-<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
-<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" />
-	
 </html>

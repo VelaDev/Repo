@@ -1,126 +1,154 @@
-<%@ include file="templates/taglibs.jsp"%>
+<%@include file="templates/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Add Parts</title>
-</head>
-<c:import url="templates/navbar.jsp"></c:import>
-<body>
-	<div class="container" style="width: 90%">
+  <title>Add Parts | Velaphanda Trading & Projects</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">  
 	
-			<br/>
-			<c:if test="${not empty retMessage }">
-				 <div class="alert alert-info" role="alert">
-				   <c:out value="${ retMessage}">
-			 	   </c:out>
-				</div>
-			</c:if>
-		
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<div align="center">
-						<b>Add Spares</b>
-					</div>
-					<!-- <div align="right"><a href="">Think of something</a></div> -->
-				</h3>
+  <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" /> 
+  <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
+	
+</head>
+<body>
+	<div class="velaphanda_containter">	
+		<c:import url="templates/navbar.jsp"></c:import>
+		<div class="container">
+		<br/>
+		<c:if test="${not empty retMessage }">
+			<div class="alert alert-info" role="alert">
+				<c:out value="${ retMessage}">
+				</c:out>
 			</div>
-			<div class="panel-body">
-				<form:form method="post" action="saveSpareParts"
+			</c:if>
+			<div class="panel panel-success">    
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="center">
+							<b>Add Spares</b>
+						</div>
+					</h3>
+				</div>
+				<div class="panel-body">					
+				<div class="tab-content">
+				
+				<form:form class="well form-horizontal" method="post" action="saveSpareParts"
 					modelAttribute="saveSpareParts" id="saveSpareParts">
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Part Number:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<select name="partNumber" class="form-control" tabindex="1" class="required" required="required">
-									<option value="">Part Number
-									<option>
-									<option value="CLT-R806K">CLT-R806K</option>
-									<option value="CLT-R806X">CLT-R806X</option>
-									<option value="CLT-W806">CLT-W806</option>
-								</select>
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Item Type:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<select name="itemType" class="form-control" tabindex="1" class="required" required="required">
-									<option value="">Item Type
-									<option>
-									<option value="Toner">Toner</option>
-									<option value="Spares">Spares</option>
-								</select>
+							
+					<!--First column-->
+					<div class="col-sm-6">
+					
+						<!-- Select type Part Number-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Part Number</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="partNumber"
+										class="form-control selectpicker">
+										<option value="">Select Part Number<option>
+										<option value="CLT-R806K">CLT-R806K</option>
+										<option value="CLT-R806X">CLT-R806X</option>
+										<option value="CLT-W806">CLT-W806</option>
+									</select>
+								</div>
 							</div>
 						</div>
-					</div>
-					<br>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Model Number:</label>
 
+						
+						<!-- Select type Item Type-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Item Type</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="itemType"
+										class="form-control selectpicker">
+										<option value="">Select Item Type<option>
+									<option value="Toner">Toner</option>
+									<option value="Spares">Spares</option>
+									</select>
+								</div>
 							</div>
-							<div class="col-xs-3">
-								<select name="modelNumber" class="form-control" tabindex="2" class="required" required="required">
-									<option value="">Model Number
-									<option>
-									<option value="MultiXpress X7500LX">MultiXpress
-										X7500LX</option>
-
-
-								</select>
+						</div>
+						
+						
+					</div><!-- / F column -->	
+					
+					<!--Second column-->		
+					<div class="col-sm-6">
+					
+					
+						<!-- Select type Model Number-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Model Number</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="modelNumber"
+										class="form-control selectpicker">
+										<option value="">Select Item Type<option>
+										<option value="MultiXpress X7500LX">MultiXpress	X7500LX</option>
+									</select>
+								</div>
 							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Description:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<select name="description" class="form-control" tabindex="3" class="required" required="required">
-									<option value="">Description
-									<option>
+						</div>
+						
+						<!-- Select type Description-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Description</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="description"
+										class="form-control selectpicker">
+										<option value="">Select Description<option>
 									<option value="Black Imaging Unit">Black Imaging Unit</option>
 									<option value="Color Imaging Unit">Color Imaging Unit</option>
 									<option value="Waste Toner Bottle">Waste Toner Bottle</option>
-
-
-								</select>
+									</select>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-8">
-							<div id="messages"></div>
+						
+					</div><!-- /S column  -->
+					
+						<br><br>
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<input type="submit" value="Add Spares"
+									class="btn btn-primary btn-block btn-lg" tabindex="9"
+									id="addSpares">
+							</div>
 						</div>
-						</div>
-					<br>
-					<div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Add Spares"
-								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="addSpares">
-						</div>
-					</div>
 				</form:form>
-			</div>
-		</div>
-	</div>
-</body>
+						
+					</div><!-- /tab-content -->									
+				</div><!-- /panel body -->
+			</div><!--/panel success class-->
+		</div><!-- /Container -->
+		
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
+		
+	</div><!-- / velaphanda_containter -->
+	
+<!-- Scripts -->
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<!-- /Scripts -->
 
-<script type="text/javascript">
-
-/* $(document).ready(function() {
+<!-- Validate add part -->
+<script>
+  $(document).ready(function() {
     $('#saveSpareParts').bootstrapValidator({
-        container: '#messages',
-        feedbackIcons: {
+            feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
             validating: 'glyphicon glyphicon-refresh'
@@ -156,26 +184,10 @@
             },            
         }
     });
-}); */
+});
+
 </script>
-	
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.js"></script>  
-<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>  
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/css/bootstrapValidator.min.css"/>
-<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"> </script>
 
-<%-- <script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link
-	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" /> --%>
 
-<%-- 
-<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
-<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"rel="stylesheet" type="text/css" />
- --%>	
+</body>
 </html>

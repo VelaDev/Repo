@@ -14,7 +14,6 @@
 	<div class="velaphanda_containter">	
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		<br/>
 		<c:if test="${not empty retMessage }">
 			<div class="alert alert-info" role="alert">
 				<c:out value="${ retMessage}">
@@ -182,11 +181,9 @@
 						</div>
 						
 					</div><!-- /S column  -->
-					
-					<br>
-					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
+							<br><br>
 							<input type="submit" value="Update Employee"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
 								id="updateEmp" name="updateEmp">

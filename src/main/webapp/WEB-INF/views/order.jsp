@@ -1,115 +1,216 @@
 <%@ include file="templates/taglibs.jsp"%>
-
-
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Order</title>
+<title>Order | Velaphanda Trading & Projects</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<c:import url="templates/techniciannavbar.jsp"></c:import>
-<body class=".container-fluid">
-	<div class="container myrow-container" style="width: 90%">
+<body>
+	<div class="velaphanda_containter">
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
+		<div class="container">
+		<br>
+			<c:if test="${not empty retMessage }">
+				<div class="alert alert-info" role="alert">
+					
+					<c:out value="${ retMessage}">
+					</c:out>
+				</div>
+			</c:if>
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="center">
+							<b>Make Order</b>
+						</div>
+					</h3>
+				</div>
+				<div class="panel-body">
+					<div class="tab-content">
+					
+						<form:form class="well form-horizontal" method="post" action="makeOrder" modelAttribute="makeOrder" id="order">
+						
+							<!--First Column-->
+							<div class="col-md-6">
+							
+								<!-- Text input Serial No-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Serial No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="device" class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Select type Part Number:-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Part Number</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="part" class="form-control selectpicker">
+												<option value="">Select Part Number</option>
+												<option value="CLT-R806K">CLT-R806K</option>
+												<option value="CLT-R806X">CLT-R806X</option>
+												<option value="CLT-W806">CLT-W806</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/F Column-->
+
+							<!--Second column-->
+							<div class="col-sm-6">
+								
+								<!-- Text input Quantity-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Quantity</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="quantity" class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Select type Delivery-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Delivery</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="delivery" class="form-control selectpicker">
+												<option value="">Select Delivery</option>
+												<option value="1">Yes</option>
+												<option value="0">No</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/S Column-->
+							<!-- Third column -->
+							<div class="col-sm-12">
+							<!-- Text area Description-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Description</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" rows="5" cols="102" name="description"
+												placeholder="Description"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /T Column -->														
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br><br>
+										<input type="submit" value="Make Order"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="makeOdr">
+								</div>
+							</div>
+
+						</form:form>
 
 
-		<c:if test="${not empty retMessage }">
-			<div class="alert alert-info" role="alert">
-				<c:out value="${ retMessage}">
-				</c:out>
+					</div>
+					<!-- /tab-content -->
+
+				</div>
+				<!-- /panel body -->
 			</div>
-		</c:if>
-
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<div align="center">
-						<b>Make Order</b>
-					</div>
-				</h3>
-			</div>
-			<div class="panel-body">
-				<form:form method="post" action="makeOrder"
-					modelAttribute="makeOrder">
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Serial Number:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control" name="device" required="required">
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Part Number:</label>
-							</div>
-							<div class="col-xs-3">
-								<select name="part" class="form-control" tabindex="1" required="required">
-									<option value="">Part Number
-									<option>
-									<option value="CLT-R806K">CLT-R806K</option>
-									<option value="CLT-R806X">CLT-R806X</option>
-									<option value="CLT-W806">CLT-W806</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Quantity:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control" name="quantity" required="required">
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Delivery:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<select name="delivery" class="form-control" tabindex="1" required="required">
-									<option value="">Delivery
-									<option>
-									<option value="1">Yes</option>
-									<option value="0">No</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Description:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<textarea rows="5" cols="102" name="description" required="required"></textarea>
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Submit"
-								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="submit">
-						</div>
-					</div>
-				</form:form>
-			</div>
+			<!--/panel success class-->
 		</div>
+		<!-- /Container -->
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
 	</div>
+	<!-- / velaphanda_containter -->
+
+	<!-- Script -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+	<!-- /Script -->
+	<!-- Validate Make Order -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#order')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													device : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Serial number is required to search and cannot be empty'
+															}
+														}
+													},
+													part : {
+														validators : {
+															notEmpty : {
+																message : 'Part Number is required and cannot be empty'
+															}
+														}
+													},
+													description : {
+														validators : {
+															stringLength : {
+																min : 10,
+																max : 200,
+																message : 'Please enter at least 10 characters and no more than 200'
+															},
+															notEmpty : {
+																message : 'Descritipn is required and cannot be empty'
+															}
+														}
+													},
+													quantity : {
+														validators : {
+															notEmpty : {
+																message : 'Quantity is required and cannot be empty'
+															}
+														}
+													},
+													delivery : {
+														validators : {
+															notEmpty : {
+																message : 'Delivery is required and cannot be empty'
+															}
+														}
+													}
+												}
+											});
+						});
+	</script>
+
 </body>
 </html>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/jquery-2.1.4.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link
-	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />

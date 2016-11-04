@@ -95,7 +95,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select
 												name="priority" class="form-control selectpicker">
-												<option>Select Priority</option>
+												<option value="">Select Priority</option>
 												<option value="High">High</option>
 												<option value="Medium">Medium</option>
 												<option value="Low">Low</option>

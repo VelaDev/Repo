@@ -21,7 +21,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-						<b>Login | Velaphanda Trading & Projectsr</b>
+						<b>Login | Velaphanda Trading & Projects</b>
 					</div>
 					</h3>
 				</div>

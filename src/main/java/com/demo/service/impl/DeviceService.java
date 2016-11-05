@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.bean.DeviceBean;
-import com.demo.bean.ProductBean;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Device;

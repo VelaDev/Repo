@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.DeviceBean;
-import com.demo.bean.ProductBean;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
 import com.demo.service.AccessoriesInt;

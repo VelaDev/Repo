@@ -3,7 +3,6 @@ package com.demo.dao;
 import java.util.List;
 
 import com.demo.bean.DeviceBean;
-import com.demo.bean.ProductBean;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
 

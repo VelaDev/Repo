@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.DeviceBean;
-import com.demo.bean.ProductBean;
 import com.demo.dao.AccessoriesDaoInt;
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.DeviceDaoInt;

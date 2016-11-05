@@ -44,7 +44,7 @@ public class DeviceDao implements DeviceDaoInt {
 	ArrayList list = null;
 	Client client = null;
 	Device device = null;
-	
+	List <Accessories> accessoryList = null;
 	
 	@Override
 	public String saveDevice(Device device) {
@@ -234,7 +234,23 @@ public class DeviceDao implements DeviceDaoInt {
 
 	@Override
 	public ProductBean getAccessoriesForUpdate(String serialNumber) {
-		// TODO Auto-generated method stub
+		try{
+			
+			accessoryList = accessoriesDaoInt.getAccessoriesByDeviceSerial(serialNumber);
+			for(Accessories access : accessoryList){
+				if(access.getDevice().getSerialNumber().equalsIgnoreCase(serialNumber))
+				{
+					if(access.getAccessotyType().equalsIgnoreCase("Bridge Unit"))
+					{
+						
+					}
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			return null;
+		}
 		return null;
 	}
 	

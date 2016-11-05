@@ -42,7 +42,7 @@
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="userName" id="userName"
+										class="glyphicon glyphicon-user"></i></span> <input name="empName" id="empName"
 										 class="form-control" type="text" placeholder='Search'>									
 								</div>								
 							</div>
@@ -301,7 +301,7 @@
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-        	userName: {
+        	empName: {
                 validators: {
 					stringLength : {
 						min : 2,

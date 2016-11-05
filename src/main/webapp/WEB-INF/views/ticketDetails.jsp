@@ -37,251 +37,387 @@
 							<h4 align="center">General Info</h4>
 							<br>
 
-							<form:form action="updateTicket" modelAttribute="updateTicket"
-								method="post">
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Ticket Number:</label>
-
+							<form:form class="well form-horizontal" action="updateTicket"
+								modelAttribute="updateTicket" method="post" id="updataTckt">
+								<!--First Column-->
+								<div class="col-md-6">
+									<!-- Text input Ticket Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Ticket Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcaode"></i></span> <input
+													name="ticketNumber" id="ticketNumber" class="form-control"
+													type="text" value="${ticketObject.ticketNumber}">
+											</div>
 										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control" name="ticketNumber"
-												value="${ticketObject.ticketNumber}">
+									</div>
+									<!-- Text input Ticket Status-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Status</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input name="status"
+													id="status" class="form-control" type="text"
+													value="${ticketObject.status}">
+											</div>
 										</div>
+									</div>
 
-										<div class="col-xs-2 form-control-label">
-											<label>Status:</label>
-
+									<!-- Text input Ticket SLA-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">SLA</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													name="slaStart" id="slaStart" class="form-control"
+													type="text" value="${ticketObject.slaStart}">
+											</div>
 										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.status}" name="status">
+									</div>
+
+								</div>
+								<!--/ First Column-->
+
+								<!--Second Column-->
+								<div class="col-md-6">
+
+									<!-- Text input Ticket Priority-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Priority</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													name="priority" id="priority" class="form-control"
+													type="text" value="${ticketObject.priority}">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Ticket Acknowledged-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Acknowledged
+											Ticket</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<input name="priority" id="priority" class="form-control"
+													type="checkbox" value="true" name="technicianAcknowledged">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Ticket DateTime Acknowledged-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">DateTime
+											Acknowledged</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-calendar"></i></span> <input
+													name="priority" id="priority" class="form-control"
+													type="text"
+													value="${ticketObject.getSlaAcknowledgeDateTime().getTime().toLocaleString()}">
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+								<!--/S Column-->
+
+								<!-- Text area Description-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Description</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="description">${ticketObject.description }</textarea>
 										</div>
 									</div>
 								</div>
-								<br>
 
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>SLA:</label>
 
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.slaStart}">
-										</div>
-
-										<div class="col-xs-2 form-control-label">
-											<label>Priority:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.priority}" name="priority">
-										</div>
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Acknowledge Ticket:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="checkbox" name="technicianAcknowledged"
-												value="true">
-										</div>
-
-										<div class="col-xs-2 form-control-label">
-											<label>DateTime Acknowledged:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.getSlaAcknowledgeDateTime().getTime().toLocaleString()}">
-										</div>
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Description:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<textarea rows="3" cols="98" name="description">${ticketObject.description }</textarea>
-										</div>
-									</div>
-								</div>
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Submit"
+										<input type="submit" value="Update General"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="submit">
+											id="updateGen">
 									</div>
 								</div>
 							</form:form>
-						</div><!--/general tab-->
+
+						</div>
+						<!--/general tab-->
 
 						<!--Clients tab-->
 						<div class="tab-pane" id="clientDetails">
 							<h4 align="center">Client Details</h4>
 
-							<form:form>
+							<form:form class="well form-horizontal">
 
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Client Name:</label>
+								<!--First column-->
+								<div class="col-sm-6">
 
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.clientName}">
-										</div>
-
-										<div class="col-xs-2 form-control-label">
-											<label>Contact Person:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.getContactPerson()}">
+									<!-- Text input Client Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Client Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													name="clientName" placeholder="Client Name"
+													class="form-control"
+													value="${ticketObject.device.client.clientName}"
+													type="text">
+											</div>
 										</div>
 									</div>
-								</div>
-								<br>
 
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Telephone No:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.getTellphoneNumber()}">
-										</div>
-										<div class="col-xs-2 form-control-label">
-											<label>Email:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.getEmail()}">
-										</div>
-
-
-									</div>
-								</div>
-								<br>
-
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Street Name:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.getStreetName()}">
-										</div>
-										<div class="col-xs-2 form-control-label">
-											<label>City/Towm:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.city_town}">
+									<!-- Text input Contact Person-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Contact Person</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													name="contactPerson" placeholder="Contact Person"
+													class="form-control"
+													value="${ticketObject.device.client.getContactPerson()}"
+													type="text">
+											</div>
 										</div>
 									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-xs-12">
 
-										<div class="col-xs-2 form-control-label">
-											<label>Province:</label>
+									<!-- Select type Province-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Province</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <input
+													name="province" class="form-control"
+													value="${ticketObject.device.client.getProvince()}"
+													type="text">
 
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.getProvince()}">
-										</div>
-										<div class="col-xs-2 form-control-label">
-											<label>Area Code:</label>
 
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.device.client.zipcode}">
+											</div>
 										</div>
 									</div>
+
+
+									<!-- Text input City or Town-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">City/Town</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="city_town" placeholder="City / Town"
+													class="form-control"
+													value="${ticketObject.device.client.city_town}" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Street Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="streetName" placeholder="Street Name"
+													class="form-control"
+													value="${ticketObject.device.client.getStreetName()}"
+													type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Area Code-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Area Code</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+													placeholder="Area Code" class="form-control"
+													value="${ticketObject.device.client.zipcode}" type="text">
+											</div>
+										</div>
+									</div>
+
 								</div>
-								<br>
+								<!-- / F column -->
+
+								<!--Second column-->
+								<div class="col-sm-6">
+
+
+									<!-- Text input Floor Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Floor No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="floorNumber" placeholder="Floor Number"
+													class="form-control"
+													value="${ticketObject.device.client.floorNumber}"
+													type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Tellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Telephone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													name="tellphoneNumber" placeholder="Tellphone Number"
+													class="form-control"
+													value="${ticketObject.device.client.getTellphoneNumber()}"
+													type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Fax Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Fax Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													name="faxNumber" placeholder="Fax Number"
+													class="form-control"
+													value="${ticketObject.device.client.faxNumber}" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Cellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Mobile Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													name="cellNumber" placeholder="Mobile Number"
+													class="form-control"
+													value="${ticketObject.device.client.cellNumber}"
+													type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Email-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">E-Mail</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-envelope"></i></span> <input
+													class="form-control"
+													value="${ticketObject.device.client.getEmail()}"
+													type="text">
+											</div>
+										</div>
+									</div>
+
+
+								</div>
+								<!-- /S Column -->
 							</form:form>
-						</div><!--/Clients tab-->
-						
+						</div>
+						<!--/Clients tab-->
+
 						<!--products tab-->
 						<div class="tab-pane" id="productDetails">
 
 							<h4 align="center">Product Details</h4>
 							<br>
 
-							<form:form>
+							<form:form class="well form-horizontal">
 
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Serial No:</label>
-
+								<!--First Column-->
+								<div class="col-md-6">
+									<!-- Text input Serial No-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Serial No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="serialNumber"
+													value="${ticketObject.getDevice().getSerialNumber()}"
+													class="form-control" type="text">
+											</div>
 										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control" name="product"
-												value="${ticketObject.getDevice().getSerialNumber()}">
-										</div>
+									</div>
 
-										<div class="col-xs-2 form-control-label">
-											<label>Device Model:</label>
-
+									<!-- Text input Contract Start Date-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Contract Start
+											Date</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-calendar"></i></span> <input
+													name="startDate" id="startDate"
+													value="${ticketObject.getDevice().getStartDate()}"
+													class="form-control" type="text">
+											</div>
 										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.getDevice().getProductModel()}">
+									</div>
+
+								</div>
+								<!--/F Column-->
+
+								<!--Second column-->
+								<div class="col-sm-6">
+									<!-- Text input Machine Model-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Machine Model</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="productModel"
+													value="${ticketObject.getDevice().getProductModel()}"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Contract End Date-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Contract End
+											Date</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-calendar"></i></span> <input
+													name="endDate" id="endDate"
+													value="${ticketObject.getDevice().getEndDate()}"
+													class="form-control" type="text">
+											</div>
 										</div>
 									</div>
 								</div>
-								<br>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-2 form-control-label">
-											<label>Contract Start Date:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control" name="product"
-												value="${ticketObject.getDevice().getStartDate()}">
-										</div>
-
-										<div class="col-xs-2 form-control-label">
-											<label>Contract Start Date:</label>
-
-										</div>
-										<div class="col-xs-3">
-											<input type="text" class="form-control"
-												value="${ticketObject.getDevice().getEndDate()}">
-										</div>
-									</div>
-								</div>
+								<!--/S Column-->
 								<br>
 
 							</form:form>
-						</div><!--/products tab-->
+						</div>
+						<!--/products tab-->
 
 						<!--escalationDetails tab-->
 						<div class="tab-pane" id="escalationDetails">
@@ -289,37 +425,45 @@
 							<h4 align="center">Escalate Ticket</h4>
 							<br>
 
-							<form:form>
+							<form:form class="well form-horizontal">
 
-								<div class="form-group row">
-									<label class="col-sm-2">Escalate</label>
-									<div class="col-sm-10">
-										<div class="checkbox">
-											<label> <input type="checkbox" name="escalate"
-												value="true">
-											</label>
+
+								<!-- Text area Escalate-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Escalate </label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<input class="form-control" type="checkbox" name="escalate"
+												value="true" required="required">
 										</div>
 									</div>
 								</div>
-								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 form-control-label">Escalate
-										Reason</label>
-									<div class="col-sm-10">
-										<textarea rows="3" cols="82" name="escalateReason"
-											class="required" required="required"></textarea>
+
+								<!-- Text area Escalate Reason-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Escalate Reason</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="escalateReason"
+												required="required"></textarea>
+										</div>
 									</div>
 								</div>
+
 								<br>
 								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-6">
-										<input type="submit" value="Submit"
+									<div class="col-sm-offset-2 col-md-8">
+										<input type="submit" value="Escalate Ticket"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="submit">
+											id="escalateTickt">
 									</div>
 								</div>
 							</form:form>
 
-						</div><!--/escalationDetails tab-->
+						</div>
+						<!--/escalationDetails tab-->
 
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
@@ -327,33 +471,50 @@
 							<h4 align="center">Solution Details</h4>
 							<br>
 
-							<form:form>
-								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 form-control-label">Resolution</label>
-									<div class="col-sm-10">
-										<textarea rows="3" cols="82" class="required"
-											required="required"></textarea>
+							<form:form class="well form-horizontal">
+
+
+								<!-- Text area Resolution-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Resolution </label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="resolution"
+												required="required"></textarea>
+										</div>
 									</div>
 								</div>
 
-								<div class="form-group row">
-									<label for="inputPassword3" class="col-sm-2 form-control-label">Solution</label>
-									<div class="col-sm-10">
-										<textarea rows="3" cols="82" class="required"
-											required="required"></textarea>
+								<!-- Text area Solution-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Solution </label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="solution"
+												required="required"></textarea>
+										</div>
 									</div>
 								</div>
+
+
 								<br />
-								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-6">
-										<input type="submit" value="Submit"
+								<div class="form-group">
+
+									<div class="col-sm-offset-2 col-md-8">
+										<input type="submit" value="Solution"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="submit">
+											id="solution">
 									</div>
+
 								</div>
 							</form:form>
 
-						</div><!--/solution tab-->
+						</div>
+						<!--/solution tab-->
 
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
@@ -393,17 +554,22 @@
 									</div>
 								</form>
 							</div>
-						</div><!--/history tab-->
+						</div>
+						<!--/history tab-->
 
-					</div><!-- /tab-content -->
+					</div>
+					<!-- /tab-content -->
 
-				</div><!-- /panel body -->
+				</div>
+				<!-- /panel body -->
 			</div>
 			<!--/panel success class-->
-		</div><!-- /Container -->
+		</div>
+		<!-- /Container -->
 		<!-- Footer -->
 		<c:import url="templates/footer.jsp"></c:import>
 		<!--/ Footer -->
-	</div><!-- / velaphanda_containter -->
+	</div>
+	<!-- / velaphanda_containter -->
 </body>
 </html>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.DeviceBean;
+import com.demo.bean.ProductBean;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
 import com.demo.service.AccessoriesInt;
@@ -39,6 +40,7 @@ public class ProductController {
     
     private List<Accessories> accessories=null;
     private Device device = null;
+    private ProductBean deviceBen = null;
     private	ModelAndView model = null;
     private String userName = null;
     private String retMessage = null;
@@ -117,6 +119,7 @@ public class ProductController {
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		/*deviceBean =*/
 		if(device != null){
 			
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());

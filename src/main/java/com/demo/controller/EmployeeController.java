@@ -204,11 +204,11 @@ public class EmployeeController {
 		return model;
 	}
 	@RequestMapping(value="searchEmployeeByName")
-	public ModelAndView searchEmployee(@RequestParam("userName") String userName,@ModelAttribute Employee employee) {
+	public ModelAndView searchEmployee(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
-			employee = employeeService.getEmployeeByEmpNumber(userName);
+			employee = employeeService.getEmployeeByEmpNumber(empName);
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);

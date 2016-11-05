@@ -32,7 +32,6 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 	
 	List<Accessories> accessoriesList = null;
 	ArrayList<?> aList = null;
-	ArrayList list = null;
 	Accessories acc= null;
 	
 	private String retMessage = null;
@@ -42,7 +41,7 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 		try{
 
 		        for(Accessories access:accessories){
-			         sessionFactory.getCurrentSession().save(access);
+			         sessionFactory.getCurrentSession().saveOrUpdate(access);
 			         retMessage ="OK";
 		            }
 		}catch (Exception e) {

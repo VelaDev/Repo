@@ -15,8 +15,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Entity
 @Table(name="Products")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Device implements Serializable{
 
 	/**
@@ -41,54 +50,5 @@ public class Device implements Serializable{
     
 	@OneToMany(mappedBy ="device", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Accessories> accessories;
-	
-	public String getSerialNumber() {
-		return serialNumber;
-	}
-
-	public void setSerialNumber(String serialNumber) {
-		this.serialNumber = serialNumber;
-	}
-
-
-	public String getProductModel() {
-		return productModel;
-	}
-
-	public void setProductModel(String productModel) {
-		this.productModel = productModel;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public String getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(String startDate) {
-		this.startDate = startDate;
-	}
-
-	public String getEndDate() {
-		return endDate;
-	}
-
-	public void setEndDate(String endDate) {
-		this.endDate = endDate;
-	}
-
-	public Set<Accessories> getAccessories() {
-		return accessories;
-	}
-
-	public void setAccessories(Set<Accessories> accessories) {
-		this.accessories = accessories;
-	}
 	
 }

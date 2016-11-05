@@ -16,7 +16,7 @@ public interface DeviceDaoInt {
 	List<Accessories> accessories(Device device);
 	String updateDevice(Device device);
 	String prepareDeviceData(DeviceBean deviceBean);
-	ProductBean getAccessoriesForUpdate(String serialNumber);
+	DeviceBean getAccessoriesForUpdate(String serialNumber);
 	
 
 }

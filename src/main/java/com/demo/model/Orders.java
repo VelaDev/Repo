@@ -9,9 +9,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name= "SpareOrders")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Orders implements Serializable{
 
 	/**
@@ -58,133 +67,4 @@ public class Orders implements Serializable{
 	@ManyToOne
 	@JoinColumn(name="SERIALNUMBER")
 	private Device device;
-
-	public String getOrderNum() {
-		return orderNum;
-	}
-
-	public void setOrderNum(String orderNum) {
-		this.orderNum = orderNum;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public boolean isDelivery() {
-		return delivery;
-	}
-
-	public void setDelivery(boolean delivery) {
-		this.delivery = delivery;
-	}
-
-	public boolean isDelivered() {
-		return delivered;
-	}
-
-	public void setDelivered(boolean delivered) {
-		this.delivered = delivered;
-	}
-
-	public boolean isReceived() {
-		return received;
-	}
-
-	public void setReceived(boolean received) {
-		this.received = received;
-	}
-
-	public String getDateOrdered() {
-		return dateOrdered;
-	}
-
-	public void setDateOrdered(String dateOrdered) {
-		this.dateOrdered = dateOrdered;
-	}
-
-	public String getDateApproved() {
-		return dateApproved;
-	}
-
-	public void setDateApproved(String dateApproved) {
-		this.dateApproved = dateApproved;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-
-	public Parts getPart() {
-		return part;
-	}
-
-	public void setPart(Parts part) {
-		this.part = part;
-	}
-
-	public String getComments() {
-		return comments;
-	}
-
-	public void setComments(String comments) {
-		this.comments = comments;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public boolean isApproved() {
-		return approved;
-	}
-
-	public void setApproved(boolean approved) {
-		this.approved = approved;
-	}
-
-	public String getApprodedBy() {
-		return approdedBy;
-	}
-
-	public void setApprodedBy(String approdedBy) {
-		this.approdedBy = approdedBy;
-	}
-
-	public Client getClient() {
-		return client;
-	}
-
-	public void setClient(Client client) {
-		this.client = client;
-	}
-
-	public Device getProduct() {
-		return device;
-	}
-
-	public void setProduct(Device device) {
-		this.device = device;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-	
 }

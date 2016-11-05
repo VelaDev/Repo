@@ -14,9 +14,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name="CLIENT")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Client implements Serializable{
 
 	/**
@@ -60,101 +69,4 @@ public class Client implements Serializable{
 	@OneToMany(mappedBy ="client", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Device> devices;
 
-	
-	public String getClientName() {
-		return clientName;
-	}
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
-	}
-	public boolean isActive() {
-		return isActive;
-	}
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-	public String getTellphoneNumber() {
-		return tellphoneNumber;
-	}
-	public void setTellphoneNumber(String tellphoneNumber) {
-		this.tellphoneNumber = tellphoneNumber;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	public Set<Device> getProducts() {
-		return devices;
-	}
-	public void setProducts(Set<Device> devices) {
-		this.devices = devices;
-	}
-	public String getStreetName() {
-		return streetName;
-	}
-	public void setStreetName(String streetName) {
-		this.streetName = streetName;
-	}
-	public String getCity_town() {
-		return city_town;
-	}
-	public void setCity_town(String city_town) {
-		this.city_town = city_town;
-	}
-	public String getProvince() {
-		return province;
-	}
-	public void setProvince(String province) {
-		this.province = province;
-	}
-	public String getZipcode() {
-		return zipcode;
-	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-	public String getFaxNumber() {
-		return faxNumber;
-	}
-	public void setFaxNumber(String faxNumber) {
-		this.faxNumber = faxNumber;
-	}
-	public String getCellNumber() {
-		return cellNumber;
-	}
-	public void setCellNumber(String cellNumber) {
-		this.cellNumber = cellNumber;
-	}
-	public String getContactPerson() {
-		return contactPerson;
-	}
-	public void setContactPerson(String contactPerson) {
-		this.contactPerson = contactPerson;
-	}
-	public String getFloorNumber() {
-		return floorNumber;
-	}
-	public void setFloorNumber(String floorNumber) {
-		this.floorNumber = floorNumber;
-	}
-	public String getStreetNumber() {
-		return streetNumber;
-	}
-	public void setStreetNumber(String streetNumber) {
-		this.streetNumber = streetNumber;
-	}
-	public Set<Device> getDevices() {
-		return devices;
-	}
-	public void setDevices(Set<Device> devices) {
-		this.devices = devices;
-	}
 }

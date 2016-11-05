@@ -13,9 +13,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name="PARTS")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Parts implements Serializable{
 
 	/**
@@ -41,60 +50,4 @@ public class Parts implements Serializable{
 	@OneToMany(mappedBy="part",cascade=CascadeType.ALL)
 	private Set<Orders> orders;
 
-	public String getPartNumber() {
-		return partNumber;
-	}
-
-	public void setPartNumber(String partNumber) {
-		this.partNumber = partNumber;
-	}
-
-	public String getModelNumber() {
-		return modelNumber;
-	}
-
-	public void setModelNumber(String modelNumber) {
-		this.modelNumber = modelNumber;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public int getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-
-	public Calendar getArrivedDate() {
-		return arrivedDate;
-	}
-
-	public void setArrivedDate(Calendar arrivedDate) {
-		this.arrivedDate = arrivedDate;
-	}
-
-	public Set<Orders> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<Orders> orders) {
-		this.orders = orders;
-	}
-
-	public String getItemType() {
-		return itemType;
-	}
-
-	public void setItemType(String itemType) {
-		this.itemType = itemType;
-	}
-	
 }

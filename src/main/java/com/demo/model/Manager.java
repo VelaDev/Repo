@@ -5,9 +5,16 @@ import java.io.Serializable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity  
-@DiscriminatorValue("Manager")  
+@DiscriminatorValue("Manager") 
+@Getter
+@Setter
 public class Manager extends Employee implements Serializable{
 
 	/**

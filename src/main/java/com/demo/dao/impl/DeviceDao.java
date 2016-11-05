@@ -45,13 +45,14 @@ public class DeviceDao implements DeviceDaoInt {
 	Client client = null;
 	Device device = null;
 	List <Accessories> accessoryList = null;
+	private DeviceBean deviceBean = null;
 	
 	@Override
 	public String saveDevice(Device device) {
 		
 		try{
 			
-		       sessionFactory.getCurrentSession().save(device);
+		       sessionFactory.getCurrentSession().saveOrUpdate(device);
 		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getClient().getClientName();
 		   }
 		catch(Exception e){
@@ -106,10 +107,6 @@ public class DeviceDao implements DeviceDaoInt {
 	public List<Accessories> accessories(Device device) {
 		ArrayList list = new ArrayList<Accessories>();
 		Accessories accessory = new Accessories();
-		
-		
-		
-		
 		return list;
 	}
 
@@ -233,7 +230,9 @@ public class DeviceDao implements DeviceDaoInt {
 	}
 
 	@Override
-	public ProductBean getAccessoriesForUpdate(String serialNumber) {
+	public DeviceBean getAccessoriesForUpdate(String serialNumber) {
+		
+		deviceBean = new DeviceBean();
 		try{
 			
 			accessoryList = accessoriesDaoInt.getAccessoriesByDeviceSerial(serialNumber);
@@ -242,7 +241,25 @@ public class DeviceDao implements DeviceDaoInt {
 				{
 					if(access.getAccessotyType().equalsIgnoreCase("Bridge Unit"))
 					{
-						
+						deviceBean.setBridgeUnitSerialTypeSerialNo(access.getSerial());;
+					}
+					else if(access.getAccessotyType().equalsIgnoreCase("Fax Unit")){
+						deviceBean.setFaxUnitSerialTypeSerialNo(access.getSerial());
+					}
+					else if(access.getAccessotyType().equalsIgnoreCase("Credenza")){
+						deviceBean.setCredenzaSerialNo(access.getSerial());
+					}
+					else if (access.getAccessotyType().equalsIgnoreCase("Finisher")){
+						deviceBean.setFinisherTypeSerialNo(access.getSerial());
+					}
+					else if(access.getAccessotyType().equalsIgnoreCase("Additional Paper Trays")){
+						deviceBean.setAdditionalPaperTraysTypeSerial(access.getSerial());
+					}
+					else if (access.getAccessotyType().equalsIgnoreCase("LTC")){
+						deviceBean.setLtcTypeSerial(access.getSerial());
+					}
+					else if (access.getAccessotyType().equalsIgnoreCase("One bin tray")){
+						deviceBean.setOneBinTrayTypeSerialNo(access.getSerial());
 					}
 				}
 			}
@@ -251,7 +268,7 @@ public class DeviceDao implements DeviceDaoInt {
 		{
 			return null;
 		}
-		return null;
+		return deviceBean;
 	}
 	
 }

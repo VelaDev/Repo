@@ -11,9 +11,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name="Accessories")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Accessories implements Serializable{
 	
 	/**
@@ -33,37 +42,5 @@ public class Accessories implements Serializable{
 	@JoinColumn(name="Device_Serial")
 	private Device device;
 
-	public int getRecordID() {
-		return recordID;
-	}
-
-	public void setRecordID(int recordID) {
-		this.recordID = recordID;
-	}
-
-	public String getAccessotyType() {
-		return accessotyType;
-	}
-
-	public void setAccessotyType(String accessotyType) {
-		this.accessotyType = accessotyType;
-	}
-
-	public String getSerial() {
-		return serial;
-	}
-
-	public void setSerial(String serial) {
-		this.serial = serial;
-	}
-
-	public Device getDevice() {
-		return device;
-	}
-
-	public void setDevice(Device device) {
-		this.device = device;
-	}
-	
 	
 }

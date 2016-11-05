@@ -78,7 +78,7 @@ public class OrdersDao implements OrdersDaoInt{
 				order.setOrderNum(orderNumber);
 				order.setPart(part);
 				order.setEmployee(emp);
-				order.setProduct(device);
+				order.setDevice(device);
 				order.setApproved(false);
 				order.setDateOrdered(dateFormat.format(date));
 				order.setDescription(orders.getDescription());
@@ -111,7 +111,7 @@ public class OrdersDao implements OrdersDaoInt{
 				order.setDateApproved(dateFormat.format(date));
 				order.setReceived(true);
 				order.setPart(part);
-				order.setProduct(device);
+				order.setDevice(device);
 				String approvedBy = (String) session.getAttribute("loggedInUser");
 				order.setApprodedBy(approvedBy);
 				order.setOrderNum(orders.getOrderNum());

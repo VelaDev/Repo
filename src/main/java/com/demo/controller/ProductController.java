@@ -39,8 +39,7 @@ public class ProductController {
     HttpSession session;
     
     private List<Accessories> accessories=null;
-    private Device device = null;
-    private ProductBean deviceBen = null;
+    private Device device = null; 
     private	ModelAndView model = null;
     private String userName = null;
     private String retMessage = null;
@@ -119,7 +118,7 @@ public class ProductController {
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
-		/*deviceBean =*/
+		
 		if(device != null){
 			
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
@@ -166,17 +165,19 @@ public class ProductController {
 		
 	}
 	@RequestMapping(value="searchDeviceSerialNumber")
-	public ModelAndView searchDeviceBySerialNo(@RequestParam("serialNumber") String serialNumber,Device device){
+	public ModelAndView searchDeviceBySerialNo(@RequestParam("serialNumber") String serialNumber,Device device,DeviceBean deviceBean){
 		model= new ModelAndView();
 		
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 		     device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		     deviceBean = deviceServiceInt.getAccessoriesForUpdate(serialNumber);
 		     if(device != null)
 				{
 				
 				    model.addObject("productObject", device);
+				    model.addObject("AccessoryObject", deviceBean);
 				}
 				else{
 					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
@@ -216,13 +217,13 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="updateProduct")
-	public ModelAndView updateProduct(@ModelAttribute("updateProduct")Device device)
+	public ModelAndView updateProduct(@ModelAttribute("updateProduct")DeviceBean deviceBean)
 	{
 		model = new ModelAndView();
 		userName = (String) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			retMessage = deviceServiceInt.updateDevice(device);
+			retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
 			model.addObject("retMessage", retMessage);
 			model.setViewName("updateDevice");
 		}

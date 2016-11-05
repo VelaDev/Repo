@@ -7,7 +7,7 @@ import com.demo.model.Client;
 public class ProductBean {
 
 	
-	private String serialNumber;
+	/*private String serialNumber;
 	private String productName;
 	private String productType;
 	private String prductDescription;
@@ -24,14 +24,17 @@ public class ProductBean {
 	private String faxUnitSerialType;
 	private String OneBinTrayType;
 	private String finisherType;
+	private String ltcType;
 	
 	
 	
 	private String credenzaSerialNo;
 	private String bridgeUnitSerialTypeSerialNo;
 	private String faxUnitSerialTypeSerialNo;
-	private String OneBinTrayTypeSerialNo;
+	private String oneBinTrayTypeSerialNo;
 	private String finisherTypeSerialNo;
+	private String ltcTypeSerial;
+	private String additionalPaperTraysTypeSerial;
 	
 	
 	private String tellphoneNumber;
@@ -98,6 +101,14 @@ public class ProductBean {
 	public String getEndDate() {
 		return endDate;
 	}
+	
+	
+	public String getOneBinTrayTypeSerialNo() {
+		return oneBinTrayTypeSerialNo;
+	}
+	public void setOneBinTrayTypeSerialNo(String oneBinTrayTypeSerialNo) {
+		this.oneBinTrayTypeSerialNo = oneBinTrayTypeSerialNo;
+	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
@@ -161,12 +172,7 @@ public class ProductBean {
 	public void setFaxUnitSerialTypeSerialNo(String faxUnitSerialTypeSerialNo) {
 		this.faxUnitSerialTypeSerialNo = faxUnitSerialTypeSerialNo;
 	}
-	public String getOneBinTrayTypeSerialNo() {
-		return OneBinTrayTypeSerialNo;
-	}
-	public void setOneBinTrayTypeSerialNo(String oneBinTrayTypeSerialNo) {
-		OneBinTrayTypeSerialNo = oneBinTrayTypeSerialNo;
-	}
+
 	public String getFinisherTypeSerialNo() {
 		return finisherTypeSerialNo;
 	}
@@ -239,5 +245,24 @@ public class ProductBean {
 	public void setStreetNumber(String streetNumber) {
 		this.streetNumber = streetNumber;
 	}
-	
+	public String getLtcType() {
+		return ltcType;
+	}
+	public void setLtcType(String ltcType) {
+		this.ltcType = ltcType;
+	}
+	public String getLtcTypeSerial() {
+		return ltcTypeSerial;
+	}
+	public void setLtcTypeSerial(String ltcTypeSerial) {
+		this.ltcTypeSerial = ltcTypeSerial;
+	}
+	public String getAdditionalPaperTraysTypeSerial() {
+		return additionalPaperTraysTypeSerial;
+	}
+	public void setAdditionalPaperTraysTypeSerial(
+			String additionalPaperTraysTypeSerial) {
+		this.additionalPaperTraysTypeSerial = additionalPaperTraysTypeSerial;
+	}
+	*/
 }

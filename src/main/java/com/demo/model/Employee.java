@@ -15,6 +15,11 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 
 
@@ -24,6 +29,10 @@ import javax.persistence.Table;
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)  
 @DiscriminatorColumn(name="Type",discriminatorType= DiscriminatorType.STRING)  
 @DiscriminatorValue(value="employee")  
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Employee implements Serializable{
 	
 	/**
@@ -58,119 +67,5 @@ public class Employee implements Serializable{
 	
 	@OneToMany(mappedBy="employee",cascade=CascadeType.ALL)
 	private Set<TicketHistory> ticketHistory;
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-	public String getEmpNumber() {
-		return empNumber;
-	}
-
-	public void setEmpNumber(String empNumber) {
-		this.empNumber = empNumber;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getRole() {
-		return role;
-	}
-
-	public void setRole(String role) {
-		this.role = role;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Set<Tickets> getLogTickets() {
-		return logTickets;
-	}
-
-	public void setLogTickets(Set<Tickets> logTickets) {
-		this.logTickets = logTickets;
-	}
-	
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-    
-	public Set<Orders> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(Set<Orders> orders) {
-		this.orders = orders;
-	}
-
-	public Employee(String username, String empNumber, String password,
-			String title, String firstName, String lastName, String role,
-			String email, Set<Tickets> logTickets) {
-		this.username = username;
-		this.empNumber = empNumber;
-		this.password = password;
-		this.title = title;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.role = role;
-		this.email = email;
-		this.logTickets = logTickets;
-	}
-	
-
-	public Set<TicketHistory> getTicketHistory() {
-		return ticketHistory;
-	}
-
-	public void setTicketHistory(Set<TicketHistory> ticketHistory) {
-		this.ticketHistory = ticketHistory;
-	}
-
-	public Employee() {
-	}
 
 }

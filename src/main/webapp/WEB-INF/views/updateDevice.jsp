@@ -200,7 +200,7 @@
 									<div class="col-xs-3">
 										<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm" id="bridgeunit"
-											disabled name="bridgeUnitSerialTypeSerialNo" />
+											 name="bridgeUnitSerialTypeSerialNo" value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }"/>
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -210,7 +210,7 @@
 									<div class="col-xs-3">
 										<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm" id="faxunitserial"
-											disabled name="faxUnitSerialTypeSerialNo" />
+											value="${AccessoryObject.faxUnitSerialTypeSerialNo }" name="faxUnitSerialTypeSerialNo" />
 									</div>
 								</div>
 								<br>
@@ -223,7 +223,7 @@
 									<div class="col-xs-3">
 										<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm" id="onebintray"
-											disabled name="OneBinTrayTypeSerialNo" />
+											value="${AccessoryObject.oneBinTrayTypeSerialNo }" name="oneBinTrayTypeSerialNo" />
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -233,7 +233,7 @@
 									<div class="col-xs-3">
 										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm" id="finisherserial"
-											disabled name="finisherTypeSerialNo" />
+											value="${AccessoryObject.finisherTypeSerialNo }" name="finisherTypeSerialNo" />
 									</div>
 								</div>
 								<br>
@@ -245,7 +245,7 @@
 									<div class="col-xs-3">
 										<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm" id="ltc"
-											name="ltcTypeSerial" disabled />
+											name="ltcTypeSerial" value="${AccessoryObject.ltcTypeSerial }" />
 									</div>
 
 
@@ -257,7 +257,7 @@
 										<div class="col-xs-3">
 											<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
 												type="text" class="form-control input-sm" id="credenza"
-												name="credenzaSerialNo" disabled />
+												name="credenzaSerialNo" value="${AccessoryObject.credenzaSerialNo }" />
 										</div>
 
 									</div>
@@ -271,7 +271,7 @@
 										<label for="additionalserial">Serial
 											Number:&nbsp;&nbsp;</label><input type="text"
 											class="form-control input-sm" id="additionalserial"
-											name="additionalPaperTraysTypeSerial" disabled />
+											name="additionalPaperTraysTypeSerial" value="${AccessoryObject.additionalPaperTraysTypeSerial }" />
 									</div>
 								</div>
 							</fieldset>
@@ -280,7 +280,7 @@
 							<br>
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<input type="submit" value="Add Product"
+									<input type="submit" value="Update Device"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="addProduct">
 								</div>

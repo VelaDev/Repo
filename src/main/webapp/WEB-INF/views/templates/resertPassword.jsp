@@ -28,7 +28,7 @@
 				<div class="panel-body">
 				<div class="tabContent">					
 							
-				<div class="login-page">
+				<div class="reset-page">
 				<div class="form">
 				<form:form method="post" action="resertPassword" modelAttribute="resertPassword" id="resetPass">
 						<!--First column-->

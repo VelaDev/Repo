@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.OrdersBean;
+import com.demo.model.Employee;
 import com.demo.model.Orders;
 import com.demo.service.OrdersServiceInt;
 
@@ -24,13 +25,13 @@ public class OrdersController {
 	private HttpSession session;
 	private ModelAndView model = null;
 	private String retMessage =null;
-	private String userName = null;
+	private Employee userName = null;
 	
 	@RequestMapping(value="order",method=RequestMethod.GET)
 	public ModelAndView loadOrder(){
 		
 		model = new ModelAndView("order");
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
 			model.addObject("makeOrder", new OrdersBean());
@@ -47,7 +48,7 @@ public class OrdersController {
 	{
 		
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			retMessage =ordersServiceInt.makeOrder(order);
 			model.addObject("retMessage", retMessage);
@@ -62,7 +63,7 @@ public class OrdersController {
 	@RequestMapping("approveOrder")
     public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute Orders order) {
 	    model = new ModelAndView();
-	    userName = (String) session.getAttribute("loggedInUser");
+	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
 		      order = ordersServiceInt.getOrder(id);
@@ -82,7 +83,7 @@ public class OrdersController {
 	@RequestMapping("updateOrder")
     public ModelAndView updateOrder(OrdersBean order){
 		model = new ModelAndView();
-		 userName = (String) session.getAttribute("loggedInUser");
+		 userName = (Employee) session.getAttribute("loggedInUser");
 			if(userName != null){
 		
 				retMessage = ordersServiceInt.updateOrder(order);
@@ -99,9 +100,9 @@ public class OrdersController {
 	public ModelAndView approvedOrders(){
 		model = new ModelAndView();
 		
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			model.addObject("ApprovedOrderList", ordersServiceInt.getApprovedOrdersByTechnicianName(userName));
+			model.addObject("ApprovedOrderList", ordersServiceInt.getApprovedOrdersByTechnicianName(userName.getEmail()));
 			model.setViewName("approvedOrders");
 		}
 		else{
@@ -114,7 +115,7 @@ public class OrdersController {
 	public ModelAndView displayOrders(){
 		model = new ModelAndView();
 		
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			model.addObject("ApprovedOrderList", ordersServiceInt.getAllOrders());
 			model.setViewName("displayOrders");

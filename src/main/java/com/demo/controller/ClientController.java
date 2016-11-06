@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.bean.ClientBean;
 import com.demo.model.Client;
 import com.demo.model.Device;
+import com.demo.model.Employee;
 import com.demo.service.AccessoriesInt;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.DeviceServiceInt;
@@ -38,13 +39,13 @@ public class ClientController {
 	ModelAndView model = null;
 	List<Device> deviceList =null;
 	Client client = null;
-	String userName = null;
+	Employee userName = null;
 	
 	@RequestMapping(value="addClient",method=RequestMethod.GET)
 	public ModelAndView loadAddClient() {
 		
 	    model = new ModelAndView("addClient");
-	    userName = (String) session.getAttribute("loggedInUser");
+	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("saveClient", new ClientBean());
 			model.setViewName("addClient");
@@ -61,7 +62,7 @@ public class ClientController {
 	{
 		retMessage =clientServiceInt.saveClient(client);
 	    model = new ModelAndView();
-	    userName = (String) session.getAttribute("loggedInUser");
+	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			model.addObject("retMessage",retMessage);
@@ -76,7 +77,7 @@ public class ClientController {
 	public ModelAndView loadClientInformation() {
 		
 	    model = new ModelAndView();
-	    userName = (String) session.getAttribute("loggedInUser");
+	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			model.setViewName("clientInformation");
@@ -90,7 +91,7 @@ public class ClientController {
 	public ModelAndView searchClient(@RequestParam("clientName") String clientName,@ModelAttribute Device Device) {
 		model = new ModelAndView();
 		
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			deviceList = deviceServiceInt.getDeviceListByClientName(clientName);
 		      for(Device dev:deviceList){
@@ -111,7 +112,7 @@ public class ClientController {
 	@RequestMapping(value="searchClientforProduct")
 	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			client = clientServiceInt.getClientByClientName(clientName);
@@ -136,7 +137,7 @@ public class ClientController {
 	public ModelAndView loadUpdateCustomerPage(){
 		
 		model = new ModelAndView("updateCustomer");
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			model.addObject("updateCustomerData", new ClientBean());
@@ -150,7 +151,7 @@ public class ClientController {
 	@RequestMapping(value="updateCustomerData",method=RequestMethod.POST)
 	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Client client){
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			retMessage =clientServiceInt.updateCustomer(client); 
@@ -167,7 +168,7 @@ public class ClientController {
 	@RequestMapping(value="searchCustomer")
 	public ModelAndView searchCustomer(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			client = clientServiceInt.getClientByClientName(clientName);
@@ -183,7 +184,7 @@ public class ClientController {
 	@RequestMapping(value="displayCustomers",method=RequestMethod.GET)
 	public ModelAndView displayCustomers(){
 		model= new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			model.addObject("customerList", clientServiceInt.getClientList());

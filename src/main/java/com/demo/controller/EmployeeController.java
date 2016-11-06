@@ -35,7 +35,7 @@ public class EmployeeController {
 	private List<PieChart> beanList = null;
 	String retMessage =null;
 	ModelAndView model = null;
-	String userName = null;
+	Employee userName = null;
 	String retPage = null;
 	
 	
@@ -52,38 +52,45 @@ public class EmployeeController {
 			@RequestParam(value = "logout", required = false) String logout)
 	{
 		ModelAndView model = new ModelAndView();
-		String userName = employee.getUsername();
+		String userName = employee.getEmail();
 		String password = employee.getPassword();
 		String retRole = null;
 		
-		employee = employeeService.getEmployeeByEmpNumber(employee.getUsername());
+		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
 		
 		if(employee != null){
 			
-			session.setAttribute("loggedInUser", employee.getFirstName());
-			model.addObject("loggedInUser", employee.getUsername());
-			if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password)||
-					employee.getRole().equalsIgnoreCase("Manager") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password)){
+			session.setAttribute("loggedInUser", employee);
+			if(employee.isFirstTimeLogin()==true){
 				
-				retRole= "redirect:home";
-			}
-			else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password))
+				retRole ="redirect:resertPassword";
+			}else
 			{
-				retRole= "redirect:technicianHome";
-				
+				model.addObject("loggedInUser", employee.getEmail());
+				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
+						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
+					
+					retRole= "redirect:home";
+				}
+				else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
+				{
+					retRole= "redirect:technicianHome";
+					
+				}
+				else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
+				{
+					retRole= "redirect:ticket";
+				}
+				else {
+					System.out.println("Username or password incorrect");
+				}
 			}
-			else if(employee.getRole().equalsIgnoreCase("USER") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password))
-			{
-				retRole= "redirect:ticket";
+			
+			}else{
+				  retRole="redirect:error";
+				  System.out.println("You are not registered to use the system. Consults Administrator");
 			}
-			else {
-				System.out.println("Username or password incorrect");
-			}
-		}
-		else{
-			  retRole="redirect:error";
-			  System.out.println("You are not registered to use the system. Consults Administrator");
-		}
+			
 		return retRole;
 	}
 	
@@ -92,7 +99,7 @@ public class EmployeeController {
 	public ModelAndView loadAdminPage() {
 		
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
 			beanList = logTicketsServiceInt.ticketsResults();
@@ -108,7 +115,7 @@ public class EmployeeController {
 	@RequestMapping(value="registerEmployee",method=RequestMethod.GET)
 	public ModelAndView loadAddEmployee() {
 		
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		model = new ModelAndView("registerEmployee");
 		if(userName !=null){
 			
@@ -127,7 +134,7 @@ public class EmployeeController {
 	public ModelAndView addEmployee(@ModelAttribute("addEmployee")Employee employee)
 	{
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			retMessage = employeeService.saveEmployee(employee);
@@ -144,7 +151,7 @@ public class EmployeeController {
     public ModelAndView displayLoggedTickets() {
 		String user = (String) session.getAttribute("loggedInUser");
 		 model = new ModelAndView();
-		 userName = (String) session.getAttribute("loggedInUser");
+		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(user));
@@ -158,7 +165,7 @@ public class EmployeeController {
     }
 	@RequestMapping(value="userHome",method=RequestMethod.GET)
 	public ModelAndView loadUserPage() {
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			model = new ModelAndView();
 			
@@ -177,7 +184,7 @@ public class EmployeeController {
 	@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
 	public ModelAndView displayCustomers(){
 		model= new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		 
 			model.addObject("employeeList", employeeService.getAllEmployees());
@@ -191,7 +198,7 @@ public class EmployeeController {
 	@RequestMapping(value="updateEmployee",method=RequestMethod.GET)
 	public ModelAndView loadUpdateEmployee() {
 		
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		model = new ModelAndView("registerEmployee");
 		if(userName !=null){
 			
@@ -206,7 +213,7 @@ public class EmployeeController {
 	@RequestMapping(value="searchEmployeeByName")
 	public ModelAndView searchEmployee(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			employee = employeeService.getEmployeeByEmpNumber(empName);
 		if(employee != null){
@@ -229,7 +236,7 @@ public class EmployeeController {
 	public ModelAndView updateEmployee(@ModelAttribute("updateEmployee")Employee employee)
 	{
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			retMessage = employeeService.updateEmployee(employee);
@@ -241,5 +248,11 @@ public class EmployeeController {
 		}
 		return model;
 	}
+	@RequestMapping(value ="resertPassword",method=RequestMethod.GET)
+	public ModelAndView resetPassword(){
+		model = new ModelAndView();
+		model.setViewName("resertPassword");
 		
+		return model;
+	}
 }

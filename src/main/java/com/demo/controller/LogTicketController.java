@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.TicketsBean;
 import com.demo.model.Client;
+import com.demo.model.Employee;
 import com.demo.model.Tickets;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;
@@ -41,7 +42,7 @@ public class LogTicketController {
 	@SuppressWarnings("unused")
 	private Client client = null;
 	private ModelAndView model = null;
-	private String userName= null;
+	private Employee userName= null;
 	private String retMessage ="";
 	
 	
@@ -49,7 +50,7 @@ public class LogTicketController {
 	public ModelAndView loadTicket() {
        
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
@@ -70,7 +71,7 @@ public class LogTicketController {
 	public ModelAndView logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
 	
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);
@@ -87,7 +88,7 @@ public class LogTicketController {
     public ModelAndView displayLoggedTickets() {
 		
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		
 			model.addObject("ticketList", logTicketService.getAllOpenTickets());
@@ -103,7 +104,7 @@ public class LogTicketController {
     public ModelAndView loadTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
-	    userName = (String) session.getAttribute("loggedInUser");
+	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
@@ -119,7 +120,7 @@ public class LogTicketController {
 	public ModelAndView updateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
 		
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
@@ -141,7 +142,7 @@ public class LogTicketController {
 	@RequestMapping("clientInfo")
 	public ModelAndView clientInfo(){
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			model.addObject("", "");
 			model.setViewName("clientInfo");
@@ -155,7 +156,7 @@ public class LogTicketController {
 	public ModelAndView loadTicketAdmin() {
        
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
@@ -172,7 +173,7 @@ public class LogTicketController {
     public ModelAndView assignTicketToAnotherTechnicia(@RequestParam String ticketNumber, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
-	    userName = (String) session.getAttribute("loggedInUser");
+	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			ticket = logTicketService.getLoggedTicketByTicketNumber(ticketNumber);
 			model.addObject("ticketupdate", ticket);
@@ -189,7 +190,7 @@ public class LogTicketController {
 	public ModelAndView updateTicketAdmin(@ModelAttribute("updateTicket")TicketsBean updateTicket){
 		
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
@@ -207,7 +208,7 @@ public class LogTicketController {
 	public ModelAndView logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
 	
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);

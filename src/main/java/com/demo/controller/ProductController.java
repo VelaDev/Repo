@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.bean.DeviceBean;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
+import com.demo.model.Employee;
 import com.demo.service.AccessoriesInt;
 import com.demo.service.ClientServiceInt;
 import com.demo.service.EmployeeServiceInt;
@@ -40,14 +41,14 @@ public class ProductController {
     private List<Accessories> accessories=null;
     private Device device = null; 
     private	ModelAndView model = null;
-    private String userName = null;
+    private Employee userName = null;
     private String retMessage = null;
 	
 	@RequestMapping(value="addProduct", method=RequestMethod.GET)
 	public ModelAndView loadSaveProduct()
 	{
 	    model = new ModelAndView();
-	    userName = (String) session.getAttribute("loggedInUser");
+	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			model.addObject("saveProduct", new DeviceBean());
@@ -63,7 +64,7 @@ public class ProductController {
 	public ModelAndView saveProduct(@ModelAttribute("saveProduct")DeviceBean deviceBean){
 		
 		model = new ModelAndView();
-		 userName = (String) session.getAttribute("loggedInUser");
+		 userName = (Employee) session.getAttribute("loggedInUser");
 			if(userName != null){
 				retMessage =deviceServiceInt.prepareDeviceData(deviceBean);
 		        model.addObject("retMessage", retMessage);
@@ -79,7 +80,7 @@ public class ProductController {
     public ModelAndView showProducts() {
 		
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			model.addObject("productList", deviceServiceInt.getDeviceList());
@@ -95,7 +96,7 @@ public class ProductController {
 	@RequestMapping(value="detailedProduct")
 	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Accessories accessory){
 	   model = new ModelAndView();
-	   userName = (String) session.getAttribute("loggedInUser");
+	   userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
 			accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
@@ -114,7 +115,7 @@ public class ProductController {
 	@RequestMapping(value="searchSerialNumber")
 	public ModelAndView searchClientforProduct(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		
@@ -139,7 +140,7 @@ public class ProductController {
 	public ModelAndView updateDevice()
 	{
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		    model.setViewName("updateDevice");
 		}
@@ -153,7 +154,7 @@ public class ProductController {
 	public ModelAndView searchDevice()
 	{
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.setViewName("searchDevice");
 		}
@@ -167,7 +168,7 @@ public class ProductController {
 	public ModelAndView searchDeviceBySerialNo(@RequestParam("serialNumber") String serialNumber,Device device,DeviceBean deviceBean){
 		model= new ModelAndView();
 		
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 		     device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
@@ -193,7 +194,7 @@ public class ProductController {
 	@RequestMapping(value="searchDeviceBySerialNo")
 	public ModelAndView searchDeviceBySerialNo1(@RequestParam("SerialNo") String serialNumber,Device device){
 		model= new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
@@ -219,7 +220,7 @@ public class ProductController {
 	public ModelAndView updateProduct(@ModelAttribute("updateProduct")DeviceBean deviceBean)
 	{
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 			retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
@@ -234,7 +235,7 @@ public class ProductController {
 	@RequestMapping(value="searchSerialNumberLogtickr")
 	public ModelAndView searchProductForLogTicket(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
 		model = new ModelAndView();
-		userName = (String) session.getAttribute("loggedInUser");
+		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		if(device != null){

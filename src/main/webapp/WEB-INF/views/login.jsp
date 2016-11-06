@@ -42,7 +42,7 @@
 								<div class="col-md-40 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-										<input id="username" name="username" placeholder="Username" class="form-control input-lg" type="text" >
+										<input id="email" name="email" placeholder="Username" class="form-control input-lg" type="text" >
 									</div>
 								</div>
 							</div>		

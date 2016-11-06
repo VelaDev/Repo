@@ -40,10 +40,8 @@ public class Employee implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="USERNAME")
-	private String username;
-	@Column(name="EMPLOYEE_NUMBER")
-	private String empNumber;
+	@Column(name="EMAIL")
+	private String email;
 	@Column(name="PASSWORD")
 	private String password;
 	@Column(name="TITLE")
@@ -54,10 +52,10 @@ public class Employee implements Serializable{
     private String lastName;
 	@Column(name="ROLE")
     private String role;
-	@Column(name="EMAIL")
-	private String email;
 	@Column(name="GENDER")
 	private String gender;
+	@Column(name="FIRSTTIMELOGIN")
+	private boolean isFirstTimeLogin;
 	
 	@OneToMany(mappedBy ="employee", cascade= CascadeType.ALL)
 	private Set<Tickets> logTickets;

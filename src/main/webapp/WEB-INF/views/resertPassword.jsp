@@ -4,7 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Login | Velaphanda Trading & Projects</title>
+<title>Reset Password | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,7 +21,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-						<b>Reset Password | Velaphanda Trading & Projects</b>
+						<b>Reset Password</b>
 					</div>
 					</h3>
 				</div>
@@ -32,14 +32,12 @@
 				<div class="form">
 				<form:form method="post" action="resertPassword" modelAttribute="resertPassword" id="resetPass">
 						<!--First column-->
-						<div class="col-sm-15">											
-								<img src="resources/bootstrap-3.3.6/images/logo.jpg"
-							class="img-responsive" alt="" />
-								<br>
+						<div class="col-md-6">											
+														
 							<!-- Text input Email-->	
 							<div class="form-group">
 								<label class="col-md-3 control-label">Email</label>
-								<div class="col-md-6in putGroupContainer">
+								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="glyphicon glyphicon-email"></i></span> 
 										<input id="email" name="email" placeholder="Email" class="form-control" type="text" >
@@ -75,11 +73,12 @@
 										<input name="confirmpassword" id="confirmpassword" placeholder="Password" class="form-control input-lg" type="password" >
 									</div>
 								</div>
-							</div>		
-							<button type="submit" name="resetpassword"id="resetpassword" class="btn btn-lg btn-primary btn-block">Reset Password</button>
-											
+							</div>											
 						</div>
 						<!-- /F Column -->
+						<button type="submit" name="resetpassword"id="resetpassword" class="btn btn-lg btn-primary btn-block">Reset Password</button>
+							
+						
 				</form:form>
 			</div>
 		</div>		

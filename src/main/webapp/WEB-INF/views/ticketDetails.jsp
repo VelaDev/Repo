@@ -35,8 +35,6 @@
 						<!--general tab-->
 						<div class="tab-pane active" id="generalDetails">
 							<h4 align="center">General Info</h4>
-							<br>
-
 							<form:form class="well form-horizontal" action="updateTicket"
 								modelAttribute="updateTicket" method="post" id="updataTckt">
 								<!--First Column-->
@@ -47,7 +45,7 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcaode"></i></span> <input
+													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="ticketNumber" id="ticketNumber" class="form-control"
 													type="text" value="${ticketObject.ticketNumber}">
 											</div>
@@ -104,8 +102,8 @@
 											Ticket</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
-												<input name="priority" id="priority" class="form-control"
-													type="checkbox" value="true" name="technicianAcknowledged">
+												<input type="checkbox" name="priority" id="priority"
+													value="true" name="technicianAcknowledged">
 											</div>
 										</div>
 									</div>
@@ -121,21 +119,6 @@
 													type="text"
 													value="${ticketObject.getSlaAcknowledgeDateTime().getTime().toLocaleString()}">
 											</div>
-										</div>
-									</div>
-
-
-								</div>
-								<!--/S Column-->
-
-								<!-- Text area Description-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Description</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="description">${ticketObject.description }</textarea>
 										</div>
 									</div>
 								</div>
@@ -157,12 +140,10 @@
 						<!--Clients tab-->
 						<div class="tab-pane" id="clientDetails">
 							<h4 align="center">Client Details</h4>
-
 							<form:form class="well form-horizontal">
 
 								<!--First column-->
-								<div class="col-sm-6">
-
+								<div class="col-md-6">
 									<!-- Text input Client Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Client Name</label>
@@ -203,12 +184,9 @@
 													name="province" class="form-control"
 													value="${ticketObject.device.client.getProvince()}"
 													type="text">
-
-
 											</div>
 										</div>
 									</div>
-
 
 									<!-- Text input City or Town-->
 									<div class="form-group">
@@ -223,7 +201,6 @@
 											</div>
 										</div>
 									</div>
-
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -238,7 +215,6 @@
 											</div>
 										</div>
 									</div>
-
 									<!-- Text input Area Code-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Area Code</label>
@@ -256,7 +232,7 @@
 								<!-- / F column -->
 
 								<!--Second column-->
-								<div class="col-sm-6">
+								<div class="col-md-6">
 
 
 									<!-- Text input Floor Number-->
@@ -335,16 +311,16 @@
 
 								</div>
 								<!-- /S Column -->
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-sm-8"></div>
+								</div>
 							</form:form>
 						</div>
 						<!--/Clients tab-->
 
 						<!--products tab-->
 						<div class="tab-pane" id="productDetails">
-
 							<h4 align="center">Product Details</h4>
-							<br>
-
 							<form:form class="well form-horizontal">
 
 								<!--First Column-->
@@ -382,7 +358,7 @@
 								<!--/F Column-->
 
 								<!--Second column-->
-								<div class="col-sm-6">
+								<div class="col-md-6">
 									<!-- Text input Machine Model-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Machine Model</label>
@@ -413,7 +389,9 @@
 									</div>
 								</div>
 								<!--/S Column-->
-								<br>
+								<div class="form-group row">
+									<div class="col-sm-offset-2 col-sm-8"></div>
+								</div>
 
 							</form:form>
 						</div>
@@ -421,24 +399,19 @@
 
 						<!--escalationDetails tab-->
 						<div class="tab-pane" id="escalationDetails">
-
 							<h4 align="center">Escalate Ticket</h4>
-							<br>
-
 							<form:form class="well form-horizontal">
-
 
 								<!-- Text area Escalate-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Escalate </label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
-											<input class="form-control" type="checkbox" name="escalate"
-												value="true" required="required">
+											<input type="checkbox" name="escalate" value="true"
+												required="required">
 										</div>
 									</div>
 								</div>
-
 								<!-- Text area Escalate Reason-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Escalate Reason</label>
@@ -451,7 +424,6 @@
 										</div>
 									</div>
 								</div>
-
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-md-8">
@@ -461,18 +433,13 @@
 									</div>
 								</div>
 							</form:form>
-
 						</div>
 						<!--/escalationDetails tab-->
 
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
-
 							<h4 align="center">Solution Details</h4>
-							<br>
-
 							<form:form class="well form-horizontal">
-
 
 								<!-- Text area Resolution-->
 								<div class="form-group">
@@ -486,7 +453,6 @@
 										</div>
 									</div>
 								</div>
-
 								<!-- Text area Solution-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Solution </label>
@@ -499,30 +465,23 @@
 										</div>
 									</div>
 								</div>
-
-
 								<br />
 								<div class="form-group">
-
 									<div class="col-sm-offset-2 col-md-8">
 										<input type="submit" value="Solution"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="solution">
 									</div>
-
 								</div>
 							</form:form>
-
 						</div>
 						<!--/solution tab-->
 
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
-
-							<h4>History Details</h4>
-
+							<h4 align="center">History Details</h4>
 							<div class="row">
-								<form class="form-horizontal">
+								<form:form class="form-horizontal">
 									<div class="panel-body">
 										<div class="row">
 											<div class="content">
@@ -552,7 +511,7 @@
 											</div>
 										</div>
 									</div>
-								</form>
+								</form:form>
 							</div>
 						</div>
 						<!--/history tab-->

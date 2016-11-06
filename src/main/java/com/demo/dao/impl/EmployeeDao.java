@@ -26,6 +26,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 	public String saveEmployee(Employee employee) {
 		
 		try{
+			  employee.setFirstTimeLogin(true);
 		      sessionFactory.getCurrentSession().save(employee);
 		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
 		}

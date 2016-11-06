@@ -149,7 +149,7 @@ public class OrdersDao implements OrdersDaoInt{
 		 for(Object order:aList)
 		 {
 			 if(order instanceof Orders){
-				 if(((Orders) order).getEmployee().getUsername().equalsIgnoreCase(userName)&& ((Orders)order).isApproved()==true){
+				 if(((Orders) order).getEmployee().getEmail().equalsIgnoreCase(userName)&& ((Orders)order).isApproved()==true){
 					 orderList.add((Orders) order);
 				 }
 			 }
@@ -225,7 +225,7 @@ public class OrdersDao implements OrdersDaoInt{
 		 for(Object order:aList)
 		 {
 			 if(order instanceof Orders){
-				 if(((Orders) order).getEmployee().getUsername().equalsIgnoreCase(orderedBy)){
+				 if(((Orders) order).getEmployee().getEmail().equalsIgnoreCase(orderedBy)){
 					 orderList.add((Orders) order);
 				 }
 			 }

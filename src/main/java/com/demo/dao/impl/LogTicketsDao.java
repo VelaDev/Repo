@@ -169,7 +169,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 		aList.addAll(criteria.list());
 		for (Object tic : aList) {
 			if (tic instanceof Tickets) {
-				if (((Tickets) tic).getEmployee().getUsername().equals(username) && ((Tickets) tic).getEmployee().getUsername()!=null) {
+				if (((Tickets) tic).getEmployee().getEmail().equals(username) && ((Tickets) tic).getEmployee().getEmail()!=null) {
 					ticketList.add((Tickets) tic);
 				}
 			}
@@ -247,7 +247,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 					  //ticket.setTechnicianAcknowledged(true);
 					  sessionFactory.getCurrentSession().update(ticket);
 					  historyDaoInt.insertTicketHistory(ticket);
-					  retMessage = "Ticket "+ ticket.getTicketNumber()+ " is now assigned to " + ticket.getEmployee().getUsername() ;
+					  retMessage = "Ticket "+ ticket.getTicketNumber()+ " is now assigned to " + ticket.getEmployee().getFirstName() ;
 				  }
 			  else{
 				  ticket.setSlaStart("Started");

@@ -42,7 +42,7 @@
 								<div class="col-md-40 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> 
-										<input id="email" name="email" placeholder="Username" class="form-control input-lg" type="text" >
+										<input id="email" name="email" placeholder="Email Address" class="form-control input-lg" type="text" >
 									</div>
 								</div>
 							</div>		
@@ -91,16 +91,16 @@
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													username : {
-														validators : {
-															stringLength : {
-																min : 2,
-															},
-															notEmpty : {
-																message : 'Username is required to login and cannot be empty'
-															}
-														}
-													},
+													email: {
+										                validators: {
+										                    notEmpty: {
+										                        message: 'The email address is required and cannot be empty'
+										                    },
+										                     emailAddress: {
+										                        message: 'The email address is not valid'
+										                    } 
+										                }
+										            },
 													password : {
 														validators : {
 															stringLength : {

@@ -104,8 +104,8 @@ public class DeviceDao implements DeviceDaoInt {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Accessories> accessories(Device device) {
-		ArrayList list = new ArrayList<Accessories>();
-		Accessories accessory = new Accessories();
+		/*ArrayList list = new ArrayList<Accessories>();
+		Accessories accessory = new Accessories();*/
 		return list;
 	}
 

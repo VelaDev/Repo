@@ -21,15 +21,15 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#generalDetails"
 							data-toggle="tab">General</a></li>
-						<li><a href="#clientDetails" data-toggle="tab">Client</a></li>
-						<li><a href="#productDetails" data-toggle="tab">Product</a></li>
+						<li><a href="#clientDetails" data-toggle="tab">Customer</a></li>
+						<li><a href="#productDetails" data-toggle="tab">Device</a></li>
 						<li><a href="#escalationDetails" data-toggle="tab">Escalate</a></li>
 						<li><a href="#solutionsDetails" data-toggle="tab">Solution</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
+					
 					<!-- tab nav -->
-
 					<div class="tab-content">
 
 						<!--general tab-->
@@ -122,6 +122,19 @@
 										</div>
 									</div>
 								</div>
+								
+									<!-- Text area Description-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Description</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="description"
+												required="required">${ticketObject.description}</textarea>
+										</div>
+									</div>
+								</div>
 
 
 								<br>
@@ -137,16 +150,16 @@
 						</div>
 						<!--/general tab-->
 
-						<!--Clients tab-->
+						<!--Customers tab-->
 						<div class="tab-pane" id="clientDetails">
-							<h4 align="center">Client Details</h4>
+							<h4 align="center">Customer Details</h4>
 							<form:form class="well form-horizontal">
 
 								<!--First column-->
 								<div class="col-md-6">
 									<!-- Text input Client Name-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Client Name</label>
+										<label class="col-md-3 control-label">Customer Name</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
@@ -320,7 +333,7 @@
 
 						<!--products tab-->
 						<div class="tab-pane" id="productDetails">
-							<h4 align="center">Product Details</h4>
+							<h4 align="center">Device Details</h4>
 							<form:form class="well form-horizontal">
 
 								<!--First Column-->
@@ -401,7 +414,21 @@
 						<div class="tab-pane" id="escalationDetails">
 							<h4 align="center">Escalate Ticket</h4>
 							<form:form class="well form-horizontal">
-
+								
+								<!-- Text input Ticket Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Ticket Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="ticketNumber" id="ticketNumber" class="form-control"
+													type="text" value="${ticketObject.ticketNumber}">
+											</div>
+										</div>
+									</div>
+									
+								
 								<!-- Text area Escalate-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Escalate </label>
@@ -440,7 +467,21 @@
 						<div class="tab-pane" id="solutionsDetails">
 							<h4 align="center">Solution Details</h4>
 							<form:form class="well form-horizontal">
-
+								
+								<!-- Text input Ticket Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Ticket Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="ticketNumber" id="ticketNumber" class="form-control"
+													type="text" value="${ticketObject.ticketNumber}">
+											</div>
+										</div>
+									</div>
+									
+								
 								<!-- Text area Resolution-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Resolution </label>

@@ -14,7 +14,7 @@
 	<div class="velaphanda_containter">	
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		<br/>
+	
 		<c:if test="${not empty retMessage }">
 			<div class="alert alert-info" role="alert">
 				<c:out value="${ retMessage}">
@@ -29,10 +29,16 @@
 						</div>
 					</h3>
 				</div>
-				<div class="panel-body">					
-				<div class="tab-content">
-				
-				<form:form class="well form-horizontal" method="post" action="saveSpareParts"
+				<div class="panel-body">
+						<!-- tab nav -->
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#spare"	data-toggle="tab">Spare</a></li>
+						<li><a href="#parts" data-toggle="tab">Parts</a></li>
+					</ul>					
+					<div class="tab-content">
+					<div class="tab-pane active" id="spare">
+					<h4 align="center">Spare</h4>
+							<form:form class="well form-horizontal" method="post" action="saveSpareParts"
 					modelAttribute="saveSpareParts" id="saveSpareParts">
 							
 					<!--First column-->
@@ -125,8 +131,107 @@
 									id="addSpares">
 							</div>
 						</div>
-				</form:form>
+					</form:form>
+					
+					</div><!-- /parts  -->
+					
+					<div class="tab-pane" id="parts">
+					<h4 align="center">Parts</h4>
+						<form:form class="well form-horizontal" method="post" action="saveSpareParts"
+					modelAttribute="saveSpareParts" id="saveSpareParts">
+							
+					<!--First column-->
+					<div class="col-sm-6">
+					
+						<!-- Select type Part Number-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Part Number</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="partNumber"
+										class="form-control selectpicker">
+										<option value="">Select Part Number<option>
+										<option value="CLT-R806K">CLT-R806K</option>
+										<option value="CLT-R806X">CLT-R806X</option>
+										<option value="CLT-W806">CLT-W806</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
 						
+						<!-- Select type Item Type-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Item Type</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="itemType"
+										class="form-control selectpicker">
+										<option value="">Select Item Type<option>
+									<option value="Toner">Toner</option>
+									<option value="Spares">Spares</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						
+					</div><!-- / F column -->	
+					
+					<!--Second column-->		
+					<div class="col-sm-6">
+					
+					
+						<!-- Select type Model Number-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Model Number</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="modelNumber"
+										class="form-control selectpicker">
+										<option value="">Select Item Type<option>
+										<option value="MultiXpress X7500LX">MultiXpress	X7500LX</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Select type Description-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Description</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="description"
+										class="form-control selectpicker">
+										<option value="">Select Description<option>
+									<option value="Black Imaging Unit">Black Imaging Unit</option>
+									<option value="Color Imaging Unit">Color Imaging Unit</option>
+									<option value="Waste Toner Bottle">Waste Toner Bottle</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+					</div><!-- /S column  -->
+					
+						<br><br>
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<input type="submit" value="Add Spares"
+									class="btn btn-primary btn-block btn-lg" tabindex="9"
+									id="addSpares">
+							</div>
+						</div>
+						</form:form>
+					</div><!-- /parts  -->
 					</div><!-- /tab-content -->									
 				</div><!-- /panel body -->
 			</div><!--/panel success class-->

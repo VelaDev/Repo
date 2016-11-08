@@ -66,7 +66,12 @@
 										</div>
 									</div>
 								</div>
-								<!-- Text input New Password-->
+								
+							</div>
+							<!-- /F Column -->
+							
+							<div class="col-md-6">
+									<!-- Text input New Password-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">New Password</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -87,16 +92,22 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-lock"></i></span> <input
 												name="confirmpassword" id="confirmpassword"
-												placeholder="Password" class="form-control input-lg"
+												placeholder="Confirm Password" class="form-control"
 												type="password">
 										</div>
 									</div>
 								</div>
 							</div>
-							<!-- /F Column -->
+							<div class="form-group row">
+						<div class="col-sm-offset-2 col-sm-8">
+							<br><br>
 							<button type="submit" name="resetpassword" id="resetpassword"
 								class="btn btn-lg btn-primary btn-block">Reset Password</button>
-
+							
+							</div>
+					</div>
+					
+							
 						</form:form>
 
 

@@ -126,16 +126,16 @@
 					<div class="col-sm-6">
 					
 					<!-- Text input Username-->
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label class="col-md-3 control-label">Username</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-envelope"></i></span> <input name="username"
-										placeholder="Username" class="form-control" type="text" value='${ employeeObject.username}'>
+										placeholder="Username" class="form-control" type="text">
 								</div>
 							</div>
-						</div>
+						</div> -->
 						
 					<!-- Text input password-->
 						<div class="form-group">

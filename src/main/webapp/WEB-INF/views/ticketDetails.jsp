@@ -154,7 +154,6 @@
 						<div class="tab-pane" id="clientDetails">
 							<h4 align="center">Customer Details</h4>
 							<form:form class="well form-horizontal">
-
 								<!--First column-->
 								<div class="col-md-6">
 									<!-- Text input Client Name-->

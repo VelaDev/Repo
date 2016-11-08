@@ -42,8 +42,7 @@
 					modelAttribute="saveSpareParts" id="saveSpareParts">
 							
 					<!--First column-->
-					<div class="col-sm-6">
-					
+					<div class="col-sm-6">					
 						<!-- Select type Part Number-->						
 						<div class="form-group">
 							<label class="col-md-3 control-label">Part Number</label>

@@ -61,11 +61,11 @@ public class EmployeeController {
 		if(employee != null){
 			
 			session.setAttribute("loggedInUser", employee);
-			if(employee.isFirstTimeLogin()==true){
+			/*if(employee.isFirstTimeLogin()==true){
 				
 				retRole ="redirect:resertPassword";
 			}else
-			{
+			{*/
 				model.addObject("loggedInUser", employee.getEmail());
 				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
@@ -86,10 +86,10 @@ public class EmployeeController {
 				}
 			}
 			
-			}else{
+			/*}else{
 				  retRole="redirect:error";
 				  System.out.println("You are not registered to use the system. Consults Administrator");
-			}
+			}*/
 			
 		return retRole;
 	}
@@ -149,12 +149,12 @@ public class EmployeeController {
 		
 	@RequestMapping(value = {"technicianHome"})
     public ModelAndView displayLoggedTickets() {
-		String user = (String) session.getAttribute("loggedInUser");
+
 		 model = new ModelAndView();
 		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(user));
+			model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
 			model.setViewName("technicianHome");
 			}
 			else{

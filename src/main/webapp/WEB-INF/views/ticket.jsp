@@ -109,7 +109,7 @@
 												name="technicianUserName" class="form-control selectpicker">
 												<option value="">Select Technician</option>
 												<c:forEach items="${technicians}" var="technician">
-													<option value="${technician.username}">${technician.username}</option>
+													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
 												</c:forEach>
 											</select>
 										</div>

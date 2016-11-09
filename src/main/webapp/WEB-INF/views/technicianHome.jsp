@@ -30,7 +30,7 @@
 							<thead style="background-color: #bce8f1;">
 							<tr>
 								<th>Ticket Number</th>
-								<th>Client Name</th>
+								<th>Customer Name</th>
 								<th>Telephone No</th>
 								<th>Ticket Details</th>								
 							</tr>

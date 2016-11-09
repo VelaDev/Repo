@@ -40,7 +40,7 @@
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Search Client </label>
+									<label class="col-md-3 control-label">Search Customer </label>
 									<div class="col-md-4 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
@@ -67,7 +67,7 @@
 
 								<!-- Text input Client Name-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Client Name</label>
+									<label class="col-md-3 control-label">Customer Name</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i

@@ -16,8 +16,8 @@
                     <thead style="background-color: #bce8f1;">
                     <tr>
                         <th>Serial Number</th>
-                        <th>Product Name</th> 
-                        <th>Product Model</th>
+                        <th>Device Name</th> 
+                        <th>Device Model</th>
                         <th>Description</th>
                         <th>Arrived Date</th> 
                         

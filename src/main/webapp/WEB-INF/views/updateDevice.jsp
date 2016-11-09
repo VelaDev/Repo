@@ -54,7 +54,7 @@
 
 									<!-- Text input Client Name-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Client Name</label>
+										<label class="col-md-3 control-label">Customer Name</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i

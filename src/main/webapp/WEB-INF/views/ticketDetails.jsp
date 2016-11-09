@@ -47,7 +47,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="ticketNumber" id="ticketNumber" class="form-control"
-													type="text" value="${ticketObject.ticketNumber}">
+													type="text" value="${ticketObject.ticketNumber}" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -59,7 +59,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input name="status"
 													id="status" class="form-control" type="text"
-													value="${ticketObject.status}">
+													value="${ticketObject.status}" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -91,7 +91,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="priority" id="priority" class="form-control"
-													type="text" value="${ticketObject.priority}">
+													type="text" value="${ticketObject.priority}" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -117,7 +117,7 @@
 													class="glyphicon glyphicon-calendar"></i></span> <input
 													name="priority" id="priority" class="form-control"
 													type="text"
-													value="${ticketObject.getSlaAcknowledgeDateTime().getTime().toLocaleString()}">
+													value="${ticketObject.getSlaAcknowledgeDateTime().getTime().toLocaleString()}" >
 											</div>
 										</div>
 									</div>
@@ -131,7 +131,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
-												required="required">${ticketObject.description}</textarea>
+												required="required" disabled="disabled">${ticketObject.description}</textarea>
 										</div>
 									</div>
 								</div>
@@ -166,7 +166,7 @@
 													name="clientName" placeholder="Client Name"
 													class="form-control"
 													value="${ticketObject.device.client.clientName}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -181,7 +181,7 @@
 													name="contactPerson" placeholder="Contact Person"
 													class="form-control"
 													value="${ticketObject.device.client.getContactPerson()}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -195,7 +195,7 @@
 													class="glyphicon glyphicon-list"></i></span> <input
 													name="province" class="form-control"
 													value="${ticketObject.device.client.getProvince()}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -209,7 +209,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="city_town" placeholder="City / Town"
 													class="form-control"
-													value="${ticketObject.device.client.city_town}" type="text">
+													value="${ticketObject.device.client.city_town}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -223,7 +223,7 @@
 													name="streetName" placeholder="Street Name"
 													class="form-control"
 													value="${ticketObject.device.client.getStreetName()}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -235,7 +235,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													placeholder="Area Code" class="form-control"
-													value="${ticketObject.device.client.zipcode}" type="text">
+													value="${ticketObject.device.client.zipcode}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -257,7 +257,7 @@
 													name="floorNumber" placeholder="Floor Number"
 													class="form-control"
 													value="${ticketObject.device.client.floorNumber}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -272,7 +272,7 @@
 													name="tellphoneNumber" placeholder="Tellphone Number"
 													class="form-control"
 													value="${ticketObject.device.client.getTellphoneNumber()}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -286,7 +286,7 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="faxNumber" placeholder="Fax Number"
 													class="form-control"
-													value="${ticketObject.device.client.faxNumber}" type="text">
+													value="${ticketObject.device.client.faxNumber}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -301,7 +301,7 @@
 													name="cellNumber" placeholder="Mobile Number"
 													class="form-control"
 													value="${ticketObject.device.client.cellNumber}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -315,7 +315,7 @@
 													class="glyphicon glyphicon-envelope"></i></span> <input
 													class="form-control"
 													value="${ticketObject.device.client.getEmail()}"
-													type="text">
+													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -346,7 +346,7 @@
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="serialNumber"
 													value="${ticketObject.getDevice().getSerialNumber()}"
-													class="form-control" type="text">
+													class="form-control" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -361,7 +361,7 @@
 													class="glyphicon glyphicon-calendar"></i></span> <input
 													name="startDate" id="startDate"
 													value="${ticketObject.getDevice().getStartDate()}"
-													class="form-control" type="text">
+													class="form-control" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -380,7 +380,7 @@
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="productModel"
 													value="${ticketObject.getDevice().getProductModel()}"
-													class="form-control" type="text">
+													class="form-control" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -395,7 +395,7 @@
 													class="glyphicon glyphicon-calendar"></i></span> <input
 													name="endDate" id="endDate"
 													value="${ticketObject.getDevice().getEndDate()}"
-													class="form-control" type="text">
+													class="form-control" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>

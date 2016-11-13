@@ -41,6 +41,8 @@
 							action="makeOrder" modelAttribute="makeOrder" id="order">
 
 							<div class="row">
+							
+								<!-- /First group form for original fields -->
 								<div class="form-group">
 									<!--First Column-->
 									<div class="col-md-6">
@@ -123,15 +125,15 @@
 											</div>
 										</div>
 									</div>
-
+									
+									<!-- Add More options -->
 									<div class="col-xs-1">
 										<button type="button" class="btn btn-default addButton">
 											Add<i class="fa fa-plus"></i>
 										</button>
-									</div>
+									</div><!-- /Add more options -->									
 
-								</div>
-
+								</div><!-- /First group form for original fields -->
 
 								<!-- For adding new field -->
 								<div class="form-group hide" id="newOrder">
@@ -205,7 +207,6 @@
 									<!-- Third column -->
 									<div class="col-sm-12">
 										<!-- Text area Description-->
-
 										<div class="form-group">
 											<br /> <label class="col-md-3 control-label">Description</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -217,20 +218,18 @@
 												</div>
 											</div>
 										</div>
-									</div>
-
+									</div><!-- /Third Colunm -->
+									
+									<!-- remove more options -->
 									<div class="col-xs-1">
 										<button type="button" class="btn btn-default removeButton">
 											<i class="fa fa-minus"></i>
 										</button>
-									</div>
-
-								</div>
-
-
-
-
-								<!-- /T Column -->
+									</div><!-- //remove more options -->
+									
+								</div><!-- /First group form for original fields -->
+								
+								<!-- Submit -->
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<br>
@@ -238,19 +237,14 @@
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="makeOdr">
 									</div>
-								</div>
-
-
-
-							</div>
-							<!--row-->
-
+								</div><!-- /Submit -->
+								
+							</div><!--row-->
+							
 						</form:form>
-
-
+						
 					</div>
 					<!-- /tab-content -->
-
 				</div>
 				<!-- /panel body -->
 			</div>

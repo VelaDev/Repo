@@ -266,6 +266,11 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
 
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+
 	<!-- /Script -->
 
 	<!-- Validate Make Order -->
@@ -274,9 +279,9 @@
 				.ready(
 						function() {
 							$('#order')
-									.formValidation(
+									.bootstrapValidator(
 											{
-												framework : 'bootstrap',
+												//framework : 'bootstrap',
 												icon : {
 													valid : 'glyphicon glyphicon-ok',
 													invalid : 'glyphicon glyphicon-remove',
@@ -345,23 +350,23 @@
 												// because the new field has the same name with the original one
 												// which its validators are already set
 												$('#order')
-														.formValidation(
+														.bootstrapValidator(
 																'addField',
 																$clone
 																		.find('[name="device"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'addField',
 																$clone
 																		.find('[name="part"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'addField',
 																$clone
 																		.find('[name="description"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'addField',
 																$clone
 																		.find('[name="quantity"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'addField',
 																$clone
 																		.find('[name="delivery"]'))
@@ -377,23 +382,23 @@
 
 												// Remove fields
 												$('#order')
-														.formValidation(
+														.bootstrapValidator(
 																'removeField',
 																$row
 																		.find('[name="device"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'removeField',
 																$row
 																		.find('[name="part"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'removeField',
 																$row
 																		.find('[name="description"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'removeField',
 																$row
 																		.find('[name="quantity"]'))
-														.formValidation(
+														.bootstrapValidator(
 																'removeField',
 																$row
 																		.find('[name="delivery"]'));

@@ -42,7 +42,10 @@ public class Device implements Serializable{
 	private String startDate;
 	@Column(name="END_DATE")
 	private String endDate;
-	private String 
+	@Column(name="INSTALLATION_DATE")
+	private String installationDate;
+	@Column(name="DEVICE_LOCATION")
+	private String deviceLocation;
 	
 	
 	@ManyToOne

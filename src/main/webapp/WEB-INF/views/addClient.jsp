@@ -25,7 +25,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-						<b>Add Client</b>
+						<b>Add Customer</b>
 					</div>
 					</h3>
 				</div>
@@ -46,7 +46,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="clientName"
-										placeholder="Client Name" class="form-control" type="text">
+										placeholder="Customer Name" class="form-control" type="text">
 								</div>
 							</div>
 						</div>
@@ -189,7 +189,7 @@
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<br><br>
-							<input type="submit" value="Add Client"
+							<input type="submit" value="Add Customer"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
 								id="addClnt">
 						</div>

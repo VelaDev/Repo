@@ -70,7 +70,6 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
-												name="contactPerson" placeholder="Contact Person"
 												class="form-control" value="${client.contactPerson}"
 												type="text">
 										</div>
@@ -244,6 +243,18 @@
 										</div>
 									</div>
 								</div>
+								<!-- Text input Device Location-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Device Location</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="deviceLocation" id="deviceLocation" placeholder="Device Location"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
 							
 						</div><!--/F Column-->
 												
@@ -274,7 +285,20 @@
 										</div>
 									</div>
 								</div>
+								<!-- Text input Installation Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Installation Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="installationDate" id="installationDate" placeholder="YYYY-MM-DD"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
 							</div><!--/S Column-->
+							
 						
 					</fieldset>
 
@@ -370,7 +394,7 @@
 					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Add Product"
+							<input type="submit" value="Add Device"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
 								id="addProduct">
 						</div>

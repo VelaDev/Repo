@@ -86,7 +86,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
-												name="contactPerson" placeholder="Contact Person"
+												name="contactPerson"
 												class="form-control" value="${client.contactPerson}"
 												type="text">
 										</div>
@@ -233,7 +233,7 @@
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
 									<br>
-									<br> <input type="submit" value="Update Client"
+									<br> <input type="submit" value="Update Customer"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="updateClnt">
 								</div>

@@ -7,7 +7,15 @@
 a{
 	text-decoration:none;
 }
-	
+/*devider hr*/
+.devider {
+    margin-top: 6%;
+	margin-bottom: 20px;
+	border: 0;
+	border-top: 1px solid #92CF9B;
+	margin-right: 13%;
+	margin-left: 6%;
+}
 /*Pie Chart*/
 
 .open_tickets{

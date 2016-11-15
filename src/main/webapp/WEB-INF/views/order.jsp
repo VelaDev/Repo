@@ -10,6 +10,9 @@
 	href="<c:url value="/resources/dynamicfields/css/extented_fields.css" />"
 	rel="stylesheet" type="text/css" />
 <link
+	href="<c:url value="/resources/custom/css/vela_custom.css" />"
+	rel="stylesheet" type="text/css" />
+<link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
 	rel="stylesheet">
 <!--/style-->
@@ -110,20 +113,9 @@
 										</div>
 									</div>
 									<!--/S Column-->
-									<!-- Third column -->
-									<div class="col-sm-12">
-										<!-- Text area Description-->
-										<div class="form-group">
-											<br /> <label class="col-md-3 control-label">Description</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" rows="5" cols="102"
-														name="description" placeholder="Description"></textarea>
-												</div>
-											</div>
-										</div>
+									<!-- Karohanyo -->
+									<div class="devider">
+																		
 									</div>
 									
 									<!-- Add More options -->
@@ -189,7 +181,10 @@
 										
 									</div>
 									<!--/S Column-->
-								
+									<!-- Karohanyo -->
+									<div class="devider">
+																		
+									</div>
 									
 									<!-- remove more options -->
 									<div class="col-xs-1">
@@ -199,6 +194,22 @@
 									</div><!-- //remove more options -->
 									
 								</div><!-- /First group form for original fields -->
+								
+								<!-- Third column -->
+									<div class="col-sm-12">
+										<!-- Text area Description-->
+										<div class="form-group">
+											<br /> <label class="col-md-3 control-label">Description</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-pencil"></i></span>
+													<textarea class="form-control" rows="5" cols="102"
+														name="description" placeholder="Description"></textarea>
+												</div>
+											</div>
+										</div>
+									</div>
 								
 								<!-- Submit -->
 								<div class="form-group row">

@@ -186,39 +186,10 @@
 												</div>
 											</div>
 										</div>
-
-										<!-- Select type Delivery-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Delivery</label>
-											<div class="col-md-6 selectContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select
-														name="delivery" class="form-control selectpicker">
-														<option value="">Select Delivery</option>
-														<option value="1">Yes</option>
-														<option value="0">No</option>
-													</select>
-												</div>
-											</div>
-										</div>
+										
 									</div>
 									<!--/S Column-->
-									<!-- Third column -->
-									<div class="col-sm-12">
-										<!-- Text area Description-->
-										<div class="form-group">
-											<br /> <label class="col-md-3 control-label">Description</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" rows="5" cols="102"
-														name="description" placeholder="Description"></textarea>
-												</div>
-											</div>
-										</div>
-									</div><!-- /Third Colunm -->
+								
 									
 									<!-- remove more options -->
 									<div class="col-xs-1">

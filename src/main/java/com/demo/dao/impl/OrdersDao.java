@@ -82,7 +82,7 @@ public class OrdersDao implements OrdersDaoInt{
 				order.setApproved(false);
 				order.setDateOrdered(dateFormat.format(date));
 				order.setDescription(orders.getDescription());
-				order.setQuantity(orders.getQuantity());
+				//order.setQuantity(orders.getQuantity());
 			
 			
 			     sessionFactory.getCurrentSession().save(order);
@@ -116,7 +116,7 @@ public class OrdersDao implements OrdersDaoInt{
 				order.setApprodedBy(approvedBy);
 				order.setOrderNum(orders.getOrderNum());
 				order.setDescription(orders.getDescription());
-				order.setQuantity(orders.getQuantity());
+				//order.setQuantity(orders.getQuantity());
 				order.setEmployee(emp);
 				order.setDateOrdered(orders.getDateOrdered());
 				

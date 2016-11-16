@@ -58,14 +58,12 @@ public class EmployeeController {
 		
 		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
 		
-		if(employee != null){
-			
+		if(employee != null&& employee.isActive()==true){
 			session.setAttribute("loggedInUser", employee);
-			/*if(employee.isFirstTimeLogin()==true){
-				
+			
+			/*if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 				retRole ="redirect:resertPassword";
-			}else
-			{*/
+			}else{*/
 				model.addObject("loggedInUser", employee.getEmail());
 				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
@@ -80,16 +78,16 @@ public class EmployeeController {
 				else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
 				{
 					retRole= "redirect:ticket";
-				}
-				else {
+				}else{
 					System.out.println("Username or password incorrect");
 				}
 			}
 			
-			/*}else{
-				  retRole="redirect:error";
-				  System.out.println("You are not registered to use the system. Consults Administrator");
-			}*/
+		//}
+		/*else{
+			
+		}*/
+			
 			
 		return retRole;
 	}
@@ -251,6 +249,8 @@ public class EmployeeController {
 	@RequestMapping(value ="resertPassword",method=RequestMethod.GET)
 	public ModelAndView resetPassword(){
 		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		model.addObject("employee", userName);
 		model.setViewName("resertPassword");
 		
 		return model;

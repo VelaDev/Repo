@@ -58,8 +58,6 @@ public class Client implements Serializable{
 	private String cellNumber;
 	@Column(name="Contact_Person")
 	private String contactPerson;
-	@Column(name="Floor_No")
-	private String floorNumber;
 	@Column(name="Street_No")
 	private String streetNumber;
 	

@@ -5,7 +5,7 @@ public class OrdersBean {
 	
 
 	private String orderNum;
-	private int quantity;
+	private String quantity;
 	private boolean delivery;
 	private boolean delivered;
 	private boolean received;
@@ -27,10 +27,10 @@ public class OrdersBean {
 	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 	public boolean isDelivery() {

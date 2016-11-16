@@ -141,7 +141,7 @@ public class DeviceDao implements DeviceDaoInt {
 		client.setContactPerson(deviceBean.getContactPerson());
 		client.setEmail(deviceBean.getEmail());
 		client.setFaxNumber(deviceBean.getFaxNumber());
-		client.setFloorNumber(deviceBean.getFloorNumber());
+		client.setStreetNumber(deviceBean.getStreetNumber());
 		client.setProvince(deviceBean.getProvince());
 		client.setStreetName(deviceBean.getStreetName());
 		client.setTellphoneNumber(deviceBean.getTellphoneNumber());

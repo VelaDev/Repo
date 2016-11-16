@@ -33,9 +33,11 @@
 				<form:form method="post" action="authenticate" role="login"
 						modelAttribute="authenticate" id="loginVali">
 						<!--First column-->
-						<div class="col-sm-15">											
-								<img src="resources/bootstrap-3.3.6/images/logo.jpg"
+						<div class="col-sm-15">										
+							<div class="mainlogo">
+								<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
 							class="img-responsive" alt="" />
+							</div>
 								<br>
 							<!-- Text input Username-->	
 							<div class="form-group">

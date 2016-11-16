@@ -15,7 +15,7 @@
 
 <div class="velatp_logo">
 	<a href="technicianHome.html"><img
-		src="resources/bootstrap-3.3.6/images/velatp.jpg"></a>
+		src="resources/bootstrap-3.3.6/images/mainlogo.jpg"></a>
 	<div class="userloggedin">
 	 <ul class="nav navbar-nav navbar-right">        
         <li class="dropdown">

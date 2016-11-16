@@ -38,192 +38,52 @@
 					</h3>
 				</div>
 				<div class="panel-body">
+					<!-- tab nav -->
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#orderTonner" data-toggle="tab">Order Tonner</a></li>
+						<li><a href="#orderParts" data-toggle="tab">Order Parts</a></li>
+					</ul>
+					
 					<div class="tab-content">
-
-						<form:form class="well form-horizontal" method="post"
-							action="makeOrder" modelAttribute="makeOrder" id="order">
-
-							<div class="row">
+					
+						<!--order Order Tonner-->
+						<div class="tab-pane" id="orderTonner">
+							<h4 align="center">Order Tonner</h4>
+							<form:form class="well form-horizontal">								
 							
-								<!-- /First group form for original fields -->
+							<!-- Fields goes here -->
+							<p>Fields goes here</p>
+								<br>
 								<div class="form-group">
-									<!--First Column-->
-									<div class="col-md-6">
-
-										<!-- Text input Serial No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Serial No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="device" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-
-										<!-- Select type Part Number:-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Part Number</label>
-											<div class="col-md-6 selectContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select name="part"
-														class="form-control selectpicker">
-														<option value="">Select Part Number</option>
-														<option value="CLT-R806K">CLT-R806K</option>
-														<option value="CLT-R806X">CLT-R806X</option>
-														<option value="CLT-W806">CLT-W806</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--/F Column-->
-
-									<!--Second column-->
-									<div class="col-sm-6">
-
-										<!-- Text input Quantity-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Quantity</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="quantity" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-
-										<!-- Select type Delivery-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Delivery</label>
-											<div class="col-md-6 selectContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select
-														name="delivery" class="form-control selectpicker">
-														<option value="">Select Delivery</option>
-														<option value="1">Yes</option>
-														<option value="0">No</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--/S Column-->
-									<!-- Karohanyo -->
-									<div class="devider">
-																		
-									</div>
-									
-									<!-- Add More options -->
-									<div class="col-xs-1">
-										<button type="button" class="btn btn-default addButton">
-											Add<i class="fa fa-plus"></i>
-										</button>
-									</div><!-- /Add more options -->									
-
-								</div><!-- /First group form for original fields -->
-
-								<!-- For adding new field -->
-								<div class="form-group hide" id="newOrder">
-
-									<!--First Column-->
-									<div class="col-md-6">
-
-										<!-- Text input Serial No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Serial No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="device" class="form-control" type="text" placeholder="Serial No">
-												</div>
-											</div>
-										</div>
-
-										<!-- Select type Part Number:-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Part Number</label>
-											<div class="col-md-6 selectContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select name="part"
-														class="form-control selectpicker">
-														<option value="">Select Part Number</option>
-														<option value="CLT-R806K">CLT-R806K</option>
-														<option value="CLT-R806X">CLT-R806X</option>
-														<option value="CLT-W806">CLT-W806</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--/F Column-->
-
-									<!--Second column-->
-									<div class="col-sm-6">
-
-										<!-- Text input Quantity-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Quantity</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="quantity" class="form-control" type="text" placeholder="Quantity">
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									<!--/S Column-->
-									<!-- Karohanyo -->
-									<div class="devider">
-																		
-									</div>
-									
-									<!-- remove more options -->
-									<div class="col-xs-1">
-										<button type="button" class="btn btn-default removeButton">
-											<i class="fa fa-minus"></i>
-										</button>
-									</div><!-- //remove more options -->
-									
-								</div><!-- /First group form for original fields -->
-								
-								<!-- Third column -->
-									<div class="col-sm-12">
-										<!-- Text area Description-->
-										<div class="form-group">
-											<br /> <label class="col-md-3 control-label">Description</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" rows="5" cols="102"
-														name="description" placeholder="Description"></textarea>
-												</div>
-											</div>
-										</div>
-									</div>
-								
-								<!-- Submit -->
-								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
-										<br>
-										<br> <input type="submit" value="Make Order"
+									<div class="col-sm-offset-2 col-md-8">
+										<input type="submit" value="Order Tonner"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="makeOdr">
+											id="orderT">
 									</div>
-								</div><!-- /Submit -->
-								
-							</div><!--row-->
+								</div>
+							</form:form>
+						</div>
+						<!--/order tonner-->
+						
+						<!--order parts tab-->
+						<div class="tab-pane" id="orderParts">
+							<h4 align="center">Order Parts</h4>
+							<form:form class="well form-horizontal">
 							
-						</form:form>
+							<!-- Fields goes here -->
+							<p>Fields goes here</p>	
+							
+								<br>
+								<div class="form-group">
+									<div class="col-sm-offset-2 col-md-8">
+										<input type="submit" value="Order Parts"
+											class="btn btn-primary btn-block btn-lg" tabindex="9"
+											id="orderP">
+									</div>
+								</div>
+							</form:form>
+						</div>
+						<!--/order parts tab-->
 						
 					</div>
 					<!-- /tab-content -->

@@ -7,6 +7,9 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 }
+.mainlogo{
+	margin-left:20%;
+}
 .login-page {
   width: 360px;
   padding: 8% 0 0;

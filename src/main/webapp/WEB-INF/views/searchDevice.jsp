@@ -90,6 +90,34 @@
 						<div class="groupclientdetails">
 							<legend>Machine Details</legend>
 							<form:form>
+							<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Contact Person:</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+											<input type="text" class="form-control input-sm"
+												value="${productObject.client.contactPerson}" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Tell No:</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+											<input type="text" class="form-control input-sm"
+												value="${productObject.client.tellphoneNumber}" disabled="disabled">
+										</div>
+									</div>
+								</div>
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="col-xs-4 form-control-label">
@@ -108,7 +136,7 @@
 									<div class="col-xs-12">
 										<div class="col-xs-4 form-control-label">
 											<h6>
-												<label>Product Model:</label>
+												<label>Model Number:</label>
 											</h6>
 
 										</div>

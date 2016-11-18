@@ -1,4 +1,3 @@
-
 <%@include file="taglibs.jsp"%>
 
 <script type="text/javascript"
@@ -12,15 +11,9 @@
 	href="<c:url value="/resources/custom/css/navbar.css" />"
 	rel="stylesheet" type="text/css" />
 
-<link
-	href="<c:url value="/resources/custom/css/vela_custom.css" />"
-	rel="stylesheet" type="text/css" />
-	
+
 <div class="velatp_logo">
  	<a href="home.html"><img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"></a>
- 	<div class="velatsystem">
- 		<p><span class="velas">Velaphanda</span>Technical <span class="velas">System</span></p>
- 	</div>
  <div class="userloggedin">
 	 <ul class="nav navbar-nav navbar-right">        
         <li class="dropdown">
@@ -58,8 +51,8 @@
 							<li><a href='<c:url value="displayEmployees.html"/>'>Display
 									Employee</a></li>
 							<li><a href='<c:url value="updateEmployee.html"/>'>Update Employee</a></li>
-							<li><a href='<c:url value="changePassword.html"/>'>Change Password</a></li>
-							<li><a href='<c:url value="#.html"/>'>Deactivate
+							<li><a href='<c:url value="resertPassword.html"/>'>Password Reset </a></li>
+							<li><a href='<c:url value="deactivateEmployee.html"/>'>Deactivate
 									Employee</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -116,5 +109,3 @@
 		</div>
 	</nav>
 </div>
-
-

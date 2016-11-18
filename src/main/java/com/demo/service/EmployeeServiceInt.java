@@ -10,5 +10,6 @@ public interface EmployeeServiceInt {
 	List<Employee> getAllTechnicians();
 	List<Employee> getAllEmployees();
 	String updateEmployee (Employee employee);
+	String deactivateEmployee(Employee employee);
 
 }

@@ -29,6 +29,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 		
 		try{
 			  employee.setFirstTimeLogin(true);
+			  employee.setActive(true);
 			  password = generatePassword();
 			  employee.setPassword(password);
 		      sessionFactory.getCurrentSession().save(employee);
@@ -128,4 +129,19 @@ public class EmployeeDao implements EmployeeDaoInt{
 		}
 		return retPassword;
 	}
+
+	@Override
+	public String deactivateEmployee(Employee employee) {
+       try{
+			
+    	   employee.setActive(false);
+			sessionFactory.getCurrentSession().update(employee);
+		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully deactivated";
+		}
+		catch(Exception e){
+			retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is not deactivated\n" + e.getMessage();
+		}
+		return retMessage;
+	}
+
 }

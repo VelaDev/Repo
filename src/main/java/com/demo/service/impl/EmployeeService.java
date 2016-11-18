@@ -51,4 +51,10 @@ public class EmployeeService implements EmployeeServiceInt {
 		return retMessage;
 	}
 
+	@Override
+	public String deactivateEmployee(Employee employee) {
+		retMessage = employeeDAO.deactivateEmployee(employee);
+		return retMessage;
+	}
+
 }

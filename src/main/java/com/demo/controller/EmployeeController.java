@@ -58,7 +58,7 @@ public class EmployeeController {
 		
 		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
 		
-		if(employee != null&& employee.isActive()==true){
+		if(employee != null){
 			session.setAttribute("loggedInUser", employee);
 			
 			/*if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
@@ -246,12 +246,12 @@ public class EmployeeController {
 		}
 		return model;
 	}
-	@RequestMapping(value ="resertPassword",method=RequestMethod.GET)
+	@RequestMapping(value ="changePassword",method=RequestMethod.GET)
 	public ModelAndView resetPassword(){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
-		model.setViewName("resertPassword");
+		model.setViewName("changePassword");
 		
 		return model;
 	}
@@ -261,7 +261,7 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
 			retMessage = employeeService.deactivateEmployee(employee);
 			model.addObject("retMessage", retMessage);
 			model.setViewName("home");

@@ -6,6 +6,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
 <title>Add Product | Velaphanda Trading & Projects</title>
+
+<link href="<c:url value="/resources/custom/css/vela_custom.css" />" rel="stylesheet" type="text/css" /> 
+  
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -156,6 +159,19 @@
 										</div>
 									</div>
 								</div>
+								
+								<!-- Text input Contact Person 2-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Contact Person 2</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input name="contactPerson2"
+													placeholder="Contact Person (Optional Field)" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+								
 								<!-- Text input Tellphone Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Telephone No</label>
@@ -255,6 +271,19 @@
 										</div>
 									</div>
 								</div>
+								
+								<!-- Text checkbox Mono Reading-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Mono Reading </label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+										<span class="input-group-addon"><i
+												class="glyphicon glyphicon-box"></i></span>
+											<input type="checkbox" name="monoReading" value="true"
+												required="required">
+										</div>
+									</div>
+								</div>
 							
 						</div><!--/F Column-->
 												
@@ -297,9 +326,25 @@
 										</div>
 									</div>
 								</div>
+								
+								<!-- Select type Mono Colour-->						
+								<div class="form-group">
+									<label class="col-md-3 control-label">Mono Colour</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select name="monoColour"
+												class="form-control selectpicker">
+												<option value=" ">Select Colour</option>
+												<option value="Gauteng">White</option>
+												<option value="Limpopo">Blue</option>										
+											</select>
+										</div>
+									</div>
+								</div>
+								
 							</div><!--/S Column-->
 							
-						
 					</fieldset>
 
 					<br>
@@ -457,6 +502,13 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDate').datepicker({
+			format : "yyyy-mm-dd"
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#installationDate').datepicker({
 			format : "yyyy-mm-dd"
 		});
 	});

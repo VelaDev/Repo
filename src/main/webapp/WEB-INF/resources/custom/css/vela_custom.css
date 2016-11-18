@@ -17,7 +17,12 @@ a{
 	margin-left: 6%;
 }
 /*Pie Chart*/
-
+.velatsystem p{
+	margin-bottom:-10%;
+	margin-top:-10%;
+	margin-left:15%;
+	font-size:1.5em;
+}
 .open_tickets{
 	background-color:blue;
 	padding: 8px;

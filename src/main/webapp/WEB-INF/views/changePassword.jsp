@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@include file="templates/taglibs.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
 <title>Change Password | Velaphanda Trading & Projects</title>
@@ -17,20 +16,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<div class="container">
-			<br />
-				<div class="panel panel-success">    
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<div align="center">
-						<b>Change Password | Velaphanda Trading & Projects</b>
-					</div>
-					</h3>
-				</div>
-				<div class="panel-body">
-				<div class="tabContent">					
-							
-			<div class="velaphanda_containter">
+		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
 			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
@@ -50,10 +36,10 @@
 					<div class="tab-content">
 						<form:form method="post" class="well form-horizontal"
 							action="changePassword" modelAttribute="changePassword"
-							id="resetPass" >
+							id="changePass">
 
 							<!--First column-->
-							<div class="col-md-8">
+							<div class="col-md-6">
 
 								<!-- Text input Email-->
 								<div class="form-group">
@@ -63,7 +49,20 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 												name="email" placeholder="Email" class="form-control"
-												type="email" value="${employee.email}">
+												type="email" >
+										</div>
+									</div>
+								</div>
+								<!-- Text input Password-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Old Password</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-lock"></i></span> <input
+												name="oldpassword" id="oldpassword"
+												placeholder="Old Password" class="form-control"
+												type="password">
 										</div>
 									</div>
 								</div>
@@ -102,8 +101,8 @@
 							<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<br><br>
-							<button type="submit" name="resetpassword" id="resetpassword"
-								class="btn btn-lg btn-primary btn-block">Reset Password</button>
+							<button type="submit" name="resetpassword" id="changepassword"
+								class="btn btn-lg btn-primary btn-block">Change Password</button>
 							
 							</div>
 					</div>
@@ -140,7 +139,7 @@
 		$(document)
 				.ready(
 						function() {
-							$('#resetPass')
+							$('#changePass')
 									.bootstrapValidator(
 											{
 												feedbackIcons : {
@@ -169,21 +168,8 @@
 												}
 											});
 						});
-	</script>		
-			<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
-		<!--/ Footer -->					
-		</div><!-- /tab-content -->									
-				</div><!-- /panel body -->
-			</div><!--/panel success class-->
-			
-		</div><!-- /Container -->
-		
-	</div><!-- velaphanda_containter -->
-	
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
-<script type="text/javascript"	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	</script>
+
 
 </body>
 </html>

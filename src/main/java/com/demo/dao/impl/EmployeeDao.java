@@ -29,7 +29,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 		
 		try{
 			  employee.setFirstTimeLogin(true);
-			  employee.setActive(true);
+			  //employee.setActive(true);
 			  password = generatePassword();
 			  employee.setPassword(password);
 		      sessionFactory.getCurrentSession().save(employee);
@@ -134,7 +134,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 	public String deactivateEmployee(Employee employee) {
        try{
 			
-    	   employee.setActive(false);
+    	  // employee.setActive(false);
 			sessionFactory.getCurrentSession().update(employee);
 		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully deactivated";
 		}

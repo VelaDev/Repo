@@ -137,6 +137,19 @@
 								</div>
 							</div>
 						</div>
+						
+						<!-- Text input Contact Person 2-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Contact Person 2</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input name="contactPerson2"
+										placeholder="Contact Person (Optional Field)" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						
 						<!-- Text input Tellphone Number-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Telephone No</label>

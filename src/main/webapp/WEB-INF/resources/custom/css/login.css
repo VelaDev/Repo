@@ -10,6 +10,16 @@ body {
 .mainlogo{
 	margin-left:20%;
 }
+.velastsys{
+	font-size:1.5em;
+}
+span.velas{
+	font-weight:bold;
+
+}
+.velastsys span{
+	font-weight:bold;
+}
 .login-page {
   width: 360px;
   padding: 8% 0 0;

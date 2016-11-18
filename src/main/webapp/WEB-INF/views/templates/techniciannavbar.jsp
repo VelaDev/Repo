@@ -12,10 +12,17 @@
 	href="<c:url value="/resources/custom/css/navbar.css" />"
 	rel="stylesheet" type="text/css" />
 
+<link
+	href="<c:url value="/resources/custom/css/vela_custom.css" />"
+	rel="stylesheet" type="text/css" />
+
 
 <div class="velatp_logo">
 	<a href="technicianHome.html"><img
 		src="resources/bootstrap-3.3.6/images/mainlogo.jpg"></a>
+	<div class="velatsystem">
+ 		<p><span class="velas">Velaphanda</span>Technical <span class="velas">System</span></p>
+ 	</div>
 	<div class="userloggedin">
 	 <ul class="nav navbar-nav navbar-right">        
         <li class="dropdown">

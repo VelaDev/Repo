@@ -255,4 +255,56 @@ public class EmployeeController {
 		
 		return model;
 	}
+	@RequestMapping(value="deactivateEmployee",method=RequestMethod.POST)
+	public ModelAndView deactivateEmployee(@ModelAttribute("deactivateEmployee")Employee employee)
+	{
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			retMessage = employeeService.deactivateEmployee(employee);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("home");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="deactivateEmployee",method=RequestMethod.GET)
+	public ModelAndView deactivateEmployee() {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			model.addObject("deactivateEmployee", new EmployeeBean());
+			model.setViewName("deactivateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="deactivateEmployeeByName")
+	public ModelAndView searchEmployeeDeactivation(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			employee = employeeService.getEmployeeByEmpNumber(empName);
+		if(employee != null){
+			
+			model.addObject("employeeObject", employee);
+		}
+		else{
+			model.addObject("", null);
+		}
+		
+		model.setViewName("deactivateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 }

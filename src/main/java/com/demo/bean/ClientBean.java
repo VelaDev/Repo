@@ -1,8 +1,7 @@
 package com.demo.bean;
 
-import javax.persistence.Column;
 
-//Bean
+
 public class ClientBean {
 	
 	private String clientName;

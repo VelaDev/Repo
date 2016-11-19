@@ -81,7 +81,15 @@
 							</div>
 						</div>
 						
-						<!-- Select type Gender-->
+						
+								
+					</div><!-- / F column -->	
+					
+					<!--Second column-->		
+					<div class="col-sm-6">
+					
+					
+					<!-- Select type Gender-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Gender</label>
 							<div class="col-md-6 selectContainer">
@@ -97,35 +105,7 @@
 								</div>
 							</div>
 						</div>
-								
-					</div><!-- / F column -->	
 					
-					<!--Second column-->		
-					<div class="col-sm-6">
-					
-					<!-- Text input Username-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Username</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-envelope"></i></span> <input name="username"
-										placeholder="Username" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-						
-					<!-- Text input password-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Password</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-lock"></i></span> <input name="password"
-										placeholder="Password" class="form-control" type="password">
-								</div>
-							</div>
-						</div>
 						
 					<!-- Text input email-->
 						<div class="form-group">

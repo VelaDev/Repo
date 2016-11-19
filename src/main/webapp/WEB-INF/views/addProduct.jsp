@@ -274,13 +274,13 @@
 								
 								<!-- Text checkbox Mono Reading-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Mono Reading </label>
+									<label class="col-md-3 control-label">Mono Reading</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
-										<span class="input-group-addon"><i
-												class="glyphicon glyphicon-box"></i></span>
-											<input type="checkbox" name="monoReading" value="true"
-												required="required">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="mono" placeholder="Mono Readingl"
+												class="form-control" type="text">
 										</div>
 									</div>
 								</div>
@@ -291,7 +291,7 @@
 							<div class="col-sm-6">
 								<!-- Text input Machine Model-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Machine Model</label>
+									<label class="col-md-3 control-label">Model No</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i

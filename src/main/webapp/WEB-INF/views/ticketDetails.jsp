@@ -254,9 +254,9 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													name="floorNumber" placeholder="Floor Number"
+													name="floorNumber" placeholder="Street Number"
 													class="form-control"
-													value="${ticketObject.device.client.floorNumber}"
+													value="${ticketObject.device.client.streetNumber}"
 													type="text" disabled="disabled">
 											</div>
 										</div>

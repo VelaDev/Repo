@@ -60,6 +60,8 @@ public class Client implements Serializable{
 	private String contactPerson;
 	@Column(name="Street_No")
 	private String streetNumber;
+	@Column(name="Contact_Person2")
+	private String contactPerson2;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;

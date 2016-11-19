@@ -128,12 +128,12 @@
 					<div class="col-sm-6">
 						<!-- Text input Floor Number-->
 						<div class="form-group">
-							<label class="col-md-3 control-label">Floor No</label>
+							<label class="col-md-3 control-label">Street No</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="floorNumber"
-										placeholder="Floor Number" class="form-control" type="text">
+										class="glyphicon glyphicon-home"></i></span> <input name="streetNumber"
+										placeholder="Street Number" class="form-control" type="text">
 								</div>
 							</div>
 						</div>
@@ -145,7 +145,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="contactPerson2"
-										placeholder="Contact Person (Optional Field)" class="form-control" type="text">
+										placeholder="Contact Person (Optional)" class="form-control" type="text">
 								</div>
 							</div>
 						</div>

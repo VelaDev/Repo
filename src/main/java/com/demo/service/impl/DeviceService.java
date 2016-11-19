@@ -11,6 +11,8 @@ import com.demo.model.Accessories;
 import com.demo.model.Device;
 import com.demo.service.DeviceServiceInt;
 
+
+//Device
 @Service("productService")
 public class DeviceService implements DeviceServiceInt {
 	

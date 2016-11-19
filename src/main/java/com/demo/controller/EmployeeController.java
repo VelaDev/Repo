@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
+import com.demo.bean.PieChart;
+import com.demo.bean.TicketsBean;
+import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LogTicketsServiceInt;
@@ -27,8 +32,12 @@ public class EmployeeController {
 	private LogTicketsServiceInt logTicketsServiceInt;
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
+	private List<PieChart> beanList = null;
 	String retMessage =null;
 	ModelAndView model = null;
+	Employee userName = null;
+	String retPage = null;
+	
 	
 	
 	@RequestMapping({"/login", "/"})
@@ -43,37 +52,43 @@ public class EmployeeController {
 			@RequestParam(value = "logout", required = false) String logout)
 	{
 		ModelAndView model = new ModelAndView();
-		String userName = employee.getUsername();
+		String userName = employee.getEmail();
 		String password = employee.getPassword();
 		String retRole = null;
 		
-		employee = employeeService.getEmployeeByEmpNumber(employee.getUsername());
+		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
 		
-		if(employee != null){
+		if(employee != null&& employee.isActive()==true){
+			session.setAttribute("loggedInUser", employee);
 			
-			session.setAttribute("loggedInUser", employee.getUsername());
-			model.addObject("loggedInUser", employee.getUsername());
-			if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password)){
-				
-				retRole= "redirect:home";
+			/*if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
+				retRole ="redirect:resertPassword";
+			}else{*/
+				model.addObject("loggedInUser", employee.getEmail());
+				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
+						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
+					
+					retRole= "redirect:home";
+				}
+				else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
+				{
+					retRole= "redirect:technicianHome";
+					
+				}
+				else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
+				{
+					retRole= "redirect:ticket";
+				}else{
+					System.out.println("Username or password incorrect");
+				}
 			}
-			else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password))
-			{
-				retRole= "redirect:technicianHome";
-				
-			}
-			else if(employee.getRole().equalsIgnoreCase("USER") && employee.getUsername().equals(userName)&& employee.getPassword().equals(password))
-			{
-				retRole= "redirect:ticket";
-			}
-			else {
-				System.out.println("Username or password incorrect");
-			}
-		}
-		else{
-			  retRole="redirect:error";
-			  System.out.println("You are not registered to use the system. Consults Administrator");
-		}
+			
+		//}
+		/*else{
+			
+		}*/
+			
+			
 		return retRole;
 	}
 	
@@ -81,19 +96,34 @@ public class EmployeeController {
 	@RequestMapping(value="home",method=RequestMethod.GET)
 	public ModelAndView loadAdminPage() {
 		
-		ModelAndView model = new ModelAndView();
-		model.addObject("orderList",ordersServiceInt.getOpenOrders());
-		model.setViewName("home");
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			beanList = logTicketsServiceInt.ticketsResults();
+			model.addObject("ticketResults",beanList);
+			model.setViewName("home");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
-		
 	}
 	
 	@RequestMapping(value="registerEmployee",method=RequestMethod.GET)
 	public ModelAndView loadAddEmployee() {
 		
-		ModelAndView model = new ModelAndView("registerEmployee");
-		model.addObject("addEmployee", new EmployeeBean());
-		model.setViewName("registerEmployee");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		model = new ModelAndView("registerEmployee");
+		if(userName !=null){
+			
+			model.addObject("addEmployee", new EmployeeBean());
+			model.setViewName("registerEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
 		
 		return model;
 		
@@ -102,27 +132,127 @@ public class EmployeeController {
 	public ModelAndView addEmployee(@ModelAttribute("addEmployee")Employee employee)
 	{
 		model = new ModelAndView();
-		retMessage = employeeService.saveEmployee(employee);
-		//model.addObject("client", retMessage);
-		model.setViewName("redirect:home");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			retMessage = employeeService.saveEmployee(employee);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("registerEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 		
 	@RequestMapping(value = {"technicianHome"})
     public ModelAndView displayLoggedTickets() {
-		String user = (String) session.getAttribute("loggedInUser");
-		ModelAndView model = new ModelAndView();
-		model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(user));
-		model.setViewName("technicianHome");
+
+		 model = new ModelAndView();
+		 userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
+			model.setViewName("technicianHome");
+			}
+			else{
+				model.setViewName("login");
+			}
 		return model;
        
     }
 	@RequestMapping(value="userHome",method=RequestMethod.GET)
 	public ModelAndView loadUserPage() {
-		
-		ModelAndView model = new ModelAndView();
-		model.setViewName("userHome");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model = new ModelAndView();
+			
+			model.setViewName("userHome");
+		}
+		else
+		{
+			model.setViewName("login");
+			
+		}
+		 
 		return model;
 		
+	}
+	
+	@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
+	public ModelAndView displayCustomers(){
+		model= new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		 
+			model.addObject("employeeList", employeeService.getAllEmployees());
+			model.setViewName("displayEmployees");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="updateEmployee",method=RequestMethod.GET)
+	public ModelAndView loadUpdateEmployee() {
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		model = new ModelAndView("registerEmployee");
+		if(userName !=null){
+			
+			model.addObject("updateEmployee", new EmployeeBean());
+			model.setViewName("updateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="searchEmployeeByName")
+	public ModelAndView searchEmployee(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			employee = employeeService.getEmployeeByEmpNumber(empName);
+		if(employee != null){
+			
+			model.addObject("employeeObject", employee);
+		}
+		else{
+			model.addObject("", null);
+		}
+		
+		model.setViewName("updateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="updateEmployee",method=RequestMethod.POST)
+	public ModelAndView updateEmployee(@ModelAttribute("updateEmployee")Employee employee)
+	{
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			retMessage = employeeService.updateEmployee(employee);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("updateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value ="resertPassword",method=RequestMethod.GET)
+	public ModelAndView resetPassword(){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		model.addObject("employee", userName);
+		model.setViewName("resertPassword");
+		
+		return model;
 	}
 }

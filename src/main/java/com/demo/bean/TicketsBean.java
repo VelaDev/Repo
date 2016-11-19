@@ -2,30 +2,60 @@ package com.demo.bean;
 
 import java.util.Calendar;
 
-import com.demo.model.Client;
 import com.demo.model.Employee;
-import com.demo.model.Product;
+import com.demo.model.Device;
 
 public class TicketsBean {
 	
 	private String ticketNumber;
 	private String description;
-	private  String type;
+	private String type;
 	private String status;
 	private String priority;
 	private String group;
-	private Calendar date;
-    private Employee employee;
-	private Product product;
+	private String date;
+    private String employee;
+	private String device;
 	private String comments;
-	private String clientC;
-	private String productS;
+	private String client;
 	private String technicianUserName;
 	private boolean technicianAcknowledged;
 	private boolean escalate;
 	private String escalateReason;
 	private Calendar slaAcknowledgeDateTime;
+	private String solution;
+	private int openTickets;
+	private int escalatedTickets;
+	private int closedTickets;
+	private int loggedTickets;
 	
+	
+	
+	
+	public int getLoggedTickets() {
+		return loggedTickets;
+	}
+	public void setLoggedTickets(int loggedTickets) {
+		this.loggedTickets = loggedTickets;
+	}
+	public int getOpenTickets() {
+		return openTickets;
+	}
+	public void setOpenTickets(int openTickets) {
+		this.openTickets = openTickets;
+	}
+	public int getEscalatedTickets() {
+		return escalatedTickets;
+	}
+	public void setEscalatedTickets(int escalatedTickets) {
+		this.escalatedTickets = escalatedTickets;
+	}
+	public int getClosedTickets() {
+		return closedTickets;
+	}
+	public void setClosedTickets(int closedTickets) {
+		this.closedTickets = closedTickets;
+	}
 	public String getTicketNumber() {
 		return ticketNumber;
 	}
@@ -62,23 +92,24 @@ public class TicketsBean {
 	public void setGroup(String group) {
 		this.group = group;
 	}
-	public Calendar getDate() {
+	public String getDate() {
 		return date;
 	}
-	public void setDate(Calendar date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
-	public Employee getEmployee() {
+	public String getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(String employee) {
 		this.employee = employee;
 	}
-	public Product getProduct() {
-		return product;
+	
+	public String getDevice() {
+		return device;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setDevice(String device) {
+		this.device = device;
 	}
 	public String getComments() {
 		return comments;
@@ -86,17 +117,11 @@ public class TicketsBean {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public String getClientC() {
-		return clientC;
+	public String getClient() {
+		return client;
 	}
-	public void setClientC(String clientC) {
-		this.clientC = clientC;
-	}
-	public String getProductS() {
-		return productS;
-	}
-	public void setProductS(String productS) {
-		this.productS = productS;
+	public void setClient(String client) {
+		this.client = client;
 	}
 	public String getTechnicianUserName() {
 		return technicianUserName;
@@ -127,6 +152,12 @@ public class TicketsBean {
 	}
 	public void setSlaAcknowledgeDateTime(Calendar slaAcknowledgeDateTime) {
 		this.slaAcknowledgeDateTime = slaAcknowledgeDateTime;
+	}
+	public String getSolution() {
+		return solution;
+	}
+	public void setSolution(String solution) {
+		this.solution = solution;
 	}
 	
 	

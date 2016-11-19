@@ -10,5 +10,7 @@ public interface EmployeeDaoInt {
 	Employee getEmployeeByEmpNum(String empUsername);
 	List<Employee> getAllTechnicians();
 	List<Employee>getTechniciansByProvince(String province);
+	List<Employee> getAllEmployees();
+	String updateEmployee (Employee employee);
 
 }

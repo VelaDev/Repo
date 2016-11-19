@@ -7,14 +7,25 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 
 @Entity
 @Table(name="CLIENT")
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class Client implements Serializable{
 
 	/**
@@ -22,6 +33,9 @@ public class Client implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	/*@GeneratedValue(strategy=GenerationType.TABLE)
+	@Column(name="CCLIENTID")
+	private int clientID;*/
 	@Column(name="CLIENT_Name")
 	private String clientName;
 	@Column(name="IsACTIVE")
@@ -38,74 +52,19 @@ public class Client implements Serializable{
 	private String province;
 	@Column(name="ZipeCode")
 	private String zipcode;
-
+	@Column(name="Fax_No")
+	private String faxNumber;
+	@Column(name="Cell_No")
+	private String cellNumber;
+	@Column(name="Contact_Person")
+	private String contactPerson;
+	@Column(name="Street_No")
+	private String streetNumber;
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private Address address;
 	
-	@OneToMany(mappedBy ="client", cascade= CascadeType.ALL,fetch=FetchType.EAGER)
-	private Set<Product> products;
+	@OneToMany(mappedBy ="client", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Device> devices;
 
-	
-	public String getClientName() {
-		return clientName;
-	}
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
-	}
-	public boolean isActive() {
-		return isActive;
-	}
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-	public String getTellphoneNumber() {
-		return tellphoneNumber;
-	}
-	public void setTellphoneNumber(String tellphoneNumber) {
-		this.tellphoneNumber = tellphoneNumber;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	public Set<Product> getProducts() {
-		return products;
-	}
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
-	public String getStreetName() {
-		return streetName;
-	}
-	public void setStreetName(String streetName) {
-		this.streetName = streetName;
-	}
-	public String getCity_town() {
-		return city_town;
-	}
-	public void setCity_town(String city_town) {
-		this.city_town = city_town;
-	}
-	public String getProvince() {
-		return province;
-	}
-	public void setProvince(String province) {
-		this.province = province;
-	}
-	public String getZipcode() {
-		return zipcode;
-	}
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
-	}
-	
 }

@@ -20,18 +20,44 @@ public class ClintDao implements ClientDaoInt{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	private String retMessage = null;
+	List<Client> clientList = null;
 
 	@Override
 	public String saveClient(Client client) {
+		try{
+			sessionFactory.getCurrentSession().saveOrUpdate(client);
+			retMessage =  "Customer "+ client.getClientName() + " "+ "Was successfully added";
+		}
+		catch(Exception e){
+			retMessage = "Customer "+ client.getClientName() + " is not added\n" + e.getMessage();
+		}
 		
-		sessionFactory.getCurrentSession().save(client);
-		return client.getClientName() + " "+ "Was successfully added";
+		return retMessage;
 	}
 
 	@Override
 	public Client getClientByClientName(String clientName) {
+		
+		Client client = null;
+		try{
+			
+			clientList = getClientList();
+			for(Client tempClient:clientList)
+			{
+				if(tempClient.getClientName().equalsIgnoreCase(clientName))
+				{
+					client= tempClient;
+					break;
+				}
+			}
+		}
+		catch(Exception e)
+		{
+			client = null;
+		}
 	
-		return (Client) sessionFactory.getCurrentSession().get(Client.class,clientName);
+		return client;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -40,6 +66,18 @@ public class ClintDao implements ClientDaoInt{
 		
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Client.class);
 		return (List<Client>)criteria.list();
+	}
+
+	@Override
+	public String updateClient(Client client) {
+		try{
+			sessionFactory.getCurrentSession().update(client);
+			retMessage = "Customer "+ client.getClientName()+ " is successfully updated";
+		}
+		catch( Exception e){
+			retMessage = "Customer "+ client.getClientName() + " is not updated\n" + e.getMessage();
+		}
+		return retMessage;
 	}
 
 }

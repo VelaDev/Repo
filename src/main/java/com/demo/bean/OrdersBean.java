@@ -1,39 +1,36 @@
 package com.demo.bean;
 
-import java.util.Calendar;
-
-import com.demo.model.Employee;
-import com.demo.model.Parts;
-import com.demo.model.Product;
-
 
 public class OrdersBean {
 	
-	private long orderNum;
-	private int quantity;
+
+	private String orderNum;
+	private String quantity;
 	private boolean delivery;
 	private boolean delivered;
 	private boolean received;
-	private Calendar dateOrdered;
-	private Calendar dateApproved;
-	private String description;
+	private String dateOrdered;
+	private boolean approved;
+	private String dateApproved;
 	private String comments;
-	private Employee employee;
-	private Parts part;
-	private String partP;
-	private Product product;
-	private String prod;
+	private String description;
+	private String approdedBy;
+	private String status;
 	
-	public long getOrderNum() {
+	private String employee;
+	private String part;
+	private String client;
+	private String device;
+	public String getOrderNum() {
 		return orderNum;
 	}
-	public void setOrderNum(long orderNum) {
+	public void setOrderNum(String orderNum) {
 		this.orderNum = orderNum;
 	}
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 	public boolean isDelivery() {
@@ -54,23 +51,23 @@ public class OrdersBean {
 	public void setReceived(boolean received) {
 		this.received = received;
 	}
-	public Calendar getDateOrdered() {
+	public String getDateOrdered() {
 		return dateOrdered;
 	}
-	public void setDateOrdered(Calendar dateOrdered) {
+	public void setDateOrdered(String dateOrdered) {
 		this.dateOrdered = dateOrdered;
 	}
-	public Calendar getDateApproved() {
+	public boolean isApproved() {
+		return approved;
+	}
+	public void setApproved(boolean approved) {
+		this.approved = approved;
+	}
+	public String getDateApproved() {
 		return dateApproved;
 	}
-	public void setDateApproved(Calendar dateApproved) {
+	public void setDateApproved(String dateApproved) {
 		this.dateApproved = dateApproved;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
 	}
 	public String getComments() {
 		return comments;
@@ -78,34 +75,48 @@ public class OrdersBean {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public Employee getEmployee() {
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getApprodedBy() {
+		return approdedBy;
+	}
+	public void setApprodedBy(String approdedBy) {
+		this.approdedBy = approdedBy;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getEmployee() {
 		return employee;
 	}
-	public void setEmployee(Employee employee) {
+	public void setEmployee(String employee) {
 		this.employee = employee;
 	}
-	public Parts getPart() {
+	public String getPart() {
 		return part;
 	}
-	public void setPart(Parts part) {
+	public void setPart(String part) {
 		this.part = part;
 	}
-	public String getPartP() {
-		return partP;
+	public String getClient() {
+		return client;
 	}
-	public void setPartP(String partP) {
-		this.partP = partP;
+	public void setClient(String client) {
+		this.client = client;
 	}
-	public Product getProduct() {
-		return product;
+	public String getDevice() {
+		return device;
 	}
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setDevice(String device) {
+		this.device = device;
 	}
-	public String getProd() {
-		return prod;
-	}
-	public void setProd(String prod) {
-		this.prod = prod;
-	}
+	
+	
 }

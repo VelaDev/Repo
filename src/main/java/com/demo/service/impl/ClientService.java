@@ -1,6 +1,7 @@
 package com.demo.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,12 @@ public class ClientService implements ClientServiceInt{
 	public List<Client> getClientList() {
 		
 		return clientDAO.getClientList();
+	}
+
+	@Override
+	public String updateCustomer(Client client) {
+		retMessage = clientDAO.updateClient(client);
+		return retMessage;
 	}
 
 }

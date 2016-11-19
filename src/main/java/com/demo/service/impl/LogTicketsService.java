@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.PieChart;
+import com.demo.bean.TicketsBean;
 import com.demo.dao.LogTicketsDaoInt;
 import com.demo.model.Tickets;
 import com.demo.service.LogTicketsServiceInt;
@@ -16,16 +18,18 @@ public class LogTicketsService implements LogTicketsServiceInt{
 	
 	@Autowired
 	private LogTicketsDaoInt logTicketsDAO;
+	private String retMessage ="";
 
 	@Override
-	public void logTicket(Tickets tickets) {
+	public String logTicket(TicketsBean tickets) {
 
-		logTicketsDAO.logTicket(tickets);
+		retMessage =logTicketsDAO.logTicket(tickets);
+		return retMessage;
 		
 	}
 
 	@Override
-	public Tickets getLoggedTicketByTicketNumber(int ticketNumber) {
+	public Tickets getLoggedTicketByTicketNumber(String ticketNumber) {
 		
 		return logTicketsDAO.getLoggedTicketsByTicketNumber(ticketNumber);
 	}
@@ -53,8 +57,9 @@ public class LogTicketsService implements LogTicketsServiceInt{
 	}
 
 	@Override
-	public void updateTicket(Tickets ticket) {
-		logTicketsDAO.updateTicket(ticket);
+	public String updateTicket(TicketsBean ticket) {
+		retMessage =logTicketsDAO.updateTicket(ticket);
+		return retMessage;
 		
 	}
 
@@ -62,6 +67,11 @@ public class LogTicketsService implements LogTicketsServiceInt{
 	public List<Tickets> getAllEmployees(String searchName) {
 		
 		return logTicketsDAO.getAllEmployees(searchName);
+	}
+
+	@Override
+	public List<PieChart> ticketsResults() {
+		return logTicketsDAO.ticketsResults();
 	}
 
 }

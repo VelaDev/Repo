@@ -12,7 +12,6 @@
 					</button>
 					<a class="navbar-brand" href='<c:url value="index.html"/>' ><span class="glyphicon glyphicon-home"></span> Home</a>
 				</div>
-
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse"
 					id="bs-example-navbar-collapse-1">
@@ -59,9 +58,7 @@
 						<security:authorize access="hasRole('ROLE_LEAD_PROGRAMMER') or hasRole('ROLE_GROUP_LEADER') or hasRole('ROLE_PROGRAMMER') or hasRole('ROLE_ADMIN')">
 						<li><p class="navbar-text">Signed in as: <a href="showProfile.html" class="navbar-link"><security:authentication property="name"/></a></p></li>
 						<li><a href='<c:url value="/logout"></c:url>' ><span class="glyphicon glyphicon-off"></span> Log Out</a></li>
-						</security:authorize>
-					
-							
+						</security:authorize>		
 					</ul>
 				</div>
 				<!-- /.navbar-collapse -->

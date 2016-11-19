@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.OrdersBean;
+import com.demo.model.Employee;
 import com.demo.model.Orders;
 import com.demo.service.OrdersServiceInt;
 
@@ -24,44 +25,105 @@ public class OrdersController {
 	private HttpSession session;
 	private ModelAndView model = null;
 	private String retMessage =null;
+	private Employee userName = null;
 	
 	@RequestMapping(value="order",method=RequestMethod.GET)
 	public ModelAndView loadOrder(){
-	    model = new ModelAndView("order");
-		model.addObject("makeOrder", new OrdersBean());
-		model.setViewName("order");
+		
+		model = new ModelAndView("order");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			model.addObject("makeOrder", new OrdersBean());
+			model.setViewName("order");
+		}
+		else{
+			model.setViewName("login");
+		}
 		
 		return model;
 	}
 	@RequestMapping(value="makeOrder",method=RequestMethod.POST)
-	public String makeOrder(@ModelAttribute("makeOrder")Orders order)
+	public ModelAndView makeOrder(@ModelAttribute("makeOrder")OrdersBean order)
 	{
-		String retRedirect ="";
-		retMessage =ordersServiceInt.makeOrder(order);
-		retRedirect ="redirect:technicianHome";
-		return  retRedirect;
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			retMessage =ordersServiceInt.makeOrder(order);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("order");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return  model;
 	} 
 	
 	@RequestMapping("approveOrder")
     public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute Orders order) {
 	    model = new ModelAndView();
-		order = ordersServiceInt.getOrder(id);
-		session.setAttribute("approveOrder", order);
-		if(order !=null){
-	        return new ModelAndView("orderUpdate", "orderObject", order);
-		}
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+		      order = ordersServiceInt.getOrder(id);
+		      if(order !=null){
+		    	  model.setViewName("orderUpdate");
+		          model.addObject("orderObject", order);
+		      }
 		else{
 			
+		    }
+		}
+		else{
+			model.setViewName("login");
 		}
 		return model;
     }
 	@RequestMapping("updateOrder")
-    public ModelAndView updateOrder(Orders order){
+    public ModelAndView updateOrder(OrdersBean order){
 		model = new ModelAndView();
-		order= (Orders) session.getAttribute("approveOrder");
-		retMessage = ordersServiceInt.updateOrder(order);
-       model.addObject("home");
+		 userName = (Employee) session.getAttribute("loggedInUser");
+			if(userName != null){
+		
+				retMessage = ordersServiceInt.updateOrder(order);
+		        model.addObject("retMessage",retMessage);
+		        model.setViewName("orderUpdate");
+			}
+			else{
+				model.setViewName("login");
+			}
 		return model;
 		
+	}
+	@RequestMapping("approvedOrders")
+	public ModelAndView approvedOrders(){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model.addObject("ApprovedOrderList", ordersServiceInt.getApprovedOrdersByTechnicianName(userName.getEmail()));
+			model.setViewName("approvedOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("displayOrders")
+	public ModelAndView displayOrders(){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model.addObject("ApprovedOrderList", ordersServiceInt.getAllOrders());
+			model.setViewName("displayOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
 	}
 }

@@ -2,7 +2,7 @@
 <c:import url="templates/navbar.jsp"></c:import>
 
    <body class=".container-fluid">
-<div class="container myrow-container">
+<div class="container myrow-container" style="width:90%">
     <div class="panel panel-success">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -10,27 +10,14 @@
             </h3>
         </div>
 
-<div class="panel-body">
-            <%-- <c:if test="${empty ticketList}">
-                No open tickets
-            </c:if>
-            <c:if test="${not empty ticketList}">  --%>  
-            
-               <!--  <form action="searchTechnician">
-                    <div class="row">
-                      <div class="col-md-6"><div class="col-md-6">Search Technician:</div><div class="col-md-6"> 
-                      <input type="text" name="username" id="username" class="form-control"> </div></div>
-                      <div class="col-md-4"><input class="btn btn-success" type='submit' value='Search'/></div>
-                    </div>
-                    <br>
-                </form>  -->            
+<div class="panel-body">           
                                 
                 <table class="table table-hover">
                     <thead style="background-color: #bce8f1;">
                     <tr>
                         <th>Serial Number</th>
-                        <th>Product Name</th> 
-                        <th>Product Model</th>
+                        <th>Device Name</th> 
+                        <th>Device Model</th>
                         <th>Description</th>
                         <th>Arrived Date</th> 
                         

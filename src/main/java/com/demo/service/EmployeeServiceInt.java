@@ -8,9 +8,10 @@ public interface EmployeeServiceInt {
 	String saveEmployee(Employee employee);
 	Employee getEmployeeByEmpNumber(String empUsername);
 	List<Employee> getAllTechnicians();
-	List<Employee> getAllEmployees();
+	List<Employee> getAllEmployees(Integer offset, Integer maxResults);
 	String updateEmployee (Employee employee);
 	String changePassword(String email, String password);
 	String changePassword(String email);
+	Integer count();
 
 }

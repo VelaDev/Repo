@@ -6,6 +6,7 @@ import java.util.Random;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -92,9 +93,14 @@ public class EmployeeDao implements EmployeeDaoInt{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Employee> getAllEmployees() {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
-		return (List<Employee>)criteria.list();
+	public List<Employee> getAllEmployees(Integer offset, Integer maxResults) {
+		/*Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+		return (List<Employee>)criteria.list();*/
+		return sessionFactory.openSession()
+			    .createCriteria(Employee.class)
+			    .setFirstResult(offset!=null?offset:0)
+			    .setMaxResults(maxResults!=null?maxResults:10)
+			    .list();
 	}
 
 	@Override
@@ -167,5 +173,12 @@ public class EmployeeDao implements EmployeeDaoInt{
 			retMessage = "Password not reseted "+ e.getMessage();
 		}
 		return retMessage;
+	}
+
+	@Override
+	public Integer count() {
+		
+		return (Integer) sessionFactory.getCurrentSession().createCriteria(Employee.class).setProjection(Projections.rowCount()).uniqueResult();
+		
 	}
 }

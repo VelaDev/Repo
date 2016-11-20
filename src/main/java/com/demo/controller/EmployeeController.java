@@ -14,8 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
-import com.demo.bean.TicketsBean;
-import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LogTicketsServiceInt;
@@ -180,12 +178,16 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
-	public ModelAndView displayCustomers(){
+	public ModelAndView displayEmployees(Integer offset, Integer maxResults){
 		model= new ModelAndView();
+		Integer count = 1;
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		 
-			model.addObject("employeeList", employeeService.getAllEmployees());
+			count = employeeService.count();
+			model.addObject("displayEmployees", employeeService.getAllEmployees(offset,maxResults));
+			model.addObject("count",count);
+			model.addObject("offset", offset);
 			model.setViewName("displayEmployees");
 		}
 		else{

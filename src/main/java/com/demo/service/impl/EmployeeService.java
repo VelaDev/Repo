@@ -40,9 +40,9 @@ public class EmployeeService implements EmployeeServiceInt {
 	}
 
 	@Override
-	public List<Employee> getAllEmployees() {
+	public List<Employee> getAllEmployees(Integer offset, Integer maxResults) {
 		
-		return employeeDAO.getAllEmployees();
+		return employeeDAO.getAllEmployees(offset,maxResults);
 	}
 
 	@Override
@@ -61,6 +61,11 @@ public class EmployeeService implements EmployeeServiceInt {
 	public String changePassword(String email) {
 		retMessage = employeeDAO.changePassword(email);
 		return retMessage;
+	}
+
+	@Override
+	public Integer count() {
+		return employeeDAO.count();
 	}
 
 }

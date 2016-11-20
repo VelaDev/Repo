@@ -10,9 +10,10 @@ public interface EmployeeDaoInt {
 	Employee getEmployeeByEmpNum(String empUsername);
 	List<Employee> getAllTechnicians();
 	List<Employee>getTechniciansByProvince(String province);
-	List<Employee> getAllEmployees();
+	List<Employee> getAllEmployees(Integer offset, Integer maxResults);
 	String updateEmployee (Employee employee);
 	String changePassword(String email,String password);
 	String changePassword(String email);
+	Integer count();
 
 }

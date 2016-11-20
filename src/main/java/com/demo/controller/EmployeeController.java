@@ -303,10 +303,64 @@ public class EmployeeController {
 	public ModelAndView resetPassword(@RequestParam("email")String email){
 		
 		model = new ModelAndView();
-		retMessage = employeeService.changePassword(email);
-		model.addObject("retMessage", retMessage);
-		model.setViewName("resertPassword");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			retMessage = employeeService.changePassword(email);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("resertPassword");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
 		return model;
 	}
-	
+	@RequestMapping(value ="deactivateEmployee",method=RequestMethod.GET)
+	public ModelAndView loadDeactivateEmployee(){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		model.addObject("employee", userName);
+		model.setViewName("deactivateEmployee");
+		
+		return model;
+	}
+	@RequestMapping(value="searchEmployeeForDeactivation")
+	public ModelAndView searchEmployeeForDeactivation(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			employee = employeeService.getEmployeeByEmpNumber(empName);
+		if(employee != null){
+			
+			model.addObject("employeeObject", employee);
+		}
+		else{
+			model.addObject("", null);
+		}
+		
+		model.setViewName("deactivateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="deactivateEmp")
+	public ModelAndView deactivateEmployee(@RequestParam("email")String email){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			retMessage = employeeService.deactivateEmployee(email);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("deactivateEmployee");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
 }

@@ -53,7 +53,7 @@
 									Employee</a></li>
 							<li><a href='<c:url value="updateEmployee.html"/>'>Update Employee</a></li>
 							<li><a href='<c:url value="resertPassword.html"/>'>Password Reset </a></li>
-							<li><a href='<c:url value="#.html"/>'>Deactivate
+							<li><a href='<c:url value="deactivateEmployee.html"/>'>Deactivate
 									Employee</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

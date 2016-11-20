@@ -12,6 +12,7 @@ public interface EmployeeServiceInt {
 	String updateEmployee (Employee employee);
 	String changePassword(String email, String password);
 	String changePassword(String email);
+	String deactivateEmployee(String email);
 	Integer count();
 
 }

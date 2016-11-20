@@ -179,4 +179,22 @@ public class EmployeeDao implements EmployeeDaoInt{
 		return (Integer) sessionFactory.getCurrentSession().createCriteria(Employee.class).setProjection(Projections.rowCount()).uniqueResult();
 		
 	}
+
+	@Override
+	public String deactivateEmployee(String email) {
+		String retString = "";
+		try{
+			
+			emp = getEmployeeByEmpNum(email);
+			if(emp != null){
+				emp.setStatus("INACTIVE");;
+				retString = updateEmployee(emp);
+				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is deactivated" ;
+			}
+		}catch(Exception e){
+			retMessage = "Employee "+ emp.getFirstName()+" "+ emp.getLastName()+" "+ "is not deactivated";
+		}
+		
+		return retMessage;
+	}
 }

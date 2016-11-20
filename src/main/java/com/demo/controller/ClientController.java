@@ -182,12 +182,16 @@ public class ClientController {
 		return model;
 	}
 	@RequestMapping(value="displayCustomers",method=RequestMethod.GET)
-	public ModelAndView displayCustomers(){
+	public ModelAndView displayCustomers(Integer offset,Integer maxResults){
 		model= new ModelAndView();
+		Integer count =0;
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			model.addObject("customerList", clientServiceInt.getClientList());
+			count = clientServiceInt.count();
+			model.addObject("count",count);
+			model.addObject("offset", offset);
+			model.addObject("displayCustomers", clientServiceInt.getClientList(offset, maxResults));
 			model.setViewName("displayCustomers");
 		}
 		else{

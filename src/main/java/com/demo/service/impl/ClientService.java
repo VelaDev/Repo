@@ -30,15 +30,21 @@ public class ClientService implements ClientServiceInt{
 	}
 
 	@Override
-	public List<Client> getClientList() {
+	public List<Client> getClientList(Integer offset, Integer maxResults) {
 		
-		return clientDAO.getClientList();
+		return clientDAO.getClientList(offset,maxResults);
 	}
 
 	@Override
 	public String updateCustomer(Client client) {
 		retMessage = clientDAO.updateClient(client);
 		return retMessage;
+	}
+
+	@Override
+	public Integer count() {
+		
+		return clientDAO.count();
 	}
 
 }

@@ -94,8 +94,6 @@ public class EmployeeDao implements EmployeeDaoInt{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Employee> getAllEmployees(Integer offset, Integer maxResults) {
-		/*Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
-		return (List<Employee>)criteria.list();*/
 		return sessionFactory.openSession()
 			    .createCriteria(Employee.class)
 			    .setFirstResult(offset!=null?offset:0)

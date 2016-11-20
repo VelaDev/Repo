@@ -23,25 +23,35 @@
 								<table class="table table-hover ">
 									<thead style="background-color: #bce8f1;">
 									<tr class='clickable-row'>
+									    <th>#</th>
 										<th>Customer Name</th>
 										<th>Contact Person</th>
+										<th>Contact Person 2</th>
 										<th>Email</th>
-										<th>Tel</th>
+										<th>Tell</th>
+										<th>Edit</th>
+										<th>Deactivate</th>
 										 
 									</tr>
 									</thead>
 									<tbody>
-									<c:forEach items="${customerList}" var="customer">
+									<c:forEach items="${displayCustomers}" var="customer" varStatus="itr">
 										<tr>
+										     <th><c:out value="${offset + itr.index +1 }"></c:out>
 											<th><c:out value="${customer.clientName}"/></th>
 											<th><c:out value="${customer.contactPerson}"/></th>
+											<th><c:out value="${customer.contactPerson2}"/></th>
 											<th><c:out value="${customer.email}"/></th>
 											<th><c:out value="${customer.tellphoneNumber}"/></th> 
-																	 
+											
+											<th><a href="updateCustomer?clientName=<c:out value='${customer.clientName}'/>">edit</a></th>
+                                            <th><a href="deactivateCustomer?clientName=<c:out value='${customer.clientName}'/>">deactivate</a></th>					 
 										</tr>
 									</c:forEach>
 									</tbody>
 								</table>
+								<tag:paginate max="15" offset="${offset}" count="${count}" 
+						        uri="displayCustomers" next="&raquo;" previous="&laquo;" />
 							</div>
 						</div>
 						

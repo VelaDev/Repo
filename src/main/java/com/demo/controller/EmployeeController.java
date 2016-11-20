@@ -35,6 +35,7 @@ public class EmployeeController {
 	ModelAndView model = null;
 	Employee userName = null;
 	String retPage = null;
+	Integer count = 1;
 	
 	
 	
@@ -92,14 +93,17 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value="home",method=RequestMethod.GET)
-	public ModelAndView loadAdminPage() {
+	public ModelAndView loadAdminPage(Integer offset, Integer maxResults ) {
 		
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
+			count = logTicketsServiceInt.count();
 			beanList = logTicketsServiceInt.ticketsResults();
+			model.addObject("home", logTicketsServiceInt.getAllLoggedTickets(offset, maxResults));
 			model.addObject("ticketResults",beanList);
+			model.addObject("count",count);
 			model.setViewName("home");
 		}
 		else{
@@ -180,7 +184,6 @@ public class EmployeeController {
 	@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
 	public ModelAndView displayEmployees(Integer offset, Integer maxResults){
 		model= new ModelAndView();
-		Integer count = 1;
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		 

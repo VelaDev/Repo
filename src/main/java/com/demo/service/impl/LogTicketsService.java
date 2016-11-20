@@ -74,4 +74,15 @@ public class LogTicketsService implements LogTicketsServiceInt{
 		return logTicketsDAO.ticketsResults();
 	}
 
+	@Override
+	public List<Tickets> getAllLoggedTickets(Integer offset, Integer maxResults) {
+		return logTicketsDAO.getAllLoggedTickets(offset, maxResults);
+	}
+
+	@Override
+	public Integer count() {
+		
+		return logTicketsDAO.count();
+	}
+
 }

@@ -15,6 +15,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
@@ -401,6 +402,23 @@ private String generateTicketNumber(){
 	public List<Tickets> getAllLoggedTickets(String startDate, String endDate) {
 		
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tickets> getAllLoggedTickets(Integer offset, Integer maxResults) {
+		return sessionFactory.openSession()
+			    .createCriteria(Tickets.class)
+			    .setFirstResult(offset!=null?offset:0)
+			    .setMaxResults(maxResults!=null?maxResults:10)
+			    .list();
+	}
+
+	@Override
+	public Integer count() {
+		
+		return (Integer) sessionFactory.getCurrentSession().createCriteria(Tickets.class).setProjection(Projections.rowCount()).uniqueResult();
+		
 	}
 
 	

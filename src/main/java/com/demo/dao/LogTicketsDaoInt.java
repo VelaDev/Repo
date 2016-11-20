@@ -11,6 +11,7 @@ public interface LogTicketsDaoInt {
 	String logTicket(TicketsBean tickets);
 	Tickets getLoggedTicketsByTicketNumber(String ticketNumber);
 	List<Tickets> getAllLoggedTickets();
+	List<Tickets> getAllLoggedTickets(Integer offset, Integer maxResults);
 	List<Tickets> getAllLoggedTickets(String startDate);
 	List<Tickets> getAllLoggedTickets(String startDate, String endDate);
 	List<Tickets> getAllOpenTickets();
@@ -21,5 +22,6 @@ public interface LogTicketsDaoInt {
 	void updateSLA(Tickets tickets);
 	List<Tickets> getAllEmployees(String searchName);
 	List<PieChart> ticketsResults();
+	Integer count();
 
 }

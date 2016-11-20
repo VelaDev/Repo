@@ -50,7 +50,7 @@
 									</c:forEach>
 									</tbody>
 								</table>
-								<tag:paginate max="15" offset="${offset}" count="${count}" 
+								<tag:paginate max="10" offset="${offset}" count="${count}" 
 						        uri="displayCustomers" next="&raquo;" previous="&laquo;" />
 							</div>
 						</div>

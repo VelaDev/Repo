@@ -61,30 +61,34 @@
 								<div class="panel-body">
 									<!-- <div class="col-lg-10"> -->
 									<div class="panel-body">
-									<%-- 	<table class="table table-striped custab">
+										<table class="table table-striped custab">
 												<thead style="background-color: #bce8f1;">
 													<tr>
+													    <th>#</th>
 														<th>Ticket No</th>
 														<th>Description</th>
-														<!-- <th>Date</th> -->
+														<th>Date</th>
 														<th>Status</th>
 														<th>Technician</th>
 														<th>Edit</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="${ticketList}" var="ticket">
+													<c:forEach items="${home}" var="ticket" varStatus="itr">
 														<tr>
+														    <th><c:out value="${offset + itr.index +1 }"></c:out>
 															<th><c:out value="${ticket.ticketNumber}" /></th>
 															<th><c:out value="${ticket.description}" /></th>
-															<th><c:out value="${ticket.dateTime}"/></th>
+															<th><c:out value="${ticket.dateTime}" /></th>
 															<th><c:out value="${ticket.status}" /></th>
-															<th><c:out value="${ticket.employee.getUsername()}" /></th>
+															<th><c:out value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></th>
 															<th><a href="editEmployee?id=<c:out value='${emp.id}'/>">Edit</a></th>
 														</tr>
 													</c:forEach>
 												</tbody>
-										</table> --%>
+										</table> 
+										<tag:paginate max="10" offset="${offset}" count="${count}" 
+						                uri="home" next="&raquo;" previous="&laquo;" />
 									</div>
 								</div><!-- /panel body -->
 							</div><!-- /panel panel-success -->

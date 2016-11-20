@@ -187,7 +187,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 			
 			emp = getEmployeeByEmpNum(email);
 			if(emp != null){
-				emp.setStatus("INACTIVE");;
+				emp.setStatus("INACTIVE");
 				retString = updateEmployee(emp);
 				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is deactivated" ;
 			}

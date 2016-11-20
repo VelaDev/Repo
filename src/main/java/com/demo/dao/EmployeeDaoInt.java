@@ -11,6 +11,7 @@ public interface EmployeeDaoInt {
 	List<Employee> getAllTechnicians();
 	List<Employee>getTechniciansByProvince(String province);
 	List<Employee> getAllEmployees(Integer offset, Integer maxResults);
+	List<Employee> getAllEmployees(String email);
 	String updateEmployee (Employee employee);
 	String changePassword(String email,String password);
 	String changePassword(String email);

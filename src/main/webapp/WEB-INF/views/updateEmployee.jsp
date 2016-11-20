@@ -178,10 +178,11 @@
 	</div><!-- / velaphanda_containter -->
 	
 <!-- Validator -->
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js" />"></script> 
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
 
 <!-- Validate update employee -->
 <script>
@@ -294,7 +295,30 @@
 });
 
 </script>
+<script>
+  $(document).ready(function() {
 
+	$('#w-input-search').autocomplete({
+		serviceUrl: '${pageContext.request.contextPath}/getEmployees',
+		paramName: "email",
+		delimiter: ",",
+	   transformResult: function(response) {
+
+		return {
+		  //must convert json to javascript object before process
+		  suggestions: $.map($.parseJSON(response), function(item) {
+
+		      return { value: item.email, data: item.email };
+		   })
+
+		 };
+
+            }
+
+	 });
+
+  });
+  </script>
 
 </body>
 </html>

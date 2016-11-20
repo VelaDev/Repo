@@ -13,7 +13,9 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.EmployeeDaoInt;
+import com.demo.model.Client;
 import com.demo.model.Employee;
+import com.demo.model.Tickets;
 
 
 @Repository("employeeDAO")
@@ -25,7 +27,8 @@ public class EmployeeDao implements EmployeeDaoInt{
 	private SessionFactory sessionFactory;
 	String retMessage = null;
 	private Employee emp = null;
-	
+	List<Employee> empEmail = null;
+	List<Employee> empEmailReturn;
 	public String saveEmployee(Employee employee) {
 		String password = "";
 		
@@ -196,5 +199,26 @@ public class EmployeeDao implements EmployeeDaoInt{
 		}
 		
 		return retMessage;
+	}
+
+	@Override
+	public List<Employee> getAllEmployees(String email) {
+		empEmailReturn = new ArrayList<Employee>();
+		try{
+			empEmail = getAllEmployees();
+			for(Employee emp:empEmail){
+				if(emp.getEmail().contains(email)){
+					empEmailReturn.add(emp);
+				}
+			}
+			
+		}catch(Exception e){
+			
+		}
+		return empEmailReturn;
+	}
+	private List<Employee> getAllEmployees(){
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+		return (List<Employee>)criteria.list();
 	}
 }

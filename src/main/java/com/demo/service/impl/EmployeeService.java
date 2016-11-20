@@ -51,4 +51,16 @@ public class EmployeeService implements EmployeeServiceInt {
 		return retMessage;
 	}
 
+	@Override
+	public String changePassword(String email, String password) {
+		retMessage = employeeDAO.changePassword(email, password);
+		return retMessage;
+	}
+
+	@Override
+	public String changePassword(String email) {
+		retMessage = employeeDAO.changePassword(email);
+		return retMessage;
+	}
+
 }

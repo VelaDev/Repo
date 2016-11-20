@@ -46,6 +46,10 @@ public class Device implements Serializable{
 	private String installationDate;
 	@Column(name="DEVICE_LOCATION")
 	private String deviceLocation;
+	@Column(name="COLOUR")
+	private String colour;
+	@Column(name="MONO")
+	private String monoReading;
 	
 	
 	@ManyToOne

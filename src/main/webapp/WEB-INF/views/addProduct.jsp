@@ -11,6 +11,12 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
+		<c:if test="${not empty retMessage }">
+			<div class="alert alert-info" role="alert">
+				<c:out value="${ retMessage}">
+				</c:out>
+			</div>
+			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -268,6 +274,19 @@
 										</div>
 									</div>
 								</div>
+								
+								<!-- Text checkbox Mono Reading-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Mono Reading</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="mono" placeholder="Mono Reading"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
 							
 						</div><!--/F Column-->
 												
@@ -275,7 +294,7 @@
 							<div class="col-sm-6">
 								<!-- Text input Machine Model-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Machine Model</label>
+									<label class="col-md-3 control-label">Model No</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
@@ -310,6 +329,23 @@
 										</div>
 									</div>
 								</div>
+								
+								<!-- Select type Mono Colour-->						
+								<div class="form-group">
+									<label class="col-md-3 control-label">Mono Colour</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select name="monoColour"
+												class="form-control selectpicker">
+												<option value=" ">Select Colour</option>
+												<option value="Gauteng">White</option>
+												<option value="Limpopo">Blue</option>										
+											</select>
+										</div>
+									</div>
+								</div>
+								
 							</div><!--/S Column-->
 							
 						

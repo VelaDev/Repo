@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/navbarmain.jsp"></c:import>
 		<div class="container">
 			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
@@ -35,7 +35,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 						<form:form method="post" class="well form-horizontal"
-							action="changePassword" modelAttribute="changePassword"
+							action="changePasswords" modelAttribute="changePasswords"
 							id="changePass">
 
 							<!--First column-->
@@ -49,20 +49,20 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 												name="email" placeholder="Email" class="form-control"
-												type="email" >
+												type="email" value="${employee.email }">
 										</div>
 									</div>
 								</div>
 								<!-- Text input Password-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Old Password</label>
+									<label class="col-md-3 control-label">Full Names</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-lock"></i></span> <input
-												name="oldpassword" id="oldpassword"
-												placeholder="Old Password" class="form-control"
-												type="password">
+												
+												placeholder="Full Names" class="form-control"
+												type="text" value="${employee.firstName } ${employee.lastName }"  >
 										</div>
 									</div>
 								</div>
@@ -101,7 +101,7 @@
 							<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<br><br>
-							<button type="submit" name="resetpassword" id="changepassword"
+							<button type="submit" name="changepassword" id="changepassword"
 								class="btn btn-lg btn-primary btn-block">Change Password</button>
 							
 							</div>
@@ -151,7 +151,7 @@
 													newpassword : {
 														validators : {
 															identical : {
-																field : 'newpassword',
+																field : 'password',
 																message : 'The password and its confirm are not the same'
 															}
 														}

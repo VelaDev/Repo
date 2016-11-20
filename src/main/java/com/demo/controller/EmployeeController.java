@@ -58,12 +58,12 @@ public class EmployeeController {
 		
 		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
 		
-		if(employee != null&& employee.isActive()==true){
+		if(employee != null&& employee.getStatus().equalsIgnoreCase("ACTIVE")){
 			session.setAttribute("loggedInUser", employee);
 			
-			/*if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
-				retRole ="redirect:resertPassword";
-			}else{*/
+			if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
+				retRole ="redirect:changePassword";
+			}else{
 				model.addObject("loggedInUser", employee.getEmail());
 				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
@@ -83,10 +83,10 @@ public class EmployeeController {
 				}
 			}
 			
-		//}
-		/*else{
+		}
+		else{
 			
-		}*/
+		}
 			
 			
 		return retRole;
@@ -255,4 +255,53 @@ public class EmployeeController {
 		
 		return model;
 	}
+	@RequestMapping(value ="changePassword",method=RequestMethod.GET)
+	public ModelAndView loadChangePassword(){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		model.addObject("employee", userName);
+		model.setViewName("changePassword");
+		
+		return model;
+	}
+	@RequestMapping(value="changePasswords")
+	public String changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
+		retMessage = employeeService.changePassword(email, newpassword);
+		
+		String retValue= "redirect:login";
+		return retValue;
+	}
+	
+	@RequestMapping(value="searchEmployeeForPasswordReset")
+	public ModelAndView searchEmployeeForPasswordReset(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			employee = employeeService.getEmployeeByEmpNumber(empName);
+		if(employee != null){
+			
+			model.addObject("employeeObject", employee);
+		}
+		else{
+			model.addObject("", null);
+		}
+		
+		model.setViewName("resertPassword");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="resetPassword")
+	public ModelAndView resetPassword(@RequestParam("email")String email){
+		
+		model = new ModelAndView();
+		retMessage = employeeService.changePassword(email);
+		model.addObject("retMessage", retMessage);
+		model.setViewName("resertPassword");
+		return model;
+	}
+	
 }

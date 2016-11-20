@@ -106,6 +106,7 @@ public class LogTicketController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
+		
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
 			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));

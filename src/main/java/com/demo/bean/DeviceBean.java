@@ -16,6 +16,10 @@ public class DeviceBean {
 	private String productStatus;
 	private String startDate;
 	private String endDate;
+	private String installationDate;
+	private String monoReading;
+	private String DeviceLocation;
+	private String colour;
 	private String clientName;
 	private String accessoryName;
 	private String accessorySerial;
@@ -277,6 +281,30 @@ public class DeviceBean {
 	public void setAdditionalPaperTraysTypeSerial(
 			String additionalPaperTraysTypeSerial) {
 		this.additionalPaperTraysTypeSerial = additionalPaperTraysTypeSerial;
+	}
+	public String getInstallationDate() {
+		return installationDate;
+	}
+	public void setInstallationDate(String installationDate) {
+		this.installationDate = installationDate;
+	}
+	public String getMonoReading() {
+		return monoReading;
+	}
+	public void setMonoReading(String monoReading) {
+		this.monoReading = monoReading;
+	}
+	public String getDeviceLocation() {
+		return DeviceLocation;
+	}
+	public void setDeviceLocation(String deviceLocation) {
+		DeviceLocation = deviceLocation;
+	}
+	public String getColour() {
+		return colour;
+	}
+	public void setColour(String colour) {
+		this.colour = colour;
 	}
 	
 }

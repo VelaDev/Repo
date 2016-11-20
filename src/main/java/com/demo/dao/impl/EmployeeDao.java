@@ -23,12 +23,14 @@ public class EmployeeDao implements EmployeeDaoInt{
 	@Autowired
 	private SessionFactory sessionFactory;
 	String retMessage = null;
+	private Employee emp = null;
 	
 	public String saveEmployee(Employee employee) {
 		String password = "";
 		
 		try{
 			  employee.setFirstTimeLogin(true);
+			  employee.setStatus("ACTIVE");
 			  password = generatePassword();
 			  employee.setPassword(password);
 		      sessionFactory.getCurrentSession().save(employee);
@@ -127,5 +129,43 @@ public class EmployeeDao implements EmployeeDaoInt{
 			retPassword = "DaNIy$D2b";
 		}
 		return retPassword;
+	}
+
+	@Override
+	public String changePassword(String email, String password) {
+		String passworChange = "";
+		try{
+			 emp = getEmployeeByEmpNum(email);
+			 if(emp != null){
+				 emp.setPassword(password);
+				 emp.setFirstTimeLogin(false);
+				 passworChange = updateEmployee(emp);
+				 retMessage= "Password successfully changed";
+			 }
+		}catch(Exception e){
+			retMessage = "Password not changed "+ e.getMessage();
+		}
+		return retMessage;
+	}
+
+	@Override
+	public String changePassword(String email) {
+		String passworChange = "";
+		try
+		{
+			emp = getEmployeeByEmpNum(email);
+			if(emp!= null){
+				String tempPassword = generatePassword();
+				emp.setPassword(tempPassword);
+				emp.setFirstTimeLogin(true);
+				passworChange = updateEmployee(emp);
+				JavaMail.sendPasswordToEmployee(emp);
+				retMessage = "Temp password for employee "+ emp.getFirstName() +" "+ emp.getLastName()+ " is "+ tempPassword+".\nTemp password is sent to employee through email.";
+			}
+			
+		}catch (Exception e) {
+			retMessage = "Password not reseted "+ e.getMessage();
+		}
+		return retMessage;
 	}
 }

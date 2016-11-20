@@ -56,8 +56,8 @@ public class Employee implements Serializable{
 	private String gender;
 	@Column(name="FIRSTTIMELOGIN")
 	private boolean isFirstTimeLogin;
-	@Column(name="ACTIVE")
-	private boolean isActive;
+	@Column(name="STATUS")
+	private String status;
 	
 	@OneToMany(mappedBy ="employee", cascade= CascadeType.ALL)
 	private Set<Tickets> logTickets;

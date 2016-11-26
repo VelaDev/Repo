@@ -461,7 +461,6 @@
 																$clone
 																		.find('[name="delivery"]'))
 											})
-
 									// Remove button click handler
 									.on(
 											'click',

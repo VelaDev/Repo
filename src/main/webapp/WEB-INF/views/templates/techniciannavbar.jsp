@@ -1,20 +1,22 @@
 
 <%@include file="taglibs.jsp"%>
 
-<link
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
-<link
-	href="<c:url value="/resources/custom/css/navbar.css" />"
-	rel="stylesheet" type="text/css" />
-	
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
 
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
+<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/custom/css/navbar.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/custom/css/vela_custom.css"/>" rel="stylesheet" type="text/css" />
 
 
+<div class="navigationButton">
+	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg"></span></a>
+	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg"></span></a>
+</div>
+
+<div class="vela_motto">
+<p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
+</div>
 <div class="velatp_logo">
 	<a href="technicianHome.html"><img
 		src="resources/bootstrap-3.3.6/images/mainlogo.jpg"></a>

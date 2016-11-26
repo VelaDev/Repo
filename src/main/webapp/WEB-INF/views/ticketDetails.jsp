@@ -256,7 +256,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="floorNumber" placeholder="Floor Number"
 													class="form-control"
-													value="${ticketObject.device.client.floorNumber}"
+													value="${ticketObject.device.client.streetNumber}"
 													type="text" disabled="disabled">
 											</div>
 										</div>

@@ -53,7 +53,137 @@
 							
 							<!-- Fields goes here -->
 							<p>Fields goes here</p>
-								<br>
+							
+							<h4 align="center">Customer Details</h4>
+							
+								<!--First Column-->
+									<div class="col-md-6">
+									
+									
+										<!-- Text input Customer Name-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Customer Name</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-user"></i></span> <input
+														name="customerName" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Address-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Address</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-home"></i></span> <input
+														name="address" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+									</div><!--/F Column-->
+									
+									<!--Second Column-->
+									<div class="col-md-6">
+										
+										<!-- Text input Fax No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Fax No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-earphone"></i></span> <input
+														name="faxno" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Tellphone No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Tellphone No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-earphone"></i></span> <input
+														name="tellphone" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+
+									</div><!-- /S col -->
+									
+									
+									<br/><br/>
+									<h4 align="center">Tonner Details</h4>
+									<br/>
+									
+								<!--First Column-->
+									<div class="col-md-6">
+									
+									
+										<!-- Text input Tonner Code-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Tonner Code</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="tonnerCode" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Device Model No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Device Model No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="deviceModel" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+									</div><!--/F Column-->
+									
+									<!--Second Column-->
+									<div class="col-md-6">
+										
+										<!-- Text input Colour-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-list"></i></span>
+														<select name="colour" id="colour" class="form-control">
+															<option value="">Choose Colour</option>
+															<option value="grey">Grey</option>
+															<option value="blue">Blue</option>
+														</select>
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Quantity No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Quantity</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="quantity" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+
+									</div><!-- /S col -->
+									
+								<br/><br/>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-md-8">
 										<input type="submit" value="Order Tonner"
@@ -73,7 +203,125 @@
 							<!-- Fields goes here -->
 							<p>Fields goes here</p>	
 							
-								<br>
+								
+									<h4 align="center">Customer Details</h4>
+							
+								<!--First Column-->
+									<div class="col-md-6">
+									
+									
+										<!-- Text input Customer Name-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Customer Name</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-user"></i></span> <input
+														name="customerName" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Address-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Address</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-home"></i></span> <input
+														name="address" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+									</div><!--/F Column-->
+									
+									<!--Second Column-->
+									<div class="col-md-6">
+										
+										<!-- Text input Fax No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Fax No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-earphone"></i></span> <input
+														name="faxno" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Tellphone No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Tellphone No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-earphone"></i></span> <input
+														name="tellphone" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+
+									</div><!-- /S col -->
+								
+								<br/><br/>
+								<h4 align="center">Part Detials</h4>
+								<br/>
+										<!--First Column-->
+									<div class="col-md-6">
+
+										<!-- Text input Device Serial No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Device Serial No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="device" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+
+										<!-- Select type Part Number:-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Part Number</label>
+											<div class="col-md-6 selectContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-list"></i></span> <select name="part"
+														class="form-control selectpicker">
+														<option value="">Select Part Number</option>
+														<option value="CLT-R806K">CLT-R806K</option>
+														<option value="CLT-R806X">CLT-R806X</option>
+														<option value="CLT-W806">CLT-W806</option>
+													</select>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!--/F Column-->
+
+									<!--Second column-->
+									<div class="col-sm-6">
+
+										<!-- Text input Quantity-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Quantity</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="quantity" class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<!--/S Column-->
+							
+							
+								<br/><br/>
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-md-8">
 										<input type="submit" value="Order Parts"

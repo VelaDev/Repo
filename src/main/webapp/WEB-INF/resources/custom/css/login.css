@@ -7,8 +7,24 @@ body {
 	-o-background-size: cover;
 	background-size: cover;
 }
+.vela_motto{	
+	margin-left: 36%;
+	margin-bottom:-8%;
+	}
+span.motto{
+	font-weight:bold;
+	font-size:2em;
+	color:#084f9d;
+}
+span.techsystem{
+	color:#084f9d;
+	font-weight:bold;
+}
 .mainlogo{
 	margin-left:20%;
+}
+.footerLogin{
+	margin-top:-8%;
 }
 .login-page {
   width: 360px;

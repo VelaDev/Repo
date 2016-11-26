@@ -27,7 +27,9 @@
 				</div>
 				<div class="panel-body">
 				<div class="tabContent">					
-							
+				<div class="vela_motto">
+					<p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
+				</div>	
 				<div class="login-page">
 				<div class="form">
 				<form:form method="post" action="authenticate" role="login"
@@ -36,7 +38,7 @@
 						<div class="col-sm-15">										
 							<div class="mainlogo">
 								<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
-							class="img-responsive" alt="" />
+									class="img-responsive" alt="" />
 							</div>
 								<br>
 							<!-- Text input Username-->	
@@ -64,8 +66,10 @@
 				</form:form>
 			</div>
 		</div>		
-			<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
+		<!-- Footer -->
+		<div class="footerLogin">
+			<c:import url="templates/footer.jsp"></c:import>
+		</div>
 		<!--/ Footer -->					
 		</div><!-- /tab-content -->									
 				</div><!-- /panel body -->

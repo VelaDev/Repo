@@ -16,44 +16,32 @@ a{
 	margin-right: 13%;
 	margin-left: 6%;
 }
+.navigationButton{
+		
+}
+.vela_motto{	
+	margin-left: 15%;
+	margin-bottom: -10%;
+	margin-top: 8%;
+}
+span.motto{
+	font-weight:bold;
+	font-size:2em;
+	color:#084f9d;
+}
+span.techsystem{
+	color:#084f9d;
+	font-weight:bold;
+}
 /*Pie Chart*/
-
-.open_tickets{
-	background-color:blue;
-	padding: 8px;
-    margin-left: 10%;
-    margin-right: 94%;
-    margin-top: -2%;
-}
-.closed_tickets{
-	background-color:green;
-	padding: 8px;
-	margin-left: 10%;
-    margin-right: 94%;
-    margin-top: -2%;
-}
-.escalated_tickets{
-	background-color:orange;
-	padding: 8px;
-	margin-left: 10%;
-    margin-right: 94%;
-    margin-top: -2%;
-}
-.logged_tickets{
-	background-color:red;
-	padding: 8px;
-	margin-left: 10%;
-    margin-right: 94%;
-    margin-top: -2%;
-}
 .pie_content{
 	margin-left:5%;
-}		
-/* Closed Pie Chart*/
-#ticket_details_pie{
-	 
-
 }
+#ticket_details_pie{	 
+
+}		
+/* End Pie Chart*/
+
 div#container{
 	width:100%;
 	margin:0 auto;

@@ -8,8 +8,12 @@ import java.util.List;
 
 
 
+
+
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,6 +26,7 @@ import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Client;
 import com.demo.model.Device;
+import com.demo.model.Employee;
 
 @Repository("productDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -40,7 +45,7 @@ public class DeviceDao implements DeviceDaoInt {
 	private Date currentDate =null;
 	ArrayList<Device> productList = null;
 	ArrayList<?> aList = null;
-	ArrayList list = null;
+	ArrayList<Accessories> list = null;
 	Client client = null;
 	Device device = null;
 	List <Accessories> accessoryList = null;
@@ -75,32 +80,7 @@ public class DeviceDao implements DeviceDaoInt {
 		return (List<Device>)criteria.list();
 	}
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Device> getDeviceListByClientName(String clientName) {
-		String name = clientName;
-		try{
-			
-		    aList = new ArrayList<Object>();
-		     productList = new ArrayList<Device>();
-			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Device.class);
-			aList.addAll(criteria.list());
-			for (Object pro : aList) {
-				if (pro instanceof Device) {
-					if (((Device) pro).getClient().getClientName()!=null&&((Device) pro).getClient().getClientName().startsWith(name) ) {
-						productList.add((Device) pro);
-						System.out.println(((Device) pro).getClient().getClientName());
-						 client = ((Device) pro).getClient();
-					}
-				}
-			}
-		}
-		catch(Exception e){
-			return null;
-		}
-		return productList;
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Accessories> accessories(Device device) {
@@ -272,6 +252,46 @@ public class DeviceDao implements DeviceDaoInt {
 			return null;
 		}
 		return deviceBean;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Device> getDeviceList(Integer offset, Integer maxResults,String clientName) {
+		List<Device> dev= sessionFactory.openSession()
+			    .createCriteria(Device.class,clientName)
+			    .setFirstResult(offset!=null?offset:0)
+			    .setMaxResults(maxResults!=null?maxResults:10)
+			    .list();
+		return dev;
+	}
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Device> getDeviceListByClientName(String clientName) {
+		String name = clientName;
+		try{
+			
+		    aList = new ArrayList<Object>();
+		     productList = new ArrayList<Device>();
+			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Device.class);
+			aList.addAll(criteria.list());
+			for (Object pro : aList) {
+				if (pro instanceof Device) {
+					if (((Device) pro).getClient().getClientName()!=null&&((Device) pro).getClient().getClientName().startsWith(name) ) {
+						productList.add((Device) pro);
+						 client = ((Device) pro).getClient();
+					}
+				}
+			}
+		}
+		catch(Exception e){
+			return null;
+		}
+		return productList;
+	}
+
+	@Override
+	public Integer count() {
+		return (Integer) sessionFactory.getCurrentSession().createCriteria(Client.class).setProjection(Projections.rowCount()).uniqueResult();
 	}
 	
 }

@@ -87,19 +87,19 @@ public class ClientController {
 		
 		return model;
 	}
-	@RequestMapping(value="searchClient")
-	public ModelAndView searchClient(@RequestParam("clientName") String clientName,@ModelAttribute Device Device) {
+	@RequestMapping(value="clientInformation")
+	public ModelAndView searchClient(@RequestParam("clientName") String clientName,Integer offset, Integer maxResults) {
 		model = new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			deviceList = deviceServiceInt.getDeviceListByClientName(clientName);
+			deviceList = deviceServiceInt.getAllEmployees(offset, maxResults, clientName);
 		      for(Device dev:deviceList){
 			       client = dev.getClient();
 			      break;
 		      }
 		
-		        model.addObject("deviceList",deviceList );
+		        model.addObject("clientInformation",deviceList );
 				model.addObject("client", client);
 				model.setViewName("clientInformation");
 		}

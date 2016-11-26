@@ -11,11 +11,13 @@ public interface DeviceDaoInt {
 	String saveDevice(Device device);
 	Device getDeviceBySerialNumbuer(String serialNumber);
 	List<Device> getDeviceList();
+	List<Device> getDeviceList(Integer offset, Integer maxResults,String clientName);
 	List<Device> getDeviceListByClientName(String clientName);
 	List<Accessories> accessories(Device device);
 	String updateDevice(Device device);
 	String prepareDeviceData(DeviceBean deviceBean);
 	DeviceBean getAccessoriesForUpdate(String serialNumber);
+	Integer count();
 	
 
 }

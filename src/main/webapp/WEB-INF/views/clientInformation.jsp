@@ -36,7 +36,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<form action="searchClient" method="post" id="searchCustomer">
+						<form action="clientInformation" method="post" id="clientInformation">
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
@@ -66,14 +66,16 @@
 											<table class="table table-hover ">
 												<thead style="background-color: #D6F1F6;">
 													<tr class='clickable-row'>
+													   <th>#</th>
 														<th>Serial No</th>
 														<th>Product Name</th>
 														<th>Option</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach items="${deviceList}" var="device">
+													<c:forEach items="${clientInformation}" var="device" varStatus="itr">
 														<tr>
+														     <th><c:out value="${offset + itr.index +1 }"></c:out>
 															<th><c:out value="${device.serialNumber}" /></th>
 															<th><c:out value="${device.productModel}" /></th>
 															<th><a
@@ -83,7 +85,9 @@
 													</c:forEach>
 												</tbody>
 											</table>
-											<%-- </c:if> --%>
+											<tag:paginate max="10" offset="${offset}" count="${count}" 
+						                     uri="clientInformation" next="&raquo;" previous="&laquo;" />
+											
 										</div>
 									</div>
 									<div class="groupclientdetails">

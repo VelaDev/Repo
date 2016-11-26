@@ -9,6 +9,7 @@ import com.demo.bean.DeviceBean;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
+import com.demo.model.Employee;
 import com.demo.service.DeviceServiceInt;
 
 
@@ -65,6 +66,17 @@ public class DeviceService implements DeviceServiceInt {
 	public DeviceBean getAccessoriesForUpdate(String serialNumber) {
 		
 		return deviceDAO.getAccessoriesForUpdate(serialNumber);
+	}
+
+	@Override
+	public Integer count() {
+		return deviceDAO.count();
+	}
+
+	@Override
+	public List<Device> getAllEmployees(Integer offset, Integer maxResults,String clientName) {
+		
+		return deviceDAO.getDeviceList(offset, maxResults,clientName);
 	}
 
 }

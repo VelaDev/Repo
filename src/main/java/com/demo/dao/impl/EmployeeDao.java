@@ -29,6 +29,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 	private Employee emp = null;
 	List<Employee> empEmail = null;
 	List<Employee> empEmailReturn;
+	String encryptPassword ="";
 	public String saveEmployee(Employee employee) {
 		String password = "";
 		
@@ -36,9 +37,12 @@ public class EmployeeDao implements EmployeeDaoInt{
 			  employee.setFirstTimeLogin(true);
 			  employee.setStatus("ACTIVE");
 			  password = generatePassword();
+			  encryptPassword = PasswordEncrypt.encryptPassword(password);
+			  System.out.println(encryptPassword);
 			  employee.setPassword(password);
+			  
 		      sessionFactory.getCurrentSession().save(employee);
-		      JavaMail.sendPasswordToEmployee(employee);
+		      JavaMail.sendPasswordToEmployee(employee,password);
 		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
 		}
 		catch(Exception e)
@@ -144,7 +148,8 @@ public class EmployeeDao implements EmployeeDaoInt{
 		try{
 			 emp = getEmployeeByEmpNum(email);
 			 if(emp != null){
-				 emp.setPassword(password);
+				 passworChange = PasswordEncrypt.encryptPassword(password);
+				 emp.setPassword(passworChange);
 				 emp.setFirstTimeLogin(false);
 				 passworChange = updateEmployee(emp);
 				 retMessage= "Password successfully changed";
@@ -163,10 +168,11 @@ public class EmployeeDao implements EmployeeDaoInt{
 			emp = getEmployeeByEmpNum(email);
 			if(emp!= null){
 				String tempPassword = generatePassword();
-				emp.setPassword(tempPassword);
+				encryptPassword = PasswordEncrypt.encryptPassword(tempPassword);
+				emp.setPassword(encryptPassword);
 				emp.setFirstTimeLogin(true);
 				passworChange = updateEmployee(emp);
-				JavaMail.sendPasswordToEmployee(emp);
+				JavaMail.sendPasswordToEmployee(emp,tempPassword);
 				retMessage = "Temp password for employee "+ emp.getFirstName() +" "+ emp.getLastName()+ " is "+ tempPassword+".\nTemp password is sent to employee through email.";
 			}
 			

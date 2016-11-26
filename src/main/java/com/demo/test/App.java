@@ -1,6 +1,10 @@
 package com.demo.test;
 
+import java.security.Key;
 import java.util.Random;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 
 /**
@@ -11,26 +15,31 @@ public class App
 {
     public static void main( String[] args )
     {
-    	String text = "VeLaPhAnDa";
-    	String text1 = "EmPlOYeEs";
-    	String text2 = "PaSsWoRd";
-    	String text3= "GeNeRaToRFroMAToZ";
-    	String text4 = "CqXxHkB";
-    	String text5 = "1234567890";
-    	String specialCaractors ="!@#$%^&*";
-    	
-    	Random random = new Random();
-    	String retPassword ="";
-    	
-    	int select = random.nextInt(text.length());
-    	int select1 = random.nextInt(text1.length());
-    	int select2 = random.nextInt(specialCaractors.length());
-    	int select3 = random.nextInt(text3.length());
-    	int select4 = random.nextInt(text5.length());
-    	int select5 = random.nextInt(text5.length());
-    	int select6 = random.nextInt(text2.length());
-    	retPassword ="V"+text.charAt(select)+ text1.charAt(select1)+ specialCaractors.charAt(select2)+ text3.charAt(select3)+text5.charAt(select5)+text4.charAt(select4)+text2.charAt(select6);
-		System.out.println(retPassword);
+    	App app = new App();
+    	app.run();
+    }
+    public void run() 
+    {
+        try 
+        {
+            String text = "Moh@p!27";
+            String key = "Bar12345Bar12345"; // 128 bit key
+            // Create key and cipher
+            Key aesKey = new SecretKeySpec(key.getBytes(), "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            // encrypt the text
+            cipher.init(Cipher.ENCRYPT_MODE, aesKey);
+            byte[] encrypted = cipher.doFinal(text.getBytes());
+            System.err.println(new String(encrypted));
+            //decrypt the text
+            cipher.init(Cipher.DECRYPT_MODE, aesKey);
+            String decrypted = new String(cipher.doFinal(encrypted));
+            System.out.println(decrypted);
+        }
+        catch(Exception e) 
+        {
+            e.printStackTrace();
+        }
     }
 }
 		    

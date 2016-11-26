@@ -5,6 +5,11 @@
   <title>Update Employee | Velaphanda Trading & Projects</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">  
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/resources/jquery/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.js" />"></script>
+    <script type="text/javascript" src="<c:url value="/resources/jquery/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js" />"></script> 
+    <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+    <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	
   <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" /> 
   <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
@@ -178,11 +183,6 @@
 	</div><!-- / velaphanda_containter -->
 	
 <!-- Validator -->
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/jquery/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/jquery/EasyAutocomplete-1.3.5/jquery.easy-autocomplete.min.js" />"></script> 
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 
 <!-- Validate update employee -->
 <script>
@@ -298,7 +298,7 @@
 <script>
   $(document).ready(function() {
 
-	$('#w-input-search').autocomplete({
+	$('#empName').autocomplete({
 		serviceUrl: '${pageContext.request.contextPath}/getEmployees',
 		paramName: "email",
 		delimiter: ",",

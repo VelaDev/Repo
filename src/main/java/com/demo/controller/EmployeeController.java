@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
+import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LogTicketsServiceInt;
@@ -57,13 +58,14 @@ public class EmployeeController {
 		String retRole = null;
 		
 		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
-		
+		password = PasswordEncrypt.encryptPassword(password);
 		if(employee != null&& employee.getStatus().equalsIgnoreCase("ACTIVE")){
 			session.setAttribute("loggedInUser", employee);
 			
 			if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 				retRole ="redirect:changePassword";
 			}else{
+				
 				model.addObject("loggedInUser", employee.getEmail());
 				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
@@ -79,12 +81,14 @@ public class EmployeeController {
 				{
 					retRole= "redirect:ticket";
 				}else{
+					
+					retRole= "redirect:error";
 					System.out.println("Username or password incorrect");
 				}
 			}
 			
 		}
-		else{
+		else{retRole= "redirect:error";
 			
 		}
 			

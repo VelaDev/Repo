@@ -68,11 +68,11 @@ public class JavaMail {
 }
   
   
-  public static void sendPasswordToEmployee( Employee emp) {
+  public static void sendPasswordToEmployee( Employee emp, String password) {
 	  String []to = {emp.getEmail()};
 	  String from="velatp2016@gmail.com";
       String pass="Vel@ph@nd@";
-      String body = "Hi "+ emp.getFirstName()+" "+emp.getLastName()+","+ "\n\nYour password is " + emp.getPassword() + ".\n\nChange your password before using the system";
+      String body = "Hi "+ emp.getFirstName()+" "+emp.getLastName()+","+ "\n\nYour password is " + password + ".\n\nRemember to change your password on your first login\n\nKind Regards\nVelaphanda Support Team";
       String subject ="Password Resert";
       Properties props = System.getProperties();
       String host = "smtp.gmail.com";

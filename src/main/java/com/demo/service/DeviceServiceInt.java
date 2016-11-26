@@ -5,6 +5,7 @@ import java.util.List;
 import com.demo.bean.DeviceBean;
 import com.demo.model.Accessories;
 import com.demo.model.Device;
+import com.demo.model.Employee;
 
 public interface DeviceServiceInt {
 	
@@ -16,6 +17,8 @@ public interface DeviceServiceInt {
 	String updateDevice(Device device);
 	String prepareDeviceData(DeviceBean deviceBean);
 	DeviceBean getAccessoriesForUpdate(String serialNumber);
+	Integer count();
+	List<Device> getAllEmployees(Integer offset, Integer maxResults,String clientName);
 	
 
 }

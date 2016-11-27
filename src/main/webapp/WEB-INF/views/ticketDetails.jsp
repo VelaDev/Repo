@@ -249,12 +249,12 @@
 
 									<!-- Text input Floor Number-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Floor No</label>
+										<label class="col-md-3 control-label">Street No</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													name="floorNumber" placeholder="Floor Number"
+													name="floorNumber" placeholder="Street Number"
 													class="form-control"
 													value="${ticketObject.device.client.streetNumber}"
 													type="text" disabled="disabled">
@@ -335,72 +335,122 @@
 							<h4 align="center">Device Details</h4>
 							<form:form class="well form-horizontal">
 
-								<!--First Column-->
-								<div class="col-md-6">
-									<!-- Text input Serial No-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Serial No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="serialNumber"
-													value="${ticketObject.getDevice().getSerialNumber()}"
-													class="form-control" type="text" disabled="disabled">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text input Contract Start Date-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Contract Start
-											Date</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
-													name="startDate" id="startDate"
-													value="${ticketObject.getDevice().getStartDate()}"
-													class="form-control" type="text" disabled="disabled">
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<!--/F Column-->
-
-								<!--Second column-->
-								<div class="col-md-6">
-									<!-- Text input Machine Model-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Machine Model</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel"
-													value="${ticketObject.getDevice().getProductModel()}"
-													class="form-control" type="text" disabled="disabled">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text input Contract End Date-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Contract End
-											Date</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
-													name="endDate" id="endDate"
-													value="${ticketObject.getDevice().getEndDate()}"
-													class="form-control" type="text" disabled="disabled">
-											</div>
+								 <!--First Column-->
+						       <div class="col-md-6">
+								<!-- Text input Serial No-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Serial No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="serialNumber" placeholder="Serial Number" value="${ticketObject.getDevice().getSerialNumber() }"
+												class="form-control" type="text" disabled="disabled">
 										</div>
 									</div>
 								</div>
-								<!--/S Column-->
+								
+								<!-- Text input Contract Start Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract Start Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="startDate" id="startDate" placeholder="YYYY-MM-DD"
+												value="${ticketObject.getDevice().getStartDate()}"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								<!-- Text input Device Location-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Device Location</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="deviceLocation" id="deviceLocation" placeholder="Device Location"
+												value="${ticketObject.getDevice().getDeviceLocation() }"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text checkbox Mono Reading-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Mono Reading</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="monoReading" placeholder="Mono Reading"
+												value="${ticketObject.getDevice().getMonoReading()}"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+							
+						</div><!--/F Column-->
+												
+						<!--Second column-->
+							<div class="col-sm-6">
+								<!-- Text input Machine Model-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Model No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="productModel" placeholder="Product Model"
+												value="${ticketObject.getDevice().getProductModel() }"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+
+								<!-- Text input Contract End Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract End Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="endDate" id="endDate" placeholder="YYYY-MM-DD"
+												value="${ticketObject.getDevice().getEndDate() }"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								<!-- Text input Installation Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Installation Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="installationDate" id="installationDate" placeholder="YYYY-MM-DD"
+												value="${ticketObject.getDevice().getInstallationDate() }"
+												class="form-control" type="text" disabled="disabled" >
+										</div>
+									</div>
+								</div>
+								
+								<!-- Select type Mono Colour-->						
+								<div class="form-group">
+									<label class="col-md-3 control-label">Mono Colour</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="colour" id="colour" placeholder="Colour"
+												value="${ticketObject.getDevice().getColour() }"
+												class="form-control" type="text" disabled="disabled" >
+										</div>
+									</div>
+								</div>
+						
+						     </div>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8"></div>
 								</div>
@@ -540,6 +590,7 @@
 															<tr>
 																<th><c:out value="${history.ticketNumber}" /></th>
 																<th><c:out value="${history.escalatedDate}" /></th>
+																<th><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></th>
 																<%-- <th><c:out value="${history.part.modelNumber}" /></th> --%>
 																<th><c:out value="${history.comment}" /></th>
 

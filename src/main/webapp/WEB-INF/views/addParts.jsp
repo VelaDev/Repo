@@ -28,7 +28,7 @@
 							<b>Add Spares</b>
 						</div>
 					</h3>
-				</div>
+				</div> 
 				<div class="panel-body">
 						<!-- tab nav -->
 					<ul class="nav nav-tabs">

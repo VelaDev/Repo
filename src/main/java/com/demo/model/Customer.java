@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,52 +22,45 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="CLIENT")
+@Table(name="CUSTOMER", catalog = "velaphandadb", uniqueConstraints = {
+		@UniqueConstraint(columnNames = "Customer_Name") })
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Client implements Serializable{
+public class Customer implements Serializable{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	/*@GeneratedValue(strategy=GenerationType.TABLE)
-	@Column(name="CCLIENTID")
-	private int clientID;*/
-	@Column(name="CLIENT_Name")
+	@Column(name="Customer_Name")
 	private String clientName;
 	@Column(name="IsACTIVE")
 	private boolean isActive;
-	@Column(name="TELPHONE_NUMBER")
+	@Column(name="Telephone_Number")
 	private String tellphoneNumber;
-	@Column(name="EMAIL")
+	@Column(name="Emal")
 	private String email;
-	@Column(name="StreetName")
+	@Column(name="Street_Name")
 	private String streetName;
 	@Column(name="City_Town")
 	private String city_town;
 	@Column(name="Province")
 	private String province;
-	@Column(name="ZipeCode")
+	@Column(name="Area_Code")
 	private String zipcode;
 	@Column(name="Fax_No")
 	private String faxNumber;
-	@Column(name="Cell_No")
-	private String cellNumber;
-	@Column(name="Contact_Person")
-	private String contactPerson;
 	@Column(name="Street_No")
 	private String streetNumber;
-	@Column(name="Contact_Person2")
-	private String contactPerson2;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	private Address address;
+	private CustomerContactDetails customerContactDetails;
 	
-	@OneToMany(mappedBy ="client", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Device> devices;
 
 }

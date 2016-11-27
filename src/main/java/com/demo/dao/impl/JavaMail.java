@@ -20,7 +20,7 @@ public class JavaMail {
 	
  
   public static void sendFromGMail( Tickets ticket) {
-	  String []to = {ticket.getEmployee().getEmail(),ticket.getDevice().getClient().getEmail()};
+	  String []to = {ticket.getEmployee().getEmail(),ticket.getDevice().getCustomer().getEmail()};
 	  String from="velatp2016@gmail.com";
       String pass="Vel@ph@nd@";
       String body = "Hi "+ ticket.getEmployee().getFirstName()+","+ "\n\nTicket " + ticket.getTicketNumber() + " is assigned to you.\n\nProduct "+ ticket.getDevice().getSerialNumber()+" with description "+ ticket.getDescription() +"\n\nKind Regards\nVelaphanda Team";

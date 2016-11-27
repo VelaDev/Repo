@@ -82,7 +82,7 @@
 															<th><c:out value="${ticket.dateTime}" /></th>
 															<th><c:out value="${ticket.status}" /></th>
 															<th><c:out value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></th>
-															<th><a href="editEmployee?id=<c:out value='${emp.id}'/>">Edit</a></th>
+															<th><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>">Edit</a></th>
 														</tr>
 													</c:forEach>
 												</tbody>

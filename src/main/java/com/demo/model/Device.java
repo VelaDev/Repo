@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="Products")
+@Table(name="DEVICE")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,27 +34,37 @@ public class Device implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="SERIAL_NUMBER")
+	@Column(name="Serial_Number")
 	private String serialNumber;
-	@Column(name="PRODUCT_MODEL")
+	@Column(name="Device_Model")
 	private String productModel;
-	@Column(name="START_DATE")
+	@Column(name="Contract_Start_Date")
 	private String startDate;
-	@Column(name="END_DATE")
+	@Column(name="Contract_End_Date")
 	private String endDate;
-	@Column(name="INSTALLATION_DATE")
+	@Column(name="Installation_Date")
 	private String installationDate;
-	@Column(name="DEVICE_LOCATION")
+	@Column(name="Device_Location")
 	private String deviceLocation;
-	@Column(name="COLOUR")
+	@Column(name="Mono_Colour")
 	private String colour;
-	@Column(name="MONO")
+	@Column(name="Mono_Reading")
 	private String monoReading;
+	@Column(name="Province")
+	private String province;
+	@Column(name="City_Town")
+	private String city_town;
+	@Column(name="Street_Number")
+	private String streetNumber;
+	@Column(name="Street_Name")
+	private String streetName;
+	@Column(name="Area_Code")
+	private String areaCode;
 	
 	
 	@ManyToOne
 	@JoinColumn(name="CLIENT")
-	private Client client;
+	private Customer customer;
     
 	@OneToMany(mappedBy ="device", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Accessories> accessories;

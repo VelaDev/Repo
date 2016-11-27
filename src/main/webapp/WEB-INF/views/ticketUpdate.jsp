@@ -109,9 +109,9 @@
 							</div>
 							<div class="col-xs-3">
 								<select class="form-control" name="technicianUserName">
-									<option>${ticketupdate.employee.username }</option>
+									<option>${ticketupdate.employee.firstName } ${ticketupdate.employee.lastName }</option>
 									<c:forEach items="${technicians}" var="technician">
-										<option value="${technician.username}">${technician.username}</option>
+										<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
 									</c:forEach>
 								</select>
 							</div>

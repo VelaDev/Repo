@@ -29,7 +29,7 @@ import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LogTicketsDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.TicketHistoryDaoInt;
-import com.demo.model.Client;
+import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Device;
 import com.demo.model.Tickets;
@@ -56,7 +56,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	
 
 	private Employee technician = null;
-	private Client client = null;
+	private Customer customer = null;
 	private Device device = null;
 	 private Tickets ticket = null;
 	Calendar cal = Calendar.getInstance();
@@ -70,6 +70,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
     private PieChart pieChart2 = null;
     private PieChart pieChart3 = null;
     private PieChart pieChart4 = null;
+    private PieChart pieChart5 = null;
     private List<PieChart> beanList = null;
    
 	@Override
@@ -88,7 +89,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 					ticket.setTicketNumber(ticketNumber);
 					ticket.setEmployee(technician);
 					ticket.setStatus("Open");
-					ticket.setSlaStart("Not Started");
+					ticket.setSlaStart("Started");
 					ticket.setDescription(tickets.getDescription());
 					ticket.setPriority(tickets.getPriority());
 					ticket.setDateTime(dateFormat.format(date));
@@ -99,7 +100,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 					
 					historyDaoInt.insertTicketHistory(ticket);
 					
-					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getClient().getClientName();
+					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getCustomer().getClientName();
 					JavaMail.sendFromGMail(ticket);
 				}
 				else{
@@ -230,10 +231,11 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 			
 			  ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
 			  
-			   if(ticket.getSlaStart().equalsIgnoreCase("Started") && tickets.getEscalateReason()!=null || tickets.getEscalateReason()!=null){
+			   if(ticket.getStatus().equalsIgnoreCase("Open") && tickets.getEscalateReason()!=null){
 				  ticket.setComments(tickets.getComments());
 				  ticket.setEscalateReason(tickets.getEscalateReason());
 				  ticket.setEscalate(true);
+				  ticket.setStatus("Awaiting Spare");
 				  sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 				  historyDaoInt.insertTicketHistory(ticket);
 				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
@@ -330,12 +332,13 @@ private String generateTicketNumber(){
 		int loggedTickets = 0;
 		int totalTickets = 0;
 		int slaBrigged = 0;
-		
+		int awaitingSpare = 0;
 		pieChart = new PieChart();
 		pieChart1 = new PieChart();
 	    pieChart2 = new PieChart();
 	    pieChart3 = new PieChart();
 	    pieChart4 = new PieChart();
+	    pieChart5 = new PieChart();
 		beanList = new ArrayList<PieChart>();
 		try{
 			
@@ -344,17 +347,21 @@ private String generateTicketNumber(){
 			ticketList = (List<Tickets>)criteria.list();
 			
 			for(Tickets ticket:ticketList){
-				if(ticket.getSlaStart().equalsIgnoreCase("Started")){
+				if(ticket.getStatus().equalsIgnoreCase("Open")){
 					openTickets ++;
 				}
-				else if(ticket.getSlaStart().equalsIgnoreCase("Escalated")){
+				else if(ticket.getStatus().equalsIgnoreCase("Escalated")){
 					escalatedTickets ++;
 				}
-				else if(ticket.getSlaStart().equalsIgnoreCase("Closed")){
+				else if(ticket.getStatus().equalsIgnoreCase("Closed")){
 					closedTickets ++;
 					
-				}else if(ticket.getSlaStart().equalsIgnoreCase("SLA Bridged")){
+				}else if(ticket.getStatus().equalsIgnoreCase("SLA Bridged")){
 					slaBrigged ++;
+					
+				}
+				else if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")){
+					awaitingSpare ++;
 					
 				}
 				else {
@@ -384,6 +391,10 @@ private String generateTicketNumber(){
 			pieChart4.setNumberTicket(slaBrigged);
 			pieChart4.setStatus("SLA Bridged");
 			beanList.add(pieChart4);
+			
+			pieChart5.setNumberTicket(awaitingSpare);
+			pieChart5.setStatus("Awaiting Spare");
+			beanList.add(pieChart5);
 		}
 		catch(Exception ex)
 		{

@@ -2,14 +2,14 @@ package com.demo.dao;
 
 import java.util.List;
 
-import com.demo.model.Client;
+import com.demo.model.Customer;
 
 public interface ClientDaoInt {
 	
-	String saveClient(Client client);
-	Client getClientByClientName(String clientName);
-	List<Client> getClientList(Integer offset, Integer maxResults);
-	String updateClient(Client client);
+	String saveClient(Customer customer);
+	Customer getClientByClientName(String clientName);
+	List<Customer> getClientList(Integer offset, Integer maxResults);
+	String updateClient(Customer customer);
 	Integer count();
 	
 

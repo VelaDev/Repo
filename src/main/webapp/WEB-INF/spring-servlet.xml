@@ -51,16 +51,17 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 			<list>
 				 <value>com.demo.model.Employee</value> 
 				 <value>com.demo.model.Device</value>
-				 <value>com.demo.model.Client</value>
+				 <value>com.demo.model.Customer</value>
 				 <value>com.demo.model.Parts</value>
 				 <value>com.demo.model.Tickets</value>
 				 <value>com.demo.model.Orders</value>
-				 <value>com.demo.model.Address</value>
+				 <value>com.demo.model.CustomerContactDetails</value>
 				 <value>com.demo.model.Accessories</value>
 				 <value>com.demo.model.Manager</value>
 				 <value>com.demo.model.Technician</value>
 				 <value>com.demo.model.User</value>
-				  <value>com.demo.model.TicketHistory</value>
+				 <value>com.demo.model.TicketHistory</value>
+				 <value>com.demo.model.Tonner</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -62,8 +62,11 @@ public class Orders implements Serializable{
 	@JoinColumn(name="SPARES")
 	private Parts part;
 	@ManyToOne
+	@JoinColumn(name="SPARES")
+	private Tonner tonner;
+	@ManyToOne
 	@JoinColumn(name="CLIENTNAME")
-	private Client client;
+	private Customer customer;
 	@ManyToOne
 	@JoinColumn(name="SERIALNUMBER")
 	private Device device;

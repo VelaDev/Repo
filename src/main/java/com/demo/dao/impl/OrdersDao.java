@@ -123,7 +123,7 @@ public class OrdersDao implements OrdersDaoInt{
 				sessionFactory.getCurrentSession().update(order);
 				retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is approved";
 			}else{
-				retMessage = "Order"+" "+n+ order.getOrderNum()+ " "+"is not approved because " + order.getPart().getItemType()+ " is not available in store." ;
+				retMessage = "Order"+" "+n+ order.getOrderNum()+ " "+"is not approved because " + " is not available in store." ;
 			}
 		
 		}catch (Exception e){

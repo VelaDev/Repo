@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.TicketsBean;
-import com.demo.model.Client;
+import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Tickets;
 import com.demo.service.ClientServiceInt;
@@ -40,7 +40,7 @@ public class LogTicketController {
 	private HttpSession session = null;
 	
 	@SuppressWarnings("unused")
-	private Client client = null;
+	private Customer customer = null;
 	private ModelAndView model = null;
 	private Employee userName= null;
 	private String retMessage ="";

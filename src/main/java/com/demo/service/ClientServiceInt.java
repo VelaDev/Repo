@@ -2,14 +2,14 @@ package com.demo.service;
 
 import java.util.List;
 
-import com.demo.model.Client;
+import com.demo.model.Customer;
 
 public interface ClientServiceInt {
 	
-	String saveClient(Client client);
-	Client getClientByClientName(String clientName);
-	List<Client> getClientList(Integer offset, Integer maxResults);
-	String updateCustomer(Client client);
+	String saveClient(Customer customer);
+	Customer getClientByClientName(String clientName);
+	List<Customer> getClientList(Integer offset, Integer maxResults);
+	String updateCustomer(Customer customer);
 	Integer count();
 
 }

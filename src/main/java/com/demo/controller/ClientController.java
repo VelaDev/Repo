@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.ClientBean;
-import com.demo.model.Client;
+import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.AccessoriesInt;
@@ -38,7 +38,7 @@ public class ClientController {
 	private String retMessage = null;
 	ModelAndView model = null;
 	List<Device> deviceList =null;
-	Client client = null;
+	Customer customer = null;
 	Employee userName = null;
 	
 	@RequestMapping(value="addClient",method=RequestMethod.GET)
@@ -58,9 +58,9 @@ public class ClientController {
 		return model;
 	}
 	@RequestMapping(value="saveClient",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView addClient(@ModelAttribute("saveClient")Client client)
+	public ModelAndView addClient(@ModelAttribute("saveClient")Customer customer)
 	{
-		retMessage =clientServiceInt.saveClient(client);
+		retMessage =clientServiceInt.saveClient(customer);
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -95,12 +95,12 @@ public class ClientController {
 		if(userName != null){
 			deviceList = deviceServiceInt.getAllEmployees(offset, maxResults, clientName);
 		      for(Device dev:deviceList){
-			       client = dev.getClient();
+			       customer = dev.getCustomer();
 			      break;
 		      }
 		
 		        model.addObject("clientInformation",deviceList );
-				model.addObject("client", client);
+				model.addObject("customer", customer);
 				model.setViewName("clientInformation");
 		}
 		else{
@@ -110,19 +110,19 @@ public class ClientController {
 		return model;
 	}
 	@RequestMapping(value="searchClientforProduct")
-	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
+	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			client = clientServiceInt.getClientByClientName(clientName);
-			if(client != null){
-				model.addObject("client", client);
+			customer = clientServiceInt.getClientByClientName(clientName);
+			if(customer != null){
+				model.addObject("customer", customer);
 			}
 			else
 			{
 				model.addObject("retMessage", "Customer : " + clientName + " does not exist");
-				model.addObject("client", null);
+				model.addObject("customer", null);
 			}
 		
 			model.setViewName("addProduct");
@@ -149,12 +149,12 @@ public class ClientController {
 		return model;
 	}
 	@RequestMapping(value="updateCustomerData",method=RequestMethod.POST)
-	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Client client){
+	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Customer customer){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			retMessage =clientServiceInt.updateCustomer(client); 
+			retMessage =clientServiceInt.updateCustomer(customer); 
 			model.addObject("retMessage", retMessage);
 			model.setViewName("updateCustomer");
 		}
@@ -166,13 +166,13 @@ public class ClientController {
 	}
 	
 	@RequestMapping(value="searchCustomer")
-	public ModelAndView searchCustomer(@RequestParam("clientName") String clientName,@ModelAttribute Client client) {
+	public ModelAndView searchCustomer(@RequestParam("clientName") String clientName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			client = clientServiceInt.getClientByClientName(clientName);
-			model.addObject("client", client);
+			customer = clientServiceInt.getClientByClientName(clientName);
+			model.addObject("customer", customer);
 			model.setViewName("updateCustomer");
 		}
 		else{

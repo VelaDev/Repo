@@ -462,7 +462,8 @@
 						<!--escalationDetails tab-->
 						<div class="tab-pane" id="escalationDetails">
 							<h4 align="center">Escalate Ticket</h4>
-							<form:form class="well form-horizontal">
+							<form:form class="well form-horizontal" action="updateTicket"
+								modelAttribute="updateTicket" method="post">
 								
 								<!-- Text input Ticket Number-->
 									<div class="form-group">
@@ -592,7 +593,7 @@
 																<th><c:out value="${history.escalatedDate}" /></th>
 																<th><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></th>
 																<%-- <th><c:out value="${history.part.modelNumber}" /></th> --%>
-																<th><c:out value="${history.comment}" /></th>
+																<th><c:out value="${history.escalatedReason}" /></th>
 
 
 															</tr>

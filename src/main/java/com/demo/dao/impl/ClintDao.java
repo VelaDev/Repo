@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.ClientDaoInt;
-import com.demo.model.Client;
+import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 
@@ -24,75 +24,75 @@ public class ClintDao implements ClientDaoInt{
 	@Autowired
 	private SessionFactory sessionFactory;
 	private String retMessage = null;
-	List<Client> clientList = null;
+	List<Customer> clientList = null;
 
 	@Override
-	public String saveClient(Client client) {
+	public String saveClient(Customer customer) {
 		try{
-			sessionFactory.getCurrentSession().saveOrUpdate(client);
-			retMessage =  "Customer "+ client.getClientName() + " "+ "Was successfully added";
+			sessionFactory.getCurrentSession().saveOrUpdate(customer);
+			retMessage =  "Customer "+ customer.getClientName() + " "+ "Was successfully added";
 		}
 		catch(Exception e){
-			retMessage = "Customer "+ client.getClientName() + " is not added\n" + e.getMessage();
+			retMessage = "Customer "+ customer.getClientName() + " is not added\n" + e.getMessage();
 		}
 		
 		return retMessage;
 	}
 
 	@Override
-	public Client getClientByClientName(String clientName) {
+	public Customer getClientByClientName(String clientName) {
 		
-		Client client = null;
+		Customer customer = null;
 		try{
 			
 			clientList = getClientList();
-			for(Client tempClient:clientList)
+			for(Customer tempClient:clientList)
 			{
 				if(tempClient.getClientName().equalsIgnoreCase(clientName))
 				{
-					client= tempClient;
+					customer= tempClient;
 					break;
 				}
 			}
 		}
 		catch(Exception e)
 		{
-			client = null;
+			customer = null;
 		}
 	
-		return client;
+		return customer;
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Client> getClientList(Integer offset, Integer maxResults) {
+	public List<Customer> getClientList(Integer offset, Integer maxResults) {
 		
 		return sessionFactory.openSession()
-			    .createCriteria(Client.class)
+			    .createCriteria(Customer.class)
 			    .setFirstResult(offset!=null?offset:0)
 			    .setMaxResults(maxResults!=null?maxResults:10)
 			    .list();
 	}
     @SuppressWarnings("unchecked")
-	private List<Client> getClientList(){
-    	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Client.class);
-		return (List<Client>)criteria.list(); 
+	private List<Customer> getClientList(){
+    	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Customer.class);
+		return (List<Customer>)criteria.list(); 
     }
 	@Override
-	public String updateClient(Client client) {
+	public String updateClient(Customer customer) {
 		try{
-			sessionFactory.getCurrentSession().update(client);
-			retMessage = "Customer "+ client.getClientName()+ " is successfully updated";
+			sessionFactory.getCurrentSession().update(customer);
+			retMessage = "Customer "+ customer.getClientName()+ " is successfully updated";
 		}
 		catch( Exception e){
-			retMessage = "Customer "+ client.getClientName() + " is not updated\n" + e.getMessage();
+			retMessage = "Customer "+ customer.getClientName() + " is not updated\n" + e.getMessage();
 		}
 		return retMessage;
 	}
 
 	@Override
 	public Integer count() {
-		return (Integer) sessionFactory.getCurrentSession().createCriteria(Client.class).setProjection(Projections.rowCount()).uniqueResult();
+		return (Integer) sessionFactory.getCurrentSession().createCriteria(Customer.class).setProjection(Projections.rowCount()).uniqueResult();
 		
 	}
 

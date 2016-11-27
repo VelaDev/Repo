@@ -24,7 +24,7 @@ import com.demo.dao.AccessoriesDaoInt;
 import com.demo.dao.ClientDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
-import com.demo.model.Client;
+import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 
@@ -46,7 +46,7 @@ public class DeviceDao implements DeviceDaoInt {
 	ArrayList<Device> productList = null;
 	ArrayList<?> aList = null;
 	ArrayList<Accessories> list = null;
-	Client client = null;
+	Customer customer = null;
 	Device device = null;
 	List <Accessories> accessoryList = null;
 	private DeviceBean deviceBean = null;
@@ -57,7 +57,7 @@ public class DeviceDao implements DeviceDaoInt {
 		try{
 			
 		       sessionFactory.getCurrentSession().saveOrUpdate(device);
-		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getClient().getClientName();
+		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getCustomer().getClientName();
 		   }
 		catch(Exception e){
 			    retMessage = "Device "+ device.getSerialNumber() + " is not added\n" + e.getMessage();
@@ -95,7 +95,7 @@ public class DeviceDao implements DeviceDaoInt {
 			
 			
 			sessionFactory.getCurrentSession().update(device);
-			retMessage = "Device "+device.getSerialNumber()+ " is successfully updated. Device belongs to customer : " + device.getClient().getClientName();
+			retMessage = "Device "+device.getSerialNumber()+ " is successfully updated. Device belongs to customer : " + device.getCustomer().getClientName();
 		}
 		catch(Exception e){
 			retMessage = "Device "+device.getSerialNumber()+ " is not updated\n"+ e.getMessage();
@@ -108,7 +108,7 @@ public class DeviceDao implements DeviceDaoInt {
 		//Purpose	: This method prepares the device data before inserting into the table
 		
 		String retAccessory = null;
-		client = new Client();
+		customer = new Customer();
 		device = new Device();
 		device.setEndDate(deviceBean.getEndDate());
 		device.setProductModel(deviceBean.getProductModel());
@@ -120,25 +120,25 @@ public class DeviceDao implements DeviceDaoInt {
 		device.setMonoReading(deviceBean.getMonoReading());
 		
 		
-		client.setCellNumber(deviceBean.getCellNumber());
-		client.setCity_town(deviceBean.getCity_town());
-		client.setContactPerson(deviceBean.getContactPerson());
-		client.setEmail(deviceBean.getEmail());
-		client.setFaxNumber(deviceBean.getFaxNumber());
-		client.setStreetNumber(deviceBean.getStreetNumber());
-		client.setProvince(deviceBean.getProvince());
-		client.setStreetName(deviceBean.getStreetName());
-		client.setTellphoneNumber(deviceBean.getTellphoneNumber());
-		client.setZipcode(deviceBean.getZipcode());
-		client.setClientName(deviceBean.getClientName());
+		//customer.setCellNumber(deviceBean.getCellNumber());
+		customer.setCity_town(deviceBean.getCity_town());
+		//customer.setContactPerson(deviceBean.getContactPerson());
+		customer.setEmail(deviceBean.getEmail());
+		customer.setFaxNumber(deviceBean.getFaxNumber());
+		customer.setStreetNumber(deviceBean.getStreetNumber());
+		customer.setProvince(deviceBean.getProvince());
+		customer.setStreetName(deviceBean.getStreetName());
+		customer.setTellphoneNumber(deviceBean.getTellphoneNumber());
+		customer.setZipcode(deviceBean.getZipcode());
+		customer.setClientName(deviceBean.getClientName());
 		
-		retMessage = clientDaoInt.saveClient(client);
-		client = clientDaoInt.getClientByClientName(deviceBean.getClientName());
+		retMessage = clientDaoInt.saveClient(customer);
+		customer = clientDaoInt.getClientByClientName(deviceBean.getClientName());
 		
 		
 		
-		if(client != null){
-			device.setClient(client);
+		if(customer != null){
+			device.setCustomer(customer);
 			
 		    list = new ArrayList<Accessories>();
 			Accessories accessory = new Accessories();
@@ -206,7 +206,7 @@ public class DeviceDao implements DeviceDaoInt {
 			}
 		}
 		else{
-			retMessage = "Client "+ client.getClientName() +" does not exist on database. Please make sure that the client exist before assigning a device" ;
+			retMessage = "Customer "+ customer.getClientName() +" does not exist on database. Please make sure that the customer exist before assigning a device" ;
 		}
 		
 		return retMessage;
@@ -276,9 +276,9 @@ public class DeviceDao implements DeviceDaoInt {
 			aList.addAll(criteria.list());
 			for (Object pro : aList) {
 				if (pro instanceof Device) {
-					if (((Device) pro).getClient().getClientName()!=null&&((Device) pro).getClient().getClientName().startsWith(name) ) {
+					if (((Device) pro).getCustomer().getClientName()!=null&&((Device) pro).getCustomer().getClientName().startsWith(name) ) {
 						productList.add((Device) pro);
-						 client = ((Device) pro).getClient();
+						 customer = ((Device) pro).getCustomer();
 					}
 				}
 			}
@@ -291,7 +291,7 @@ public class DeviceDao implements DeviceDaoInt {
 
 	@Override
 	public Integer count() {
-		return (Integer) sessionFactory.getCurrentSession().createCriteria(Client.class).setProjection(Projections.rowCount()).uniqueResult();
+		return (Integer) sessionFactory.getCurrentSession().createCriteria(Customer.class).setProjection(Projections.rowCount()).uniqueResult();
 	}
 	
 }

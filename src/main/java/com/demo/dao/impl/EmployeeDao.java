@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.EmployeeDaoInt;
-import com.demo.model.Client;
+import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Tickets;
 

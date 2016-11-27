@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.ClientDaoInt;
-import com.demo.model.Client;
+import com.demo.model.Customer;
 import com.demo.service.ClientServiceInt;
 
 @Service("clientService")
@@ -18,26 +18,26 @@ public class ClientService implements ClientServiceInt{
 	private String retMessage = null;
 
 	@Override
-	public String saveClient(Client client) {
-		retMessage = clientDAO.saveClient(client);
+	public String saveClient(Customer customer) {
+		retMessage = clientDAO.saveClient(customer);
 		return retMessage;
 	}
 
 	@Override
-	public Client getClientByClientName(String clientName) {
+	public Customer getClientByClientName(String clientName) {
 		
 		return clientDAO.getClientByClientName(clientName);
 	}
 
 	@Override
-	public List<Client> getClientList(Integer offset, Integer maxResults) {
+	public List<Customer> getClientList(Integer offset, Integer maxResults) {
 		
 		return clientDAO.getClientList(offset,maxResults);
 	}
 
 	@Override
-	public String updateCustomer(Client client) {
-		retMessage = clientDAO.updateClient(client);
+	public String updateCustomer(Customer customer) {
+		retMessage = clientDAO.updateClient(customer);
 		return retMessage;
 	}
 

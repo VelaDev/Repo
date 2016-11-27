@@ -2,7 +2,7 @@ package com.demo.bean;
 
 import java.util.Date;
 
-import com.demo.model.Client;
+import com.demo.model.Customer;
 
 
 public class DeviceBean {

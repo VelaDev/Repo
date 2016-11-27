@@ -7,10 +7,7 @@
 <link href="<c:url value="/resources/custom/css/navbar.css" />" rel="stylesheet" type="text/css" />	
 <link href="<c:url value="/resources/custom/css/vela_custom.css"/>" rel="stylesheet" type="text/css" />
 
-<div class="navigationButton">
-	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg">Back</span></a>
-	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg">Next</span></a>
-</div>
+
 
 <div class="vela_motto">
 <p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
@@ -64,3 +61,8 @@
 		</div>
 	</nav>
 </div>
+<div class="nav navbar-nav navbar-right">
+	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg" title="Previous Page"></span></a>
+	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg" title="Go Forward"></span></a>
+</div>
+<br/><br/>

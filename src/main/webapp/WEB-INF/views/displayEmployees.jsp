@@ -53,7 +53,7 @@
 					</div>
 				</div>
 						
-					</div><!-- /tab-content -->
+				</div><!-- /tab-content -->
 									
 				</div><!-- /panel body -->
 			</div><!--/panel success class-->

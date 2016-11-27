@@ -112,5 +112,3 @@
 	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg" title="Go Forward"></span></a>
 </div>
 <br/><br/>
-
-

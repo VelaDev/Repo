@@ -8,9 +8,9 @@
 <link href="<c:url value="/resources/custom/css/vela_custom.css"/>" rel="stylesheet" type="text/css" />
 
 <div class="navigationButton">
-	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg"></span></a>
-	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg"></span></a>
-</div>
+	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg">Back</span></a>
+	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg">Next</span></a>
+</div> 
 
 <div class="vela_motto">
 <p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
@@ -53,8 +53,8 @@
 							<li><a href='<c:url value="displayEmployees.html"/>'>Display
 									Employee</a></li>
 							<li><a href='<c:url value="updateEmployee.html"/>'>Update Employee</a></li>
-							<li><a href='<c:url value="changePassword.html"/>'>Change Password</a></li>
-							<li><a href='<c:url value="#.html"/>'>Deactivate
+							<li><a href='<c:url value="resertPassword.html"/>'>Reset Password</a></li>
+							<li><a href='<c:url value="deactivateEmployee.html"/>'>Deactivate
 									Employee</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

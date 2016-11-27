@@ -5,10 +5,8 @@
   <title>Add Client | Velaphanda Trading & Projects</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">  
-  
   <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" /> 
   <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
-	
 </head>
 <body>
 	<div class="velaphanda_containter">	
@@ -21,7 +19,7 @@
 				</c:out>
 			</div>
 			</c:if>
-			<div class="panel panel-success">    
+			<div class="panel panel-success">  
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">

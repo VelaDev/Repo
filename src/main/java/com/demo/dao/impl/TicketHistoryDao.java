@@ -46,6 +46,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 			  ticketHistory.setTicketNumber(ticket.getTicketNumber());
 			  ticketHistory.setComment(ticket.getComments());
 			  ticketHistory.setEscalatedDate(dateFormat.format(date));
+			  ticketHistory.setEmployee(ticket.getEmployee());
 			  ticketHistory.setEscalatedReason(ticket.getEscalateReason());
 			  ticketHistory.setSolution(ticket.getSolution());
 			  sessionFactory.getCurrentSession().save(ticketHistory);

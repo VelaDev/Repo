@@ -159,7 +159,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
-												name="floorNumber" placeholder="Street No"
+												name="streetNumber" placeholder="Street No"
 												class="form-control" value="${productObject.client.streetNumber}"
 												type="text">
 										</div>
@@ -172,7 +172,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
-												name="floorNumber" placeholder="Contact Person (Optional)"
+												name="contactPerson2" placeholder="Contact Person (Optional)"
 												class="form-control" value="${productObject.client.contactPerson2}"
 												type="text">
 										</div>
@@ -341,19 +341,19 @@
 								
 								<!-- Select type Mono Colour-->						
 								<div class="form-group">
-									<label class="col-md-3 control-label">Mono Colour</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select name="colour"
-												class="form-control selectpicker">
-												<option value=" ">Select Colour</option>
-												<option value="White">White</option>
-												<option value="Blue">Blue</option>										
-											</select>
-										</div>
-									</div>
+							<label class="col-md-3 control-label">Mono Colour</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span> <select name="colour"
+										class="form-control selectpicker">
+										<option value=" ">${productObject.colour}</option>
+										<option value="Black">Black</option>
+										<option value="White">White</option>
+									</select>
 								</div>
+							</div>
+						</div>
 								
 							</div><!--/S Column-->
 							</fieldset>

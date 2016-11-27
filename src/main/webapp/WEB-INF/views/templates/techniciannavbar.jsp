@@ -10,8 +10,8 @@
 
 
 <div class="navigationButton">
-	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg"></span></a>
-	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg"></span></a>
+	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg">Back</span></a>
+	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg">Next</span></a>
 </div>
 
 <div class="vela_motto">

@@ -35,7 +35,7 @@ public class Parts implements Serializable{
 	@Id
 	@Column(name="Part_Number")
 	private String partNumber;
-	@Column(name="DESCRIPTION")
+	@Column(name="Description")
 	private String description;
 	@Column(name="Quantity")
 	private int quantity;

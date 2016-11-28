@@ -29,45 +29,45 @@ public class Orders implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="ORDER_NUMBER")
+	@Column(name="Order_Number")
 	private String orderNum;
-	@Column(name="QUANTITY")
+	@Column(name="Quantity")
 	private int quantity;
-	@Column(name="DELIVERY")
+	@Column(name="Delivery")
 	private boolean delivery;
-	@Column(name="DELIVERED")
+	@Column(name="Delivered")
 	private boolean delivered;
-	@Column(name="RECEIVED")
+	@Column(name="Received")
 	private boolean received;
-	@Column(name="DATE_ORDERED")
+	@Column(name="Date_Orderd")
 	private String dateOrdered;
-	@Column(name="APPROVED")
+	@Column(name="Approved")
 	private boolean approved;
-	@Column(name="DATE_APPROVED")
+	@Column(name="Date_Approved")
 	private String dateApproved;
-	@Column(name="COMMENTS")
+	@Column(name="Comments")
 	private String comments;
-	@Column(name="DESCRIPTION")
+	@Column(name="Description")
 	private String description;
-	@Column(name="APPROVEDBY")
+	@Column(name="ApprovedBy")
 	private String approdedBy;
-	@Column(name="STATUS")
+	@Column(name="Status")
 	private String status;
 	
 	@ManyToOne
-	@JoinColumn(name="ORDEREDBY")
+	@JoinColumn(name="OrderedBY")
 	private Employee employee;
 	
 	@ManyToOne
-	@JoinColumn(name="SPARES")
+	@JoinColumn(name="Spare")
 	private Parts part;
 	@ManyToOne
-	@JoinColumn(name="SPARES")
+	@JoinColumn(name="Tonner")
 	private Tonner tonner;
 	@ManyToOne
-	@JoinColumn(name="CLIENTNAME")
+	@JoinColumn(name="Customer_Name")
 	private Customer customer;
 	@ManyToOne
-	@JoinColumn(name="SERIALNUMBER")
+	@JoinColumn(name="Sserial_Number")
 	private Device device;
 }

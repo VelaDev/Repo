@@ -19,7 +19,7 @@ import com.demo.model.Orders;
 
 
 @Entity
-@Table(name="PARTS")
+@Table(name="tonners")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -32,7 +32,7 @@ public class Tonner implements Serializable {/**
 	@Id
 	@Column(name="Tonner_Code")
 	private String tonnerCode;
-	@Column(name="DESCRIPTION")
+	@Column(name="Description")
 	private String description;
 	@Column(name="Quantity")
 	private int quantity;

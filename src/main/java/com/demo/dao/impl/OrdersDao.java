@@ -215,6 +215,7 @@ public class OrdersDao implements OrdersDaoInt{
 		return newOrderNum;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Orders> getAllOrders(String orderedBy) {
 		ArrayList<?> aList = new ArrayList<Object>();

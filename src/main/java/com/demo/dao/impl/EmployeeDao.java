@@ -38,8 +38,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 			  employee.setStatus("ACTIVE");
 			  password = generatePassword();
 			  encryptPassword = PasswordEncrypt.encryptPassword(password);
-			  System.out.println(encryptPassword);
-			  employee.setPassword(password);
+			  employee.setPassword(encryptPassword);
 			  
 		      sessionFactory.getCurrentSession().save(employee);
 		      JavaMail.sendPasswordToEmployee(employee,password);

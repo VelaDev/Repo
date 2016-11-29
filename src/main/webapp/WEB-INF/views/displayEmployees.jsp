@@ -47,6 +47,7 @@
 									</tr>
 								</c:forEach>
 							</tbody>
+					
 						</table>
 						<tag:paginate max="10" offset="${offset}" count="${count}" 
 						uri="displayEmployees" next="&raquo;" previous="&laquo;" />

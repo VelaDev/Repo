@@ -24,18 +24,22 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Error Login | Velaphanda Trading & Projectsr</b>
+							<b>Error Login | Velaphanda Trading & Projects</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
 					<div class="tabContent">
-
+						<div class="vela_motto">
+					<p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
+				</div>
 						<div class="login-page">
 							<div class="form">
 								<form method="post" action="error" role="login">
-									<img src="resources/bootstrap-3.3.6/images/logo.jpg"
-										class="img-responsive" alt="" />
+									<div class="mainlogo">
+										<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
+									class="img-responsive" alt="" />
+									</div>
 									<div class="errorLogin">
 										<h2>You are not registered to use the system. Consults
 											Administrator</h2>
@@ -45,7 +49,9 @@
 							</div>
 						</div>
 						<!-- Footer -->
-						<c:import url="templates/footer.jsp"></c:import>
+						<div class="footerLogin">
+							<c:import url="templates/footer.jsp"></c:import>
+						</div>
 						<!--/ Footer -->
 					</div>
 					<!-- /tab-content -->

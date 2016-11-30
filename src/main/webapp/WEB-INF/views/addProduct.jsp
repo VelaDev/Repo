@@ -7,6 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1"> 
+<link type="text/stylesheet" src="<c:url value="/resources/custom/css/vela_custom.css" />">
+
 <title>Add Product | Velaphanda Trading & Projects</title>
 </head>
 <body>
@@ -164,7 +166,8 @@
 					<!-- Contact Person 2 -->
 					<div class="col-sm-6">						
 						<div align="center">
-						<b>Contact Person 2</b>
+						<b class="optionalFields">Contact Person 2 (Optional Fields)</b>
+						
 						</div>
 						<!-- Text input Contact Person First Name-->
 						<div class="form-group">

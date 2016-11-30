@@ -5,8 +5,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Update Device Installation | Velaphanda Trading &
-	Projects</title>
+
+<link type="text/stylesheet" src="<c:url value="/resources/custom/css/vela_custom.css" />">
+
+<title>Update Device Installation | Velaphanda Trading & Projects</title>
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -162,8 +164,8 @@
 					
 					<div class="col-sm-6">
 						
-						<div align="center">
-						<b>Contact Person 2</b>
+						<div align="center">						
+						<b class="optionalFields">Contact Person 2 (Optional Fields)</b>
 						</div>
 						
 						<!-- Text input Contact Person First Name-->

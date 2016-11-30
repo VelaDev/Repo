@@ -34,6 +34,7 @@
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#spare"	data-toggle="tab">Spare</a></li>
 						<li><a href="#parts" data-toggle="tab">Parts</a></li>
+						<li><a href="#tonner" data-toggle="tab">Tonner</a></li>
 					</ul>					
 					<div class="tab-content">
 					<div class="tab-pane active" id="spare">
@@ -132,7 +133,7 @@
 						</div>
 					</form:form>
 					
-					</div><!-- /parts  -->
+					</div><!-- /spare  -->
 					
 					<div class="tab-pane" id="parts">
 					<h4 align="center">Parts</h4>
@@ -224,13 +225,111 @@
 						<br><br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
-								<input type="submit" value="Add Spares"
+								<input type="submit" value="Add Parts"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
 									id="addSpares">
 							</div>
 						</div>
 						</form:form>
 					</div><!-- /parts  -->
+					
+					
+				<div class="tab-pane" id="tonner">
+					<h4 align="center">Tonner</h4>
+				<form:form class="well form-horizontal" method="post" action="saveSpareParts"
+					modelAttribute="saveSpareParts" id="saveSpareParts">
+							
+					<!--First column-->
+					<div class="col-sm-6">					
+						<!-- Select type Tonner Code-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Tonner Code</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+										<input type="text" class="form-control" placeholder="Tonner Code" name="tonnerCode" id="tonnerCode">
+								</div>
+							</div>
+						</div>
+						
+						<!-- Select type Description-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Description</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<select name="description"
+										class="form-control selectpicker">
+										<option value="">Select Description<option>
+									<option value="Black Imaging Unit">Black Imaging Unit</option>
+									<option value="Color Imaging Unit">Color Imaging Unit</option>
+									<option value="Waste Toner Bottle">Waste Toner Bottle</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						
+						<!-- Select type Quantity-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Quantity</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-edit"></i></span>
+									<input class="form-control" Placeholder="Quantity" id="quantity" type="text">
+								</div>
+							</div>
+						</div>
+						
+					</div><!-- / F column -->	
+					
+					<!--Second column-->		
+					<div class="col-sm-6">
+					
+					
+						<!-- Select type Supplier Name-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Supplier Name</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span>
+									<input type="text" class="form-control" placeholder="Supplier Name" id="supplierName" name="supplierName">
+								</div>
+							</div>
+						</div>
+						
+						<!-- Select type Received By-->						
+						<div class="form-group">
+							<label class="col-md-3 control-label">Recieved By</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-edit"></i></span>
+									<input class="form-control" id="receivedBy" placeholder="Recieved By" type="text">
+								</div>
+							</div>
+						</div>
+						
+						
+						
+					</div><!-- /S column  -->
+					
+						<br><br>
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<input type="submit" value="Add Tonner"
+									class="btn btn-primary btn-block btn-lg" tabindex="9"
+									id="addTonner">
+							</div>
+						</div>
+					</form:form>
+					
+					</div><!-- /tonner  -->
+					
 					</div><!-- /tab-content -->									
 				</div><!-- /panel body -->
 			</div><!--/panel success class-->

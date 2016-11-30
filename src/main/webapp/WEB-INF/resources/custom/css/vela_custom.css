@@ -7,6 +7,9 @@
 a{
 	text-decoration:none;
 }
+b.optionalFields{
+	color:red;
+}
 /*devider hr*/
 .devider {
     margin-top: 6%;

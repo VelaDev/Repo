@@ -71,87 +71,9 @@
 										</div>
 									</div>
 								</div>
-
-								<!-- Text input Contact Person-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contact Person</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input
-												class="form-control" value="${productObject.client.contactPerson}"
-												type="text">
-										</div>
-									</div>
-								</div>
-
-								<!-- Select type Province-->
 								
-						<div class="form-group">
-							<label class="col-md-3 control-label">Province</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span> <select name="province"
-										class="form-control selectpicker">
-										<option value=" ">${productObject.client.province}</option>
-										<option value="Gauteng">Gauteng</option>
-										<option value="Limpopo">Limpopo</option>
-										<option value="Nort West">North West</option>
-										<option value="Free State">Free State</option>
-										<option value="Mpumalanga">Mpumalanga</option>
-										<option value="KwaZulu Natal">KwaZulu Natal</option>
-										<option value="Northern Cape">Northern Cape</option>
-										<option value="Eastern Cape">Eastern Cape</option>
-										<option value="Mpumalanga">Western Cape</option>
-									</select>
 								</div>
-							</div>
-						</div>
-						
-
-								<!-- Text input City or Town-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">City/Town</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input
-												name="city_town" placeholder="City / Town"
-												class="form-control" value="${productObject.client.city_town}" type="text">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Street Name-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Street Name</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input
-												name="streetName" placeholder="Street Name"
-												class="form-control" value="${productObject.client.streetName}"
-												type="text">
-										</div>
-									</div>
-								</div>
-						<!-- Text input Area Code-->
-						 <div class="form-group">
-							<label class="col-md-3 control-label">Area Code</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
-										placeholder="Area Code" class="form-control" value="${productObject.client.zipcode}" type="text">
-								</div>
-							</div>
-						</div>
-
-					</div><!-- / F column -->
-
-							<!--Second column-->
-							<div class="col-sm-6">
+								<div class="col-sm-6">
 								<!-- Text input Floor Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street No</label>
@@ -165,72 +87,149 @@
 										</div>
 									</div>
 								</div>
-								<!-- Text input Floor Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contact Person</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input
-												name="contactPerson2" placeholder="Contact Person (Optional)"
-												class="form-control" value="${productObject.client.contactPerson2}"
-												type="text">
-										</div>
-									</div>
-								</div>
-								<!-- Text input Tellphone Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Telephone No</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="tellphoneNumber" placeholder="Tellphone Number"
-												class="form-control" value="${productObject.client.tellphoneNumber}"
-												type="text">
-										</div>
-									</div>
-								</div>
-								<!-- Text input Fax Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Fax Number</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="faxNumber" placeholder="Fax Number"
-												class="form-control" value="${productObject.client.faxNumber}" type="text">
-										</div>
-									</div>
-								</div>
-								<!-- Text input Cellphone Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Mobile Number</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="cellNumber" placeholder="Mobile Number"
-												class="form-control" value="${productObject.client.cellNumber}"
-												type="text">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Email-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">E-Mail</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-envelope"></i></span> <input
-												name="email" placeholder="E-Mail Address"
-												class="form-control" value="${productObject.client.email}" type="text">
-										</div>
-									</div>
 								</div>
 								
-							</div><!-- /S Column -->
+								
+								<div class="col-sm-6">
+						
+						<div align="center">
+						<b>Contact Person 1</b>
+						</div>
+						
+						
+						<!-- Text input Contact Person First Name-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">First Nmae</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
+										placeholder="First Name" class="form-control" type="text">
+								</div>
+							</div>
+						</div><!-- Text input Contact Person  Last Name-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Last Name</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
+										placeholder="Last Name" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						
+						<!-- Text input Contact Person 1 Email-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Email</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
+										placeholder="Email Address" class="form-control" type="email">
+								</div>
+							</div>
+						</div>
+						
+						
+						<!-- Text input Contact Person Cellphone Number-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Cellphone No</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber"
+										placeholder="Cellphone No" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+											
+						
+						<!-- Text input Contact Person Tellphone Number-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Tellphone No</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-earphone"></i></span> <input name="tellphoneNumber"
+										placeholder="Tellphone No" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+					
+					</div><!-- /Col -->
+					
+					
+					<div class="col-sm-6">
+						
+						<div align="center">
+						<b>Contact Person 2</b>
+						</div>
+						
+						<!-- Text input Contact Person First Name-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">First Nmae</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
+										placeholder="First Name" class="form-control" type="text">
+								</div>
+							</div>
+						</div><!-- Text input Contact Person  Last Name-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Last Name</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
+										placeholder="Last Name" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						
+						<!-- Text input Contact Person 1 Email-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Email</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
+										placeholder="Email Address" class="form-control" type="email">
+								</div>
+							</div>
+						</div>
+						
+						
+						<!-- Text input Contact Person Cellphone Number-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Cellphone No</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber"
+										placeholder="Cellphone No" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+											
+						
+						<!-- Text input Contact Person Tellphone Number-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Tellphone No</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-earphone"></i></span> <input name="tellphoneNumber"
+										placeholder="Tellphone No" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
+						
+					</div><!-- /Col -->
+
+								
+
 						<br>
 							</fieldset>
 							<br>

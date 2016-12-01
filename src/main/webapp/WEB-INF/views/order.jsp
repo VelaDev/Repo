@@ -52,7 +52,6 @@
 							<form:form class="well form-horizontal">								
 							
 							<!-- Fields goes here -->
-							<p>Fields goes here</p>
 							
 							<h4 align="center">Customer Details</h4>
 							
@@ -198,10 +197,7 @@
 						<!--order parts tab-->
 						<div class="tab-pane" id="orderParts">
 							<h4 align="center">Order Parts</h4>
-							<form:form class="well form-horizontal">
-							
-							<!-- Fields goes here -->
-							<p>Fields goes here</p>	
+							<form:form class="well form-horizontal" modelAttribute="makeOrder" action="makeOrder">
 							
 								
 									<h4 align="center">Customer Details</h4>

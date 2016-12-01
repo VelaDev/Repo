@@ -165,7 +165,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
+										class="glyphicon glyphicon-envelope"></i></span> <input name="emailCompany"
 										placeholder="E-Mail Address" class="form-control" type="text">
 								</div>
 							</div>
@@ -235,7 +235,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input name="tellphoneNumber"
+										class="glyphicon glyphicon-earphone"></i></span> <input name="telephoneNumber"
 										placeholder="Tellphone No" class="form-control" type="text">
 								</div>
 							</div>
@@ -256,7 +256,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
+										class="glyphicon glyphicon-user"></i></span> <input name="firstName1"
 										placeholder="First Name" class="form-control" type="text">
 								</div>
 							</div>
@@ -266,7 +266,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
+										class="glyphicon glyphicon-user"></i></span> <input name="lastName1"
 										placeholder="Last Name" class="form-control" type="text">
 								</div>
 							</div>
@@ -278,7 +278,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
+										class="glyphicon glyphicon-envelope"></i></span> <input name="email1"
 										placeholder="Email Address" class="form-control" type="email">
 								</div>
 							</div>
@@ -291,7 +291,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber"
+										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber1"
 										placeholder="Cellphone No" class="form-control" type="text">
 								</div>
 							</div>
@@ -304,7 +304,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input name="tellphoneNumber"
+										class="glyphicon glyphicon-earphone"></i></span> <input name="telephoneNumber1"
 										placeholder="Tellphone No" class="form-control" type="text">
 								</div>
 							</div>

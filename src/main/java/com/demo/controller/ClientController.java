@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.bean.ClientBean;
+import com.demo.bean.CustomerBean;
 import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.Employee;
@@ -47,7 +47,7 @@ public class ClientController {
 	    model = new ModelAndView("addClient");
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("saveClient", new ClientBean());
+			model.addObject("saveClient", new CustomerBean());
 			model.setViewName("addClient");
 		
 		}
@@ -58,13 +58,12 @@ public class ClientController {
 		return model;
 	}
 	@RequestMapping(value="saveClient",method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView addClient(@ModelAttribute("saveClient")Customer customer)
+	public ModelAndView addClient(@ModelAttribute("saveClient")CustomerBean customerBean)
 	{
-		retMessage =clientServiceInt.saveClient(customer);
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		
+			retMessage =clientServiceInt.prepareCustomer(customerBean);
 			model.addObject("retMessage",retMessage);
 			model.setViewName("addClient");
 		}else{
@@ -140,7 +139,7 @@ public class ClientController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			model.addObject("updateCustomerData", new ClientBean());
+			model.addObject("updateCustomerData", new CustomerBean());
 			model.setViewName("updateCustomer");
 		}
 		else{

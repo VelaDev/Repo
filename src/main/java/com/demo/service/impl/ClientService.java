@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.bean.CustomerBean;
 import com.demo.dao.ClientDaoInt;
 import com.demo.model.Customer;
 import com.demo.service.ClientServiceInt;
@@ -45,6 +46,11 @@ public class ClientService implements ClientServiceInt{
 	public Integer count() {
 		
 		return clientDAO.count();
+	}
+
+	@Override
+	public String prepareCustomer(CustomerBean customerBean) {
+		return clientDAO.prepareCustomer(customerBean);
 	}
 
 }

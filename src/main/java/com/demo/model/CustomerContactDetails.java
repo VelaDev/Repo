@@ -22,7 +22,7 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="CustomerContactDetails",catalog = "velaphandadb")
+@Table(name="CustomerContactDetails")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -34,10 +34,10 @@ public class CustomerContactDetails implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	@GenericGenerator(name = "generator", strategy = "foreign",
-			parameters = @Parameter(name = "property", value = "customer"))
+	/*@GenericGenerator(name = "generator", strategy = "foreign",
+			parameters = @Parameter(name = "property", value = "customer"))*/
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="Customer_ID")
 	private long addressId;
 	@Column(name="First_Name")

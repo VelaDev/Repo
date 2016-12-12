@@ -30,7 +30,7 @@
 							<thead style="background-color: #bce8f1;">
 							<tr>
 								<th>Ticket Number</th>
-								<th>Customer Name</th>
+								 <th>Customer Name</th>
 								<th>Telephone No</th>
 								<th>Ticket Details</th>								
 							</tr>
@@ -39,9 +39,9 @@
 							<c:forEach items="${technicianTickets}" var="ticket">
 								<tr>
 									<th><c:out value="${ticket.ticketNumber}"/></th>
-									<th><c:out value="${ticket.device.client.clientName}"/></th> 
-									<th><c:out value="${ticket.device.client.getTellphoneNumber()} "/></th>  
-									<th><a href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>">Ticket Details</a></th>                 
+									 <th><c:out value="${ticket.device.customer.clientName}"/></th> 
+									<th><c:out value="${ticket.device.customer.getTellphoneNumber()} "/></th>  
+									 <th><a href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>">Ticket Details</a></th>                 
 								</tr>
 							</c:forEach>
 							</tbody>

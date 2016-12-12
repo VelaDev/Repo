@@ -165,13 +165,13 @@
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="clientName" placeholder="Client Name"
 													class="form-control"
-													value="${ticketObject.device.client.clientName}"
+													value="${ticketObject.device.customer.clientName}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
 
-									<!-- Text input Contact Person-->
+									<%--  <!-- Text input Contact Person-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contact Person</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -180,12 +180,12 @@
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="contactPerson" placeholder="Contact Person"
 													class="form-control"
-													value="${ticketObject.device.client.getContactPerson()}"
+													value="${ticketObject.device.clientName.getContactPerson()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
-
+									</div> 
+ --%>
 									<!-- Select type Province-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Province</label>
@@ -194,11 +194,11 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input
 													name="province" class="form-control"
-													value="${ticketObject.device.client.getProvince()}"
+													value="${ticketObject.device.customer.getProvince()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
+									</div> 
 
 									<!-- Text input City or Town-->
 									<div class="form-group">
@@ -209,10 +209,11 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="city_town" placeholder="City / Town"
 													class="form-control"
-													value="${ticketObject.device.client.city_town}" type="text" disabled="disabled">
+													value="${ticketObject.device.customer.city_town}" type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
+									</div> 
+									
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -222,7 +223,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetName" placeholder="Street Name"
 													class="form-control"
-													value="${ticketObject.device.client.getStreetName()}"
+													value="${ticketObject.device.customer.getStreetName()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -235,7 +236,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													placeholder="Area Code" class="form-control"
-													value="${ticketObject.device.client.zipcode}" type="text" disabled="disabled">
+													value="${ticketObject.device.customer.zipcode}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -256,7 +257,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="floorNumber" placeholder="Street Number"
 													class="form-control"
-													value="${ticketObject.device.client.streetNumber}"
+													value="${ticketObject.device.customer.streetNumber}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -271,7 +272,7 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="tellphoneNumber" placeholder="Tellphone Number"
 													class="form-control"
-													value="${ticketObject.device.client.getTellphoneNumber()}"
+													value="${ticketObject.device.customer.getTellphoneNumber()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -286,12 +287,12 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="faxNumber" placeholder="Fax Number"
 													class="form-control"
-													value="${ticketObject.device.client.faxNumber}" type="text" disabled="disabled">
+													value="${ticketObject.device.customer.faxNumber}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
 
-									<!-- Text input Cellphone Number-->
+									<%-- <!-- Text input Cellphone Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Mobile Number</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -300,11 +301,11 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="cellNumber" placeholder="Mobile Number"
 													class="form-control"
-													value="${ticketObject.device.client.cellNumber}"
+													value="${ticketObject.device.customer.cellNumber}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
+									</div> --%>
 
 									<!-- Text input Email-->
 									<div class="form-group">
@@ -314,11 +315,11 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
 													class="form-control"
-													value="${ticketObject.device.client.getEmail()}"
+													value="${ticketObject.device.customer.getEmail()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
+									</div> 
 
 
 								</div>

@@ -6,29 +6,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Log a ticket</title>
-<c:import url="templates/navbar.jsp"></c:import>
+<title>Log a ticket | Velaphanda Trading & Projects</title>
 <body>
-	<div class="container" style="width: 90%">
-		
-			<c:if test="${not empty retMessage }">
-			<div class="alert alert-info" role="alert">
-				<c:out value="${ retMessage}">
-				</c:out>
-			</div>
-			</c:if>
-		
-		<div class="panel panel-success">
-			<div class="panel-heading">
-				<h3 class="panel-title">
-					<div align="center">
-						<b>Change Technician</b>
-					</div>
-					<!-- <div align="right"><a href="">Think of something</a></div> -->
-				</h3>
-			</div>
-			<div class="panel-body">
-				<form:form method="post" action="updateTicketAdmin" role="form"
+	<div class="velaphanda_containter">	
+		<c:import url="templates/navbar.jsp"></c:import>
+		<div class="container">
+		<br/>
+			<div class="panel panel-success">    
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="left"><b>Change Technician</b> </div>
+					</h3>
+				</div>
+				<div class="panel-body">					
+					<div class="tab-content">
+					
+						<form:form method="post" action="updateTicketAdmin" role="form"
 					modelAttribute="updateTicketAdmin" id="form">
 
 					<div class="row">
@@ -83,7 +76,7 @@
 							</div>
 							<div class="col-xs-3">
 								<input type="text" class="form-control input-sm"
-									value="${ticketupdate.device.client.clientName }">
+									value="${ticketupdate.device.customer.clientName }">
 							</div>
 
 							<div class="col-xs-2 form-control-label">
@@ -126,7 +119,7 @@
 
 							</div>
 							<div class="col-xs-3">
-								<textarea rows="3" cols="103" name="description">${ticketupdate.description}</textarea>
+								<textarea rows="3" cols="84" name="description">${ticketupdate.description}</textarea>
 							</div>
 						</div>
 					</div>
@@ -139,9 +132,18 @@
 						</div>
 					</div>
 				</form:form>
-			</div>
-		</div>
-	</div>
+						
+						
+					</div><!-- /tab-content -->
+									
+				</div><!-- /panel body -->
+			</div><!--/panel success class-->
+		</div><!-- /Container -->
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
+	</div><!-- / velaphanda_containter -->
+
 </body>
 
 <script src="/resources/bootstrap-3.3.6/js/jquery-3.0.0.min.js"></script>

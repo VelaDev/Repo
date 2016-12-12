@@ -49,7 +49,7 @@
 							<li><a href='<c:url value="displayEmployees.html"/>'>Display
 									Employee</a></li>
 							<li><a href='<c:url value="updateEmployee.html"/>'>Update Employee</a></li>
-							<li><a href='<c:url value="resertPassword.html"/>'>Reset Password</a></li>
+							<li><a href='<c:url value="resetPassword.html"/>'>Reset Password</a></li>
 							<li><a href='<c:url value="deactivateEmployee.html"/>'>Deactivate
 									Employee</a></li>
 						</ul></li>

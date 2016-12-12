@@ -31,14 +31,17 @@
 				<div class="panel-body">
 					<div class="tabContent">
 						<div class="vela_motto">
-					<p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
-				</div>
+							<p>
+								<span class="motto">Velaphanda</span> <span class="techsystem">Technical
+									System</span>
+							</p>
+						</div>
 						<div class="login-page">
 							<div class="form">
 								<form method="post" action="error" role="login">
 									<div class="mainlogo">
 										<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
-									class="img-responsive" alt="" />
+											class="img-responsive" alt="" />
 									</div>
 									<div class="errorLogin">
 										<h2>You are not registered to use the system. Consults

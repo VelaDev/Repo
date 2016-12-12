@@ -148,22 +148,28 @@
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													newpassword : {
-														validators : {
-															identical : {
-																field : 'password',
-																message : 'The password and its confirm are not the same'
-															}
-														}
-													},
-													confirmpassword : {
-														validators : {
-															identical : {
-																field : 'password',
-																message : 'The password and its confirm are not the same'
-															}
-														}
-													}
+													newpassword: {
+										                validators: {
+										                    notEmpty: {
+										                        message: 'The password is required and can\'t be empty'
+										                    },
+										                    identical: {
+										                        field: 'confirmpassword',
+										                        message: 'The password and its confirm are not the same'
+										                    }
+										                }
+										            },
+										            confirmpassword: {
+										                validators: {
+										                    notEmpty: {
+										                        message: 'The confirm password is required and can\'t be empty'
+										                    },
+										                    identical: {
+										                        field: 'newpassword',
+										                        message: 'The password and its confirm are not the same'
+										                    }
+										                }
+										            },
 
 												}
 											});

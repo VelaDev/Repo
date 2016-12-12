@@ -256,12 +256,12 @@ public class EmployeeController {
 		}
 		return model;
 	}
-	@RequestMapping(value ="resertPassword",method=RequestMethod.GET)
+	@RequestMapping(value ="resetPassword",method=RequestMethod.GET)
 	public ModelAndView resetPassword(){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
-		model.setViewName("resertPassword");
+		model.setViewName("resetPassword");
 		
 		return model;
 	}
@@ -296,7 +296,7 @@ public class EmployeeController {
 			model.addObject("", null);
 		}
 		
-		model.setViewName("resertPassword");
+		model.setViewName("resetPassword");
 		}
 		else{
 			model.setViewName("login");
@@ -313,7 +313,7 @@ public class EmployeeController {
 			
 			retMessage = employeeService.changePassword(email);
 			model.addObject("retMessage", retMessage);
-			model.setViewName("resertPassword");
+			model.setViewName("resetPassword");
 		}
 		else{
 			model.setViewName("login");

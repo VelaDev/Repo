@@ -124,8 +124,7 @@
 										class="form-control selectpicker">
 										<option value=" ">${ employeeObject.gender}</option>
 										<option value="Mr">Male</option>
-										<option value="Miss">Female</option>
-										
+										<option value="Miss">Female</option>										
 									</select>
 								</div>
 							</div>

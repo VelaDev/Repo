@@ -24,18 +24,27 @@
 						There are no tickets at the moment
 					</c:if>
 					<c:if test="${not empty ticketList}">
-					<form action="searchEmployee">
+					
+					<form action="searchEmployee" id="searchEmp">
+						
 						<div class="row">
-							<div class="col-md-6">
-								<div class="col-md-6">Search Technician:</div>
-								<div class="col-md-6">
-									<input type="text" name="searchName" id="searchName">
+								<!-- Text input Search-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Search Technician: </label>
+									<div class="col-md-4 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-hdd"></i></span> <input
+												name="searchName" id="searchName" class="form-control"
+												type="text" placeholder='Search By Name'>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<input class="btn btn-success" type='submit' value='Search' />
+									</div>
 								</div>
 							</div>
-							<div class="col-md-4">
-								<input class="btn btn-success" type='submit' value='Search' />
-							</div>
-						</div>
+							<br/>
 					</form>
 
 					<table class="table table-hover table-bordered">
@@ -72,6 +81,44 @@
 		<c:import url="templates/footer.jsp"></c:import>
 		<!--/ Footer -->
 	</div><!-- / velaphanda_containter -->
-
+	<!-- Script -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+	<!-- /Script -->
+	<!-- Validate By User LogTicket -->
+<!-- Search By Serial -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#searchEmp')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													searchName : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Name is required to search and cannot be empty'
+															}
+														}
+													},
+												}
+											});
+						});
+	</script>
 </body>
 </html>

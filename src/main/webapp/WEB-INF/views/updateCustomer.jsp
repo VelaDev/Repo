@@ -12,7 +12,8 @@
 <link
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
 	rel="stylesheet" type="text/css" />
-
+<link type="text/stylesheet" src="<c:url value="/resources/custom/css/vela_custom.css" />">
+  
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -310,11 +311,12 @@
 					</div><!-- /Contact Person 1 -->
 					
 					<!-- Contact Person 2 -->
+					
 					<div class="col-sm-6">						
 						<div align="center">
-						<b>Contact Person 2</b>
+						<b class="optionalFields">Contact Person 2 (Optional Fields)</b>						
 						</div>
-						<!-- Text input Contact Person First Name-->
+						<!-- Text input Contact Person 2 First Name-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">First Nmae</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -324,7 +326,7 @@
 										placeholder="First Name" class="form-control" type="text">
 								</div>
 							</div>
-						</div><!-- Text input Contact Person  Last Name-->
+						</div><!-- Text input Contact Person 2 Last Name-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Last Name</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -336,7 +338,7 @@
 							</div>
 						</div>
 						
-						<!-- Text input Contact Person 1 Email-->
+						<!-- Text input Contact Person 2 Email-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Email</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -347,7 +349,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Text input Contact Person Cellphone Number-->
+						<!-- Text input Contact Person 2 Cellphone Number-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Cellphone No</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -358,7 +360,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Text input Contact Person Tellphone Number-->
+						<!-- Text input Contact Person 2 Tellphone Number-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Tellphone No</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -371,8 +373,6 @@
 						</div>
 						
 					</div><!-- /Contact Person 2 -->
-					
-				
 
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">

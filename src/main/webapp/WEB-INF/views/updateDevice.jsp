@@ -99,8 +99,6 @@
 									<div align="center">
 										<b>Contact Person 1</b>
 									</div>
-
-
 									<!-- Text input Contact Person First Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">First Nmae</label>
@@ -138,8 +136,7 @@
 											</div>
 										</div>
 									</div>
-
-
+									
 									<!-- Text input Contact Person 1 Cellphone Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Cellphone No</label>
@@ -168,7 +165,7 @@
 									</div>
 
 								</div>
-								<!-- /Col -->
+								<!-- /Col for cotact person 1-->
 
 
 								<div class="col-sm-6">
@@ -245,10 +242,8 @@
 									</div>
 
 								</div>
-								<!-- /Col -->
-
-
-
+								<!-- /Col for contact person 2 -->
+								
 								<br>
 							</fieldset>
 							<br>
@@ -560,6 +555,13 @@
 			});
 		});
 	</script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$('#installationDate').datepicker({
+			format : "yyyy-mm-dd"
+		});
+	});
+</script>
 
 	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {

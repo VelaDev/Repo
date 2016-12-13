@@ -169,7 +169,7 @@
 						<b class="optionalFields">Contact Person 2 (Optional Fields)</b>
 						
 						</div>
-						<!-- Text input Contact Person First Name-->
+						<!-- Text input Contact Person 2 First Name-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">First Nmae</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -179,7 +179,7 @@
 										placeholder="First Name" class="form-control" type="text">
 								</div>
 							</div>
-						</div><!-- Text input Contact Person  Last Name-->
+						</div><!-- Text input Contact Person 2 Last Name-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Last Name</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -191,7 +191,7 @@
 							</div>
 						</div>
 						
-						<!-- Text input Contact Person 1 Email-->
+						<!-- Text input Contact Person 2 Email-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Email</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -202,7 +202,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Text input Contact Person Cellphone Number-->
+						<!-- Text input Contact Person 2 Cellphone Number-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Cellphone No</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -213,7 +213,7 @@
 								</div>
 							</div>
 						</div>
-						<!-- Text input Contact Person Tellphone Number-->
+						<!-- Text input Contact Person 2 Tellphone Number-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Tellphone No</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -506,6 +506,13 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDate').datepicker({
+			format : "yyyy-mm-dd"
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#installationDate').datepicker({
 			format : "yyyy-mm-dd"
 		});
 	});

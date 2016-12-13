@@ -21,114 +21,136 @@
 				<div class="panel-body">					
 					<div class="tab-content">
 					
-						<form:form method="post" action="updateTicketAdmin" role="form"
+						<form:form class="well form-horizontal" method="post" action="updateTicketAdmin" role="form"
 					modelAttribute="updateTicketAdmin" id="form">
 
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Ticket No:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm" name="ticketNumber"
-									value="${ticketupdate.ticketNumber }">
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Machine Serial</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm"
-									value="${ticketupdate.device.serialNumber}">
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Contract Start Date:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm"
-									value="${ticketupdate.device.startDate}">
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Contract End Date:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm"
-									value="${ticketupdate.device.endDate}">
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Customer Name:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<input type="text" class="form-control input-sm"
-									value="${ticketupdate.device.customer.clientName }">
-							</div>
-
-							<div class="col-xs-2 form-control-label">
-								<label>Priority:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<select class="form-control" name="priority">
-									<option>${ticketupdate. priority}</option>
-									<option value="High">High</option>
-									<option value="Medium">Medium</option>
-									<option value="Low">Low</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Assign Technician:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<select class="form-control" name="technicianUserName">
-									<option>${ticketupdate.employee.firstName } ${ticketupdate.employee.lastName }</option>
-									<c:forEach items="${technicians}" var="technician">
-										<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
-									</c:forEach>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-
-					<div class="row">
-						<div class="col-xs-12">
-							<div class="col-xs-2 form-control-label">
-								<label>Description:</label>
-
-							</div>
-							<div class="col-xs-3">
-								<textarea rows="3" cols="84" name="description">${ticketupdate.description}</textarea>
-							</div>
-						</div>
-					</div>
+					<!--First Col-->
+							<div class="col-sm-6">
+							
+								<!-- Text input Ticket No:-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Ticket No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												class="form-control" name="ticketNumber" value="${ticketupdate.ticketNumber }" type="text">
+										</div>
+									</div>
+								</div>
+							
+								<!-- Text input Contract Start Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract Start Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="startDate" id="startDate" class="form-control" value="${ticketupdate.device.startDate}" type="text">
+										</div>
+									</div>
+								</div>	
+						
+								<!-- Text input Customer Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Customer Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													name="clientName" placeholder="Client Name"
+													class="form-control" value="${ticketupdate.device.customer.clientName }"
+													type="text">
+											</div>
+										</div>
+									</div>
+									
+									<!-- Select type Assign Technician-->						
+									<div class="form-group">
+										<label class="col-md-3 control-label">Assign Technician</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select name="technicianUserName"
+													class="form-control selectpicker">
+													<option>${ticketupdate.employee.firstName }
+															${ticketupdate.employee.lastName }</option>
+													<c:forEach items="${technicians}" var="technician">
+														<option value="${technician.email}">${technician.firstName}
+															${technician.lastName}</option>
+													</c:forEach>								
+												</select>
+											</div>
+										</div>
+									</div>
+					
+							</div><!--/First Col-->
+							
+							
+							<!--Second Col-->
+							<div class="col-sm-6">
+							
+								<!-- Text input Ticket No:-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Machine Serial</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												class="form-control" name="serialNumber" value="${ticketupdate.device.serialNumber}" type="text">
+										</div>
+									</div>
+								</div>
+				
+					
+								<!-- Text input Contract End Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract End Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="endDate" id="endDate" value="${ticketupdate.device.endDate}"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+							
+								<!-- Select type Priority-->						
+								<div class="form-group">
+									<label class="col-md-3 control-label">Priority</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select name="priority"
+												class="form-control selectpicker">
+												<option>${ticketupdate. priority}</option>
+												<option value="High">High</option>
+												<option value="Medium">Medium</option>
+												<option value="Low">Low</option>									
+											</select>
+										</div>
+									</div>
+								</div>
+								<!-- Text area Description-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Description</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="description"
+												>${ticketupdate.description}</textarea>
+										</div>
+									</div>
+								</div>
+							</div><!--Second Col-->
 					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<input type="submit" value="Submit"
+							<input type="submit" value="Ticket Update"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="submit">
+								id="ticketUpdate">
 						</div>
 					</div>
 				</form:form>

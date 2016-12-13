@@ -185,7 +185,8 @@
 											</div>
 										</div>
 									</div> 
- --%>
+ 									--%>
+ 									
 									<!-- Select type Province-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Province</label>

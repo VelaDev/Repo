@@ -42,8 +42,8 @@
 										<th><c:out value="${employee.email}" /></th>
 										<th><c:out value="${employee.role}" /></th>
 
-										<th><a href="updateEmployee?email=<c:out value='${employee.email}'/>" data-confirm="Are you sure you want to edit ${employee.firstName} ${employee.lastName}?">edit</a></th>
-                                        <th><a href="updateEmployee?email=<c:out value='${employee.email}'/>" data-confirm="Are you sure you want to deactive ${employee.firstName} ${employee.lastName}?">deactivate</a></th>
+										<th><a href="updateEmployee?email=<c:out value='${employee.email}'/>">edit</a></th>
+                                        <th><a href="deactivateEmployee?email=<c:out value='${employee.email}'/>" >deactivate</a></th>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -65,13 +65,4 @@
 	</div><!-- / velaphanda_containter -->
 
 </body>
-<script>
-$(document).on('click', ':not(form)[data-confirm]', function(e){
-    if(!confirm($(this).data('confirm'))){
-      e.stopImmediatePropagation();
-      e.preventDefault();
-		}
-});
-</script>
-
 </html>

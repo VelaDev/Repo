@@ -164,7 +164,7 @@
 							<br><br>
 							<input type="submit" value="DeactivateEmployee"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="deactivateEmp" name="deactivateEmp">
+								id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
 						</div>
 					</div>
 					</form:form>
@@ -182,6 +182,15 @@
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 
+<!-- Deactive script -->
+<script>
+$(document).on('click', ':not(form)[data-confirm]', function(e){
+    if(!confirm($(this).data('confirm'))){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+		}
+});
+</script>
 
 <!-- Validate update employee -->
 

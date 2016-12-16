@@ -25,7 +25,7 @@ import com.demo.service.DeviceServiceInt;
 
 
 @Controller
-public class ClientController {
+public class CustomerController {
 	
 	@Autowired
 	private CustomerServiceInt customerServiceInt;

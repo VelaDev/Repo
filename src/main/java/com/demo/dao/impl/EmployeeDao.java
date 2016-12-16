@@ -222,7 +222,10 @@ public class EmployeeDao implements EmployeeDaoInt{
 		}
 		return empEmailReturn;
 	}
-	private List<Employee> getAllEmployees(){
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employee> getAllEmployees() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
 		return (List<Employee>)criteria.list();
 	}

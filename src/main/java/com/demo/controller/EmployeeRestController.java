@@ -21,7 +21,7 @@ import com.demo.model.PersonJsonObject;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-@Controller
+
 public class EmployeeRestController {
 	
 	
@@ -34,7 +34,7 @@ public class EmployeeRestController {
 
 		    }
 
-		    @RequestMapping(value = "/springPaginationDataTables.web", method = RequestMethod.GET, headers = "application/json")
+		    @RequestMapping(value = "springPaginationDataTables", method = RequestMethod.GET, params = "application/json")
 		    public @ResponseBody String springPaginationDataTables(HttpServletRequest  request) throws IOException {
 				
 		    	//Fetch the page number from client

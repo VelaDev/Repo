@@ -186,17 +186,14 @@ public class EmployeeController {
 		
 	}
 	
-	//@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
-	public ModelAndView displayEmployees(Integer offset, Integer maxResults){
+	@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
+	public ModelAndView displayEmployees(){
 		model= new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		 
-			/*count = employeeService.count();
-			model.addObject("displayEmployees", employeeService.getAllEmployees(offset,maxResults));
-			model.addObject("count",count);
-			model.addObject("offset", offset);
-			model.setViewName("displayEmployees");*/
+			
+			model.addObject("displayEmployees", employeeService.getAllEmployees());
+			model.setViewName("displayEmployees");
 		}
 		else{
 			model.setViewName("login");

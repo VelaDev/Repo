@@ -78,4 +78,9 @@ public class EmployeeService implements EmployeeServiceInt {
 		return employeeDAO.getAllEmployees(email);
 	}
 
+	@Override
+	public List<Employee> getAllEmployees() {
+		return employeeDAO.getAllEmployees();
+	}
+
 }

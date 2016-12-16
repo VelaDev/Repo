@@ -10,6 +10,7 @@ public interface EmployeeServiceInt {
 	List<Employee> getAllTechnicians();
 	List<Employee> getAllEmployees(Integer offset, Integer maxResults);
 	List<Employee> getAllEmployees(String email);
+	List<Employee> getAllEmployees();
 	String updateEmployee (Employee employee);
 	String changePassword(String email, String password);
 	String changePassword(String email);

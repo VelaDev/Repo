@@ -92,4 +92,9 @@ ul#nav li a.selected{
 	color:#fff;
 }
 /*Sidebar nav*/
+/*Table*/
+
+table#myDatatable{
+	width:100%;
+}
 

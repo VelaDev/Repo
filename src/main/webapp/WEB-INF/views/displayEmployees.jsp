@@ -1,6 +1,8 @@
 <%@include file="templates/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
+
+
 <head>
   <title>Display Employees | Velaphanda Trading & Projects</title>
   <meta charset="utf-8">
@@ -20,37 +22,24 @@
 					<div class="tab-content">
 							<div class="row">
 					<div class="content">
-						<table class="table table-hover ">
-							<thead style="background-color: #bce8f1;">
-								<tr class='clickable-row'>
-								   <th>#</th>
-									<th>First Name</th>
-									<th>Last Name</th>
-									<th>Email</th>
-									<th>Role</th>
-									<th>Edit</th>
-									<th>Deactivate</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${displayEmployees}" var="employee" varStatus="itr">
-									<tr>
-									   <th><c:out value="${offset + itr.index +1 }"></c:out>
-										<th><c:out value="${employee.firstName}" /></th>
-										<th><c:out value="${employee.lastName}" /></th>
-										<th><c:out value="${employee.email}" /></th>
-										<th><c:out value="${employee.role}" /></th>
-
-										<th><a href="updateEmployee?email=<c:out value='${employee.email}'/>">edit</a></th>
-                                        <th><a href="deactivateEmployee?email=<c:out value='${employee.email}'/>" >deactivate</a></th>
-									</tr>
-								</c:forEach>
-							</tbody>
 					
-						</table>
-						<tag:paginate max="10" offset="${offset}" count="${count}" 
-						uri="displayEmployees" next="&raquo;" previous="&laquo;" />
+                         <table width="70%" style="border: 3px;background: rgb(243, 244, 248);"><tr><td>
+	<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+     			<th>Position</th>
+     			
+     			<th>Office</th>
+     			<th>Phone</th>
+     			<th>Start Date</th>
+     			<th>Salary</th>
+            </tr>
+        </thead>       
+    </table>
+    </td></tr></table>
+						<%-- <tag:paginate max="10" offset="${offset}" count="${count}" 
+						uri="displayEmployees" next="&raquo;" previous="&laquo;" /> --%>
 					</div>
 				</div>
 						
@@ -65,4 +54,12 @@
 	</div><!-- / velaphanda_containter -->
 
 </body>
+
+	<link type="text/css" href="<c:url value="/resources/datatables/1.10.13/dataTables.responsive.css"/>">
+	<link type="text/css" href="<c:url value="/resources/datatables/1.10.13/juery.dataTables.min.css"/>">
+	
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	
+	<script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	<script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script>
 </html>

@@ -1,29 +1,27 @@
-package com.demo.service;
+package com.demo.dao;
 
 import java.util.List;
-
-
-
-
-
-
 
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Tickets;
 
-public interface LogTicketsServiceInt {
+public interface TicketsDaoInt {
 	
 	String logTicket(TicketsBean tickets);
-	Tickets getLoggedTicketByTicketNumber(String ticketNumber);
+	Tickets getLoggedTicketsByTicketNumber(String ticketNumber);
 	List<Tickets> getAllLoggedTickets();
+	List<Tickets> getAllLoggedTickets(Integer offset, Integer maxResults);
+	List<Tickets> getAllLoggedTickets(String startDate);
+	List<Tickets> getAllLoggedTickets(String startDate, String endDate);
 	List<Tickets> getAllOpenTickets();
 	List<Tickets> getAssignedCallsToTechnician();
 	List<Tickets> getAssignedCallsToTechnician(String username);
+	void calculateSLAHours();
 	String updateTicket(TicketsBean ticket);
+	void updateSLA(Tickets tickets);
 	List<Tickets> getAllEmployees(String searchName);
 	List<PieChart> ticketsResults();
-	List<Tickets> getAllLoggedTickets(Integer offset, Integer maxResults);
 	Integer count();
 
 }

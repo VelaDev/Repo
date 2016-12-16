@@ -8,16 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
-import com.demo.dao.LogTicketsDaoInt;
+import com.demo.dao.TicketsDaoInt;
 import com.demo.model.Tickets;
-import com.demo.service.LogTicketsServiceInt;
+import com.demo.service.TicketsServiceInt;
 
 @Service("logTicketsService")
 @Transactional
-public class LogTicketsService implements LogTicketsServiceInt{
+public class TicketsService implements TicketsServiceInt{
 	
 	@Autowired
-	private LogTicketsDaoInt logTicketsDAO;
+	private TicketsDaoInt logTicketsDAO;
 	private String retMessage ="";
 
 	@Override

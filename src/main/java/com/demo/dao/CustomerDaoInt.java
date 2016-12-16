@@ -1,17 +1,18 @@
-package com.demo.service;
+package com.demo.dao;
 
 import java.util.List;
 
 import com.demo.bean.CustomerBean;
 import com.demo.model.Customer;
 
-public interface ClientServiceInt {
+public interface CustomerDaoInt {
 	
 	String saveClient(Customer customer);
 	Customer getClientByClientName(String clientName);
 	List<Customer> getClientList(Integer offset, Integer maxResults);
-	String updateCustomer(Customer customer);
+	String updateClient(Customer customer);
 	Integer count();
 	String prepareCustomer(CustomerBean customerBean);
+	
 
 }

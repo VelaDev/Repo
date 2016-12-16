@@ -18,7 +18,7 @@ import com.demo.bean.PieChart;
 import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
 import com.demo.service.EmployeeServiceInt;
-import com.demo.service.LogTicketsServiceInt;
+import com.demo.service.TicketsServiceInt;
 import com.demo.service.OrdersServiceInt;
 
 @Controller
@@ -29,7 +29,7 @@ public class EmployeeController {
 	@Autowired
 	private HttpSession session;
 	@Autowired
-	private LogTicketsServiceInt logTicketsServiceInt;
+	private TicketsServiceInt ticketsServiceInt;
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
 	private List<PieChart> beanList = null;
@@ -104,9 +104,9 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
-			count = logTicketsServiceInt.count();
-			beanList = logTicketsServiceInt.ticketsResults();
-			model.addObject("home", logTicketsServiceInt.getAllLoggedTickets(offset, maxResults));
+			count = ticketsServiceInt.count();
+			beanList = ticketsServiceInt.ticketsResults();
+			model.addObject("home", ticketsServiceInt.getAllLoggedTickets(offset, maxResults));
 			model.addObject("ticketResults",beanList);
 			model.addObject("count",count);
 			model.setViewName("home");
@@ -159,7 +159,7 @@ public class EmployeeController {
 		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			model.addObject("technicianTickets", logTicketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
+			model.addObject("technicianTickets", ticketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
 			model.setViewName("technicianHome");
 			}
 			else{

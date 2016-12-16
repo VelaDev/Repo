@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.bean.CustomerBean;
-import com.demo.dao.ClientDaoInt;
+import com.demo.dao.CustomerDaoInt;
 import com.demo.model.Customer;
-import com.demo.service.ClientServiceInt;
+import com.demo.service.CustomerServiceInt;
 
 @Service("clientService")
-public class ClientService implements ClientServiceInt{
+public class CustomerService implements CustomerServiceInt{
 	
 	@Autowired
-	private ClientDaoInt clientDAO;
+	private CustomerDaoInt clientDAO;
 	private String retMessage = null;
 
 	@Override

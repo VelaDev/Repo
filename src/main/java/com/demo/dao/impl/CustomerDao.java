@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.CustomerBean;
 import com.demo.dao.AccessoriesDaoInt;
-import com.demo.dao.ClientDaoInt;
+import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.CustomerContactDetailsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.CustomerContactDetails;
@@ -25,7 +25,7 @@ import com.demo.model.Employee;
 
 @Repository("clientDAO")
 @Transactional(propagation=Propagation.REQUIRED)
-public class ClintDao implements ClientDaoInt{
+public class CustomerDao implements CustomerDaoInt{
 	
 	@Autowired
 	private SessionFactory sessionFactory;

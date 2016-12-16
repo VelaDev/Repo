@@ -15,9 +15,9 @@ import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Tickets;
-import com.demo.service.ClientServiceInt;
+import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
-import com.demo.service.LogTicketsServiceInt;
+import com.demo.service.TicketsServiceInt;
 import com.demo.service.DeviceServiceInt;
 import com.demo.service.TicketHistoryInt;
 
@@ -26,9 +26,9 @@ import com.demo.service.TicketHistoryInt;
 public class LogTicketController {
 	
 	@Autowired
-	private LogTicketsServiceInt logTicketService;
+	private TicketsServiceInt logTicketService;
 	@Autowired
-	private ClientServiceInt clientServiceInt;
+	private CustomerServiceInt customerServiceInt;
 	@Autowired
 	private DeviceServiceInt deviceServiceInt;
 	@Autowired

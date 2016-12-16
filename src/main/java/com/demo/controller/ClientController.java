@@ -18,7 +18,7 @@ import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.AccessoriesInt;
-import com.demo.service.ClientServiceInt;
+import com.demo.service.CustomerServiceInt;
 import com.demo.service.DeviceServiceInt;
 
 
@@ -28,7 +28,7 @@ import com.demo.service.DeviceServiceInt;
 public class ClientController {
 	
 	@Autowired
-	private ClientServiceInt clientServiceInt;
+	private CustomerServiceInt customerServiceInt;
 	@Autowired
 	private DeviceServiceInt deviceServiceInt;
 	@Autowired
@@ -63,7 +63,7 @@ public class ClientController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			retMessage =clientServiceInt.prepareCustomer(customerBean);
+			retMessage =customerServiceInt.prepareCustomer(customerBean);
 			model.addObject("retMessage",retMessage);
 			model.setViewName("addClient");
 		}else{
@@ -114,7 +114,7 @@ public class ClientController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			customer = clientServiceInt.getClientByClientName(clientName);
+			customer = customerServiceInt.getClientByClientName(clientName);
 			if(customer != null){
 				model.addObject("customer", customer);
 			}
@@ -153,7 +153,7 @@ public class ClientController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			retMessage =clientServiceInt.updateCustomer(customer); 
+			retMessage =customerServiceInt.updateCustomer(customer); 
 			model.addObject("retMessage", retMessage);
 			model.setViewName("updateCustomer");
 		}
@@ -170,7 +170,7 @@ public class ClientController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			customer = clientServiceInt.getClientByClientName(clientName);
+			customer = customerServiceInt.getClientByClientName(clientName);
 			model.addObject("customer", customer);
 			model.setViewName("updateCustomer");
 		}
@@ -187,10 +187,10 @@ public class ClientController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			count = clientServiceInt.count();
+			count = customerServiceInt.count();
 			model.addObject("count",count);
 			model.addObject("offset", offset);
-			model.addObject("displayCustomers", clientServiceInt.getClientList(offset, maxResults));
+			model.addObject("displayCustomers", customerServiceInt.getClientList(offset, maxResults));
 			model.setViewName("displayCustomers");
 		}
 		else{

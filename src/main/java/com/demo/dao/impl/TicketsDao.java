@@ -24,9 +24,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
-import com.demo.dao.ClientDaoInt;
+import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.EmployeeDaoInt;
-import com.demo.dao.LogTicketsDaoInt;
+import com.demo.dao.TicketsDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.TicketHistoryDaoInt;
 import com.demo.model.Customer;
@@ -36,7 +36,7 @@ import com.demo.model.Tickets;
 
 @Repository("LogTicketsDAO")
 @Transactional(propagation = Propagation.REQUIRED)
-public class LogTicketsDao implements LogTicketsDaoInt {
+public class TicketsDao implements TicketsDaoInt {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -45,7 +45,7 @@ public class LogTicketsDao implements LogTicketsDaoInt {
 	private EmployeeDaoInt employeeDaoInt;
 	
 	@Autowired
-	private ClientDaoInt clientDaoInt;
+	private CustomerDaoInt customerDaoInt;
 	@Autowired
 	private DeviceDaoInt deviceDaoInt;
 	@Autowired

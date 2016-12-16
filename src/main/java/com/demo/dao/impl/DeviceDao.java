@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.DeviceBean;
 import com.demo.dao.AccessoriesDaoInt;
-import com.demo.dao.ClientDaoInt;
+import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Customer;
@@ -35,7 +35,7 @@ public class DeviceDao implements DeviceDaoInt {
 	@Autowired
 	private SessionFactory sessionFactory;
 	@Autowired
-	private ClientDaoInt clientDaoInt;
+	private CustomerDaoInt customerDaoInt;
 	@Autowired
 	private AccessoriesDaoInt accessoriesDaoInt;
 	
@@ -132,8 +132,8 @@ public class DeviceDao implements DeviceDaoInt {
 		customer.setZipcode(deviceBean.getZipcode());
 		customer.setClientName(deviceBean.getClientName());
 		
-		retMessage = clientDaoInt.saveClient(customer);
-		customer = clientDaoInt.getClientByClientName(deviceBean.getClientName());
+		retMessage = customerDaoInt.saveClient(customer);
+		customer = customerDaoInt.getClientByClientName(deviceBean.getClientName());
 		
 		
 		

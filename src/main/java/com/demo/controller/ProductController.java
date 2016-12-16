@@ -18,7 +18,7 @@ import com.demo.model.Accessories;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.AccessoriesInt;
-import com.demo.service.ClientServiceInt;
+import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.DeviceServiceInt;
 
@@ -29,7 +29,7 @@ public class ProductController {
 	@Autowired
 	private DeviceServiceInt deviceServiceInt;
     @Autowired
-    private ClientServiceInt clientServiceInt;
+    private CustomerServiceInt customerServiceInt;
     @Autowired
 	private EmployeeServiceInt employeeServiceInt;
     @Autowired

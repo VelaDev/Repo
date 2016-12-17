@@ -15,12 +15,15 @@
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
 		
-		<c:if test="${not empty retMessage }">
+			<c:if test="${not empty retMessage }">
 			<div class="alert alert-info" role="alert">
 				<c:out value="${ retMessage}">
 				</c:out>
 			</div>
 			</c:if>
+			<div class="responseFromController">
+				
+			</div>
 			<div class="panel panel-success">  
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -29,6 +32,7 @@
 					</div>
 					</h3>
 				</div>
+				
 				<div class="panel-body">					
 					<div class="tab-content">
 					
@@ -99,17 +103,7 @@
 							</div>
 						</div>
 						
-						<!-- Text input Area Code-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Area Code</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
-										placeholder="Area Code" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
+						
 								
 					</div><!-- / F column -->	
 					
@@ -149,18 +143,19 @@
 								</div>
 							</div>
 						</div>
-						<!-- Text input Cellphone Number-->
+						
+						<!-- Text input Area Code-->
 						<div class="form-group">
-							<label class="col-md-3 control-label">Mobile Number</label>
+							<label class="col-md-3 control-label">Area Code</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input name="cellNumber"
-										placeholder="Mobile Number" class="form-control" type="text">
+										class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+										placeholder="Area Code" class="form-control" type="text">
 								</div>
 							</div>
 						</div>
-						
+					
 						<!-- Text input Email-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">E-Mail</label>
@@ -176,13 +171,11 @@
 						
 					</div><!-- /S Column -->
 					
-					<div class="col-sm-6">
-						
+					<!-- Contact Person 1 -->
+					<div class="col-sm-6">						
 						<div align="center">
 						<b>Contact Person 1</b>
 						</div>
-						
-						
 						<!-- Text input Contact Person First Name-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">First Nmae</label>
@@ -217,7 +210,6 @@
 							</div>
 						</div>
 						
-						
 						<!-- Text input Contact Person Cellphone Number-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Cellphone No</label>
@@ -228,8 +220,7 @@
 										placeholder="Cellphone No" class="form-control" type="text">
 								</div>
 							</div>
-						</div>
-											
+						</div>			
 						
 						<!-- Text input Contact Person Tellphone Number-->
 						<div class="form-group">
@@ -243,11 +234,10 @@
 							</div>
 						</div>
 					
-					</div><!-- /Col -->
+					</div><!-- /Contact Person 1 -->
 					
-					
-					<div class="col-sm-6">
-						
+					<!-- Contact Person 2 -->
+					<div class="col-sm-6">						
 						<div align="center">
 						<b class="optionalFields">Contact Person 2 (Optional Fields)</b>						
 						</div>
@@ -258,7 +248,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="firstName1"
+										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
 										placeholder="First Name" class="form-control" type="text">
 								</div>
 							</div>
@@ -268,7 +258,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="lastName1"
+										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
 										placeholder="Last Name" class="form-control" type="text">
 								</div>
 							</div>
@@ -293,7 +283,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber1"
+										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber"
 										placeholder="Cellphone No" class="form-control" type="text">
 								</div>
 							</div>
@@ -312,7 +302,7 @@
 							</div>
 						</div>
 						
-					</div><!-- /Col -->
+					</div><!--/Contact Person 2 -->
 					
 								
 					<div class="form-group row">
@@ -337,14 +327,15 @@
 	</div><!-- / velaphanda_containter -->
 	
 <!-- Script -->
+
 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
 <!-- /Script -->
 
-
 <!-- Validate add Client -->
-<script>
+<script type="text/javascript">
 
 $(document).ready(function() {
     $('#saveClient').bootstrapValidator({

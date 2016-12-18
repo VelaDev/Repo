@@ -68,9 +68,9 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input type="text" id="clientName"
-													name="clientName" placeholder="Client Name"
+													name="customerName" placeholder="Client Name"
 													class="form-control"
-													value="${productObject.client.clientName}" >
+													value="${productObject.customer.customerName}" >
 											</div>
 										</div>
 									</div>
@@ -85,7 +85,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input type="text" id="streetName"
 													name="streetNumber" placeholder="Street No"
 													class="form-control"
-													value="${productObject.client.streetNumber}" >
+													value="${productObject.customer.streetNumber}" >
 											</div>
 										</div>
 									</div>
@@ -317,7 +317,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="productModel" placeholder="Product Model"
-													value="${productObject.productModel }" class="form-control"
+													value="${productObject.modelNumber }" class="form-control"
 													type="text">
 											</div>
 										</div>

@@ -120,6 +120,7 @@ public class CustomerController {
 			customer = customerServiceInt.getClientByClientName(customerName);
 			if(customer != null){
 				model.addObject("customer", customer);
+				model.addObject("customerContact",contactDetailsServiceInt.contactDetails(customerName));
 			}
 			else
 			{

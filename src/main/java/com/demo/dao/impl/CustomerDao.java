@@ -108,6 +108,7 @@ public class CustomerDao implements CustomerDaoInt{
 			
 		    
 		    customer = new Customer();
+		    // Client object
 			customer.setActive(true);
 		    customer.setCity_town(customerBean.getCity_town());
 		    customer.setCustomerName(customerBean.getCustomerName());
@@ -120,6 +121,7 @@ public class CustomerDao implements CustomerDaoInt{
 		    customer.setZipcode(customerBean.getZipcode());
 		    
 		    list = new ArrayList<CustomerContactDetails>();
+		    // Required contact person object
 		     contactDetails = new CustomerContactDetails();
 		     contactDetails.setCellNumber(customerBean.getCellphoneNumber());
 		     contactDetails.setTelephoneNumber(customerBean.getTelephoneNumber());
@@ -129,12 +131,14 @@ public class CustomerDao implements CustomerDaoInt{
 		     contactDetails.setCustomer(customer);
 		     list.add(contactDetails);
 		     
-		     if(customerBean.getFirstName1() != null){
+		     // Optional contact person object
+		     if(customerBean.getFirstName1() != null && customerBean.getFirstName1().length()>0){
 		    	 contactDetails1 = new CustomerContactDetails();
 		    	 contactDetails1.setCellNumber(customerBean.getCellphoneNumber1());
 		    	 contactDetails1.setEmail(customerBean.getEmail1());
 		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
 		    	 contactDetails1.setLastName(customerBean.getLastName1());
+		    	 contactDetails1.setTelephoneNumber(customerBean.getTelephoneNumber1());
 		    	 contactDetails1.setCustomer(customer);
 		    	 list.add(contactDetails1);
 		     }

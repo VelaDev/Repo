@@ -97,7 +97,7 @@ li {
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="companyEmail" id="companyEmail"
 													placeholder="Company Email" class="form-control"
-													value="${client.companyEmail}" type="text">
+													value="${customer.email}" type="text">
 											</div>
 										</div>
 									</div>
@@ -109,10 +109,10 @@ li {
 										style="width: auto; display: table;">
 										<p class="customerAddress_title">Customer Address</p>
 										<ul class="address_list" style="display: block;">
-											<li id="streetName"></li>
-											<li id="streetNumber"></li>
-											<li id="city_town"></li>
-											<li id="zipcode"></li>
+											<li id="streetName">${customer.streetName}</li>
+											<li id="streetNumber">${customer.streetNumber}</li>
+											<li id="city_town">${customer.city_town}</li>
+											<li id="zipcode">${customer.zipcode}</li>
 										</ul>
 									</div>
 								</div>
@@ -121,11 +121,11 @@ li {
 										style="width: auto; display: table;">
 										<p class="contactPerson_title">Contact Person</p>
 										<ul class="list" style="display: block;">
-											<li id="firstName"></li>
-											<li id="lastName"></li>
-											<li id="email"></li>
-											<li id="cellphoneNumber"></li>
-											<li id="telephoneNumber"></li>
+											<li id="firstName">${customerContact.firstName }</li>
+											<li id="lastName">${customerContact.lastName }</li>
+											<li id="email">${customerContact.email }</li>
+											<li id="cellphoneNumber">${customerContact.cellphoneNumber }</li>
+											<li id="telephoneNumber">${customerContact.telephoneNumber }</li>
 										</ul>
 									</div>
 								</div>

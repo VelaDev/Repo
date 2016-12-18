@@ -64,7 +64,7 @@
 						<form:form class="well form-horizontal" method="post"
 							action="updateCustomerData" modelAttribute="updateCustomerData"
 							id="updateClient">
-							
+
 							<!--First column-->
 							<div class="col-sm-6">
 
@@ -81,22 +81,22 @@
 										</div>
 									</div>
 								</div>
-								
-									<!-- Text input Tellphone Number-->
+
+								<!-- Text input Tellphone Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Telephone No</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												 name="tellphoneNumber" id="tellphoneNumber"
+												name="tellphoneNumber" id="tellphoneNumber"
 												placeholder="Tellphone Number" class="form-control"
 												value="${customer.tellphoneNumber}" type="text">
 										</div>
 									</div>
 								</div>
-								
-								
+
+
 								<!-- Text input Email-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Company E-Mail</label>
@@ -104,13 +104,14 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input
-												name="emailCompany" id="emailCompany" placeholder="Compnay E-Mail Address"
-												class="form-control" value="${customer.emailCompany}" type="text">
+												name="emailCompany" id="emailCompany"
+												placeholder="Compnay E-Mail Address" class="form-control"
+												value="${customer.emailCompany}" type="text">
 										</div>
 									</div>
 								</div>
-								
-								
+
+
 								<!-- Text input Street Name-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street Name</label>
@@ -130,28 +131,29 @@
 							<!--Second column-->
 							<div class="col-sm-6">
 
-									<!-- Text input City or Town-->
+								<!-- Text input City or Town-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">City/Town</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input 
+												class="glyphicon glyphicon-home"></i></span> <input
 												name="city_town" id="city_town" placeholder="City / Town"
 												class="form-control" value="${customer.city_town}"
 												type="text">
 										</div>
 									</div>
 								</div>
-								
-									<!-- Select type Province-->
+
+								<!-- Select type Province-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Province</label>
 									<div class="col-md-6 selectContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select
-												name="province" id="province" class="form-control selectpicker">
+												name="province" id="province"
+												class="form-control selectpicker">
 												<option value=" ">${customer.province}</option>
 												<option value="Gauteng">Gauteng</option>
 												<option value="Limpopo">Limpopo</option>
@@ -166,20 +168,20 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Text input Area Code-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Area Code</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input name="zipcode" id="zipcode"
-												placeholder="Area Code" class="form-control"
+												class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+												id="zipcode" placeholder="Area Code" class="form-control"
 												value="${customer.zipcode}" type="text">
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Text input Fax Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Fax Number</label>
@@ -193,7 +195,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Text input Street Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street No</label>
@@ -201,9 +203,9 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
-												name="streetNumber" id="streetNumber" placeholder="Street Number"
-												class="form-control" value="${customer.streetNumber}"
-												type="text">
+												name="streetNumber" id="streetNumber"
+												placeholder="Street Number" class="form-control"
+												value="${customer.streetNumber}" type="text">
 										</div>
 									</div>
 								</div>
@@ -235,9 +237,9 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input name="lastName" id="lastName"
-												placeholder="Last Name" class="form-control" type="text"
-												value="${customerDetails.lastName}">
+												class="glyphicon glyphicon-user"></i></span> <input name="lastName"
+												id="lastName" placeholder="Last Name" class="form-control"
+												type="text" value="${customerDetails.lastName}">
 										</div>
 									</div>
 								</div>
@@ -246,7 +248,7 @@
 								<div class="form-group">
 									<label class="col-md-3 control-label">Email</label>
 									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group"> 
+										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input
 												name="email" id="email" placeholder="Email Address"
@@ -263,8 +265,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="tellphoneNumber" id="tellphoneNumber" placeholder="Tellphone No"
-												class="form-control" type="text"
+												name="tellphoneNumber" id="tellphoneNumber"
+												placeholder="Tellphone No" class="form-control" type="text"
 												value="${customerDetails.telephoneNumber}">
 										</div>
 									</div>
@@ -299,8 +301,9 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input name="lastName1"
-												id="lastName1"  placeholder="Last Name" class="form-control" type="text"
+												class="glyphicon glyphicon-user"></i></span> <input
+												name="lastName1" id="lastName1" placeholder="Last Name"
+												class="form-control" type="text"
 												value="${customerDetails.lastName1}">
 										</div>
 									</div>
@@ -326,8 +329,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="cellphoneNumber1" id="cellphoneNumber1" placeholder="Cellphone No"
-												class="form-control" type="text"
+												name="cellphoneNumber1" id="cellphoneNumber1"
+												placeholder="Cellphone No" class="form-control" type="text"
 												value="${customerDetails.cellphoneNumber1}">
 										</div>
 									</div>
@@ -339,8 +342,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="tellphoneNumber1" id="tellphoneNumber1" placeholder="Tellphone No"
-												class="form-control" type="text"
+												name="tellphoneNumber1" id="tellphoneNumber1"
+												placeholder="Tellphone No" class="form-control" type="text"
 												value="${customerDetails.telephoneNumber1}">
 										</div>
 									</div>

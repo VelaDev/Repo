@@ -88,13 +88,13 @@
 												<div class="col-xs-12">
 													<div class="col-xs-4 form-control-label">
 														<h6>
-															<label>Product Model:</label>
+															<label>Model No:</label>
 														</h6>
 		
 													</div>
 													<div class="col-xs-8">
 														<input type="text" class="form-control input-sm"
-															value="${device.productModel}" disabled="disabled">
+															value="${device.modelNumber}" disabled="disabled">
 													</div>
 												</div>
 											</div>
@@ -132,11 +132,10 @@
 														<h6>
 															<label>Company Name</label>
 														</h6>
-		
 													</div>
 													<div class="col-xs-8">
 														<input type="text" class="form-control input-sm"
-															value="${device.client.getClientName()}"
+															value="${device.customer.customerName}"
 															disabled="disabled">
 													</div>
 												</div>
@@ -150,7 +149,7 @@
 		
 													</div>
 													<div class="col-xs-8">
-														<textarea rows="3" cols="29" disabled="disabled">${device.client.streetName}, ${device.client.city_town},${device.client.province}</textarea>
+														<textarea rows="3" cols="29" disabled="disabled">${device.customer.streetName}, ${device.customer.city_town},${device.customer.province}</textarea>
 													</div>
 												</div>
 											</div>

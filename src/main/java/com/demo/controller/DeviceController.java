@@ -94,7 +94,7 @@ public class DeviceController {
        
     } 
 	@RequestMapping(value="detailedProduct")
-	public ModelAndView detailedProduct(@RequestParam String serialNumber,@ModelAttribute Accessories accessory){
+	public ModelAndView detailedProduct(@RequestParam("serialNumber")String serialNumber,@ModelAttribute Accessories accessory){
 	   model = new ModelAndView();
 	   userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -156,6 +156,7 @@ public class DeviceController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			model.addObject("deviceList", deviceServiceInt.getDeviceList());
 			model.setViewName("searchDevice");
 		}
 		else{

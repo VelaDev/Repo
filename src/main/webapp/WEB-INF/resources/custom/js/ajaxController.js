@@ -1,11 +1,12 @@
 /**
- * Post values to java controller
+ * Post contact person values to java controller
  */
 var firstName;
 var lastName;
 var email;
 var cellNumber;
 var telephoneNumber;
+var json;
 
 $(document).ready(function() {
 	   
@@ -14,9 +15,9 @@ $(document).ready(function() {
 	      firstName = $('#firstName').val();
 	      lastName = $('#lastName').val();
 	      email = $('#email').val();
-	      cellNumber = ('#cellNumber').val();
-	      telephoneNumber = ('#telephoneNumber').val();
-	      var json = { "firstName" : firstName, "lastName" : lastName, "email": email, "cellNumber" : cellNumber, "telephoneNumber" : telephoneNumber};
+	      cellNumber = $('#cellNumber').val();
+	      telephoneNumber = $('#telephoneNumber').val();
+	      json = { "firstName" : firstName, "lastName" : lastName, "email": email, "cellNumber" : cellNumber, "telephoneNumber" : telephoneNumber};
 	       
 	    $.ajax({
 	        url: $("#saveClient").attr( "action"),
@@ -28,16 +29,15 @@ $(document).ready(function() {
 	            xhr.setRequestHeader("Content-Type", "application/json");
 	        },
 	        success: function(contactperson) {
-	            var respContent = "";
-	             
-	            respContent += "<span class='success'>Person added Tes: [";
+	            var respContent = "";	             
+	            respContent += "<div class='alert alert-info' role='alert'>Person added Tes: [";
 	            respContent += contactperson.firstName + " : ";
 	            respContent += contactperson.lastName + " : " ;
 	            respContent += contactperson.email + " : " ;
 	            respContent += contactperson.cellNumber + " : " ;
-	            respContent += contactperson.telephoneNumber + "]</span>";
+	            respContent += contactperson.telephoneNumber + "]</div>";
 	            $("#responseFromController").html(respContent);
-	            console.log(respContent);
+	            console.log("See Token :" + respContent);
 	        }
 	    });
 	      

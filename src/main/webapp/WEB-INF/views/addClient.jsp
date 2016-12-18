@@ -38,7 +38,7 @@
 					<div class="tab-content">
 					
 				<form:form class="well form-horizontal" method="post" action="saveClient"
-						modelAttribute="saveClient" id="saveClient">					
+						 id="saveClient" modelAttribute="saveClient">					
 					<!--First column-->
 					<div class="col-sm-6">
 					

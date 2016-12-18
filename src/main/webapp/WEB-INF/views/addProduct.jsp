@@ -255,8 +255,92 @@ li {
 
 								</div>
 								<!--/S Column-->
+								
+								
+								<!--Third column -->
+								<div class="col-sm-6">
+								
+									<!-- Text input Street Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="streetName" id="streetName" placeholder="Street Name"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input City or Town-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">City/Town</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="city_town" id="city_town" placeholder="City / Town"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
 
+									<!-- Select type Province-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Province</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select
+													name="province" id="province"
+													class="form-control selectpicker">
+													<option value="">Select Province</option>
+													<option value="Gauteng">Gauteng</option>
+													<option value="Limpopo">Limpopo</option>
+													<option value="Nort West">North West</option>
+													<option value="Free State">Free State</option>
+													<option value="Mpumalanga">Mpumalanga</option>
+													<option value="KwaZulu Natal">KwaZulu Natal</option>
+													<option value="Northern Cape">Northern Cape</option>
+													<option value="Eastern Cape">Eastern Cape</option>
+													<option value="Mpumalanga">Western Cape</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+								<!-- / F Third Fields -->
 
+								<div class="col-sm-6">
+									<!-- Text input Area Code-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Area Code</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+													id="zipcode" placeholder="Area Code" class="form-control"
+													type="text">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Street Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="streetNumber" id="streetNumber"
+													placeholder="Street Number" class="form-control"
+													type="text">
+											</div>
+										</div>
+									</div>
+								</div>
+									
 							</fieldset>
 
 							<br>

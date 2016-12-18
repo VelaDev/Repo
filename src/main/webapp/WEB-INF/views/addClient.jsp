@@ -215,7 +215,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input id="cellNumber" name="cellNumber"
+										class="glyphicon glyphicon-earphone"></i></span> <input id="cellphoneNumber" name="cellphoneNumber"
 										placeholder="Cellphone No" class="form-control" type="text">
 								</div>
 							</div>
@@ -247,7 +247,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input id="firstName" name="firstName"
+										class="glyphicon glyphicon-user"></i></span> <input id="firstName1" name="firstName1"
 										placeholder="First Name" class="form-control" type="text">
 								</div>
 							</div>
@@ -257,7 +257,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input id="lastName" name="lastName"
+										class="glyphicon glyphicon-user"></i></span> <input id="lastName1" name="lastName1"
 										placeholder="Last Name" class="form-control" type="text">
 								</div>
 							</div>
@@ -269,7 +269,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-envelope"></i></span> <input id="email" name="email"
+										class="glyphicon glyphicon-envelope"></i></span> <input id="email1" name="email1"
 										placeholder="Email Address" class="form-control" type="email">
 								</div>
 							</div>
@@ -282,7 +282,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input id="cellNumber" name="cellNumber"
+										class="glyphicon glyphicon-earphone"></i></span> <input id="cellphoneNumber1" name="cellphoneNumber1"
 										placeholder="Cellphone No" class="form-control" type="text">
 								</div>
 							</div>
@@ -295,7 +295,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input id="telephoneNumber" name="telephoneNumber"
+										class="glyphicon glyphicon-earphone"></i></span> <input id="telephoneNumber1" name="telephoneNumber1"
 										placeholder="Tellphone No" class="form-control" type="text">
 								</div>
 							</div>
@@ -330,7 +330,8 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
+<%-- <script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
+ --%>
 <!-- /Script -->
 
 <!-- Validate add Client -->
@@ -353,17 +354,7 @@ $(document).ready(function() {
                         message: 'Client name is required and cannot be empty'
                     }
                 }
-            },
-            contactPerson: {
-                validators: {
-                	stringLength : {
-						min : 2,
-					},
-                    notEmpty: {
-                        message: 'Contact person is required and cannot be empty'
-                    }
-                }
-            },
+            },            
             province: {
                 validators: {
                     notEmpty: {
@@ -388,6 +379,16 @@ $(document).ready(function() {
 					},
                     notEmpty: {
                         message: 'Street name is required and cannot be empty'
+                    }
+                }
+            },
+            streetNumber: {
+                validators: {
+                	stringLength : {
+						min : 3,
+					},
+                    notEmpty: {
+                        message: 'Street number is required and cannot be empty'
                     }
                 }
             },
@@ -433,7 +434,27 @@ $(document).ready(function() {
 					}
                 }
             },
-            cellNumber: {
+            firstName: {
+                validators: {
+                    notEmpty: {
+                    	stringLength : {
+    						min : 3,
+    					},
+                        message: 'First Name is required and cannot be empty'
+                    }
+                }
+            },
+            lastName: {
+                validators: {
+                    notEmpty: {
+                    	stringLength : {
+    						min : 3,
+    					},
+                        message: 'Last Name is required and cannot be empty'
+                    }
+                }
+            },
+            cellphoneNumber: {
                 validators: {
                     notEmpty: {
                         message: 'Cell number is required and cannot be empty'

@@ -75,27 +75,28 @@
 										</div>
 									</div>
 								</div>
-									
-									
-									<div class="col-sm-6">
-										<!-- Text input Floor Number-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Street No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-home"></i></span> <input
-														name="streetNumber" placeholder="Street No"
-														class="form-control"
-														value="${productObject.client.streetNumber}" type="text">
-												</div>
+
+
+								<div class="col-sm-6">
+									<!-- Text input Floor Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="streetNumber" placeholder="Street No"
+													class="form-control"
+													value="${productObject.client.streetNumber}" type="text">
 											</div>
 										</div>
 									</div>
-								
+								</div>
 
+
+
+								<!-- Contact Person 1 -->
 								<div class="col-sm-6">
-
 									<div align="center">
 										<b>Contact Person 1</b>
 									</div>
@@ -105,7 +106,7 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
+													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
 													name="firstName" placeholder="First Name"
 													class="form-control" type="text">
 											</div>
@@ -117,7 +118,7 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
+													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
 													name="lastName" placeholder="Last Name"
 													class="form-control" type="text">
 											</div>
@@ -130,26 +131,25 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-envelope"></i></span> <input
+													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 													name="email" placeholder="Email Address"
 													class="form-control" type="email">
 											</div>
 										</div>
 									</div>
-									
-									<!-- Text input Contact Person 1 Cellphone Number-->
+
+									<!-- Text input Contact Person Cellphone Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Cellphone No</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													name="cellphoneNumber" placeholder="Cellphone No"
-													class="form-control" type="text">
+													id="cellphoneNumber" name="cellphoneNumber"
+													placeholder="Cellphone No" class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-
 
 									<!-- Text input Contact Person Tellphone Number-->
 									<div class="form-group">
@@ -158,18 +158,17 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													name="tellphoneNumber" placeholder="Tellphone No"
-													class="form-control" type="text">
+													id="telephoneNumber" name="telephoneNumber"
+													placeholder="Tellphone No" class="form-control" type="text">
 											</div>
 										</div>
 									</div>
 
 								</div>
-								<!-- /Col for cotact person 1-->
+								<!-- /Contact Person 1 -->
 
-
+								<!-- Contact Person 2 -->
 								<div class="col-sm-6">
-
 									<div align="center">
 										<b class="optionalFields">Contact Person 2 (Optional
 											Fields)</b>
@@ -182,7 +181,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
-													name="firstName" placeholder="First Name"
+													id="firstName1" name="firstName1" placeholder="First Name"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -193,8 +192,8 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
-													name="lastName" placeholder="Last Name"
+													class="glyphicon glyphicon-user"></i></span> <input id="lastName1"
+													name="lastName1" placeholder="Last Name"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -207,7 +206,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
-													name="email" placeholder="Email Address"
+													id="email1" name="email1" placeholder="Email Address"
 													class="form-control" type="email">
 											</div>
 										</div>
@@ -221,8 +220,8 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													name="cellphoneNumber" placeholder="Cellphone No"
-													class="form-control" type="text">
+													id="cellphoneNumber1" name="cellphoneNumber1"
+													placeholder="Cellphone No" class="form-control" type="text">
 											</div>
 										</div>
 									</div>
@@ -235,15 +234,15 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													name="tellphoneNumber" placeholder="Tellphone No"
-													class="form-control" type="text">
+													id="telephoneNumber1" name="telephoneNumber1"
+													placeholder="Tellphone No" class="form-control" type="text">
 											</div>
 										</div>
 									</div>
 
 								</div>
-								<!-- /Col for contact person 2 -->
-								
+								<!--/Contact Person 2 -->
+
 								<br>
 							</fieldset>
 							<br>
@@ -556,12 +555,12 @@
 		});
 	</script>
 	<script type="text/javascript">
-	$(document).ready(function() {
-		$('#installationDate').datepicker({
-			format : "yyyy-mm-dd"
+		$(document).ready(function() {
+			$('#installationDate').datepicker({
+				format : "yyyy-mm-dd"
+			});
 		});
-	});
-</script>
+	</script>
 
 	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {

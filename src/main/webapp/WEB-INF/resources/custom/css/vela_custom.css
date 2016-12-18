@@ -57,6 +57,19 @@ div#container{
     overflow: auto;
     z-index: 1;
  }
+#customer_container {
+	background: #f9f9f9;
+	border: 1px solid #aaa;
+	padding: 10px;
+	margin-bottom: 1em;
+	width: auto;
+	display: table;
+	font-size: 100%;
+}
+p.contactPerson_title, p.customerAddress_title{
+	font-size: 1.1em;
+	font-weight:bolder;
+}
 /*sidebar nav*/
 .sidebar{
 	width:250px;

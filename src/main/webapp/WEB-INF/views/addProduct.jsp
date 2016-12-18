@@ -13,6 +13,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link type="text/stylesheet"
 	src="<c:url value="/resources/custom/css/vela_custom.css" />">
+<style>
+li {
+	list-style: none;
+}
+</style>
 
 <title>Add Product | Velaphanda Trading & Projects</title>
 </head>
@@ -26,6 +31,7 @@
 					</c:out>
 				</div>
 			</c:if>
+
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -34,6 +40,7 @@
 						</div>
 					</h3>
 				</div>
+
 				<div class="panel-body">
 					<div class="tab-content">
 						<form action="searchClientforProduct" method="post"
@@ -78,171 +85,51 @@
 													type="text">
 											</div>
 										</div>
-									</div>								
+									</div>
 								</div>
 								<div class="col-sm-6">
 									<!-- Text input Street Name-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Street Name</label>
+										<label class="col-md-3 control-label">Company Email</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													name="streetName" placeholder="Street Name"
-													class="form-control" value="${client.streetName}"
-													type="text">
+													name="companyEmail" id="companyEmail"
+													placeholder="Company Email" class="form-control"
+													value="${client.companyEmail}" type="text">
 											</div>
 										</div>
 									</div>
 								</div>
 
-								<!-- Contact Person 1 -->
 								<div class="col-sm-6">
-									<div align="center">
-										<b>Contact Person 1</b>
-									</div>
-									<!-- Text input Contact Person First Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">First Nmae</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
-													name="firstName" placeholder="First Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-									<!-- Text input Contact Person  Last Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Last Name</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
-													name="lastName" placeholder="Last Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
 
-									<!-- Text input Contact Person 1 Email-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Email</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
-													name="email" placeholder="Email Address"
-													class="form-control" type="email">
-											</div>
-										</div>
+									<div id="customer_container"
+										style="width: auto; display: table;">
+										<p class="customerAddress_title">Customer Address</p>
+										<ul class="address_list" style="display: block;">
+											<li id="streetName"></li>
+											<li id="streetNumber"></li>
+											<li id="city_town"></li>
+											<li id="zipcode"></li>
+										</ul>
 									</div>
-
-									<!-- Text input Contact Person Cellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Cellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber"
-													placeholder="Cellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text input Contact Person Tellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Tellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="telephoneNumber"
-													placeholder="Tellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
 								</div>
-								<!-- /Contact Person 1 -->
-
-								<!-- Contact Person 2 -->
 								<div class="col-sm-6">
-									<div align="center">
-										<b class="optionalFields">Contact Person 2 (Optional
-											Fields)</b>
+									<div id="customer_container"
+										style="width: auto; display: table;">
+										<p class="contactPerson_title">Contact Person</p>
+										<ul class="list" style="display: block;">
+											<li id="firstName"></li>
+											<li id="lastName"></li>
+											<li id="email"></li>
+											<li id="cellphoneNumber"></li>
+											<li id="telephoneNumber"></li>
+										</ul>
 									</div>
-
-									<!-- Text input Contact Person 2 First Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">First Nmae</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
-													id="firstName1" name="firstName1" placeholder="First Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-									<!-- Text input Contact Person 2 Last Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Last Name</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input id="lastName1"
-													name="lastName1" placeholder="Last Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text input Contact Person 2 Email-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Email</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-envelope"></i></span> <input
-													id="email1" name="email1" placeholder="Email Address"
-													class="form-control" type="email">
-											</div>
-										</div>
-									</div>
-
-
-									<!-- Text input Contact Person 2 Cellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Cellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber1" name="cellphoneNumber1"
-													placeholder="Cellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-
-									<!-- Text input Contact Person 2 Tellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Tellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber1" name="telephoneNumber1"
-													placeholder="Tellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
 								</div>
-								<!--/Contact Person 2 -->
+
 
 								<br>
 							</fieldset>

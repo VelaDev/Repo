@@ -70,8 +70,8 @@ li {
 
 							<fieldset>
 								<legend>Customer Details</legend>
+								
 								<!--First column-->
-
 								<div class="col-sm-6">
 									<!-- Text input Client Name-->
 									<div class="form-group">
@@ -140,6 +140,7 @@ li {
 								<br>
 								<!--First Column-->
 								<div class="col-md-6">
+								
 									<!-- Text input Serial No-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Serial No</label>
@@ -153,6 +154,34 @@ li {
 										</div>
 									</div>
 
+									<!-- Text input Machine Model-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Model No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="productModel" placeholder="Model Number"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+								
+
+									<!-- Text checkbox Mono Reading-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Mono Reading</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input name="monoReading"
+													placeholder="Mono Reading" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									
+									
+									
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract Start
@@ -166,50 +195,6 @@ li {
 											</div>
 										</div>
 									</div>
-									<!-- Text input Device Location-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Device Location</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span> <input
-													name="deviceLocation" id="deviceLocation"
-													placeholder="Device Location" class="form-control"
-													type="text">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text checkbox Mono Reading-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Mono Reading</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input name="monoReading"
-													placeholder="Mono Reading" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<!--/F Column-->
-
-								<!--Second column-->
-								<div class="col-sm-6">
-									<!-- Text input Machine Model-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Model No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" placeholder="Model Number"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
 									<!-- Text input Contract End Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract End
@@ -236,6 +221,13 @@ li {
 											</div>
 										</div>
 									</div>
+									
+
+								</div>
+								<!--/F Column-->
+
+								<!--Second column-->
+								<div class="col-sm-6">								
 
 									<!-- Select type Mono Colour-->
 									<div class="form-group">
@@ -252,14 +244,7 @@ li {
 											</div>
 										</div>
 									</div>
-
-								</div>
-								<!--/S Column-->
-								
-								
-								<!--Third column -->
-								<div class="col-sm-6">
-								
+									
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -310,10 +295,6 @@ li {
 										</div>
 									</div>
 									
-								</div>
-								<!-- / F Third Fields -->
-
-								<div class="col-sm-6">
 									<!-- Text input Area Code-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Area Code</label>
@@ -339,7 +320,9 @@ li {
 											</div>
 										</div>
 									</div>
+
 								</div>
+								<!--/S Column-->
 									
 							</fieldset>
 

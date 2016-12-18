@@ -24,7 +24,7 @@ import com.demo.service.DeviceServiceInt;
 
 
 @Controller
-public class ProductController {
+public class DeviceController {
 	
 	@Autowired
 	private DeviceServiceInt deviceServiceInt;

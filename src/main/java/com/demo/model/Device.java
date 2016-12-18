@@ -21,7 +21,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="DEVICE")
+@Table(name="DEVICES")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -37,7 +37,7 @@ public class Device implements Serializable{
 	@Column(name="Serial_Number")
 	private String serialNumber;
 	@Column(name="Device_Model")
-	private String productModel;
+	private String modelNumber;
 	@Column(name="Contract_Start_Date")
 	private String startDate;
 	@Column(name="Contract_End_Date")
@@ -63,7 +63,7 @@ public class Device implements Serializable{
 	
 	
 	@ManyToOne
-	@JoinColumn(name="CLIENT")
+	@JoinColumn(name="Customer")
 	private Customer customer;
     
 	@OneToMany(mappedBy ="device", cascade= CascadeType.ALL,fetch=FetchType.LAZY)

@@ -1,10 +1,10 @@
 package com.demo.service;
 
 
-import com.demo.model.Parts;
+import com.demo.model.Spare;
 
 public interface SparePartsServeceInt {
-	public String saveSpareparts(Parts spareParts);
-	public Parts getSparePartBySerial(String serialNum);
+	public String saveSpareparts(Spare spareParts);
+	public Spare getSparePartBySerial(String serialNum);
 
 }

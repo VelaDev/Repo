@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.demo.dao.SparePartsDaoInt;
-import com.demo.model.Parts;
+import com.demo.model.Spare;
 import com.demo.service.SparePartsServeceInt;
 
 @Service("sparePartsService")
@@ -18,7 +18,7 @@ public class SparePartsService implements SparePartsServeceInt{
 	
 	
 	@Override
-	public String saveSpareparts(Parts spareParts) {
+	public String saveSpareparts(Spare spareParts) {
 		
 		retMessage =sparePartsDAO.saveSpareparts(spareParts);
 	    return retMessage;
@@ -26,7 +26,7 @@ public class SparePartsService implements SparePartsServeceInt{
 
 
 	@Override
-	public Parts getSparePartBySerial(String serialNum) {
+	public Spare getSparePartBySerial(String serialNum) {
 		
 		return sparePartsDAO.getSparePartBySerial(serialNum);
 	}

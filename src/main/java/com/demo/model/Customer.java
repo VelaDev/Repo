@@ -22,8 +22,6 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="CUSTOMER", catalog = "velaphandadb", uniqueConstraints = {
-		@UniqueConstraint(columnNames = "Customer_Name") })
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -57,8 +55,8 @@ public class Customer implements Serializable{
 	private String streetNumber;
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	private CustomerContactDetails customerContactDetails;
+	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<CustomerContactDetails> customerContactDetails;
 	
 	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Device> devices;

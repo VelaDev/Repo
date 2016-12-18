@@ -111,7 +111,7 @@ public class DeviceDao implements DeviceDaoInt {
 		customer = new Customer();
 		device = new Device();
 		device.setEndDate(deviceBean.getEndDate());
-		device.setProductModel(deviceBean.getProductModel());
+		device.setModelNumber(deviceBean.getProductModel());
 		device.setSerialNumber(deviceBean.getSerialNumber());
 		device.setStartDate(deviceBean.getStartDate());
 		device.setColour(deviceBean.getColour());

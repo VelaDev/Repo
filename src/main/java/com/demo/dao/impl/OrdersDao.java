@@ -26,7 +26,7 @@ import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.SparePartsDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.Orders;
-import com.demo.model.Parts;
+import com.demo.model.Spare;
 import com.demo.model.Device;
 
 
@@ -54,7 +54,7 @@ public class OrdersDao implements OrdersDaoInt{
 	private String retMessage = null;
 	private Employee emp = null;
 	private Calendar cal = null;
-	private Parts part = null;
+	private Spare part = null;
 	private Device device=null;
 	private Orders order = null;
 	DateFormat dateFormat = null;

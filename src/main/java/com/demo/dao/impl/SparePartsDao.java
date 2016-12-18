@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.SparePartsDaoInt;
-import com.demo.model.Parts;
+import com.demo.model.Spare;
 
 
 @Repository("sparePartsDAO")
@@ -22,7 +22,7 @@ public class SparePartsDao implements SparePartsDaoInt{
 	private String retMessage = null;
 
 	@Override
-	public String saveSpareparts(Parts spareParts) {
+	public String saveSpareparts(Spare spareParts) {
 		
 		try{
 			   sessionFactory.getCurrentSession().save(spareParts);
@@ -35,13 +35,13 @@ public class SparePartsDao implements SparePartsDaoInt{
 	}
 
 	@Override
-	public Parts getSparePartBySerial(String serialNum) {
+	public Spare getSparePartBySerial(String serialNum) {
 		
-		return (Parts) sessionFactory.getCurrentSession().get(Parts.class, serialNum);
+		return (Spare) sessionFactory.getCurrentSession().get(Spare.class, serialNum);
 	}
 
 	@Override
-	public String updateSpareParts(Parts spareParts) {
+	public String updateSpareParts(Spare spareParts) {
 		
 		try{
 			sessionFactory.getCurrentSession().update(spareParts);

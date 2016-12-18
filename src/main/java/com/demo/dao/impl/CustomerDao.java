@@ -41,7 +41,6 @@ public class CustomerDao implements CustomerDaoInt{
 	@Override
 	public String saveClient(Customer customer) {
 		try{
-			String name ="";
 			sessionFactory.getCurrentSession().saveOrUpdate(customer);
 			retMessage =  "Customer "+ customer.getClientName() + " "+ "Was successfully added";
 		}
@@ -115,23 +114,9 @@ public class CustomerDao implements CustomerDaoInt{
 		CustomerContactDetails contactDetails, contactDetails1 = null;
 		List<CustomerContactDetails>list = null;
 	  try{
-			list = new ArrayList<CustomerContactDetails>();
-		     contactDetails = new CustomerContactDetails();
-		     contactDetails.setCellNumber(customerBean.getCellphoneNumber());
-		     contactDetails.setEmail(customerBean.getEmail());
-		     contactDetails.setFirstName(customerBean.getFirstName());
-		     contactDetails.setLastName(customerBean.getLastName());
-		     list.add(contactDetails);
-		     
-		     if(customerBean.getFirstName1() != null){
-		    	 contactDetails1 = new CustomerContactDetails();
-		    	 contactDetails1.setCellNumber(customerBean.getCellphoneNumber1());
-		    	 contactDetails1.setEmail(customerBean.getEmail1());
-		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
-		    	 contactDetails1.setLastName(customerBean.getLastName1());
-		     }
+			
 		    
-		     customer = new Customer();
+		    customer = new Customer();
 			customer.setActive(true);
 		    customer.setCity_town(customerBean.getCity_town());
 		    customer.setClientName(customerBean.getClientName());
@@ -142,6 +127,24 @@ public class CustomerDao implements CustomerDaoInt{
 		    customer.setStreetNumber(customerBean.getStreetNumber());
 		    customer.setTellphoneNumber(customerBean.getTellphoneNumber());
 		    customer.setZipcode(customerBean.getZipcode());
+		    
+		    list = new ArrayList<CustomerContactDetails>();
+		     contactDetails = new CustomerContactDetails();
+		     contactDetails.setCellNumber(customerBean.getCellphoneNumber());
+		     contactDetails.setEmail(customerBean.getEmail());
+		     contactDetails.setFirstName(customerBean.getFirstName());
+		     contactDetails.setLastName(customerBean.getLastName());
+		     contactDetails.setCustomer(customer);
+		     list.add(contactDetails);
+		     
+		     if(customerBean.getFirstName1() != null){
+		    	 contactDetails1 = new CustomerContactDetails();
+		    	 contactDetails1.setCellNumber(customerBean.getCellphoneNumber1());
+		    	 contactDetails1.setEmail(customerBean.getEmail1());
+		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
+		    	 contactDetails1.setLastName(customerBean.getLastName1());
+		    	 contactDetails.setCustomer(customer);
+		     }
 		    
 		    retMessage = saveClient(customer);
 		    customerContactDetailsDaoIntDaoInt.saveContactDetails(list);

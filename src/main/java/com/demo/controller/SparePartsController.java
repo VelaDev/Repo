@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.SparePartsBean;
 import com.demo.model.Employee;
-import com.demo.model.Parts;
+import com.demo.model.Spare;
 import com.demo.service.SparePartsServeceInt;
 
 @Controller
@@ -42,7 +42,7 @@ public class SparePartsController {
 	}
 	
 	@RequestMapping(value="saveSpareParts", method=RequestMethod.POST)
-	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveSpareParts")Parts spareParts){
+	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveSpareParts")Spare spareParts){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){

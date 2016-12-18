@@ -1,6 +1,7 @@
 package com.demo.model;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,44 +10,44 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import com.demo.model.Orders;
-
 
 @Entity
-@Table(name="tonners")
+@Table(name="Spares")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Tonner implements Serializable {/**
+public class Spare implements Serializable{
+
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="Tonner_Code")
-	private String tonnerCode;
+	@Column(name="Part_Number")
+	private String partNumber;
 	@Column(name="Description")
 	private String description;
+	@Column(name="Type")
+	private String type;
 	@Column(name="Quantity")
 	private int quantity;
-	@Column(name="Total_Quatity")
-	private int totalQuantity;
 	@Column(name="Supplier_Name")
 	private String supplierName;
 	@Column(name="ReceivedBy")
 	private String receivedBy;
 	
 	
-	@OneToMany(mappedBy="tonner",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="part",cascade=CascadeType.ALL)
 	private Set<Orders> orders;
-	
-	
 
 }

@@ -89,7 +89,7 @@ public class EmployeeController {
 			
 		}
 		else{retRole= "redirect:error";
-			
+			System.out.print("No such user");
 		}
 			
 			

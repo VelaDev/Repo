@@ -53,21 +53,21 @@ public class Orders implements Serializable{
 	private String approdedBy;
 	@Column(name="Status")
 	private String status;
-	
+	@Column(name="Stock_Type")
+	private String stockType;
+	@Column(name="Location")
+	private String location;
 	@ManyToOne
 	@JoinColumn(name="OrderedBY")
 	private Employee employee;
 	
 	@ManyToOne
 	@JoinColumn(name="Spare")
-	private Parts part;
-	@ManyToOne
-	@JoinColumn(name="Tonner")
-	private Tonner tonner;
+	private Spare part;
 	@ManyToOne
 	@JoinColumn(name="Customer_Name")
 	private Customer customer;
 	@ManyToOne
-	@JoinColumn(name="Sserial_Number")
+	@JoinColumn(name="Serial_Number")
 	private Device device;
 }

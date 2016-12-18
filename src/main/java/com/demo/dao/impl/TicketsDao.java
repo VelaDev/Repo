@@ -273,7 +273,7 @@ public class TicketsDao implements TicketsDaoInt {
 	{
 		try{
 			
-			System.out.println(tickets.getStatus()+" and " + tickets.getComments()+ " "+ tickets.getTicketNumber()+ " "+ tickets.getDevice().getProductModel());
+			System.out.println(tickets.getStatus()+" and " + tickets.getComments()+ " "+ tickets.getTicketNumber()+ " "+ tickets.getDevice().getModelNumber());
 			System.out.println("About to insert");
 			sessionFactory.getCurrentSession().saveOrUpdate(tickets);
 			sessionFactory.getCurrentSession().beginTransaction().commit();

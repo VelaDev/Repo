@@ -3,6 +3,7 @@ package com.demo.bean;
 
 public class CustomerBean {
 	
+	// Customer
 	private String clientName;
 	private boolean isActive;
 	private String tellphoneNumber;
@@ -12,7 +13,6 @@ public class CustomerBean {
 	private String province;
 	private String zipcode;
 	private String faxNumber;
-	private String cellNumber;
 	private String streetNumber;
 	//Contact person 1
 	private String firstName;
@@ -146,12 +146,6 @@ public class CustomerBean {
 	}
 	public void setFaxNumber(String faxNumber) {
 		this.faxNumber = faxNumber;
-	}
-	public String getCellNumber() {
-		return cellNumber;
-	}
-	public void setCellNumber(String cellNumber) {
-		this.cellNumber = cellNumber;
 	}
 	public String getStreetNumber() {
 		return streetNumber;

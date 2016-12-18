@@ -45,7 +45,7 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 			         retMessage ="OK";
 		            }
 		}catch (Exception e) {
-				retMessage = "Error";
+				retMessage = e.getMessage();
 			}
 		return retMessage;
 	}

@@ -53,7 +53,7 @@ li {
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
-												name="clientName" id="clientName" class="form-control"
+												name="customerName" id="clientName" class="form-control"
 												type="text" placeholder='Search By Client Name'>
 										</div>
 									</div>
@@ -186,7 +186,7 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input name="mono"
+													class="glyphicon glyphicon-barcode"></i></span> <input name="monoReading"
 													placeholder="Mono Reading" class="form-control" type="text">
 											</div>
 										</div>
@@ -204,7 +204,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" placeholder="Product Model"
+													name="productModel" placeholder="Model Number"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -244,10 +244,10 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
-													name="monoColour" class="form-control selectpicker">
+													name="colour" class="form-control selectpicker">
 													<option value=" ">Select Colour</option>
-													<option value="Gauteng">White</option>
-													<option value="Limpopo">Blue</option>
+													<option value="White">White</option>
+													<option value="Blue">Blue</option>
 												</select>
 											</div>
 										</div>

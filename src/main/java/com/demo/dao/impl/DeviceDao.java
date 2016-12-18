@@ -116,11 +116,15 @@ public class DeviceDao implements DeviceDaoInt {
 		device.setStartDate(deviceBean.getStartDate());
 		device.setColour(deviceBean.getColour());
 		device.setInstallationDate(deviceBean.getInstallationDate());
-		device.setDeviceLocation(deviceBean.getDeviceLocation());
 		device.setMonoReading(deviceBean.getMonoReading());
+		device.setAreaCode(deviceBean.getZipcode());
+		device.setCity_town(deviceBean.getCity_town());
+		device.setProvince(deviceBean.getProvince());
+		device.setStreetName(deviceBean.getStreetName());
+		device.setStreetNumber(deviceBean.getStreetNumber());
 		
 		
-		//customer.setCellNumber(deviceBean.getCellNumber());
+		/*//customer.setCellNumber(deviceBean.getCellNumber());
 		customer.setCity_town(deviceBean.getCity_town());
 		//customer.setContactPerson(deviceBean.getContactPerson());
 		customer.setEmail(deviceBean.getEmail());
@@ -132,7 +136,7 @@ public class DeviceDao implements DeviceDaoInt {
 		customer.setZipcode(deviceBean.getZipcode());
 		customer.setCustomerName(deviceBean.getClientName());
 		
-		retMessage = customerDaoInt.saveClient(customer);
+		retMessage = customerDaoInt.saveClient(customer);*/
 		customer = customerDaoInt.getClientByClientName(deviceBean.getClientName());
 		
 		
@@ -143,13 +147,13 @@ public class DeviceDao implements DeviceDaoInt {
 		    list = new ArrayList<Accessories>();
 			Accessories accessory = new Accessories();
 			
-			if( deviceBean.getAdditionalPaperTraysTypeSerial()!=""){
+			if( deviceBean.getAdditionalPaperTraysTypeSerial() != null){
 				accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
 				accessory.setAccessotyType("Additional Paper Trays");
 				accessory.setDevice(device);
 				list.add(accessory);
 			}
-			if( deviceBean.getBridgeUnitSerialTypeSerialNo()!=""){
+			if( deviceBean.getBridgeUnitSerialTypeSerialNo()!=null){
 				Accessories accessory1 = new Accessories();
 				accessory1.setSerial(deviceBean.getBridgeUnitSerialTypeSerialNo());
 				accessory1.setAccessotyType("Bridge Unit");
@@ -157,7 +161,7 @@ public class DeviceDao implements DeviceDaoInt {
 				list.add(accessory1);
 			}
 			
-			if( deviceBean.getCredenzaSerialNo() !=""){
+			if( deviceBean.getCredenzaSerialNo()!=null){
 				Accessories accessory2 = new Accessories();
 				accessory2.setSerial(deviceBean.getCredenzaSerialNo());
 				accessory2.setAccessotyType("Credenza");
@@ -166,7 +170,7 @@ public class DeviceDao implements DeviceDaoInt {
 			}
 			
 			
-			if( deviceBean.getFaxUnitSerialTypeSerialNo()!=""){
+			if( deviceBean.getFaxUnitSerialTypeSerialNo()!=null){
 				Accessories accessory3 = new Accessories();
 				accessory3.setSerial(deviceBean.getFaxUnitSerialTypeSerialNo());
 				accessory3.setAccessotyType("Fax Unit");
@@ -174,7 +178,7 @@ public class DeviceDao implements DeviceDaoInt {
 				list.add(accessory3);
 			}
 			
-			if( deviceBean.getFinisherTypeSerialNo()!=""){
+			if( deviceBean.getFinisherTypeSerialNo()!=null){
 				Accessories accessory4 = new Accessories();
 				accessory4.setSerial(deviceBean.getFinisherTypeSerialNo());
 				accessory4.setAccessotyType("Finisher");
@@ -182,7 +186,7 @@ public class DeviceDao implements DeviceDaoInt {
 				list.add(accessory4);
 			}
 			
-			if( deviceBean.getLtcTypeSerial()!=""){
+			if( deviceBean.getLtcTypeSerial()!=null){
 				Accessories accessory5 = new Accessories();
 				accessory5.setSerial(deviceBean.getLtcTypeSerial());
 				accessory5.setAccessotyType("LTC");
@@ -190,7 +194,7 @@ public class DeviceDao implements DeviceDaoInt {
 				list.add(accessory5);
 			}
 			
-			if( deviceBean.getOneBinTrayTypeSerialNo()!=""){
+			if( deviceBean.getOneBinTrayTypeSerialNo()!=null){
 				Accessories accessory6 = new Accessories();
 				accessory6.setSerial(deviceBean.getOneBinTrayTypeSerialNo());
 				accessory6.setAccessotyType("One bin tray");
@@ -202,7 +206,7 @@ public class DeviceDao implements DeviceDaoInt {
 			retMessage = saveDevice(device);
 			retAccessory =accessoriesDaoInt.saveAccessories(list);
 			if(retAccessory.equalsIgnoreCase("Error")){
-				retMessage ="Device not inserted into the table";
+				retMessage ="Device not inserted into the table "+ retAccessory;
 			}
 		}
 		else{

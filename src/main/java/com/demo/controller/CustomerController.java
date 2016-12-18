@@ -173,9 +173,9 @@ public class CustomerController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			customer = customerServiceInt.getClientByClientName(customerName);
+			//customer = customerServiceInt.getClientByClientName(customerName);
 			
-			model.addObject("customer", customer);
+			model.addObject("customer", customerServiceInt.contactDetails(customerName));
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
 			model.setViewName("updateCustomer");
 		}

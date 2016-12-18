@@ -14,5 +14,6 @@ public interface CustomerServiceInt {
 	String updateCustomer(Customer customer);
 	Integer count();
 	String prepareCustomer(CustomerBean customerBean);
+	CustomerBean contactDetails(String customerName);
 
 }

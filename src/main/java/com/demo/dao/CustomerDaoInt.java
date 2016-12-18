@@ -16,5 +16,6 @@ public interface CustomerDaoInt {
 	String prepareCustomer(CustomerBean customerBean);
 	CustomerBean contactDetails(String customerName);
 	
+	
 
 }

@@ -31,6 +31,10 @@
 	<error-code>405</error-code>
 	<location>/405.jsp</location>
 	</error-page>
+	<error-page>
+	<error-code>500</error-code>
+	<location>/405.jsp</location>
+	</error-page>
 
 	<welcome-file-list>
 		<welcome-file>login.jsp</welcome-file>

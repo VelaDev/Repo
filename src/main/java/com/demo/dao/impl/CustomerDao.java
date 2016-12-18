@@ -110,7 +110,7 @@ public class CustomerDao implements CustomerDaoInt{
 		    customer = new Customer();
 			customer.setActive(true);
 		    customer.setCity_town(customerBean.getCity_town());
-		    customer.setCustomerName(customerBean.getClientName());
+		    customer.setCustomerName(customerBean.getCustomerName());
 		    customer.setEmail(customerBean.getEmailCompany());
 		    customer.setFaxNumber(customerBean.getFaxNumber());
 		    customer.setProvince(customerBean.getProvince());
@@ -158,8 +158,23 @@ public class CustomerDao implements CustomerDaoInt{
 
 	@Override
 	public CustomerBean contactDetails(String customerName) {
-		// TODO Auto-generated method stub
-		return null;
+		CustomerBean returnCustomerContact = new CustomerBean();
+		try{
+			Customer customer= getClientByClientName(customerName);
+			returnCustomerContact.setCustomerName(customer.getCustomerName());
+			returnCustomerContact.setCity_town(customer.getCity_town());
+			returnCustomerContact.setEmailCompany(customer.getEmail());
+			returnCustomerContact.setFaxNumber(customer.getFaxNumber());
+			returnCustomerContact.setProvince(customer.getProvince());
+			returnCustomerContact.setStreetName(customer.getStreetName());
+			returnCustomerContact.setStreetNumber(customer.getStreetNumber());
+			returnCustomerContact.setTellphoneNumber(customer.getTellphoneNumber());
+			returnCustomerContact.setZipcode(customer.getZipcode());
+		}
+		catch(Exception ex){
+			
+		}
+		return returnCustomerContact;
 	}
 
 }

@@ -26,6 +26,8 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 	
 	@Override
 	public void saveContactDetails(List<CustomerContactDetails> contacts) {
+		String name = "";
+		name = "Mohapi";
 		try{
 			for(CustomerContactDetails contactDetails:contacts){
 				sessionFactory.getCurrentSession().saveOrUpdate(contactDetails);

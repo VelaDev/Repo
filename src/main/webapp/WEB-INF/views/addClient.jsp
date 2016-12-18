@@ -43,9 +43,7 @@
 
 						<form:form class="well form-horizontal" method="post"
 							action="saveClient" id="saveClient" modelAttribute="saveClient">
-							<!--First column-->
-							<div class="col-sm-6">
-
+							
 								<!--First column Customer Fields-->
 								<div class="col-sm-6">
 									<!-- Text input Client Name-->
@@ -55,7 +53,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
-													name="clientName" id="clientName"
+													name="customerName" id="clientName"
 													placeholder="Customer Name" class="form-control"
 													type="text">
 											</div>
@@ -129,7 +127,7 @@
 													class="glyphicon glyphicon-list"></i></span> <select
 													name="province" id="province"
 													class="form-control selectpicker">
-													<option value=""></option>
+													<option value="">Select Province</option>
 													<option value="Gauteng">Gauteng</option>
 													<option value="Limpopo">Limpopo</option>
 													<option value="Nort West">North West</option>

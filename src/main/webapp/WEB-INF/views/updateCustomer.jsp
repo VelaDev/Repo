@@ -75,7 +75,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
-												name="clientName" id="clientName"
+												name="customerName" id="clientName"
 												placeholder="Customer Name" class="form-control"
 												value="${customer.customerName}" type="text">
 										</div>
@@ -277,7 +277,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="tellphoneNumber" id="tellphoneNumber"
+												name="telephoneNumber" id="tellphoneNumber"
 												placeholder="Tellphone No" class="form-control" type="text"
 												value="${customerDetails.telephoneNumber}">
 										</div>
@@ -353,7 +353,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="tellphoneNumber1" id="tellphoneNumber1"
+												name="telephoneNumber1" id="tellphoneNumber1"
 												placeholder="Tellphone No" class="form-control" type="text"
 												value="${customerDetails.telephoneNumber1}">
 										</div>

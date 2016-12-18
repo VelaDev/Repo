@@ -58,4 +58,10 @@ public class CustomerService implements CustomerServiceInt{
 		return clientDAO.getClientList();
 	}
 
+	@Override
+	public CustomerBean contactDetails(String customerName) {
+	
+		return clientDAO.contactDetails(customerName);
+	}
+
 }

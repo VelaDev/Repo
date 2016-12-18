@@ -4,7 +4,7 @@ package com.demo.bean;
 public class CustomerBean {
 	
 	// Customer
-	private String clientName;
+	private String customerName;
 	private boolean isActive;
 	private String tellphoneNumber;
 	private String emailCompany;
@@ -92,12 +92,11 @@ public class CustomerBean {
 	public void setTelephoneNumber(String telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
 	}
-
-	public String getClientName() {
-		return clientName;
+	public String getCustomerName() {
+		return customerName;
 	}
-	public void setClientName(String clientName) {
-		this.clientName = clientName;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 	public boolean isActive() {
 		return isActive;

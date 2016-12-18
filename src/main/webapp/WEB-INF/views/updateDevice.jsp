@@ -67,7 +67,7 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input type="text" id="clientName"
+													class="glyphicon glyphicon-user"></i></span> <input type="text" id="customerName"
 													name="customerName" placeholder="Client Name"
 													class="form-control"
 													value="${productObject.customer.customerName}" >
@@ -97,10 +97,10 @@
 										style="width: auto; display: table;">
 										<p class="customerAddress_title">Customer Address</p>
 										<ul class="address_list" style="display: block;">
-											<li id="streetName">$customer.streetName}</li>
-											<li id="streetNumber">${customer.streetNumber}</li>
-											<li id="city_town">${customer.city_town}</li>
-											<li id="zipcode">${customer.zipcode}</li>
+											<li id="streetName">${productObject.customer.streetName}</li>
+											<li id="streetNumber">${productObject.customer.streetNumber}</li>
+											<li id="city_town">${productObject.customer.city_town}</li>
+											<li id="zipcode">${productObject.customer.zipcode}</li>
 										</ul>
 									</div>
 								</div>
@@ -109,11 +109,11 @@
 										style="width: auto; display: table;">
 										<p class="contactPerson_title">Contact Person</p>
 										<ul class="list" style="display: block;">
-											<li id="firstName">${customerContact.firstName }</li>
-											<li id="lastName">${customerContact.lastName }</li>
-											<li id="email">${customerContact.email }</li>
-											<li id="cellphoneNumber">${customerContact.cellphoneNumber }</li>
-											<li id="telephoneNumber">${customerContact.telephoneNumber }</li>
+											<li id="firstName">${customer.firstName }</li>
+											<li id="lastName">${customer.lastName }</li>
+											<li id="email">${customer.email }</li>
+											<li id="cellphoneNumber">${customer.cellphoneNumber }</li>
+											<li id="telephoneNumber">${customer.telephoneNumber }</li>
 										</ul>
 									</div>
 								</div>
@@ -240,7 +240,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetName" id="streetName" placeholder="Street Name"
-													class="form-control" type="text">
+													class="form-control" type="text" value="${productObject.streetName}">
 											</div>
 										</div>
 									</div>
@@ -253,7 +253,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="city_town" id="city_town" placeholder="City / Town"
-													class="form-control" type="text">
+													class="form-control" type="text" value="${productObject.streetName}">
 											</div>
 										</div>
 									</div>
@@ -267,7 +267,7 @@
 													class="glyphicon glyphicon-list"></i></span> <select
 													name="province" id="province"
 													class="form-control selectpicker">
-													<option value="">Select Province</option>
+													<option value="${productObject.province}"></option>
 													<option value="Gauteng">Gauteng</option>
 													<option value="Limpopo">Limpopo</option>
 													<option value="Nort West">North West</option>
@@ -290,7 +290,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													id="zipcode" placeholder="Area Code" class="form-control"
-													type="text">
+													type="text" value ="${productObject.areaCode}">
 											</div>
 										</div>
 									</div>
@@ -303,7 +303,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetNumber" id="streetNumber"
 													placeholder="Street Number" class="form-control"
-													type="text">
+													type="text" value ="${productObject.streetNumber}">
 											</div>
 										</div>
 									</div>

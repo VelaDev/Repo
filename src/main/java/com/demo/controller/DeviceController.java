@@ -18,6 +18,7 @@ import com.demo.model.Accessories;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.AccessoriesInt;
+import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.DeviceServiceInt;
@@ -34,6 +35,8 @@ public class DeviceController {
 	private EmployeeServiceInt employeeServiceInt;
     @Autowired
     private AccessoriesInt accessoriesInt;
+    @Autowired
+    private CustomerContactDetailsServiceInt contactDetailsServiceInt;
     
     @Autowired 
     HttpSession session;
@@ -142,6 +145,7 @@ public class DeviceController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			model.addObject("updateDevice", new DeviceBean());
 		    model.setViewName("updateDevice");
 		}
 		else{
@@ -176,7 +180,7 @@ public class DeviceController {
 		     deviceBean = deviceServiceInt.getAccessoriesForUpdate(serialNumber);
 		     if(device != null)
 				{
-				
+				    model.addObject("customer",contactDetailsServiceInt.contactDetails(device.getCustomer().getCustomerName()));
 				    model.addObject("productObject", device);
 				    model.addObject("AccessoryObject", deviceBean);
 				}

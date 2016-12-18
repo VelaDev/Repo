@@ -18,7 +18,7 @@ public class DeviceBean {
 	private String installationDate;
 	private String monoReading;
 	private String colour;
-	private String clientName;
+	private String customerName;
 	private String accessoryName;
 	private String accessorySerial;
 	

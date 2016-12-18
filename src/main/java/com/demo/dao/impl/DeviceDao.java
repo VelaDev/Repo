@@ -137,7 +137,7 @@ public class DeviceDao implements DeviceDaoInt {
 		customer.setCustomerName(deviceBean.getClientName());
 		
 		retMessage = customerDaoInt.saveClient(customer);*/
-		customer = customerDaoInt.getClientByClientName(deviceBean.getClientName());
+		customer = customerDaoInt.getClientByClientName(deviceBean.getCustomerName());
 		
 		
 		

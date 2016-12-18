@@ -5,9 +5,10 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.ForeignKey;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,11 +31,11 @@ public class Accessories implements Serializable{
 	@Id
 	@Column(name="Serial")
 	private String serial;
-	@ManyToOne
-	@JoinColumn(name="Device_Serial")
-	private Device device;
 	@Column(name="Type")
 	private String accessotyType;
+	@ManyToOne
+	@ForeignKey(name="Device_Serial")
+	private Device device;
 	
 	
 

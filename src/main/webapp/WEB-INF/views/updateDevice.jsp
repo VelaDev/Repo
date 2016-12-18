@@ -76,167 +76,47 @@
 									</div>
 								</div>
 								<div class="col-sm-6">
-									<!-- Text input Floor Number-->
+									<!-- Text input Company Email-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Street No</label>
+										<label class="col-md-3 control-label">Company Email</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span> <input type="text" id="streetName"
-													name="streetNumber" placeholder="Street No"
+													class="glyphicon glyphicon-home"></i></span> <input type="text" id="Company Email"
+													name="companyEmail" placeholder="Company Email"
 													class="form-control"
-													value="${productObject.customer.streetNumber}" >
+													value="${productObject.customer.email}" >
 											</div>
 										</div>
 									</div>
 								</div>								
-								<!-- Contact Person 1 -->
-								<div class="col-sm-6">
-									<div align="center">
-										<b>Contact Person 1</b>
-									</div>
-									<!-- Text input Contact Person First Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">First Nmae</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
-													name="firstName" placeholder="First Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-									<!-- Text input Contact Person  Last Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Last Name</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
-													name="lastName" placeholder="Last Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
+								
+							<div class="col-sm-6">
 
-									<!-- Text input Contact Person 1 Email-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Email</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
-													name="email" placeholder="Email Address"
-													class="form-control" type="email">
-											</div>
-										</div>
+									<div id="customer_container"
+										style="width: auto; display: table;">
+										<p class="customerAddress_title">Customer Address</p>
+										<ul class="address_list" style="display: block;">
+											<li id="streetName">$customer.streetName}</li>
+											<li id="streetNumber">${customer.streetNumber}</li>
+											<li id="city_town">${customer.city_town}</li>
+											<li id="zipcode">${customer.zipcode}</li>
+										</ul>
 									</div>
-
-									<!-- Text input Contact Person Cellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Cellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber"
-													placeholder="Cellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text input Contact Person Tellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Tellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="telephoneNumber"
-													placeholder="Tellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
 								</div>
-								<!-- /Contact Person 1 -->
-
-								<!-- Contact Person 2 -->
 								<div class="col-sm-6">
-									<div align="center">
-										<b class="optionalFields">Contact Person 2 (Optional
-											Fields)</b>
+									<div id="customer_container"
+										style="width: auto; display: table;">
+										<p class="contactPerson_title">Contact Person</p>
+										<ul class="list" style="display: block;">
+											<li id="firstName">${customerContact.firstName }</li>
+											<li id="lastName">${customerContact.lastName }</li>
+											<li id="email">${customerContact.email }</li>
+											<li id="cellphoneNumber">${customerContact.cellphoneNumber }</li>
+											<li id="telephoneNumber">${customerContact.telephoneNumber }</li>
+										</ul>
 									</div>
-
-									<!-- Text input Contact Person 2 First Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">First Nmae</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
-													id="firstName1" name="firstName1" placeholder="First Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-									<!-- Text input Contact Person 2 Last Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Last Name</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input id="lastName1"
-													name="lastName1" placeholder="Last Name"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text input Contact Person 2 Email-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Email</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-envelope"></i></span> <input
-													id="email1" name="email1" placeholder="Email Address"
-													class="form-control" type="email">
-											</div>
-										</div>
-									</div>
-
-
-									<!-- Text input Contact Person 2 Cellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Cellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber1" name="cellphoneNumber1"
-													placeholder="Cellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-
-									<!-- Text input Contact Person 2 Tellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Tellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber1" name="telephoneNumber1"
-													placeholder="Tellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
 								</div>
-								<!--/Contact Person 2 -->
 
 								<br>
 							</fieldset>
@@ -245,8 +125,10 @@
 							<fieldset>
 								<legend>Machine Details</legend>
 								<br>
+								
 								<!--First Column-->
 								<div class="col-md-6">
+								
 									<!-- Text input Serial No-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Serial No</label>
@@ -255,12 +137,38 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="serialNumber" placeholder="Serial Number"
-													value="${productObject.serialNumber }" class="form-control"
-													type="text">
+													class="form-control" type="text" value="${productObject.serialNumber }"
+													>
 											</div>
 										</div>
 									</div>
 
+									<!-- Text input Machine Model-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Model No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="productModel" placeholder="Model Number"
+													class="form-control" type="text" value="${productObject.modelNumber }">
+											</div>
+										</div>
+									</div>
+								
+
+									<!-- Text checkbox Mono Reading-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Mono Reading</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input name="monoReading"
+													placeholder="Mono Reading" class="form-control" type="text" value="${productObject.monoReading}" >
+											</div>
+										</div>
+									</div>
+									
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract Start
@@ -270,59 +178,10 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-calendar"></i></span> <input
 													name="startDate" id="startDate" placeholder="YYYY-MM-DD"
-													value="${productObject.startDate.toString().substring(0,10) }"
-													class="form-control" type="text">
+													class="form-control" type="text" value="${productObject.startDate.toString().substring(0,10) }">
 											</div>
 										</div>
 									</div>
-									<!-- Text input Device Location-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Device Location</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span> <input
-													name="deviceLocation" id="deviceLocation"
-													placeholder="Device Location"
-													value="${productObject.deviceLocation }"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-
-									<!-- Text checkbox Mono Reading-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Mono Reading</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="monoReading" placeholder="Mono Reading"
-													value="${productObject.monoReading}" class="form-control"
-													type="text">
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<!--/F Column-->
-
-								<!--Second column-->
-								<div class="col-sm-6">
-									<!-- Text input Machine Model-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Model No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" placeholder="Product Model"
-													value="${productObject.modelNumber }" class="form-control"
-													type="text">
-											</div>
-										</div>
-									</div>
-
 									<!-- Text input Contract End Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract End
@@ -332,8 +191,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-calendar"></i></span> <input
 													name="endDate" id="endDate" placeholder="YYYY-MM-DD"
-													value="${productObject.endDate.toString().substring(0,10) }"
-													class="form-control" type="text">
+													class="form-control" type="text" value="${productObject.endDate.toString().substring(0,10) }">
 											</div>
 										</div>
 									</div>
@@ -346,12 +204,17 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-calendar"></i></span> <input
 													name="installationDate" id="installationDate"
-													placeholder="YYYY-MM-DD"
-													value="${productObject.installationDate.toString().substring(0,10) }"
-													class="form-control" type="text">
+													placeholder="YYYY-MM-DD" class="form-control" type="text" value="${productObject.installationDate.toString().substring(0,10) }">
 											</div>
 										</div>
 									</div>
+									
+
+								</div>
+								<!--/F Column-->
+
+								<!--Second column-->
+								<div class="col-sm-6">								
 
 									<!-- Select type Mono Colour-->
 									<div class="form-group">
@@ -359,18 +222,96 @@
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select name="colour"
-													class="form-control selectpicker">
+													class="glyphicon glyphicon-list"></i></span> <select
+													name="colour" class="form-control selectpicker">
 													<option value=" ">${productObject.colour}</option>
-													<option value="Black">Black</option>
 													<option value="White">White</option>
+													<option value="Blue">Blue</option>
 												</select>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input Street Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="streetName" id="streetName" placeholder="Street Name"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input City or Town-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">City/Town</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="city_town" id="city_town" placeholder="City / Town"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Select type Province-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Province</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select
+													name="province" id="province"
+													class="form-control selectpicker">
+													<option value="">Select Province</option>
+													<option value="Gauteng">Gauteng</option>
+													<option value="Limpopo">Limpopo</option>
+													<option value="Nort West">North West</option>
+													<option value="Free State">Free State</option>
+													<option value="Mpumalanga">Mpumalanga</option>
+													<option value="KwaZulu Natal">KwaZulu Natal</option>
+													<option value="Northern Cape">Northern Cape</option>
+													<option value="Eastern Cape">Eastern Cape</option>
+													<option value="Mpumalanga">Western Cape</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input Area Code-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Area Code</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+													id="zipcode" placeholder="Area Code" class="form-control"
+													type="text">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Street Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="streetNumber" id="streetNumber"
+													placeholder="Street Number" class="form-control"
+													type="text">
 											</div>
 										</div>
 									</div>
 
 								</div>
 								<!--/S Column-->
+								
+								
 							</fieldset>
 
 							<br>

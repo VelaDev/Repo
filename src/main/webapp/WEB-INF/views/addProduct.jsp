@@ -74,7 +74,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="clientName" placeholder="Client Name"
-													class="form-control" value="${client.clientName}"
+													class="form-control" value="${customer.customerName}"
 													type="text">
 											</div>
 										</div>

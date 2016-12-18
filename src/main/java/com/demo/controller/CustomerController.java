@@ -112,18 +112,18 @@ public class CustomerController {
 		return model;
 	}
 	@RequestMapping(value="searchClientforProduct")
-	public ModelAndView searchClientforProduct(@RequestParam("clientName") String clientName,@ModelAttribute Customer customer) {
+	public ModelAndView searchClientforProduct(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			customer = customerServiceInt.getClientByClientName(clientName);
+			customer = customerServiceInt.getClientByClientName(customerName);
 			if(customer != null){
 				model.addObject("customer", customer);
 			}
 			else
 			{
-				model.addObject("retMessage", "Customer : " + clientName + " does not exist");
+				model.addObject("retMessage", "Customer : " + customerName + " does not exist");
 				model.addObject("customer", null);
 			}
 		

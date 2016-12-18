@@ -38,7 +38,7 @@
 												<!-- <th>Contact Person<img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Cell<img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
 												<th>Edit</th>
-												<th>Deactivate</th>
+												<th>Add Device</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -51,7 +51,7 @@
 													<%-- <td>${list.status}</td>
 													<td>${list.role}</td> --%>
                                                     <th><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>">edit</a></th>
-                                                    <th><a href="deactivateEmp?email=<c:out value='${list.email}'/>">deactivate</a></th>
+                                                    <th><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>">add device</a></th>
 												</tr>
 											</c:forEach>
 										</tbody>

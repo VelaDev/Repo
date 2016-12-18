@@ -68,7 +68,6 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Accessories> getAccessoriesByDeviceSerial(String serialNo) {
-		String name = serialNo;
 		try{
 			
 		    aList = new ArrayList<Object>();
@@ -77,10 +76,8 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 			aList.addAll(criteria.list());
 			for (Object access : aList) {
 				if (access instanceof Accessories) {
-					if (((Accessories) access).getDevice().getSerialNumber()!=null&&((Accessories) access).getDevice().getSerialNumber().startsWith(name) ) {
+					if (((Accessories) access).getDevice().getSerialNumber()!=null&&((Accessories) access).getDevice().getSerialNumber().equalsIgnoreCase(serialNo)) {
 						accessoriesList.add((Accessories) access);
-						/*System.out.println(((Accessories) access).getClient().getClientName());*/
-						/*acc = ((Accessories) access).getSerial();*/
 					}
 				}
 			}

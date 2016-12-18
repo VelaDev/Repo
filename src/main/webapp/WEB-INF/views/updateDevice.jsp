@@ -67,16 +67,14 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
+													class="glyphicon glyphicon-user"></i></span> <input type="text" id="clientName"
 													name="clientName" placeholder="Client Name"
 													class="form-control"
-													value="${productObject.client.clientName}" type="text">
+													value="${productObject.client.clientName}" >
 											</div>
 										</div>
 									</div>
 								</div>
-
-
 								<div class="col-sm-6">
 									<!-- Text input Floor Number-->
 									<div class="form-group">
@@ -84,17 +82,14 @@
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span> <input
+													class="glyphicon glyphicon-home"></i></span> <input type="text" id="streetName"
 													name="streetNumber" placeholder="Street No"
 													class="form-control"
-													value="${productObject.client.streetNumber}" type="text">
+													value="${productObject.client.streetNumber}" >
 											</div>
 										</div>
 									</div>
-								</div>
-
-
-
+								</div>								
 								<!-- Contact Person 1 -->
 								<div class="col-sm-6">
 									<div align="center">

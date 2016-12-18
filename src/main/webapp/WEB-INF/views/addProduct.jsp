@@ -66,7 +66,6 @@
 								<!--First column-->
 
 								<div class="col-sm-6">
-
 									<!-- Text input Client Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Customer Name</label>
@@ -79,12 +78,9 @@
 													type="text">
 											</div>
 										</div>
-									</div>
-
-
+									</div>								
 								</div>
 								<div class="col-sm-6">
-
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -98,7 +94,6 @@
 											</div>
 										</div>
 									</div>
-
 								</div>
 
 								<!-- Contact Person 1 -->

@@ -42,133 +42,154 @@
 					<!--First column-->
 					<div class="col-sm-6">
 					
-						<!-- Text input Client Name-->	
-						<div class="form-group">
-							<label class="col-md-3 control-label">Customer Name</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="clientName"
-										placeholder="Customer Name" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-						
-						
-						<!-- Select type Province-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Province</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span> <select name="province"
-										class="form-control selectpicker">
-										<option value=" ">Select Province</option>
-										<option value="Gauteng">Gauteng</option>
-										<option value="Limpopo">Limpopo</option>
-										<option value="Nort West">North West</option>
-										<option value="Free State">Free State</option>
-										<option value="Mpumalanga">Mpumalanga</option>
-										<option value="KwaZulu Natal">KwaZulu Natal</option>
-										<option value="Northern Cape">Northern Cape</option>
-										<option value="Eastern Cape">Eastern Cape</option>
-										<option value="Mpumalanga">Western Cape</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						
-						<!-- Text input City or Town-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">City/Town</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="city_town"
-										placeholder="City / Town" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-												
-						<!-- Text input Street Name-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Street Name</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="streetName"
-										placeholder="Street Name" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-						
-						
-								
-					</div><!-- / F column -->	
-					
-					<!--Second column-->		
-					<div class="col-sm-6">
-						<!-- Text input Floor Number-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Street No</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="streetNumber"
-										placeholder="Street Number" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-																		
-						<!-- Text input Tellphone Number-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Telephone No</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input name="tellphoneNumber"
-										placeholder="Tellphone Number" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-						<!-- Text input Fax Number-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Fax Number</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input name="faxNumber"
-										placeholder="Fax Number" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-						
-						<!-- Text input Area Code-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Area Code</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
-										placeholder="Area Code" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-					
-						<!-- Text input Email-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">E-Mail</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-envelope"></i></span> <input name="emailCompany"
-										placeholder="E-Mail Address" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
+					<!--First column-->
+							<div class="col-sm-6">
 
-						
-					</div><!-- /S Column -->
+								<!-- Text input Client Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Customer Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												name="clientName" id="clientName"
+												placeholder="Customer Name" class="form-control"
+												 type="text">
+										</div>
+									</div>
+								</div>
+								
+									<!-- Text input Tellphone Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Telephone No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												 name="tellphoneNumber" id="tellphoneNumber"
+												placeholder="Tellphone Number" class="form-control"
+												 type="text">
+										</div>
+									</div>
+								</div>
+								
+								
+								<!-- Text input Email-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Company E-Mail</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-envelope"></i></span> <input
+												name="emailCompany" id="emailCompany" placeholder="Compnay E-Mail Address"
+												class="form-control"  type="text">
+										</div>
+									</div>
+								</div>
+								
+								
+								<!-- Text input Street Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Street Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="streetName" id="streetName" placeholder="Street Name"
+												class="form-control" 
+												type="text">
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- / F column -->
+
+							<!--Second column-->
+							<div class="col-sm-6">
+
+									<!-- Text input City or Town-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">City/Town</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input 
+												name="city_town" id="city_town" placeholder="City / Town"
+												class="form-control" 
+												type="text">
+										</div>
+									</div>
+								</div>
+								
+									<!-- Select type Province-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Province</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="province" id="province" class="form-control selectpicker">
+												<option value=""></option>
+												<option value="Gauteng">Gauteng</option>
+												<option value="Limpopo">Limpopo</option>
+												<option value="Nort West">North West</option>
+												<option value="Free State">Free State</option>
+												<option value="Mpumalanga">Mpumalanga</option>
+												<option value="KwaZulu Natal">KwaZulu Natal</option>
+												<option value="Northern Cape">Northern Cape</option>
+												<option value="Eastern Cape">Eastern Cape</option>
+												<option value="Mpumalanga">Western Cape</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text input Area Code-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Area Code</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input name="zipcode" id="zipcode"
+												placeholder="Area Code" class="form-control"
+												 type="text">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text input Fax Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Fax Number</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="faxNumber" id="faxNumber" placeholder="Fax Number"
+												class="form-control" 
+												type="text">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text input Street Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Street No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="streetNumber" id="streetNumber" placeholder="Street Number"
+												class="form-control"
+												type="text">
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<!--/Second column-->
+					
+					
+					
 					
 					<!-- Contact Person 1 -->
 					<div class="col-sm-6">						

@@ -65,7 +65,7 @@
 							action="updateCustomerData" modelAttribute="updateCustomerData"
 							id="updateClient">
 
-							<!--First column-->
+							<!--First column Customer Fields-->
 							<div class="col-sm-6">
 
 								<!-- Text input Client Name-->
@@ -126,9 +126,9 @@
 									</div>
 								</div>
 							</div>
-							<!-- / F column -->
+							<!-- / F column Customer Fields- -->
 
-							<!--Second column-->
+							<!--Second column Customer Fields-->
 							<div class="col-sm-6">
 
 								<!-- Text input City or Town-->
@@ -211,7 +211,7 @@
 								</div>
 
 							</div>
-							<!--/Second column-->
+							<!--/Second column Customer Fields--->
 
 							<!-- Contact Person 1 -->
 							<div class="col-sm-6">
@@ -257,7 +257,19 @@
 										</div>
 									</div>
 								</div>
-
+								<!-- Text input Contact Person 2 Cellphone Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Cellphone No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="cellphoneNumber" id="cellphoneNumber"
+												placeholder="Cellphone No" class="form-control" type="text"
+												value="${customerDetails.cellphoneNumber}">
+										</div>
+									</div>
+								</div>
 								<!-- Text input Contact Person Tellphone Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Tellphone No</label>
@@ -276,7 +288,6 @@
 							<!-- /Contact Person 1 -->
 
 							<!-- Contact Person 2 -->
-
 							<div class="col-sm-6">
 								<div align="center">
 									<b class="optionalFields">Contact Person 2 (Optional
@@ -389,7 +400,7 @@
 
 
 	<!-- Validate update Client -->
-	<script>
+	<script type="text/javascript">
 		$(document)
 				.ready(
 						function() {
@@ -412,30 +423,24 @@
 															}
 														}
 													},
-													contactPerson : {
+													tellphoneNumber : {
 														validators : {
-															stringLength : {
-																min : 2,
+															notEmpty : {
+																message : 'Tellphone number is required and cannot be empty'
 															},
-															notEmpty : {
-																message : 'Contact person is required and cannot be empty'
+															phone : {
+																country : 'US',
+																message : 'Please provide a vaild tellphone number'
 															}
 														}
 													},
-													province : {
+													emailCompany:{
 														validators : {
 															notEmpty : {
-																message : 'Province is required and cannot be empty'
-															}
-														}
-													},
-													city_town : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'City is required and cannot be empty'
+																message : 'Company email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
 															}
 														}
 													},
@@ -448,6 +453,23 @@
 																message : 'Street name is required and cannot be empty'
 															}
 														}
+													},													
+													city_town : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'City is required and cannot be empty'
+															}
+														}
+													},
+													province : {
+														validators : {
+															notEmpty : {
+																message : 'Province is required and cannot be empty'
+															}
+														}
 													},
 													zipcode : {
 														validators : {
@@ -456,27 +478,6 @@
 																	min : 4,
 																},
 																message : 'Zipcode is required and cannot be empty'
-															}
-														}
-													},
-													floorNumber : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 1,
-																},
-																message : 'Floor number is required and cannot be empty'
-															}
-														}
-													},
-													tellphoneNumber : {
-														validators : {
-															notEmpty : {
-																message : 'Tellphone number is required and cannot be empty'
-															},
-															phone : {
-																country : 'US',
-																message : 'Please provide a vaild tellphone number'
 															}
 														}
 													},
@@ -491,7 +492,37 @@
 															}
 														}
 													},
-													cellNumber : {
+													streetNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Street number is required and cannot be empty'
+															}
+														}
+													},
+													firstName : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'First Name is required and cannot be empty'
+															}
+														}
+													},
+													lastName : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'Last Name is required and cannot be empty'
+															}
+														}
+													},
+													cellphoneNumber : {
 														validators : {
 															notEmpty : {
 																message : 'Cell number is required and cannot be empty'
@@ -512,35 +543,6 @@
 															}
 														}
 													}
-												}
-											});
-						});
-	</script>
-
-
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchCustomer')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok'
-
-												},
-												fields : {
-													clientName : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-
-															notEmpty : {
-																message : 'Client name is required to search and cannot be empty'
-															}
-														}
-													},
 												}
 											});
 						});

@@ -46,9 +46,8 @@
 							<!--First column-->
 							<div class="col-sm-6">
 
-								<!--First column-->
+								<!--First column Customer Fields-->
 								<div class="col-sm-6">
-
 									<!-- Text input Client Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Customer Name</label>
@@ -91,8 +90,6 @@
 											</div>
 										</div>
 									</div>
-
-
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -106,11 +103,10 @@
 										</div>
 									</div>
 								</div>
-								<!-- / F column -->
+								<!-- / F Customer Fields -->
 
-								<!--Second column-->
+								<!--Second column Customer Fields-->
 								<div class="col-sm-6">
-
 									<!-- Text input City or Town-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">City/Town</label>
@@ -189,10 +185,7 @@
 									</div>
 
 								</div>
-								<!--/Second column-->
-
-
-
+								<!--/Second column Customer Fields-->
 
 								<!-- Contact Person 1 -->
 								<div class="col-sm-6">
@@ -345,8 +338,7 @@
 
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
-										<br>
-										<br> <input type="submit" value="Add Customer"
+										<br> <br> <input type="submit" value="Add Customer"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="addClnt">
 									</div>
@@ -403,20 +395,24 @@
 															}
 														}
 													},
-													province : {
+													tellphoneNumber : {
 														validators : {
 															notEmpty : {
-																message : 'Province is required and cannot be empty'
+																message : 'Tellphone number is required and cannot be empty'
+															},
+															phone : {
+																country : 'US',
+																message : 'Please provide a vaild tellphone number'
 															}
 														}
 													},
-													city_town : {
+													emailCompany:{
 														validators : {
 															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'City is required and cannot be empty'
+																message : 'Company email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
 															}
 														}
 													},
@@ -429,14 +425,21 @@
 																message : 'Street name is required and cannot be empty'
 															}
 														}
-													},
-													streetNumber : {
+													},													
+													city_town : {
 														validators : {
-															stringLength : {
-																min : 3,
-															},
 															notEmpty : {
-																message : 'Street number is required and cannot be empty'
+																stringLength : {
+																	min : 3,
+																},
+																message : 'City is required and cannot be empty'
+															}
+														}
+													},
+													province : {
+														validators : {
+															notEmpty : {
+																message : 'Province is required and cannot be empty'
 															}
 														}
 													},
@@ -450,27 +453,6 @@
 															}
 														}
 													},
-													floorNumber : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 1,
-																},
-																message : 'Floor number is required and cannot be empty'
-															}
-														}
-													},
-													tellphoneNumber : {
-														validators : {
-															notEmpty : {
-																message : 'Tellphone number is required and cannot be empty'
-															},
-															phone : {
-																country : 'US',
-																message : 'Please provide a vaild tellphone number'
-															}
-														}
-													},
 													faxNumber : {
 														validators : {
 															notEmpty : {
@@ -479,6 +461,16 @@
 															phone : {
 																country : 'US',
 																message : 'Please provide  a vaild fax number'
+															}
+														}
+													},
+													streetNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Street number is required and cannot be empty'
 															}
 														}
 													},

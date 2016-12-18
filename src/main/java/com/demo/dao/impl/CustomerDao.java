@@ -3,7 +3,6 @@ package com.demo.dao.impl;
 
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -15,13 +14,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.CustomerBean;
-import com.demo.dao.AccessoriesDaoInt;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.CustomerContactDetailsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.CustomerContactDetails;
-import com.demo.model.Device;
-import com.demo.model.Employee;
 
 @Repository("clientDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -42,10 +38,10 @@ public class CustomerDao implements CustomerDaoInt{
 	public String saveClient(Customer customer) {
 		try{
 			sessionFactory.getCurrentSession().saveOrUpdate(customer);
-			retMessage =  "Customer "+ customer.getClientName() + " "+ "Was successfully added";
+			retMessage =  "Customer "+ customer.getCustomerName() + " "+ "Was successfully added";
 		}
 		catch(Exception e){
-			retMessage = "Customer "+ customer.getClientName() + " is not added\n" + e.getMessage();
+			retMessage = "Customer "+ customer.getCustomerName() + " is not added\n" + e.getMessage();
 		}
 		
 		return retMessage;
@@ -60,7 +56,7 @@ public class CustomerDao implements CustomerDaoInt{
 			clientList = getClientList();
 			for(Customer tempClient:clientList)
 			{
-				if(tempClient.getClientName().equalsIgnoreCase(clientName))
+				if(tempClient.getCustomerName().equalsIgnoreCase(clientName))
 				{
 					customer= tempClient;
 					break;
@@ -85,19 +81,14 @@ public class CustomerDao implements CustomerDaoInt{
 			    .setMaxResults(maxResults!=null?maxResults:10)
 			    .list();
 	}
-    @SuppressWarnings("unchecked")
-	private List<Customer> getClientList(){
-    	Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Customer.class);
-		return (List<Customer>)criteria.list(); 
-    }
 	@Override
 	public String updateClient(Customer customer) {
 		try{
 			sessionFactory.getCurrentSession().update(customer);
-			retMessage = "Customer "+ customer.getClientName()+ " is successfully updated";
+			retMessage = "Customer "+ customer.getCustomerName()+ " is successfully updated";
 		}
 		catch( Exception e){
-			retMessage = "Customer "+ customer.getClientName() + " is not updated\n" + e.getMessage();
+			retMessage = "Customer "+ customer.getCustomerName() + " is not updated\n" + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -119,7 +110,7 @@ public class CustomerDao implements CustomerDaoInt{
 		    customer = new Customer();
 			customer.setActive(true);
 		    customer.setCity_town(customerBean.getCity_town());
-		    customer.setClientName(customerBean.getClientName());
+		    customer.setCustomerName(customerBean.getClientName());
 		    customer.setEmail(customerBean.getEmailCompany());
 		    customer.setFaxNumber(customerBean.getFaxNumber());
 		    customer.setProvince(customerBean.getProvince());
@@ -131,6 +122,7 @@ public class CustomerDao implements CustomerDaoInt{
 		    list = new ArrayList<CustomerContactDetails>();
 		     contactDetails = new CustomerContactDetails();
 		     contactDetails.setCellNumber(customerBean.getCellphoneNumber());
+		     contactDetails.setTelephoneNumber(customerBean.getTelephoneNumber());
 		     contactDetails.setEmail(customerBean.getEmail());
 		     contactDetails.setFirstName(customerBean.getFirstName());
 		     contactDetails.setLastName(customerBean.getLastName());
@@ -143,17 +135,31 @@ public class CustomerDao implements CustomerDaoInt{
 		    	 contactDetails1.setEmail(customerBean.getEmail1());
 		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
 		    	 contactDetails1.setLastName(customerBean.getLastName1());
-		    	 contactDetails.setCustomer(customer);
+		    	 contactDetails1.setCustomer(customer);
+		    	 list.add(contactDetails1);
 		     }
 		    
 		    retMessage = saveClient(customer);
 		    customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
 		}catch(Exception e){
-			retMessage = "Customer "+ customer.getClientName() +" "+ "is not added";
+			retMessage = "Customer "+ customer.getCustomerName() +" "+ "is not added";
 		}
 	    
 	    
 		return retMessage;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Customer> getClientList() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Customer.class);
+		return (List<Customer>)criteria.list(); 
+	}
+
+	@Override
+	public CustomerBean contactDetails(String customerName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

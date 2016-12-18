@@ -34,7 +34,7 @@ public class Customer implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="Customer_Name")
-	private String clientName;
+	private String customerName;
 	@Column(name="IsACTIVE")
 	private boolean isActive;
 	@Column(name="Telephone_Number")

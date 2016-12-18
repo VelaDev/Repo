@@ -10,9 +10,11 @@ public interface CustomerDaoInt {
 	String saveClient(Customer customer);
 	Customer getClientByClientName(String clientName);
 	List<Customer> getClientList(Integer offset, Integer maxResults);
+	List<Customer> getClientList();
 	String updateClient(Customer customer);
 	Integer count();
 	String prepareCustomer(CustomerBean customerBean);
+	CustomerBean contactDetails(String customerName);
 	
 
 }

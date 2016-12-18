@@ -10,6 +10,7 @@ public interface CustomerServiceInt {
 	String saveClient(Customer customer);
 	Customer getClientByClientName(String clientName);
 	List<Customer> getClientList(Integer offset, Integer maxResults);
+	List<Customer> getClientList();
 	String updateCustomer(Customer customer);
 	Integer count();
 	String prepareCustomer(CustomerBean customerBean);

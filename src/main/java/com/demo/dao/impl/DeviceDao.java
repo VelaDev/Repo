@@ -57,7 +57,7 @@ public class DeviceDao implements DeviceDaoInt {
 		try{
 			
 		       sessionFactory.getCurrentSession().saveOrUpdate(device);
-		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getCustomer().getClientName();
+		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getCustomer().getCustomerName();
 		   }
 		catch(Exception e){
 			    retMessage = "Device "+ device.getSerialNumber() + " is not added\n" + e.getMessage();
@@ -95,7 +95,7 @@ public class DeviceDao implements DeviceDaoInt {
 			
 			
 			sessionFactory.getCurrentSession().update(device);
-			retMessage = "Device "+device.getSerialNumber()+ " is successfully updated. Device belongs to customer : " + device.getCustomer().getClientName();
+			retMessage = "Device "+device.getSerialNumber()+ " is successfully updated. Device belongs to customer : " + device.getCustomer().getCustomerName();
 		}
 		catch(Exception e){
 			retMessage = "Device "+device.getSerialNumber()+ " is not updated\n"+ e.getMessage();
@@ -130,7 +130,7 @@ public class DeviceDao implements DeviceDaoInt {
 		customer.setStreetName(deviceBean.getStreetName());
 		customer.setTellphoneNumber(deviceBean.getTellphoneNumber());
 		customer.setZipcode(deviceBean.getZipcode());
-		customer.setClientName(deviceBean.getClientName());
+		customer.setCustomerName(deviceBean.getClientName());
 		
 		retMessage = customerDaoInt.saveClient(customer);
 		customer = customerDaoInt.getClientByClientName(deviceBean.getClientName());
@@ -206,7 +206,7 @@ public class DeviceDao implements DeviceDaoInt {
 			}
 		}
 		else{
-			retMessage = "Customer "+ customer.getClientName() +" does not exist on database. Please make sure that the customer exist before assigning a device" ;
+			retMessage = "Customer "+ customer.getCustomerName() +" does not exist on database. Please make sure that the customer exist before assigning a device" ;
 		}
 		
 		return retMessage;
@@ -276,7 +276,7 @@ public class DeviceDao implements DeviceDaoInt {
 			aList.addAll(criteria.list());
 			for (Object pro : aList) {
 				if (pro instanceof Device) {
-					if (((Device) pro).getCustomer().getClientName()!=null&&((Device) pro).getCustomer().getClientName().startsWith(name) ) {
+					if (((Device) pro).getCustomer().getCustomerName()!=null&&((Device) pro).getCustomer().getCustomerName().startsWith(name) ) {
 						productList.add((Device) pro);
 						 customer = ((Device) pro).getCustomer();
 					}

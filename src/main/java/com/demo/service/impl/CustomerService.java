@@ -53,4 +53,9 @@ public class CustomerService implements CustomerServiceInt{
 		return clientDAO.prepareCustomer(customerBean);
 	}
 
+	@Override
+	public List<Customer> getClientList() {
+		return clientDAO.getClientList();
+	}
+
 }

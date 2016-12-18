@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,9 +32,8 @@ public class CustomerContactDetails implements Serializable{
 	
 	
 	@Id
-	@GeneratedValue
-	@Column(name="Record_ID")
-	private int recordID;
+	@Column(name="Email")
+	private String email;
 	@Column(name="First_Name")
 	private String firstName;
 	@Column(name="First_LastName")
@@ -42,8 +42,6 @@ public class CustomerContactDetails implements Serializable{
 	private String telephoneNumber;
 	@Column(name="Cell_Number")
 	private String cellNumber;
-	@Column(name="Email")
-	private String email;
 	
 	@ManyToOne
 	@JoinColumn(name="Customer")

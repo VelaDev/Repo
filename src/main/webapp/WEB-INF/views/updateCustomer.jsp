@@ -38,9 +38,9 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<form action="searchCustomer" method="post" id="searchCustomer">
+				<!-- 		<form action="searchCustomer" method="post" id="searchCustomer">
 							<div class="row">
-								<!-- Text input Search-->
+								Text input Search
 								<div class="form-group">
 									<label class="col-md-3 control-label">Search Customer </label>
 									<div class="col-md-4 inputGroupContainer">
@@ -58,7 +58,7 @@
 							</div>
 
 							<hr>
-						</form>
+						</form> -->
 
 						<form:form class="well form-horizontal" method="post"
 							action="updateCustomerData" modelAttribute="updateCustomerData"
@@ -74,22 +74,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
-												name="clientName" placeholder="Client Name"
-												class="form-control" value="${client.clientName}"
-												type="text">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Contact Person-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contact Person</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input
-												name="contactPerson"
-												class="form-control" value="${client.contactPerson}"
+												name="clientName" placeholder="Customer Name"
+												class="form-control" value="${customer.customerName}"
 												type="text">
 										</div>
 									</div>
@@ -103,7 +89,7 @@
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="province"
 										class="form-control selectpicker">
-										<option value=" ">${client.province}</option>
+										<option value=" ">${customer.province}</option>
 										<option value="Gauteng">Gauteng</option>
 										<option value="Limpopo">Limpopo</option>
 										<option value="Nort West">North West</option>
@@ -127,7 +113,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="city_town" placeholder="City / Town"
-												class="form-control" value="${client.city_town}" type="text">
+												class="form-control" value="${customer.city_town}" type="text">
 										</div>
 									</div>
 								</div>
@@ -140,22 +126,12 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="streetName" placeholder="Street Name"
-												class="form-control" value="${client.streetName}"
+												class="form-control" value="${customer.streetName}"
 												type="text">
 										</div>
 									</div>
 								</div>
-						<!-- Text input Area Code-->
-						 <div class="form-group">
-							<label class="col-md-3 control-label">Area Code</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
-										placeholder="Area Code" class="form-control" value="${client.zipcode}" type="text">
-								</div>
-							</div>
-						</div>
+					
 
 					</div><!-- / F column -->
 
@@ -171,23 +147,11 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="floorNumber" placeholder="Floor Number"
-												class="form-control" value="${client.streetNumber}"
+												class="form-control" value="${customer.streetNumber}"
 												type="text">
 										</div>
 									</div>
 								</div>
-								
-								<!-- Text input Contact Person 2-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Contact Person </label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="contactPerson2"
-										placeholder="Contact Person (Optional)" value="${client.contactPerson2}" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
 								
 								<!-- Text input Tellphone Number-->
 								<div class="form-group">
@@ -197,7 +161,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="tellphoneNumber" placeholder="Tellphone Number"
-												class="form-control" value="${client.tellphoneNumber}"
+												class="form-control" value="${customer.tellphoneNumber}"
 												type="text">
 										</div>
 									</div>
@@ -210,24 +174,22 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="faxNumber" placeholder="Fax Number"
-												class="form-control" value="${client.faxNumber}" type="text">
+												class="form-control" value="${customer.faxNumber}" type="text">
 										</div>
 									</div>
 								</div>
-								<!-- Text input Cellphone Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Mobile Number</label>
+								
+									<!-- Text input Area Code-->
+								 <div class="form-group">
+									<label class="col-md-3 control-label">Area Code</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="cellNumber" placeholder="Mobile Number"
-												class="form-control" value="${client.cellNumber}"
-												type="text">
+												class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+												placeholder="Area Code" class="form-control" value="${customer.zipcode}" type="text">
 										</div>
 									</div>
 								</div>
-
 								<!-- Text input Email-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">E-Mail</label>
@@ -236,10 +198,11 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input
 												name="email" placeholder="E-Mail Address"
-												class="form-control" value="${client.email}" type="text">
+												class="form-control" value="${customer.email}" type="text">
 										</div>
 									</div>
 								</div>
+								
 								
 								</div><!--/Second column-->
 
@@ -255,7 +218,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
-										placeholder="First Name" class="form-control" type="text">
+										placeholder="First Name" class="form-control" type="text" value="${customerDetails.firstName}">
 								</div>
 							</div>
 						</div><!-- Text input Contact Person  Last Name-->
@@ -265,7 +228,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
-										placeholder="Last Name" class="form-control" type="text">
+										placeholder="Last Name" class="form-control" type="text" value="${customerDetails.lastName}">
 								</div>
 							</div>
 						</div>
@@ -277,7 +240,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-										placeholder="Email Address" class="form-control" type="email">
+										placeholder="Email Address" class="form-control" type="email" value="${customerDetails.email}">
 								</div>
 							</div>
 						</div>
@@ -290,7 +253,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber"
-										placeholder="Cellphone No" class="form-control" type="text">
+										placeholder="Cellphone No" class="form-control" type="text"value="${customerDetails.cellphoneNumber}">
 								</div>
 							</div>
 						</div>
@@ -303,7 +266,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-earphone"></i></span> <input name="tellphoneNumber"
-										placeholder="Tellphone No" class="form-control" type="text">
+										placeholder="Tellphone No" class="form-control" type="text"value="${customerDetails.telephoneNumber}">
 								</div>
 							</div>
 						</div>
@@ -323,7 +286,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
-										placeholder="First Name" class="form-control" type="text">
+										placeholder="First Name" class="form-control" type="text" value="${customerDetails.firstName1}">
 								</div>
 							</div>
 						</div><!-- Text input Contact Person 2 Last Name-->
@@ -333,7 +296,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
-										placeholder="Last Name" class="form-control" type="text">
+										placeholder="Last Name" class="form-control" type="text" value="${customerDetails.lastName1}">
 								</div>
 							</div>
 						</div>
@@ -345,7 +308,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-										placeholder="Email Address" class="form-control" type="email">
+										placeholder="Email Address" class="form-control" type="email"value="${customerDetails.email1}">
 								</div>
 							</div>
 						</div>
@@ -356,7 +319,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-earphone"></i></span> <input name="cellphoneNumber"
-										placeholder="Cellphone No" class="form-control" type="text">
+										placeholder="Cellphone No" class="form-control" type="text"value="${customerDetails.cellphoneNumber1}">
 								</div>
 							</div>
 						</div>
@@ -367,7 +330,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-earphone"></i></span> <input name="tellphoneNumber"
-										placeholder="Tellphone No" class="form-control" type="text">
+										placeholder="Tellphone No" class="form-control" type="text"value="${customerDetails.telephoneNumber1}">
 								</div>
 							</div>
 						</div>

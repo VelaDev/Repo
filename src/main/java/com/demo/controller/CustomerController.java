@@ -18,6 +18,7 @@ import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.service.AccessoriesInt;
+import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.DeviceServiceInt;
 
@@ -31,6 +32,8 @@ public class CustomerController {
 	private CustomerServiceInt customerServiceInt;
 	@Autowired
 	private DeviceServiceInt deviceServiceInt;
+	@Autowired
+	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
 	@Autowired
 	private HttpSession session;
 	@Autowired
@@ -148,12 +151,12 @@ public class CustomerController {
 		return model;
 	}
 	@RequestMapping(value="updateCustomerData",method=RequestMethod.POST)
-	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")Customer customer){
+	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")CustomerBean customerBean){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			retMessage =customerServiceInt.updateCustomer(customer); 
+			retMessage =customerServiceInt.prepareCustomer(customerBean); 
 			model.addObject("retMessage", retMessage);
 			model.setViewName("updateCustomer");
 		}
@@ -165,13 +168,15 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="searchCustomer")
-	public ModelAndView searchCustomer(@RequestParam("clientName") String clientName,@ModelAttribute Customer customer) {
+	public ModelAndView searchCustomer(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			customer = customerServiceInt.getClientByClientName(clientName);
+			customer = customerServiceInt.getClientByClientName(customerName);
+			
 			model.addObject("customer", customer);
+			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
 			model.setViewName("updateCustomer");
 		}
 		else{
@@ -190,7 +195,7 @@ public class CustomerController {
 			count = customerServiceInt.count();
 			model.addObject("count",count);
 			model.addObject("offset", offset);
-			model.addObject("displayCustomers", customerServiceInt.getClientList(offset, maxResults));
+			model.addObject("displayCustomers", customerServiceInt.getClientList());
 			model.setViewName("displayCustomers");
 		}
 		else{

@@ -9,12 +9,18 @@
 <link
 	href="<c:url value="/resources/dynamicfields/css/extented_fields.css" />"
 	rel="stylesheet" type="text/css" />
-<link
-	href="<c:url value="/resources/custom/css/vela_custom.css" />"
+<link href="<c:url value="/resources/custom/css/vela_custom.css" />"
 	rel="stylesheet" type="text/css" />
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
 	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
 <!--/style-->
 </head>
 <body>
@@ -38,297 +44,33 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<!-- tab nav -->
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#orderTonner" data-toggle="tab">Order Tonner</a></li>
-						<li><a href="#orderParts" data-toggle="tab">Order Parts</a></li>
-					</ul>
-					
 					<div class="tab-content">
-					
-						<!--order Order Tonner-->
-						<div class="tab-pane" id="orderTonner">
-							<h4 align="center">Order Tonner</h4>
-							<form:form class="well form-horizontal">								
-							
-							<!-- Fields goes here -->
-							
-							<h4 align="center">Customer Details</h4>
-							
-								<!--First Column-->
-									<div class="col-md-6">
-									
-									
-										<!-- Text input Customer Name-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Customer Name</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-user"></i></span> <input
-														name="customerName" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-										<!-- Text input Address-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Address</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-home"></i></span> <input
-														name="address" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-									</div><!--/F Column-->
-									
-									<!--Second Column-->
-									<div class="col-md-6">
-										
-										<!-- Text input Fax No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Fax No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-earphone"></i></span> <input
-														name="faxno" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-										<!-- Text input Tellphone No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Tellphone No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-earphone"></i></span> <input
-														name="tellphone" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-
-									</div><!-- /S col -->
-									
-									
-									<br/><br/>
-									<h4 align="center">Tonner Details</h4>
-									<br/>
-									
-								<!--First Column-->
-									<div class="col-md-6">
-									
-									
-										<!-- Text input Tonner Code-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Tonner Code</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="tonnerCode" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-										<!-- Text input Device Model No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Device Model No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="deviceModel" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-									</div><!--/F Column-->
-									
-									<!--Second Column-->
-									<div class="col-md-6">
-										
-										<!-- Text input Colour-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Colour</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span>
-														<select name="colour" id="colour" class="form-control">
-															<option value="">Choose Colour</option>
-															<option value="grey">Grey</option>
-															<option value="blue">Blue</option>
-														</select>
-												</div>
-											</div>
-										</div>
-										
-										<!-- Text input Quantity No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Quantity</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="quantity" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-
-									</div><!-- /S col -->
-									
-								<br/><br/>
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-md-8">
-										<input type="submit" value="Order Tonner"
-											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="orderT">
-									</div>
-								</div>
-							</form:form>
-						</div>
-						<!--/order tonner-->
-						
-						<!--order parts tab-->
-						<div class="tab-pane" id="orderParts">
-							<h4 align="center">Order Parts</h4>
-							<form:form class="well form-horizontal" modelAttribute="makeOrder" action="makeOrder">
-							
-								
-									<h4 align="center">Customer Details</h4>
-							
-								<!--First Column-->
-									<div class="col-md-6">
-									
-									
-										<!-- Text input Customer Name-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Customer Name</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-user"></i></span> <input
-														name="customerName" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-										<!-- Text input Address-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Address</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-home"></i></span> <input
-														name="address" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-									</div><!--/F Column-->
-									
-									<!--Second Column-->
-									<div class="col-md-6">
-										
-										<!-- Text input Fax No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Fax No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-earphone"></i></span> <input
-														name="faxno" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-										<!-- Text input Tellphone No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Tellphone No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-earphone"></i></span> <input
-														name="tellphone" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-
-									</div><!-- /S col -->
-								
-								<br/><br/>
-								<h4 align="center">Part Detials</h4>
-								<br/>
-										<!--First Column-->
-									<div class="col-md-6">
-
-										<!-- Text input Device Serial No-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Device Serial No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="device" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-
-										<!-- Select type Part Number:-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Part Number</label>
-											<div class="col-md-6 selectContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select name="part"
-														class="form-control selectpicker">
-														<option value="">Select Part Number</option>
-														<option value="CLT-R806K">CLT-R806K</option>
-														<option value="CLT-R806X">CLT-R806X</option>
-														<option value="CLT-W806">CLT-W806</option>
-													</select>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!--/F Column-->
-
-									<!--Second column-->
-									<div class="col-sm-6">
-
-										<!-- Text input Quantity-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Quantity</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="quantity" class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-
-									</div>
-									<!--/S Column-->
-							
-							
-								<br/><br/>
-								<div class="form-group">
-									<div class="col-sm-offset-2 col-md-8">
-										<input type="submit" value="Order Parts"
-											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="orderP">
-									</div>
-								</div>
-							</form:form>
-						</div>
-						<!--/order parts tab-->
-						
+						<!-- Below table will be displayed as Data table -->
+						<table id="myDatatable" class="display datatable">
+							<thead>
+								<tr>
+									<th>Part Number <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Description <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Model No <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Iterating over the list sent from Controller -->
+								<c:forEach var="list" items="${deviceList}">
+									<tr>
+										<td>${list.customer.customerName}</td>
+										<td>${list.serialNumber}</td>
+										<td>${list.endDate}</td>
+										<th><a
+											href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -348,7 +90,7 @@
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	
+
 	<script type="text/javascript"
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
 
@@ -356,6 +98,19 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+
+	<script>
+		$(document).ready(function() {
+			$('#myDatatable').DataTable({
+				"jQueryUI" : true,
+				"pagingType" : "full_numbers",
+				"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+			/* few more options are available to use */
+			});
+		});
+	</script>
 
 	<!-- /Script -->
 

@@ -67,7 +67,7 @@ public class EmployeeController {
 			}else{
 				
 				model.addObject("loggedInUser", employee.getEmail());
-				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
+				if(employee.getRole().equalsIgnoreCase("ADMIN") && employee.getRole().equalsIgnoreCase("ADMINISTRATOR")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 					
 					retRole= "redirect:home";

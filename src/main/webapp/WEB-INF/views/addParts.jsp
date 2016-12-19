@@ -116,14 +116,10 @@
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select
-													name="partNumber" class="form-control selectpicker">
-													<option value="">Select Part Number
-													<option>
-													<option value="CLT-R806K">CLT-R806K</option>
-													<option value="CLT-R806X">CLT-R806X</option>
-													<option value="CLT-W806">CLT-W806</option>
-												</select>
+													class="glyphicon glyphicon-list"></i></span> <input
+													name="partNumber" type="text"
+													class="form-control" placeholder="Part Number"
+													id="partNumber">
 											</div>
 										</div>
 									</div>
@@ -198,17 +194,9 @@
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select
-													name="description" class="form-control selectpicker">
-													<option value="">Select Description
-													<option>
-													<option value="Black Imaging Unit">Black Imaging
-														Unit</option>
-													<option value="Color Imaging Unit">Color Imaging
-														Unit</option>
-													<option value="Waste Toner Bottle">Waste Toner
-														Bottle</option>
-												</select>
+													class="glyphicon glyphicon-list"></i></span> <input
+													class="form-control" id="description"
+													placeholder="Description" type="text" name="description">
 											</div>
 										</div>
 									</div>

@@ -2,6 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">	
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 <style>
 .groupclientdetails {
 	float: left;
@@ -9,7 +12,7 @@
 
 .groupproductdetails {
 	float: right;
-	margin-right: +10%;
+    margin-right: -20%;
 }
 
 .content {
@@ -42,15 +45,19 @@
 								<div class="groupdetails-row-padding">
 									<div class="groupproductdetails">
 										<div class="content">
-											<legend>Machine Accessories</legend>
-											<table class="table table-hover ">
-												<thead style="background-color: #D6F1F6;">
-													<tr class='clickable-row'>
-														<th>Accessory Type</th>
-														<th>Serial No</th>
+											<!-- Below table will be displayed as Data table -->
+											<table id="myDatatable" class="display datatable">
+												<thead>
+												<legend>Machine Accessories</legend>
+													<tr>
+														<th>Accessory Type <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+														<th>Serial No<img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+														
 													</tr>
 												</thead>
 												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+													
 													<c:forEach items="${accessories}" var="accessory">
 														<tr>
 															<th><h6>
@@ -58,13 +65,13 @@
 																</h6></th>
 															<th><h6>
 																	<c:out value="${accessory.serial}" />
-																</h6></th>
-		
+															</h6></th>
+															 
 														</tr>
 													</c:forEach>
+													
 												</tbody>
 											</table>
-											<%-- </c:if> --%>
 										</div>
 									</div>
 									<div class="groupclientdetails">
@@ -178,5 +185,20 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Script -->
+<script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+
+
+<script>
+	$(document).ready(function() {
+		$('#myDatatable').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+</html>
+	
 </body>
 </html>

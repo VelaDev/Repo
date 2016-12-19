@@ -14,7 +14,7 @@
 <link type="text/stylesheet"
 	src="<c:url value="/resources/custom/css/vela_custom.css" />">
 <style>
-li {
+li{
 	list-style: none;
 }
 </style>

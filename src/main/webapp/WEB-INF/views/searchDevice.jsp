@@ -51,17 +51,15 @@
 													<td>${list.startDate}</td>
 													<td>${list.endDate}</td> 
                                                     <th><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
-                                                    <th><a href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
+                                                    <th><a href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">edit</a></th>
 												</tr>
 											</c:forEach>
 										</tbody>
 									</table>
 							</div>
 						</div>
-
 					</div>
 					<!-- /tab-content -->
-
 				</div>
 				<!-- /panel body -->
 			</div>

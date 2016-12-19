@@ -148,58 +148,79 @@ public class DeviceDao implements DeviceDaoInt {
 			Accessories accessory = new Accessories();
 			
 			if( deviceBean.getAdditionalPaperTraysTypeSerial() != null){
-				accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
-				accessory.setAccessotyType("Additional Paper Trays");
-				accessory.setDevice(device);
-				list.add(accessory);
+				if(deviceBean.getAdditionalPaperTraysTypeSerial().length()>0){
+					
+					accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
+					accessory.setAccessotyType("Additional Paper Trays");
+					accessory.setDevice(device);
+					list.add(accessory);
+				}
 			}
 			if( deviceBean.getBridgeUnitSerialTypeSerialNo()!=null){
-				Accessories accessory1 = new Accessories();
-				accessory1.setSerial(deviceBean.getBridgeUnitSerialTypeSerialNo());
-				accessory1.setAccessotyType("Bridge Unit");
-				accessory1.setDevice(device);
-				list.add(accessory1);
+				if(deviceBean.getBridgeUnitSerialTypeSerialNo().length()>0){
+					
+					Accessories accessory1 = new Accessories();
+					accessory1.setSerial(deviceBean.getBridgeUnitSerialTypeSerialNo());
+					accessory1.setAccessotyType("Bridge Unit");
+					accessory1.setDevice(device);
+					list.add(accessory1);
+				}
 			}
 			
 			if( deviceBean.getCredenzaSerialNo()!=null){
-				Accessories accessory2 = new Accessories();
-				accessory2.setSerial(deviceBean.getCredenzaSerialNo());
-				accessory2.setAccessotyType("Credenza");
-				accessory2.setDevice(device);
-				list.add(accessory2);
+				if(deviceBean.getCredenzaSerialNo().length()>0){
+					
+					Accessories accessory2 = new Accessories();
+					accessory2.setSerial(deviceBean.getCredenzaSerialNo());
+					accessory2.setAccessotyType("Credenza");
+					accessory2.setDevice(device);
+					list.add(accessory2);
+				}
+				
 			}
 			
 			
 			if( deviceBean.getFaxUnitSerialTypeSerialNo()!=null){
-				Accessories accessory3 = new Accessories();
-				accessory3.setSerial(deviceBean.getFaxUnitSerialTypeSerialNo());
-				accessory3.setAccessotyType("Fax Unit");
-				accessory3.setDevice(device);
-				list.add(accessory3);
+				if(deviceBean.getFaxUnitSerialTypeSerialNo().length()>0){
+					Accessories accessory3 = new Accessories();
+					accessory3.setSerial(deviceBean.getFaxUnitSerialTypeSerialNo());
+					accessory3.setAccessotyType("Fax Unit");
+					accessory3.setDevice(device);
+					list.add(accessory3);
+				}
 			}
 			
 			if( deviceBean.getFinisherTypeSerialNo()!=null){
-				Accessories accessory4 = new Accessories();
-				accessory4.setSerial(deviceBean.getFinisherTypeSerialNo());
-				accessory4.setAccessotyType("Finisher");
-				accessory4.setDevice(device);
-				list.add(accessory4);
+				if(deviceBean.getFinisherTypeSerialNo().length()>0){
+					
+					Accessories accessory4 = new Accessories();
+					accessory4.setSerial(deviceBean.getFinisherTypeSerialNo());
+					accessory4.setAccessotyType("Finisher");
+					accessory4.setDevice(device);
+					list.add(accessory4);
+				}
 			}
 			
 			if( deviceBean.getLtcTypeSerial()!=null){
-				Accessories accessory5 = new Accessories();
-				accessory5.setSerial(deviceBean.getLtcTypeSerial());
-				accessory5.setAccessotyType("LTC");
-				accessory5.setDevice(device);
-				list.add(accessory5);
+				if(deviceBean.getLtcTypeSerial().length()>0){
+					
+					Accessories accessory5 = new Accessories();
+					accessory5.setSerial(deviceBean.getLtcTypeSerial());
+					accessory5.setAccessotyType("LTC");
+					accessory5.setDevice(device);
+					list.add(accessory5);
+				}
 			}
 			
 			if( deviceBean.getOneBinTrayTypeSerialNo()!=null){
-				Accessories accessory6 = new Accessories();
-				accessory6.setSerial(deviceBean.getOneBinTrayTypeSerialNo());
-				accessory6.setAccessotyType("One bin tray");
-				accessory6.setDevice(device);
-				list.add(accessory6);
+				if(deviceBean.getOneBinTrayTypeSerialNo().length()>0){
+					
+					Accessories accessory6 = new Accessories();
+					accessory6.setSerial(deviceBean.getOneBinTrayTypeSerialNo());
+					accessory6.setAccessotyType("One bin tray");
+					accessory6.setDevice(device);
+					list.add(accessory6);
+				}
 			}
 			
 			

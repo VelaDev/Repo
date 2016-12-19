@@ -224,7 +224,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
 													name="colour" class="form-control selectpicker">
-													<option value=" ">${productObject.colour}</option>
+													<option value="">${productObject.colour}</option>
 													<option value="White">White</option>
 													<option value="Blue">Blue</option>
 												</select>
@@ -267,7 +267,7 @@
 													class="glyphicon glyphicon-list"></i></span> <select
 													name="province" id="province"
 													class="form-control selectpicker">
-													<option value="${productObject.province}"></option>
+													<option value="${productObject.province}">${productObject.province}</option>
 													<option value="Gauteng">Gauteng</option>
 													<option value="Limpopo">Limpopo</option>
 													<option value="Nort West">North West</option>

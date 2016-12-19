@@ -38,6 +38,7 @@
 												<th>Start Date <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
 												<th>End Date <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
 												<th>Details</th>
+												<th>Edit</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -50,6 +51,7 @@
 													<td>${list.startDate}</td>
 													<td>${list.endDate}</td> 
                                                     <th><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
+                                                    <th><a href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
 												</tr>
 											</c:forEach>
 										</tbody>

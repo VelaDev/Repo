@@ -2,6 +2,7 @@ package com.demo.model;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -45,9 +46,12 @@ public class Spare implements Serializable{
 	private String supplierName;
 	@Column(name="ReceivedBy")
 	private String receivedBy;
+	@Temporal(value =TemporalType.TIMESTAMP)
+	@Column(name="Date_Arrived")
+	private Date dateTime;
 	
 	
-	@OneToMany(mappedBy="part",cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
 	private Set<Orders> orders;
 
 }

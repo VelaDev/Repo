@@ -63,7 +63,7 @@ public class Orders implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="Spare")
-	private Spare part;
+	private Spare spare;
 	@ManyToOne
 	@JoinColumn(name="Customer_Name")
 	private Customer customer;

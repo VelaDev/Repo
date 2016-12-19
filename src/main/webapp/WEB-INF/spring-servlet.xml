@@ -61,7 +61,7 @@ http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 				 <value>com.demo.model.Technician</value>
 				 <value>com.demo.model.User</value>
 				 <value>com.demo.model.TicketHistory</value>
-				 <value>com.demo.model.Compitability</value>
+				 <value>com.demo.model.Compatibility</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

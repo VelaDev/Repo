@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-  <title>Add Parts | Velaphanda Trading & Projects</title>
+  <title>Add Spares | Velaphanda Trading & Projects</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">  
 	
@@ -25,22 +25,22 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Add Spares</b>
+							<b>Spares & Compatibility</b>
 						</div>
 					</h3>
 				</div> 
 				<div class="panel-body">
 						<!-- tab nav -->
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#spare"	data-toggle="tab">Spare</a></li>
-						<li><a href="#parts" data-toggle="tab">Parts</a></li>
-						<li><a href="#tonner" data-toggle="tab">Tonner</a></li>
+						<li class="active"><a href="#compatibility"	data-toggle="tab">Compatibility</a></li>
+						<li><a href="#spares" data-toggle="tab">Spares</a></li>
+						<!-- <li><a href="#tonner" data-toggle="tab">Tonner</a></li> -->
 					</ul>					
 					<div class="tab-content">
-					<div class="tab-pane active" id="spare">
-					<h4 align="center">Spare</h4>
-							<form:form class="well form-horizontal" method="post" action="saveSpareParts"
-					modelAttribute="saveSpareParts" id="saveSpareParts">
+					<div class="tab-pane active" id="compatibility">
+					<h4 align="center">Compatibility</h4><br>
+							<form:form class="well form-horizontal" method="post" action="saveCompatibility"
+					modelAttribute="saveCompatibility" id="saveCompatibility">
 							
 					<!--First column-->
 					<div class="col-sm-6">					
@@ -51,35 +51,12 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span>
-									<select name="partNumber"
-										class="form-control selectpicker">
-										<option value="">Select Part Number<option>
-										<option value="CLT-R806K">CLT-R806K</option>
-										<option value="CLT-R806X">CLT-R806X</option>
-										<option value="CLT-W806">CLT-W806</option>
-									</select>
+										<input name="partNumber" id="partNumber"
+											   placeholder="Part Number" class="form-control"type="text">
+									
 								</div>
 							</div>
 						</div>
-
-						
-						<!-- Select type Item Type-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Item Type</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span>
-									<select name="itemType"
-										class="form-control selectpicker">
-										<option value="">Select Item Type<option>
-									<option value="Toner">Toner</option>
-									<option value="Spares">Spares</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						
 						
 					</div><!-- / F column -->	
 					
@@ -94,39 +71,17 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span>
-									<select name="modelNumber"
-										class="form-control selectpicker">
-										<option value="">Select Item Type<option>
-										<option value="MultiXpress X7500LX">MultiXpress	X7500LX</option>
-									</select>
+									      <input name="modelNumber" id="modelNumber"
+											   placeholder="Model Number" class="form-control"type="text">
 								</div>
 							</div>
 						</div>
-						
-						<!-- Select type Description-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Description</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span>
-									<select name="description"
-										class="form-control selectpicker">
-										<option value="">Select Description<option>
-									<option value="Black Imaging Unit">Black Imaging Unit</option>
-									<option value="Color Imaging Unit">Color Imaging Unit</option>
-									<option value="Waste Toner Bottle">Waste Toner Bottle</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						
 					</div><!-- /S column  -->
 					
-						<br><br>
+						<br><br><br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
-								<input type="submit" value="Add Spares"
+								<input type="submit" value="Add Compatibility"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
 									id="addSpares">
 							</div>
@@ -135,8 +90,8 @@
 					
 					</div><!-- /spare  -->
 					
-					<div class="tab-pane" id="parts">
-					<h4 align="center">Parts</h4>
+					<div class="tab-pane" id="spares">
+					<h4 align="center">Spares</h4>
 						<form:form class="well form-horizontal" method="post" action="saveSpareParts"
 					modelAttribute="saveSpareParts" id="saveSpareParts">
 							
@@ -225,7 +180,7 @@
 						<br><br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
-								<input type="submit" value="Add Parts"
+								<input type="submit" value="Add Spares"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
 									id="addSpares">
 							</div>
@@ -234,7 +189,7 @@
 					</div><!-- /parts  -->
 					
 					
-				<div class="tab-pane" id="tonner">
+			<%-- 	<div class="tab-pane" id="tonner">
 					<h4 align="center">Tonner</h4>
 				<form:form class="well form-horizontal" method="post" action="saveSpareParts"
 					modelAttribute="saveSpareParts" id="saveSpareParts">
@@ -328,7 +283,7 @@
 						</div>
 					</form:form>
 					
-					</div><!-- /tonner  -->
+					</div><!-- /tonner  --> --%>
 					
 					</div><!-- /tab-content -->									
 				</div><!-- /panel body -->

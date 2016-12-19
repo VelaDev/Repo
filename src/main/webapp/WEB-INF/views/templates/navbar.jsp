@@ -89,7 +89,7 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Spare Parts<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href='<c:url value="addParts.html"/>'>Add Spares</a></li>
+							<li><a href='<c:url value="addParts.html"/>'>Spares & Compatibility</a></li>
 							<li><a href='<c:url value="displayOrders.html"/>'>Display Orders</a></li>
 						</ul></li>
 

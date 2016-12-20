@@ -27,10 +27,10 @@ public class Compatibility implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id
+	/*@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="Record_ID")
-	private int recordID;
+	private int recordID;*/
 	@Id
 	@Column(name="Model_Number")
 	private String modelNumber;

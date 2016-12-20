@@ -36,69 +36,12 @@
 				<div class="panel-body">
 					<!-- tab nav -->
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#compatibility" data-toggle="tab">Compatibility</a></li>
-						<li><a href="#spares" data-toggle="tab">Spares</a></li>
+					<li class="active"><a href="#spares" data-toggle="tab">Spares</a></li>
+						<li ><a href="#compatibility" data-toggle="tab">Compatibility</a></li>
 						<!-- <li><a href="#tonner" data-toggle="tab">Tonner</a></li> -->
 					</ul>
 					<div class="tab-content">
-						<div class="tab-pane active" id="compatibility">
-							<h4 align="center">Compatibility</h4>
-							<br>
-							<form:form class="well form-horizontal" method="post"
-								action="saveCompatibility" modelAttribute="saveCompatibility"
-								id="saveCompatibility">
-
-								<!--First column-->
-								<div class="col-sm-6">
-									<!-- Select type Part Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Part Number</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input
-													name="partNumber" id="partNumber" placeholder="Part Number"
-													class="form-control" type="text">
-
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<!-- / F column -->
-
-								<!--Second column-->
-								<div class="col-sm-6">
-
-
-									<!-- Select type Model Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Model Number</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input
-													name="modelNumber" id="modelNumber"
-													placeholder="Model Number" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /S column  -->
-
-								<br>
-								<br>
-								<br>
-								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Add Compatibility"
-											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="addSpares">
-									</div>
-								</div>
-							</form:form>
-
-						</div>
+						
 						<!-- /spare  -->
 
 						<div class="tab-pane" id="spares">
@@ -217,6 +160,64 @@
 							</form:form>
 						</div>
 						<!-- /parts  -->
+						<div class="tab-pane active" id="compatibility">
+							<h4 align="center">Compatibility</h4>
+							<br>
+							<form:form class="well form-horizontal" method="post"
+								action="saveCompatibility" modelAttribute="saveCompatibility"
+								id="saveCompatibility">
+
+								<!--First column-->
+								<div class="col-sm-6">
+									<!-- Select type Part Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Part Number</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <input
+													name="spare" id="partNumber" placeholder="Part Number"
+													class="form-control" type="text">
+
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- / F column -->
+
+								<!--Second column-->
+								<div class="col-sm-6">
+
+
+									<!-- Select type Model Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Model Number</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <input
+													name="modelNumber" id="modelNumber"
+													placeholder="Model Number" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+								</div>
+								<!-- /S column  -->
+
+								<br>
+								<br>
+								<br>
+								<div class="form-group row">
+									<div class="col-sm-offset-2 col-sm-8">
+										<input type="submit" value="Add Compatibility"
+											class="btn btn-primary btn-block btn-lg" tabindex="9"
+											id="addSpares">
+									</div>
+								</div>
+							</form:form>
+
+						</div>
 
 
 						<%-- 	<div class="tab-pane" id="tonner">

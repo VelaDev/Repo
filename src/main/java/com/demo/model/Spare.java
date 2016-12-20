@@ -52,5 +52,7 @@ public class Spare implements Serializable{
 	
 	@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
 	private Set<Orders> orders;
+	@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
+	private Set<Compatibility> compitability;
 
 }

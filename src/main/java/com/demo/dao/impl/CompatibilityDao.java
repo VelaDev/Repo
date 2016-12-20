@@ -31,10 +31,10 @@ public class CompatibilityDao implements CompatibilityDaoInt{
 		try{
 			
 			sessionFactory.getCurrentSession().save(compatibility);
-			retMessage = "Part Number : "+ compatibility.getPartNumber()+ " is compitable with model "+compatibility.getModelNumber();
+			retMessage = "Part Number : "+ compatibility.getSpare().getPartNumber()+ " is compitable with model "+compatibility.getModelNumber();
 		}
 		catch(Exception e){
-			retMessage = "Part Number "+ compatibility.getPartNumber()+ " is not compitable with model "+compatibility.getModelNumber();
+			retMessage = "Part Number "+ compatibility.getSpare().getPartNumber()+ " is not compitable with model "+compatibility.getModelNumber();
 		} 
 		return retMessage;
 	}
@@ -53,7 +53,7 @@ public class CompatibilityDao implements CompatibilityDaoInt{
 		try{
 			compatibility = compitabilityList();
 			for(Compatibility comp:compatibility){
-				if(comp.getPartNumber().equalsIgnoreCase(parNumber)){
+				if(comp.getSpare().getPartNumber().equalsIgnoreCase(parNumber)){
 					compitableByPartNumber.add(comp);
 				}
 			}

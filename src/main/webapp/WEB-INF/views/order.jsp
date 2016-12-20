@@ -46,6 +46,56 @@
 				<div class="panel-body">
 					<div class="tab-content">
 						<!-- Below table will be displayed as Data table -->
+						<!--First column-->
+						<div class="col-md-4">
+							<!-- Text input Email-->
+							<div class="form-group">
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-list"></i></span> <select
+											name="stockType" class="form-control selectpicker">
+											<option value="">Stock Type</option>
+											<option value="boot">Boot</option>
+											<option value="site">Site</option>
+										</select>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /F Column -->
+						<!--First column-->
+						<div class="col-md-4">
+							<div class="form-group">
+								<div class="col-md-6 selectContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-user"></i></span> <input id="technicain"
+											name="technicain" placeholder="Technicain"
+											class="form-control" type="text" value="">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /F Column -->
+						<!--First column-->
+						<div class="col-md-4">
+							<!-- Text input Location-->
+							<div class="form-group">
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="	glyphicon glyphicon-map-marker"></i></span> <input
+											id="location" name="location" placeholder="Location"
+											class="form-control" type="text"">
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /F Column -->
+						<br />
+						<br />
+
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
@@ -55,7 +105,12 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Model No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Edit</th>
+									<th>Tick To Order<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Quantity<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<!-- <th>Edit<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -65,9 +120,14 @@
 										<td>${list.partNumber}</td>
 										<td>${list.modelNumber}</td>
 										<td>${list.modelNumber}</td>
-										<th><a
-											href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
-									</tr>
+										<td><input type="checkbox" class="form-group"
+											id="checked" name="checked"></td>
+										<td><input type="text" class="form-group" id="quantity"
+											name="quantity"></td>
+
+										<%-- 	<th>
+										<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
+										</tr> --%>
 								</c:forEach>
 							</tbody>
 						</table>
@@ -174,6 +234,7 @@
 													}
 												}
 											})
+											
 
 									// Add button click handler
 									.on(

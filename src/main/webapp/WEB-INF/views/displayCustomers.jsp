@@ -26,9 +26,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<div class="row">
-							<div class="content">
-									<!-- Below table will be displayed as Data table -->
+								<!-- Below table will be displayed as Data table -->
 									<table id="myDatatable" class="display datatable">
 										<thead>
 											<tr>
@@ -57,9 +55,6 @@
 										</tbody>
 									</table>
 							</div>
-						</div>
-
-					</div>
 					<!-- /tab-content -->
 
 				</div>

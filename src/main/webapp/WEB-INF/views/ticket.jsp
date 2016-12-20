@@ -82,8 +82,7 @@
 									</div>
 								</div>
 
-								<!-- Select type Province-->
-
+								<!-- Select type Priority-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Priority</label>
 									<div class="col-md-6 selectContainer">

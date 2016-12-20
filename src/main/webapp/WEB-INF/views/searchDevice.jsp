@@ -6,11 +6,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_custom.css" />">
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">	
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-  
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -26,38 +30,41 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<div class="row">
-							<div class="content">
-									<!-- Below table will be displayed as Data table -->
-									<table id="myDatatable" class="display datatable">
-										<thead>
-											<tr>
-												<th>Customer Name <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Serial No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Model No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
-												<th>Start Date <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
-												<th>End Date <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
-												<th>Details</th>
-												<th>Edit</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${deviceList}">
-												<tr>
-													<td>${list.customer.customerName}</td>
-													<td>${list.serialNumber}</td>
-													<td>${list.modelNumber}</td>
-													<td>${list.startDate}</td>
-													<td>${list.endDate}</td> 
-                                                    <th><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
-                                                    <th><a href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">edit</a></th>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-							</div>
-						</div>
+						<!-- Below table will be displayed as Data table -->
+						<table id="myDatatable" class="display datatable">
+							<thead>
+								<tr>
+									<th>Customer Name <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Serial No <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Model No <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Start Date <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>End Date <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Details</th>
+									<th>Edit</th>
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Iterating over the list sent from Controller -->
+								<c:forEach var="list" items="${deviceList}">
+									<tr>
+										<td>${list.customer.customerName}</td>
+										<td>${list.serialNumber}</td>
+										<td>${list.modelNumber}</td>
+										<td>${list.startDate}</td>
+										<td>${list.endDate}</td>
+										<th><a
+											href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
+										<th><a
+											href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">edit</a></th>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -74,8 +81,10 @@
 
 </body>
 
-<script type="text/javascript"	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
 <script>
 	$(document).ready(function() {

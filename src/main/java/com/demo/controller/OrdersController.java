@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.bean.OrdersBean;
 import com.demo.model.Employee;
 import com.demo.model.Orders;
+import com.demo.service.CompatibilityServiceInt;
 import com.demo.service.OrdersServiceInt;
 
 
@@ -21,6 +22,8 @@ public class OrdersController {
 	
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
+	@Autowired
+	private CompatibilityServiceInt compatibilityServiceInt;
 	@Autowired
 	private HttpSession session;
 	private ModelAndView model = null;
@@ -35,6 +38,7 @@ public class OrdersController {
 		if(userName != null){
 			
 			model.addObject("makeOrder", new OrdersBean());
+			model.addObject("compatibility", compatibilityServiceInt.compitabilityList());
 			model.setViewName("order");
 		}
 		else{
@@ -50,8 +54,8 @@ public class OrdersController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			retMessage =ordersServiceInt.makeOrder(order);
-			model.addObject("retMessage", retMessage);
+			/*retMessage =ordersServiceInt.makeOrder(order);
+			model.addObject("retMessage", retMessage);*/
 			model.setViewName("order");
 		}
 		else{

@@ -49,7 +49,7 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Part Number <img
+									<th>Part N0 <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Description <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
@@ -60,13 +60,13 @@
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${deviceList}">
+								<c:forEach var="list" items="${compatibility}">
 									<tr>
-										<td>${list.customer.customerName}</td>
-										<td>${list.serialNumber}</td>
-										<td>${list.endDate}</td>
+										<td>${list.partNumber}</td>
+										<td>${list.modelNumber}</td>
+										<td>${list.modelNumber}</td>
 										<th><a
-											href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
+											href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
 									</tr>
 								</c:forEach>
 							</tbody>

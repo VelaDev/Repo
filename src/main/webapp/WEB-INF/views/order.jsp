@@ -45,7 +45,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-					   <form:form modelAttribute="makeOrder">
+					   <form:form modelAttribute="makeOrder" method="post" action="makeOrder" id="makeOrder" name="makeOrder">
 						<!-- Below table will be displayed as Data table -->
 						<!--First column-->
 						<div class="col-md-4">

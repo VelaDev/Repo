@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.demo.bean.CompatibilityBean;
 import com.demo.bean.SparePartsBean;
 import com.demo.model.Employee;
 import com.demo.model.Spare;
@@ -33,6 +34,7 @@ public class SparePartsController {
 		if(userName != null){
 		
 			model.addObject("saveSpareParts", new SparePartsBean());
+			model.addObject("saveSpareParts", new CompatibilityBean());
 			model.setViewName("addParts");
 		}
 		else{

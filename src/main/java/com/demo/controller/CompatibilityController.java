@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.demo.bean.CompatibilityBean;
 import com.demo.model.Compatibility;
 import com.demo.model.Employee;
 import com.demo.model.Spare;
@@ -28,7 +29,7 @@ public class CompatibilityController {
 	
 	
 	@RequestMapping(value="saveCompatibility", method=RequestMethod.POST)
-	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveCompatibility")Compatibility compatibility){
+	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveCompatibility")CompatibilityBean compatibility){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){

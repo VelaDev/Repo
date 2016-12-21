@@ -1,10 +1,17 @@
 package com.demo.bean;
 
 
-import com.demo.model.Spare;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+
+
+@NoArgsConstructor
+@Getter
+@Setter
 public class CompatibilityBean {
 
 	private String modelNumber;
-	private Spare spare;
+	private String partNumber;
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.demo.bean.CompatibilityBean;
 import com.demo.dao.CompatibilityDaoInt;
 import com.demo.model.Compatibility;
 import com.demo.service.CompatibilityServiceInt;
@@ -17,7 +18,7 @@ public class CompatibilityService implements CompatibilityServiceInt {
 	private CompatibilityDaoInt compatibilityDaoInt;
 	private String retMessage = null;
 	@Override
-	public String saveCompitability(Compatibility compatibility) {
+	public String saveCompitability(CompatibilityBean compatibility) {
 		
 		retMessage = compatibilityDaoInt.saveCompitability(compatibility);
 		return retMessage;

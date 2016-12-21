@@ -117,8 +117,8 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${compatibility}">
 									<tr>
-										<td>${list.partNumber}</td>
-										<td>${list.modelNumber}</td>
+										<td>${list.spare.partNumber}</td>
+										<td>${list.spare.description}</td>
 										<td>${list.modelNumber}</td>
 										<td><input type="checkbox" class="form-group"
 											id="checked" name="checked"></td>

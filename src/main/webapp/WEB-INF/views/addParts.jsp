@@ -176,7 +176,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input
-													name="spare" id="partNumber" placeholder="Part Number"
+													name="partNumber" id="partNumber" placeholder="Part Number"
 													class="form-control" type="text">
 
 											</div>

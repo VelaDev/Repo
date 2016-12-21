@@ -36,8 +36,4 @@ public class Accessories implements Serializable{
 	@ManyToOne
 	@ForeignKey(name="Device_Serial")
 	private Device device;
-	
-	
-
-	
 }

@@ -10,8 +10,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.CompatibilityBean;
 import com.demo.dao.CompatibilityDaoInt;
+import com.demo.dao.SparePartsDaoInt;
 import com.demo.model.Compatibility;
+import com.demo.model.Spare;
 
 
 
@@ -22,19 +25,29 @@ public class CompatibilityDao implements CompatibilityDaoInt{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
-	String retMessage = null;
-	List<Compatibility> compatibility = null;
-	List<Compatibility> compitableByPartNumber;
+	private String retMessage = null;
+	private List<Compatibility> compatibility = null;
+	private List<Compatibility> compitableByPartNumber =null;
+	@Autowired
+	private SparePartsDaoInt sparePartsDaoInt;
+	
+	
+	
 	
 	@Override
-	public String saveCompitability(Compatibility compatibility) {
+	public String saveCompitability(CompatibilityBean comp) {
+		Compatibility compatibility = new Compatibility();
+		Spare spare =null;
+		
 		try{
-			
-			sessionFactory.getCurrentSession().save(compatibility);
-			retMessage = "Part Number : "+ compatibility.getSpare().getPartNumber()+ " is compitable with model "+compatibility.getModelNumber();
+			  spare = sparePartsDaoInt.getSparePartBySerial(comp.getPartNumber());
+			  compatibility.setModelNumber(comp.getModelNumber());
+			  compatibility.setSpare(spare);
+			  sessionFactory.getCurrentSession().save(compatibility);
+			  retMessage = "Part Number : "+ compatibility.getSpare().getPartNumber()+ " is compitable with model "+compatibility.getModelNumber();
 		}
 		catch(Exception e){
-			retMessage = "Part Number "+ compatibility.getSpare().getPartNumber()+ " is not compitable with model "+compatibility.getModelNumber();
+			  retMessage = "Part Number "+ compatibility.getSpare().getPartNumber()+ " is not compitable with model "+compatibility.getModelNumber();
 		} 
 		return retMessage;
 	}

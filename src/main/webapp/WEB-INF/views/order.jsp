@@ -117,18 +117,23 @@
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${compatibility}">
-									<tr>
-										<td id="partNumber" name="partNumber"> <input type="text"id="partNumber" name="partNumber" value="${list.spare.partNumber}"></td>
-										<td id="description" name="description" ><input type="text"id="description" name="description" value="${list.spare.description}"></td>
-										<td id="modelNumber" name="modelNumber"><input type="text"id="modelNumber" name="modelNumber" value="${list.modelNumber}"></td>
-										<td><input type="checkbox" class="form-group"
-											id="checkedOrder" name="checkedOrder"></td>
-										<td><input type="text" class="form-group" id="quantity"
-											name="quantity"></td>
-
-										<%-- 	<th>
-										<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
-										</tr> --%>
+										
+										<tr>
+											<div id="makeOrders">
+											<td id="partNumber" name="partNumber"> <input type="text"id="partNumber" name="partNumber" value="${list.spare.partNumber}"></td>
+											<td id="description" name="description" ><input type="text"id="description" name="description" value="${list.spare.description}"></td>
+											<td id="modelNumber" name="modelNumber"><input type="text"id="modelNumber" name="modelNumber" value="${list.modelNumber}"></td>
+											<td><input type="checkbox" class="form-group"
+												id="checkedOrder" name="checkedOrder"></td>
+											<td><input type="text" class="form-group" id="quantity"
+												name="quantity"></td>
+	
+											<%-- 	<th>
+											<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
+											--%>
+											</div>
+										</tr> 
+										
 								</c:forEach>
 							</tbody>
 						</table>
@@ -140,8 +145,18 @@
 								id="order" name="order">
 						</div>
 					</div>
-					</form:form>
 					
+						
+					
+					</form:form>
+						<div id="makeOrders">Check product to order
+						  <input type="checkbox" name="HP-C000" value="HP-C000">HP-C000
+						  <input type="checkbox" name="Toshiba22" value="Toshiba22">Toshiba22
+						  <input type="checkbox" name="HP12" value="HP12">HP12
+ 						 <button>Submit</button>
+						</div>
+
+						<div id="result"></div>
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -186,6 +201,31 @@
 	<!-- /Script -->
 
 	<!-- Validate Make Order -->
+	
+	<script>
+	
+	(function (d, w, undefined) {
+		 d.querySelector('#makeOrders button').addEventListener('click', doSubmitMulti);
+		 var multiLanguageSelectorContainer = d.querySelector('#makeOrders');		  
+
+		  function doSubmitMulti() {
+		    var languagesChecked = [].slice.call( 
+		                              multiLanguageSelectorContainer
+		                                .querySelectorAll('[type=checkbox]:checked') )
+		                            .map(function (v){
+		                              return v.value;
+		                             });
+		    d.querySelector('#result').innerHTML = 
+		                    'You selected these products(s): <b>'+ 
+		                     (languagesChecked.length 
+		                      ? languagesChecked.join(', ') 
+		                      : 'none yet selected') +
+		                     '</b>';
+		  }
+		}(document, window))
+		
+	</script>
+	
 	<script>
 		$(document)
 				.ready(

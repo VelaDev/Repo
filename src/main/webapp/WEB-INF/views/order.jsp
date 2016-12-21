@@ -100,7 +100,7 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Part N0 <img
+									<th>Part No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Description <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
@@ -118,11 +118,11 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${compatibility}">
 									<tr>
-										<td>${list.spare.partNumber}</td>
-										<td>${list.spare.description}</td>
-										<td>${list.modelNumber}</td>
+										<td id="partNumber" name="partNumber"> <input type="text"id="partNumber" name="partNumber" value="${list.spare.partNumber}"></td>
+										<td id="description" name="description" ><input type="text"id="description" name="description" value="${list.spare.description}"></td>
+										<td id="modelNumber" name="modelNumber"><input type="text"id="modelNumber" name="modelNumber" value="${list.modelNumber}"></td>
 										<td><input type="checkbox" class="form-group"
-											id="checked" name="checked"></td>
+											id="checkedOrder" name="checkedOrder"></td>
 										<td><input type="text" class="form-group" id="quantity"
 											name="quantity"></td>
 

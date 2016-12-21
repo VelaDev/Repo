@@ -133,7 +133,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-barcode"></i></span> <input
-												value="${product.productModel }"
+												value="${product.modelNumber }"
 												class="form-control" type="text">
 										</div>
 									</div>
@@ -159,7 +159,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-barcode"></i></span> <input
-												 value="${product.customer.clientName }"
+												 value="${product.customer.customerName }"
 												class="form-control" type="text">
 										</div>
 									</div>

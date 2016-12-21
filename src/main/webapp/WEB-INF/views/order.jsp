@@ -131,6 +131,14 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<div class="form-group row">
+						<div class="col-sm-offset-2 col-sm-8">
+							<br><br>
+							<input type="submit" value="Make Order"
+								class="btn btn-primary btn-block btn-lg" tabindex="9"
+								id="order" name="order">
+						</div>
+					</div>
 					</div>
 					<!-- /tab-content -->
 				</div>

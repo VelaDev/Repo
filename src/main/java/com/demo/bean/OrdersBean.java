@@ -12,7 +12,6 @@ public class OrdersBean {
 	
 
 	private String orderNum;
-	private String quantity;
 	private boolean delivery;
 	private boolean delivered;
 	private boolean received;
@@ -29,8 +28,9 @@ public class OrdersBean {
 	private String client;
 	private String device;
 	
-	private String partNumber;
-	private String modelNumber;
+	private String []partNumber;
+	private String []modelNumber;
+	private String []quantity;
 	
 	
 }

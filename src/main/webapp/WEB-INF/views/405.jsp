@@ -7,6 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>Here we are</p>
+
+   <h3>Something went wrong!!</h3>
+   <p>Please report error below to system developer.</p>
+   <p>Error Message : ${exception}</p>
 </body>
 </html>

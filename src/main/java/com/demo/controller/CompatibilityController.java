@@ -1,18 +1,20 @@
 package com.demo.controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.CompatibilityBean;
-import com.demo.model.Compatibility;
 import com.demo.model.Employee;
-import com.demo.model.Spare;
 import com.demo.service.CompatibilityServiceInt;
 
 
@@ -29,6 +31,7 @@ public class CompatibilityController {
 	
 	
 	@RequestMapping(value="saveCompatibility", method=RequestMethod.POST)
+	@ExceptionHandler({IOException.class,SQLException.class})
 	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveCompatibility")CompatibilityBean compatibility){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");

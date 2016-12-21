@@ -1,11 +1,16 @@
 package com.demo.controller;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.CannotCreateTransactionException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -372,4 +377,28 @@ public class EmployeeController {
 		return employeeService.getAllEmployees(empName);
 
 	}
+	@ExceptionHandler({DataIntegrityViolationException.class})
+    public ModelAndView dataIntegrity(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception", ex.getMessage());
+         
+        return model;
+    }
+	@ExceptionHandler({SQLException.class})
+    public ModelAndView handleIOException(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception", ex.getMessage());
+         
+        return model;
+    }
+	@ExceptionHandler({CannotCreateTransactionException.class})
+    public ModelAndView connectionIOException(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception", ex.getMessage()+ ". Hint\nCheck database credentials.");
+         
+        return model;
+    }
 }

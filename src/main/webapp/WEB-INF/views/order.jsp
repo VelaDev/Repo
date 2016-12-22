@@ -96,7 +96,7 @@
 						<!-- /F Column -->
 						<br />
 						<br />
-
+						<div id="makeOrders">
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
@@ -119,7 +119,7 @@
 								<c:forEach var="list" items="${compatibility}">
 										
 										<tr>
-											<div id="makeOrders">
+										
 											<td id="partNumber" name="partNumber"> <input type="text"id="partNumber" name="partNumber" value="${list.spare.partNumber}"></td>
 											<td id="description" name="description" ><input type="text"id="description" name="description" value="${list.spare.description}"></td>
 											<td id="modelNumber" name="modelNumber"><input type="text"id="modelNumber" name="modelNumber" value="${list.modelNumber}"></td>
@@ -131,12 +131,15 @@
 											<%-- 	<th>
 											<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
 											--%>
-											</div>
+										
 										</tr> 
 										
 								</c:forEach>
 							</tbody>
 						</table>
+										
+					</div>
+					
 						<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<br><br>
@@ -144,7 +147,7 @@
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
 								id="order" name="order">
 						</div>
-					</div>
+						</div>
 					
 						
 					
@@ -205,20 +208,20 @@
 	<script>
 	
 	(function (d, w, undefined) {
-		 d.querySelector('#makeOrders button').addEventListener('click', doSubmitMulti);
-		 var multiLanguageSelectorContainer = d.querySelector('#makeOrders');		  
+		 d.querySelector('#makeOrders submit').addEventListener('click', doSubmitMulti);
+		 var multiOrderSelectorContainer = d.querySelector('#makeOrders');		  
 
 		  function doSubmitMulti() {
-		    var languagesChecked = [].slice.call( 
-		                              multiLanguageSelectorContainer
+		    var ordersChecked = [].slice.call( 
+		                              multiOrderSelectorContainer
 		                                .querySelectorAll('[type=checkbox]:checked') )
 		                            .map(function (v){
 		                              return v.value;
 		                             });
 		    d.querySelector('#result').innerHTML = 
 		                    'You selected these products(s): <b>'+ 
-		                     (languagesChecked.length 
-		                      ? languagesChecked.join(', ') 
+		                     (ordersChecked.length 
+		                      ? ordersChecked.join(', ') 
 		                      : 'none yet selected') +
 		                     '</b>';
 		  }

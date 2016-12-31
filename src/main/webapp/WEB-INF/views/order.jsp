@@ -45,121 +45,122 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-					   <form:form modelAttribute="makeOrder" method="post" action="makeOrder" id="makeOrder" name="makeOrder">
-						<!-- Below table will be displayed as Data table -->
-						<!--First column-->
-						<div class="col-md-4">
-							<!-- Text input Email-->
-							<div class="form-group">
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-list"></i></span> <select
-											name="stockType" class="form-control selectpicker">
-											<option value="">Stock Type</option>
-											<option value="boot">Boot</option>
-											<option value="site">Site</option>
-										</select>
+						<form:form modelAttribute="makeOrder" method="post"
+							action="makeOrder" id="makeOrder" name="makeOrder">
+							<!-- Below table will be displayed as Data table -->
+							<!--First column-->
+							<div class="col-md-4">
+								<!-- Text input Email-->
+								<div class="form-group">
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="stockType" class="form-control selectpicker">
+												<option value="">Stock Type</option>
+												<option value="boot">Boot</option>
+												<option value="site">Site</option>
+											</select>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- /F Column -->
-						<!--First column-->
-						<div class="col-md-4">
-							<div class="form-group">
-								<div class="col-md-6 selectContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <input id="technicain"
-											name="technicain" placeholder="Technicain"
-											class="form-control" type="text" value="">
+							<!-- /F Column -->
+							<!--First column-->
+							<div class="col-md-4">
+								<div class="form-group">
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input id="technicain"
+												name="technicain" placeholder="Technicain"
+												class="form-control" type="text" value="">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- /F Column -->
-						<!--First column-->
-						<div class="col-md-4">
-							<!-- Text input Location-->
-							<div class="form-group">
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="	glyphicon glyphicon-map-marker"></i></span> <input
-											id="location" name="location" placeholder="Location"
-											class="form-control" type="text"">
+							<!-- /F Column -->
+							<!--First column-->
+							<div class="col-md-4">
+								<!-- Text input Location-->
+								<div class="form-group">
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="	glyphicon glyphicon-map-marker"></i></span> <input
+												id="location" name="location" placeholder="Location"
+												class="form-control" type="text"">
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- /F Column -->
-						<br />
-						<br />
-						<div id="makeOrders">
-						<table id="myDatatable" class="display datatable">
-							<thead>
-								<tr>
-									<th>Part No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Description <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Model No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Tick To Order<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Quantity<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<!-- <th>Edit<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
-								</tr>
-							</thead>
-							<tbody>
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${compatibility}">
-										
+							<!-- /F Column -->
+							<br />
+							<br />
+							<div id="makeOrders">
+								<table id="myDatatable" class="display datatable">
+									<thead>
 										<tr>
-										
-											<td id="partNumber" name="partNumber"> <input type="text"id="partNumber" name="partNumber" value="${list.spare.partNumber}"></td>
-											<td id="description" name="description" ><input type="text"id="description" name="description" value="${list.spare.description}"></td>
-											<td id="modelNumber" name="modelNumber"><input type="text"id="modelNumber" name="modelNumber" value="${list.modelNumber}"></td>
-											<td><input type="checkbox" class="form-group"
-												id="checkedOrder" name="checkedOrder"></td>
-											<td><input type="text" class="form-group" id="quantity"
-												name="quantity"></td>
-	
-											<%-- 	<th>
+											<th>Part No <img
+												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+											<th>Description <img
+												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+											<th>Model No <img
+												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+											<th>Tick To Order<img
+												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+											<th>Quantity<img
+												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+											<!-- <th>Edit<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
+										</tr>
+									</thead>
+									<tbody>
+										<!-- Iterating over the list sent from Controller -->
+										<c:forEach var="list" items="${compatibility}">
+
+											<tr>
+
+												<td id="partNumber" name="partNumber"><input
+													type="text" id="partNumber" name="partNumber"
+													value="${list.spare.partNumber}"></td>
+												<td id="description" name="description"><input
+													type="text" id="description" name="description"
+													value="${list.spare.description}"></td>
+												<td id="modelNumber" name="modelNumber"><input
+													type="text" id="modelNumber" name="modelNumber"
+													value="${list.modelNumber}"></td>
+												<td><input type="checkbox" class="form-group"
+													id="checkedOrder" name="checkedOrder"></td>
+												<td><input type="text" class="form-group" id="quantity"
+													name="quantity"></td>
+
+												<%-- 	<th>
 											<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
 											--%>
-										
-										</tr> 
-										
-								</c:forEach>
-							</tbody>
-						</table>
-										
-					</div>
-					
-						<div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-8">
-							<br><br>
-							<input type="submit" value="Make Order"
-								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="order" name="order">
-						</div>
-						</div>
-					
-						
-					
-					</form:form>
-						<div id="makeOrders">Check product to order
-						  <input type="checkbox" name="HP-C000" value="HP-C000">HP-C000
-						  <input type="checkbox" name="Toshiba22" value="Toshiba22">Toshiba22
-						  <input type="checkbox" name="HP12" value="HP12">HP12
- 						 <button>Submit</button>
-						</div>
 
-						<div id="result"></div>
+											</tr>
+
+										</c:forEach>
+									</tbody>
+								</table>
+
+							</div>
+
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br>
+									<br> <input type="submit" value="Make Order"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="order" name="order">
+								</div>
+							</div>
+
+
+
+						</form:form>
+
+
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -204,31 +205,8 @@
 	<!-- /Script -->
 
 	<!-- Validate Make Order -->
-	
-	<script>
-	
-	(function (d, w, undefined) {
-		 d.querySelector('#makeOrders submit').addEventListener('click', doSubmitMulti);
-		 var multiOrderSelectorContainer = d.querySelector('#makeOrders');		  
+	>
 
-		  function doSubmitMulti() {
-		    var ordersChecked = [].slice.call( 
-		                              multiOrderSelectorContainer
-		                                .querySelectorAll('[type=checkbox]:checked') )
-		                            .map(function (v){
-		                              return v.value;
-		                             });
-		    d.querySelector('#result').innerHTML = 
-		                    'You selected these products(s): <b>'+ 
-		                     (ordersChecked.length 
-		                      ? ordersChecked.join(', ') 
-		                      : 'none yet selected') +
-		                     '</b>';
-		  }
-		}(document, window))
-		
-	</script>
-	
 	<script>
 		$(document)
 				.ready(
@@ -288,7 +266,6 @@
 													}
 												}
 											})
-											
 
 									// Add button click handler
 									.on(

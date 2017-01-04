@@ -31,6 +31,7 @@ public class OrdersBean {
 	private String []partNumber;
 	private String []modelNumber;
 	private String []quantity;
+	private String[]selectedItem;
 	
 	
 }

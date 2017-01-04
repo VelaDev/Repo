@@ -29,10 +29,6 @@ import com.demo.model.Orders;
 import com.demo.model.Spare;
 import com.demo.model.Device;
 
-
-
-
-
 @Repository("ordersDAO")
 @Transactional(propagation=Propagation.REQUIRED)
 public class OrdersDao implements OrdersDaoInt{
@@ -49,7 +45,7 @@ public class OrdersDao implements OrdersDaoInt{
 	@Autowired
 	private DeviceDaoInt deviceDaoInt;
 	
-	private String orderNum ="ORD-VEL-";
+	private String orderNum ="VEL00";
 	
 	private String retMessage = null;
 	private Employee emp = null;
@@ -209,7 +205,7 @@ public class OrdersDao implements OrdersDaoInt{
 			newOrderNum = orderNum+ tempOrderNum;
 		}
 		else{
-			newOrderNum = "ORD-VEL-1";
+			newOrderNum = "VEL001";
 		}
 		
 		return newOrderNum;
@@ -232,6 +228,17 @@ public class OrdersDao implements OrdersDaoInt{
 			 }
 		 }
 		return orderList;
+	}
+
+	@Override
+	public String prepareOrderMaking(OrdersBean order) {
+		
+		try{
+			
+		}catch(Exception ex){
+			retMessage = " Order cannot be proccessed "+ ex.getMessage();
+		}
+		return retMessage;
 	}
 
 

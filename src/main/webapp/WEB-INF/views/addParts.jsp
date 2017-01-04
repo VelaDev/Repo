@@ -44,7 +44,7 @@
 						
 						<!-- /spare  -->
 
-						<div class="tab-pane" id="spares">
+						<div class="tab-pane active" id="spares">
 							<h4 align="center">Spares</h4>
 							<form:form class="well form-horizontal" method="post"
 								action="saveSpareParts" modelAttribute="saveSpareParts"
@@ -160,7 +160,7 @@
 							</form:form>
 						</div>
 						<!-- /parts  -->
-						<div class="tab-pane active" id="compatibility">
+						<div class="tab-pane" id="compatibility">
 							<h4 align="center">Compatibility</h4>
 							<br>
 							<form:form class="well form-horizontal" method="post"

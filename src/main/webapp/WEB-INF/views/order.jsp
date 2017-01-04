@@ -107,10 +107,8 @@
 												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 											<th>Model No <img
 												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-											<th>Tick To Order<img
-												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-											<th>Quantity<img
-												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+											<th>Tick To Order</th>
+											<th>Quantity</th>
 											<!-- <th>Edit<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
 										</tr>
@@ -121,17 +119,11 @@
 
 											<tr>
 
-												<td id="partNumber" name="partNumber"><input
-													type="text" id="partNumber" name="partNumber"
-													value="${list.spare.partNumber}"></td>
-												<td id="description" name="description"><input
-													type="text" id="description" name="description"
-													value="${list.spare.description}"></td>
-												<td id="modelNumber" name="modelNumber"><input
-													type="text" id="modelNumber" name="modelNumber"
-													value="${list.modelNumber}"></td>
+												<td>${list.spare.partNumber}</td>
+												<td>${list.spare.description}</td>
+												<td>${list.modelNumber}</td>
 												<td><input type="checkbox" class="form-group"
-													id="checkedOrder" name="checkedOrder"></td>
+													id="checkedOrder" name="selectedItem" value="${list.spare.partNumber},${list.modelNumber}"></td>
 												<td><input type="text" class="form-group" id="quantity"
 													name="quantity"></td>
 

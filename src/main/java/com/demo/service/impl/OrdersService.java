@@ -62,5 +62,10 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.getAllOrders(orderedBy);
 	}
 
+	@Override
+	public String prepareOrderMaking(OrdersBean order) {
+		return ordersDAO.prepareOrderMaking(order);
+	}
+
 
 }

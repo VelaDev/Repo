@@ -54,8 +54,8 @@ public class OrdersController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			/*retMessage =ordersServiceInt.makeOrder(order);
-			model.addObject("retMessage", retMessage);*/
+			retMessage =ordersServiceInt.prepareOrderMaking(order);
+			model.addObject("retMessage", retMessage);
 			model.setViewName("order");
 		}
 		else{

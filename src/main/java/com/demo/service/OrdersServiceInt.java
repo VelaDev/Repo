@@ -13,5 +13,6 @@ public interface OrdersServiceInt {
 	public List<Orders> getOpenOrders();
 	public Orders getOrder(String orderNum);
 	public List<Orders> getAllOrders(String orderedBy);
+	public String prepareOrderMaking(OrdersBean order);
 
 }

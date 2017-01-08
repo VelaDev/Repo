@@ -66,6 +66,7 @@ public class Tickets implements Serializable{
 	
 	
 	
+	
 	@ManyToOne
 	@JoinColumn(name="AssignedTechnician")
 	private Employee employee;

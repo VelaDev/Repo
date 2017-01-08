@@ -1,7 +1,6 @@
 package com.demo.model;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,8 +9,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -45,13 +42,14 @@ public class Spare implements Serializable{
 	private String supplierName;
 	@Column(name="ReceivedBy")
 	private String receivedBy;
-	@Temporal(value =TemporalType.TIMESTAMP)
 	@Column(name="Date_Arrived")
-	private Date dateTime;
+	private String dateTime;
+	@Column(name="Stock_Type")
+	private String stockType;
 	
 	
-	@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
-	private Set<Orders> orders;
+	/*@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
+	private Set<Order> order;*/
 	@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
 	private Set<Compatibility> compitability;
 

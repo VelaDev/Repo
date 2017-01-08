@@ -1,12 +1,15 @@
 package com.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -36,4 +39,7 @@ public class Accessories implements Serializable{
 	@ManyToOne
 	@ForeignKey(name="Device_Serial")
 	private Device device;
+	@Column(name="DateTime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateTime;
 }

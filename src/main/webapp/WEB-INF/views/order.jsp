@@ -52,14 +52,14 @@
 							<div class="col-md-4">
 								<!-- Text input Email-->
 								<div class="form-group">
-									<div class="col-md-6 inputGroupContainer">
+									<div class="col-md-8 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select
 												name="stockType" class="form-control selectpicker">
 												<option value="">Stock Type</option>
-												<option value="boot">Boot</option>
-												<option value="site">Site</option>
+												<option value="Boot">Boot</option>
+												<option value="Site">Site</option>
 											</select>
 										</div>
 									</div>
@@ -69,12 +69,12 @@
 							<!--First column-->
 							<div class="col-md-4">
 								<div class="form-group">
-									<div class="col-md-6 selectContainer">
+									<div class="col-md-8 selectContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input id="technicain"
-												name="technicain" placeholder="Technicain"
-												class="form-control" type="text" value="">
+												class="glyphicon glyphicon-user"></i></span> <input id="technician"
+												name="technician" placeholder="Technicain"
+												class="form-control" type="text" value="${loggedInUser.firstName} ${loggedInUser.lastName}">
 										</div>
 									</div>
 								</div>
@@ -84,12 +84,49 @@
 							<div class="col-md-4">
 								<!-- Text input Location-->
 								<div class="form-group">
-									<div class="col-md-6 inputGroupContainer">
+									<div class="col-md-8 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="	glyphicon glyphicon-map-marker"></i></span> <input
 												id="location" name="location" placeholder="Location"
-												class="form-control" type="text"">
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+							</div><br><br>
+							<!--First column-->
+							<div class="col-md-4">
+								<!-- Text input Email-->
+								<div class="form-group">
+									<div class="col-md-8 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <select
+												name="customer" class="form-control selectpicker">
+												<option>Select Customer Name</option>
+												<c:forEach items="${customerList}" var="customer">
+													<option value="${customer.customerName}">${customer.customerName}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /F Column -->
+							<!--First column-->
+							<div class="col-md-4">
+								<!-- Text input Email-->
+								<div class="form-group">
+									<div class="col-md-8 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <select
+												name="approver" class="form-control selectpicker">
+												<option>Select Approver</option>
+												<c:forEach items="${managersList}" var="manager">
+													<option value="${manager.email}">${manager.firstName} ${manager.lastName}</option>
+												</c:forEach>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -123,7 +160,7 @@
 												<td>${list.spare.description}</td>
 												<td>${list.modelNumber}</td>
 												<td><input type="checkbox" class="form-group"
-													id="checkedOrder" name="selectedItem" value="${list.spare.partNumber},${list.modelNumber}"></td>
+													id="checkedOrder" name="selectedItem" value="${list.spare.partNumber},${list.modelNumber},${list.spare.description}"></td>
 												<td><input type="text" class="form-group" id="quantity"
 													name="quantity"></td>
 

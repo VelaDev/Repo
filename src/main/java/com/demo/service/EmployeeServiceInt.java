@@ -16,5 +16,6 @@ public interface EmployeeServiceInt {
 	String changePassword(String email);
 	String deactivateEmployee(String email);
 	Integer count();
+	List<Employee> getAllManagers();
 
 }

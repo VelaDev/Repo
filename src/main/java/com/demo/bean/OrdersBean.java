@@ -22,16 +22,18 @@ public class OrdersBean {
 	private String description;
 	private String approdedBy;
 	private String status;
+	private String location;
 	
 	private String employee;
 	private String part;
-	private String client;
+	private String customer;
 	private String device;
-	
-	private String []partNumber;
-	private String []modelNumber;
+
 	private String []quantity;
 	private String[]selectedItem;
+	private String stockType;
+	private String technician;
+	private String approver;
 	
 	
 }

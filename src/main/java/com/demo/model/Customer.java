@@ -1,19 +1,18 @@
 package com.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +21,7 @@ import lombok.Setter;
 
 
 @Entity
+@Table(name="Customers")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -53,6 +53,9 @@ public class Customer implements Serializable{
 	private String faxNumber;
 	@Column(name="Street_No")
 	private String streetNumber;
+	@Column(name="DateTime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateTime;
 	
 	
 	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)

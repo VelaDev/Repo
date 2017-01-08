@@ -1,6 +1,7 @@
 package com.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -58,12 +61,15 @@ public class Employee implements Serializable{
 	private boolean isFirstTimeLogin;
 	@Column(name="STATUS")
 	private String status;
+	@Column(name="DateTime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateTime;
 	
 	@OneToMany(mappedBy ="employee", cascade= CascadeType.ALL)
 	private Set<Tickets> logTickets;
 	
 	@OneToMany(mappedBy="employee",cascade=CascadeType.ALL)
-	private Set<Orders> orders;
+	private Set<Order> order;
 	
 	@OneToMany(mappedBy="employee",cascade=CascadeType.ALL)
 	private Set<TicketHistory> ticketHistory;

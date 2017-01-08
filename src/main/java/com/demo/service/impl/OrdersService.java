@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.OrdersBean;
 import com.demo.dao.OrdersDaoInt;
-import com.demo.model.Orders;
+import com.demo.model.Order;
 import com.demo.service.OrdersServiceInt;
 
 @Service("odersService")
@@ -20,9 +20,9 @@ public class OrdersService implements OrdersServiceInt{
 	private String retMessage = null;
 
 	@Override
-	public String makeOrder(OrdersBean orders) {
+	public String makeOrder(Order order) {
 		try{
-			retMessage = ordersDAO.makeOrder(orders);
+			retMessage = ordersDAO.makeOrder(order);
 		}
 		catch(Exception e){}
 		return retMessage;
@@ -35,30 +35,30 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public List<Orders> getAllOrders() {
+	public List<Order> getAllOrders() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Orders> getApprovedOrdersByTechnicianName(String userName) {
+	public List<Order> getApprovedOrdersByTechnicianName(String userName) {
 		
 		return ordersDAO.getApprovedOrdersByTechnicianName(userName);
 	}
 
 	@Override
-	public List<Orders> getOpenOrders() {
+	public List<Order> getOpenOrders() {
 		return ordersDAO.getOpenOrders();
 	}
 
 	@Override
-	public Orders getOrder(String orderNum) {
+	public Order getOrder(String orderNum) {
 	
 		return ordersDAO.getOrder(orderNum);
 	}
 
 	@Override
-	public List<Orders> getAllOrders(String orderedBy) {
+	public List<Order> getAllOrders(String orderedBy) {
 		return ordersDAO.getAllOrders(orderedBy);
 	}
 

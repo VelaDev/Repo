@@ -1,13 +1,20 @@
 package com.demo.model;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,12 +23,12 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name= "SpareOrders")
+@Table(name= "Orders")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Orders implements Serializable{
+public class Order implements Serializable{
 
 	/**
 	 * 
@@ -31,14 +38,8 @@ public class Orders implements Serializable{
 	@Id
 	@Column(name="Order_Number")
 	private String orderNum;
-	@Column(name="Quantity")
-	private int quantity;
-	@Column(name="Delivery")
-	private boolean delivery;
 	@Column(name="Delivered")
 	private boolean delivered;
-	@Column(name="Received")
-	private boolean received;
 	@Column(name="Date_Orderd")
 	private String dateOrdered;
 	@Column(name="Approved")
@@ -47,27 +48,31 @@ public class Orders implements Serializable{
 	private String dateApproved;
 	@Column(name="Comments")
 	private String comments;
-	@Column(name="Description")
-	private String description;
-	@Column(name="ApprovedBy")
-	private String approdedBy;
-	@Column(name="Status")
+	@Column(name="Approver")
+	private String approver;
+	@Column(name="Order_Status")
 	private String status;
 	@Column(name="Stock_Type")
 	private String stockType;
-	@Column(name="Location")
-	private String location;
-	@ManyToOne
-	@JoinColumn(name="OrderedBY")
-	private Employee employee;
+	@Column(name="DateTime")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateTime;
+	
 	
 	@ManyToOne
-	@JoinColumn(name="Spare")
-	private Spare spare;
+	@JoinColumn(name="OrderBy")
+	private Employee employee;
+	
+	/*@ManyToOne
+	@JoinColumn(name="Spare_Part")
+	private Spare spare;*/
 	@ManyToOne
 	@JoinColumn(name="Customer_Name")
 	private Customer customer;
-	@ManyToOne
+	/*@ManyToOne
 	@JoinColumn(name="Serial_Number")
-	private Device device;
+	private Device device;*/
+	
+	@OneToMany(mappedBy ="order", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<OrderDetails> orderDetails;
 }

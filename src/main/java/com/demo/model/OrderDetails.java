@@ -1,8 +1,6 @@
 package com.demo.model;
 
 import java.io.Serializable;
-
-
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -24,25 +22,42 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="Compatibility")
+@Table(name= "Order_Details")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Compatibility implements Serializable{/**
+public class OrderDetails implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
-	@Column(name="Record_ID")
-	private int recordID;
-	@Column(name="Model_Number")
-	private String modelNumber;
-	@ManyToOne
-	@JoinColumn(name="Part_Number")
-	private Spare spare;
+	@Column(name="Order_DetailNumber")
+	private int orderDertailNumber;
+	@Column(name="Stock_Type")
+	private String stockType;
+	@Column(name="Location")
+	private String location;
+	@Column(name="Part_Type")
+	private String partType;
+	@Column(name="Part_Number")
+	private String partNumber;
+	@Column(name="Model")
+	private String model;
+	@Column(name="Description")
+	private String description;
 	@Column(name="DateTime")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateTime;
+	private String dateTime;
+	@Column(name="Quantity")
+	private int quantity;
+	@Column(name="Technician")
+	private String technician;
+	
+	@ManyToOne
+	@JoinColumn(name="Order_Number")
+	private Order order;
+	
+
 }

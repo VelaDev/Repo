@@ -12,8 +12,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.OrdersBean;
 import com.demo.model.Employee;
-import com.demo.model.Orders;
+import com.demo.model.Order;
 import com.demo.service.CompatibilityServiceInt;
+import com.demo.service.CustomerServiceInt;
+import com.demo.service.EmployeeServiceInt;
 import com.demo.service.OrdersServiceInt;
 
 
@@ -24,6 +26,10 @@ public class OrdersController {
 	private OrdersServiceInt ordersServiceInt;
 	@Autowired
 	private CompatibilityServiceInt compatibilityServiceInt;
+	@Autowired
+	private EmployeeServiceInt employeeServiceInt;
+	@Autowired
+	private CustomerServiceInt customerServiceInt;
 	@Autowired
 	private HttpSession session;
 	private ModelAndView model = null;
@@ -39,6 +45,8 @@ public class OrdersController {
 			
 			model.addObject("makeOrder", new OrdersBean());
 			model.addObject("compatibility", compatibilityServiceInt.compitabilityList());
+			model.addObject("managersList", employeeServiceInt.getAllManagers());
+			model.addObject("customerList", customerServiceInt.getClientList());
 			model.setViewName("order");
 		}
 		else{
@@ -65,7 +73,7 @@ public class OrdersController {
 	} 
 	
 	@RequestMapping("approveOrder")
-    public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute Orders order) {
+    public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute Order order) {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){

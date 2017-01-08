@@ -4,13 +4,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
@@ -26,7 +19,6 @@ import com.demo.dao.DeviceDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Customer;
 import com.demo.model.Device;
-import com.demo.model.Employee;
 
 @Repository("productDAO")
 @Transactional(propagation=Propagation.REQUIRED)

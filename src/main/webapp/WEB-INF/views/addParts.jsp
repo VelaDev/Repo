@@ -75,7 +75,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
-													name="itemType" class="form-control selectpicker">
+													name="type" class="form-control selectpicker">
 													<option value="">Select Item Type
 													<option>
 													<option value="Toner">Toner</option>
@@ -85,15 +85,15 @@
 										</div>
 									</div>
 
-									<!-- Select type Quantity-->
+									 <!-- Select type Description-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Quantity</label>
+										<label class="col-md-3 control-label">Description</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-edit"></i></span> <input
-													class="form-control" Placeholder="Quantity" id="quantity"
-													type="text">
+													class="glyphicon glyphicon-list"></i></span> <input
+													class="form-control" id="description"
+													placeholder="Description" type="text" name="description">
 											</div>
 										</div>
 									</div>
@@ -104,7 +104,19 @@
 								<!--Second column-->
 								<div class="col-sm-6">
 
-
+                                   
+									<!-- Select type Quantity-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Quantity</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-edit"></i></span> <input
+													class="form-control" Placeholder="Quantity" id="quantity"
+													type="text" name="quantity">
+											</div>
+										</div>
+									</div>
 									<!-- Select type Supplier Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Supplier Name</label>
@@ -126,24 +138,10 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-edit"></i></span> <input
 													class="form-control" id="receivedBy"
-													placeholder="Recieved By" type="text">
+													placeholder="Recieved By" type="text" name ="receivedBy" value="${loggedInUser.firstName} ${loggedInUser.lastName}">
 											</div>
 										</div>
 									</div>
-
-									<!-- Select type Description-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Description</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input
-													class="form-control" id="description"
-													placeholder="Description" type="text" name="description">
-											</div>
-										</div>
-									</div>
-
 
 								</div>
 								<!-- /S column  -->

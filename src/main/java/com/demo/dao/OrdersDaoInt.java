@@ -3,17 +3,17 @@ package com.demo.dao;
 import java.util.List;
 
 import com.demo.bean.OrdersBean;
-import com.demo.model.Orders;
+import com.demo.model.Order;
 
 public interface OrdersDaoInt {
 	
-	public String makeOrder(OrdersBean order);
+	public String makeOrder(Order order);
 	public String updateOrder(OrdersBean order);
-	public List<Orders> getAllOrders();
-	public List<Orders> getApprovedOrdersByTechnicianName(String userName);
-	public List<Orders> getOpenOrders();
-	public Orders getOrder(String orderNum);
-	public List<Orders> getAllOrders(String orderedBy);
+	public List<Order> getAllOrders();
+	public List<Order> getApprovedOrdersByTechnicianName(String userName);
+	public List<Order> getOpenOrders();
+	public Order getOrder(String orderNum);
+	public List<Order> getAllOrders(String orderedBy);
 	public String prepareOrderMaking(OrdersBean order);
 
 }

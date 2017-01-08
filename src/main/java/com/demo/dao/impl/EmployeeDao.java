@@ -229,4 +229,23 @@ public class EmployeeDao implements EmployeeDaoInt{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
 		return (List<Employee>)criteria.list();
 	}
+
+	@Override
+	public List<Employee> getAllManagers() {
+		@SuppressWarnings("rawtypes")
+		ArrayList<?> aList = new ArrayList();
+		ArrayList<Employee> empList = new ArrayList<Employee>();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+		 
+		 aList.addAll(criteria.list());
+		 for(Object emp:aList)
+		 {
+			 if(emp instanceof Employee){
+				 if(((Employee) emp).getRole().equalsIgnoreCase("Manager")){
+					 empList.add((Employee) emp);
+				 }
+			 }
+		 }
+		return empList;
+	}
 }

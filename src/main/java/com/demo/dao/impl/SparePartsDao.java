@@ -2,6 +2,10 @@ package com.demo.dao.impl;
 
 
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,11 +24,19 @@ public class SparePartsDao implements SparePartsDaoInt{
 	private SessionFactory sessionFactory;
 	
 	private String retMessage = null;
+	
+	DateFormat dateFormat = null;
+	Date date = null;
 
 	@Override
 	public String saveSpareparts(Spare spareParts) {
 		
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
+		
 		try{
+			   spareParts.setStockType("HO");
+			   spareParts.setDateTime(dateFormat.format(date));
 			   sessionFactory.getCurrentSession().save(spareParts);
 			   retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ " is successfully added";
 		}

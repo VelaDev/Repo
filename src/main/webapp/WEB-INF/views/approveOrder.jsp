@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Display Employees | Velaphanda Trading & Projects</title>
+<title>Approve Order | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,48 +20,78 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
+		<c:if test="${not empty retMessage }">
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ retMessage}">
+					</c:out>
+				</div>
+			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Pending Orders</b>
+							<b>Approve order</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
+					<form:form modelAttribute="approveOrderItems" method="post"
+							action="approveOrderItems" id="approveOrderItems" name="approveOrderItems">
+							<!--First column-->
+							<div class="col-md-4">
+								<div class="form-group">
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <input id="technician"
+												name="orderNum" placeholder="Order Number"
+												class="form-control" type="text" value="${OrderNum.orderNum}">
+										</div>
+									</div>
+								</div>
+							</div><br><br>
+							<!-- /F Column -->
 						<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Order No<img
+									<th>Part No<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Status<img
+										<th>Model No<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+										<th>Desc<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Quantity<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Date<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Stock Type<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Customer<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Details</th>
+										<th>Stock Type</th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${pendingOrderList}">
 									<tr>
-										<td>${list.orderNum}</td>
-										<td>${list.status}</td>
-										<td>${list.dateOrdered}</td>
-										<td>${list.stockType}</td>
-										<td>${list.customer.customerName}</td>
-										<th><a
-											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>">details</a></th>
+										<td>${list.partNumber}</td>
+										<td>${list.model}</td>
+										<td>${list.description}</td>
+										<td>${list.quantity}</td> 
+										<td>${list.dateTime}</td> 
+										<td>${list.order.stockType}</td> 
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
+						<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br>
+									<br> <input type="submit" value="Approve order"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="order" name="order">
+								</div>
+							</div>
+						</form:form>
 					</div>
 					<!-- /tab-content -->
 

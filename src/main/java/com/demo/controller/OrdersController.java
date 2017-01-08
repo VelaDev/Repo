@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.OrdersBean;
+import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Order;
+import com.demo.model.OrderDetails;
 import com.demo.service.CompatibilityServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
+import com.demo.service.OrderDetailsInt;
 import com.demo.service.OrdersServiceInt;
 
 
@@ -30,6 +33,8 @@ public class OrdersController {
 	private EmployeeServiceInt employeeServiceInt;
 	@Autowired
 	private CustomerServiceInt customerServiceInt;
+	@Autowired
+	private OrderDetailsInt orderDetailsInt;
 	@Autowired
 	private HttpSession session;
 	private ModelAndView model = null;
@@ -129,8 +134,42 @@ public class OrdersController {
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			model.addObject("ApprovedOrderList", ordersServiceInt.getAllOrders());
+			
+			model.addObject("pendingOrderList", ordersServiceInt.pendingOrders());
 			model.setViewName("displayOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="approveOrder",method=RequestMethod.GET)
+	public ModelAndView approveOrder(@RequestParam("orderNum") String orderNum,@ModelAttribute OrderDetails orderDetails){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(orderNum));
+			model.addObject("OrderNum", ordersServiceInt.getOrder(orderNum));
+			model.setViewName("approveOrder");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="approveOrderItems",method=RequestMethod.POST)
+	public ModelAndView approveOrderItems(@RequestParam("orderNum") String orderNum){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			model.addObject("retMessage", ordersServiceInt.approveOrder(orderNum));
+			model.setViewName("approveOrder");
 		}
 		else{
 			model.setViewName("login");

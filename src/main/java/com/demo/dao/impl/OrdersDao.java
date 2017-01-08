@@ -63,7 +63,8 @@ public class OrdersDao implements OrdersDaoInt{
 	private DateFormat dateFormat = null;
 	private Date date = null;
 	private List<OrderDetails> orderDetailList = null;
-	private OrderDetails orderDetails = null;	
+	private OrderDetails orderDetails = null;
+	private List<Order> pendingOrders;
 	
 	
 	@Override
@@ -119,7 +120,8 @@ public class OrdersDao implements OrdersDaoInt{
 
 	@Override
 	public List<Order> getAllOrders() {
-		return null;
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		return (List<Order>)criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -249,15 +251,10 @@ public class OrdersDao implements OrdersDaoInt{
 		
 			orderNumber = newOrderNumber();
 			order.setOrderNum(orderNumber);
-			//order.setSpare(part);
 			order.setEmployee(emp);
-			//order.setDevice(device);
 			order.setApproved(false);
 			order.setDateOrdered(dateFormat.format(date));
-			//order.setDescription(orders.getDescription());
-			//order.setQuantity(orders.getQuantity());
-		
-              			
+				
 			  for(int i=0; i<orderBean.getSelectedItem().length;i++){
 				  orderDetails = new OrderDetails();
 				  splitString = orderBean.getSelectedItem()[i];
@@ -303,4 +300,58 @@ public class OrdersDao implements OrdersDaoInt{
 	  return newQuantity;
 	
     }
+
+	@Override
+	public List<Order> pendingOrders() {
+		ArrayList<Order> pendingList = new ArrayList<Order>();
+		try{
+			 pendingOrders = getAllOrders();
+			 for(Order order:pendingOrders){
+				 if(order.getStatus().equalsIgnoreCase("Pending")){
+					 pendingList.add(order);
+				 }
+			 }
+		}catch(Exception e){
+			
+		}
+		return pendingList;
+	}
+
+	@Override
+	public String approveOrder(String orderNum) {
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
+		try{
+			order = getOrder(orderNum);
+			order.setStatus("Approved");
+			order.setApproved(true);
+			order.setDateApproved(dateFormat.format(date));
+			sessionFactory.getCurrentSession().update(order);
+			
+			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(orderNum);
+			retMessage = subtractOrderItems(orderDetailList);
+			retMessage = "Order "+ order.getOrderNum() + " is approved";
+			
+		}catch(Exception e){
+			retMessage = "Order "+ order.getOrderNum() + " is not approved";
+		}
+		return retMessage;
+	}
+	
+	private String subtractOrderItems(List<OrderDetails> orderDetails){
+		int tempQuantity= 0;
+		try{
+			for(OrderDetails subtractQuatity:orderDetails){
+				part = sparePartsDaoInt.getSparePartBySerial(subtractQuatity.getPartNumber());
+				tempQuantity = part.getQuantity() - subtractQuatity.getQuantity();
+				part.setQuantity(tempQuantity);
+				sessionFactory.getCurrentSession().update(part);
+				
+			}
+			
+		}catch(Exception e){
+			
+		}
+		return retMessage;
+	}
 }

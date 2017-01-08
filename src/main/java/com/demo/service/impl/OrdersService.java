@@ -67,5 +67,15 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.prepareOrderMaking(order);
 	}
 
+	@Override
+	public List<Order> pendingOrders() {
+		return ordersDAO.pendingOrders();
+	}
+
+	@Override
+	public String approveOrder(String orderNum) {
+		return ordersDAO.approveOrder(orderNum);
+	}
+
 
 }

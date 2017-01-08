@@ -1,12 +1,11 @@
-package com.demo.dao;
+package com.demo.service;
 
 import java.util.List;
 
 import com.demo.model.OrderDetails;
 
-public interface OrderDetailsDaoInt {
-	
-	String saveOrderDetails(List<OrderDetails> orderDetails);
+public interface OrderDetailsInt {
 	List<OrderDetails> getOrderDetailsByOrderNum(String orderNum);
 	List<OrderDetails> getAllOrderDetails();
+
 }

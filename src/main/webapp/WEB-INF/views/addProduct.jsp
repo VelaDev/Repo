@@ -129,8 +129,6 @@ li{
 										</ul>
 									</div>
 								</div>
-
-								<br>
 							</fieldset>
 							<br>
 							<br>

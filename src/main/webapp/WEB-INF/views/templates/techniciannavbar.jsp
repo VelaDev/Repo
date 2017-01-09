@@ -56,7 +56,7 @@
 						aria-expanded="false">Spares<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="order.html"/>'>Make Order</a></li>
-							<li><a href='<c:url value="approvedOrders.html"/>'>Approved Orders</a></li>
+							<li><a href='<c:url value="approvedOrders.html"/>'>Orders</a></li>
 						</ul>
 					</li>
 				</ul>

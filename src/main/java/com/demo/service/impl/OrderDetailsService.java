@@ -29,4 +29,10 @@ public class OrderDetailsService implements OrderDetailsInt{
 		return orderDetailsDaoInt.getAllOrderDetails();
 	}
 
+	@Override
+	public List<OrderDetails> getOrderDetailsByTechnician(String email) {
+		
+		return orderDetailsDaoInt.getOrderDetailsByTechnician(email);
+	}
+
 }

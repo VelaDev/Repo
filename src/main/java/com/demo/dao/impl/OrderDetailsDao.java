@@ -60,5 +60,21 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(OrderDetails.class);
 		return (List<OrderDetails>)criteria.list();
 	}
+	@Override
+	public List<OrderDetails> getOrderDetailsByTechnician(String email) {
+		ArrayList<OrderDetails> pendingList = new ArrayList<OrderDetails>();
+		try{
+			orders = getAllOrderDetails();
+			
+			 for(OrderDetails order:orders){
+				 if(order.getOrder().getEmployee().getEmail().equalsIgnoreCase(email)){
+					 pendingList.add(order);
+				 }
+			 }
+		}catch(Exception e){
+			
+		}
+		return pendingList;
+	}
 
 }

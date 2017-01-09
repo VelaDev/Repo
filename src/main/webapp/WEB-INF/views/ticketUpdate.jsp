@@ -59,7 +59,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="clientName" placeholder="Client Name"
-													class="form-control" value="${ticketupdate.device.customer.clientName }"
+													class="form-control" value="${ticketupdate.device.customer.customerName }"
 													type="text">
 											</div>
 										</div>

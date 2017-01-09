@@ -5,70 +5,84 @@
   <title>Approved Orders | Velaphanda Trading & Projects</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1"> 
-  <link
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
-</head>
+  <link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
 <body>
-	<div class="velaphanda_containter">	
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
+	<div class="velaphanda_containter">
+	  <c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-		<br/>
-			<div class="panel panel-success">    
+			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-						<b>Approved Orders</b>
-					</div>
+							<b>Orders</b>
+						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
-					
 					<div class="tab-content">
-					
-							<div class="row">
-								<div class="content">
-									<table class="table table-hover ">
-										<thead style="background-color: #bce8f1;">
-											<tr class='clickable-row'>
-												<th>Order No</th>
-												<th>Order Type</th>
-												<th>Quantity</th>
-												<th>Approved By</th>
-												<th>Approved Date</th>
+								<!-- Below table will be displayed as Data table -->
+									<table id="myDatatable" class="display datatable">
+										<thead>
+											<tr>
+												<th>Order No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Order Status <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Date <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
+												<th>Stock Type <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												 <th>Order Details <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${ApprovedOrderList}" var="order">
-									<tr>
-										<th><c:out value="${order.orderNum}"/></th>
-										<th><c:out value="${order.part.itemType}"/></th>
-										<th><c:out value="${order.quantity}"/></th> 
-										<th><c:out value="${order.approdedBy}"/></th> 
-										<th><c:out value="${order.dateApproved}"/></th>
-																 
-									</tr>
-								</c:forEach>
+											<!-- Iterating over the list sent from Controller -->
+											 <c:forEach var="list" items="${OrderList}">
+												<tr>
+													<td>${list.orderNum}</td>
+													<td>${list.status}</td>
+													<td>${list.dateOrdered}</td>
+													<td>${list.stockType}</td>
+													<th><a
+											               href="detailedOrders?orderNum=<c:out value='${list.orderNum}'/>">details</a></th>
+													
+												</tr>
+											</c:forEach>
 										</tbody>
 									</table>
-								</div>
 							</div>
-						
-					</div><!-- /tab-content -->
-									
-				</div><!-- /panel body -->
-			</div><!--/panel success class-->
-		</div><!-- /Container -->
+					<!-- /tab-content -->
+
+				</div>
+				<!-- /panel body -->
+			</div>
+			<!--/panel success class-->
+		</div>
+		<!-- /Container -->
 		<!-- Footer -->
 		<c:import url="templates/footer.jsp"></c:import>
 		<!--/ Footer -->
-	</div><!-- / velaphanda_containter -->
+	</div>
+	<!-- / velaphanda_containter -->
 	
-	
-
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>	
 </body>
+<script type="text/javascript"	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+<%-- <script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script> --%>
+
+<script>
+	$(document).ready(function() {
+		$('#myDatatable').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
 </html>

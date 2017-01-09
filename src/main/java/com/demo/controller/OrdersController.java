@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -116,10 +118,11 @@ public class OrdersController {
 	@RequestMapping("approvedOrders")
 	public ModelAndView approvedOrders(){
 		model = new ModelAndView();
-		
+	    
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			model.addObject("ApprovedOrderList", ordersServiceInt.getApprovedOrdersByTechnicianName(userName.getEmail()));
+			model.addObject("OrderList",ordersServiceInt.getAllOrders(userName.getEmail()));
+			//model.addObject("","")
 			model.setViewName("approvedOrders");
 		}
 		else{
@@ -170,6 +173,23 @@ public class OrdersController {
 			
 			model.addObject("retMessage", ordersServiceInt.approveOrder(orderNum));
 			model.setViewName("approveOrder");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="detailedOrders",method=RequestMethod.GET)
+	public ModelAndView detailedOrders(@RequestParam("orderNum") String orderNum){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(orderNum));
+			model.addObject("OrderNum", ordersServiceInt.getOrder(orderNum));
+			model.setViewName("detailedOrders");
 		}
 		else{
 			model.setViewName("login");

@@ -36,7 +36,7 @@ public class Tickets implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="TicketNumber")
+	@Column(name="Ticket_Number")
 	private String ticketNumber;
 	@Column(name="Comments")
 	private String comments;
@@ -44,21 +44,21 @@ public class Tickets implements Serializable{
 	private String status;
 	@Column(name="Priority")
 	private String priority;
-	@Column(name="LoggedDate")
+	@Column(name="Logged_Date")
 	private String dateTime;
 	@Column(name="EscalatedTo")
 	private String escalatedTo;
 	@Column(name="Description")
 	private String description;
-	@Column(name="TechnicianAcknowledged")
+	@Column(name="Technician_Acknowledged")
 	private boolean technicianAcknowledged;
 	@Column(name="SLA")
 	private String slaStart;
 	@Column(name="Escalate")
 	private boolean escalate;
-	@Column(name="ESCALATE_REASON")
+	@Column(name="Escalate_Reason")
 	private String escalateReason;
-	@Column(name="SLA_ACKNOWLEDGE_DATETIME")
+	@Column(name="SLA_Acknowledge_DateTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar slaAcknowledgeDateTime;
 	@Column (name="Solution")
@@ -72,7 +72,7 @@ public class Tickets implements Serializable{
 	private Employee employee;
 	
 	@ManyToOne
-	@JoinColumn(name="SERIAL_NUMBER")
+	@JoinColumn(name="Serial_Number")
 	private Device device;
 	
 	@OneToMany(mappedBy= "tickets",cascade= CascadeType.ALL,fetch=FetchType.LAZY)

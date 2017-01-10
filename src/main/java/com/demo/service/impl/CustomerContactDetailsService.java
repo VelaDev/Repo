@@ -25,14 +25,18 @@ public class CustomerContactDetailsService implements CustomerContactDetailsServ
 
 	@Override
 	public List<CustomerContactDetails> contacts(String customerName) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<CustomerContactDetails> contacts() {
-		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public CustomerContactDetails getContactPerson(String customerName) {
+	
+		return contactDetailsDaoInt.getContactPerson(customerName);
 	}
 
 }

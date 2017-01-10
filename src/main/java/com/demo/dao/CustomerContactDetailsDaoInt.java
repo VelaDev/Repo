@@ -10,6 +10,7 @@ public interface CustomerContactDetailsDaoInt {
 	CustomerBean contactDetails(String customerName);
 	List<CustomerContactDetails> contacts(String customerName);
 	List<CustomerContactDetails> contacts();
+	CustomerContactDetails getContactPerson(String customerName);
 	
 
 }

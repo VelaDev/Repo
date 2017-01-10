@@ -19,8 +19,7 @@
 				</div>
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#generalDetails"
-							data-toggle="tab">General</a></li>
+						<li class="active"><a href="#generalDetails"data-toggle="tab">General</a></li>
 						<li><a href="#clientDetails" data-toggle="tab">Customer</a></li>
 						<li><a href="#productDetails" data-toggle="tab">Device</a></li>
 						<li><a href="#escalationDetails" data-toggle="tab">Escalate</a></li>
@@ -153,7 +152,9 @@
 						<!--Customers tab-->
 						<div class="tab-pane" id="clientDetails">
 							<h4 align="center">Customer Details</h4>
-							<form:form class="well form-horizontal">
+							
+							
+							   <form:form class="well form-horizontal">
 								<!--First column-->
 								<div class="col-md-6">
 									<!-- Text input Client Name-->
@@ -163,15 +164,15 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
-													name="clientName" placeholder="Client Name"
+													name="customerName" placeholder="Customer Name"
 													class="form-control"
-													value="${ticketObject.device.customer.clientName}"
+													value="${ticketObject.getDevice().getCustomer().getCustomerName()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
 
-									<%--  <!-- Text input Contact Person-->
+								<!-- Text input Contact Person-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contact Person</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -180,28 +181,28 @@
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="contactPerson" placeholder="Contact Person"
 													class="form-control"
-													value="${ticketObject.device.clientName.getContactPerson()}"
+													value="${contactPerson.firstName} ${contactPerson.lastName}" 
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div> 
- --%>
+									</div>
+ 
 									<!-- Select type Province-->
-									<div class="form-group">
+								 <div class="form-group">
 										<label class="col-md-3 control-label">Province</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input
 													name="province" class="form-control"
-													value="${ticketObject.device.customer.getProvince()}"
+													value="${ticketObject.getDevice().getCustomer().getProvince()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div> 
 
 									<!-- Text input City or Town-->
-									<div class="form-group">
+									 <div class="form-group">
 										<label class="col-md-3 control-label">City/Town</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
@@ -209,7 +210,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="city_town" placeholder="City / Town"
 													class="form-control"
-													value="${ticketObject.device.customer.city_town}" type="text" disabled="disabled">
+													value="${ticketObject.getDevice().getCustomer().getCity_town()}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div> 
@@ -223,7 +224,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetName" placeholder="Street Name"
 													class="form-control"
-													value="${ticketObject.device.customer.getStreetName()}"
+													value="${ticketObject.getDevice().getCustomer().getStreetName()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -236,20 +237,20 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													placeholder="Area Code" class="form-control"
-													value="${ticketObject.device.customer.zipcode}" type="text" disabled="disabled">
+													value="${ticketObject.getDevice().getCustomer().getZipcode()}" type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
+									</div> 
 
 								</div>
 								<!-- / F column -->
 
 								<!--Second column-->
-								<div class="col-md-6">
-
+								 <div class="col-md-6">
+ 
 
 									<!-- Text input Floor Number-->
-									<div class="form-group">
+									 <div class="form-group">
 										<label class="col-md-3 control-label">Street No</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
@@ -257,14 +258,14 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="floorNumber" placeholder="Street Number"
 													class="form-control"
-													value="${ticketObject.device.customer.streetNumber}"
+													value="${ticketObject.getDevice().getCustomer().getStreetNumber()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
+									</div> 
 
 									<!-- Text input Tellphone Number-->
-									<div class="form-group">
+									 <div class="form-group">
 										<label class="col-md-3 control-label">Telephone No</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
@@ -272,11 +273,11 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="tellphoneNumber" placeholder="Tellphone Number"
 													class="form-control"
-													value="${ticketObject.device.customer.getTellphoneNumber()}"
+													value="${ticketObject.getDevice().getCustomer().getTellphoneNumber()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div>
+									</div> 
 
 									<!-- Text input Fax Number-->
 									<div class="form-group">
@@ -287,12 +288,12 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="faxNumber" placeholder="Fax Number"
 													class="form-control"
-													value="${ticketObject.device.customer.faxNumber}" type="text" disabled="disabled">
+													value="${ticketObject.getDevice().getCustomer().getFaxNumber()}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
 
-									<%-- <!-- Text input Cellphone Number-->
+									<!-- Text input Cellphone Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Mobile Number</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -301,13 +302,13 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="cellNumber" placeholder="Mobile Number"
 													class="form-control"
-													value="${ticketObject.device.customer.cellNumber}"
+													 value="${contactPerson.cellNumber}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
-									</div> --%>
+									</div> 
 
-									<!-- Text input Email-->
+								 <!-- Text input Email-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">E-Mail</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -315,18 +316,18 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
 													class="form-control"
-													value="${ticketObject.device.customer.getEmail()}"
+													value="${ticketObject.getDevice().getCustomer().getEmail()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
 									</div> 
 
 
-								</div>
+								</div> 
 								<!-- /S Column -->
-								<div class="form-group">
+								 <div class="form-group">
 									<div class="col-sm-offset-2 col-sm-8"></div>
-								</div>
+								</div> 
 							</form:form>
 						</div>
 						<!--/Clients tab-->
@@ -364,19 +365,6 @@
 										</div>
 									</div>
 								</div>
-								<!-- Text input Device Location-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Device Location</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input
-												name="deviceLocation" id="deviceLocation" placeholder="Device Location"
-												value="${ticketObject.getDevice().getDeviceLocation() }"
-												class="form-control" type="text" disabled="disabled">
-										</div>
-									</div>
-								</div>
 								
 								<!-- Text checkbox Mono Reading-->
 								<div class="form-group">
@@ -388,6 +376,22 @@
 												name="monoReading" placeholder="Mono Reading"
 												value="${ticketObject.getDevice().getMonoReading()}"
 												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text input Device Location-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Device Location</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <%-- <input
+												name="deviceLocation" id="deviceLocation" placeholder="Device Location"
+												value="${ticketObject.getDevice().getDeviceLocation() }"
+												class="form-control" type="text" disabled="disabled"> --%>
+												<textarea rows="3" cols="30" disabled>${ ticketObject.getDevice().getStreetNumber()} ${ ticketObject.getDevice().getStreetName()}  ${ ticketObject.getDevice().getCity_town()} ${ ticketObject.getDevice().getAreaCode()}
+												</textarea>
 										</div>
 									</div>
 								</div>
@@ -404,7 +408,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-barcode"></i></span> <input
 												name="productModel" placeholder="Product Model"
-												value="${ticketObject.getDevice().getProductModel() }"
+												value="${ticketObject.device.modelNumber }"
 												class="form-control" type="text" disabled="disabled">
 										</div>
 									</div>
@@ -490,9 +494,35 @@
 										</div>
 									</div>
 								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label">Awaiting Spares </label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<input type="checkbox" name="AwaitingSpares" value="true"
+												required="required">
+										</div>
+									</div>
+								</div>
+								<!-- Select type Assign Technician-->						
+									<div class="form-group">
+										<label class="col-md-3 control-label">Order No</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select name="orderNumber"
+													class="form-control selectpicker">
+													<option>Select Order No</option> 
+													<c:forEach items="${OrderNumber}" var="orders">
+														<option value="${orders.orderNum}">${orders.orderNum}
+															</option>
+													</c:forEach>								
+												</select>
+											</div>
+										</div>
+									</div>
 								<!-- Text area Escalate Reason-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Escalate Reason</label>
+									<label class="col-md-3 control-label">Reason</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i

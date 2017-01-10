@@ -15,8 +15,10 @@ import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Tickets;
+import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
+import com.demo.service.OrdersServiceInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.DeviceServiceInt;
 import com.demo.service.TicketHistoryInt;
@@ -35,7 +37,11 @@ public class TicketController {
 	private EmployeeServiceInt employeeServiceInt;
 	@Autowired
 	private TicketHistoryInt ticketHistoryInt;
+	@Autowired
+	private OrdersServiceInt ordersServiceInt;
 	
+	@Autowired
+	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
 	@Autowired
 	private HttpSession session = null;
 	
@@ -109,7 +115,9 @@ public class TicketController {
 		
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomer().getCustomerName()));
 			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.setViewName("ticketDetails");
 		}
 		else{

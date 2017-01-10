@@ -96,4 +96,22 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 		return (List<CustomerContactDetails>)criteria.list(); 
 	}
 
+	@Override
+	public CustomerContactDetails getContactPerson(String customerName) {
+		CustomerContactDetails contactDetails= null;
+		
+		try{
+			   List<CustomerContactDetails> list = contacts();
+			   for(CustomerContactDetails temp:list){
+				   if(temp.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+					   contactDetails = temp;
+					   break;
+				   }
+			   }
+		}catch(Exception e){
+			
+		}
+
+		return contactDetails;
+	}
 }

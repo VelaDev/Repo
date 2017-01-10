@@ -26,12 +26,14 @@ import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.EmployeeDaoInt;
+import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.TicketsDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.TicketHistoryDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Device;
+import com.demo.model.OrdersHeader;
 import com.demo.model.Tickets;
 
 @Repository("LogTicketsDAO")
@@ -51,19 +53,22 @@ public class TicketsDao implements TicketsDaoInt {
 	@Autowired
 	private TicketHistoryDaoInt historyDaoInt;
 	@Autowired
+	private OrdersDaoInt ordersDaoInt;
+	@Autowired
 	private HttpSession session = null;
 	private Session session2;
 	
 
 	private Employee technician = null;
 	private Customer customer = null;
+	private OrdersHeader order = null;
 	private Device device = null;
 	 private Tickets ticket = null;
 	Calendar cal = Calendar.getInstance();
 	DateFormat dateFormat = null;
 	Date date = null;
     private String retMessage="";
-    private String ticketNum ="INC000";
+    private String ticketNum ="VTC000";
     private List<Tickets> ticketList = null;
     private PieChart pieChart = null;
     private PieChart pieChart1 = null;
@@ -227,6 +232,7 @@ public class TicketsDao implements TicketsDaoInt {
 	@Override
 	public String updateTicket(TicketsBean tickets) {
 		ticket = new  Tickets();
+		order = new OrdersHeader();
 		try{
 			
 			  ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
@@ -236,6 +242,8 @@ public class TicketsDao implements TicketsDaoInt {
 				  ticket.setEscalateReason(tickets.getEscalateReason());
 				  ticket.setEscalate(true);
 				  ticket.setStatus("Awaiting Spare");
+				  order = ordersDaoInt.getOrder(tickets.getOrderNumber());
+				  ticket.setOrdersHeader(order);
 				  sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 				  historyDaoInt.insertTicketHistory(ticket);
 				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
@@ -316,8 +324,7 @@ private String generateTicketNumber(){
 			newTicketNum = ticketNum+ tempTicketNum;
 		}
 		else{
-			/*newTicketNum = "TIC-VEL-1";*/
-			newTicketNum = "INC0001";
+			  newTicketNum = "VTC0001";
 		}
 		
 		return newTicketNum;

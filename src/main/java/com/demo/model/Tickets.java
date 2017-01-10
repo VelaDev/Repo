@@ -75,6 +75,10 @@ public class Tickets implements Serializable{
 	@JoinColumn(name="Serial_Number")
 	private Device device;
 	
+	@ManyToOne
+	@JoinColumn(name="Order_Number")
+	private OrdersHeader ordersHeader;
+	
 	@OneToMany(mappedBy= "tickets",cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<TicketHistory> ticketHistory; 
 	

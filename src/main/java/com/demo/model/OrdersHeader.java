@@ -23,12 +23,12 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name= "Orders")
+@Table(name= "OrdersHeader")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Order implements Serializable{
+public class OrdersHeader implements Serializable{
 
 	/**
 	 * 
@@ -73,6 +73,9 @@ public class Order implements Serializable{
 	@JoinColumn(name="Serial_Number")
 	private Device device;*/
 	
-	@OneToMany(mappedBy ="order", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy ="ordersHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<OrderDetails> orderDetails;
+	
+	@OneToMany(mappedBy ="ordersHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Tickets> tickets;
 }

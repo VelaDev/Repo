@@ -66,7 +66,7 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Date<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Stock Type</th>
+										<!-- <th>Stock Type</th> -->
 								</tr>
 							</thead>
 							<tbody>
@@ -78,7 +78,7 @@
 										<td>${list.description}</td>
 										<td>${list.quantity}</td> 
 										<td>${list.dateTime}</td> 
-										<td>${list.order.stockType}</td> 
+										<%-- <td>${list.order.stockType}</td> --%> 
 									</tr>
 								</c:forEach>
 							</tbody>

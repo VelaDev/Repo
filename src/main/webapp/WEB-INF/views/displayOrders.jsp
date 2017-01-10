@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Pending Orders</b>
+							<b>Orders</b>
 						</div>
 					</h3>
 				</div>
@@ -45,6 +45,7 @@
 									<th>Customer<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Order Details</th>
+									<th>Delivery Note</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -58,6 +59,8 @@
 										<td>${list.customer.customerName}</td>
 										<th><a
 											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>">details</a></th>
+											<th><a
+											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>">Delivery</a></th>
 									</tr>
 								</c:forEach>
 							</tbody>

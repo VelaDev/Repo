@@ -27,7 +27,7 @@ import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.SparePartsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
-import com.demo.model.Order;
+import com.demo.model.OrdersHeader;
 import com.demo.model.OrderDetails;
 import com.demo.model.Spare;
 import com.demo.model.Device;
@@ -59,23 +59,23 @@ public class OrdersDao implements OrdersDaoInt{
 	private Employee emp = null;
 	private Spare part = null;
 	private Device device=null;
-	private Order order = null;
+	private OrdersHeader cusOrder = null;
 	private DateFormat dateFormat = null;
 	private Date date = null;
 	private List<OrderDetails> orderDetailList = null;
 	private OrderDetails orderDetails = null;
-	private List<Order> pendingOrders;
+	private List<OrdersHeader> pendingOrders;
 	
 	
 	@Override
-	public String makeOrder(Order order) {
+	public String makeOrder(OrdersHeader ordersHeader) {
 		
 			try{
-			     sessionFactory.getCurrentSession().save(order);
-			     retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is created";
+			     sessionFactory.getCurrentSession().save(ordersHeader);
+			     retMessage = "OrdersHeader"+" "+ ordersHeader.getOrderNum()+ " "+"is created";
 		}
 		catch(Exception e){
-			retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is not created";
+			retMessage = "OrdersHeader"+" "+ ordersHeader.getOrderNum()+ " "+"is not created";
 		}
 		return retMessage;
 	}
@@ -86,58 +86,59 @@ public class OrdersDao implements OrdersDaoInt{
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 		String n = " ";
-		order = new Order();
+		cusOrder = new OrdersHeader();
 		try{
 			
 			part= sparePartsDaoInt.getSparePartBySerial(orders.getPart());
 			device = deviceDaoInt.getDeviceBySerialNumbuer(orders.getDevice());
 			emp =employeeDaoInt.getEmployeeByEmpNum(orders.getEmployee());
 			if(part != null){
-				order.setApproved(true);
-				order.setDateApproved(dateFormat.format(date));
-				//order.setReceived(true);
-				//order.setSpare(part);
-				//order.setDevice(device);
+				orders.setApproved(true);
+				orders.setDateApproved(dateFormat.format(date));
+				//orders.setReceived(true);
+				//orders.setSpare(part);
+				//orders.setDevice(device);
 				String approvedBy = (String) session.getAttribute("loggedInUser");
-				//order.setApprodedBy(approvedBy);
-				order.setOrderNum(orders.getOrderNum());
-				//order.setDescription(orders.getDescription());
-				//order.setQuantity(orders.getQuantity());
-				order.setEmployee(emp);
-				order.setDateOrdered(orders.getDateOrdered());
+				//orders.setApprodedBy(approvedBy);
+				orders.setOrderNum(orders.getOrderNum());
+				//orders.setDescription(orders.getDescription());
+				//orders.setQuantity(orders.getQuantity());
+				cusOrder.setEmployee(emp);
+				cusOrder.setDateOrdered(orders.getDateOrdered());
 				
-				sessionFactory.getCurrentSession().update(order);
-				retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is approved";
+				sessionFactory.getCurrentSession().update(cusOrder);
+				retMessage = "OrdersHeader"+" "+ cusOrder.getOrderNum()+ " "+"is approved";
 			}else{
-				retMessage = "Order"+" "+n+ order.getOrderNum()+ " "+"is not approved because " + " is not available in store." ;
+				retMessage = "OrdersHeader"+" "+n+ cusOrder.getOrderNum()+ " "+"is not approved because " + " is not available in store." ;
 			}
 		
 		}catch (Exception e){
-			retMessage = "Order"+" "+ order.getOrderNum()+ " "+"is not updated " + e.getMessage();
+			retMessage = "OrdersHeader"+" "+ orders.getOrderNum()+ " "+"is not updated " + e.getMessage();
 		}
 		return retMessage;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getAllOrders() {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
-		return (List<Order>)criteria.list();
+	public List<OrdersHeader> getAllOrders() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(OrdersHeader.class);
+		return (List<OrdersHeader>)criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getApprovedOrdersByTechnicianName(String userName) {
+	public List<OrdersHeader> getApprovedOrdersByTechnicianName(String userName) {
 		
-		ArrayList<Order> aList = new ArrayList<Order>();
-		ArrayList<Order> orderList = new ArrayList<Order>();
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		ArrayList<OrdersHeader> aList = new ArrayList<OrdersHeader>();
+		ArrayList<OrdersHeader> orderList = new ArrayList<OrdersHeader>();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(OrdersHeader.class);
 		 
 		 aList.addAll(criteria.list());
 		 for(Object order:aList)
 		 {
-			 if(order instanceof Order){
-				 if(((Order) order).getEmployee().getEmail().equalsIgnoreCase(userName)&& ((Order)order).isApproved()==true){
-					 orderList.add((Order) order);
+			 if(order instanceof OrdersHeader){
+				 if(((OrdersHeader) order).getEmployee().getEmail().equalsIgnoreCase(userName)&& ((OrdersHeader)order).isApproved()==true){
+					 orderList.add((OrdersHeader) order);
 				 }
 			 }
 		 }
@@ -146,17 +147,17 @@ public class OrdersDao implements OrdersDaoInt{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getOpenOrders() {
+	public List<OrdersHeader> getOpenOrders() {
 		ArrayList<?> aList = new ArrayList<Object>();
-		ArrayList<Order> orderList = new ArrayList<Order>();
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		ArrayList<OrdersHeader> orderList = new ArrayList<OrdersHeader>();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(OrdersHeader.class);
 		 
 		 aList.addAll(criteria.list());
 		 for(Object order:aList)
 		 {
-			 if(order instanceof Order){
-				 if(((Order) order).isApproved()==false){
-					 orderList.add((Order) order);
+			 if(order instanceof OrdersHeader){
+				 if(((OrdersHeader) order).isApproved()==false){
+					 orderList.add((OrdersHeader) order);
 				 }
 			 }
 		 }
@@ -164,18 +165,18 @@ public class OrdersDao implements OrdersDaoInt{
 	}
 
 	@Override
-	public Order getOrder(String orderNum) {
+	public OrdersHeader getOrder(String orderNum) {
 		
-		return (Order) sessionFactory.getCurrentSession().get(Order.class, orderNum);
+		return (OrdersHeader) sessionFactory.getCurrentSession().get(OrdersHeader.class, orderNum);
 	}
 	
 	private String generateOrderNumber(){
 		
 		session2=sessionFactory.openSession();
 		String result = "";
-		Query query = session2.createQuery("from Order order by orderNum DESC");
+		Query query = session2.createQuery("from OrdersHeader order by orderNum DESC");
 		query.setMaxResults(1);
-		Order orderNumber = (Order) query.uniqueResult();
+		OrdersHeader orderNumber = (OrdersHeader) query.uniqueResult();
 		
 		if(orderNumber != null){
 			result = orderNumber.getOrderNum();
@@ -204,17 +205,17 @@ public class OrdersDao implements OrdersDaoInt{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getAllOrders(String orderedBy) {
+	public List<OrdersHeader> getAllOrders(String orderedBy) {
 		ArrayList<?> aList = new ArrayList<Object>();
-		ArrayList<Order> orderList = new ArrayList<Order>();
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		ArrayList<OrdersHeader> orderList = new ArrayList<OrdersHeader>();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(OrdersHeader.class);
 		 
 		 aList.addAll(criteria.list());
 		 for(Object order:aList)
 		 {
-			 if(order instanceof Order){
-				 if(((Order) order).getEmployee().getEmail().equalsIgnoreCase(orderedBy)){
-					 orderList.add((Order) order);
+			 if(order instanceof OrdersHeader){
+				 if(((OrdersHeader) order).getEmployee().getEmail().equalsIgnoreCase(orderedBy)){
+					 orderList.add((OrdersHeader) order);
 				 }
 			 }
 		 }
@@ -225,7 +226,7 @@ public class OrdersDao implements OrdersDaoInt{
 	public String prepareOrderMaking(OrdersBean orderBean) {
 		orderDetailList = new ArrayList<OrderDetails>();
 		
-		order = new Order();
+		cusOrder = new OrdersHeader();
 		String orderNumber = null;
 		 String[] split;
 		 String partNumber,modelNumber,description,splitString = null;
@@ -241,19 +242,16 @@ public class OrdersDao implements OrdersDaoInt{
 			emp=employeeDaoInt.getEmployeeByEmpNum(user.getEmail());
 			String customer = orderBean.getCustomer();
 			cus = customerDaoInt.getClientByClientName(customer);
-			order.setCustomer(cus);
-			order.setStockType(orderBean.getStockType());
-			order.setStatus("Pending");
-			order.setApprover(orderBean.getApprover());
+			cusOrder.setCustomer(cus);
+			cusOrder.setStockType(orderBean.getStockType());
+			cusOrder.setStatus("Pending");
+			cusOrder.setApprover(orderBean.getApprover());
 			
-			
-			
-		
 			orderNumber = newOrderNumber();
-			order.setOrderNum(orderNumber);
-			order.setEmployee(emp);
-			order.setApproved(false);
-			order.setDateOrdered(dateFormat.format(date));
+			cusOrder.setOrderNum(orderNumber);
+			cusOrder.setEmployee(emp);
+			cusOrder.setApproved(false);
+			cusOrder.setDateOrdered(dateFormat.format(date));
 				
 			  for(int i=0; i<orderBean.getSelectedItem().length;i++){
 				  orderDetails = new OrderDetails();
@@ -271,17 +269,17 @@ public class OrdersDao implements OrdersDaoInt{
 				  orderDetails.setLocation(orderBean.getLocation());
 				  orderDetails.setStockType(part.getStockType());
 				  orderDetails.setTechnician(orderBean.getTechnician());
-				  orderDetails.setOrder(order);
+				  orderDetails.setOrdersHeader(cusOrder);
 				  orderDetails.setDateTime(dateFormat.format(date));
 				  
 				  orderDetailList.add(orderDetails);
 			  }
 			  
 			  
-			  retMessage = makeOrder(order);
+			  retMessage = makeOrder(cusOrder);
 			  String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
 		}catch(Exception ex){
-			retMessage = " Order cannot be proccessed "+ ex.getMessage();
+			retMessage = " OrdersHeader cannot be proccessed "+ ex.getMessage();
 		}
 		return retMessage;
 	}
@@ -302,13 +300,13 @@ public class OrdersDao implements OrdersDaoInt{
     }
 
 	@Override
-	public List<Order> pendingOrders() {
-		ArrayList<Order> pendingList = new ArrayList<Order>();
+	public List<OrdersHeader> pendingOrders() {
+		ArrayList<OrdersHeader> pendingList = new ArrayList<OrdersHeader>();
 		try{
 			 pendingOrders = getAllOrders();
-			 for(Order order:pendingOrders){
-				 if(order.getStatus().equalsIgnoreCase("Pending")){
-					 pendingList.add(order);
+			 for(OrdersHeader ordersHeader:pendingOrders){
+				 if(ordersHeader.getStatus().equalsIgnoreCase("Pending")){
+					 pendingList.add(ordersHeader);
 				 }
 			 }
 		}catch(Exception e){
@@ -322,18 +320,18 @@ public class OrdersDao implements OrdersDaoInt{
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 		try{
-			order = getOrder(orderNum);
-			order.setStatus("Approved");
-			order.setApproved(true);
-			order.setDateApproved(dateFormat.format(date));
-			sessionFactory.getCurrentSession().update(order);
+			cusOrder = getOrder(orderNum);
+			cusOrder.setStatus("Approved");
+			cusOrder.setApproved(true);
+			cusOrder.setDateApproved(dateFormat.format(date));
+			sessionFactory.getCurrentSession().update(cusOrder);
 			
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(orderNum);
 			retMessage = subtractOrderItems(orderDetailList);
-			retMessage = "Order "+ order.getOrderNum() + " is approved";
+			retMessage = "OrdersHeader "+ cusOrder.getOrderNum() + " is approved";
 			
 		}catch(Exception e){
-			retMessage = "Order "+ order.getOrderNum() + " is not approved";
+			retMessage = "OrdersHeader "+ cusOrder.getOrderNum() + " is not approved";
 		}
 		return retMessage;
 	}

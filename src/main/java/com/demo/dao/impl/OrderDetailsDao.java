@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.OrderDetailsDaoInt;
-import com.demo.model.Order;
+import com.demo.model.OrdersHeader;
 import com.demo.model.OrderDetails;
 
 @Repository("orderDetailsDAO")
@@ -45,7 +45,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		try{
 			orders = getAllOrderDetails();
 			 for(OrderDetails order:orders){
-				 if(order.getOrder().getOrderNum().equalsIgnoreCase(orderNum)){
+				 if(order.getOrdersHeader().getOrderNum().equalsIgnoreCase(orderNum)){
 					 pendingList.add(order);
 				 }
 			 }
@@ -67,7 +67,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 			orders = getAllOrderDetails();
 			
 			 for(OrderDetails order:orders){
-				 if(order.getOrder().getEmployee().getEmail().equalsIgnoreCase(email)){
+				 if(order.getOrdersHeader().getEmployee().getEmail().equalsIgnoreCase(email)){
 					 pendingList.add(order);
 				 }
 			 }

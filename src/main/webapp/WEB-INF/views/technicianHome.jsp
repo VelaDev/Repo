@@ -31,6 +31,7 @@
 										<thead>
 											<tr>
 												<th>Ticket No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Ticket Status <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Customer Name <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Telephone No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
 												<th>Ticket Details </th>
@@ -38,17 +39,15 @@
 										</thead>
 										<tbody>
 											<!-- Iterating over the list sent from Controller -->
-											<%-- <c:forEach var="list" items="${displayCustomers}">
-												<tr>
-													<td>${list.customerName}</td>
-													<td>${list.email}</td>
-													<td>${list.tellphoneNumber}</td>
-													<td>${list.status}</td>
-													<td>${list.role}</td>
-                                                    <th><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>">edit</a></th>
-                                                    <th><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>">add device</a></th>
-												</tr>
-											</c:forEach> --%>
+											<c:forEach items="${technicianTickets}" var="ticket">
+								<tr>
+									<th><c:out value="${ticket.ticketNumber}"/></th>
+									<th><c:out value="${ticket.status} "/></th>
+									 <th><c:out value="${ticket.device.customer.customerName}"/></th> 
+									<th><c:out value="${ticket.device.customer.getTellphoneNumber()} "/></th>   
+									 <th><a href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>">Ticket Details</a></th>                 
+								</tr>
+							</c:forEach>
 										</tbody>
 									</table>
 							</div>
@@ -65,13 +64,6 @@
 	</div><!-- / velaphanda_containter -->
 	
 <script type="text/javascript">
-/* $(document).ready(function(){
-	$('.table > tbody > tr').click(function() {
-		 window.location="ticketDetails.html?id";
-		
-	});
-});	 */
-<script>
 $(document).ready(function() {
 	$('#myDatatable').DataTable({
 		"jQueryUI" : true,
@@ -80,8 +72,6 @@ $(document).ready(function() {
 	/* few more options are available to use */
 	});
 });
-</script>
-
 </script>
 </body>
 <script type="text/javascript"	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>

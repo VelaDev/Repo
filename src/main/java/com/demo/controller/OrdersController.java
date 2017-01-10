@@ -1,7 +1,5 @@
 package com.demo.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.OrdersBean;
-import com.demo.model.Customer;
 import com.demo.model.Employee;
-import com.demo.model.Order;
+import com.demo.model.OrdersHeader;
 import com.demo.model.OrderDetails;
 import com.demo.service.CompatibilityServiceInt;
+import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.OrderDetailsInt;
@@ -35,6 +33,8 @@ public class OrdersController {
 	private EmployeeServiceInt employeeServiceInt;
 	@Autowired
 	private CustomerServiceInt customerServiceInt;
+	@Autowired
+	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
 	@Autowired
 	private OrderDetailsInt orderDetailsInt;
 	@Autowired
@@ -80,15 +80,15 @@ public class OrdersController {
 	} 
 	
 	@RequestMapping("approveOrder")
-    public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute Order order) {
+    public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute OrdersHeader ordersHeader) {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-		      order = ordersServiceInt.getOrder(id);
-		      if(order !=null){
+		      ordersHeader = ordersServiceInt.getOrder(id);
+		      if(ordersHeader !=null){
 		    	  model.setViewName("orderUpdate");
-		          model.addObject("orderObject", order);
+		          model.addObject("orderObject", ordersHeader);
 		      }
 		else{
 			
@@ -138,7 +138,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
-			model.addObject("pendingOrderList", ordersServiceInt.pendingOrders());
+			model.addObject("pendingOrderList", ordersServiceInt.getAllOrders());
 			model.setViewName("displayOrders");
 		}
 		else{
@@ -190,6 +190,24 @@ public class OrdersController {
 			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(orderNum));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(orderNum));
 			model.setViewName("detailedOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="deliveryNote",method=RequestMethod.GET)
+	public ModelAndView deliveries(@RequestParam("orderNum") String orderNum){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			OrdersHeader order = ordersServiceInt.getOrder(orderNum);
+			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(orderNum));
+			model.addObject("OrderNum", order);
+			model.addObject("contactPerson", contactDetailsServiceInt.getContactPerson(order.getCustomer().getCustomerName()));
+			model.setViewName("deliveryNote");
 		}
 		else{
 			model.setViewName("login");

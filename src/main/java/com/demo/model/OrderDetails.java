@@ -57,7 +57,7 @@ public class OrderDetails implements Serializable{/**
 	
 	@ManyToOne
 	@JoinColumn(name="Order_Number")
-	private Order order;
+	private OrdersHeader ordersHeader;
 	
 
 }

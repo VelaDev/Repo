@@ -58,15 +58,48 @@ div#container{
     z-index: 1;
  }
 #customer_container {
-	background: #f9f9f9;
-	border: 1px solid #aaa;
+	/* background: #f9f9f9;
+	border: 1px solid #aaa; */
 	padding: 10px;
 	margin-bottom: 1em;
 	width: auto;
 	display: table;
 	font-size: 100%;
 }
+#payment_container {
+	/* background: #f9f9f9; */
+	/* border: 1px solid #aaa; */
+	padding: 10px;
+	margin-bottom: 1em;
+	width: auto;
+	display: table;
+	font-size: 100%;
+	margin-left: auto;
+}
+#logo_container {
+	/* background: #f9f9f9; */
+	/* border: 1px solid #aaa; */
+	padding: 10px;
+	margin-bottom: 1em;
+	width: auto;
+	display: table;
+	font-size: 100%;
+	margin-left: auto;
+	margin-right: -19%;
+    margin-top:-38% ;
+}
 p.contactPerson_title, p.customerAddress_title{
+	font-size: 1.1em;
+	font-weight:bolder;
+}
+
+
+p.payment_title{
+	font-size: 1.1em;
+	font-weight:bolder;
+}
+
+p.customerAddress_title{
 	font-size: 1.1em;
 	font-weight:bolder;
 }
@@ -84,6 +117,14 @@ ul#nav{
 }
 ul#nav li{
 	list-style: none;
+}
+ul#nav lia{
+	background: url(/resources/bootstrap-3.3.6/images/image001.jpg) no-repeat 7px 7px transparent;
+    list-style-type: none;
+    margin: 0;
+    padding: 0px 0px 1px 24px;
+    vertical-align: middle;
+	 
 }
 ul#nav li a{
 	color:#ccc;

@@ -54,7 +54,7 @@
 				 <value>com.demo.model.Customer</value>
 				 <value>com.demo.model.Spare</value>
 				 <value>com.demo.model.Tickets</value>
-				 <value>com.demo.model.Order</value>
+				 <value>com.demo.model.OrdersHeader</value>
 				 <value>com.demo.model.CustomerContactDetails</value>
 				 <value>com.demo.model.Accessories</value>
 				 <value>com.demo.model.Manager</value>

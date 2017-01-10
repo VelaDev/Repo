@@ -69,7 +69,7 @@ public class Employee implements Serializable{
 	private Set<Tickets> logTickets;
 	
 	@OneToMany(mappedBy="employee",cascade=CascadeType.ALL)
-	private Set<Order> order;
+	private Set<OrdersHeader> ordersHeader;
 	
 	@OneToMany(mappedBy="employee",cascade=CascadeType.ALL)
 	private Set<TicketHistory> ticketHistory;

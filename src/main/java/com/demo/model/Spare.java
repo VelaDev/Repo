@@ -49,7 +49,7 @@ public class Spare implements Serializable{
 	
 	
 	/*@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
-	private Set<Order> order;*/
+	private Set<OrdersHeader> order;*/
 	@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
 	private Set<Compatibility> compitability;
 

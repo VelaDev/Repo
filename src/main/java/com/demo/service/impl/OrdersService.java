@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.OrdersBean;
 import com.demo.dao.OrdersDaoInt;
-import com.demo.model.Order;
+import com.demo.model.OrdersHeader;
 import com.demo.service.OrdersServiceInt;
 
 @Service("odersService")
@@ -20,9 +20,9 @@ public class OrdersService implements OrdersServiceInt{
 	private String retMessage = null;
 
 	@Override
-	public String makeOrder(Order order) {
+	public String makeOrder(OrdersHeader ordersHeader) {
 		try{
-			retMessage = ordersDAO.makeOrder(order);
+			retMessage = ordersDAO.makeOrder(ordersHeader);
 		}
 		catch(Exception e){}
 		return retMessage;
@@ -35,30 +35,29 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public List<Order> getAllOrders() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrdersHeader> getAllOrders() {
+		return ordersDAO.getAllOrders();
 	}
 
 	@Override
-	public List<Order> getApprovedOrdersByTechnicianName(String userName) {
+	public List<OrdersHeader> getApprovedOrdersByTechnicianName(String userName) {
 		
 		return ordersDAO.getApprovedOrdersByTechnicianName(userName);
 	}
 
 	@Override
-	public List<Order> getOpenOrders() {
+	public List<OrdersHeader> getOpenOrders() {
 		return ordersDAO.getOpenOrders();
 	}
 
 	@Override
-	public Order getOrder(String orderNum) {
+	public OrdersHeader getOrder(String orderNum) {
 	
 		return ordersDAO.getOrder(orderNum);
 	}
 
 	@Override
-	public List<Order> getAllOrders(String orderedBy) {
+	public List<OrdersHeader> getAllOrders(String orderedBy) {
 		return ordersDAO.getAllOrders(orderedBy);
 	}
 
@@ -68,7 +67,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public List<Order> pendingOrders() {
+	public List<OrdersHeader> pendingOrders() {
 		return ordersDAO.pendingOrders();
 	}
 

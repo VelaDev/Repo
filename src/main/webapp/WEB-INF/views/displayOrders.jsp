@@ -67,7 +67,6 @@
 						</table>
 					</div>
 					<!-- /tab-content -->
-
 				</div>
 				<!-- /panel body -->
 			</div>

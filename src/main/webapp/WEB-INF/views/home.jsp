@@ -2,19 +2,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-  <title>Home | Velaphanda Trading & Projects</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
+<title>Home | Velaphanda Trading & Projects</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 </head>
 <body>
-	<div class="velaphanda_containter">	
+	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		<br/>
-			<div class="panel panel-success">    
+			<br />
+			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<div align="left"><b>Tickets</b> </div>
+						<div align="left">
+							<b>Tickets</b>
+						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
@@ -25,7 +34,7 @@
 								Details</a></li>
 					</ul>
 					<div class="tab-content">
-					
+
 						<!--home tab-->
 						<div class="tab-pane active" id="home">
 							<div class="panel panel-success">
@@ -40,16 +49,19 @@
 									<!-- <div class="col-lg-10"> -->
 									<div class="panel-body">
 										<div class="pie_content">
-											<div id="ticket_details_pie"  align='center'></div>
+											<div id="ticket_details_pie" align='center'></div>
 										</div>
 									</div>
-								</div><!-- /panel body -->
-							</div><!-- /panel panel-success -->
-						</div><!-- /home tab-->
-						
+								</div>
+								<!-- /panel body -->
+							</div>
+							<!-- /panel panel-success -->
+						</div>
+						<!-- /home tab-->
+
 						<!--Tickets Details tab-->
 						<div class="tab-pane" id="ticketDetails">
-							
+
 							<div class="panel panel-success">
 								<div class="panel-heading">
 									<h3 class="panel-title">
@@ -61,53 +73,71 @@
 								<div class="panel-body">
 									<!-- <div class="col-lg-10"> -->
 									<div class="panel-body">
-										<table class="table table-striped custab">
-												<thead style="background-color: #bce8f1;">
+										<!-- Below table will be displayed as Data table -->
+										<table id="myDatatable" class="display datatable">
+											<thead>
+												<tr>
+													<th>Ticket No <img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Description<img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Date<img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Status<img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Technician<img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Edit<img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+
+												</tr>
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach items="${home}" var="ticket" varStatus="itr">
 													<tr>
-													    <th>#</th>
-														<th>Ticket No</th>
-														<th>Description</th>
-														<th>Date</th>
-														<th>Status</th>
-														<th>Technician</th>
-														<th>Edit</th>
+														<th><c:out value="${ticket.ticketNumber}" /></th>
+														<th><c:out value="${ticket.description}" /></th>
+														<th><c:out value="${ticket.dateTime}" /></th>
+														<th><c:out value="${ticket.status}" /></th>
+														<th><c:out
+																value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></th>
+														<th><a
+															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>">Edit</a></th>
+
 													</tr>
-												</thead>
-												<tbody>
-													<c:forEach items="${home}" var="ticket" varStatus="itr">
-														<tr>
-														    <th><c:out value="${offset + itr.index +1 }"></c:out>
-															<th><c:out value="${ticket.ticketNumber}" /></th>
-															<th><c:out value="${ticket.description}" /></th>
-															<th><c:out value="${ticket.dateTime}" /></th>
-															<th><c:out value="${ticket.status}" /></th>
-															<th><c:out value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></th>
-															<th><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>">Edit</a></th>
-														</tr>
-													</c:forEach>
-												</tbody>
-										</table> 
-										<tag:paginate max="10" offset="${offset}" count="${count}" 
-						                uri="home" next="&raquo;" previous="&laquo;" />
+												</c:forEach>
+											</tbody>
+										</table>
+
 									</div>
-								</div><!-- /panel body -->
-							</div><!-- /panel panel-success -->
-							
-						</div><!-- Ticket Detials -->
-						
-					</div><!-- /tab-content -->
-									
-				</div><!-- /panel body -->
-			</div><!--/panel success class-->
-		</div><!-- /Container -->
+								</div>
+								<!-- /panel body -->
+							</div>
+							<!-- /panel panel-success -->
+
+						</div>
+						<!-- Ticket Detials -->
+
+					</div>
+					<!-- /tab-content -->
+
+				</div>
+				<!-- /panel body -->
+			</div>
+			<!--/panel success class-->
+		</div>
+		<!-- /Container -->
 		<!-- Footer -->
 		<c:import url="templates/footer.jsp"></c:import>
 		<!--/ Footer -->
-	</div><!-- / velaphanda_containter -->
+	</div>
+	<!-- / velaphanda_containter -->
 
-	
-<script type="text/javascript" src="https://www.google.com/jsapi"></script> 
-<script>
+
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+	<script>
 
    google.load("visualization", "1", {packages:["corechart"]});
 
@@ -145,7 +175,21 @@
 
   }
 
-</script> 
+</script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myDatatable').DataTable({
+				"jQueryUI" : true,
+				"pagingType" : "full_numbers",
+				"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+			/* few more options are available to use */
+			});
+		});
+	</script>
 </body>
 </html>

@@ -46,7 +46,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="ticketNumber" id="ticketNumber" class="form-control"
-													type="text" value="${ticketObject.ticketNumber}" disabled="disabled">
+													type="text" value="${ticketObject.ticketNumber}" readonly>
 											</div>
 										</div>
 									</div>
@@ -58,23 +58,38 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input name="status"
 													id="status" class="form-control" type="text"
-													value="${ticketObject.status}" disabled="disabled">
+													value="${ticketObject.status}" readonly>
 											</div>
 										</div>
 									</div>
 
-									<!-- Text input Ticket SLA-->
+									
+									
+									<!-- Text input Ticket Acknowledged-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">SLA</label>
+										<label class="col-md-3 control-label">Acknowledged
+											Ticket</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
-													name="slaStart" id="slaStart" class="form-control"
-													type="text" value="${ticketObject.slaStart}">
+												<input type="checkbox" name="priority" id="priority"
+													value="true" name="technicianAcknowledged">
 											</div>
 										</div>
 									</div>
+									
+									
+								<!-- Text area Subject-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Subject</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="subject"
+												required="required" readonly></textarea>
+										</div>
+									</div>
+								</div>
 
 								</div>
 								<!--/ First Column-->
@@ -90,22 +105,24 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="priority" id="priority" class="form-control"
-													type="text" value="${ticketObject.priority}" disabled="disabled">
+													type="text" value="${ticketObject.priority}" readonly>
 											</div>
 										</div>
 									</div>
 
-									<!-- Text input Ticket Acknowledged-->
+									<!-- Text input Ticket SLA-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Acknowledged
-											Ticket</label>
+										<label class="col-md-3 control-label">SLA</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
-												<input type="checkbox" name="priority" id="priority"
-													value="true" name="technicianAcknowledged">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													name="slaStart" id="slaStart" class="form-control"
+													type="text" value="${ticketObject.slaStart}">
 											</div>
 										</div>
-									</div>
+									</div>	
+									
 									<!-- Text input Ticket DateTime Acknowledged-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">DateTime
@@ -120,8 +137,7 @@
 											</div>
 										</div>
 									</div>
-								</div>
-								
+									
 									<!-- Text area Description-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Description</label>
@@ -130,12 +146,15 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
-												required="required" disabled="disabled">${ticketObject.description}</textarea>
+												required="required" readonly>${ticketObject.description}</textarea>
 										</div>
 									</div>
 								</div>
-
-
+									
+									
+								</div>
+								
+								
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">

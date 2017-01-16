@@ -79,8 +79,10 @@
 												<tr>
 													<th>Ticket No <img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Description<img
+														<th>Subject<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Description<img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>														
 													<th>Date<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 													<th>Status<img
@@ -97,7 +99,10 @@
 												<c:forEach items="${home}" var="ticket" varStatus="itr">
 													<tr>
 														<th><c:out value="${ticket.ticketNumber}" /></th>
-														<th><c:out value="${ticket.description}" /></th>
+														<!-- Subject must be included from ticket model -->
+														<th><c:out value="" /></th>
+														<!-- /Subject must be included from ticket model -->
+														<th><c:out value="${ticket.description}" /></th>														
 														<th><c:out value="${ticket.dateTime}" /></th>
 														<th><c:out value="${ticket.status}" /></th>
 														<th><c:out

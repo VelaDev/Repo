@@ -138,7 +138,7 @@
 										</div>
 									</div>
 									
-									<!-- Text area Description-->
+								<!-- Text area Description-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Description</label>
 									<div class="col-md-6 inputGroupContainer">

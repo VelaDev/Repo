@@ -57,17 +57,17 @@
 										<td>${list.email}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<th><a
-											href="updateEmployee?email=<c:out value='${list.email}'/>">edit</a></th>
-										<th><a
-											href="deactivateEmp?email=<c:out value='${list.email}'/>">deactivate</a></th>
+										<th><button type="button" class="btn btn-success"
+												onClick="location.href='updateEmployee?email=<c:out value='${list.email}'/>'">edit</button></th>
+										<th><button type="button" class="btn btn-danger"
+												onClick="location.href='deactivateEmp?email=<c:out value='${list.email}'/>'" id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">deactivate</button></th>
+
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
 					</div>
 					<!-- /tab-content -->
-
 				</div>
 				<!-- /panel body -->
 			</div>
@@ -98,4 +98,15 @@
 		});
 	});
 </script>
+
+<!-- Deactive script -->
+<script>
+$(document).on('click', ':not(form)[data-confirm]', function(e){
+    if(!confirm($(this).data('confirm'))){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+		}
+});
+</script>
+
 </html>

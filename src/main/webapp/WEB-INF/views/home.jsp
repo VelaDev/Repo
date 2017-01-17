@@ -139,30 +139,30 @@
 	</div>
 	<!-- / velaphanda_containter -->
 
-
+	<!-- google chart api  -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-	<script>
+   	<script>
 
-   google.load("visualization", "1", {packages:["corechart"]});
+   		google.load("visualization", "1", {packages:["corechart"]});
 
-   google.setOnLoadCallback(drawChart);
+   		google.setOnLoadCallback(drawChart);
 
-   function drawChart() {
+   		function drawChart() {
 
-    // Create and populate the data table.
+    	// Create and populate the data table.
 
-    var data = google.visualization.arrayToDataTable([
+    	var data = google.visualization.arrayToDataTable([
 
-      ['Tickts', 'Percent'],
+      	['Tickts', 'Percent'],
 
-      <c:forEach items="${ticketResults}" var="pie">
-		[ '${pie.status}', ${pie.numberTicket}],
-	  </c:forEach>
+      	<c:forEach items="${ticketResults}" var="pie">
+			[ '${pie.status}', ${pie.numberTicket}],
+	 	 </c:forEach>
      
-    ]);
+    	]);
 
-    // Set chart options
+   		 // Set chart options
 		var options = {
 			'title' : 'Ticket Overall',
 			 is3D : true,
@@ -172,15 +172,18 @@
 			'height' : 400
 		};
 
-     // Create and draw the visualization.
+     	// Create and draw the visualization.
 
-    new google.visualization.PieChart(
+    		new google.visualization.PieChart(
 
-      document.getElementById('ticket_details_pie')).draw(data, options);
+      		document.getElementById('ticket_details_pie')).draw(data, options);
 
-  }
+  		}
 
-</script>
+	</script>
+	<!-- /google chart api  -->
+	
+	<!-- Data tables search -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
@@ -196,5 +199,7 @@
 			});
 		});
 	</script>
+	<!-- / Data tables search -->
+	
 </body>
 </html>

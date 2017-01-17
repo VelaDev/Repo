@@ -220,7 +220,7 @@ public class EmployeeController {
 		return model;
 	}
 	@RequestMapping(value="searchEmployeeByName")
-	public ModelAndView searchEmployee(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
+	public ModelAndView searchEmployee(@RequestParam("email") String empName,@ModelAttribute Employee employee) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -332,7 +332,7 @@ public class EmployeeController {
 		return model;
 	}
 	@RequestMapping(value="searchEmployeeForDeactivation")
-	public ModelAndView searchEmployeeForDeactivation(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
+	public ModelAndView searchEmployeeForDeactivation(@RequestParam("email") String empName,@ModelAttribute Employee employee) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){

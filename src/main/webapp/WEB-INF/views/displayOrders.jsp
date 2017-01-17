@@ -60,7 +60,7 @@
 										<th><a
 											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-success">Details</button></a></th>
 											<th><a
-											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>">Delivery</a></th>
+											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-info">Delivery</button></a></th>
 									</tr>
 								</c:forEach>
 							</tbody>

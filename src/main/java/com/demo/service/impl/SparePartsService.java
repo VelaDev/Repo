@@ -1,6 +1,8 @@
 package com.demo.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +31,12 @@ public class SparePartsService implements SparePartsServeceInt{
 	public Spare getSparePartBySerial(String serialNum) {
 		
 		return sparePartsDAO.getSparePartBySerial(serialNum);
+	}
+
+
+	@Override
+	public List<Spare> getAllSpareParts() {
+		return sparePartsDAO.getAllSpareParts();
 	}
 
 }

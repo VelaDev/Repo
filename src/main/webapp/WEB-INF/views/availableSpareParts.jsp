@@ -34,34 +34,27 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>First Name<img
+									<th>Part No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Last Name<img
+									<th>Description <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Email<img
+									<th>Stock Type <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Status<img
+									<th>QTY <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Role<img
+									<th>Date <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Edit</th>
-									<th>Deactivate</th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${displayEmployees}">
+								<c:forEach var="list" items="${spareParts}">
 									<tr>
-										<td>${list.firstName}</td>
-										<td>${list.lastName}</td>
-										<td>${list.email}</td>
-										<td>${list.status}</td>
-										<td>${list.role}</td>
-										<th><button type="button" class="btn btn-success"
-												onClick="location.href='updateEmployee?email=<c:out value='${list.email}'/>'">edit</button></th>
-										<th><button type="button" class="btn btn-danger"
-												onClick="location.href='deactivateEmp?email=<c:out value='${list.email}'/>'" id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">deactivate</button></th>
-
+									  <td>${list.partNumber}</td>
+										<td>${list.description}</td>
+										<td>${list.type}</td>
+										<td>${list.quantity}</td>
+										<td>${list.dateTime}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -98,15 +91,4 @@
 		});
 	});
 </script>
-
-<!-- Deactive script -->
-<script>
-$(document).on('click', ':not(form)[data-confirm]', function(e){
-    if(!confirm($(this).data('confirm'))){
-      e.stopImmediatePropagation();
-      e.preventDefault();
-		}
-});
-</script>
-
 </html>

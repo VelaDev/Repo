@@ -57,18 +57,10 @@
 										<td>${list.email}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<th><a href="updateEmployee?email=<c:out value='${list.email}'/>"><button type="button" class="btn btn-success">edit</button></a></th>
-										
-										<th><button type="button" class="btn btn-danger"
-												onClick="location.href='deactivateEmp?email=<c:out value='${list.email}'/>'" id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">deactivate</button></th>
-											
-											<%-- <a href="updateEmployee?email=<c:out value='${list.email}'/>">edit</a> --%>
-											
-											<%-- <button type="button" class="btn btn-success"
-												onClick="location.href='updateEmployee?email=<c:out value='${list.email}'/>'">edit</button> --%>
-											
+										<th><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Edit</button></a></th>
+										<th><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>"><button class="btn btn-danger">Deactivate</button></a></th>
 									</tr>
-								</c:forEach>
+              					</c:forEach>
 							</tbody>
 						</table>
 					</div>

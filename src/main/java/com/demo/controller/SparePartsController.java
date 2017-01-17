@@ -65,7 +65,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("retMessage", retMessage);
+			model.addObject("spareParts", sparePartsServeceInt.getAllSpareParts());
 			model.setViewName("availableSpareParts");
 		}
 		else{

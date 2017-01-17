@@ -91,7 +91,7 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="addParts.html"/>'>Spares & Compatibility</a></li>
 							<li><a href='<c:url value="displayOrders.html"/>'>Display Orders</a></li>
-							<li><a href='<c:url value="deliveryNote.html"/>'>Deliveries</a></li>
+							<li><a href='<c:url value="availableSpareParts.html"/>'>Available Sapres & Parts</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

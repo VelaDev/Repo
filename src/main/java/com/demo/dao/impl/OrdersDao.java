@@ -107,13 +107,13 @@ public class OrdersDao implements OrdersDaoInt{
 				cusOrder.setDateOrdered(orders.getDateOrdered());
 				
 				sessionFactory.getCurrentSession().update(cusOrder);
-				retMessage = "OrdersHeader"+" "+ cusOrder.getOrderNum()+ " "+"is approved";
+				retMessage = "Order "+" "+ cusOrder.getOrderNum()+ " "+"is approved";
 			}else{
-				retMessage = "OrdersHeader"+" "+n+ cusOrder.getOrderNum()+ " "+"is not approved because " + " is not available in store." ;
+				retMessage = "Order "+" "+n+ cusOrder.getOrderNum()+ " "+"is not approved because " + " is not available in store." ;
 			}
 		
 		}catch (Exception e){
-			retMessage = "OrdersHeader"+" "+ orders.getOrderNum()+ " "+"is not updated " + e.getMessage();
+			retMessage = "Order "+" "+ orders.getOrderNum()+ " "+"is not updated " + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -279,7 +279,7 @@ public class OrdersDao implements OrdersDaoInt{
 			  retMessage = makeOrder(cusOrder);
 			  String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
 		}catch(Exception ex){
-			retMessage = " OrdersHeader cannot be proccessed "+ ex.getMessage();
+			retMessage = " Order cannot be proccessed "+ ex.getMessage();
 		}
 		return retMessage;
 	}
@@ -328,10 +328,10 @@ public class OrdersDao implements OrdersDaoInt{
 			
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(orderNum);
 			retMessage = subtractOrderItems(orderDetailList);
-			retMessage = "OrdersHeader "+ cusOrder.getOrderNum() + " is approved";
+			retMessage = "Order "+ cusOrder.getOrderNum() + " is approved";
 			
 		}catch(Exception e){
-			retMessage = "OrdersHeader "+ cusOrder.getOrderNum() + " is not approved";
+			retMessage = "Order "+ cusOrder.getOrderNum() + " is not approved";
 		}
 		return retMessage;
 	}

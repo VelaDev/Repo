@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Display Employees | Velaphanda Trading & Projects</title>
+<title>Available Spares & Parts | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Orders</b>
+							<b>Available Spares & Parts</b>
 						</div>
 					</h3>
 				</div>
@@ -34,33 +34,34 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Order No<img
+									<th>First Name<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Status<img
+									<th>Last Name<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Date<img
+									<th>Email<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Stock Type<img
+									<th>Status<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Customer<img
+									<th>Role<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Details</th>
-									<th>Delivery Note</th>
+									<th>Edit</th>
+									<th>Deactivate</th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${pendingOrderList}">
+								<c:forEach var="list" items="${displayEmployees}">
 									<tr>
-										<td>${list.orderNum}</td>
+										<td>${list.firstName}</td>
+										<td>${list.lastName}</td>
+										<td>${list.email}</td>
 										<td>${list.status}</td>
-										<td>${list.dateOrdered}</td>
-										<td>${list.stockType}</td>
-										<td>${list.customer.customerName}</td>
-										<th><a
-											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-success">Details</button></a></th>
-											<th><a
-											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>">Delivery</a></th>
+										<td>${list.role}</td>
+										<th><button type="button" class="btn btn-success"
+												onClick="location.href='updateEmployee?email=<c:out value='${list.email}'/>'">edit</button></th>
+										<th><button type="button" class="btn btn-danger"
+												onClick="location.href='deactivateEmp?email=<c:out value='${list.email}'/>'" id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">deactivate</button></th>
+
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -97,4 +98,15 @@
 		});
 	});
 </script>
+
+<!-- Deactive script -->
+<script>
+$(document).on('click', ':not(form)[data-confirm]', function(e){
+    if(!confirm($(this).data('confirm'))){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+		}
+});
+</script>
+
 </html>

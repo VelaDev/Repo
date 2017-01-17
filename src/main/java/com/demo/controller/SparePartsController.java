@@ -58,5 +58,20 @@ public class SparePartsController {
 		}
 		return model;
 	}
+	
+	@RequestMapping(value="availableSpareParts", method=RequestMethod.GET)
+	public ModelAndView getSpareParts(){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			model.addObject("retMessage", retMessage);
+			model.setViewName("availableSpareParts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
 
 }

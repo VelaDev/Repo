@@ -13,7 +13,7 @@
 <p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
 </div>
 <div class="velatp_logo">
- 	<a href="home.html"><img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"></a>
+ 	<a href="home.html"><img src="resources/bootstrap-3.3.6/images/mainlogoo.jpg"></a>
  <div class="userloggedin">
 	 <ul class="nav navbar-nav navbar-right">        
         <li class="dropdown">

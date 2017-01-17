@@ -13,4 +13,4 @@
 
 
 <div class="velatp_logo">
- 	<a href="home.html"><img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"></a></div>
+ 	<a href="home.html"><img src="resources/bootstrap-3.3.6/images/mainlogoo.jpg"></a></div>

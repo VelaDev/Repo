@@ -42,17 +42,17 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-								    <th>Order No</th>
-									<th>Part No<img
+								    <th>Order No </th>
+									<th>Part No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Model No<img
+										<th>Model No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Desc<img
+										<th>Desc <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Quantity<img
+									<th>Quantity <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Date<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Date</th>
+										<th>Status</th>
 										<th>Stock Type</th>
 								</tr>
 							</thead>
@@ -66,6 +66,7 @@
 										<td>${list.description}</td>
 										<td>${list.quantity}</td> 
 										<td>${list.dateTime}</td> 
+										<td>${list.ordersHeader.status}</td>
 										<td>${list.ordersHeader.stockType}</td> 
 									</tr>
 								</c:forEach>

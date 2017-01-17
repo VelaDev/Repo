@@ -36,7 +36,7 @@
 												<th>Order Status <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Date <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
 												<th>Stock Type <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												 <th>Order Details <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												 <th>Order Details</th>
 												
 											</tr>
 										</thead>

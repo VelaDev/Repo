@@ -45,7 +45,7 @@
 									<th>End Date <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Details</th>
-									<th>Edit</th>
+									<th>Update</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -58,9 +58,9 @@
 										<td>${list.startDate}</td>
 										<td>${list.endDate}</td>
 										<th><a
-											href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">details</a></th>
+											href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>"><button class="btn btn-info">Details</button></a></th>
 										<th><a
-											href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">edit</a></th>
+											href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>"><button class="btn btn-info">Update</button></a></th>
 									</tr>
 								</c:forEach>
 							</tbody>

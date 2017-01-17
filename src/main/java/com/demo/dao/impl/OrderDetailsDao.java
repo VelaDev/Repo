@@ -54,6 +54,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		}
 		return pendingList;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderDetails> getAllOrderDetails() {
 		
@@ -75,6 +76,23 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 			
 		}
 		return pendingList;
+	}
+	@Override
+	public List<OrderDetails> getAllAvailableOrderDetails(String technician) {
+		ArrayList<OrderDetails> availableOrders = new ArrayList<OrderDetails>();
+		try{
+			orders = getAllOrderDetails();
+			for(OrderDetails availableOrds:orders){
+				if(availableOrds.getOrdersHeader().getStatus().equalsIgnoreCase("Approved")&& availableOrds.getTechnician().equalsIgnoreCase(technician)){
+					availableOrders.add(availableOrds);
+				}
+			}
+			
+		}catch(Exception e){
+			
+		}
+		
+		return availableOrders;
 	}
 
 }

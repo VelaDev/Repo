@@ -221,8 +221,8 @@ public class OrdersController {
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			
-			model.addObject("contactPerson", "");
+			String technician = userName.getFirstName()+" "+ userName.getLastName();
+			model.addObject("availableOrders", orderDetailsInt.getAllAvailableOrderDetails(technician));
 			model.setViewName("availableStock");
 		}
 		else{

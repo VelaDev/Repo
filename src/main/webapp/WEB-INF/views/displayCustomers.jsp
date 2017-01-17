@@ -32,10 +32,8 @@
 											<tr>
 												<th>Customer Name <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Email <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
-												<!-- <th>Contact Person<img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Cell<img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
-												<th>Edit</th>
+												<th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Update</th>
 												<th>Add Device</th>
 											</tr>
 										</thead>
@@ -48,8 +46,8 @@
 													<td>${list.tellphoneNumber}</td>
 													<%-- <td>${list.status}</td>
 													<td>${list.role}</td> --%>
-                                                    <th><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>">edit</a></th>
-                                                    <th><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>">add device</a></th>
+                                                    <th><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update</button></a></th>
+                                                    <th><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Add Device</button></a></th>
 												</tr>
 											</c:forEach>
 										</tbody>

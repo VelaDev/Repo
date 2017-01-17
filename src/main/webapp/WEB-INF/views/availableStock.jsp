@@ -33,8 +33,6 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-								    <th>Order No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Model No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Part No <img
@@ -47,13 +45,12 @@
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${displayEmployees}">
+								<c:forEach var="list" items="${availableOrders}">
 									<tr>
-										<td>${list.firstName}</td>
-										<td>${list.lastName}</td>
-										<td>${list.email}</td>
-										<td>${list.status}</td>
-										<td>${list.role}</td>
+										<th>${list.model}</th>
+										<th>${list.partNumber}</th>
+										<th>${list.description}</th>
+										<th>${list.quantity}</th>
 									</tr>
               					</c:forEach>
 							</tbody>

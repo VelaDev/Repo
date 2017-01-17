@@ -2,8 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Technician | Velaphanda Trading & Projects</title>
-<meta charset="utf-8">
+<title>Display Employees | Velaphanda Trading & Projects</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link type="text/css" rel="stylesheet"
@@ -14,17 +13,17 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
 </head>
 <body>
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			<br />
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Customers</b>
+							<b>Available Spares & Parts</b>
 						</div>
 					</h3>
 				</div>
@@ -34,35 +33,33 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Ticket No <img
+								    <th>Order No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Ticket Status <img
+									<th>Model No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Customer Name <img
+									<th>Part No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Telephone No <img
+									<th>Description <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Ticket Details</th>
+									<th>Quantity<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach items="${technicianTickets}" var="ticket">
+								<c:forEach var="list" items="${displayEmployees}">
 									<tr>
-										<th><c:out value="${ticket.ticketNumber}" /></th>
-										<th><c:out value="${ticket.status} " /></th>
-										<th><c:out value="${ticket.device.customer.customerName}" /></th>
-										<th><c:out
-												value="${ticket.device.customer.getTellphoneNumber()} " /></th>
-										<th><a
-											href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-info">Details</button></a></th>
+										<td>${list.firstName}</td>
+										<td>${list.lastName}</td>
+										<td>${list.email}</td>
+										<td>${list.status}</td>
+										<td>${list.role}</td>
 									</tr>
-								</c:forEach>
+              					</c:forEach>
 							</tbody>
 						</table>
 					</div>
 					<!-- /tab-content -->
-
 				</div>
 				<!-- /panel body -->
 			</div>
@@ -76,21 +73,31 @@
 	<!-- / velaphanda_containter -->
 
 </body>
+
 <script type="text/javascript"
 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<%-- <script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script> --%>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#myDatatable').DataTable({
-				"jQueryUI" : true,
-				"pagingType" : "full_numbers",
-				"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
-			/* few more options are available to use */
-			});
+<script>
+	$(document).ready(function() {
+		$('#myDatatable').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
 		});
-	</script>
+	});
+</script>
+
+<!-- Deactive script -->
+<script>
+$(document).on('click', ':not(form)[data-confirm]', function(e){
+    if(!confirm($(this).data('confirm'))){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+		}
+});
+</script>
 
 </html>

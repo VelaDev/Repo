@@ -57,6 +57,7 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="order.html"/>'>Make Order</a></li>
 							<li><a href='<c:url value="approvedOrders.html"/>'>Orders</a></li>
+							<li><a href='<c:url value="availableStock.html"/>'>Available Spares/Parts</a></li>
 						</ul>
 					</li>
 				</ul>

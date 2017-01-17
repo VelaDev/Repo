@@ -103,7 +103,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <select
 												name="customer" class="form-control selectpicker">
-												<option>Select Customer Name</option>
+												<option>Customer Name</option>
 												<c:forEach items="${customerList}" var="customer">
 													<option value="${customer.customerName}">${customer.customerName}</option>
 												</c:forEach>
@@ -144,6 +144,8 @@
 												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 											<th>Model No <img
 												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Available QTY <img
+												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 											<th>Tick To Order</th>
 											<th>Quantity</th>
 											<!-- <th>Edit<img
@@ -159,6 +161,7 @@
 												<td>${list.spare.partNumber}</td>
 												<td>${list.spare.description}</td>
 												<td>${list.modelNumber}</td>
+												<td>${list.spare.quantity}</td>
 												<td><input type="checkbox" class="form-group"
 													id="checkedOrder" name="selectedItem" value="${list.spare.partNumber},${list.modelNumber},${list.spare.description}"></td>
 												<td><input type="text" class="form-group" id="quantity"

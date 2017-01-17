@@ -215,4 +215,20 @@ public class OrdersController {
 		
 		return model;
 	}
+	@RequestMapping(value="availableStock",method=RequestMethod.GET)
+	public ModelAndView availableStock(){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			model.addObject("contactPerson", "");
+			model.setViewName("availableStock");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 }

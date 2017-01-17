@@ -57,7 +57,7 @@
 										<td>${list.email}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<th><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Edit</button></a></th>
+										<th><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Update</button></a></th>
 										<th><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>"><button class="btn btn-danger">Deactivate</button></a></th>
 									</tr>
               					</c:forEach>

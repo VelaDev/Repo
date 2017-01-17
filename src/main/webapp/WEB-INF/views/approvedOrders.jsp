@@ -49,7 +49,7 @@
 													<td>${list.dateOrdered}</td>
 													<td>${list.stockType}</td>
 													<th><a
-											               href="detailedOrders?orderNum=<c:out value='${list.orderNum}'/>">details</a></th>
+											               href="detailedOrders?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-info">Details</button></a></th>
 													
 												</tr>
 											</c:forEach>

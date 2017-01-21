@@ -8,6 +8,11 @@
 
 <link type="text/stylesheet"
 	src="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/stylesheet"
+	src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
+	
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
+	
 
 <title>Update Device Installation | Velaphanda Trading &
 	Projects</title>
@@ -55,7 +60,7 @@
 						</form>
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
-							action="updateProduct" modelAttribute="updateProduct">
+							action="updateProduct" modelAttribute="updateProduct" id="updateOtherDevice">
 
 							<fieldset>
 								<legend>Customer Details</legend>
@@ -408,6 +413,49 @@
 											value="${AccessoryObject.additionalPaperTraysTypeSerial }" />
 									</div>
 								</div>
+								
+																
+								<br/><br/>
+								<div class="row">
+
+									<div class="form-group">
+										<label class="col-xs-1 control-label">Others</label>
+										<div class="col-xs-4">
+											<input type="text" class="form-control" name="machinetype"
+												placeholder="Machine Accessory Type" />
+										</div>
+										<div class="col-xs-4">
+											<input type="text" class="form-control" name="serialNumber"
+												placeholder="Serial Number" />
+										</div>
+										<div class="col-xs-1">
+											<button type="button" class="btn btn-default addButton">
+												<i class="fa fa-plus"></i>
+											</button>
+										</div>
+									</div>
+
+									<!-- The template for adding new field -->
+									<div class="form-group hide" id="deviceNewFields">
+										<div class="col-xs-4 col-xs-offset-1">
+											<input type="text" class="form-control" name="machinetype"
+												placeholder="Machine Accessory Type" />
+										</div>
+										<div class="col-xs-4">
+											<input type="text" class="form-control" name="serialNumber"
+												placeholder="Serial Number" />
+										</div>
+
+										<div class="col-xs-1">
+											<button type="button" class="btn btn-default removeButton">
+												<i class="fa fa-minus"></i>
+											</button>
+										</div>
+									</div>
+
+								</div>
+								
+								
 							</fieldset>
 							<br>
 							<br>
@@ -443,6 +491,9 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+		<script type="text/javascript"
+		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
+	
 	<!-- /Script -->
 
 	<script>
@@ -521,4 +572,148 @@
 			document.getElementById('credenza').disabled = !this.checked;
 		};
 	</script>
+	
+	<!-- Other new fields -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+
+									machinetypeValidators = {
+										row : '.col-xs-4',
+										validators : {
+											/* stringLength : {
+												min : 2,
+											},
+											notEmpty : {
+												message : 'Machine Accessory Type can not be empty'
+											} */
+										}
+									},
+									serialNumberValidators = {
+										row : '.col-xs-2',
+										validators : {
+											/* stringLength : {
+												min : 2,
+											},
+											notEmpty : {
+												message : 'Serial Number can not be empty'
+											} */
+										}
+									}, deviceIndex = 0;
+
+							$('#updateOtherDevice')
+									.formValidation(
+											{
+												framework : 'bootstrap',
+												icon : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													'machinetype' : machinetypeValidators,
+													'serialNumber' : serialNumberValidators
+												}
+											})
+
+									// Add button click handler
+									.on(
+											'click',
+											'.addButton',
+											function() {
+												deviceIndex++;
+												var $template = $('#deviceNewFields'), $clone = $template
+														.clone()
+														.removeClass('hide')
+														.removeAttr('id')
+														.attr(
+																'data-device-index',
+																deviceIndex)
+														.insertBefore($template);
+
+												// Update the name attributes
+												$clone
+														.find(
+																'[name="machinetype"]')
+														.attr(
+																'name',
+																'device['
+																		+ deviceIndex
+																		+ '].machinetype')
+														.end()
+														.find(
+																'[name="serialNumber"]')
+														.attr(
+																'name',
+																'device['
+																		+ deviceIndex
+																		+ '].serialNumber')
+														.end();
+
+												// Add new fields
+												// Note that we also pass the validator rules for new field as the third parameter
+												$('#updateOtherDevice')
+														.formValidation(
+																'addField',
+																'device['
+																		+ deviceIndex
+																		+ '].machinetype',
+																machinetypeValidators)
+														.formValidation(
+																'addField',
+																'device['
+																		+ deviceIndex
+																		+ '].serialNumber',
+																serialNumberValidators);
+
+											})
+
+									// Remove button click handler
+									.on(
+											'click',
+											'.removeButton',
+											function() {
+												var $row = $(this).parents(
+														'.form-group'), index = $row
+														.attr('data-book-index');
+
+												// Remove fields
+												$('#updateOtherDevice')
+														.formValidation(
+																'removeField',
+																$row
+																		.find('[name="book['
+																				+ index
+																				+ '].machinetype"]'))
+														.formValidation(
+																'removeField',
+																$row
+																		.find('[name="book['
+																				+ index
+																				+ '].serialNumber"]'));
+
+												// Remove element containing the fields
+												$row.remove();
+											});
+						});
+	</script>
+
+	<script>
+		$(document).ready(
+				function() {
+					$('#updateOtherDevice').on(
+							'added.field.fv removed.field.fv',
+							function(e, data) {
+								var $body = $('body'), $iframe = $body
+										.data('iframe.fv');
+								if ($iframe) {
+									// Adjust the height of iframe
+									$iframe.height($body.height());
+								}
+							});
+				});
+	</script>
+	
+	
 </html>

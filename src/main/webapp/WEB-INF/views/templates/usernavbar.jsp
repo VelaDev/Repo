@@ -42,17 +42,17 @@
 				<ul class="nav navbar-nav">
 					
 				      <a class="navbar-brand" href='<c:url value="ticket.html"/>' ><span class="glyphicon glyphicon-home"></span></a>
-				        <li class="dropdown">
+				       <%--  <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tickets<span class="caret"></span></a>
 				          <ul class="dropdown-menu">
 				          <li><a href='<c:url value="ticket.html"/>'>Log Tickets</a></li>
 				          </ul>
-				        </li>
+				        </li> --%>
 				        
 				        <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technicians<span class="caret"></span></a>
 				          <ul class="dropdown-menu">
-				            <li><a href='<c:url value=""/>'>Available Technicians</a></li>
+				            <li><a href='<c:url value=""/>'></a></li>
 				          </ul>
 				        </li>
 				      </ul>

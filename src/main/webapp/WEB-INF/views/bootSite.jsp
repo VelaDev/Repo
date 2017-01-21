@@ -31,12 +31,14 @@
 				<div class="panel-body">
 					
 					<div class="tab-content">
-					       <h4 align="center">Head Office</h4>
-					       <form>
-						<!-- Below table will be displayed as Data table -->
-					     <table id="myDatatable" class="display datatable">
+					       <h4 align="center">Boot & Site</h4>
+					       <form action="">
+					       <!-- Below table will be displayed as Data table -->
+						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
+								   <th>Model No <img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Part No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Description <img
@@ -45,27 +47,29 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>QTY <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Date <img
+									<th>Technician <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${spareParts}">
+								<c:forEach var="list" items="${orders}">
 									<tr>
-									  <td>${list.partNumber}</td>
+									    <td>${list.model}</td>
+									    <td>${list.partNumber}</td>
 										<td>${list.description}</td>
-										<td>${list.type}</td>
+										<td>${list.stockType}</td>
 										<td>${list.quantity}</td>
-										<td>${list.dateTime}</td>
+										<td>${list.technician}</td>
 									</tr>
 								</c:forEach>
 							</tbody>
 						</table>
-						</form>
-					</div>
+					       </form>
+					 </div>
 					<!-- /tab-content -->
 					    </div>
+					</div>
 				</div>
 				<!-- /panel body -->
 			</div>

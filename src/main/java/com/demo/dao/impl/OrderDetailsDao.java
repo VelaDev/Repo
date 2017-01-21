@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.OrderDetailsDaoInt;
-import com.demo.model.OrdersHeader;
 import com.demo.model.OrderDetails;
+import com.demo.model.OrdersHeader;
 
 @Repository("orderDetailsDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -94,5 +94,26 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		
 		return availableOrders;
 	}
-
+	public String incrementStockAvailability(List<OrderDetails> availableStock){
+		OrderDetails orderDetails = null;
+		int tempQuantity = 0;
+		try{
+			  for(OrderDetails details:availableStock){
+				  orderDetails = getOrderDetails(details.getOrderDertailNumber());
+				  
+				  if(details.getOrderDertailNumber()==orderDetails.getOrderDertailNumber()){
+					  tempQuantity =  orderDetails.getQuantity() + details.getQuantity();
+					  orderDetails.setQuantity(tempQuantity);
+					  sessionFactory.getCurrentSession().update(orderDetails);
+					  retMessage = "OK";
+				  }
+			}
+		}catch(Exception e){
+			
+		}
+		return retMessage;
+	}
+	private OrderDetails getOrderDetails(int orderDertailNumber){
+		return (OrderDetails) sessionFactory.getCurrentSession().get(OrderDetails.class, orderDertailNumber);
+	}
 }

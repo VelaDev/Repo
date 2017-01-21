@@ -267,7 +267,7 @@ public class OrdersDao implements OrdersDaoInt{
 				  orderDetails.setModel(modelNumber);
 				  orderDetails.setQuantity(quatity);
 				  orderDetails.setLocation(orderBean.getLocation());
-				  orderDetails.setStockType(part.getStockType());
+				  orderDetails.setStockType(cusOrder.getStockType());
 				  orderDetails.setTechnician(orderBean.getTechnician());
 				  orderDetails.setOrdersHeader(cusOrder);
 				  orderDetails.setDateTime(dateFormat.format(date));
@@ -328,6 +328,7 @@ public class OrdersDao implements OrdersDaoInt{
 			
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(orderNum);
 			retMessage = subtractOrderItems(orderDetailList);
+			retMessage = detailsDaoInt.incrementStockAvailability(orderDetailList);
 			retMessage = "Order "+ cusOrder.getOrderNum() + " is approved";
 			
 		}catch(Exception e){
@@ -338,6 +339,7 @@ public class OrdersDao implements OrdersDaoInt{
 	
 	private String subtractOrderItems(List<OrderDetails> orderDetails){
 		int tempQuantity= 0;
+		
 		try{
 			for(OrderDetails subtractQuatity:orderDetails){
 				part = sparePartsDaoInt.getSparePartBySerial(subtractQuatity.getPartNumber());

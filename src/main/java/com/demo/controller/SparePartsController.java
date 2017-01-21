@@ -13,6 +13,7 @@ import com.demo.bean.CompatibilityBean;
 import com.demo.bean.SparePartsBean;
 import com.demo.model.Employee;
 import com.demo.model.Spare;
+import com.demo.service.OrderDetailsInt;
 import com.demo.service.SparePartsServeceInt;
 
 @Controller
@@ -20,6 +21,8 @@ public class SparePartsController {
 	
 	@Autowired
 	private SparePartsServeceInt sparePartsServeceInt;
+	@Autowired
+	private OrderDetailsInt orderDetailsInt;
 	@Autowired
 	private HttpSession session = null;
 	private String retMessage = null;
@@ -67,6 +70,20 @@ public class SparePartsController {
 			
 			model.addObject("spareParts", sparePartsServeceInt.getAllSpareParts());
 			model.setViewName("availableSpareParts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="bootSite", method=RequestMethod.GET)
+	public ModelAndView getSparePartsSite(){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			model.addObject("orders",orderDetailsInt.getAllOrderDetails());
+			model.setViewName("bootSite");
 		}
 		else{
 			model.setViewName("login");

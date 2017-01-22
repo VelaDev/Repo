@@ -228,7 +228,7 @@ public class TicketsDao implements TicketsDaoInt {
 				  System.out.println("SLA started at: "+ " "+  slaStartedHour);
 				  System.out.println(diffHours);
 				  
-				  if(diffHours ==1){
+				  if(diffHours >=1 && diffHours < 4){
 					  
 					  
 					  openTicket.setComments("System update");
@@ -236,7 +236,7 @@ public class TicketsDao implements TicketsDaoInt {
 					  updateSLA(openTicket);
 					  JavaMail.oneHourReminder(openTicket, "cassino.happies@gmail.com", "mohapi27@outlook.com");
 				  }
-				  else if(diffHours ==4){
+				  else if(diffHours >=4){
 					  openTicket.setStatus("SLA Bridged");
 					  openTicket.setFourHourFlag(true);
 					  openTicket.setComments("System update");

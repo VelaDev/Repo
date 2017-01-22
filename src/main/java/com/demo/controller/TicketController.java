@@ -150,7 +150,7 @@ public class TicketController {
 		return model;
 		
 	}
-	@RequestMapping("userUpdateTicket")
+	@RequestMapping("updateTicketUser")
 	public ModelAndView userUpdateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
 		
 		model = new ModelAndView();
@@ -159,7 +159,7 @@ public class TicketController {
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
 		    model.addObject("retMessage", retMessage);
-			model.setViewName("ticketDetails");
+			model.setViewName("userUpdateTicket");
 		}
 		else{
 			model.setViewName("login");

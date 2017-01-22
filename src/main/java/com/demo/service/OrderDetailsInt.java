@@ -9,5 +9,6 @@ public interface OrderDetailsInt {
 	List<OrderDetails> getAllOrderDetails();
 	List<OrderDetails> getOrderDetailsByTechnician(String email);
 	List<OrderDetails> getAllAvailableOrderDetails(String technician);
+	List<OrderDetails> getOrderDetailsByOrderNum(String key,String orderNum);
 
 }

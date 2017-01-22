@@ -1,5 +1,7 @@
 package com.demo.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -204,7 +206,8 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			OrdersHeader order = ordersServiceInt.getOrder(orderNum);
-			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(orderNum));
+			List<OrderDetails> list = orderDetailsInt.getOrderDetailsByOrderNum("key",orderNum);
+			model.addObject("pendingOrderList",list );
 			model.addObject("OrderNum", order);
 			model.addObject("contactPerson", contactDetailsServiceInt.getContactPerson(order.getCustomer().getCustomerName()));
 			model.setViewName("deliveryNote");

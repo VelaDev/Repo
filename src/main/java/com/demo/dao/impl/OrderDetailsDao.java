@@ -116,4 +116,22 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 	private OrderDetails getOrderDetails(int orderDertailNumber){
 		return (OrderDetails) sessionFactory.getCurrentSession().get(OrderDetails.class, orderDertailNumber);
 	}
+	@Override
+	public List<OrderDetails> getOrderDetailsByOrderNum(String key,
+			String orderNum) {
+		
+		
+		ArrayList<OrderDetails> pendingList = new ArrayList<OrderDetails>();
+		try{
+			orders = getAllOrderDetails();
+			 for(OrderDetails order:orders){
+				 if(order.getOrdersHeader().getOrderNum().equalsIgnoreCase(orderNum)){
+					 pendingList.add(order);
+				 }
+			 }
+		}catch(Exception e){
+			
+		}
+		return pendingList;
+	}
 }

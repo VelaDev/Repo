@@ -11,6 +11,12 @@
 	<div class="velaphanda_containter">	
 		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
+		<c:if test="${not empty retMessage }">
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ retMessage}">
+					</c:out>
+				</div>
+			</c:if>
 		<br/>
 			<div class="panel panel-success">    
 				<div class="panel-heading">
@@ -21,7 +27,7 @@
 				<div class="panel-body">					
 					<div class="tab-content">
 					
-						<form:form class="well form-horizontal" method="post" action="updateTicketAdmin" role="form"
+						<form:form class="well form-horizontal" method="post" action="updateTicketUser" role="form"
 					modelAttribute="updateTicketAdmin" id="form">
 
 					<!--First Col-->

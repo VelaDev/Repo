@@ -23,7 +23,7 @@ public class JavaMail {
 	  String []to = {ticket.getEmployee().getEmail(),ticket.getDevice().getCustomer().getEmail()};
 	  String from="velatp2016@gmail.com";
       String pass="Vel@ph@nd@";
-      String body = "Hi "+ ticket.getEmployee().getFirstName()+","+ "\n\nTicket " + ticket.getTicketNumber() + " is assigned to you.\n\nProduct "+ ticket.getDevice().getSerialNumber()+" with description "+ ticket.getDescription() +"\n\nKind Regards\nVelaphanda Team";
+      String body = "Hi "+ ticket.getEmployee().getFirstName()+","+ "\n\nTicket " + ticket.getTicketNumber() + " is assigned to you.\n\nDevice "+ ticket.getDevice().getSerialNumber()+" with description "+ ticket.getDescription() +"\n\nKind Regards\nVelaphanda Team";
       String subject ="Ticket No "+ ticket.getTicketNumber();
       Properties props = System.getProperties();
       String host = "smtp.gmail.com";
@@ -85,8 +85,6 @@ public class JavaMail {
 
       Session session = Session.getDefaultInstance(props);
       MimeMessage message = new MimeMessage(session);
-
-    
 
     try {
         message.setFrom(new InternetAddress(from));

@@ -1,6 +1,8 @@
 package com.demo.controller;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
@@ -39,6 +42,10 @@ public class TicketController {
 	private TicketHistoryInt ticketHistoryInt;
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
+	@Autowired
+	private TicketsServiceInt ticketsServiceInt;
+	private List<PieChart> beanList = null;
+	Integer count = 1;
 	
 	@Autowired
 	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
@@ -143,6 +150,24 @@ public class TicketController {
 		return model;
 		
 	}
+	@RequestMapping("userUpdateTicket")
+	public ModelAndView userUpdateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+			retMessage = logTicketService.updateTicket(updateTicket);
+		    model.addObject("retMessage", retMessage);
+			model.setViewName("ticketDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+		
+	}
 	@RequestMapping("searchTechnician")
     public ModelAndView searchEmployee(@RequestParam("searchName") String searchName) {  
         return new ModelAndView("");      
@@ -194,6 +219,22 @@ public class TicketController {
 		}
 		return model;
     }
+	@RequestMapping("userAssignTicketToOtherTechnician")
+    public ModelAndView userAssignTicketToAnotherTechnicia(@RequestParam String ticketNumber, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			ticket = logTicketService.getLoggedTicketByTicketNumber(ticketNumber);
+			model.addObject("ticketupdate", ticket);
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.setViewName("userUpdateTicket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
 	
 	@RequestMapping("updateTicketAdmin")
 	public ModelAndView updateTicketAdmin(@ModelAttribute("updateTicket")TicketsBean updateTicket){
@@ -227,6 +268,26 @@ public class TicketController {
 			model.setViewName("login");
 		}
 		return model;
+		
+	}
+
+	@RequestMapping(value="userTicket",method=RequestMethod.GET)
+	public ModelAndView loadUserTicket(Integer offset, Integer maxResults ) {
+       
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			count = ticketsServiceInt.count();
+			beanList = ticketsServiceInt.ticketsResults();
+			model.addObject("home", ticketsServiceInt.getAllLoggedTickets(offset, maxResults));
+			model.addObject("ticketResults",beanList);
+			model.addObject("count",count);
+			model.setViewName("userTicket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;  
 		
 	}
 

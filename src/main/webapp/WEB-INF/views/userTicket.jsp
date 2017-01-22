@@ -15,7 +15,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
 			<br />
 			<div class="panel panel-success">
@@ -79,7 +79,7 @@
 												<tr>
 													<th>Ticket No <img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-														<th>Subject <img
+														<th>Subject<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 													<th>Description <img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>														
@@ -89,7 +89,7 @@
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 													<th>Technician <img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Update </th>
+													<th>Update</th>
 
 												</tr>
 											</thead>
@@ -107,7 +107,7 @@
 														<th><c:out
 																value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></th>
 														<th><a
-															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-success">Update</button></a></th>
+															href="userAssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-success"> Update</button></a></th>
 
 													</tr>
 												</c:forEach>

@@ -48,6 +48,8 @@ public class Tickets implements Serializable{
 	private String dateTime;
 	@Column(name="EscalatedTo")
 	private String escalatedTo;
+	@Column (name="Subject")
+	private String subject;
 	@Column(name="Description")
 	private String description;
 	@Column(name="Technician_Acknowledged")
@@ -63,6 +65,11 @@ public class Tickets implements Serializable{
 	private Calendar slaAcknowledgeDateTime;
 	@Column (name="Solution")
 	private String solution;
+	@Column (name="One_HourEmailFlag")
+	private boolean oneHourFlag;
+	@Column (name="Four_HourEmailFlag")
+	private boolean fourHourFlag;
+	
 	
 	
 	

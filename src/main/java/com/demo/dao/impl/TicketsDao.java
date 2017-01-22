@@ -95,6 +95,8 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setEmployee(technician);
 					ticket.setStatus("Open");
 					ticket.setSlaStart("Started");
+					ticket.setOneHourFlag(false);
+					ticket.setFourHourFlag(false);
 					ticket.setDescription(tickets.getDescription());
 					ticket.setPriority(tickets.getPriority());
 					ticket.setDateTime(dateFormat.format(date));
@@ -147,7 +149,7 @@ public class TicketsDao implements TicketsDaoInt {
 		aList.addAll(criteria.list());
 		for (Object tic : aList) {
 			if (tic instanceof Tickets) {
-				if (((Tickets) tic).getStatus().equalsIgnoreCase("Open")&& (((Tickets)tic).getSlaStart().equalsIgnoreCase("Started"))) {
+				if (((Tickets) tic).getStatus().equalsIgnoreCase("Open") && (((Tickets)tic).isOneHourFlag()==false)&& (((Tickets)tic).isFourHourFlag()==false)) {
 					ticketList.add((Tickets) tic);
 				}
 			}
@@ -201,32 +203,50 @@ public class TicketsDao implements TicketsDaoInt {
 		return emp.get(index);
 	}
 
-	@Transactional(readOnly = true)
-	@Scheduled(fixedRate=60000 )//cron="*/5 * * * * MON-FRI*" this method will be invoked after every 5 min to perform calculations and update relevant table
+	@Transactional
+	@Scheduled(fixedRate=600000 )//cron="*/5 * * * * MON-FRI*" this method will be invoked after every 10 min to perform calculations and update relevant fields 
 	@Override
 	public void calculateSLAHours() {
 		
-		   Calendar cal = Calendar.getInstance();
-		   
-		   @SuppressWarnings("deprecation")
-		int currentHour = cal.getTime().getHours();
-		   
-		   List<Tickets> openTickets= getAllOpenTickets();
-		   for(Tickets openTicket:openTickets){
+		
+		try{
+			Calendar cal = Calendar.getInstance();
 			   
 			   @SuppressWarnings("deprecation")
-			  int slaStartedHour = openTicket.getSlaAcknowledgeDateTime().getTime().getHours();
-			  long diffHours = slaStartedHour - currentHour;
-			  System.out.println("SLA started at: "+ " "+  slaStartedHour);
-			  System.out.println(diffHours);
-			  
-			  if(diffHours <=1){
+			   int currentHour = cal.getTime().getHours();
+			   
+			   List<Tickets> openTickets= getAllOpenTickets();
+			   for(Tickets openTicket:openTickets){
+				   dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				   date = new Date();
+				   @SuppressWarnings("deprecation")
+				   String tempDate = openTicket.getDateTime();
+				  date = dateFormat.parse(tempDate);
 				  
-				  openTicket.setStatus("Unresolved");
-				  openTicket.setComments("The ticket is closed because technician was drunk");
-				  updateSLA(openTicket);
-			  }
-		   }
+				  int slaStartedHour = date.getHours();
+				  long diffHours = slaStartedHour - currentHour;
+				  System.out.println("SLA started at: "+ " "+  slaStartedHour);
+				  System.out.println(diffHours);
+				  
+				  if(diffHours ==1){
+					  
+					  
+					  openTicket.setComments("System update");
+					  openTicket.setOneHourFlag(true);
+					  updateSLA(openTicket);
+					  JavaMail.oneHourReminder(openTicket, "cassino.happies@gmail.com", "mohapi27@outlook.com");
+				  }
+				  else if(diffHours ==4){
+					  openTicket.setStatus("SLA Bridged");
+					  openTicket.setFourHourFlag(true);
+					  openTicket.setComments("System update");
+					  updateSLA(openTicket);
+					  JavaMail.fourHourReminder(openTicket, "cassino.happies@gmail.com", "mohapi27@outlook.com");
+				  }
+			   }
+		}catch(Exception e){
+			e.getMessage();
+		}
 	}
 
 	@Override
@@ -298,7 +318,7 @@ public class TicketsDao implements TicketsDaoInt {
 		return null;
 	}
 	
-private String generateTicketNumber(){
+     private String generateTicketNumber(){
 		
 		session2=sessionFactory.openSession();
 		String result ="";

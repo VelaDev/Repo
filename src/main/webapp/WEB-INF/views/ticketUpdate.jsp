@@ -6,17 +6,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Log a ticket | Velaphanda Trading & Projects</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"  />
+<title>Update ticket | Velaphanda Trading & Projects</title>
 <body>
 	<div class="velaphanda_containter">	
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
-					</c:out>
-				</div>
-			</c:if>
 		<br/>
 			<div class="panel panel-success">    
 				<div class="panel-heading">
@@ -151,6 +149,21 @@
 									</div>
 								</div>
 							</div><!--Second Col-->
+							
+							
+							<!-- Text area Subject-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Subject</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="subject"
+												required="required"></textarea>
+										</div>
+									</div>
+							</div>
+							
 					<br>
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
@@ -174,14 +187,17 @@
 
 </body>
 
-<script src="/resources/bootstrap-3.3.6/js/jquery-3.0.0.min.js"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link rel="stylesheet" type="text/css"
-	href="/resources/bootstrap-3.3.6/css/bootstrap.min.css">
-</head>
-<link
-	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
+<!-- Script -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+<!-- /Script -->
+	
+
 
 </html>

@@ -109,7 +109,7 @@ li {
 									</div>
 								</div>
 
-								<div class="col-sm-6">
+								 <div class="col-sm-6">
 
 									<div id="customer_container"
 										style="width: auto; display: table;">
@@ -121,8 +121,8 @@ li {
 											<li id="zipcode">${customer.zipcode}</li>
 										</ul>
 									</div>
-								</div>
-								<div class="col-sm-6">
+								</div> 
+								<%-- <div class="col-sm-6">
 									<div id="customer_container"
 										style="width: auto; display: table;">
 										<p class="contactPerson_title">Contact Person</p>
@@ -134,10 +134,90 @@ li {
 											<li id="telephoneNumber">${customerContact.telephoneNumber }</li>
 										</ul>
 									</div>
+								</div> --%>
+							</fieldset>
+							
+							<fieldset>
+								<legend>Contact Person</legend>								
+								<!-- Contact Person  -->
+								<div class="col-sm-6">
+									
+									<!-- Text input Contact Person First Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">First Nmae</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
+													name="firstName" placeholder="First Name"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Contact Person  Last Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Last Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
+													name="lastName" placeholder="Last Name"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Contact Person 1 Email-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Email</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
+													name="email" placeholder="Email Address"
+													class="form-control" type="email">
+											</div>
+										</div>
+									</div>
 								</div>
+								
+								<div class="col-sm-6">
+								
+									<!-- Text input Contact Person Cellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Cellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="cellphoneNumber" name="cellphoneNumber"
+													placeholder="Cellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Contact Person Tellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Tellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="telephoneNumber" name="telephoneNumber"
+													placeholder="Tellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- /Contact Person  -->
+								
+								
+								
 							</fieldset>
 							<br>
 							<br>
+							
 							<fieldset>
 								<legend>Machine Details</legend>
 								<br>
@@ -183,9 +263,6 @@ li {
 											</div>
 										</div>
 									</div>
-
-
-
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract Start
@@ -248,7 +325,6 @@ li {
 											</div>
 										</div>
 									</div>
-
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -261,7 +337,6 @@ li {
 											</div>
 										</div>
 									</div>
-
 									<!-- Text input City or Town-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">City/Town</label>
@@ -274,7 +349,6 @@ li {
 											</div>
 										</div>
 									</div>
-
 									<!-- Select type Province-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Province</label>
@@ -298,7 +372,6 @@ li {
 											</div>
 										</div>
 									</div>
-
 									<!-- Text input Area Code-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Area Code</label>

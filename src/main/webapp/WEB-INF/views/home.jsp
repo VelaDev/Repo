@@ -79,17 +79,18 @@
 												<tr>
 													<th>Ticket No <img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-														<th>Subject <img
+														<th>Subject<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Description <img
+													<th>Description<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>														
-													<th>Date <img
+													<th>Date<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Status <img
+													<th>Status<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Technician <img
+													<th>Technician<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Update </th>
+													<th>Edit<img
+														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 
 												</tr>
 											</thead>
@@ -107,7 +108,7 @@
 														<th><c:out
 																value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></th>
 														<th><a
-															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-success">Update</button></a></th>
+															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>">Edit</a></th>
 
 													</tr>
 												</c:forEach>

@@ -19,7 +19,7 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			<br />
+			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -49,13 +49,13 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach items="${technicianTickets}" var="ticket">
 									<tr>
-										<th><c:out value="${ticket.ticketNumber}" /></th>
-										<th><c:out value="${ticket.status} " /></th>
-										<th><c:out value="${ticket.device.customer.customerName}" /></th>
-										<th><c:out
-												value="${ticket.device.customer.getTellphoneNumber()} " /></th>
-										<th><a
-											href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-info">Details</button></a></th>
+										<td><c:out value="${ticket.ticketNumber}" /></td>
+										<td><c:out value="${ticket.status} " /></td>
+										<td><c:out value="${ticket.device.customer.customerName}" /></td>
+										<td><c:out
+												value="${ticket.device.customer.getTellphoneNumber()} " /></td>
+										<td><a
+											href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-info">Details</button></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

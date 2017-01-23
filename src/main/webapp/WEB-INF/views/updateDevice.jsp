@@ -13,6 +13,11 @@
 	
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
 	
+<style>
+li {
+	list-style: none;
+}
+</style>
 
 <title>Update Device Installation | Velaphanda Trading &
 	Projects</title>
@@ -109,7 +114,7 @@
 										</ul>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<%-- <div class="col-sm-6">
 									<div id="customer_container"
 										style="width: auto; display: table;">
 										<p class="contactPerson_title">Contact Person</p>
@@ -121,12 +126,90 @@
 											<li id="telephoneNumber">${customer.telephoneNumber }</li>
 										</ul>
 									</div>
-								</div>
+								</div> --%>
 
 								<br>
 							</fieldset>
+							
+							<fieldset>
+								<legend>Contact Person</legend>								
+								<!-- Contact Person  -->
+								<div class="col-sm-6">
+									
+									<!-- Text input Contact Person First Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">First Nmae</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
+													name="firstName" placeholder="First Name"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Contact Person  Last Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Last Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
+													name="lastName" placeholder="Last Name"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Contact Person 1 Email-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Email</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
+													name="email" placeholder="Email Address"
+													class="form-control" type="email">
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-sm-6">
+								
+									<!-- Text input Contact Person Cellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Cellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="cellphoneNumber" name="cellphoneNumber"
+													placeholder="Cellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Contact Person Tellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Tellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="telephoneNumber" name="telephoneNumber"
+													placeholder="Tellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+								</div>
+								<!-- /Contact Person  -->
+								
+							</fieldset>
 							<br>
 							<br>
+							
 							<fieldset>
 								<legend>Machine Details</legend>
 								<br>

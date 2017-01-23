@@ -4,7 +4,18 @@
 <head>
   <title>Monitoring Tickets | Velaphanda Trading & Projects</title>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">  
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+  
+   
 </head>
 <body>
 	<div class="velaphanda_containter">	
@@ -20,15 +31,16 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
+					
 					<c:if test="${empty ticketList}">
 						There are no tickets at the moment
 					</c:if>
 					<c:if test="${not empty ticketList}">
 					
-					<form action="searchEmployee" id="searchEmp">
+					<!-- <form action="searchEmployee" id="searchEmp">
 						
 						<div class="row">
-								<!-- Text input Search-->
+								Text input Search
 								<div class="form-group">
 									<label class="col-md-3 control-label">Search Technician: </label>
 									<div class="col-md-4 inputGroupContainer">
@@ -45,26 +57,30 @@
 								</div>
 							</div>
 							<br/>
-					</form>
+					</form> -->
 
-					<table class="table table-hover table-bordered">
-						<thead style="background-color: #bce8f1;">
+					<table id="myDatatable" class="display datatable">
+						<thead>
 							<tr>
-								<th>Ticket No</th>
-								<th>Assigned Technician</th>
-								<th>Description</th>
-								<th>Date</th>
-                                <th>Option</th>
+								<th>Ticket No<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Assigned Technician<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Description<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Date<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+                                <th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${ticketList}" var="tickets">
 								<tr>
-									<th><c:out value="${tickets.ticketNumber}" /></th>
-									<th><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></th>
-									<th><c:out value="${tickets.description}" /></th>
-									<th><c:out value="${tickets.dateTime}" /></th>
-									<th><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>">option</a></th>
+									<td><c:out value="${tickets.ticketNumber}" /></td>
+									<td><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
+									<td><c:out value="${tickets.description}" /></td>
+									<td><c:out value="${tickets.dateTime}" /></td>
+									<td><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>"><button class="btn btn-info">Update</button></a></td>
 
 								</tr>
 							</c:forEach>
@@ -81,16 +97,27 @@
 		<c:import url="templates/footer.jsp"></c:import>
 		<!--/ Footer -->
 	</div><!-- / velaphanda_containter -->
+	
 	<!-- Script -->
 	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
-	<!-- /Script -->
+	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+<%-- <script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script> --%>
+
+<script>
+	$(document).ready(function() {
+		$('#myDatatable').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+	
+<!-- /Script -->
+	
 	<!-- Validate By User LogTicket -->
 <!-- Search By Serial -->
 	<script>

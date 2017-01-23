@@ -48,8 +48,8 @@
 													<td>${list.status}</td>
 													<td>${list.dateOrdered}</td>
 													<td>${list.stockType}</td>
-													<th><a
-											               href="detailedOrders?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-info">Details</button></a></th>
+													<td><a
+											               href="detailedOrders?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-info">Details</button></a></td>
 													
 												</tr>
 											</c:forEach>

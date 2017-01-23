@@ -8,9 +8,11 @@
 	
   <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" /> 
   <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
-	
+  
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/comfirm_alerts/css/main.css" />"> 
+
 </head>
-<body>
+<body >
 	<div class="velaphanda_containter">	
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
@@ -55,6 +57,11 @@
 					<hr>
 				</form>
 				<br>
+				
+				<div class="bb-alert alert alert-info" style="display: none;">
+					<span>This was logged in the callback: false</span>
+				</div>
+				
 				<form:form class="well form-horizontal" method="post" action="deactivateEmp"
 					modelAttribute="deactivateEmp" id="deactivateEmp">
 							
@@ -162,11 +169,17 @@
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<br><br>
-							<input type="submit" value="DeactivateEmployee"
-								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
+							
+							<div align="center">
+								<input type="submit" value="Deactivate Employee"
+								class="btn btn-primary example-button" tabindex="9"
+								id="deactivateEmp" name="deactivateEmp" data-bb-example-key="confirm-options">
+						
+							</div>
+							
 						</div>
 					</div>
+					
 					</form:form>
 					</div><!-- /tab-content -->									
 				</div><!-- /panel body -->
@@ -181,6 +194,11 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+
+<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/anchor.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/bootbox.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/example.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/demos.js"/>"></script>
 
 <!-- Deactive script -->
 <script>

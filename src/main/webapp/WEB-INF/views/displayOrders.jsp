@@ -57,10 +57,10 @@
 										<td>${list.dateOrdered}</td>
 										<td>${list.stockType}</td>
 										<td>${list.customer.customerName}</td>
-										<th><a
-											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-success">Details</button></a></th>
-											<th><a
-											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-info">Delivery</button></a></th>
+										<td><a
+											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-success">Details</button></a></td>
+											<td><a
+											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-info">Delivery</button></a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

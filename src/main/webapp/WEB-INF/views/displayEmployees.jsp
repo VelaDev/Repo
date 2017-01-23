@@ -3,9 +3,10 @@
 <html lang="en">
 <head>
 <title>Display Employees | Velaphanda Trading & Projects</title>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<style class="anchorjs"></style>
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
@@ -15,8 +16,10 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
+	
+
 </head>
-<body>
+<body class="bb-js" onload="load()" data-gr-c-s-loaded="true">
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
@@ -30,6 +33,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
+					
 						<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">
 							<thead>
@@ -57,12 +61,13 @@
 										<td>${list.email}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<th><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Update</button></a></th>
-										<th><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>"><button class="btn btn-danger">Deactivate</button></a></th>
+										<td><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Update</button></a></td>
+										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>"><button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button></a></td>
 									</tr>
               					</c:forEach>
 							</tbody>
 						</table>
+						
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -78,13 +83,12 @@
 	<!-- / velaphanda_containter -->
 
 </body>
+<!-- Scripts -->
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"> </script>
+	
 
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<%-- <script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script> --%>
-
+	
 <script>
 	$(document).ready(function() {
 		$('#myDatatable').DataTable({
@@ -105,5 +109,7 @@ $(document).on('click', ':not(form)[data-confirm]', function(e){
 		}
 });
 </script>
+
+<!-- /Scripts -->
 
 </html>

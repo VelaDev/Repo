@@ -149,7 +149,10 @@ public class TicketsDao implements TicketsDaoInt {
 		aList.addAll(criteria.list());
 		for (Object tic : aList) {
 			if (tic instanceof Tickets) {
-				if (((Tickets) tic).getStatus().equalsIgnoreCase("Open") && (((Tickets)tic).isOneHourFlag()==false)&& (((Tickets)tic).isFourHourFlag()==false)) {
+				if (((Tickets) tic).getStatus().equalsIgnoreCase("Open") && (((Tickets)tic).isOneHourFlag()==false)) {
+					ticketList.add((Tickets) tic);
+				}
+				else if(((Tickets) tic).getStatus().equalsIgnoreCase("Open") && (((Tickets)tic).isOneHourFlag()==true)&& (((Tickets)tic).isFourHourFlag()==false)){
 					ticketList.add((Tickets) tic);
 				}
 			}

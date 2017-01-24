@@ -62,21 +62,6 @@
 											</div>
 										</div>
 									</div>
-
-									
-									
-									<!-- Text input Ticket Acknowledged-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Acknowledged
-											Ticket</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<input type="checkbox" name="priority" id="priority"
-													value="true" name="technicianAcknowledged">
-											</div>
-										</div>
-									</div>
-									
 									
 								<!-- Text area Subject-->
 								<div class="form-group">
@@ -108,35 +93,8 @@
 													type="text" value="${ticketObject.priority}" readonly>
 											</div>
 										</div>
-									</div>
-
-									<!-- Text input Ticket SLA-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">SLA</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input
-													name="slaStart" id="slaStart" class="form-control"
-													type="text" value="${ticketObject.slaStart}">
-											</div>
-										</div>
 									</div>	
-									
-									<!-- Text input Ticket DateTime Acknowledged-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">DateTime
-											Acknowledged</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
-													name="priority" id="priority" class="form-control"
-													type="text"
-													value="${ticketObject.getSlaAcknowledgeDateTime().getTime().toLocaleString()}" >
-											</div>
-										</div>
-									</div>
+
 									
 								<!-- Text area Description-->
 								<div class="form-group">
@@ -157,11 +115,11 @@
 								
 								<br>
 								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
+									<!-- <div class="col-sm-offset-2 col-sm-8">
 										<input type="submit" value="Update General"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
-									</div>
+									</div> -->
 								</div>
 							</form:form>
 
@@ -554,7 +512,7 @@
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-md-8">
-										<input type="submit" value="Escalate Ticket"
+										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="escalateTickt">
 									</div>

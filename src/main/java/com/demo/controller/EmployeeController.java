@@ -400,4 +400,12 @@ public class EmployeeController {
          
         return model;
     }
+	@ExceptionHandler({NullPointerException.class})
+    public ModelAndView NullPointerException(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception", ex.getMessage());
+         
+        return model;
+    }
 }

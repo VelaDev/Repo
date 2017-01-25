@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -36,6 +37,8 @@ public class DeviceContactPerson implements Serializable{/**
 	private String telephone;
 	@Column(name="Cellphone")
 	private String cellphone;
+	@OneToOne(mappedBy="contactPerson")
+	private Device device;
 	
 
 }

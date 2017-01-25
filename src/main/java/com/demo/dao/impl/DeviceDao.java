@@ -16,9 +16,11 @@ import com.demo.bean.DeviceBean;
 import com.demo.dao.AccessoriesDaoInt;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.DeviceDaoInt;
+import com.demo.dao.deviceContactPersonDaoInt;
 import com.demo.model.Accessories;
 import com.demo.model.Customer;
 import com.demo.model.Device;
+import com.demo.model.DeviceContactPerson;
 
 @Repository("productDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -30,6 +32,7 @@ public class DeviceDao implements DeviceDaoInt {
 	private CustomerDaoInt customerDaoInt;
 	@Autowired
 	private AccessoriesDaoInt accessoriesDaoInt;
+	@Autowired deviceContactPersonDaoInt contactPersonDaoInt;
 	
 	
 	private String retMessage = null;
@@ -42,6 +45,7 @@ public class DeviceDao implements DeviceDaoInt {
 	Device device = null;
 	List <Accessories> accessoryList = null;
 	private DeviceBean deviceBean = null;
+	private DeviceContactPerson contactPerson;
 	
 	@Override
 	public String saveDevice(Device device) {
@@ -101,129 +105,136 @@ public class DeviceDao implements DeviceDaoInt {
 		
 		String retAccessory = null;
 		customer = new Customer();
+		contactPerson = new DeviceContactPerson();
 		device = new Device();
-		device.setEndDate(deviceBean.getEndDate());
-		device.setModelNumber(deviceBean.getProductModel());
-		device.setSerialNumber(deviceBean.getSerialNumber());
-		device.setStartDate(deviceBean.getStartDate());
-		device.setColour(deviceBean.getColour());
-		device.setInstallationDate(deviceBean.getInstallationDate());
-		device.setMonoReading(deviceBean.getMonoReading());
-		device.setAreaCode(deviceBean.getZipcode());
-		device.setCity_town(deviceBean.getCity_town());
-		device.setProvince(deviceBean.getProvince());
-		device.setStreetName(deviceBean.getStreetName());
-		device.setStreetNumber(deviceBean.getStreetNumber());
-		
-		
-		/*//customer.setCellNumber(deviceBean.getCellNumber());
-		customer.setCity_town(deviceBean.getCity_town());
-		//customer.setContactPerson(deviceBean.getContactPerson());
-		customer.setEmail(deviceBean.getEmail());
-		customer.setFaxNumber(deviceBean.getFaxNumber());
-		customer.setStreetNumber(deviceBean.getStreetNumber());
-		customer.setProvince(deviceBean.getProvince());
-		customer.setStreetName(deviceBean.getStreetName());
-		customer.setTellphoneNumber(deviceBean.getTellphoneNumber());
-		customer.setZipcode(deviceBean.getZipcode());
-		customer.setCustomerName(deviceBean.getClientName());
-		
-		retMessage = customerDaoInt.saveClient(customer);*/
-		customer = customerDaoInt.getClientByClientName(deviceBean.getCustomerName());
-		
-		
-		
-		if(customer != null){
-			device.setCustomer(customer);
+		try{
 			
-		    list = new ArrayList<Accessories>();
-			Accessories accessory = new Accessories();
+			device.setEndDate(deviceBean.getEndDate());
+			device.setModelNumber(deviceBean.getProductModel());
+			device.setSerialNumber(deviceBean.getSerialNumber());
+			device.setStartDate(deviceBean.getStartDate());
+			device.setColour(deviceBean.getColour());
+			device.setInstallationDate(deviceBean.getInstallationDate());
+			device.setMonoReading(deviceBean.getMonoReading());
+			device.setAreaCode(deviceBean.getZipcode());
+			device.setCity_town(deviceBean.getCity_town());
+			device.setProvince(deviceBean.getProvince());
+			device.setStreetName(deviceBean.getStreetName());
+			device.setStreetNumber(deviceBean.getStreetNumber());
 			
-			if( deviceBean.getAdditionalPaperTraysTypeSerial() != null){
-				if(deviceBean.getAdditionalPaperTraysTypeSerial().length()>0){
-					
-					accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
-					accessory.setAccessotyType("Additional Paper Trays");
-					accessory.setDevice(device);
-					list.add(accessory);
+			contactPerson.setCellphone(deviceBean.getCellphone());
+			contactPerson.setEmail(deviceBean.getEmail());
+			contactPerson.setFirstName(deviceBean.getFirstName());
+			contactPerson.setLastName(deviceBean.getLastName());
+			contactPerson.setTelephone(deviceBean.getTelephone());
+			
+			customer = customerDaoInt.getClientByClientName(deviceBean.getCustomerName());
+			
+			
+			
+			if(customer != null){
+				device.setCustomer(customer);
+				
+			    list = new ArrayList<Accessories>();
+				Accessories accessory = new Accessories();
+				
+				if( deviceBean.getAdditionalPaperTraysTypeSerial() != null){
+					if(deviceBean.getAdditionalPaperTraysTypeSerial().length()>0){
+						
+						accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
+						accessory.setAccessotyType("Additional Paper Trays");
+						accessory.setDevice(device);
+						list.add(accessory);
+					}
 				}
-			}
-			if( deviceBean.getBridgeUnitSerialTypeSerialNo()!=null){
-				if(deviceBean.getBridgeUnitSerialTypeSerialNo().length()>0){
-					
-					Accessories accessory1 = new Accessories();
-					accessory1.setSerial(deviceBean.getBridgeUnitSerialTypeSerialNo());
-					accessory1.setAccessotyType("Bridge Unit");
-					accessory1.setDevice(device);
-					list.add(accessory1);
-				}
-			}
-			
-			if( deviceBean.getCredenzaSerialNo()!=null){
-				if(deviceBean.getCredenzaSerialNo().length()>0){
-					
-					Accessories accessory2 = new Accessories();
-					accessory2.setSerial(deviceBean.getCredenzaSerialNo());
-					accessory2.setAccessotyType("Credenza");
-					accessory2.setDevice(device);
-					list.add(accessory2);
+				if( deviceBean.getBridgeUnitSerialTypeSerialNo()!=null){
+					if(deviceBean.getBridgeUnitSerialTypeSerialNo().length()>0){
+						
+						Accessories accessory1 = new Accessories();
+						accessory1.setSerial(deviceBean.getBridgeUnitSerialTypeSerialNo());
+						accessory1.setAccessotyType("Bridge Unit");
+						accessory1.setDevice(device);
+						list.add(accessory1);
+					}
 				}
 				
-			}
-			
-			
-			if( deviceBean.getFaxUnitSerialTypeSerialNo()!=null){
-				if(deviceBean.getFaxUnitSerialTypeSerialNo().length()>0){
-					Accessories accessory3 = new Accessories();
-					accessory3.setSerial(deviceBean.getFaxUnitSerialTypeSerialNo());
-					accessory3.setAccessotyType("Fax Unit");
-					accessory3.setDevice(device);
-					list.add(accessory3);
-				}
-			}
-			
-			if( deviceBean.getFinisherTypeSerialNo()!=null){
-				if(deviceBean.getFinisherTypeSerialNo().length()>0){
+				if( deviceBean.getCredenzaSerialNo()!=null){
+					if(deviceBean.getCredenzaSerialNo().length()>0){
+						
+						Accessories accessory2 = new Accessories();
+						accessory2.setSerial(deviceBean.getCredenzaSerialNo());
+						accessory2.setAccessotyType("Credenza");
+						accessory2.setDevice(device);
+						list.add(accessory2);
+					}
 					
-					Accessories accessory4 = new Accessories();
-					accessory4.setSerial(deviceBean.getFinisherTypeSerialNo());
-					accessory4.setAccessotyType("Finisher");
-					accessory4.setDevice(device);
-					list.add(accessory4);
 				}
-			}
-			
-			if( deviceBean.getLtcTypeSerial()!=null){
-				if(deviceBean.getLtcTypeSerial().length()>0){
+				
+				
+				if( deviceBean.getFaxUnitSerialTypeSerialNo()!=null){
+					if(deviceBean.getFaxUnitSerialTypeSerialNo().length()>0){
+						Accessories accessory3 = new Accessories();
+						accessory3.setSerial(deviceBean.getFaxUnitSerialTypeSerialNo());
+						accessory3.setAccessotyType("Fax Unit");
+						accessory3.setDevice(device);
+						list.add(accessory3);
+					}
+				}
+				
+				if( deviceBean.getFinisherTypeSerialNo()!=null){
+					if(deviceBean.getFinisherTypeSerialNo().length()>0){
+						
+						Accessories accessory4 = new Accessories();
+						accessory4.setSerial(deviceBean.getFinisherTypeSerialNo());
+						accessory4.setAccessotyType("Finisher");
+						accessory4.setDevice(device);
+						list.add(accessory4);
+					}
+				}
+				
+				if( deviceBean.getLtcTypeSerial()!=null){
+					if(deviceBean.getLtcTypeSerial().length()>0){
+						
+						Accessories accessory5 = new Accessories();
+						accessory5.setSerial(deviceBean.getLtcTypeSerial());
+						accessory5.setAccessotyType("LTC");
+						accessory5.setDevice(device);
+						list.add(accessory5);
+					}
+				}
+				
+				if( deviceBean.getOneBinTrayTypeSerialNo()!=null){
+					if(deviceBean.getOneBinTrayTypeSerialNo().length()>0){
+						
+						Accessories accessory6 = new Accessories();
+						accessory6.setSerial(deviceBean.getOneBinTrayTypeSerialNo());
+						accessory6.setAccessotyType("One bin tray");
+						accessory6.setDevice(device);
+						list.add(accessory6);
+					}
+				}
+				
+				retMessage = contactPersonDaoInt.saveContactPerson(contactPerson);
+				if(retMessage.equalsIgnoreCase("OK")){
 					
-					Accessories accessory5 = new Accessories();
-					accessory5.setSerial(deviceBean.getLtcTypeSerial());
-					accessory5.setAccessotyType("LTC");
-					accessory5.setDevice(device);
-					list.add(accessory5);
-				}
-			}
-			
-			if( deviceBean.getOneBinTrayTypeSerialNo()!=null){
-				if(deviceBean.getOneBinTrayTypeSerialNo().length()>0){
+					device.setContactPerson(contactPerson);
+					retMessage = saveDevice(device);
+					retAccessory =accessoriesDaoInt.saveAccessories(list);
+					if(retAccessory.equalsIgnoreCase("Error")){
+						retMessage ="Device not inserted into the table "+ retAccessory;
+					}
 					
-					Accessories accessory6 = new Accessories();
-					accessory6.setSerial(deviceBean.getOneBinTrayTypeSerialNo());
-					accessory6.setAccessotyType("One bin tray");
-					accessory6.setDevice(device);
-					list.add(accessory6);
+				}else{
+					retMessage = "Contact person cannot be captured" + retMessage;
 				}
 			}
-			
-			
-			retMessage = saveDevice(device);
-			retAccessory =accessoriesDaoInt.saveAccessories(list);
-			if(retAccessory.equalsIgnoreCase("Error")){
-				retMessage ="Device not inserted into the table "+ retAccessory;
+			else{
+				retMessage = "Customer "+ customer.getCustomerName() +" does not exist on database. Please make sure that the customer exist before assigning a device" ;
 			}
-		}
-		else{
-			retMessage = "Customer "+ customer.getCustomerName() +" does not exist on database. Please make sure that the customer exist before assigning a device" ;
+			
+			
+		}catch(Exception e){
+			retMessage = e.getMessage();
 		}
 		
 		return retMessage;

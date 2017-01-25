@@ -45,5 +45,10 @@ public class DeviceBean {
 	private String province;
 	private String zipcode;
 	private String streetNumber;
+	private String email;
+	private String firstName;
+	private String lastName;
+	private String cellphone;
+	private String telephone;
 	
 }

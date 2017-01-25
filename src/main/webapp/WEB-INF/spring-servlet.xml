@@ -63,6 +63,7 @@
 				 <value>com.demo.model.TicketHistory</value>
 				 <value>com.demo.model.Compatibility</value>
 				 <value>com.demo.model.OrderDetails</value>
+				 <value>com.demo.model.DeviceContactPerson</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

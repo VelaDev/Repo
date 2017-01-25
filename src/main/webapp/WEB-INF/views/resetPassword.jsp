@@ -47,7 +47,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="empName" id="empName"
-										 class="form-control" type="text" placeholder='Search'>									
+										 class="form-control" type="text" placeholder='Search By Email Address'>									
 								</div>								
 							</div>
 							<div class="col-md-2">

@@ -166,16 +166,19 @@
 						</div>
 						
 					</div><!-- /S column  -->
+					
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<br><br>
-							
-							<div align="center">
+							<br><br>							
+							<!-- <div align="center">
 								<input type="submit" value="Deactivate Employee"
 								class="btn btn-primary example-button" tabindex="9"
-								id="deactivateEmp" name="deactivateEmp" data-bb-example-key="confirm-options">
-						
-							</div>
+								id="deactivateEmp" name="deactivateEmp" data-bb-example-key="confirm-options">						
+							</div> -->
+							
+							<input type="submit" value="DeactivateEmployee"
+								class="btn btn-primary btn-block btn-lg" tabindex="9"
+								id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
 							
 						</div>
 					</div>

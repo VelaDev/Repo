@@ -621,7 +621,6 @@ li {
 			});
 		});
 	</script>
-
 	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;

@@ -89,8 +89,7 @@
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 													<th>Technician<img
 														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Edit<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Update</th>
 
 												</tr>
 											</thead>
@@ -98,17 +97,17 @@
 												<!-- Iterating over the list sent from Controller -->
 												<c:forEach items="${home}" var="ticket" varStatus="itr">
 													<tr>
-														<th><c:out value="${ticket.ticketNumber}" /></th>
+														<td><c:out value="${ticket.ticketNumber}" /></td>
 														<!-- Subject must be included from ticket model -->
-														<th><c:out value="" /></th>
+														<td><c:out value="${ticket.subject}" /></td>
 														<!-- /Subject must be included from ticket model -->
-														<th><c:out value="${ticket.description}" /></th>														
-														<th><c:out value="${ticket.dateTime}" /></th>
-														<th><c:out value="${ticket.status}" /></th>
-														<th><c:out
-																value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></th>
-														<th><a
-															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>">Edit</a></th>
+														<td><c:out value="${ticket.description}" /></td>														
+														<td><c:out value="${ticket.dateTime}" /></td>
+														<td><c:out value="${ticket.status}" /></td>
+														<td><c:out
+																value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></td>
+														<td><a
+															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-info">Edit</button></a></td>
 
 													</tr>
 												</c:forEach>

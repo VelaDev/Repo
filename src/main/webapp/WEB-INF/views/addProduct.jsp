@@ -677,10 +677,10 @@ li {
 									}, */  deviceIndex = 0;
 
 							$('#addOtherDevice')
-									.formValidation(
+									/* .formValidation(
 											{
 												framework : 'bootstrap',
-												/* icon : {
+												icon : {
 													valid : 'glyphicon glyphicon-ok',
 													invalid : 'glyphicon glyphicon-remove',
 													validating : 'glyphicon glyphicon-refresh'
@@ -690,7 +690,7 @@ li {
 													'serialNumber' : serialNumberValidators
 												}
 											})
- */
+ 									*/
 									// Add button click handler
 									.on(
 											'click',

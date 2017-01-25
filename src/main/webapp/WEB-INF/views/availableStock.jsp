@@ -47,10 +47,10 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${availableOrders}">
 									<tr>
-										<th>${list.model}</th>
-										<th>${list.partNumber}</th>
-										<th>${list.description}</th>
-										<th>${list.quantity}</th>
+										<td>${list.model}</td>
+										<td>${list.partNumber}</td>
+										<td>${list.description}</td>
+										<td>${list.quantity}</td>
 									</tr>
               					</c:forEach>
 							</tbody>

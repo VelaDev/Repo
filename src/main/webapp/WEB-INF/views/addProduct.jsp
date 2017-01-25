@@ -501,7 +501,7 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="serialNumber"
+											<input type="text" class="form-control" name="serialNumberM"
 												placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
@@ -518,7 +518,7 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="serialNumber"
+											<input type="text" class="form-control" name="serialNumberM"
 												placeholder="Serial Number" />
 										</div>
 

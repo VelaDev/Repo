@@ -53,10 +53,10 @@ function showConfirm(confirmtitle,confirmcontent,confirmlefttext,confirmlefturi,
     xConfirm=xConfirmStart, yConfirm=yConfirmStart;
     if(ie5) {
         document.getElementById("jsconfirm").style.left='25%';
-        document.getElementById("jsconfirm").style.top='35%';
+        document.getElementById("jsconfirm").style.top='50%';
     }
     else if(nn6) {
-        document.getElementById("jsconfirm").style.top='25%';
+        document.getElementById("jsconfirm").style.top='50%';
         document.getElementById("jsconfirm").style.left='35%';
 	}
 }

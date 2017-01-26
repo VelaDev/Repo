@@ -182,10 +182,10 @@
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
 								id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
 							
-							<!-- <! -- Test this for me --> 
+							<!-- Aikhona this not working for us 
 							<br/><br/>
 							<p><a  onclick="javascript:showConfirm('Please confirm','Are are sure you want to deactivate this employee?','Yes','','No','#')"><button class="btn btn-primary btn-block btn-lg" tabindex="9">Deactivate Employee</button></a></p>
-							
+							<!-- Aikhona this not working for us -->
 							
 							
 						</div>

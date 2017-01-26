@@ -125,8 +125,8 @@
 										class="glyphicon glyphicon-list"></i></span> <select name="gender"
 										class="form-control selectpicker">
 										<option value=" ">${ employeeObject.gender}</option>
-										<option value="Mr">Male</option>
-										<option value="Miss">Female</option>
+										<option value="Male">Male</option>
+										<option value="Female">Female</option>
 										
 									</select>
 								</div>

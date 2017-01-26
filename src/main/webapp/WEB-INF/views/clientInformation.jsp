@@ -77,7 +77,7 @@
 														<tr>
 														     <th><c:out value="${offset + itr.index +1 }"></c:out>
 															<th><c:out value="${device.serialNumber}" /></th>
-															<th><c:out value="${device.productModel}" /></th>
+															<th><c:out value="${device.modelNumber}" /></th>
 															<th><a
 																href="detailedProduct?serialNumber=<c:out value='${device.serialNumber}'/>">Detail</a></th>
 

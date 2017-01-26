@@ -284,7 +284,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="searchEmployeeForPasswordReset")
-	public ModelAndView searchEmployeeForPasswordReset(@RequestParam("empName") String empName,@ModelAttribute Employee employee) {
+	public ModelAndView searchEmployeeForPasswordReset(@RequestParam("email") String empName,@ModelAttribute Employee employee) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){

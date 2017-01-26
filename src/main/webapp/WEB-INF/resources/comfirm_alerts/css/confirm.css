@@ -1,0 +1,46 @@
+#jsconfirm {
+border-color: #c0c0c0;
+border-width: 2px 4px 4px 2px;
+left: 0;
+margin: 0;
+padding: 0;
+position: absolute;
+top: -1000px;
+z-index: 100;
+}
+
+#jsconfirm table {
+background-color: #fff;
+border: 2px groove #c0c0c0;
+height: 150px;
+width: 300px;
+}
+
+#jsconfirmtitle {
+background-color: #B0B0B0;
+font-weight: bold;
+height: 20px;
+text-align: center;
+}
+
+#jsconfirmbuttons {
+height: 50px;
+text-align: center;
+}
+
+#jsconfirmbuttons input {
+background-color: #E9E9CF;
+color: #000000;
+font-weight: bold;
+width: 125px;
+height: 33px;
+padding-left: 20px;
+}
+
+#jsconfirmleft{
+background-image: url(left.png);
+}
+
+#jsconfirmright{
+background-image: url(right.png);
+}

@@ -10,6 +10,7 @@
   <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
   
   <link type="text/css" rel="stylesheet" href="<c:url value="/resources/comfirm_alerts/css/main.css" />"> 
+   <link type="text/css" rel="stylesheet" href="<c:url value="/resources/comfirm_alerts/css/confirm.css" />">
 
 </head>
 <body >
@@ -169,7 +170,8 @@
 					
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
-							<br><br>							
+							<br><br>
+														
 							<!-- <div align="center">
 								<input type="submit" value="Deactivate Employee"
 								class="btn btn-primary example-button" tabindex="9"
@@ -179,6 +181,12 @@
 							<input type="submit" value="Deactivate Employee"
 								class="btn btn-primary btn-block btn-lg" tabindex="9"
 								id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
+							
+							<!-- <! -- Test this for me --> 
+							<br/><br/>
+							<p><a  onclick="javascript:showConfirm('Please confirm','Are are sure you want to deactivate this employee?','Yes','','No','#')"><button class="btn btn-primary btn-block btn-lg" tabindex="9">Deactivate Employee</button></a></p>
+							
+							
 							
 						</div>
 					</div>
@@ -203,6 +211,7 @@
 <script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/example.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/demos.js"/>"></script>
 
+<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/confirmStyle.js"/>"></script>
 <!-- Deactive script -->
 <script>
 $(document).on('click', ':not(form)[data-confirm]', function(e){

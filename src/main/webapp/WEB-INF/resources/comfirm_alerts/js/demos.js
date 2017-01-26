@@ -1,4 +1,3 @@
-
 $(function () {
     var doc = $('html, body');
 

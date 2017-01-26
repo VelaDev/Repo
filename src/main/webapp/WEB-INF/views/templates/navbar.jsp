@@ -60,10 +60,10 @@
 								<ul class="dropdown-menu">
 									<li><a href='<c:url value="addClient.html"/>'>Add
 											Customer</a></li>
+											<li><a href='<c:url value="displayCustomers.html"/>'>Display
+											Customers</a></li>
 									<li><a href='<c:url value="updateCustomer.html"/>'>Update
 											Customer</a></li>
-									<li><a href='<c:url value="displayCustomers.html"/>'>Display
-											Customers</a></li>
 									<li><a href='<c:url value="clientInformation.html"/>'>Search
 											Devices for a customer</a></li>
 									<li><a href="#">Delete Customer</a></li>

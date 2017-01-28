@@ -1,0 +1,17 @@
+package com.demo.dao;
+
+
+
+import java.util.List;
+
+import com.demo.model.UserLogDetails;
+
+public interface UserLogDetailsDaoInt {
+	
+	void saveUserLogDetails(UserLogDetails details);
+	List<UserLogDetails> getLogoutDateTime();
+	List<UserLogDetails> getUserLogDetails();
+	void lougoutTimeStamp();
+	
+
+}

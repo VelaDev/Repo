@@ -49,7 +49,7 @@
 									Employee</a></li>
 							<li><a href='<c:url value="displayEmployees.html"/>'>Display
 									Employee</a></li>
-							<li><a href='<c:url value="resetPassword.html"/>'>Reset Password</a></li>
+							<%-- <li><a href='<c:url value="resetPassword.html"/>'>Reset Password</a></li> --%>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Customers <b class="caret"></b></a>
@@ -66,7 +66,7 @@
 											Customer</a></li>
 									<%-- <li><a href='<c:url value="clientInformation.html"/>'>Search
 											Devices for a customer</a></li> --%>
-									<li><a href="#">Delete Customer</a></li>
+									<!-- <li><a href="#">Delete Customer</a></li> -->
 								</ul></li>
 							<li class="dropdown dropdown-submenu"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">Device

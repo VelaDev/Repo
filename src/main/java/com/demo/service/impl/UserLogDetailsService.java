@@ -1,0 +1,30 @@
+package com.demo.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.demo.dao.UserLogDetailsDaoInt;
+import com.demo.model.UserLogDetails;
+import com.demo.service.UserLogDetailsServiceInt;
+
+
+@Service("userLogDetailsService")
+@Transactional
+public class UserLogDetailsService implements UserLogDetailsServiceInt{
+	
+	@Autowired
+	private UserLogDetailsDaoInt userLogDetailsDao;
+
+	@Override
+	public void saveUserLogDetails(UserLogDetails details) {
+		try{
+			userLogDetailsDao.saveUserLogDetails(details);
+			  
+		}catch(Exception e){
+			e.getMessage();
+		}
+		
+	}
+
+}

@@ -19,11 +19,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
+import com.demo.dao.UserLogDetailsDaoInt;
 import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
+import com.demo.model.UserLogDetails;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.OrdersServiceInt;
+import com.demo.service.UserLogDetailsServiceInt;
 
 @Controller
 public class EmployeeController {
@@ -36,10 +39,14 @@ public class EmployeeController {
 	private TicketsServiceInt ticketsServiceInt;
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
+	@Autowired
+	private UserLogDetailsServiceInt userLogDetailsServiceInt;
+	
 	private List<PieChart> beanList = null;
 	String retMessage =null;
 	ModelAndView model = null;
 	Employee userName = null;
+	private UserLogDetails details;
 	String retPage = null;
 	Integer count = 1;
 	
@@ -74,6 +81,7 @@ public class EmployeeController {
 				if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 					
+					userLogDetailsServiceInt.saveUserLogDetails(details);
 					retRole= "redirect:home";
 				}
 				else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))

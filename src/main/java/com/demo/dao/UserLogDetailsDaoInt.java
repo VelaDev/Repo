@@ -14,6 +14,7 @@ public interface UserLogDetailsDaoInt {
 	void lougoutTimeStamp();
 	void updateTimeout(String sessionID);
 	UserLogDetails getUserLogDetails(String sessionID);
+	List<UserLogDetails> userActivities(String email);
 	
 
 }

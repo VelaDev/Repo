@@ -1,5 +1,7 @@
 package com.demo.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,6 +37,11 @@ public class UserLogDetailsService implements UserLogDetailsServiceInt{
 	@Override
 	public UserLogDetails getUserLogDetails(String sessionID) {
 		return userLogDetailsDao.getUserLogDetails(sessionID);
+	}
+
+	@Override
+	public List<UserLogDetails> userActivities(String email) {
+		return userLogDetailsDao.userActivities(email);
 	}
 
 }

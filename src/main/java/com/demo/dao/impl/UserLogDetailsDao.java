@@ -1,5 +1,6 @@
 package com.demo.dao.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -116,6 +117,24 @@ public class UserLogDetailsDao implements UserLogDetailsDaoInt {
 	public UserLogDetails getUserLogDetails(String sessionID) {
 		
 		return (UserLogDetails) sessionFactory.getCurrentSession().get(UserLogDetails.class, sessionID);
+	}
+
+
+	@Override
+	public List<UserLogDetails> userActivities(String email) {
+		List<UserLogDetails> users  = new ArrayList<UserLogDetails>();
+		List<UserLogDetails> listUsers  = new ArrayList<UserLogDetails>();
+		try{
+			users = getLogoutDateTime();
+			for(UserLogDetails logDetails:users){
+				if(logDetails.getEmployee().getEmail().equalsIgnoreCase(email)){
+					listUsers.add(logDetails);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return listUsers;
 	}
 
 }

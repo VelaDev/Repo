@@ -405,6 +405,28 @@ public class EmployeeController {
 		return employeeService.getAllEmployees(empName);
 
 	}
+	@RequestMapping(value="searchEmployeeByNameForActivities")
+	public ModelAndView searchEmployeeByNameForActivities(@RequestParam("email") String email,@ModelAttribute Employee employee) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			employee = employeeService.getEmployeeByEmpNumber(email);
+		if(employee != null){
+			
+			model.addObject("loginUsers", userLogDetailsServiceInt.userActivities(email));
+		}
+		else{
+			model.addObject("", null);
+		}
+		
+		model.setViewName("userLoginActivities");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 	@ExceptionHandler({DataIntegrityViolationException.class})
     public ModelAndView dataIntegrity(Exception ex) {
         ModelAndView model = new ModelAndView("405");

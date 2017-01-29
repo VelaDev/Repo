@@ -448,7 +448,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="finisherserial"
+											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)"id="finisherserial"
 											disabled name="finisherTypeSerialNo" />
 									</div>
 								</div>
@@ -596,14 +596,16 @@ li {
 												}
 											});
 						});
-	</script>
-<script type="text/javascript">
-function upperCaseF(a){
-    setTimeout(function(){
-        a.value = a.value.toUpperCase();
-    }, 1);
-}
 </script>
+
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
+	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

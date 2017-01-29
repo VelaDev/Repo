@@ -147,6 +147,19 @@
 							</div>
 						</div>
 						
+						<!-- Text input Cellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Cellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="cellphone" name="cellphone"
+													placeholder="Cellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+						
 								
 						</div><!-- S .Column -->
 										

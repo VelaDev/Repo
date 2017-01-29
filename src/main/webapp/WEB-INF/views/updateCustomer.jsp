@@ -39,9 +39,9 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<!-- 		<form action="searchCustomer" method="post" id="searchCustomer">
+						<form action="searchCustomer" method="post" id="searchCustomer">
 							<div class="row">
-								Text input Search
+								
 								<div class="form-group">
 									<label class="col-md-3 control-label">Search Customer </label>
 									<div class="col-md-4 inputGroupContainer">
@@ -59,7 +59,7 @@
 							</div>
 
 							<hr>
-						</form> -->
+						</form> 
 
 						<form:form class="well form-horizontal" method="post"
 							action="updateCustomerData" modelAttribute="updateCustomerData"
@@ -99,13 +99,13 @@
 
 								<!-- Text input Email-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Company E-Mail</label>
+									<label class="col-md-3 control-label">Company Email</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input
 												name="emailCompany" id="emailCompany"
-												placeholder="Compnay E-Mail Address" class="form-control"
+												placeholder="Compnay Email Address" class="form-control"
 												value="${customer.emailCompany}" type="text">
 										</div>
 									</div>

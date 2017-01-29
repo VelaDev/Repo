@@ -52,7 +52,7 @@ li {
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="serialNumber" id="serialNumber" class="form-control"
+												name="serialNumber" onkeydown="upperCaseF(this)"  id="serialNumber" class="form-control"
 												type="text" placeholder='Search By Serial Number'>
 										</div>
 									</div>
@@ -224,7 +224,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="serialNumber" placeholder="Serial Number"
+													name="serialNumber" id="serialNumber" onkeydown="upperCaseF(this)" placeholder="Serial Number"
 													class="form-control" type="text" value="${productObject.serialNumber }"
 													>
 											</div>
@@ -414,7 +414,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="bridgeunit"
+											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="bridgeunit"
 											name="bridgeUnitSerialTypeSerialNo"
 											value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }" />
 									</div>
@@ -425,7 +425,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="faxunitserial"
+											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="faxunitserial"
 											value="${AccessoryObject.faxUnitSerialTypeSerialNo }"
 											name="faxUnitSerialTypeSerialNo" />
 									</div>
@@ -439,7 +439,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="onebintray"
+											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="onebintray"
 											value="${AccessoryObject.oneBinTrayTypeSerialNo }"
 											name="oneBinTrayTypeSerialNo" />
 									</div>
@@ -450,7 +450,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="finisherserial"
+											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="finisherserial"
 											value="${AccessoryObject.finisherTypeSerialNo }"
 											name="finisherTypeSerialNo" />
 									</div>
@@ -463,7 +463,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="ltc"
+											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="ltc"
 											name="ltcTypeSerial"
 											value="${AccessoryObject.ltcTypeSerial }" />
 									</div>
@@ -476,7 +476,7 @@ li {
 										</div>
 										<div class="col-xs-3">
 											<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
-												type="text" class="form-control input-sm" id="credenza"
+												type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="credenza"
 												name="credenzaSerialNo"
 												value="${AccessoryObject.credenzaSerialNo }" />
 										</div>
@@ -492,7 +492,7 @@ li {
 										<label for="additionalserial">Serial
 											Number:&nbsp;&nbsp;</label><input type="text"
 											class="form-control input-sm" id="additionalserial"
-											name="additionalPaperTraysTypeSerial"
+											name="additionalPaperTraysTypeSerial"  onkeydown="upperCaseF(this)"
 											value="${AccessoryObject.additionalPaperTraysTypeSerial }" />
 									</div>
 								</div>
@@ -525,7 +525,7 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="serialNumber"
+											<input type="text" class="form-control"  onkeydown="upperCaseF(this)" name="serialNumber"
 												placeholder="Serial Number" />
 										</div>
 
@@ -608,7 +608,14 @@ li {
 						});
 	</script>
 
-
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
+	</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

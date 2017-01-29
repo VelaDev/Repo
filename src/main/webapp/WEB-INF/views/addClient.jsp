@@ -77,13 +77,13 @@
 
 									<!-- Text input Email-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Company E-Mail</label>
+										<label class="col-md-3 control-label">Company Email</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
 													name="emailCompany" id="emailCompany"
-													placeholder="Compnay E-Mail Address" class="form-control"
+													placeholder="Compnay Email Address" class="form-control"
 													type="text">
 											</div>
 										</div>

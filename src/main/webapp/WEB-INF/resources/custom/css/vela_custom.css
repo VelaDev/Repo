@@ -10,6 +10,17 @@ a{
 b.optionalFields{
 	color:red;
 }
+/*
+:valid pseudo-element:
+*/
+
+#serialNumber:valid { text-transform: uppercase; }
+#additionalserial:valid { text-transform: uppercase; }
+#additionalPaperTrays:valid { text-transform: uppercase; }
+#additionalPaperTrays:valid{text-transform:uppercase;}
+#credenza:valid{text-transform:uppercase;}
+
+
 /*devider hr*/
 .devider {
     margin-top: 6%;

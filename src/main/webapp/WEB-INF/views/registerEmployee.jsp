@@ -81,7 +81,17 @@
 							</div>
 						</div>
 						
-						
+						 <!-- Text input Time Registered-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Time Registered</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-time"></i></span> <input name="timeRegistered"
+										placeholder="Time Registered" class="form-control" type="text">
+								</div>
+							</div>
+						</div>
 								
 					</div><!-- / F column -->	
 					
@@ -105,16 +115,15 @@
 								</div>
 							</div>
 						</div>
-					
 						
-					<!-- Text input email-->
+					   <!-- Text input email-->
 						<div class="form-group">
-							<label class="col-md-3 control-label">E-Mail</label>
+							<label class="col-md-3 control-label">Email Address</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-										placeholder="E-Mail Address" class="form-control" type="text">
+										placeholder="Email Address" class="form-control" type="text">
 								</div>
 							</div>
 						</div>
@@ -138,17 +147,30 @@
 							</div>
 						</div>
 						
-					</div><!-- S .Column -->
-									
-					<div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-8">
-							<br><br>
-							<input type="submit" value="Register Employee"
-								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="registere">
+						<!-- Text input Date Registered-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Date Registered</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-calendar"></i></span> <input id="dateRegistered" name="dateRegistered"
+										placeholder="Date Registered" class="form-control" type="text">
+								</div>
+							</div>
 						</div>
-					</div>
-					
+						
+						
+						</div><!-- S .Column -->
+										
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<br><br>
+								<input type="submit" value="Register Employee"
+									class="btn btn-primary btn-block btn-lg" tabindex="9"
+									id="registere">
+							</div>
+						</div>
+						
 					
 				</form:form>
 						
@@ -252,6 +274,18 @@
     });
 });
 
+</script>
+
+<script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#dateRegistered').datepicker({
+		format : "yyyy-mm-dd"
+	});
+});
+	
+	
 </script>
 
 </body>

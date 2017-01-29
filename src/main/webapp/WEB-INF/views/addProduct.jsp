@@ -231,7 +231,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="serialNumber" placeholder="Serial Number"
+													name="serialNumber" id="serialNumber" placeholder="Serial Number"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -501,7 +501,7 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="serialNumberM"
+											<input type="text" class="form-control" id="serialNumber" name="serialNumberM"
 												placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
@@ -514,11 +514,11 @@ li {
 									<!-- The template for adding new field -->
 									<div class="form-group hide" id="deviceNewFields">
 										<div class="col-xs-4 col-xs-offset-1">
-											<input type="text" class="form-control" name="machinetype"
+											<input type="text" class="form-control"  name="machinetype"
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="serialNumberM"
+											<input type="text" class="form-control" id="serialNumber" name="serialNumberM"
 												placeholder="Serial Number" />
 										</div>
 

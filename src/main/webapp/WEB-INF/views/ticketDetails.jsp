@@ -539,27 +539,15 @@
 										</div>
 									</div>
 									
-								
-								<!-- Text area Resolution-->
+																
+								<!-- Text area Action Token-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Resolution </label>
+									<label class="col-md-3 control-label"> Action Taken </label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="resolution"
-												required="required"></textarea>
-										</div>
-									</div>
-								</div>
-								<!-- Text area Solution-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Solution </label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="solution"
+											<textarea class="form-control" id="actionToken" name="actionToken"
 												required="required"></textarea>
 										</div>
 									</div>

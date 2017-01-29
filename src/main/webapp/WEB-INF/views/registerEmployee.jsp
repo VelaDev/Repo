@@ -83,12 +83,12 @@
 						
 						 <!-- Text input Time Registered-->
 						<div class="form-group">
-							<label class="col-md-3 control-label">Time Registered</label>
+							<label class="col-md-3 control-label">Daytime</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-time"></i></span> <input name="timeRegistered"
-										placeholder="Time Registered" class="form-control" type="text">
+										class="glyphicon glyphicon-time"></i></span> <input name="dateTimeRegistered"
+										placeholder="Daytime Registered" class="form-control" type="text">
 								</div>
 							</div>
 						</div>
@@ -147,19 +147,7 @@
 							</div>
 						</div>
 						
-						<!-- Text input Date Registered-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Date Registered</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-calendar"></i></span> <input id="dateRegistered" name="dateRegistered"
-										placeholder="Date Registered" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
-						
-						
+								
 						</div><!-- S .Column -->
 										
 						<div class="form-group row">
@@ -187,7 +175,12 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+ <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+  </script>
 
 <!-- Validatev register employee -->
 <script>
@@ -287,6 +280,9 @@ $(document).ready(function() {
 	
 	
 </script>
+
+
+
 
 </body>
 </html>

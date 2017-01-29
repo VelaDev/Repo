@@ -231,7 +231,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="serialNumber" id="serialNumber" placeholder="Serial Number"
+													name="serialNumber" id="serialNumber" onkeydown="upperCaseF(this)" placeholder="Serial Number"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -415,7 +415,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="bridgeunit"
+											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="bridgeunit"
 											disabled name="bridgeUnitSerialTypeSerialNo" />
 									</div>
 
@@ -425,7 +425,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="faxunitserial"
+											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="faxunitserial"
 											disabled name="faxUnitSerialTypeSerialNo" />
 									</div>
 								</div>
@@ -438,7 +438,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="onebintray"
+											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="onebintray"
 											disabled name="OneBinTrayTypeSerialNo" />
 									</div>
 
@@ -448,7 +448,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="finisherserial"
+											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="finisherserial"
 											disabled name="finisherTypeSerialNo" />
 									</div>
 								</div>
@@ -460,7 +460,7 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" id="ltc"
+											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="ltc"
 											name="ltcTypeSerial" disabled />
 									</div>
 
@@ -472,7 +472,7 @@ li {
 										</div>
 										<div class="col-xs-3">
 											<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
-												type="text" class="form-control input-sm" id="credenza"
+												type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="credenza"
 												name="credenzaSerialNo" disabled />
 										</div>
 
@@ -486,7 +486,7 @@ li {
 									<div class="col-xs-3">
 										<label for="additionalserial">Serial
 											Number:&nbsp;&nbsp;</label><input type="text"
-											class="form-control input-sm" id="additionalserial"
+											class="form-control input-sm" onkeydown="upperCaseF(this)" id="additionalserial"
 											name="additionalPaperTraysTypeSerial" disabled />
 									</div>
 								</div>
@@ -501,7 +501,7 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" id="serialNumber" name="serialNumberM"
+											<input type="text" class="form-control" onkeydown="upperCaseF(this)" id="serialNumber" name="serialNumberM"
 												placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
@@ -518,7 +518,7 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" id="serialNumber" name="serialNumberM"
+											<input type="text" class="form-control" onkeydown="upperCaseF(this)" id="serialNumber" name="serialNumberM"
 												placeholder="Serial Number" />
 										</div>
 
@@ -597,8 +597,13 @@ li {
 											});
 						});
 	</script>
-
-
+<script type="text/javascript">
+function upperCaseF(a){
+    setTimeout(function(){
+        a.value = a.value.toUpperCase();
+    }, 1);
+}
+</script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {

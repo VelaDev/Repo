@@ -27,4 +27,14 @@ public class UserLogDetailsService implements UserLogDetailsServiceInt{
 		
 	}
 
+	@Override
+	public void updateTimeout(String sessionID) {
+		userLogDetailsDao.updateTimeout(sessionID);
+	}
+
+	@Override
+	public UserLogDetails getUserLogDetails(String sessionID) {
+		return userLogDetailsDao.getUserLogDetails(sessionID);
+	}
+
 }

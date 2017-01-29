@@ -144,7 +144,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
 													name="firstName" placeholder="First Name"
-													class="form-control" type="text">
+													class="form-control" type="text"
+													value="${productObject.contactPerson.firstName}">
 											</div>
 										</div>
 									</div>
@@ -156,7 +157,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
 													name="lastName" placeholder="Last Name"
-													class="form-control" type="text">
+													class="form-control" type="text"
+													value="${productObject.contactPerson.lastName}">
 											</div>
 										</div>
 									</div>
@@ -169,7 +171,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 													name="email" placeholder="Email Address"
-													class="form-control" type="email">
+													class="form-control" type="email"
+													value="${productObject.contactPerson.email}">
 											</div>
 										</div>
 									</div>
@@ -185,7 +188,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="cellphoneNumber" name="cellphoneNumber"
-													placeholder="Cellphone No" class="form-control" type="text">
+													placeholder="Cellphone No" class="form-control" type="text"
+													value="${productObject.contactPerson.cellphone}">
 											</div>
 										</div>
 									</div>
@@ -198,7 +202,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="telephoneNumber" name="telephoneNumber"
-													placeholder="Tellphone No" class="form-control" type="text">
+													placeholder="Tellphone No" class="form-control" type="text"
+													value="${productObject.contactPerson.telephone}">
 											</div>
 										</div>
 									</div>

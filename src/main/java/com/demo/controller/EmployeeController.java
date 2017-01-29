@@ -49,12 +49,23 @@ public class EmployeeController {
 	private UserLogDetails details;
 	String retPage = null;
 	Integer count = 1;
+
 	
 	
 	
 	@RequestMapping({"/login", "/"})
 	public String loadLogin()
 	{
+		details = new UserLogDetails();
+		
+		try{
+		
+			String sessioID = (String) session.getAttribute("sessionID");
+			userLogDetailsServiceInt.updateTimeout(sessioID);
+			session.invalidate();
+		}catch(Exception e){
+			e.getMessage();
+		}
 		return "login";
 	}
 	
@@ -80,17 +91,27 @@ public class EmployeeController {
 				model.addObject("loggedInUser", employee.getEmail());
 				if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
-					
+					String userSessionID =session.getId();
+					session.setAttribute("sessionID", userSessionID);
+					System.out.println(userSessionID);
 					userLogDetailsServiceInt.saveUserLogDetails(details);
 					retRole= "redirect:home";
 				}
 				else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
 				{
+					String userSessionID =session.getId();
+					session.setAttribute("sessionID", userSessionID);
+					System.out.println(userSessionID);
+					userLogDetailsServiceInt.saveUserLogDetails(details);
 					retRole= "redirect:technicianHome";
 					
 				}
 				else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
 				{
+					String userSessionID =session.getId();
+					session.setAttribute("sessionID", userSessionID);
+					System.out.println(userSessionID);
+					userLogDetailsServiceInt.saveUserLogDetails(details);
 					retRole= "redirect:ticket";
 				}else{
 					

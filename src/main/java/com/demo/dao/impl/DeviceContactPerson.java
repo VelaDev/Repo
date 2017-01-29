@@ -22,7 +22,7 @@ public class DeviceContactPerson implements deviceContactPersonDaoInt{
 	public String saveContactPerson(
 			com.demo.model.DeviceContactPerson contactPerson) {
 		try{
-			sessionFactory.getCurrentSession().save(contactPerson);
+			sessionFactory.getCurrentSession().saveOrUpdate(contactPerson);
 			retMessage = "OK";
 			
 		}catch(Exception e){

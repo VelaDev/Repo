@@ -47,7 +47,7 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="registerEmployee.html"/>'>Add
 									Employee</a></li>
-							<li><a href='<c:url value="displayEmployees.html"/>'>Display
+							<li><a href='<c:url value="displayEmployees.html"/>'>View
 									Employee</a></li>
 							<%-- <li><a href='<c:url value="resetPassword.html"/>'>Reset Password</a></li> --%>
 						</ul></li>
@@ -62,8 +62,8 @@
 											Customer</a></li>
 											<li><a href='<c:url value="displayCustomers.html"/>'>View
 											Customers</a></li>
-									<li><a href='<c:url value="updateCustomer.html"/>'>Update
-											Customer</a></li>
+									<%-- <li><a href='<c:url value="updateCustomer.html"/>'>Update
+											Customer</a></li> --%>
 									<%-- <li><a href='<c:url value="clientInformation.html"/>'>Search
 											Devices for a customer</a></li> --%>
 									<!-- <li><a href="#">Delete Customer</a></li> -->
@@ -78,7 +78,7 @@
 											Device</a></li>
 									<li><a href='<c:url value="searchDevice.html"/>'>Search
 											Device</a></li>
-									<li><a href="#">Delete Device</a></li>
+									<!-- <li><a href="#">Delete Device</a></li> -->
 
 								</ul></li>
 						</ul></li>
@@ -87,7 +87,7 @@
 						aria-expanded="false">Spare Parts<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="addParts.html"/>'>Spares & Compatibility</a></li>
-							<li><a href='<c:url value="displayOrders.html"/>'>Display Orders</a></li>
+							<li><a href='<c:url value="displayOrders.html"/>'>View Orders</a></li>
 							<li class="dropdown dropdown-submenu"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">Available Sapres & Parts</a>
 								<ul class="dropdown-menu">

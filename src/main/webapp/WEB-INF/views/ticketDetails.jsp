@@ -539,15 +539,28 @@
 										</div>
 									</div>
 									
+									<!-- Text input Part Number Used-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Part Number Used</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="ticketNumber" id="partNumberUsed" class="form-control"
+													type="text" value="">
+											</div>
+										</div>
+									</div>
+									
 																
-								<!-- Text area Action Token-->
+								<!-- Text area Action Taken-->
 								<div class="form-group">
 									<label class="col-md-3 control-label"> Action Taken </label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" id="actionToken" name="actionToken"
+											<textarea class="form-control" id="actionTaken" name="actionTaken"
 												required="required"></textarea>
 										</div>
 									</div>

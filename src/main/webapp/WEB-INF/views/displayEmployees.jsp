@@ -48,7 +48,7 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Role<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Sys Activities</th>
+										<th>Login Activities</th>
 									<th>Update</th>
 									<th>Password Reset</th>
 									<th>Deactivate</th>
@@ -63,9 +63,9 @@
 										<td>${list.email}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>"><button class="btn btn-info">System Activities</button></a></td>
+										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>"><button class="btn btn-info">Login Activities</button></a></td>
 										<td><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Update</button></a></td>
-										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Password Reset</button></a></td>
+										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"><button class="btn btn-success"> Reset</button></a></td>
 										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>"><button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button></a></td>
 									</tr>
               					</c:forEach>

@@ -45,7 +45,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
+										class="glyphicon glyphicon-user"></i></span> <input id="firstName" name="firstName"
 										placeholder="First Name" class="form-control" type="text">
 								</div>
 							</div>
@@ -81,17 +81,19 @@
 							</div>
 						</div>
 						
-						 <!-- Text input Time Registered-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Daytime</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-time"></i></span> <input name="dateTimeRegistered"
-										placeholder="Daytime Registered" class="form-control" type="text">
-								</div>
-							</div>
-						</div>
+							
+						<!-- Text input Cellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Cellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="cellphoneNumber" name="cellphoneNumber"
+													placeholder="Cellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
 								
 					</div><!-- / F column -->	
 					
@@ -146,19 +148,7 @@
 								</div>
 							</div>
 						</div>
-						
-						<!-- Text input Cellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Cellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphone" name="cellphone"
-													placeholder="Cellphone No" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
+					
 						
 								
 						</div><!-- S .Column -->
@@ -189,11 +179,8 @@
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
- <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker();
-            });
-  </script>
+ 
+
 
 <!-- Validatev register employee -->
 <script>
@@ -259,6 +246,17 @@
                     }
                 }
             },
+            cellphoneNumber : {
+				validators : {
+					notEmpty : {
+						message : 'Cellphone number is required and cannot be empty'
+					},
+					phone : {
+						country : 'US',
+						message : 'Please provide a vaild Cell Number with area code'
+					}
+				}
+			},
             email: {
                 validators: {
                     notEmpty: {
@@ -282,7 +280,6 @@
 
 </script>
 
-<script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -290,10 +287,13 @@ $(document).ready(function() {
 		format : "yyyy-mm-dd"
 	});
 });
-	
-	
 </script>
 
+ <script type="text/javascript">
+            $(function () {
+                $('#dateTimeRegistered').datetimepicker();
+            });
+  </script>
 
 
 

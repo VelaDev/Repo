@@ -27,7 +27,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Employees List</b>
+							<b>Employee Login Activities</b>
 						</div>
 					</h3>
 				</div>

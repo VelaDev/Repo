@@ -50,7 +50,7 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 										<th>Login Activities</th>
 									<th>Update</th>
-									<th>Password Reset</th>
+									<th>Reset</th>
 									<th>Deactivate</th>
 								</tr>
 							</thead>

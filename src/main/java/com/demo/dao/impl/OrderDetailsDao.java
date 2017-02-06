@@ -108,8 +108,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 					  retMessage = "OK";
 				  }
 			}
-		}catch(Exception e){
-			
+		}catch(Exception e){	
 		}
 		return retMessage;
 	}
@@ -129,8 +128,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 					 pendingList.add(order);
 				 }
 			 }
-		}catch(Exception e){
-			
+		}catch(Exception e){	
 		}
 		return pendingList;
 	}

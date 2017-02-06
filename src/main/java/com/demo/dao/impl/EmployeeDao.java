@@ -111,9 +111,9 @@ public class EmployeeDao implements EmployeeDaoInt{
 	public String updateEmployee(Employee employee) {
 		try{
 			
-			emp = getEmployeeByEmpNum(employee.getEmail());
+			/*emp = getEmployeeByEmpNum(employee.getEmail());
 			String pass = emp.getPassword();
-			employee.setPassword(pass);
+			employee.setPassword(pass);*/
 			employee.setStatus("ACTIVE");
 			  
 			  sessionFactory.getCurrentSession().update(employee);

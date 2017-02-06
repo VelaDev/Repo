@@ -120,7 +120,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												id="cellphoneNumber" name="cellNumber"
-												placeholder="Cellphone No" class="form-control" type="text"
+												placeholder="Cellphone No" onkeypress="return isNumber(event)" class="form-control" type="text"  
 												value='${employeeObject.cellNumber }'>
 										</div>
 									</div>
@@ -300,6 +300,17 @@
 															}
 														}
 													},
+													cellNumber : {
+										                validators: {
+										                	stringLength : {
+																max : 10,
+																min:10,
+															},
+										                    notEmpty: {
+										                        message: 'Cell No is required and cannot be empty'
+										                    }
+										                }
+										            },
 													role : {
 														validators : {
 															notEmpty : {
@@ -339,6 +350,16 @@
 											});
 						});
 	</script>
+	<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 
 </body>
 </html>

@@ -40,7 +40,7 @@
 						
 					
 					<!-- Text input Search-->
-						<div class="form-group">
+					<!-- 	<div class="form-group">
 							<label class="col-md-3 control-label">Search Employee</label>
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
@@ -52,7 +52,7 @@
 							<div class="col-md-2">
 									<input class="btn btn-success" type='submit' name="search" value='Search' />
 							</div>
-							</div>
+							</div> -->
 					</div>
 					
 					<hr>
@@ -101,7 +101,7 @@
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="title"
 										class="form-control selectpicker">
-										<option value="">${ employeeObject.title}</option>
+										<option value="${ employeeObject.title}">${ employeeObject.title}</option>
 										<option value="Mr">Mr</option>
 										<option value="Miss">Miss</option>
 										<option value="Mrs">Mrs</option>
@@ -126,7 +126,7 @@
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="gender"
 										class="form-control selectpicker">
-										<option value=" ">${ employeeObject.gender}</option>
+										<option value=" ${ employeeObject.gender}">${ employeeObject.gender}</option>
 										<option value="Mr">Male</option>
 										<option value="Miss">Female</option>
 										
@@ -155,7 +155,7 @@
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="role"
 										class="form-control selectpicker">
-										<option value=" ">${ employeeObject.role}</option>
+										<option value=" ${ employeeObject.role}">${ employeeObject.role}</option>
 										<option value="Admin">Admin</option>
 									<option value="Manager">Manager</option>
 									<option value="Technician">Technician</option>

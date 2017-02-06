@@ -44,6 +44,8 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Email<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								    <th>Cell No<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Status<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Role<img
@@ -61,6 +63,7 @@
 										<td>${list.firstName}</td>
 										<td>${list.lastName}</td>
 										<td>${list.email}</td>
+										<td>${list.cellNumber}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
 										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>"><button class="btn btn-info">Login Activities</button></a></td>

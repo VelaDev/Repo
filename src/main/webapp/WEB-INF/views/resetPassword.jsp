@@ -41,7 +41,7 @@
 						
 					
 					<!-- Text input Search-->
-						<div class="form-group">
+				<!-- 		<div class="form-group">
 							<label class="col-md-3 control-label">Search Employee</label>
 							<div class="col-md-4 inputGroupContainer">
 								<div class="input-group">
@@ -53,7 +53,7 @@
 							<div class="col-md-2">
 									<input class="btn btn-success" type='submit' name="search" value='Search' />
 							</div>
-							</div>
+							</div> -->
 					</div>
 					
 					<hr>

@@ -110,7 +110,12 @@ public class EmployeeDao implements EmployeeDaoInt{
 	@Override
 	public String updateEmployee(Employee employee) {
 		try{
-			  employee.setStatus("ACTIVE");
+			
+			emp = getEmployeeByEmpNum(employee.getEmail());
+			String pass = emp.getPassword();
+			employee.setPassword(pass);
+			employee.setStatus("ACTIVE");
+			  
 			  sessionFactory.getCurrentSession().update(employee);
 		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully updated";
 		}

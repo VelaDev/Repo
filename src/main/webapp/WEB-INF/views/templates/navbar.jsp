@@ -49,7 +49,7 @@
 									Employee</a></li>
 							<li><a href='<c:url value="displayEmployees.html"/>'>View
 									Employee</a></li>
-							<%-- <li><a href='<c:url value="resetPassword.html"/>'>Reset Password</a></li> --%>
+						    <%-- <li><a href='<c:url value="testReports.html"/>'>Checking Reports</a></li> --%>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Customers <b class="caret"></b></a>
@@ -72,8 +72,8 @@
 								class="dropdown-toggle" data-toggle="dropdown">Device
 									Management</a>
 								<ul class="dropdown-menu">
-									<li><a href='<c:url value="addProduct.html"/>'>Add
-											Device</a></li>
+									<%-- <li><a href='<c:url value="addProduct.html"/>'>Add
+											Device</a></li> --%>
 									<li><a href='<c:url value="updateDevice.html"/>'>Update
 											Device</a></li>
 									<li><a href='<c:url value="searchDevice.html"/>'>Search

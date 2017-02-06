@@ -89,7 +89,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber"
+													id="cellphoneNumber" name="cellNumber"
 													placeholder="Cellphone No" class="form-control" type="text">
 											</div>
 										</div>

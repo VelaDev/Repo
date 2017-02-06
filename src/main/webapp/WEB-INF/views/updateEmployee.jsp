@@ -36,10 +36,10 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<form action="searchEmployeeByName" method="post"
+<!-- 						<form action="searchEmployeeByName" method="post"
 							id="searchEmployee">
 							<div class="row">
-								<!-- Text input Search-->
+								Text input Search
 								<div class="form-group">
 									<label class="col-md-3 control-label">Search Employee</label>
 									<div class="col-md-4 inputGroupContainer">
@@ -58,7 +58,7 @@
 							</div>
 
 							<hr>
-						</form>
+						</form> -->
 						<br>
 						<form:form class="well form-horizontal" method="post"
 							action="updateEmployee" modelAttribute="updateEmployee"
@@ -102,7 +102,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select name="title"
 												class="form-control selectpicker">
-												<option value="">${ employeeObject.title}</option>
+												<option value="${ employeeObject.title}">${ employeeObject.title}</option>
 												<option value="Mr">Mr</option>
 												<option value="Miss">Miss</option>
 												<option value="Mrs">Mrs</option>
@@ -119,9 +119,9 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="cellphoneNumber" name="cellphoneNumber"
+												id="cellphoneNumber" name="cellNumber"
 												placeholder="Cellphone No" class="form-control" type="text"
-												value="">
+												value='${employeeObject.cellNumber }'>
 										</div>
 									</div>
 								</div>
@@ -139,7 +139,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select name="gender"
 												class="form-control selectpicker">
-												<option value=" ">${ employeeObject.gender}</option>
+												<option value="${ employeeObject.gender}">${ employeeObject.gender}</option>
 												<option value="Male">Male</option>
 												<option value="Female">Female</option>
 
@@ -170,7 +170,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select name="role"
 												class="form-control selectpicker">
-												<option value=" ">${ employeeObject.role}</option>
+												<option value="${ employeeObject.role}">${ employeeObject.role}</option>
 												<option value="Admin">Admin</option>
 												<option value="Manager">Manager</option>
 												<option value="Technician">Technician</option>

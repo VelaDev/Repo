@@ -83,7 +83,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
 													name="emailCompany" id="emailCompany"
-													placeholder="Compnay Email Address" class="form-control"
+													placeholder="Company Email Address" class="form-control"
 													type="text">
 											</div>
 										</div>
@@ -177,7 +177,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetNumber" id="streetNumber"
-													placeholder="Street Number" class="form-control"
+													placeholder="Street No" class="form-control"
 													type="text">
 											</div>
 										</div>
@@ -390,7 +390,7 @@
 																min : 2,
 															},
 															notEmpty : {
-																message : 'Client name is required and cannot be empty'
+																message : 'Customer name is required and cannot be empty'
 															}
 														}
 													},
@@ -452,7 +452,7 @@
 															}
 														}
 													},
-													faxNumber : {
+													/* faxNumber : {
 														validators : {
 															notEmpty : {
 																message : 'Fax number is required and cannot be empty'
@@ -462,7 +462,7 @@
 																message : 'Please provide  a vaild fax number'
 															}
 														}
-													},
+													}, */
 													streetNumber : {
 														validators : {
 															stringLength : {

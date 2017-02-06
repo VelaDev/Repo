@@ -64,6 +64,8 @@ public class Employee implements Serializable{
 	@Column(name="DateTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
+	@Column(name="Cell_Number")
+	private String cellNumber;
 	
 	@OneToMany(mappedBy ="employee", cascade= CascadeType.ALL)
 	private Set<Tickets> logTickets;

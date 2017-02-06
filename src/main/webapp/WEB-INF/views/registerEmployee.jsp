@@ -274,6 +274,13 @@
                     }
                 }
             },
+            cellNumber : {
+                validators: {
+                    notEmpty: {
+                        message: 'Cell No is required and cannot be empty'
+                    }
+                }
+            },
         }
     });
 });

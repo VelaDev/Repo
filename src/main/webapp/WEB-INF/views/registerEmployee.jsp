@@ -276,6 +276,9 @@
             },
             cellNumber : {
                 validators: {
+                	stringLength : {
+						max : 10,
+					},
                     notEmpty: {
                         message: 'Cell No is required and cannot be empty'
                     }

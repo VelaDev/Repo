@@ -53,7 +53,7 @@
 										<th>Login Activities</th>
 									<th>Update</th>
 									<th>Reset</th>
-									<th>Deactivate</th>
+									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -94,8 +94,6 @@
 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"> </script>
 	
-
-	
 <script>
 	$(document).ready(function() {
 		$('#myDatatable').DataTable({
@@ -107,7 +105,7 @@
 	});
 </script>
 
-<!-- Deactive script -->
+<!-- Deactivate script -->
 <script>
 $(document).on('click', ':not(form)[data-confirm]', function(e){
     if(!confirm($(this).data('confirm'))){

@@ -230,7 +230,7 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="serialNumber" id="serialNumber" onkeydown="upperCaseF(this)" placeholder="Serial Number"
-													class="form-control" type="text" value="${productObject.serialNumber }"
+													class="form-control" type="text" value="${productObject.serialNumber}"
 													>
 											</div>
 										</div>
@@ -244,7 +244,7 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="productModel" placeholder="Model Number"
-													class="form-control" type="text" value="${productObject.modelNumber }">
+													class="form-control" type="text" value="${productObject.modelNumber}">
 											</div>
 										</div>
 									</div>
@@ -673,32 +673,32 @@ li {
 		$(document)
 				.ready(
 						function() {
-
+/* 
 									machinetypeValidators = {
 										row : '.col-xs-4',
 										validators : {
-											/* stringLength : {
+											stringLength : {
 												min : 2,
 											},
 											notEmpty : {
 												message : 'Machine Accessory Type can not be empty'
-											} */
+											}
 										}
 									},
 									serialNumberValidators = {
 										row : '.col-xs-2',
 										validators : {
-											/* stringLength : {
+											stringLength : {
 												min : 2,
 											},
 											notEmpty : {
 												message : 'Serial Number can not be empty'
-											} */
+											} 
 										}
-									}, deviceIndex = 0;
+									}, */ deviceIndex = 0;
 
 							$('#updateOtherDevice')
-									.formValidation(
+									/* .formValidation(
 											{
 												framework : 'bootstrap',
 												icon : {
@@ -710,7 +710,7 @@ li {
 													'machinetype' : machinetypeValidators,
 													'serialNumber' : serialNumberValidators
 												}
-											})
+											}) */
 
 									// Add button click handler
 									.on(
@@ -748,7 +748,7 @@ li {
 
 												// Add new fields
 												// Note that we also pass the validator rules for new field as the third parameter
-												$('#updateOtherDevice')
+											/* 		$('#updateOtherDevice')
 														.formValidation(
 																'addField',
 																'device['
@@ -762,7 +762,8 @@ li {
 																		+ '].serialNumber',
 																serialNumberValidators);
 
-											})
+												*/
+											}) 
 
 									// Remove button click handler
 									.on(

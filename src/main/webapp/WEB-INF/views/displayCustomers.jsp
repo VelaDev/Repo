@@ -46,8 +46,8 @@
 													<td>${list.tellphoneNumber}</td>
 													<%-- <td>${list.status}</td>
 													<td>${list.role}</td> --%>
-                                                    <th><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update</button></a></th>
-                                                    <th><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Add Device</button></a></th>
+                                                    <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update</button></a></td>
+                                                    <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-success">Add Device</button></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

@@ -39,7 +39,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<!-- <form action="searchCustomer" method="post" id="searchCustomer">
+						 <form action="searchCustomer" method="post" id="searchCustomer">
 							<div class="row">
 								
 								<div class="form-group">
@@ -59,7 +59,7 @@
 							</div>
 
 							<hr>
-						</form> --> 
+						</form> 
 
 						<form:form class="well form-horizontal" method="post"
 							action="updateCustomerData" modelAttribute="updateCustomerData"
@@ -398,6 +398,36 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Script -->
 
+	<!-- Search Validate -->
+	
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#searchCustomer')
+									.bootstrapValidator(
+											{
+												
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													clientName : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Customer name is required to search and cannot be empty'
+															}
+														}
+													},
+												}
+											});
+						});
+	</script>
 
 	<!-- Validate update Client -->
 	<script type="text/javascript">

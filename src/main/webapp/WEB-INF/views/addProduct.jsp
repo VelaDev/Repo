@@ -72,7 +72,7 @@ li {
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="saveProduct" modelAttribute="saveProduct"
-							id="addOtherDevice">
+							id="addOtherDevice" class="dateCompare">
 
 							<fieldset>
 								<legend>Customer Details</legend>
@@ -310,9 +310,9 @@ li {
 								<!--Second column-->
 								<div class="col-sm-6">
 
-									<!-- Select type Mono Colour-->
+									<!-- Select type Mono/Color-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Mono Colour</label>
+										<label class="col-md-3 control-label">Mono/Color</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
@@ -793,5 +793,81 @@ li {
 								}
 							});
 				});
-	</script> 
+	</script>
+<script type="text/javascript">
+	
+	 $('#startDate')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the start date field
+            $('#eventForm').formValidation('revalidateField', 'startDate');
+        });
+
+    $('#endDate')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        })
+        .on('changeDate', function(e) {
+            $('#eventForm').formValidation('revalidateField', 'endDate');
+        });
+
+    $('.dateCompare')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The name is required'
+                        }
+                    }
+                },
+                startDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The start date is required'
+                        },
+                        date: {
+                            format: 'MM/DD/YYYY',
+                            max: 'endDate',
+                            message: 'The start date is not a valid'
+                        }
+                    }
+                },
+                endDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The end date is required'
+                        },
+                        date: {
+                            format: 'MM/DD/YYYY',
+                            min: 'startDate',
+                            message: 'The end date is not a valid'
+                        }
+                    }
+                }
+            }
+        })
+        .on('success.field.fv', function(e, data) {
+            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
+                // We need to revalidate the end date
+                data.fv.revalidateField('endDate');
+            }
+
+            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
+                // We need to revalidate the start date
+                data.fv.revalidateField('startDate');
+            }
+        });
+});
+
+</script>
+	
 </html>

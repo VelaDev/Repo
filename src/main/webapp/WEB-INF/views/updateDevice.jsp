@@ -248,20 +248,7 @@ li {
 											</div>
 										</div>
 									</div>
-								
-
-									<!-- Text checkbox Mono Reading-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Mono Reading</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input name="monoReading"
-													placeholder="Mono Reading" class="form-control" type="text" value="${productObject.monoReading}" >
-											</div>
-										</div>
-									</div>
-									
+										
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract Start
@@ -302,6 +289,49 @@ li {
 										</div>
 									</div>
 									
+									<!-- Select type Mono/Colour-->
+									<div class="form-group">
+									<label class="col-md-3 control-label">Mono/Color</label>
+										<div class="col-md-6 selectContainer">
+											<select name="colour" class="form-control"
+												onchange='CheckColors(this.value);'>
+												<option>Select Mono/Color</option>
+												<option value="mono">Mono</option>
+												<option value="colour">Color</option>
+											</select>
+										</div>
+									</div>
+
+									<div id="colour" style='display: none;'>
+										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+										<label class="col-md-3 control-label"></label>
+											<div class="col-md-6">
+												<input type="text" class="form-control"
+													placeholder="Enter Colour Reading" name="colourReading"
+													id="colourReading" value="${productObject.colour}"/>
+											</div>
+											<br />
+										</div>
+										<!-- Text checkbox Mono Reading-->
+										<div class="form-group">
+										<label class="col-md-3 control-label"></label>
+											<div class="col-md-6">
+												<input type="text" class="form-control"
+													placeholder="Enter Mono Reading" name="monoReading"
+													id="monoReading" value="${productObject.monoReading}"/>
+											</div>
+										</div>
+									</div>
+									<!-- Text checkbox Mono Reading-->
+									<div class="form-group">
+									<label class="col-md-3 control-label"></label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" name="mono"
+												placeholder="Enter Mono Reading" id="mono" style='display: none;' value="${productObject.monoReading}" />
+										</div>
+									</div>
+									
 
 								</div>
 								<!--/F Column-->
@@ -309,21 +339,7 @@ li {
 								<!--Second column-->
 								<div class="col-sm-6">								
 
-									<!-- Select type Mono Colour-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Mono Colour</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select
-													name="colour" class="form-control selectpicker">
-													<option value="">${productObject.colour}</option>
-													<option value="White">White</option>
-													<option value="Blue">Blue</option>
-												</select>
-											</div>
-										</div>
-									</div>
+									
 									
 									<!-- Text input Street Name-->
 									<div class="form-group">
@@ -583,6 +599,27 @@ li {
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
 	
 	<!-- /Script -->
+
+	<!--Mono and Colour Selection-->
+<script type="text/javascript">
+
+	function CheckColors(val){
+	 var element=document.getElementById('mono');
+	 if(val=='pick a mono'||val=='mono')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	  var element=document.getElementById('colour');
+	 if(val=='pick a colour'||val=='colour')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	}
+
+</script>
+	
 
 	<script>
 		$(document)

@@ -15,8 +15,10 @@
 	src="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/stylesheet"
 	src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
-	
- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+	rel="stylesheet">
 
 <style>
 li {
@@ -72,7 +74,7 @@ li {
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="saveProduct" modelAttribute="saveProduct"
-							id="addOtherDevice" class="dateCompare">
+							id="addOtherDevice">
 
 							<fieldset>
 								<legend>Customer Details</legend>
@@ -109,7 +111,7 @@ li {
 									</div>
 								</div>
 
-								 <div class="col-sm-6">
+								<div class="col-sm-6">
 
 									<div id="customer_container"
 										style="width: auto; display: table;">
@@ -121,7 +123,7 @@ li {
 											<li id="zipcode">${customer.zipcode}</li>
 										</ul>
 									</div>
-								</div> 
+								</div>
 								<%-- <div class="col-sm-6">
 									<div id="customer_container"
 										style="width: auto; display: table;">
@@ -136,12 +138,12 @@ li {
 									</div>
 								</div> --%>
 							</fieldset>
-							
+
 							<fieldset>
-								<legend>Contact Person</legend>								
+								<legend>Contact Person</legend>
 								<!-- Contact Person  -->
 								<div class="col-sm-6">
-									
+
 									<!-- Text input Contact Person First Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">First Nmae</label>
@@ -180,9 +182,9 @@ li {
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="col-sm-6">
-								
+
 									<!-- Text input Contact Person Cellphone Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Cellphone No</label>
@@ -190,8 +192,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphone" name="cellphone"
-													placeholder="Cellphone No" class="form-control" type="text">
+													id="cellphone" name="cellphone" placeholder="Cellphone No"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
@@ -203,21 +205,21 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephone" name="telephone"
-													placeholder="Tellphone No" class="form-control" type="text">
+													id="telephone" name="telephone" placeholder="Tellphone No"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
 
 								</div>
 								<!-- /Contact Person  -->
-								
-								
-								
+
+
+
 							</fieldset>
 							<br>
 							<br>
-							
+
 							<fieldset>
 								<legend>Machine Details</legend>
 								<br>
@@ -231,7 +233,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="serialNumber" id="serialNumber" onkeydown="upperCaseF(this)" placeholder="Serial Number"
+													name="serialNumber" id="serialNumber"
+													onkeydown="upperCaseF(this)" placeholder="Serial Number"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -251,18 +254,7 @@ li {
 									</div>
 
 
-									<!-- Text checkbox Mono Reading-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Mono Reading</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="monoReading" placeholder="Mono Reading"
-													class="form-control" type="text">
-											</div>
-										</div>
-									</div>
+
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract Start
@@ -302,7 +294,49 @@ li {
 											</div>
 										</div>
 									</div>
+									
+										<!-- Select type Mono/Colour-->
+									<div class="form-group">
+									<label class="col-md-3 control-label">Mono/Color</label>
+										<div class="col-md-6 selectContainer">
+											<select name="colour" class="form-control"
+												onchange='CheckColors(this.value);'>
+												<option>Select Mono/Color</option>
+												<option value="mono">Mono</option>
+												<option value="colour">Color</option>
+											</select>
+										</div>
+									</div>
 
+									<div id="colour" style='display: none;'>
+										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+										<label class="col-md-3 control-label"></label>
+											<div class="col-md-6">
+												<input type="text" class="form-control"
+													placeholder="Enter Colour Reading" name="colourReading"
+													id="colourReading" />
+											</div>
+											<br />
+										</div>
+										<!-- Text checkbox Mono Reading-->
+										<div class="form-group">
+										<label class="col-md-3 control-label"></label>
+											<div class="col-md-6">
+												<input type="text" class="form-control"
+													placeholder="Enter Mono Reading" name="monoReading"
+													id="monoReading" />
+											</div>
+										</div>
+									</div>
+									<!-- Text checkbox Mono Reading-->
+									<div class="form-group">
+									<label class="col-md-3 control-label"></label>
+										<div class="col-md-6">
+											<input type="text" class="form-control" name="mono"
+												placeholder="Enter Mono Reading" id="mono" style='display: none;' />
+										</div>
+									</div>
 
 								</div>
 								<!--/F Column-->
@@ -310,21 +344,7 @@ li {
 								<!--Second column-->
 								<div class="col-sm-6">
 
-									<!-- Select type Mono/Color-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Mono/Color</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select name="colour"
-													class="form-control selectpicker">
-													<option value=" ">Select Colour</option>
-													<option value="White">White</option>
-													<option value="Blue">Blue</option>
-												</select>
-											</div>
-										</div>
-									</div>
+
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -397,7 +417,7 @@ li {
 											</div>
 										</div>
 									</div>
-
+								
 								</div>
 								<!--/S Column-->
 
@@ -415,8 +435,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="bridgeunit"
-											disabled name="bridgeUnitSerialTypeSerialNo" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="bridgeunit" disabled
+											name="bridgeUnitSerialTypeSerialNo" />
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -425,8 +446,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="faxunitserial"
-											disabled name="faxUnitSerialTypeSerialNo" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="faxunitserial" disabled
+											name="faxUnitSerialTypeSerialNo" />
 									</div>
 								</div>
 								<br>
@@ -438,8 +460,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="onebintray"
-											disabled name="OneBinTrayTypeSerialNo" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="onebintray" disabled
+											name="OneBinTrayTypeSerialNo" />
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -448,8 +471,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)"id="finisherserial"
-											disabled name="finisherTypeSerialNo" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="finisherserial" disabled
+											name="finisherTypeSerialNo" />
 									</div>
 								</div>
 								<br>
@@ -460,8 +484,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="ltc"
-											name="ltcTypeSerial" disabled />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="ltc" name="ltcTypeSerial"
+											disabled />
 									</div>
 
 
@@ -472,7 +497,8 @@ li {
 										</div>
 										<div class="col-xs-3">
 											<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
-												type="text" class="form-control input-sm" onkeydown="upperCaseF(this)" id="credenza"
+												type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="credenza"
 												name="credenzaSerialNo" disabled />
 										</div>
 
@@ -486,12 +512,14 @@ li {
 									<div class="col-xs-3">
 										<label for="additionalserial">Serial
 											Number:&nbsp;&nbsp;</label><input type="text"
-											class="form-control input-sm" onkeydown="upperCaseF(this)" id="additionalserial"
-											name="additionalPaperTraysTypeSerial" disabled />
+											class="form-control input-sm" onkeydown="upperCaseF(this)"
+											id="additionalserial" name="additionalPaperTraysTypeSerial"
+											disabled />
 									</div>
 								</div>
 
-								<br/><br/>
+								<br />
+								<br />
 								<div class="row">
 
 									<div class="form-group">
@@ -501,8 +529,9 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" onkeydown="upperCaseF(this)" id="serialNumber" name="serialNumberM"
-												placeholder="Serial Number" />
+											<input type="text" class="form-control"
+												onkeydown="upperCaseF(this)" id="serialNumber"
+												name="serialNumberM" placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
 											<button type="button" class="btn btn-default addButton">
@@ -514,12 +543,13 @@ li {
 									<!-- The template for adding new field -->
 									<div class="form-group hide" id="deviceNewFields">
 										<div class="col-xs-4 col-xs-offset-1">
-											<input type="text" class="form-control"  name="machinetype"
+											<input type="text" class="form-control" name="machinetype"
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" onkeydown="upperCaseF(this)" id="serialNumber" name="serialNumberM"
-												placeholder="Serial Number" />
+											<input type="text" class="form-control"
+												onkeydown="upperCaseF(this)" id="serialNumber"
+												name="serialNumberM" placeholder="Serial Number" />
 										</div>
 
 										<div class="col-xs-1">
@@ -569,8 +599,28 @@ li {
 		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	
+
 	<!-- /Script -->
+
+<!--Mono and Colour Selection-->
+<script type="text/javascript">
+
+	function CheckColors(val){
+	 var element=document.getElementById('mono');
+	 if(val=='pick a mono'||val=='mono')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	  var element=document.getElementById('colour');
+	 if(val=='pick a colour'||val=='colour')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	}
+
+</script>
 
 	<script>
 		$(document)
@@ -779,7 +829,7 @@ li {
 						});
 	</script>
 
-	 <script>
+	<script>
 		$(document).ready(
 				function() {
 					$('#addOtherDevice').on(
@@ -794,7 +844,7 @@ li {
 							});
 				});
 	</script>
-<script type="text/javascript">
+	<script type="text/javascript">
 	
 	 $('#startDate')
         .datepicker({
@@ -869,5 +919,4 @@ li {
 });
 
 </script>
-	
 </html>

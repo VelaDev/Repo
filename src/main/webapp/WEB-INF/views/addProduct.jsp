@@ -295,18 +295,23 @@ li {
 										</div>
 									</div>
 									
-										<!-- Select type Mono/Colour-->
+									<!-- Select type Mono/Colour-->
 									<div class="form-group">
-									<label class="col-md-3 control-label">Mono/Color</label>
+										<label class="col-md-3 control-label">Mono/Color</label>
 										<div class="col-md-6 selectContainer">
-											<select name="colour" class="form-control"
-												onchange='CheckColors(this.value);'>
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span><select name="colour" class="form-control"
+												onchange='CheckColors(this.value);' 
+													class="form-control selectpicker">
 												<option>Select Mono/Color</option>
 												<option value="mono">Mono</option>
 												<option value="colour">Color</option>
 											</select>
+											</div>
 										</div>
 									</div>
+
 
 									<div id="colour" style='display: none;'>
 										<!-- Text checkbox Colour Reading-->

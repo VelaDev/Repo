@@ -14,7 +14,7 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 </head>
 <body>
-	<div class="velaphanda_containter">
+	<div class="velaphanda_containter" id="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
 			<br />
@@ -113,8 +113,7 @@
 												</c:forEach>
 											</tbody>
 										</table>
-
-									</div>
+											</div>
 								</div>
 								<!-- /panel body -->
 							</div>
@@ -122,7 +121,8 @@
 
 						</div>
 						<!-- Ticket Detials -->
-
+						<input type="button" id="btnPrint" class="btn btn-info" value="Export to pdf and Print"  />
+								
 					</div>
 					<!-- /tab-content -->
 
@@ -137,10 +137,25 @@
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-
-	<!-- google chart api  -->
+   <script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.8.3/jquery.min.js" />"></script>
+   <script type="text/javascript">
+        $("#btnPrint").live("click", function () {
+            var divContents = $("#ticketDetails").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><title>Ticket List</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        });
+    </script>
+    
+    
+ 	<!-- google chart api  -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-
+	<!-- Google API Script -->
    	<script>
 
    		google.load("visualization", "1", {packages:["corechart"]});
@@ -185,6 +200,7 @@
 	<!-- Data tables search -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 

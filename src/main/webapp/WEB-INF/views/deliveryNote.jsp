@@ -43,8 +43,9 @@ li{
 						</div>
 					</h3>
 				</div>
-				<div class="panel-body">
+				<div class="panel-body" id="deliveryNote">
 					<div class="tab-content">
+					<input type="button" id="btnPrint" class="btn btn-info" value="Print Delivery"  /><br>
 					  <form:form>
 							
 							<fieldset>
@@ -156,6 +157,7 @@ li{
 								     </tr>
 								  </tbody>
 								</table>
+								
 					  </form:form>
 					</div>
 					<!-- /tab-content -->
@@ -171,6 +173,21 @@ li{
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
+	 <script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.8.3/jquery.min.js" />"></script>
+   <script type="text/javascript">
+        $("#btnPrint").live("click", function () {
+            var divContents = $("#deliveryNote").html();
+            var printWindow = window.open('', '', 'height=400,width=800');
+            printWindow.document.write('<html><head><title>Delivery Note</title>');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        });
+    </script>
+    
 
 </body>
 
@@ -190,6 +207,8 @@ li{
 		});
 	});
 </script>
+
+ 
 <script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"

@@ -108,19 +108,28 @@ public class EmployeeDao implements EmployeeDaoInt{
 	}
 
 	@Override
-	public String updateEmployee(Employee employee) {
+	public String updateEmployee(Employee updateEmployee) {
+		Employee tempEmp = new Employee();
 		try{
 			
-			/*emp = getEmployeeByEmpNum(employee.getEmail());
-			String pass = emp.getPassword();
-			employee.setPassword(pass);*/
-			employee.setStatus("ACTIVE");
-			  
-			  sessionFactory.getCurrentSession().update(employee);
-		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully updated";
+			tempEmp = getEmployeeByEmpNum(updateEmployee.getEmail());
+			String pass = tempEmp.getPassword();
+			String cellNumber = updateEmployee.getCellNumber();
+			tempEmp.setPassword(pass);
+			tempEmp.setStatus("ACTIVE");
+			tempEmp.setCellNumber(cellNumber);
+			tempEmp.setEmail(updateEmployee.getEmail());
+			tempEmp.setFirstName(updateEmployee.getFirstName());
+			tempEmp.setGender(updateEmployee.getGender());
+			tempEmp.setLastName(updateEmployee.getLastName());
+			tempEmp.setRole(updateEmployee.getRole());
+			tempEmp.setTitle(updateEmployee.getTitle());
+			System.out.println(tempEmp.getCellNumber());
+			  sessionFactory.getCurrentSession().update(tempEmp);
+		      retMessage = "Employee"+ " "+ tempEmp.getFirstName()+" "+ tempEmp.getLastName()+ " " + "is successfully updated";
 		}
 		catch(Exception e){
-			retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is not updated\n" + e.getMessage();
+			retMessage = "Employee"+ " "+ tempEmp.getFirstName()+" "+ tempEmp.getLastName()+ " " + "is not updated\n" + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -155,7 +164,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 passworChange = PasswordEncrypt.encryptPassword(password);
 				 emp.setPassword(passworChange);
 				 emp.setFirstTimeLogin(false);
-				 passworChange = updateEmployee(emp);
+				 sessionFactory.getCurrentSession().update(emp);
 				 retMessage= "Password successfully changed";
 			 }
 		}catch(Exception e){
@@ -175,7 +184,8 @@ public class EmployeeDao implements EmployeeDaoInt{
 				encryptPassword = PasswordEncrypt.encryptPassword(tempPassword);
 				emp.setPassword(encryptPassword);
 				emp.setFirstTimeLogin(true);
-				passworChange = updateEmployee(emp);
+			/*	passworChange = updateEmployee(emp);*/
+				sessionFactory.getCurrentSession().update(emp);
 				JavaMail.sendPasswordToEmployee(emp,tempPassword);
 				retMessage = "Temp password for employee "+ emp.getFirstName() +" "+ emp.getLastName()+ " is "+ tempPassword+".\nTemp password is sent to employee through email.";
 			}

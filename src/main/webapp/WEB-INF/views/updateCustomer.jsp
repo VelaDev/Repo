@@ -39,7 +39,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						 <form action="searchCustomer" method="post" id="searchCustomer">
+						<!--  <form action="searchCustomer" method="post" id="searchCustomer">
 							<div class="row">
 								
 								<div class="form-group">
@@ -59,7 +59,7 @@
 							</div>
 
 							<hr>
-						</form> 
+						</form> --> 
 
 						<form:form class="well form-horizontal" method="post"
 							action="updateCustomerData" modelAttribute="updateCustomerData"

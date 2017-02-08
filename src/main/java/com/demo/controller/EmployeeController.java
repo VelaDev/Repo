@@ -19,7 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
-import com.demo.dao.UserLogDetailsDaoInt;
 import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
 import com.demo.model.UserLogDetails;

@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Customers</b>
+							<b>Tickets</b>
 						</div>
 					</h3>
 				</div>

@@ -70,6 +70,7 @@
 				 <value>com.demo.model.OrderDetails</value>
 				 <value>com.demo.model.DeviceContactPerson</value>
 				 <value>com.demo.model.UserLogDetails</value>
+				  <value>com.demo.model.Leave</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -44,7 +44,7 @@
 											class="img-responsive" alt="" />
 									</div>
 									<div class="errorLogin">
-										<h2>You are not registered to use the system. Consults
+										<h2>You are not registered to use the system. Consult
 											Administrator</h2>
 										or <a href="login.html">Login</a> with correct credentials
 									</div>

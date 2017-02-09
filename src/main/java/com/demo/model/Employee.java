@@ -79,4 +79,7 @@ public class Employee implements Serializable{
 	
 	@OneToMany(mappedBy="employee")
 	private Set<UserLogDetails> userLogDetails;
+	
+	@OneToMany(mappedBy="employee")
+	private Set<Leave> leave;
 }

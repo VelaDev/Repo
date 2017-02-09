@@ -114,7 +114,7 @@ public class EmployeeController {
 					retRole= "redirect:ticket";
 				}else{
 					
-					retRole= "redirect:error";
+					retRole= "redirect:wrongpasswordoruser";
 					System.out.println("Username or password incorrect");
 				}
 			}
@@ -458,4 +458,12 @@ public class EmployeeController {
          
         return model;
     }
+	@RequestMapping(value="wrongpasswordoruser",method=RequestMethod.GET)
+	public ModelAndView errorPage( ) {
+		
+		model = new ModelAndView();
+			
+			model.setViewName("wrongpasswordoruser");
+		return model;
+	}
 }

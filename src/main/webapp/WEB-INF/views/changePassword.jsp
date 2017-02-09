@@ -60,18 +60,17 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-lock"></i></span> <input
-												
-												placeholder="Full Names" class="form-control"
-												type="text" value="${employee.firstName } ${employee.lastName }"  >
+												placeholder="Full Names" class="form-control" type="text"
+												value="${employee.firstName } ${employee.lastName }">
 										</div>
 									</div>
 								</div>
-								
+
 							</div>
 							<!-- /F Column -->
-							
+
 							<div class="col-md-6">
-									<!-- Text input New Password-->
+								<!-- Text input New Password-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">New Password</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -99,18 +98,17 @@
 								</div>
 							</div>
 							<div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-8">
-							<br><br>
-							<button type="submit" name="changepassword" id="changepassword"
-								class="btn btn-lg btn-primary btn-block">Change Password</button>
-							
+								<div class="col-sm-offset-2 col-sm-8">
+									<br>
+									<br>
+									<button type="submit" name="changepassword" id="changepassword"
+										class="btn btn-lg btn-primary btn-block"
+										data-confirm="You are about the change your password, After clicking submit please login with the new password on the system">Change
+										Password</button>
+
+								</div>
 							</div>
-					</div>
-					
-							
 						</form:form>
-
-
 
 					</div>
 					<!-- /tab-content -->
@@ -133,7 +131,15 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
+	<!-- Password change alert script -->
+	<script>
+	$(document).on('click', ':not(form)[data-confirm]', function(e){
+    if(!confirm($(this).data('confirm'))){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+		}
+	});
+	</script>
 	<!-- Validate Reset Password -->
 	<script>
 		$(document)

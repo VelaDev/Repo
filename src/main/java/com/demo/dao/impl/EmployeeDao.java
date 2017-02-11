@@ -205,13 +205,19 @@ public class EmployeeDao implements EmployeeDaoInt{
 
 	@Override
 	public String deactivateEmployee(String email) {
+		String localRetMessage = null;
 		try{
 			
 			emp = getEmployeeByEmpNum(email);
-			if(emp != null){
+			if(emp != null && emp.getStatus().equalsIgnoreCase("ACTIVE")){
 				emp.setStatus("INACTIVE");
-				sessionFactory.getCurrentSession().update(emp);
+				localRetMessage = updateActivateDeactivate(emp);
 				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is deactivated" ;
+			}
+			else {
+				emp.setStatus("ACTIVE");
+				localRetMessage = updateActivateDeactivate(emp);
+				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is activated" ;
 			}
 		}catch(Exception e){
 			retMessage = "Employee "+ emp.getFirstName()+" "+ emp.getLastName()+" "+ "is not deactivated";
@@ -261,5 +267,12 @@ public class EmployeeDao implements EmployeeDaoInt{
 			 }
 		 }
 		return empList;
+	}
+	
+	private String updateActivateDeactivate(Employee employee)
+	{
+		sessionFactory.getCurrentSession().update(employee);
+		retMessage = "OK";
+		return retMessage;
 	}
 }

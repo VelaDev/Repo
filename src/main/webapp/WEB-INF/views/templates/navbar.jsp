@@ -76,8 +76,8 @@
 											Device</a></li> --%>
 									<li><a href='<c:url value="updateDevice.html"/>'>Update
 											Device</a></li>
-									<li><a href='<c:url value="searchDevice.html"/>'>Search
-											Device</a></li>
+									<li><a href='<c:url value="searchDevice.html"/>'>View
+											Devices</a></li>
 									<!-- <li><a href="#">Delete Device</a></li> -->
 
 								</ul></li>

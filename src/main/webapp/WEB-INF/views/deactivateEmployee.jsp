@@ -27,7 +27,14 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-						<b>Deactivate Employee</b>
+						<c:choose>
+						  <c:when test="${employeeObject.status=='INACTIVE' }">
+						    <b>Activate Employee</b>
+						  </c:when>
+						  <c:otherwise>
+						     <b>Deactivate Employee</b>
+						  </c:otherwise>
+						</c:choose>
 					</div>
 					</h3>
 				</div>
@@ -178,9 +185,19 @@
 								id="deactivateEmp" name="deactivateEmp" data-bb-example-key="confirm-options">						
 							</div> -->
 							
-							<input type="submit" value="Deactivate Employee"
-								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
+							<c:choose>
+						        <c:when test="${employeeObject.status=='INACTIVE' }">
+						            <input type="submit" value="Activate Employee"
+								           class="btn btn-success btn-block btn-lg"
+								          id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to activate this employee?">
+							
+						        </c:when>
+						     <c:otherwise>
+						          <input type="submit" value="Deactivate Employee"
+								         class="btn btn-danger btn-block btn-lg"
+								         id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
+						      </c:otherwise>
+					      </c:choose>
 							
 							<!-- Aikhona this not working for us 
 							<br/><br/>

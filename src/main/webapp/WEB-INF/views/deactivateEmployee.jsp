@@ -43,23 +43,6 @@
 				
 				<form action="searchEmployeeForDeactivation" method="post" id="searchEmployeeForDeactivation">
 					<div class="row">
-
-						
-					
-					<!-- Text input Search-->
-					<!-- 	<div class="form-group">
-							<label class="col-md-3 control-label">Search Employee</label>
-							<div class="col-md-4 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="empName" id="empName"
-										 class="form-control" type="text" placeholder='Search'>									
-								</div>								
-							</div>
-							<div class="col-md-2">
-									<input class="btn btn-success" type='submit' name="search" value='Search' />
-							</div>
-							</div> -->
 					</div>
 					
 					<hr>
@@ -83,7 +66,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
-										placeholder="First Name" class="form-control" type="text" value='${employeeObject.firstName }'> 
+										placeholder="First Name" class="form-control" type="text" value='${employeeObject.firstName }' readonly="readonly"> 
 								</div>
 							</div>
 						</div>
@@ -95,7 +78,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
-										placeholder="Last Name" class="form-control" type="text" value='${employeeObject.lastName }'>
+										placeholder="Last Name" class="form-control" type="text" value='${employeeObject.lastName }' readonly="readonly">
 								</div>
 							</div>
 						</div>
@@ -107,7 +90,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="title"
-										class="form-control selectpicker">
+										class="form-control selectpicker" >
 										<option value="${ employeeObject.title}">${ employeeObject.title}</option>
 										<option value="Mr">Mr</option>
 										<option value="Miss">Miss</option>
@@ -149,7 +132,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-										placeholder="E-Mail Address" class="form-control" type="text" value='${ employeeObject.email}'>
+										placeholder="E-Mail Address" class="form-control" type="text" value='${ employeeObject.email}' readonly="readonly">
 								</div>
 							</div>
 						</div>

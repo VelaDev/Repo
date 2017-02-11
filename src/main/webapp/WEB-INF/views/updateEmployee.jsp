@@ -35,30 +35,6 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-
-<!-- 						<form action="searchEmployeeByName" method="post"
-							id="searchEmployee">
-							<div class="row">
-								Text input Search
-								<div class="form-group">
-									<label class="col-md-3 control-label">Search Employee</label>
-									<div class="col-md-4 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input name="email"
-												id="email" class="form-control" type="text"
-												placeholder='Search by Email Address'>
-										</div>
-									</div>
-									<div class="col-md-2">
-										<input class="btn btn-success" type='submit' name="search"
-											value='Search' />
-									</div>
-								</div>
-							</div>
-
-							<hr>
-						</form> -->
 						<br>
 						<form:form class="well form-horizontal" method="post"
 							action="updateEmployee" modelAttribute="updateEmployee"
@@ -157,7 +133,7 @@
 												class="glyphicon glyphicon-envelope"></i></span> <input
 												name="email" placeholder="Email Address"
 												class="form-control" type="text"
-												value='${ employeeObject.email}'>
+												value='${ employeeObject.email}' readonly="readonly">
 										</div>
 									</div>
 								</div>

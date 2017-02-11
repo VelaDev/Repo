@@ -69,7 +69,17 @@
 										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>"><button class="btn btn-info">Login Activities</button></a></td>
 										<td><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Update</button></a></td>
 										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"><button class="btn btn-success"> Reset</button></a></td>
-										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>"><button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button></a></td>
+										
+										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
+										    <c:choose>
+										     <c:when test="${list.status=='ACTIVE'}"> 
+										        <button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button>
+									         </c:when>
+									         <c:otherwise>
+									            <button class="btn btn-success" data-bb-example-key="confirm-button-text">Activate</button>
+									         </c:otherwise>
+									         </c:choose>
+									         </a></td>
 									</tr>
               					</c:forEach>
 							</tbody>

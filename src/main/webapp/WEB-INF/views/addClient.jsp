@@ -229,8 +229,8 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-envelope"></i></span> <input id="email1"
-												name="email1" placeholder="Email Address"
+												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
+												name="email" placeholder="Email Address"
 												class="form-control" type="email">
 										</div>
 									</div>
@@ -258,7 +258,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="telephoneNumber" name="telephoneNumber"
+												id="tellphoneNumber" name="tellphoneNumber"
 												placeholder="Tellphone No" class="form-control" type="text">
 										</div>
 									</div>
@@ -269,7 +269,7 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<input
-												id="telephoneNumber" name="telephoneNumber"
+												id="telephoneNumbe" name="telephoneNumbe"
 												placeholder="Tellphone No"  class="form-control" type="hidden">
 										</div>
 									</div>
@@ -349,7 +349,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="telephoneNumber1" name="telephoneNumber1"
+												id="tellphoneNumber1" name="tellphoneNumber1"
 												placeholder="Tellphone No" class="form-control" type="text">
 										</div>
 									</div>
@@ -361,7 +361,7 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											 <input
-												id="telephoneNumber" name="telephoneNumber"
+												id="telephoneNumbe" name="telephoneNumbe"
 												placeholder="Tellphone No"  class="form-control" type="hidden">
 										</div>
 									</div>
@@ -434,7 +434,7 @@ $('#contactPerson2').change(function() {
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													clientName : {
+													customerName : {
 														validators : {
 															stringLength : {
 																min : 2,
@@ -459,6 +459,16 @@ $('#contactPerson2').change(function() {
 														validators : {
 															notEmpty : {
 																message : 'Company email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													},
+													email:{
+														validators : {
+															notEmpty : {
+																message : 'Email address is required and cannot be empty'
 															},
 															emailAddress : {
 																message : 'The email address is not valid'
@@ -502,7 +512,7 @@ $('#contactPerson2').change(function() {
 															}
 														}
 													},
-													/* faxNumber : {
+													 faxNumber : {
 														validators : {
 															notEmpty : {
 																message : 'Fax number is required and cannot be empty'
@@ -512,7 +522,7 @@ $('#contactPerson2').change(function() {
 																message : 'Please provide  a vaild fax number'
 															}
 														}
-													}, */
+													}, 
 													streetNumber : {
 														validators : {
 															stringLength : {

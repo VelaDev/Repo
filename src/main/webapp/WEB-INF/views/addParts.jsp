@@ -87,7 +87,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input
 													name="partNumber" type="text"
-													class="form-control" readonly="readonly" placeholder="Part Number"
+													class="form-control"  placeholder="Part Number"
 													id="partNumber">
 											</div>
 										</div>
@@ -101,37 +101,25 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
-													name="type" class="form-control selectpicker" readonly="readonly">
-													<option value="">Select Item Type
-													<option>
+													name="type" class="form-control selectpicker" >
+													<option value="">Select Item Type</option>
 													<option value="Toner">Toner</option>
 													<option value="Spares">Spares</option>
 												</select>
 											</div>
 										</div>
 									</div>
-
-									 <!-- Select type Description-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Description</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input
-													class="form-control" id="description"
-													placeholder="Description" readonly="readonly" type="text" name="description">
-											</div>
-										</div>
-									</div>
-
+									
+									
 								</div>
 								<!-- / F column -->
 
 								<!--Second column-->
 								<div class="col-sm-6">
 
+                                   <!--  
                                    
-									<!-- Select type Quantity-->
+									<!-- -- Select type Quantity
 									<div class="form-group">
 										<label class="col-md-3 control-label">Quantity</label>
 										<div class="col-md-6 selectContainer">
@@ -143,7 +131,7 @@
 											</div>
 										</div>
 									</div>
-									<!-- Select type Supplier Name-->
+									<!-- Select type Supplier Name 
 									<div class="form-group">
 										<label class="col-md-3 control-label">Supplier Name</label>
 										<div class="col-md-6 selectContainer">
@@ -154,8 +142,28 @@
 													id="supplierName" readonly="readonly" name="supplierName">
 											</div>
 										</div>
+									</div> 
+									
+									-->
+									
+									
+									<!-- Select type Compatibility-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Compatibility</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select
+													name="type" id="compatibility" name="compatibility"  class="form-control selectpicker" readonly="readonly">
+													<option value="">Select Compatibility</option>
+													<option value="Toner">Toner</option>
+													<option value="Spares">Spares</option>
+												</select>
+											</div>
+										</div>
 									</div>
-
+									
+									
 									<!-- Select type Received By-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Recieved By</label>

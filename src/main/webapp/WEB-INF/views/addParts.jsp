@@ -29,7 +29,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Spares & Compatibility</b>
+							<b>Receive Spares</b>
 						</div>
 					</h3>
 				</div>
@@ -43,9 +43,35 @@
 					<div class="tab-content">
 						
 						<!-- /spare  -->
+						
+						
 
 						<div class="tab-pane active" id="spares">
-							<h4 align="center">Spares</h4>
+						
+							<h4 align="center">Spares</h4><br/><br/>
+							<form action="searchPartNumber" method="post"
+								id="searchPartNumber">
+								<div class="row">
+									<!-- Text input Search-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Search Part Number </label>
+										<div class="col-md-4 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-hdd"></i></span> <input
+													name="partNumber"  id="partNumber" class="form-control"
+													type="text" placeholder='Search By Part Number'>
+											</div>
+										</div>
+										<div class="col-md-2">
+											<input class="btn btn-success" type='submit' value='Search' />
+										</div>
+									</div>
+								</div>
+								<hr>
+							</form>
+							<!--Search-->
+							
 							<form:form class="well form-horizontal" method="post"
 								action="saveSpareParts" modelAttribute="saveSpareParts"
 								id="saveSpareParts">
@@ -61,7 +87,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input
 													name="partNumber" type="text"
-													class="form-control" placeholder="Part Number"
+													class="form-control" readonly="readonly" placeholder="Part Number"
 													id="partNumber">
 											</div>
 										</div>
@@ -75,7 +101,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
-													name="type" class="form-control selectpicker">
+													name="type" class="form-control selectpicker" readonly="readonly">
 													<option value="">Select Item Type
 													<option>
 													<option value="Toner">Toner</option>
@@ -93,7 +119,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input
 													class="form-control" id="description"
-													placeholder="Description" type="text" name="description">
+													placeholder="Description" readonly="readonly" type="text" name="description">
 											</div>
 										</div>
 									</div>
@@ -113,7 +139,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-edit"></i></span> <input
 													class="form-control" Placeholder="Quantity" id="quantity"
-													type="text" name="quantity">
+													type="text" readonly="readonly" name="quantity">
 											</div>
 										</div>
 									</div>
@@ -125,7 +151,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input type="text"
 													class="form-control" placeholder="Supplier Name"
-													id="supplierName" name="supplierName">
+													id="supplierName" readonly="readonly" name="supplierName">
 											</div>
 										</div>
 									</div>
@@ -138,7 +164,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-edit"></i></span> <input
 													class="form-control" id="receivedBy"
-													placeholder="Recieved By" type="text" name ="receivedBy" value="${loggedInUser.firstName} ${loggedInUser.lastName}">
+													placeholder="Recieved By" type="text" readonly="readonly" name ="receivedBy" value="${loggedInUser.firstName} ${loggedInUser.lastName}">
 											</div>
 										</div>
 									</div>

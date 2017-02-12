@@ -184,7 +184,14 @@
 							</div>
 							<!--/Second column Customer Fields-->
 
-
+							<div class="form-group">
+									<label class="col-md-3 control-label"><b class="optionalFields"> Click to add 2nd Contact Person</b> </label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<input id="contactPerson2" name="contactPerson2" type="checkbox" value="true">
+										</div>
+									</div>
+							</div>
 							<!-- Contact Person 1 -->
 							<div class="col-sm-6">
 								<br>
@@ -273,17 +280,6 @@
 
 
 							<!-- Contact Person 2 -->
-							
-							<div class="form-group">
-									<label class="col-md-3 control-label">Click to add 2nd Contact Person</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<input
-												id="contactPerson2" name="contactPerson2"
-												 class="form-control" type="checkbox" value="0">
-										</div>
-									</div>
-							</div>
 							
 							
 							<div id="contactPerson2checkboxdiv" style="display:none">

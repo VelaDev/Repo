@@ -294,20 +294,20 @@ li {
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Mono/Color</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span><select name="colour" class="form-control"
-												onchange='CheckColors(this.value);' 
+													class="glyphicon glyphicon-list"></i></span><select name="colour"
+													class="form-control" onchange='CheckColors(this.value);'
 													class="form-control selectpicker">
-												<option>Select Mono/Color</option>
-												<option value="mono">Mono</option>
-												<option value="colour">Color</option>
-											</select>
+													<option>Select Mono/Color</option>
+													<option value="mono">Mono</option>
+													<option value="colour">Color</option>
+												</select>
 											</div>
 										</div>
 									</div>
@@ -316,7 +316,7 @@ li {
 									<div id="colour" style='display: none;'>
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
-										<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label"></label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Colour Reading" name="colourReading"
@@ -326,7 +326,7 @@ li {
 										</div>
 										<!-- Text checkbox Mono Reading-->
 										<div class="form-group">
-										<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label"></label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Mono Reading" name="monoReading"
@@ -336,10 +336,11 @@ li {
 									</div>
 									<!-- Text checkbox Mono Reading-->
 									<div class="form-group">
-									<label class="col-md-3 control-label"></label>
+										<label class="col-md-3 control-label"></label>
 										<div class="col-md-6">
 											<input type="text" class="form-control" name="mono"
-												placeholder="Enter Mono Reading" id="mono" style='display: none;' />
+												placeholder="Enter Mono Reading" id="mono"
+												style='display: none;' />
 										</div>
 									</div>
 
@@ -422,7 +423,7 @@ li {
 											</div>
 										</div>
 									</div>
-								
+
 								</div>
 								<!--/S Column-->
 
@@ -523,8 +524,7 @@ li {
 									</div>
 								</div>
 
-								<br />
-								<br />
+								<br /> <br />
 								<div class="row">
 
 									<div class="form-group">
@@ -607,8 +607,8 @@ li {
 
 	<!-- /Script -->
 
-<!--Mono and Colour Selection-->
-<script type="text/javascript">
+	<!--Mono and Colour Selection-->
+	<script type="text/javascript">
 
 	function CheckColors(val){
 	 var element=document.getElementById('mono');

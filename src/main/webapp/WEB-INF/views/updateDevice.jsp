@@ -138,7 +138,7 @@ li {
 									
 									<!-- Text input Contact Person First Name-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">First Nmae</label>
+										<label class="col-md-3 control-label">First Name</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i

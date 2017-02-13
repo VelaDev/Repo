@@ -12,6 +12,14 @@
 <link
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
 	rel="stylesheet" type="text/css" />
+
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
 <style>
 .groupsparedetails {
 	float: left;
@@ -50,7 +58,7 @@
 				<div class="panel-body">
 
 					<div class="tab-content">
-						
+
 						<form action="searchpartNumber" method="post"
 							id="searchpartNumber">
 							<div class="row">
@@ -61,7 +69,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="partNumber"  id="partNumber" class="form-control"
+												name="partNumber" id="partNumber" class="form-control"
 												type="text" placeholder='Search By Part Number'>
 										</div>
 									</div>
@@ -73,32 +81,44 @@
 							<hr>
 						</form>
 						<!--Search-->
-						
+
 						<div class="col-xs-10">
 							<form action="">
 								<div class="groupdetails-row-padding">
 									<div class="groupsearchdetails">
-										
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Devices</label>
-													</h6>
 
-												</div>
-												<div class="col-xs-8">
-													<select name="description" disabled="disabled"
-														class="form-control selectpicker">
-														<option value="">List Device</option>
-														<option value=""></option>
-														<option value=""></option>
-														<option value=""></option>
-													</select>
-												</div>
-											</div>
+										<div class="content">
+											<!-- Below table will be displayed as Data table -->
+											<table id="myDatatable" class="display datatable">
+												<thead>
+													<legend>Compatible Devices </legend>
+													<tr>
+														<th>Device <img
+															src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+														<th>Part Number<img
+															src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+
+													<c:forEach items="" var="device">
+														<tr>
+															<td><h6>
+																	<c:out value="" />
+																</h6></td>
+															<td><h6>
+																	<c:out value="" />
+																</h6></td>
+
+														</tr>
+													</c:forEach>
+
+												</tbody>
+											</table>
 										</div>
-										
+
 									</div>
 								</div>
 								<div class="groupsparedetails">
@@ -113,8 +133,8 @@
 
 												</div>
 												<div class="col-xs-8">
-													<input type="text" id="partNumber" name="partNumber"  class="form-control input-sm" value=""
-														disabled="disabled">
+													<input type="text" id="partNumber" name="partNumber"
+														class="form-control input-sm" value="" disabled="disabled">
 												</div>
 											</div>
 										</div>
@@ -127,8 +147,9 @@
 
 												</div>
 												<div class="col-xs-8">
-													<input type="text" id="itemType" name="itemType" class="form-control input-sm" value=""
-														disabled="disabled"> </select>
+													<input type="text" id="itemType" name="itemType"
+														class="form-control input-sm" value="" disabled="disabled">
+													</select>
 												</div>
 											</div>
 										</div>
@@ -141,8 +162,8 @@
 
 												</div>
 												<div class="col-xs-8">
-													<input type="text" id="receivedBy" name="receivedBy" class="form-control input-sm" value=""
-														disabled="disabled">
+													<input type="text" id="receivedBy" name="receivedBy"
+														class="form-control input-sm" value="" disabled="disabled">
 												</div>
 											</div>
 										</div>
@@ -170,7 +191,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<div class="row">
 											<div class="col-xs-12">
 												<div class="col-xs-4 form-control-label">
@@ -439,7 +460,7 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
-	
+
 	<script>
 		$(document)
 				.ready(
@@ -467,7 +488,7 @@
 											});
 						});
 	</script>
-	
+
 	<!-- Validate add part -->
 	<script>
 		$(document)

@@ -19,7 +19,7 @@
 
 .groupsearchdetails {
 	float: right;
-    margin-right: -20%;
+	margin-right: -20%;
 }
 
 .content {
@@ -48,123 +48,157 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-				
-					
+
 					<div class="tab-content">
+						
+						<form action="searchpartNumber" method="post"
+							id="searchpartNumber">
+							<div class="row">
+								<!-- Text input Search-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Part Number </label>
+									<div class="col-md-4 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-hdd"></i></span> <input
+												name="partNumber"  id="partNumber" class="form-control"
+												type="text" placeholder='Search By Part Number'>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<input class="btn btn-success" type='submit' value='Search' />
+									</div>
+								</div>
+							</div>
+							<hr>
+						</form>
+						<!--Search-->
 						
 						<div class="col-xs-10">
 							<form action="">
 								<div class="groupdetails-row-padding">
 									<div class="groupsearchdetails">
-									<legend>Search Part Number</legend>
-									
-											<form action="searchPartNumber" method="post" id="searchPartNumber">
-												<div class="row">
-													<div class="col-xs-12">
-														<div class="col-xs-4 form-control-label">
-																	<h6>
-															<label>Part Number</label>
-														</h6>	
-														</div>
-														<div class="col-xs-8">
-																 <input name="partNumber"  id="partNumber" class="form-control"
-																type="text" placeholder='Search By Part Number'>	
-														</div>	
-													</div>
-												</div>	
-												
-												<div class="row">
-													<div class="col-xs-12">
-														
-														<div class="col-xs-8">
-																<input class="btn btn-success" type='submit' value='Search' />
-														</div>
-															
-													</div>
+										
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Devices</label>
+													</h6>
+
 												</div>
-														
-											</form>
-											<!--Search-->
+												<div class="col-xs-8">
+													<select name="description" disabled="disabled"
+														class="form-control selectpicker">
+														<option value="">List Device</option>
+														<option value=""></option>
+														<option value=""></option>
+														<option value=""></option>
+													</select>
+												</div>
+											</div>
 										</div>
-									</div>
-									<div class="groupsparedetails">
-										<legend>Spares</legend>
-										<form:form>
-											<div class="row">
-												<div class="col-xs-12">
-													<div class="col-xs-4 form-control-label">
-														<h6>
-															<label>Part Number</label>
-														</h6>
-		
-													</div>
-													<div class="col-xs-8">
-														<input type="text" class="form-control input-sm"
-															value="" disabled="disabled">
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-xs-12">
-													<div class="col-xs-4 form-control-label">
-														<h6>
-															<label>Item Type</label>
-														</h6>
-		
-													</div>
-													<div class="col-xs-8">
-														<input type="text" class="form-control input-sm"
-															value="" disabled="disabled">
-												</select>
-													</div>
-												</div>
-											</div>
-											<div class="row">
-												<div class="col-xs-12">
-													<div class="col-xs-4 form-control-label">
-														<h6>
-															<label>Received By</label>
-														</h6>
-		
-													</div>
-													<div class="col-xs-8">
-														<input type="text" class="form-control input-sm"
-															value="" disabled="disabled">
-													</div>
-												</div>
-											</div>
-											
-											<div class="row">
-												<div class="col-xs-12">
-													<div class="col-xs-4 form-control-label">
-														<h6>
-															<label>Description</label>
-														</h6>
-		
-													</div>
-													<div class="col-xs-8">
-														<select name="description" disabled="disabled"
-																class="form-control selectpicker">
-																<option value="">Select Description<option>
-															<option value="Black Imaging Unit">Black Imaging Unit</option>
-															<option value="Color Imaging Unit">Color Imaging Unit</option>
-															<option value="Waste Toner Bottle">Waste Toner Bottle</option>
-															</select>
-													</div>
-												</div>
-											</div>
-											
-		
-										</form:form>
+										
 									</div>
 								</div>
-							</form>
+								<div class="groupsparedetails">
+									<legend>Spares</legend>
+									<form:form>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Part Number</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" id="partNumber" name="partNumber"  class="form-control input-sm" value=""
+														disabled="disabled">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Item Type</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" id="itemType" name="itemType" class="form-control input-sm" value=""
+														disabled="disabled"> </select>
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Received By</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" id="receivedBy" name="receivedBy" class="form-control input-sm" value=""
+														disabled="disabled">
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Description</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<select name="description" disabled="disabled"
+														class="form-control selectpicker">
+														<option value="">Select Description
+														<option>
+														<option value="Black Imaging Unit">Black Imaging
+															Unit</option>
+														<option value="Color Imaging Unit">Color Imaging
+															Unit</option>
+														<option value="Waste Toner Bottle">Waste Toner
+															Bottle</option>
+													</select>
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Compatibility</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<textarea name="compatibility" disabled="disabled"
+														class="form-control selectpicker">
+														
+													</textarea>
+												</div>
+											</div>
+										</div>
+
+
+									</form:form>
+								</div>
 						</div>
-						
-						
-						<!-- /spare  -->
-						
-						<%-- <div class="groupSpare"> 
+						</form>
+					</div>
+
+
+					<!-- /spare  -->
+
+					<%-- <div class="groupSpare"> 
 						
 									<form:form class="well form-horizontal" method="post"
 								action="saveSpareParts" modelAttribute="saveSpareParts"
@@ -223,9 +257,9 @@
 						
 						</div>
 						 --%>
-						
-						<!-- /parts  -->
-						<%-- <div class="tab-pane" id="compatibility">
+
+					<!-- /parts  -->
+					<%-- <div class="tab-pane" id="compatibility">
 							<h4 align="center">Compatibility</h4>
 							<br>
 							<form:form class="well form-horizontal" method="post"
@@ -282,10 +316,10 @@
 								</div>
 							</form:form> --%>
 
-						</div>
+				</div>
 
 
-						<%-- 	<div class="tab-pane" id="tonner">
+				<%-- 	<div class="tab-pane" id="tonner">
 					<h4 align="center">Tonner</h4>
 				<form:form class="well form-horizontal" method="post" action="saveSpareParts"
 					modelAttribute="saveSpareParts" id="saveSpareParts">
@@ -381,18 +415,18 @@
 					
 					</div><!-- /tonner  --> --%>
 
-					</div>
-					<!-- /tab-content -->
-				</div>
-				<!-- /panel body -->
 			</div>
-			<!--/panel success class-->
+			<!-- /tab-content -->
 		</div>
-		<!-- /Container -->
+		<!-- /panel body -->
+	</div>
+	<!--/panel success class-->
+	</div>
+	<!-- /Container -->
 
-		<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
-		<!--/ Footer -->
+	<!-- Footer -->
+	<c:import url="templates/footer.jsp"></c:import>
+	<!--/ Footer -->
 
 	</div>
 	<!-- / velaphanda_containter -->
@@ -405,7 +439,35 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
-
+	
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#searchpartNumber')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													partNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Part number is required to search and cannot be empty'
+															}
+														}
+													},
+												}
+											});
+						});
+	</script>
+	
 	<!-- Validate add part -->
 	<script>
 		$(document)

@@ -12,7 +12,21 @@
 <link
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
 	rel="stylesheet" type="text/css" />
+<style>
+.groupsparedetails {
+	float: left;
+}
 
+.groupsearchdetails {
+	float: right;
+    margin-right: -20%;
+}
+
+.content {
+	margin-left: -61%;
+	width: 180%;
+}
+</style>
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -34,45 +48,128 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<!-- tab nav -->
-					<ul class="nav nav-tabs">
-					<li class="active"><a href="#spares" data-toggle="tab">Spares</a></li>
-						<li ><a href="#compatibility" data-toggle="tab">Compatibility</a></li>
-						<!-- <li><a href="#tonner" data-toggle="tab">Tonner</a></li> -->
-					</ul>
+				
+					
 					<div class="tab-content">
+						
+						<div class="col-xs-10">
+							<form action="">
+								<div class="groupdetails-row-padding">
+									<div class="groupsearchdetails">
+									<legend>Search Part Number</legend>
+									
+											<form action="searchPartNumber" method="post" id="searchPartNumber">
+												<div class="row">
+													<div class="col-xs-12">
+														<div class="col-xs-4 form-control-label">
+																	<h6>
+															<label>Part Number</label>
+														</h6>	
+														</div>
+														<div class="col-xs-8">
+																 <input name="partNumber"  id="partNumber" class="form-control"
+																type="text" placeholder='Search By Part Number'>	
+														</div>	
+													</div>
+												</div>	
+												
+												<div class="row">
+													<div class="col-xs-12">
+														
+														<div class="col-xs-8">
+																<input class="btn btn-success" type='submit' value='Search' />
+														</div>
+															
+													</div>
+												</div>
+														
+											</form>
+											<!--Search-->
+										</div>
+									</div>
+									<div class="groupsparedetails">
+										<legend>Spares</legend>
+										<form:form>
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="col-xs-4 form-control-label">
+														<h6>
+															<label>Part Number</label>
+														</h6>
+		
+													</div>
+													<div class="col-xs-8">
+														<input type="text" class="form-control input-sm"
+															value="" disabled="disabled">
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="col-xs-4 form-control-label">
+														<h6>
+															<label>Item Type</label>
+														</h6>
+		
+													</div>
+													<div class="col-xs-8">
+														<select disabled="disabled"
+													name="type" class="form-control selectpicker" >
+													<option value="">Select Item Type</option>
+													<option value="Toner">Toner</option>
+													<option value="Spares">Spares</option>
+												</select>
+													</div>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="col-xs-4 form-control-label">
+														<h6>
+															<label>Received By</label>
+														</h6>
+		
+													</div>
+													<div class="col-xs-8">
+														<input type="text" class="form-control input-sm"
+															value="" disabled="disabled">
+													</div>
+												</div>
+											</div>
+											
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="col-xs-4 form-control-label">
+														<h6>
+															<label>Description</label>
+														</h6>
+		
+													</div>
+													<div class="col-xs-8">
+														<select name="description" disabled="disabled"
+																class="form-control selectpicker">
+																<option value="">Select Description<option>
+															<option value="Black Imaging Unit">Black Imaging Unit</option>
+															<option value="Color Imaging Unit">Color Imaging Unit</option>
+															<option value="Waste Toner Bottle">Waste Toner Bottle</option>
+															</select>
+													</div>
+												</div>
+											</div>
+											
+		
+										</form:form>
+									</div>
+								</div>
+							</form>
+						</div>
+						
 						
 						<!-- /spare  -->
 						
+						<%-- <div class="groupSpare"> 
 						
-
-						<div class="tab-pane active" id="spares">
-						
-							<h4 align="center">Spares</h4><br/><br/>
-							<form action="searchPartNumber" method="post"
-								id="searchPartNumber">
-								<div class="row">
-									<!-- Text input Search-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Search Part Number </label>
-										<div class="col-md-4 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-hdd"></i></span> <input
-													name="partNumber"  id="partNumber" class="form-control"
-													type="text" placeholder='Search By Part Number'>
-											</div>
-										</div>
-										<div class="col-md-2">
-											<input class="btn btn-success" type='submit' value='Search' />
-										</div>
-									</div>
-								</div>
-								<hr>
-							</form>
-							<!--Search-->
-							
-							<form:form class="well form-horizontal" method="post"
+									<form:form class="well form-horizontal" method="post"
 								action="saveSpareParts" modelAttribute="saveSpareParts"
 								id="saveSpareParts">
 
@@ -92,8 +189,7 @@
 											</div>
 										</div>
 									</div>
-
-
+									
 									<!-- Select type Item Type-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Item Type</label>
@@ -114,71 +210,7 @@
 								</div>
 								<!-- / F column -->
 
-								<!--Second column-->
-								<div class="col-sm-6">
-
-                                   <!--  
-                                   
-									<!-- -- Select type Quantity
-									<div class="form-group">
-										<label class="col-md-3 control-label">Quantity</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-edit"></i></span> <input
-													class="form-control" Placeholder="Quantity" id="quantity"
-													type="text" readonly="readonly" name="quantity">
-											</div>
-										</div>
-									</div>
-									<!-- Select type Supplier Name 
-									<div class="form-group">
-										<label class="col-md-3 control-label">Supplier Name</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input type="text"
-													class="form-control" placeholder="Supplier Name"
-													id="supplierName" readonly="readonly" name="supplierName">
-											</div>
-										</div>
-									</div> 
-									
-									-->
-									
-									
-									<!-- Select type Compatibility-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Compatibility</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select
-													name="type" id="compatibility" name="compatibility"  class="form-control selectpicker" readonly="readonly">
-													<option value="">Select Compatibility</option>
-													<option value="Toner">Toner</option>
-													<option value="Spares">Spares</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									
-									
-									<!-- Select type Received By-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Recieved By</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-edit"></i></span> <input
-													class="form-control" id="receivedBy"
-													placeholder="Recieved By" type="text" readonly="readonly" name ="receivedBy" value="${loggedInUser.firstName} ${loggedInUser.lastName}">
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<!-- /S column  -->
+								
 
 								<br>
 								<br>
@@ -190,9 +222,13 @@
 									</div>
 								</div>
 							</form:form>
+						
+						
 						</div>
+						 --%>
+						
 						<!-- /parts  -->
-						<div class="tab-pane" id="compatibility">
+						<%-- <div class="tab-pane" id="compatibility">
 							<h4 align="center">Compatibility</h4>
 							<br>
 							<form:form class="well form-horizontal" method="post"
@@ -247,7 +283,7 @@
 											id="addSpares">
 									</div>
 								</div>
-							</form:form>
+							</form:form> --%>
 
 						</div>
 

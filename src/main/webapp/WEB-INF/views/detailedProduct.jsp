@@ -60,12 +60,12 @@
 													
 													<c:forEach items="${accessories}" var="accessory">
 														<tr>
-															<th><h6>
+															<td><h6>
 																	<c:out value="${accessory.accessotyType}" />
-																</h6></th>
-															<th><h6>
+																</h6></td>
+															<td><h6>
 																	<c:out value="${accessory.serial}" />
-															</h6></th>
+															</h6></td>
 															 
 														</tr>
 													</c:forEach>

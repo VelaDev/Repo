@@ -113,11 +113,8 @@
 		
 													</div>
 													<div class="col-xs-8">
-														<select disabled="disabled"
-													name="type" class="form-control selectpicker" >
-													<option value="">Select Item Type</option>
-													<option value="Toner">Toner</option>
-													<option value="Spares">Spares</option>
+														<input type="text" class="form-control input-sm"
+															value="" disabled="disabled">
 												</select>
 													</div>
 												</div>

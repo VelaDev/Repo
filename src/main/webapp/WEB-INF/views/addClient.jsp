@@ -185,12 +185,14 @@
 							<!--/Second column Customer Fields-->
 
 							<div class="form-group">
-									<label class="col-md-3 control-label"><b class="optionalFields"> Click to add 2nd Contact Person</b> </label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<input id="contactPerson2" name="contactPerson2" type="checkbox" value="true">
-										</div>
+								<label class="col-md-3 control-label"><b
+									class="optionalFields"> Click to add 2nd Contact Person</b> </label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<input id="contactPerson2" name="contactPerson2"
+											type="checkbox" value="true">
 									</div>
+								</div>
 							</div>
 							<!-- Contact Person 1 -->
 							<div class="col-sm-6">
@@ -224,21 +226,12 @@
 								</div>
 
 
-								<div class="form-group">
-									<label class="col-md-3 control-label">Email</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
-												name="email" placeholder="Email Address"
-												class="form-control" type="email">
-										</div>
-									</div>
-								</div>
+
 							</div>
 
 							<div class="col-sm-6">
-								<br><br>
+								<br>
+								<br>
 								<!-- Text input Contact Person Cellphone Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Cellphone No</label>
@@ -263,115 +256,108 @@
 										</div>
 									</div>
 								</div>
-								<!-- Text input Contact Person Tellphone Number-->
+
 								<div class="form-group">
-									
+									<label class="col-md-3 control-label">Email</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
-											<input
-												id="telephoneNumbe" name="telephoneNumbe"
-												placeholder="Tellphone No"  class="form-control" type="hidden">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
+												name="email" placeholder="Email Address"
+												class="form-control" type="email">
 										</div>
 									</div>
 								</div>
+
 							</div>
 							<!-- /Contact Person 1 -->
 
 
 
 							<!-- Contact Person 2 -->
-							
-							
-							<div id="contactPerson2checkboxdiv" style="display:none">
 
-							<div class="col-sm-6">
 
-								<div align="center">
-									<b class="optionalFields">Contact Person 2 (Optional
-										Fields)</b>
-								</div>
-								<!-- Text input Contact Person 2 First Name-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">First Name</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input id="firstName1"
-												name="firstName1" placeholder="First Name"
-												class="form-control" type="text">
+							<div id="contactPerson2checkboxdiv" style="display: none">
+
+								<div class="col-sm-6">
+									<br />
+									<br />
+									<div align="center">
+										<b class="optionalFields">Contact Person 2 (Optional
+											Fields)</b>
+									</div>
+									<!-- Text input Contact Person 2 First Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">First Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input
+													id="firstName1" name="firstName1" placeholder="First Name"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Contact Person 2 Last Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Last Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input id="lastName1"
+													name="lastName1" placeholder="Last Name"
+													class="form-control" type="text">
+											</div>
 										</div>
 									</div>
 								</div>
-								<!-- Text input Contact Person 2 Last Name-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Last Name</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input id="lastName1"
-												name="lastName1" placeholder="Last Name"
-												class="form-control" type="text">
-										</div>
-									</div>
-								</div>
 
-								<!-- Text input Contact Person 2 Email-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Email</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-envelope"></i></span> <input id="email1"
-												name="email1" placeholder="Email Address"
-												class="form-control" type="email">
+								<div class="col-sm-6">
+									<!-- Text input Contact Person 2 Cellphone Number-->
+									<br />
+									<br />
+									<br />
+									<div class="form-group">
+										<label class="col-md-3 control-label">Cellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="cellphoneNumber1" name="cellphoneNumber1"
+													placeholder="Cellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Contact Person 2 Tellphone Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Tellphone No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="tellphoneNumber1" name="tellphoneNumber1"
+													placeholder="Tellphone No" class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Contact Person 2 Email-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Email</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-envelope"></i></span> <input
+													id="email1" name="email1" placeholder="Email Address"
+													class="form-control" type="email">
+											</div>
 										</div>
 									</div>
 								</div>
+								<!--/Contact Person 2 -->
+
 							</div>
-
-							<div class="col-sm-6">
-								<!-- Text input Contact Person 2 Cellphone Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Cellphone No</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="cellphoneNumber1" name="cellphoneNumber1"
-												placeholder="Cellphone No" class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-								<!-- Text input Contact Person 2 Tellphone Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Tellphone No</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="tellphoneNumber1" name="tellphoneNumber1"
-												placeholder="Tellphone No" class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-								
-								<!-- Text input Contact Person Tellphone Number-->
-								<div class="form-group">
-									
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											 <input
-												id="telephoneNumbe" name="telephoneNumbe"
-												placeholder="Tellphone No"  class="form-control" type="hidden">
-										</div>
-									</div>
-								</div>
-								
-								
-							</div>
-							<!--/Contact Person 2 -->
-							
-							</div><!--/Hide Contact Person 2 -->
+							<!--/Hide Contact Person 2 -->
 
 
 							<div class="form-group row">
@@ -400,14 +386,14 @@
 	<!-- Script -->
 
 
-	
 
 
-<script type="text/javascript">
-$('#contactPerson2').change(function() {
-    $('#contactPerson2checkboxdiv').toggle();
-});
-</script>
+
+	<script type="text/javascript">
+		$('#contactPerson2').change(function() {
+			$('#contactPerson2checkboxdiv').toggle();
+		});
+	</script>
 
 
 	<script type="text/javascript"
@@ -438,14 +424,21 @@ $('#contactPerson2').change(function() {
 														validators : {
 															stringLength : {
 																min : 2,
+
 															},
 															notEmpty : {
 																message : 'Customer name is required and cannot be empty'
 															}
 														}
 													},
+
 													tellphoneNumber : {
 														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+
 															notEmpty : {
 																message : 'Tellphone number is required and cannot be empty'
 															},
@@ -455,7 +448,7 @@ $('#contactPerson2').change(function() {
 															}
 														}
 													},
-													emailCompany:{
+													emailCompany : {
 														validators : {
 															notEmpty : {
 																message : 'Company email address is required and cannot be empty'
@@ -465,7 +458,7 @@ $('#contactPerson2').change(function() {
 															}
 														}
 													},
-													email:{
+													email : {
 														validators : {
 															notEmpty : {
 																message : 'Email address is required and cannot be empty'
@@ -484,7 +477,7 @@ $('#contactPerson2').change(function() {
 																message : 'Street name is required and cannot be empty'
 															}
 														}
-													},													
+													},
 													city_town : {
 														validators : {
 															notEmpty : {
@@ -504,25 +497,27 @@ $('#contactPerson2').change(function() {
 													},
 													zipcode : {
 														validators : {
+															stringLength : {
+																max : 4,
+																min : 4,
+															},
 															notEmpty : {
-																stringLength : {
-																	min : 4,
-																},
 																message : 'Zipcode is required and cannot be empty'
 															}
 														}
 													},
-													 faxNumber : {
+													faxNumber : {
 														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
 															notEmpty : {
 																message : 'Fax number is required and cannot be empty'
-															},
-															phone : {
-																country : 'US',
-																message : 'Please provide  a vaild fax number'
 															}
 														}
-													}, 
+													},
+
 													streetNumber : {
 														validators : {
 															stringLength : {
@@ -555,15 +550,16 @@ $('#contactPerson2').change(function() {
 													},
 													cellphoneNumber : {
 														validators : {
-															notEmpty : {
-																message : 'Cell number is required and cannot be empty'
+															stringLength : {
+																max : 10,
+																min : 10,
 															},
-															phone : {
-																country : 'US',
-																message : 'Please provide a vaild Cell Number with area code'
+															notEmpty : {
+																message : 'cellphoneNumber is required and cannot be empty'
 															}
 														}
 													},
+
 													email : {
 														validators : {
 															notEmpty : {

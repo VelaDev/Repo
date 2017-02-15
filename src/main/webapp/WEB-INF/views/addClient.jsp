@@ -68,7 +68,7 @@
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="tellphoneNumber" id="tellphoneNumber"
 												placeholder="Tellphone Number" class="form-control"
-												type="text">
+												type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
@@ -163,7 +163,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="faxNumber" id="faxNumber" placeholder="Fax Number"
-												class="form-control" type="text">
+												class="form-control" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
@@ -240,7 +240,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												id="cellphoneNumber" name="cellphoneNumber"
-												placeholder="Cellphone No" class="form-control" type="text">
+												placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
@@ -252,7 +252,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												id="tellphoneNumber" name="tellphoneNumber"
-												placeholder="Tellphone No" class="form-control" type="text">
+												placeholder="Tellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
@@ -336,7 +336,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="tellphoneNumber1" name="tellphoneNumber1"
-													placeholder="Tellphone No" class="form-control" type="text">
+													placeholder="Tellphone No" class="form-control" type="text" >
 											</div>
 										</div>
 									</div>
@@ -405,6 +405,16 @@
 	<%-- <script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
  --%>
 	<!-- /Script -->
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 
 	<!-- Validate add Client -->
 	<script type="text/javascript">
@@ -511,10 +521,10 @@
 															stringLength : {
 																max : 10,
 																min : 10,
-															},
+															},/* 
 															notEmpty : {
 																message : 'Fax number is required and cannot be empty'
-															}
+															} */
 														}
 													},
 
@@ -555,7 +565,7 @@
 																min : 10,
 															},
 															notEmpty : {
-																message : 'cellphoneNumber is required and cannot be empty'
+																message : 'Cellphone Number is required and cannot be empty'
 															}
 														}
 													},

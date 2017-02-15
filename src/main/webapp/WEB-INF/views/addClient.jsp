@@ -150,7 +150,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 												id="zipcode" placeholder="Area Code" class="form-control"
-												type="text">
+												type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>

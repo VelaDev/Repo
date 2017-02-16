@@ -60,7 +60,7 @@ li {
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
-												name="customerName" id="clientName" class="form-control"
+												name="customerName" id="customerName" class="form-control"
 												type="text" placeholder='Search By Client Name'>
 										</div>
 									</div>
@@ -205,7 +205,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="tellphoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
+													id="telephoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
 													class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
@@ -247,7 +247,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" placeholder="Model Number"
+													name="productModel" id="productModel" placeholder="Model Number"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -634,14 +634,13 @@ li {
 							$('#searchClientforProduct')
 									.bootstrapValidator(
 											{
-												container : '#messages',
 												feedbackIcons : {
 													valid : 'glyphicon glyphicon-ok',
 													invalid : 'glyphicon glyphicon-remove',
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													clientName : {
+													customerName : {
 														validators : {
 															notEmpty : {
 																message : 'Client name is required to search and cannot be empty'
@@ -882,7 +881,31 @@ function isNumber(evt) {
 																message : 'The email address is not valid'
 															}
 														}
+													},
+
+													serialNumber : {
+														validators : {
+															stringLength : {
+																min : 2,
+
+															},
+															notEmpty : {
+																message : 'Serial Number is required and cannot be empty'
+															}
+														}
+													},
+													productModel : {
+														validators : {
+															stringLength : {
+																min : 2,
+
+															},
+															notEmpty : {
+																message : 'Model number is required and cannot be empty'
+															}
+														}
 													}
+													
 												}
 											});
 						});

@@ -2,25 +2,31 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
+	rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <link type="text/stylesheet"
 	src="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/stylesheet"
 	src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
-	
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
-	
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+	rel="stylesheet">
+
 <style>
 li {
 	list-style: none;
 }
 </style>
 
-<title>Update Device Installation | Velaphanda Trading &
-	Projects</title>
+<title>Update Device | Velaphanda Trading & Projects</title>
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -32,6 +38,7 @@ li {
 					</c:out>
 				</div>
 			</c:if>
+
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -40,6 +47,7 @@ li {
 						</div>
 					</h3>
 				</div>
+
 				<div class="panel-body">
 					<div class="tab-content">
 						<form action="searchDeviceSerialNumber" method="post"
@@ -130,12 +138,12 @@ li {
 
 								<br>
 							</fieldset>
-							
+
 							<fieldset>
-								<legend>Contact Person</legend>								
+								<legend>Contact Person</legend>
 								<!-- Contact Person  -->
 								<div class="col-sm-6">
-									
+
 									<!-- Text input Contact Person First Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">First Name</label>
@@ -144,8 +152,7 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
 													name="firstName" placeholder="First Name"
-													class="form-control" type="text"
-													value="${productObject.contactPerson.firstName}">
+													class="form-control" type="text" value="${productObject.contactPerson.firstName}">
 											</div>
 										</div>
 									</div>
@@ -157,8 +164,7 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
 													name="lastName" placeholder="Last Name"
-													class="form-control" type="text"
-													value="${productObject.contactPerson.lastName}">
+													class="form-control" type="text" value="${productObject.contactPerson.lastName}">
 											</div>
 										</div>
 									</div>
@@ -171,15 +177,14 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 													name="email" placeholder="Email Address"
-													class="form-control" type="email"
-													value="${productObject.contactPerson.email}">
+													class="form-control" type="email" value="${productObject.contactPerson.email}">
 											</div>
 										</div>
 									</div>
 								</div>
-								
+
 								<div class="col-sm-6">
-								
+
 									<!-- Text input Contact Person Cellphone Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Cellphone No</label>
@@ -187,8 +192,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber"
-													placeholder="Cellphone No" class="form-control" type="text"
+													id="cellphoneNumber" name="cellphoneNumber" placeholder="Cellphone No"
+													class="form-control" type="text" onkeypress="return isNumber(event)" 
 													value="${productObject.contactPerson.cellphone}">
 											</div>
 										</div>
@@ -201,9 +206,10 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="telephoneNumber"
-													placeholder="Tellphone No" class="form-control" type="text"
-													value="${productObject.contactPerson.telephone}">
+													id="tellphoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
+													class="form-control" type="text" onkeypress="return isNumber(event)" 
+													value="${productObject.contactPerson.telephone}" >
+													
 											</div>
 										</div>
 									</div>
@@ -211,17 +217,21 @@ li {
 								</div>
 								<!-- /Contact Person  -->
 								
+								
+								
+
+
+
 							</fieldset>
 							<br>
 							<br>
-							
+
 							<fieldset>
 								<legend>Machine Details</legend>
 								<br>
-								
 								<!--First Column-->
 								<div class="col-md-6">
-								
+
 									<!-- Text input Serial No-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Serial No</label>
@@ -229,9 +239,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="serialNumber" id="serialNumber" onkeydown="upperCaseF(this)" placeholder="Serial Number"
-													class="form-control" type="text" value="${productObject.serialNumber}"
-													>
+													name="serialNumber" id="serialNumber"
+													onkeydown="upperCaseF(this)" placeholder="Serial Number"
+													class="form-control" type="text" value="${productObject.serialNumber}">
 											</div>
 										</div>
 									</div>
@@ -248,7 +258,9 @@ li {
 											</div>
 										</div>
 									</div>
-										
+
+
+
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Contract Start
@@ -288,38 +300,39 @@ li {
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Mono/Color</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span><select name="colour" class="form-control"
-												onchange='CheckColors(this.value);' 
+													class="glyphicon glyphicon-list"></i></span><select name="colour"
+													class="form-control" onchange='CheckColors(this.value);'
 													class="form-control selectpicker">
-												<option>Select Mono/Color</option>
-												<option value="mono">Mono</option>
-												<option value="colour">Color</option>
-											</select>
+													<option>Select Mono/Color</option>
+													<option value="mono">Mono</option>
+													<option value="colour">Color</option>
+												</select>
 											</div>
 										</div>
 									</div>
 
+
 									<div id="colour" style='display: none;'>
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
-										<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label"></label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Colour Reading" name="colourReading"
-													id="colourReading" value="${productObject.colour}"/>
+													id="colourReading" value="${productObject.colour}"//>
 											</div>
 											<br />
 										</div>
 										<!-- Text checkbox Mono Reading-->
 										<div class="form-group">
-										<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label"></label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Mono Reading" name="monoReading"
@@ -329,22 +342,21 @@ li {
 									</div>
 									<!-- Text checkbox Mono Reading-->
 									<div class="form-group">
-									<label class="col-md-3 control-label"></label>
+										<label class="col-md-3 control-label"></label>
 										<div class="col-md-6">
 											<input type="text" class="form-control" name="mono"
-												placeholder="Enter Mono Reading" id="mono" style='display: none;' value="${productObject.monoReading}" />
+												placeholder="Enter Mono Reading" id="mono"
+												style='display: none;' value="${productObject.monoReading}"/>
 										</div>
 									</div>
-									
 
 								</div>
 								<!--/F Column-->
 
 								<!--Second column-->
-								<div class="col-sm-6">								
+								<div class="col-sm-6">
 
-									
-									
+
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -357,7 +369,6 @@ li {
 											</div>
 										</div>
 									</div>
-									
 									<!-- Text input City or Town-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">City/Town</label>
@@ -370,7 +381,6 @@ li {
 											</div>
 										</div>
 									</div>
-
 									<!-- Select type Province-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Province</label>
@@ -394,7 +404,6 @@ li {
 											</div>
 										</div>
 									</div>
-									
 									<!-- Text input Area Code-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Area Code</label>
@@ -403,7 +412,7 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													id="zipcode" placeholder="Area Code" class="form-control"
-													type="text" value ="${productObject.areaCode}">
+													type="text" onkeypress="return isNumber(event)" value="${productObject.areaCode}">
 											</div>
 										</div>
 									</div>
@@ -416,15 +425,14 @@ li {
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetNumber" id="streetNumber"
 													placeholder="Street Number" class="form-control"
-													type="text" value ="${productObject.streetNumber}">
+													type="text" value="${productObject.streetNumber}">
 											</div>
 										</div>
 									</div>
 
 								</div>
 								<!--/S Column-->
-								
-								
+
 							</fieldset>
 
 							<br>
@@ -439,9 +447,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="bridgeunit"
-											name="bridgeUnitSerialTypeSerialNo"
-											value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="bridgeunit" disabled
+											name="bridgeUnitSerialTypeSerialNo"  value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }"/>
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -450,9 +458,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="faxunitserial"
-											value="${AccessoryObject.faxUnitSerialTypeSerialNo }"
-											name="faxUnitSerialTypeSerialNo" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="faxunitserial" disabled
+											name="faxUnitSerialTypeSerialNo" value="${AccessoryObject.faxUnitSerialTypeSerialNo }" />
 									</div>
 								</div>
 								<br>
@@ -464,9 +472,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="onebintray"
-											value="${AccessoryObject.oneBinTrayTypeSerialNo }"
-											name="oneBinTrayTypeSerialNo" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="onebintray" disabled
+											name="OneBinTrayTypeSerialNo" value="${AccessoryObject.oneBinTrayTypeSerialNo }"/>
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -475,9 +483,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="finisherserial"
-											value="${AccessoryObject.finisherTypeSerialNo }"
-											name="finisherTypeSerialNo" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="finisherserial" disabled
+											name="finisherTypeSerialNo" value="${AccessoryObject.finisherTypeSerialNo }"/>
 									</div>
 								</div>
 								<br>
@@ -488,9 +496,9 @@ li {
 									</div>
 									<div class="col-xs-3">
 										<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="ltc"
-											name="ltcTypeSerial"
-											value="${AccessoryObject.ltcTypeSerial }" />
+											type="text" class="form-control input-sm"
+											onkeydown="upperCaseF(this)" id="ltc" name="ltcTypeSerial"
+											disabled value="${AccessoryObject.ltcTypeSerial }"/>
 									</div>
 
 
@@ -501,9 +509,9 @@ li {
 										</div>
 										<div class="col-xs-3">
 											<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
-												type="text" class="form-control input-sm"  onkeydown="upperCaseF(this)" id="credenza"
-												name="credenzaSerialNo"
-												value="${AccessoryObject.credenzaSerialNo }" />
+												type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="credenza"
+												name="credenzaSerialNo" disabled value="${AccessoryObject.credenzaSerialNo }"/>
 										</div>
 
 									</div>
@@ -516,14 +524,13 @@ li {
 									<div class="col-xs-3">
 										<label for="additionalserial">Serial
 											Number:&nbsp;&nbsp;</label><input type="text"
-											class="form-control input-sm" id="additionalserial"
-											name="additionalPaperTraysTypeSerial"  onkeydown="upperCaseF(this)"
-											value="${AccessoryObject.additionalPaperTraysTypeSerial }" />
+											class="form-control input-sm" onkeydown="upperCaseF(this)"
+											id="additionalserial" name="additionalPaperTraysTypeSerial"
+											disabled value="${AccessoryObject.additionalPaperTraysTypeSerial }"/>
 									</div>
 								</div>
-								
-																
-								<br/><br/>
+
+								<br /> <br />
 								<div class="row">
 
 									<div class="form-group">
@@ -533,8 +540,9 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="serialNumber"
-												placeholder="Serial Number" />
+											<input type="text" class="form-control"
+												onkeydown="upperCaseF(this)" id="serialNumber"
+												name="serialNumberM" placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
 											<button type="button" class="btn btn-default addButton">
@@ -550,8 +558,9 @@ li {
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control"  onkeydown="upperCaseF(this)" name="serialNumber"
-												placeholder="Serial Number" />
+											<input type="text" class="form-control"
+												onkeydown="upperCaseF(this)" id="serialNumber"
+												name="serialNumberM" placeholder="Serial Number" />
 										</div>
 
 										<div class="col-xs-1">
@@ -562,15 +571,15 @@ li {
 									</div>
 
 								</div>
-								
-								
+
+
 							</fieldset>
 							<br>
 							<br>
 							<br>
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<input type="submit" value="Update Device"
+									<input type="submit" value="Add Device"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="addProduct">
 								</div>
@@ -599,13 +608,13 @@ li {
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
-		<script type="text/javascript"
+	<script type="text/javascript"
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	
+
 	<!-- /Script -->
 
 	<!--Mono and Colour Selection-->
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	function CheckColors(val){
 	 var element=document.getElementById('mono');
@@ -623,7 +632,6 @@ li {
 	}
 
 </script>
-	
 
 	<script>
 		$(document)
@@ -639,20 +647,17 @@ li {
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													serialNumber : {
+													clientName : {
 														validators : {
-															stringLength : {
-																min : 3,
-															},
 															notEmpty : {
-																message : 'Serial number is required to search and cannot be empty'
+																message : 'Client name is required to search and cannot be empty'
 															}
 														}
 													},
 												}
 											});
 						});
-	</script>
+</script>
 
 	<!-- Make all Serials numbers UpperCase  -->
 	<script type="text/javascript">
@@ -684,7 +689,6 @@ li {
 			});
 		});
 	</script>
-
 	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;
@@ -708,37 +712,241 @@ li {
 			document.getElementById('credenza').disabled = !this.checked;
 		};
 	</script>
-	
+
+		
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
+
+	<!-- Validate add Client -->
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#updateOtherDevice')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													customerName : {
+														validators : {
+															stringLength : {
+																min : 2,
+
+															},
+															notEmpty : {
+																message : 'Customer name is required and cannot be empty'
+															}
+														}
+													},
+
+													tellphoneNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+
+															notEmpty : {
+																message : 'Tellphone number is required and cannot be empty'
+															},
+															phone : {
+																country : 'US',
+																message : 'Please provide a vaild tellphone number'
+															}
+														}
+													},
+													emailCompany : {
+														validators : {
+															notEmpty : {
+																message : 'Company email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													},
+													email : {
+														validators : {
+															notEmpty : {
+																message : 'Email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													},
+													streetName : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Street name is required and cannot be empty'
+															}
+														}
+													},
+													city_town : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'City is required and cannot be empty'
+															}
+														}
+													},
+													province : {
+														validators : {
+															notEmpty : {
+																message : 'Province is required and cannot be empty'
+															}
+														}
+													},
+													zipcode : {
+														validators : {
+															stringLength : {
+																max : 4,
+																min : 4,
+															},
+															notEmpty : {
+																message : 'Zipcode is required and cannot be empty'
+															}
+														}
+													},
+													faxNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},/* 
+															notEmpty : {
+																message : 'Fax number is required and cannot be empty'
+															} */
+														}
+													},
+
+													streetNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Street number is required and cannot be empty'
+															}
+														}
+													},
+													firstName : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'First Name is required and cannot be empty'
+															}
+														}
+													},
+													lastName : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'Last Name is required and cannot be empty'
+															}
+														}
+													},
+													cellphoneNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+															notEmpty : {
+																message : 'Cellphone Number is required and cannot be empty'
+															}
+														}
+													},
+
+													email : {
+														validators : {
+															notEmpty : {
+																message : 'Email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													},
+													serialNumber : {
+														validators : {
+															stringLength : {
+																min : 2,
+
+															},
+															notEmpty : {
+																message : 'Serial Number is required and cannot be empty'
+															}
+														}
+													},
+													productModel : {
+														validators : {
+															stringLength : {
+																min : 2,
+
+															},
+															notEmpty : {
+																message : 'Model number is required and cannot be empty'
+															}
+														}
+													}
+													
+												}
+											});
+						});
+	</script>
+
 	<!-- Other new fields -->
 	<script>
 		$(document)
 				.ready(
 						function() {
-/* 
-									machinetypeValidators = {
+
+									/*  machinetypeValidators = {
 										row : '.col-xs-4',
 										validators : {
-											stringLength : {
+											 stringLength : {
 												min : 2,
 											},
 											notEmpty : {
 												message : 'Machine Accessory Type can not be empty'
-											}
+											} 
 										}
 									},
 									serialNumberValidators = {
 										row : '.col-xs-2',
 										validators : {
-											stringLength : {
+											 stringLength : {
 												min : 2,
 											},
 											notEmpty : {
 												message : 'Serial Number can not be empty'
 											} 
 										}
-									}, */ deviceIndex = 0;
+									}, */  deviceIndex = 0;
 
-							$('#updateOtherDevice')
+							$('#addOtherDevice')
 									/* .formValidation(
 											{
 												framework : 'bootstrap',
@@ -751,8 +959,8 @@ li {
 													'machinetype' : machinetypeValidators,
 													'serialNumber' : serialNumberValidators
 												}
-											}) */
-
+											})
+ 									*/
 									// Add button click handler
 									.on(
 											'click',
@@ -789,7 +997,7 @@ li {
 
 												// Add new fields
 												// Note that we also pass the validator rules for new field as the third parameter
-											/* 		$('#updateOtherDevice')
+												/* $('#addOtherDevice')
 														.formValidation(
 																'addField',
 																'device['
@@ -801,10 +1009,9 @@ li {
 																'device['
 																		+ deviceIndex
 																		+ '].serialNumber',
-																serialNumberValidators);
+																serialNumberValidators); */
 
-												*/
-											}) 
+											})
 
 									// Remove button click handler
 									.on(
@@ -816,7 +1023,7 @@ li {
 														.attr('data-book-index');
 
 												// Remove fields
-												$('#updateOtherDevice')
+												$('#addOtherDevice')
 														.formValidation(
 																'removeField',
 																$row
@@ -839,7 +1046,7 @@ li {
 	<script>
 		$(document).ready(
 				function() {
-					$('#updateOtherDevice').on(
+					$('#addOtherDevice').on(
 							'added.field.fv removed.field.fv',
 							function(e, data) {
 								var $body = $('body'), $iframe = $body
@@ -851,6 +1058,79 @@ li {
 							});
 				});
 	</script>
+	<script type="text/javascript">
 	
-	
+	 $('#startDate')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the start date field
+            $('#eventForm').formValidation('revalidateField', 'startDate');
+        });
+
+    $('#endDate')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        })
+        .on('changeDate', function(e) {
+            $('#eventForm').formValidation('revalidateField', 'endDate');
+        });
+
+    $('.dateCompare')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The name is required'
+                        }
+                    }
+                },
+                startDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The start date is required'
+                        },
+                        date: {
+                            format: 'MM/DD/YYYY',
+                            max: 'endDate',
+                            message: 'The start date is not a valid'
+                        }
+                    }
+                },
+                endDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The end date is required'
+                        },
+                        date: {
+                            format: 'MM/DD/YYYY',
+                            min: 'startDate',
+                            message: 'The end date is not a valid'
+                        }
+                    }
+                }
+            }
+        })
+        .on('success.field.fv', function(e, data) {
+            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
+                // We need to revalidate the end date
+                data.fv.revalidateField('endDate');
+            }
+
+            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
+                // We need to revalidate the start date
+                data.fv.revalidateField('startDate');
+            }
+        });
+});
+
+</script>
 </html>

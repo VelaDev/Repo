@@ -22,5 +22,15 @@ public class SpareMasterService implements SpareMasterServiceInt{
 	public List<SpareMaster> getSparesFromMastaData() {
 		return spareMasterDaoInt.getSparesFromMastaData();
 	}
+	@Override
+	public SpareMaster getSpareMaster(String partNumber) {
+		
+		return spareMasterDaoInt.getSpareMaster(partNumber);
+	}
+	@Override
+	public String[] getSerials() {
+		
+		return spareMasterDaoInt.getSerials();
+	}
 
 }

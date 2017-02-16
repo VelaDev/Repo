@@ -270,7 +270,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="tellphoneNumber" name="tellphoneNumber"
+												id="telephoneNumber" name="telephoneNumber"
 												placeholder="Tellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" value="${customerDetails.telephoneNumber}">
 										</div>
 									</div>

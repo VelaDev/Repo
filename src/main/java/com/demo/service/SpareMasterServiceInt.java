@@ -7,4 +7,6 @@ import com.demo.model.SpareMaster;
 public interface SpareMasterServiceInt {
 
 	List<SpareMaster> getSparesFromMastaData();
+	SpareMaster getSpareMaster(String partNumber);
+	String[] getSerials();
 }

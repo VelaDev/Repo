@@ -9,5 +9,7 @@ import com.demo.model.SpareMaster;
 public interface SpareMasterDaoInt {
 	
 	List<SpareMaster> getSparesFromMastaData();
+	SpareMaster getSpareMaster(String partNumber);
+	String[] getSerials();
 
 }

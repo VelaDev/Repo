@@ -192,8 +192,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphone" name="cellphone" placeholder="Cellphone No"
-													class="form-control" type="text">
+													id="cellphoneNumber" name="cellphoneNumber" placeholder="Cellphone No"
+													class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -205,8 +205,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephone" name="telephone" placeholder="Tellphone No"
-													class="form-control" type="text">
+													id="tellphoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
+													class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -406,7 +406,7 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													id="zipcode" placeholder="Area Code" class="form-control"
-													type="text">
+													type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -707,6 +707,186 @@ li {
 		};
 	</script>
 
+		
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
+
+	<!-- Validate add Client -->
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#addOtherDevice')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													customerName : {
+														validators : {
+															stringLength : {
+																min : 2,
+
+															},
+															notEmpty : {
+																message : 'Customer name is required and cannot be empty'
+															}
+														}
+													},
+
+													tellphoneNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+
+															notEmpty : {
+																message : 'Tellphone number is required and cannot be empty'
+															},
+															phone : {
+																country : 'US',
+																message : 'Please provide a vaild tellphone number'
+															}
+														}
+													},
+													emailCompany : {
+														validators : {
+															notEmpty : {
+																message : 'Company email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													},
+													email : {
+														validators : {
+															notEmpty : {
+																message : 'Email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													},
+													streetName : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Street name is required and cannot be empty'
+															}
+														}
+													},
+													city_town : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'City is required and cannot be empty'
+															}
+														}
+													},
+													province : {
+														validators : {
+															notEmpty : {
+																message : 'Province is required and cannot be empty'
+															}
+														}
+													},
+													zipcode : {
+														validators : {
+															stringLength : {
+																max : 4,
+																min : 4,
+															},
+															notEmpty : {
+																message : 'Zipcode is required and cannot be empty'
+															}
+														}
+													},
+													faxNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},/* 
+															notEmpty : {
+																message : 'Fax number is required and cannot be empty'
+															} */
+														}
+													},
+
+													streetNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Street number is required and cannot be empty'
+															}
+														}
+													},
+													firstName : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'First Name is required and cannot be empty'
+															}
+														}
+													},
+													lastName : {
+														validators : {
+															notEmpty : {
+																stringLength : {
+																	min : 3,
+																},
+																message : 'Last Name is required and cannot be empty'
+															}
+														}
+													},
+													cellphoneNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+															notEmpty : {
+																message : 'Cellphone Number is required and cannot be empty'
+															}
+														}
+													},
+
+													email : {
+														validators : {
+															notEmpty : {
+																message : 'Email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													}
+												}
+											});
+						});
+	</script>
 
 	<!-- Other new fields -->
 	<script>

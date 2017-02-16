@@ -176,7 +176,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="streetNumber" id="streetNumber"
-												placeholder="Street No" class="form-control" type="text">
+												placeholder="Street No" class="form-control" onkeypress="return isNumber(event)"  type="text">
 										</div>
 									</div>
 								</div>
@@ -405,6 +405,7 @@
 	<%-- <script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
  --%>
 	<!-- /Script -->
+	
 <script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;

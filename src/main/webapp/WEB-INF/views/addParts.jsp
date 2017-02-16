@@ -93,10 +93,7 @@
 												<thead>
 													<legend>Compatible Devices </legend>
 													<tr>
-														<th>Device <img
-															src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-														<th>Part Number<img
-															src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+														<th>Device Model</th>
 
 													</tr>
 												</thead>
@@ -108,9 +105,7 @@
 															<td><h6>
 																	<c:out value="" />
 																</h6></td>
-															<td><h6>
-																	<c:out value="" />
-																</h6></td>
+															
 
 														</tr>
 													</c:forEach>
@@ -134,7 +129,7 @@
 												</div>
 												<div class="col-xs-8">
 													<input type="text" id="partNumber" name="partNumber"
-														class="form-control input-sm" value="" disabled="disabled">
+														class="form-control input-sm" value="${sparePart.partNumber}" readonly="readonly">
 												</div>
 											</div>
 										</div>
@@ -148,8 +143,23 @@
 												</div>
 												<div class="col-xs-8">
 													<input type="text" id="itemType" name="itemType"
-														class="form-control input-sm" value="" disabled="disabled">
+														class="form-control input-sm" value="${sparePart.itemType}" readonly="readonly">
 													</select>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Description</label>
+													</h6>
+
+												</div>
+											 <div class="col-xs-8">
+													<input type="text" id="description" name="description"
+														class="form-control input-sm" value="${sparePart.description}" readonly="readonly">
 												</div>
 											</div>
 										</div>
@@ -163,53 +173,10 @@
 												</div>
 												<div class="col-xs-8">
 													<input type="text" id="receivedBy" name="receivedBy"
-														class="form-control input-sm" value="" disabled="disabled">
+														class="form-control input-sm" value="${loggedInUser.firstName} ${loggedInUser.lastName}" readonly="readonly">
 												</div>
 											</div>
 										</div>
-
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Description</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<select name="description" disabled="disabled"
-														class="form-control selectpicker">
-														<option value="">Select Description
-														<option>
-														<option value="Black Imaging Unit">Black Imaging
-															Unit</option>
-														<option value="Color Imaging Unit">Color Imaging
-															Unit</option>
-														<option value="Waste Toner Bottle">Waste Toner
-															Bottle</option>
-													</select>
-												</div>
-											</div>
-										</div>
-
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Compatibility</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<textarea name="compatibility" disabled="disabled"
-														class="form-control selectpicker">
-														
-													</textarea>
-												</div>
-											</div>
-										</div>
-
-
 									</form:form>
 								</div>
 						</div>

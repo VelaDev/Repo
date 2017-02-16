@@ -114,13 +114,6 @@ public class SparePartsController {
 		
 		return model;
 	}
-	/*public String [] getPartNumbers(){
-		System.out.println("Lets see");
-		getSerials = new String[1000000];
-		getSerials = spareMasterServiceInt.getSerials();
-		System.out.println("Lets see");
-		return getSerials;
-		
-	}*/
+	
 
 }

@@ -33,7 +33,7 @@
 												<th>Customer Name <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Email <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Update</th>
+												<th>Update Customer</th>
 												<th>Add Device</th>
 											</tr>
 										</thead>
@@ -46,7 +46,7 @@
 													<td>${list.tellphoneNumber}</td>
 													<%-- <td>${list.status}</td>
 													<td>${list.role}</td> --%>
-                                                    <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update</button></a></td>
+                                                    <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update Customer</button></a></td>
                                                     <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-success">Add Device</button></a></td>
 												</tr>
 											</c:forEach>

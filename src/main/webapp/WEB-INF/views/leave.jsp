@@ -15,77 +15,103 @@
 </head>
 <body>
 	<div class="velaphanda_containter" id="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			<br />
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="left">
-							<b>Leave</b>
+							<b>Make Leave</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
-					<ul class="nav nav-tabs">
-						<li class="active"><a href="#home" data-toggle="tab">Ticket
-								Overall</a></li>
-						<li><a href="#ticketDetails" data-toggle="tab">Ticket
-								Details</a></li>
-					</ul>
-					<div class="tab-content">
-
-						<!--home tab-->
-						<div class="tab-pane active" id="home">
-							<div class="panel panel-success">
-								<div class="panel-heading">
-									<h3 class="panel-title">
-										<div align="center">
-											<b>Tickets Overall</b>
-										</div>
-									</h3>
-								</div>
-								<div class="panel-body">
-									<!-- <div class="col-lg-10"> -->
-									<div class="panel-body">
-										<div class="pie_content">
-											<div id="ticket_details_pie" align='center'></div>
+					
+					<form:form class="well form-horizontal" method="POST"
+							action="" modelAttribute=""
+							id="makeLeave">
+							
+									<!-- Select type Leave Type-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Type of Leave</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select
+													name="leaveID" id="leaveID"
+													class="form-control selectpicker">
+													<option value="">Select Leave</option>
+													<option value="Annual Vacation">Annual Vacation</option>
+													<option value="Sick Leave">Sick Leave</option>
+													<option value="Family Problems">Family Problems</option>
+												</select>
+											</div>
 										</div>
 									</div>
-								</div>
-								<!-- /panel body -->
-							</div>
-							<!-- /panel panel-success -->
-						</div>
-						<!-- /home tab-->
-
-						<!--Tickets Details tab-->
-						<div class="tab-pane" id="ticketDetails">
-
-							<div class="panel panel-success">
-								<div class="panel-heading">
-									<h3 class="panel-title">
-										<div align="center">
-											<b>Tickets List</b>
-										</div>
-									</h3>
-								</div>
-								<div class="panel-body">
-									<!-- <div class="col-lg-10"> -->
-									<div class="panel-body">
-										
-											</div>
-								</div>
-								<!-- /panel body -->
-							</div>
-							<!-- /panel panel-success -->
-
-						</div>
-						<!-- Ticket Detials -->
+									
 							
-					</div>
-					<!-- /tab-content -->
-
+										<!-- Text input First Date Leave-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">First Date Leave</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-calendar"></i></span> <input
+													name="startDate" id="startDate" placeholder="YYYY-MM-DD"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Leave Date Leave-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Last Date Leave</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-calendar"></i></span> <input
+													name="endDate" id="endDate" placeholder="YYYY-MM-DD"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+							
+									<!-- Text input Contact Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Contact Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-earphone"></i></span> <input
+													id="contactNumber" name="contactNumber" placeholder="Contact Number during absence"
+													class="form-control" type="text" onkeypress="return isNumber(event)">
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input Address well on leave-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Address</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													id="address" name="address" placeholder="Address during absence"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="form-group row">
+										<div class="col-sm-offset-3 col-sm-6">
+											<input type="submit" value="Make Leave"
+												class="btn btn-primary btn-block btn-lg" tabindex="9"
+												id="addLeave">
+										</div>
+									</div>
+							
+							
+					</form:form>
+				
 				</div>
 				<!-- /panel body -->
 			</div>
@@ -102,24 +128,116 @@
     
  	
 	
-	<!-- Data tables search -->
+	<!-- Scripts -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		
 	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+	<!-- /Scripts -->
+	
+<script type="text/javascript">
+	function isNumber(evt) {
+	    evt = (evt) ? evt : window.event;
+	    var charCode = (evt.which) ? evt.which : evt.keyCode;
+	    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+	        return false;
+	    }
+	    return true;
+	}
+</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$('#myDatatable').DataTable({
-				"jQueryUI" : true,
-				"pagingType" : "full_numbers",
-				"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
-			/* few more options are available to use */
+			$('#startDate').datepicker({
+				format : "yyyy-mm-dd"
 			});
 		});
 	</script>
-	<!-- / Data tables search -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#endDate').datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+	</script>
+	
+	
+	<!-- Validate add Client -->
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$('#makeLeave')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													leaveID : {
+														validators : {
+															
+															notEmpty : {
+																message : 'Leave type is required and cannot be empty'
+															}
+														}
+													},
+
+													startDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The start date is required'
+									                        },
+									                        date: {
+									                            format: 'MM/DD/YYYY',
+									                            max: 'endDate',
+									                            message: 'The start date is not a valid'
+									                        }
+									                    }
+									                },
+									                endDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The end date is required'
+									                        },
+									                        date: {
+									                            format: 'MM/DD/YYYY',
+									                            min: 'startDate',
+									                            message: 'The end date is not a valid'
+									                        }
+									                    }
+									                },
+									                contactNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															}, 
+															notEmpty : {
+																message : 'Contact number is required and cannot be empty'
+															} 
+														}
+													},
+													address : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Street name is required and cannot be empty'
+															}
+														}
+													}
+													
+												}
+											});
+						});
+	</script>
 	
 </body>
 </html>

@@ -1,12 +1,18 @@
 package com.demo.service.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.demo.dao.LoginAttemptDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.LoginAttempt;
 import com.demo.service.LoginAttemptServiceInt;
 
+
+@Service("loginAttemptService")
+@Transactional
 public class LoginAttemptService implements LoginAttemptServiceInt{
 	
 	@Autowired

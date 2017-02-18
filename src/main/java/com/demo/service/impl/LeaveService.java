@@ -2,12 +2,18 @@ package com.demo.service.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.demo.dao.LeaveDaoInt;
 import com.demo.model.Leave;
 import com.demo.service.LeaveInt;
 
+
+@Service("leaveService")
+@Transactional
 public class LeaveService implements LeaveInt{
 	
 	@Autowired

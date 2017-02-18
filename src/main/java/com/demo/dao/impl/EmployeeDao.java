@@ -1,6 +1,10 @@
 package com.demo.dao.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -12,7 +16,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.dao.CredentialsDaoInt;
 import com.demo.dao.EmployeeDaoInt;
+import com.demo.model.Credentials;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Tickets;
@@ -25,11 +31,20 @@ public class EmployeeDao implements EmployeeDaoInt{
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	@Autowired
+	private CredentialsDaoInt credentialsDaoInt;
 	String retMessage = null;
 	private Employee emp = null;
-	List<Employee> empEmail = null;
-	List<Employee> empEmailReturn;
-	String encryptPassword ="";
+	private List<Employee> empEmail = null;
+	private List<Employee> empEmailReturn;
+	private String encryptPassword ="";
+	private Credentials credential = null;
+	
+	private Calendar cal = Calendar.getInstance();
+	private DateFormat dateFormat = null;
+	private Date date = null;
+	
 	public String saveEmployee(Employee employee) {
 		String password = "";
 		
@@ -41,6 +56,10 @@ public class EmployeeDao implements EmployeeDaoInt{
 			  employee.setPassword(encryptPassword);
 			  
 		      sessionFactory.getCurrentSession().save(employee);
+		      credential = getUserCredentials(employee);
+		      credentialsDaoInt.saveNewPassword(credential);
+		      
+		      
 		      JavaMail.sendPasswordToEmployee(employee,password);
 		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
 		}
@@ -274,5 +293,23 @@ public class EmployeeDao implements EmployeeDaoInt{
 		sessionFactory.getCurrentSession().update(employee);
 		retMessage = "OK";
 		return retMessage;
+	}
+	
+	private Credentials getUserCredentials(Employee employee){
+		Credentials credential = null;
+		dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		date = new Date();
+		
+		try{
+			credential = new Credentials();
+			credential.setPassword(employee.getPassword());
+			credential.setEmployee(employee);
+			credential.setStatus("Current");
+			credential.setPasswordDateInserted(dateFormat.format(date));
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return credential;
+		
 	}
 }

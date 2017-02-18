@@ -33,7 +33,7 @@ public class App
         System.out.println(Arrays.toString(compressed));*/
     	
     	SimpleDateFormat myFormat = new SimpleDateFormat("dd MM yyyy");
-    	String inputString1 = "18 01 2017";
+    	String inputString1 = "18 02 2017";
     	String inputString2 = "18 02 2017";
 
     	try {

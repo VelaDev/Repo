@@ -44,7 +44,7 @@
 											class="img-responsive" alt="" />
 									</div>
 									<div class="errorLogin">
-										<h2>Your are BLOCKED from using the system. You attempted to login three times using wrong Credentials</h2>
+										<h2>Your account is BLOCKED from using the system. You attempted to login three times using wrong Credentials</h2>
 										Please contact System Administrator.
 									</div>
 								</form>

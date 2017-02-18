@@ -29,6 +29,8 @@ public class Credentials implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	@Column(name="RecordID")
+	private int recordID;
 	@Column(name="User_Password")
 	private String password;
 	@Column(name="Password_InsertedDate")

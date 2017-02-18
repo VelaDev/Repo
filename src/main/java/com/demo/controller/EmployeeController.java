@@ -129,6 +129,8 @@ public class EmployeeController {
 				}
 			}
 			
+		}else if(employee != null&& employee.getStatus().equalsIgnoreCase("BLOCKED")){
+			System.out.print("User bolocked");
 		}
 		else{retRole= "redirect:error";
 			System.out.print("No such user");

@@ -44,7 +44,7 @@
 											class="img-responsive" alt="" />
 									</div>
 									<div class="errorLogin">
-										<h2>Email or Password is incorrect</h2>
+										<h2>Invalid Password. Please try again</h2>
 										or <a href="login.html">Login</a> with correct credentials
 									</div>
 								</form>

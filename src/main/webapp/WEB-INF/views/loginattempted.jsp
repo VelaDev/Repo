@@ -44,8 +44,8 @@
 											class="img-responsive" alt="" />
 									</div>
 									<div class="errorLogin">
-										<h2>Your account is BLOCKED from using the system. You attempted to login three times using wrong Credentials</h2>
-										Please contact System Administrator.
+										<h5>Your account has been locked because you have reached the maximum number of logon attempts. Please contact Administrator.</h5>
+										
 									</div>
 								</form>
 							</div>

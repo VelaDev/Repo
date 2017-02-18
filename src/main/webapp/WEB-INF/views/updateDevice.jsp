@@ -60,8 +60,9 @@ li {
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="serialNumber" onkeydown="upperCaseF(this)"  id="serialNumber" class="form-control"
-												type="text" placeholder='Search By Serial Number'>
+												name="serialNumber" onkeydown="upperCaseF(this)"
+												id="serialNumber" class="form-control" type="text"
+												placeholder='Search By Serial Number'>
 										</div>
 									</div>
 									<div class="col-md-2">
@@ -73,7 +74,8 @@ li {
 						</form>
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
-							action="updateProduct" modelAttribute="updateProduct" id="updateOtherDevice">
+							action="updateProduct" modelAttribute="updateProduct"
+							id="updateOtherDevice">
 
 							<fieldset>
 								<legend>Customer Details</legend>
@@ -85,10 +87,10 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-user"></i></span> <input type="text" id="customerName"
-													name="customerName" placeholder="Client Name"
-													class="form-control"
-													value="${productObject.customer.customerName}" >
+													class="glyphicon glyphicon-user"></i></span> <input type="text"
+													id="customerName" name="customerName"
+													placeholder="Client Name" class="form-control"
+													value="${productObject.customer.customerName}">
 											</div>
 										</div>
 									</div>
@@ -100,16 +102,16 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span> <input type="text" id="Company Email"
-													name="companyEmail" placeholder="Company Email"
-													class="form-control"
-													value="${productObject.customer.email}" >
+													class="glyphicon glyphicon-home"></i></span> <input type="text"
+													id="Company Email" name="companyEmail"
+													placeholder="Company Email" class="form-control"
+													value="${productObject.customer.email}">
 											</div>
 										</div>
 									</div>
-								</div>								
-								
-							<div class="col-sm-6">
+								</div>
+
+								<div class="col-sm-6">
 
 									<div id="customer_container"
 										style="width: auto; display: table;">
@@ -152,7 +154,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input id="firstName"
 													name="firstName" placeholder="First Name"
-													class="form-control" type="text" value="${productObject.contactPerson.firstName}">
+													class="form-control" type="text"
+													value="${productObject.contactPerson.firstName}">
 											</div>
 										</div>
 									</div>
@@ -164,7 +167,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
 													name="lastName" placeholder="Last Name"
-													class="form-control" type="text" value="${productObject.contactPerson.lastName}">
+													class="form-control" type="text"
+													value="${productObject.contactPerson.lastName}">
 											</div>
 										</div>
 									</div>
@@ -177,7 +181,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 													name="email" placeholder="Email Address"
-													class="form-control" type="email" value="${productObject.contactPerson.email}">
+													class="form-control" type="email"
+													value="${productObject.contactPerson.email}">
 											</div>
 										</div>
 									</div>
@@ -192,8 +197,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber" placeholder="Cellphone No"
-													class="form-control" type="text" onkeypress="return isNumber(event)" 
+													id="cellphoneNumber" name="cellphoneNumber"
+													placeholder="Cellphone No" class="form-control" type="text"
+													onkeypress="return isNumber(event)"
 													value="${productObject.contactPerson.cellphone}">
 											</div>
 										</div>
@@ -206,19 +212,20 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="tellphoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
-													class="form-control" type="text" onkeypress="return isNumber(event)" 
-													value="${productObject.contactPerson.telephone}" >
-													
+													id="tellphoneNumber" name="tellphoneNumber"
+													placeholder="Tellphone No" class="form-control" type="text"
+													onkeypress="return isNumber(event)"
+													value="${productObject.contactPerson.telephone}">
+
 											</div>
 										</div>
 									</div>
 
 								</div>
 								<!-- /Contact Person  -->
-								
-								
-								
+
+
+
 
 
 
@@ -241,7 +248,8 @@ li {
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="serialNumber" id="serialNumber"
 													onkeydown="upperCaseF(this)" placeholder="Serial Number"
-													class="form-control" type="text" value="${productObject.serialNumber}">
+													class="form-control" type="text"
+													value="${productObject.serialNumber}">
 											</div>
 										</div>
 									</div>
@@ -254,23 +262,24 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="productModel" placeholder="Model Number"
-													class="form-control" type="text" value="${productObject.modelNumber}">
+													class="form-control" type="text"
+													value="${productObject.modelNumber}">
 											</div>
 										</div>
 									</div>
 
-
-
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Contract Start
+										<label class="col-xs-3 control-label">Contract Start
 											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
-													name="startDate" id="startDate" placeholder="YYYY-MM-DD"
-													class="form-control" type="text" value="${productObject.startDate.toString().substring(0,10) }">
+											<div class='input-group date' id='datetimepicker6'>
+												<input type='text' class="form-control" name="startDate"
+													id="startDate" placeholder="YYYY-MM-DD"
+													value="${productObject.startDate.toString().substring(0,10) }" />
+												<span class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
 											</div>
 										</div>
 									</div>
@@ -279,27 +288,36 @@ li {
 										<label class="col-md-3 control-label">Contract End
 											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
-													name="endDate" id="endDate" placeholder="YYYY-MM-DD"
-													class="form-control" type="text" value="${productObject.endDate.toString().substring(0,10) }">
+											<div class='input-group date' id='datetimepicker7'>
+												<input type='text' class="form-control" name="endDate"
+													id="endDate" placeholder="YYYY-MM-DD"
+													value="${productObject.endDate.toString().substring(0,10) }" />
+												<span class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
 											</div>
 										</div>
 									</div>
-									<!-- Text input Installation Date-->
+
+
+									<!-- Text input Contract End Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Installation
 											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
+											<div class='input-group date' id='datetimepicker8'>
+												<input type='text' class="form-control"
 													name="installationDate" id="installationDate"
-													placeholder="YYYY-MM-DD" class="form-control" type="text" value="${productObject.installationDate.toString().substring(0,10) }">
+													placeholder="YYYY-MM-DD"
+													value="${productObject.installationDate.toString().substring(0,10) }" />
+												<span class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
 											</div>
 										</div>
 									</div>
+
+
 
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
@@ -326,7 +344,7 @@ li {
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Colour Reading" name="colourReading"
-													id="colourReading" value="${productObject.colour}"//>
+													id="colourReading" value="${productObject.colour}" //>
 											</div>
 											<br />
 										</div>
@@ -336,7 +354,7 @@ li {
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Mono Reading" name="monoReading"
-													id="monoReading" value="${productObject.monoReading}"/>
+													id="monoReading" value="${productObject.monoReading}" />
 											</div>
 										</div>
 									</div>
@@ -346,7 +364,7 @@ li {
 										<div class="col-md-6">
 											<input type="text" class="form-control" name="mono"
 												placeholder="Enter Mono Reading" id="mono"
-												style='display: none;' value="${productObject.monoReading}"/>
+												style='display: none;' value="${productObject.monoReading}" />
 										</div>
 									</div>
 
@@ -365,7 +383,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetName" id="streetName" placeholder="Street Name"
-													class="form-control" type="text" value="${productObject.streetName}">
+													class="form-control" type="text"
+													value="${productObject.streetName}">
 											</div>
 										</div>
 									</div>
@@ -377,7 +396,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="city_town" id="city_town" placeholder="City / Town"
-													class="form-control" type="text" value="${productObject.streetName}">
+													class="form-control" type="text"
+													value="${productObject.streetName}">
 											</div>
 										</div>
 									</div>
@@ -412,7 +432,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													id="zipcode" placeholder="Area Code" class="form-control"
-													type="text" onkeypress="return isNumber(event)" value="${productObject.areaCode}">
+													type="text" onkeypress="return isNumber(event)"
+													value="${productObject.areaCode}">
 											</div>
 										</div>
 									</div>
@@ -449,7 +470,8 @@ li {
 										<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm"
 											onkeydown="upperCaseF(this)" id="bridgeunit" disabled
-											name="bridgeUnitSerialTypeSerialNo"  value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }"/>
+											name="bridgeUnitSerialTypeSerialNo"
+											value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }" />
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -460,7 +482,8 @@ li {
 										<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm"
 											onkeydown="upperCaseF(this)" id="faxunitserial" disabled
-											name="faxUnitSerialTypeSerialNo" value="${AccessoryObject.faxUnitSerialTypeSerialNo }" />
+											name="faxUnitSerialTypeSerialNo"
+											value="${AccessoryObject.faxUnitSerialTypeSerialNo }" />
 									</div>
 								</div>
 								<br>
@@ -474,7 +497,8 @@ li {
 										<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm"
 											onkeydown="upperCaseF(this)" id="onebintray" disabled
-											name="OneBinTrayTypeSerialNo" value="${AccessoryObject.oneBinTrayTypeSerialNo }"/>
+											name="OneBinTrayTypeSerialNo"
+											value="${AccessoryObject.oneBinTrayTypeSerialNo }" />
 									</div>
 
 									<div class="col-xs-2 form-control-label">
@@ -485,7 +509,8 @@ li {
 										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm"
 											onkeydown="upperCaseF(this)" id="finisherserial" disabled
-											name="finisherTypeSerialNo" value="${AccessoryObject.finisherTypeSerialNo }"/>
+											name="finisherTypeSerialNo"
+											value="${AccessoryObject.finisherTypeSerialNo }" />
 									</div>
 								</div>
 								<br>
@@ -498,7 +523,7 @@ li {
 										<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
 											type="text" class="form-control input-sm"
 											onkeydown="upperCaseF(this)" id="ltc" name="ltcTypeSerial"
-											disabled value="${AccessoryObject.ltcTypeSerial }"/>
+											disabled value="${AccessoryObject.ltcTypeSerial }" />
 									</div>
 
 
@@ -511,7 +536,8 @@ li {
 											<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
 												type="text" class="form-control input-sm"
 												onkeydown="upperCaseF(this)" id="credenza"
-												name="credenzaSerialNo" disabled value="${AccessoryObject.credenzaSerialNo }"/>
+												name="credenzaSerialNo" disabled
+												value="${AccessoryObject.credenzaSerialNo }" />
 										</div>
 
 									</div>
@@ -526,7 +552,8 @@ li {
 											Number:&nbsp;&nbsp;</label><input type="text"
 											class="form-control input-sm" onkeydown="upperCaseF(this)"
 											id="additionalserial" name="additionalPaperTraysTypeSerial"
-											disabled value="${AccessoryObject.additionalPaperTraysTypeSerial }"/>
+											disabled
+											value="${AccessoryObject.additionalPaperTraysTypeSerial }" />
 									</div>
 								</div>
 
@@ -601,13 +628,16 @@ li {
 
 	<!-- Script -->
 	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/moment/moment.js" />"></script>
+	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datetimepicker.min.js" />"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+
 	<script type="text/javascript"
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
 
@@ -668,27 +698,8 @@ li {
 	}
 	</script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#startDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#endDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#installationDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-	</script>
+
+
 	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;
@@ -713,8 +724,8 @@ li {
 		};
 	</script>
 
-		
-<script type="text/javascript">
+
+	<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -724,6 +735,24 @@ function isNumber(evt) {
     return true;
 }
 </script>
+
+	<script type="text/javascript">
+$(document).ready(function() {
+        $(function () {
+            $('#datetimepicker6').datetimepicker();            
+            $('#datetimepicker7').datetimepicker({
+            	 pickTime: false
+            });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    });
+</script>
+
 
 	<!-- Validate add Client -->
 	<script type="text/javascript">
@@ -814,6 +843,39 @@ function isNumber(evt) {
 															}
 														}
 													},
+													startDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The start date is required'
+									                        },
+									                        date: {
+									                            max: 'endDate',
+									                            message: 'The start date is not a valid'
+									                        }
+									                    }
+									                },
+									                endDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The end date is required'
+									                        },
+									                        date: {
+									                            min: 'startDate',
+									                            message: 'The end date is not a valid'
+									                        }
+									                    }
+									                },
+									                installationDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The end date is required'
+									                        },
+									                        date: {
+									                            min: 'startDate',
+									                            message: 'The installation date is not a valid'
+									                        }
+									                    }
+									                },
 													zipcode : {
 														validators : {
 															stringLength : {

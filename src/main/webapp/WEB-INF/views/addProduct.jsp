@@ -2,15 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
-<link
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
-	rel="stylesheet" type="text/css" />
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <link type="text/stylesheet"
 	src="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/stylesheet"
@@ -19,6 +16,14 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
 	rel="stylesheet">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap-datetimepicker.min.css" />">
+<link
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
+	rel="stylesheet" type="text/css" />
 
 <style>
 li {
@@ -192,8 +197,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber" placeholder="Cellphone No"
-													class="form-control" type="text" onkeypress="return isNumber(event)">
+													id="cellphoneNumber" name="cellphoneNumber"
+													placeholder="Cellphone No" class="form-control" type="text"
+													onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -205,8 +211,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
-													class="form-control" type="text" onkeypress="return isNumber(event)">
+													id="telephoneNumber" name="tellphoneNumber"
+													placeholder="Tellphone No" class="form-control" type="text"
+													onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -247,24 +254,23 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" id="productModel" placeholder="Model Number"
-													class="form-control" type="text">
+													name="productModel" id="productModel"
+													placeholder="Model Number" class="form-control" type="text">
 											</div>
 										</div>
 									</div>
 
-
-
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Contract Start
+										<label class="col-xs-3 control-label">Contract Start
 											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
-													name="startDate" id="startDate" placeholder="YYYY-MM-DD"
-													class="form-control" type="text">
+											<div class='input-group date' id='datetimepicker6'>
+												<input type='text' class="form-control" name="startDate"
+													id="startDate" placeholder="YYYY-MM-DD" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
 											</div>
 										</div>
 									</div>
@@ -273,24 +279,28 @@ li {
 										<label class="col-md-3 control-label">Contract End
 											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
-													name="endDate" id="endDate" placeholder="YYYY-MM-DD"
-													class="form-control" type="text">
+											<div class='input-group date' id='datetimepicker7'>
+												<input type='text' class="form-control" name="endDate"
+													id="endDate" placeholder="YYYY-MM-DD" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
 											</div>
 										</div>
 									</div>
+
 									<!-- Text input Installation Date-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Installation
 											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-calendar"></i></span> <input
+											<div class='input-group date' id='datetimepicker8'>
+												<input type='text' class="form-control"
 													name="installationDate" id="installationDate"
-													placeholder="YYYY-MM-DD" class="form-control" type="text">
+													placeholder="YYYY-MM-DD" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
 											</div>
 										</div>
 									</div>
@@ -595,17 +605,40 @@ li {
 
 	<!-- Script -->
 	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/moment/moment.js" />"></script>
+	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datetimepicker.min.js" />"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+
 	<script type="text/javascript"
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
 
 	<!-- /Script -->
+
+
+	<script type="text/javascript">
+$(document).ready(function() {
+        $(function () {
+            $('#datetimepicker6').datetimepicker();
+            $('#datetimepicker7').datetimepicker({
+              
+            });
+            $("#datetimepicker6").on("dp.change", function (e) {
+                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+            });
+            $("#datetimepicker7").on("dp.change", function (e) {
+                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+            });
+        });
+    });
+</script>
+
+
 
 	<!--Mono and Colour Selection-->
 	<script type="text/javascript">
@@ -662,27 +695,6 @@ li {
 	</script>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#startDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#endDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-	</script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#installationDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-	</script>
-	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;
 		};
@@ -706,8 +718,8 @@ li {
 		};
 	</script>
 
-		
-<script type="text/javascript">
+
+	<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -807,6 +819,39 @@ function isNumber(evt) {
 															}
 														}
 													},
+													startDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The start date is required'
+									                        },
+									                        date: {
+									                            max: 'endDate',
+									                            message: 'The start date is not a valid'
+									                        }
+									                    }
+									                },
+									                endDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The end date is required'
+									                        },
+									                        date: {
+									                            min: 'startDate',
+									                            message: 'The end date is not a valid'
+									                        }
+									                    }
+									                },
+									                installationDate: {
+									                    validators: {
+									                        notEmpty: {
+									                            message: 'The end date is required'
+									                        },
+									                        date: {
+									                            min: 'startDate',
+									                            message: 'The installation date is not a valid'
+									                        }
+									                    }
+									                },
 													zipcode : {
 														validators : {
 															stringLength : {

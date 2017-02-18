@@ -185,6 +185,9 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 emp.setFirstTimeLogin(false);
 				 emp.setStatus("ACTIVE");
 				 sessionFactory.getCurrentSession().update(emp);
+				 credential = getUserCredentials(emp);
+			     credentialsDaoInt.saveNewPassword(credential);
+				 
 				 retMessage= "Password successfully changed";
 			 }
 		}catch(Exception e){

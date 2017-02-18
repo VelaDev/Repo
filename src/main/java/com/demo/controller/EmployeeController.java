@@ -131,7 +131,7 @@ public class EmployeeController {
 			}
 			
 		}else if(employee != null&& employee.getStatus().equalsIgnoreCase("BLOCKED")){
-			retRole= "redirect:login";
+			retRole= "redirect:loginattempted";
 		}
 		else{retRole= "redirect:error";
 			System.out.print("No such user");
@@ -479,6 +479,13 @@ public class EmployeeController {
 			model.setViewName("wrongpasswordoruser");
 		return model;
 	}
-	
+	@RequestMapping(value="loginattemped",method=RequestMethod.GET)
+	public ModelAndView loginAttempt( ) {
+		
+		model = new ModelAndView();
+			
+			model.setViewName("loginattemped");
+		return model;
+	}
 	
 }

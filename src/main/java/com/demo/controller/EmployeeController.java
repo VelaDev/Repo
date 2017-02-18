@@ -479,12 +479,12 @@ public class EmployeeController {
 			model.setViewName("wrongpasswordoruser");
 		return model;
 	}
-	@RequestMapping(value="loginattemped",method=RequestMethod.GET)
+	@RequestMapping(value="loginattempted",method=RequestMethod.GET)
 	public ModelAndView loginAttempt( ) {
 		
 		model = new ModelAndView();
 			
-			model.setViewName("loginattemped");
+			model.setViewName("loginattempted");
 		return model;
 	}
 	

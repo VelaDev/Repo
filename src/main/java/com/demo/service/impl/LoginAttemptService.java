@@ -35,4 +35,9 @@ public class LoginAttemptService implements LoginAttemptServiceInt{
 		return loginAttemptDaoInt.getEmployeeDetails(employee);
 	}
 
+	@Override
+	public void userLoggeIn(Employee employee) {
+		loginAttemptDaoInt.userLoggeIn(employee);
+		
+	}
 }

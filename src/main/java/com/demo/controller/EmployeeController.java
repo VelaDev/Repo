@@ -94,6 +94,7 @@ public class EmployeeController {
 				retRole ="redirect:changePassword";
 			}else{
 				
+				serviceInt.userLoggeIn(employee);
 				model.addObject("loggedInUser", employee.getEmail());
 				if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
@@ -130,7 +131,7 @@ public class EmployeeController {
 			}
 			
 		}else if(employee != null&& employee.getStatus().equalsIgnoreCase("BLOCKED")){
-			System.out.print("User bolocked");
+			retRole= "redirect:login";
 		}
 		else{retRole= "redirect:error";
 			System.out.print("No such user");

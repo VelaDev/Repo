@@ -9,4 +9,5 @@ public interface LoginAttemptDaoInt {
 	void upsertUserAttempt(LoginAttempt userLoginAttempt);
 	LoginAttempt getLoginUser(String userName);
 	LoginAttempt getEmployeeDetails(Employee employee);
+	void userLoggeIn(Employee employee);
 }

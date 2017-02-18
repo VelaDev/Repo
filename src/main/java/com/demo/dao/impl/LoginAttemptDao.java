@@ -64,4 +64,16 @@ public class LoginAttemptDao implements LoginAttemptDaoInt{
 		return attempt;
 	}
 
+	@Override
+	public void userLoggeIn(Employee employee) {
+		try{
+			LoginAttempt loginattempt = getLoginUser(employee.getEmail());
+			loginattempt.setAttemptCount(0);
+			sessionFactory.getCurrentSession().saveOrUpdate(loginattempt);
+		}catch(Exception e){
+			e.getMessage();
+		}
+		
+	}
+
 }

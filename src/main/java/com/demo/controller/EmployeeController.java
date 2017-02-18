@@ -318,9 +318,16 @@ public class EmployeeController {
 	}
 	@RequestMapping(value="changePasswords")
 	public String changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
+		String retValue = null;
 		retMessage = employeeService.changePassword(email, newpassword);
+		if(retMessage.equalsIgnoreCase("OK")){
+			
+		}
+		else{
+			retValue= "changePassword";
+		}
 		
-		String retValue= "redirect:login";
+		retValue= "redirect:login";
 		return retValue;
 	}
 	

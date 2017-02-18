@@ -177,6 +177,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 	@Override
 	public String changePassword(String email, String password) {
 		String passworChange = "";
+		boolean retFlag = false;
 		try{
 			 emp = getEmployeeByEmpNum(email);
 			 if(emp != null){
@@ -186,9 +187,15 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 emp.setStatus("ACTIVE");
 				 sessionFactory.getCurrentSession().update(emp);
 				 credential = getUserCredentials(emp);
-			     credentialsDaoInt.saveNewPassword(credential);
+				 retFlag= credentialsDaoInt.saveNewPassword(credential);
+				 if(retFlag ==true){
+					 
+					 retMessage= "OK";
+				 }
+				 else{
+					 retMessage= "Exist";
+				 }
 				 
-				 retMessage= "Password successfully changed";
 			 }
 		}catch(Exception e){
 			retMessage = "Password not changed "+ e.getMessage();

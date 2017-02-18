@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="Compatibility")
+@Table(name="UserCredentials")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

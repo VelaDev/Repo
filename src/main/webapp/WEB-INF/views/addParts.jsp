@@ -163,6 +163,20 @@
 												</div>
 											</div>
 										</div>
+																<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Quantity</label>
+													</h6>
+
+												</div>
+											 <div class="col-xs-8">
+													<input type="text" id="quantity" name="quantity"
+														class="form-control input-sm"  >
+												</div>
+											</div>
+										</div>
 										<div class="row">
 											<div class="col-xs-12">
 												<div class="col-xs-4 form-control-label">

@@ -317,7 +317,7 @@ public class EmployeeController {
 		return model;
 	}
 	@RequestMapping(value="changePasswords")
-	public String changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
+	public ModelAndView changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
 		String retValue = null;
 		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
@@ -328,11 +328,9 @@ public class EmployeeController {
 			
 			model.addObject(retMessage, "Password exist, please create a new password");
 			model.setViewName("changePassword");
-			retValue= "changePassword";
 		}
 		
-		retValue= "redirect:login";
-		return retValue;
+		return model;
 	}
 	
 	@RequestMapping(value="searchEmployeeForPasswordReset")

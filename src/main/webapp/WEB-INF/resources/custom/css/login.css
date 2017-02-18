@@ -34,6 +34,9 @@ span.techsystem{
 .errorLogin h2{
 	color:#ff0000;
 }
+.errorLogin h5{
+	color:#ff0000;
+}
 .form {
   position: relative;
   z-index: 1;

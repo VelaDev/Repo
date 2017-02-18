@@ -316,9 +316,8 @@ public class EmployeeController {
 		
 		return model;
 	}
-	@RequestMapping(value="changePasswords")
+	@RequestMapping(value="changePasswords",method=RequestMethod.POST)
 	public ModelAndView changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
-		String retValue = null;
 		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
 		if(retMessage.equalsIgnoreCase("OK")){

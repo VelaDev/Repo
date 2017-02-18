@@ -42,6 +42,10 @@ public class LoginAttemptDao implements LoginAttemptDaoInt{
 				 attempt.setUserName(employee.getEmail());
 				 tempCount= loginattempt.getAttemptCount() +1;
 				 attempt.setAttemptCount(tempCount);
+			 }else{
+				 
+				 attempt.setUserName(employee.getEmail());
+				 attempt.setAttemptCount(1);
 			 }
 			
 		}catch(Exception e){

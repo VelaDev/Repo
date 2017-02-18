@@ -72,7 +72,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="firstName"
-										placeholder="First Name" class="form-control" type="text" value='${employeeObject.firstName }'> 
+										placeholder="First Name" class="form-control" type="text" value='${employeeObject.firstName }' readonly="readonly"> 
 								</div>
 							</div>
 						</div>
@@ -84,7 +84,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-user"></i></span> <input name="lastName"
-										placeholder="Last Name" class="form-control" type="text" value='${employeeObject.lastName }'>
+										placeholder="Last Name" class="form-control" type="text" value='${employeeObject.lastName }' readonly="readonly">
 								</div>
 							</div>
 						</div>
@@ -94,7 +94,7 @@
 							<label class="col-md-3 control-label">Title</label>
 							<div class="col-md-6 selectContainer">
 								<div class="input-group">
-									<span class="input-group-addon"><i
+									<span class="input-group-addon" ><i
 										class="glyphicon glyphicon-list"></i></span> <select name="title"
 										class="form-control selectpicker">
 										<option value="">${ employeeObject.title}</option>
@@ -137,7 +137,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-envelope"></i></span> <input name="email"
-										placeholder="E-Mail Address" class="form-control" type="text" value='${ employeeObject.email}'>
+										placeholder="E-Mail Address" class="form-control" type="text" value='${ employeeObject.email}' readonly="readonly">
 								</div>
 							</div>
 						</div>
@@ -154,8 +154,7 @@
 										<option value="Admin">Admin</option>
 									<option value="Manager">Manager</option>
 									<option value="Technician">Technician</option>
-									<option value="User">User</option>
-										
+									<option value="User">User</option>	
 									</select>
 								</div>
 							</div>

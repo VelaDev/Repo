@@ -183,6 +183,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 passworChange = PasswordEncrypt.encryptPassword(password);
 				 emp.setPassword(passworChange);
 				 emp.setFirstTimeLogin(false);
+				 emp.setStatus("ACTIVE");
 				 sessionFactory.getCurrentSession().update(emp);
 				 retMessage= "Password successfully changed";
 			 }
@@ -203,6 +204,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				encryptPassword = PasswordEncrypt.encryptPassword(tempPassword);
 				emp.setPassword(encryptPassword);
 				emp.setFirstTimeLogin(true);
+				emp.setStatus("ACTIVE");
 			/*	passworChange = updateEmployee(emp);*/
 				sessionFactory.getCurrentSession().update(emp);
 				JavaMail.sendPasswordToEmployee(emp,tempPassword);

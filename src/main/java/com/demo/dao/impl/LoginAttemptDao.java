@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.LoginAttemptDaoInt;
+import com.demo.model.Employee;
 import com.demo.model.LoginAttempt;
 
 @Repository("loginAttemptDAO")
@@ -15,6 +16,8 @@ public class LoginAttemptDao implements LoginAttemptDaoInt{
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private LoginAttempt attempt;
 	
 	@Override
 	public void upsertUserAttempt(LoginAttempt userLoginAttempt) {
@@ -26,6 +29,25 @@ public class LoginAttemptDao implements LoginAttemptDaoInt{
 	public LoginAttempt getLoginUser(String userName) {
 		
 		return (LoginAttempt) sessionFactory.getCurrentSession().get(LoginAttempt.class, userName);
+	}
+
+	@Override
+	public LoginAttempt getEmployeeDetails(Employee employee) {
+		LoginAttempt loginattempt = getLoginUser(employee.getEmail());
+		int tempCount = 0;
+		attempt = new LoginAttempt();
+		try{
+			
+			 if(loginattempt != null){
+				 attempt.setUserName(employee.getEmail());
+				 tempCount= loginattempt.getAttemptCount() +1;
+				 attempt.setAttemptCount(tempCount);
+			 }
+			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return attempt;
 	}
 
 }

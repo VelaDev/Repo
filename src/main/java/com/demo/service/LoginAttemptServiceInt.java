@@ -1,10 +1,9 @@
-package com.demo.dao;
+package com.demo.service;
 
 import com.demo.model.Employee;
 import com.demo.model.LoginAttempt;
 
-
-public interface LoginAttemptDaoInt {
+public interface LoginAttemptServiceInt {
 
 	void upsertUserAttempt(LoginAttempt userLoginAttempt);
 	LoginAttempt getLoginUser(String userName);

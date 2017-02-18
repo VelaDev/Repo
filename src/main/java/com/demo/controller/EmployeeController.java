@@ -21,8 +21,10 @@ import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
 import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
+import com.demo.model.LoginAttempt;
 import com.demo.model.UserLogDetails;
 import com.demo.service.EmployeeServiceInt;
+import com.demo.service.LoginAttemptServiceInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.UserLogDetailsServiceInt;
@@ -41,11 +43,16 @@ public class EmployeeController {
 	@Autowired
 	private UserLogDetailsServiceInt userLogDetailsServiceInt;
 	
+	@Autowired
+	private LoginAttemptServiceInt serviceInt;
+	
 	private List<PieChart> beanList = null;
 	String retMessage =null;
 	ModelAndView model = null;
 	Employee userName = null;
 	private UserLogDetails details;
+	
+	private LoginAttempt loginAttempt;
 	String retPage = null;
 	Integer count = 1;
 
@@ -114,8 +121,11 @@ public class EmployeeController {
 					retRole= "redirect:ticket";
 				}else{
 					
+					
+					loginAttempt = serviceInt.getEmployeeDetails(employee);
+					serviceInt.upsertUserAttempt(loginAttempt);
 					retRole= "redirect:wrongpasswordoruser";
-					System.out.println("Username or password incorrect");
+					
 				}
 			}
 			
@@ -466,4 +476,6 @@ public class EmployeeController {
 			model.setViewName("wrongpasswordoruser");
 		return model;
 	}
+	
+	
 }

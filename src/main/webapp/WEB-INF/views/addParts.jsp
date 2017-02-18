@@ -92,18 +92,14 @@
 											<table id="myDatatable" class="display datatable">
 												<thead>
 													<legend>Compatible Devices </legend>
-													<tr>
-														<th>Device Model</th>
-
-													</tr>
 												</thead>
 												<tbody>
 													<!-- Iterating over the list sent from Controller -->
 
-													<c:forEach items="" var="device">
+													<c:forEach items="sparePart" var="device">
 														<tr>
 															<td><h6>
-																	<c:out value="" />
+																	<c:out value="${device.compitableDevice }" />
 																</h6></td>
 															
 
@@ -191,6 +187,16 @@
 												</div>
 											</div>
 										</div>
+										
+										<br>
+							<br>
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<input type="submit" value="Add Spares"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="addSpares">
+								</div>
+							</div>
 									</form:form>
 								</div>
 						</div>

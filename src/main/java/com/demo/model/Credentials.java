@@ -8,8 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.ForeignKey;
 
@@ -18,29 +16,22 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Entity
-@Table(name="Accessories")
+@Table(name="Compatibility")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Accessories implements Serializable{
+public class Credentials implements Serializable {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="Serial")
-	private String serial;
-	@Column(name="Type")
-	private String accessotyType;
+	@Column(name="User_Password")
+	private String password;
+	@Column(name="Password_InsertedDate")
+	private Date passwordDateInserted;
 	
 	@ManyToOne
-	@ForeignKey(name="Device_Serial")
-	private Device device;
-	@Column(name="DateTime")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dateTime;
+	@ForeignKey(name="User_Name")
+	private Employee employee;
+
 }

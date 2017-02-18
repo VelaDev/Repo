@@ -10,6 +10,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -82,4 +83,7 @@ public class Employee implements Serializable{
 	
 	@OneToMany(mappedBy="employee")
 	private Set<Leave> leave;
+	
+	@OneToMany(mappedBy ="employee", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Employee> employee;
 }

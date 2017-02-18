@@ -383,7 +383,7 @@
 								<div class="col-sm-offset-2 col-sm-8">
 									<br> <br> <input type="submit"
 										value="Update Customer"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										class="btn btn-primary btn-block btn-lg" data-confirm="You are about to update the customer information, Make sure all information is correct before updating"
 										id="updateClnt">
 							</div>
 							</div>

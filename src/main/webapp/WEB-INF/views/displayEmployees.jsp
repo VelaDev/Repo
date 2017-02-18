@@ -75,6 +75,9 @@
 										     <c:when test="${list.status=='ACTIVE'}"> 
 										        <button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button>
 									         </c:when>
+									         <c:when test="${list.status=='BLOCKED'}"> 
+										        <button class="btn btn-danger" data-bb-example-key="confirm-button-text" >Deactivate</button>
+									         </c:when>
 									         <c:otherwise>
 									            <button class="btn btn-success" data-bb-example-key="confirm-button-text">Activate</button>
 									         </c:otherwise>

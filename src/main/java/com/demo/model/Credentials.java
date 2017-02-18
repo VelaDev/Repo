@@ -41,6 +41,7 @@ public class Credentials implements Serializable {
 	@Column(name="Status")
 	private String status;
 	
+	
 	@ManyToOne
 	@ForeignKey(name="User_Name")
 	private Employee employee;

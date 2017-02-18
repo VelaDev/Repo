@@ -319,11 +319,15 @@ public class EmployeeController {
 	@RequestMapping(value="changePasswords")
 	public String changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
 		String retValue = null;
+		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
 		if(retMessage.equalsIgnoreCase("OK")){
 			
 		}
 		else{
+			
+			model.addObject(retMessage, "Password exist, please create a new password");
+			model.setViewName("changePassword");
 			retValue= "changePassword";
 		}
 		

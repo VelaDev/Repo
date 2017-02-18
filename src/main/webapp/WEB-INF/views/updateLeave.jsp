@@ -28,8 +28,8 @@
 				<div class="panel-body">
 					
 					<form:form class="well form-horizontal" method="POST"
-							action="" modelAttribute=""
-							id="makeLeave">
+							action="updateLeave" modelAttribute="updateLeave"
+							id="updateLeave">
 							
 									<!-- Select type Leave Type-->
 									<div class="form-group">

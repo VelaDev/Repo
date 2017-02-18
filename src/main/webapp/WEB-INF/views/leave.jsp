@@ -28,8 +28,7 @@
 				<div class="panel-body">
 					
 					<form:form class="well form-horizontal" method="POST"
-							action="" modelAttribute=""
-							id="makeLeave">
+							action="leave" modelAttribute="leave" id="makeLeave">
 							
 									<!-- Select type Leave Type-->
 									<div class="form-group">
@@ -47,10 +46,9 @@
 												</select>
 											</div>
 										</div>
-									</div>
-									
+									</div>									
 							
-										<!-- Text input First Date Leave-->
+									<!-- Text input First Date Leave-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">First Date Leave</label>
 										<div class="col-md-6 inputGroupContainer">

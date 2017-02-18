@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>View Requested Leave Information | Velaphanda Trading & Projects</title>
+<title>View Requested Leave Information | Velaphanda Trading &
+	Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,44 +27,43 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					
-						<!-- Below table will be displayed as Data table -->
-										<table id="myDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Type of Leave<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-														<th>First Date Leave<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Last Date Leave<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>														
-													<th>Contact Number<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Address<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Update</th>
 
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach items="" var="leave" varStatus="itr">
-													<tr>
-														<td><c:out value="${leave.leaveID}" /></td>
-														<td><c:out value="${leave.startDate}" /></td>
-														<td><c:out value="${leave.dateTime}" /></td>
-														<td><c:out value="${leave.contactNumber}" /></td>														
-														<td><c:out value="${leave.address}" /></td>
-														<td><c:out
-																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
-														<td><a
-															href="=<c:out value='${leave.LeaveID}'/>"><button class="btn btn-info">Edit</button></a></td>
-														
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-				
+					<!-- Below table will be displayed as Data table -->
+					<table id="myDatatable" class="display datatable">
+						<thead>
+							<tr>
+								<th>Type of Leave<img
+									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>First Date Leave<img
+									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Last Date Leave<img
+									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Contact Number<img
+									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Address<img
+									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Update</th>
+
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Iterating over the list sent from Controller -->
+							<c:forEach items="" var="leave" varStatus="itr">
+								<tr>
+									<td><c:out value="${leave.leaveID}" /></td>
+									<td><c:out value="${leave.startDate}" /></td>
+									<td><c:out value="${leave.dateTime}" /></td>
+									<td><c:out value="${leave.contactNumber}" /></td>
+									<td><c:out value="${leave.address}" /></td>
+									<td><c:out
+											value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
+									<td><a href="=<c:out value='${leave.LeaveID}'/>"><button
+												class="btn btn-info">Edit</button></a></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+
 				</div>
 				<!-- /panel body -->
 			</div>
@@ -75,8 +75,8 @@
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-   
-	
+
+
 	<!-- Scripts -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
@@ -84,10 +84,10 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-		
+
 	<!-- /Scripts -->
-	
-	
+
+
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
@@ -99,6 +99,6 @@
 		});
 	</script>
 	<!-- / Data tables search -->
-	
-	</body>
+
+</body>
 </html>

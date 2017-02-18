@@ -59,7 +59,7 @@
 
 					<div class="tab-content">
 
-						<form action="searchpartNumber" method="post"
+						<form:form action="searchpartNumber" method="post"
 							id="searchpartNumber">
 							<div class="row">
 								<!-- Text input Search-->
@@ -79,11 +79,11 @@
 								</div>
 							</div>
 							<hr>
-						</form>
+						</form:form>
 						<!--Search-->
 
 						<div class="col-xs-10">
-							<form action="">
+							<form:form action="">
 								<div class="groupdetails-row-padding">
 									<div class="groupsearchdetails">
 
@@ -92,16 +92,19 @@
 											<table id="myDatatable" class="display datatable">
 												<thead>
 													<legend>Compatible Devices </legend>
+													<tr>
+														<th>Device Model</th>
+
+													</tr>
 												</thead>
 												<tbody>
 													<!-- Iterating over the list sent from Controller -->
-
-													<c:forEach items="sparePart" var="device">
+													<c:forEach items="" var="device">
 														<tr>
 															<td><h6>
-																	<c:out value="${device.compitableDevice }" />
+																	<c:out value="" />
 																</h6></td>
-															
+
 
 														</tr>
 													</c:forEach>
@@ -112,6 +115,7 @@
 
 									</div>
 								</div>
+							</form:form>
 								<div class="groupsparedetails">
 									<legend>Spares</legend>
 									<form:form>
@@ -125,7 +129,8 @@
 												</div>
 												<div class="col-xs-8">
 													<input type="text" id="partNumber" name="partNumber"
-														class="form-control input-sm" value="${sparePart.partNumber}" readonly="readonly">
+														class="form-control input-sm"
+														value="${sparePart.partNumber}" readonly="readonly">
 												</div>
 											</div>
 										</div>
@@ -139,7 +144,8 @@
 												</div>
 												<div class="col-xs-8">
 													<input type="text" id="itemType" name="itemType"
-														class="form-control input-sm" value="${sparePart.itemType}" readonly="readonly">
+														class="form-control input-sm"
+														value="${sparePart.itemType}" readonly="readonly">
 													</select>
 												</div>
 											</div>
@@ -153,23 +159,10 @@
 													</h6>
 
 												</div>
-											 <div class="col-xs-8">
+												<div class="col-xs-8">
 													<input type="text" id="description" name="description"
-														class="form-control input-sm" value="${sparePart.description}" readonly="readonly">
-												</div>
-											</div>
-										</div>
-																<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Quantity</label>
-													</h6>
-
-												</div>
-											 <div class="col-xs-8">
-													<input type="text" id="quantity" name="quantity"
-														class="form-control input-sm"  >
+														class="form-control input-sm"
+														value="${sparePart.description}" readonly="readonly">
 												</div>
 											</div>
 										</div>
@@ -183,258 +176,38 @@
 												</div>
 												<div class="col-xs-8">
 													<input type="text" id="receivedBy" name="receivedBy"
-														class="form-control input-sm" value="${loggedInUser.firstName} ${loggedInUser.lastName}" readonly="readonly">
+														class="form-control input-sm"
+														value="${loggedInUser.firstName} ${loggedInUser.lastName}"
+														readonly="readonly">
 												</div>
 											</div>
 										</div>
 										
-										<br>
-							<br>
-							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
-									<input type="submit" value="Add Spares"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="addSpares">
-								</div>
-							</div>
 									</form:form>
 								</div>
 						</div>
-						</form>
-					</div>
 
-
-					<!-- /spare  -->
-
-					<%-- <div class="groupSpare"> 
-						
-									<form:form class="well form-horizontal" method="post"
-								action="saveSpareParts" modelAttribute="saveSpareParts"
-								id="saveSpareParts">
-
-								<!--First column-->
-								<div class="col-sm-6">
-
-									<!-- Select type Part Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Part Number</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input
-													name="partNumber" type="text"
-													class="form-control"  placeholder="Part Number"
-													id="partNumber">
-											</div>
-										</div>
-									</div>
-									
-									<!-- Select type Item Type-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Item Type</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select
-													name="type" class="form-control selectpicker" >
-													<option value="">Select Item Type</option>
-													<option value="Toner">Toner</option>
-													<option value="Spares">Spares</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									
-									
-								</div>
-								<!-- / F column -->
-
-								
-
-								<br>
-								<br>
-								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Add Spares"
-											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="addSpares">
-									</div>
-								</div>
-							</form:form>
-						
-						
-						</div>
-						 --%>
-
-					<!-- /parts  -->
-					<%-- <div class="tab-pane" id="compatibility">
-							<h4 align="center">Compatibility</h4>
-							<br>
-							<form:form class="well form-horizontal" method="post"
-								action="saveCompatibility" modelAttribute="saveCompatibility"
-								id="saveCompatibility">
-
-								<!--First column-->
-								<div class="col-sm-6">
-									<!-- Select type Part Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Part Number</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input
-													name="partNumber" id="partNumber" placeholder="Part Number"
-													class="form-control" type="text">
-
-											</div>
-										</div>
-									</div>
-
-								</div>
-								<!-- / F column -->
-
-								<!--Second column-->
-								<div class="col-sm-6">
-
-
-									<!-- Select type Model Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Model Number</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <input
-													name="modelNumber" id="modelNumber"
-													placeholder="Model Number" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-								</div>
-								<!-- /S column  -->
-
-								<br>
-								<br>
-								<br>
-								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Add Compatibility"
-											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="addSpares">
-									</div>
-								</div>
-							</form:form> --%>
-
-				</div>
-
-
-				<%-- 	<div class="tab-pane" id="tonner">
-					<h4 align="center">Tonner</h4>
-				<form:form class="well form-horizontal" method="post" action="saveSpareParts"
-					modelAttribute="saveSpareParts" id="saveSpareParts">
-							
-					<!--First column-->
-					<div class="col-sm-6">					
-						<!-- Select type Tonner Code-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Tonner Code</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span>
-										<input type="text" class="form-control" placeholder="Tonner Code" name="tonnerCode" id="tonnerCode">
-								</div>
-							</div>
-						</div>
-						
-						<!-- Select type Description-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Description</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span>
-									<select name="description"
-										class="form-control selectpicker">
-										<option value="">Select Description<option>
-									<option value="Black Imaging Unit">Black Imaging Unit</option>
-									<option value="Color Imaging Unit">Color Imaging Unit</option>
-									<option value="Waste Toner Bottle">Waste Toner Bottle</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						
-						
-						<!-- Select type Quantity-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Quantity</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-edit"></i></span>
-									<input class="form-control" Placeholder="Quantity" id="quantity" type="text">
-								</div>
-							</div>
-						</div>
-						
-					</div><!-- / F column -->	
-					
-					<!--Second column-->		
-					<div class="col-sm-6">
-					
-					
-						<!-- Select type Supplier Name-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Supplier Name</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span>
-									<input type="text" class="form-control" placeholder="Supplier Name" id="supplierName" name="supplierName">
-								</div>
-							</div>
-						</div>
-						
-						<!-- Select type Received By-->						
-						<div class="form-group">
-							<label class="col-md-3 control-label">Recieved By</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-edit"></i></span>
-									<input class="form-control" id="receivedBy" placeholder="Recieved By" type="text">
-								</div>
-							</div>
-						</div>
-						
-						
-						
-					</div><!-- /S column  -->
-					
-						<br><br>
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
-								<input type="submit" value="Add Tonner"
+								<br> <br> <input type="submit" value="Add Spare"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
-									id="addTonner">
+									id="addSpare">
 							</div>
 						</div>
-					</form:form>
-					
-					</div><!-- /tonner  --> --%>
 
+
+					</div>
+					<!-- /tab-content -->
+				</div>
+				<!-- /panel body -->
 			</div>
-			<!-- /tab-content -->
+			<!--/panel success class-->
 		</div>
-		<!-- /panel body -->
-	</div>
-	<!--/panel success class-->
-	</div>
-	<!-- /Container -->
+		<!-- /Container -->
 
-	<!-- Footer -->
-	<c:import url="templates/footer.jsp"></c:import>
-	<!--/ Footer -->
+		<!-- Footer -->
+		<c:import url="templates/footer.jsp"></c:import>
+		<!--/ Footer -->
 
 	</div>
 	<!-- / velaphanda_containter -->

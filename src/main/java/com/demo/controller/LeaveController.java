@@ -37,5 +37,37 @@ public class LeaveController {
 		
 		return model;
 	}
+	@RequestMapping(value="viewLeaveRequests",method=RequestMethod.GET)
+	public ModelAndView loadViewLeaveRequestss(){
+		
+		model = new ModelAndView("viewLeaveRequests");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+		
+			model.setViewName("viewLeaveRequests");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value="updateLeave",method=RequestMethod.GET)
+	public ModelAndView loadUpdateLeave(){
+		
+		model = new ModelAndView("updateLeave");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+		
+			model.setViewName("updateLeave");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 
 }

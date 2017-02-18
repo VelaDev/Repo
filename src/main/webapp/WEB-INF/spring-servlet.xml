@@ -72,7 +72,8 @@
 				 <value>com.demo.model.Leave</value>
 				 <value>com.demo.model.SpareReports</value>
 				 <value>com.demo.model.SpareMaster</value>
-				  <value>com.demo.model.Credentials</value>
+				 <value>com.demo.model.Credentials</value>
+				 <value>com.demo.model.LoginAttempt</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

@@ -324,7 +324,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="cellphoneNumber1" name="cellphoneNumber1"
-													placeholder="Cellphone No" class="form-control" type="text">
+													placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -335,8 +335,8 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="tellphoneNumber1" name="tellphoneNumber1"
-													placeholder="Tellphone No" class="form-control" type="text" >
+													id="tellphoneNumber1" name="telephoneNumber1"
+													placeholder="Telephone No" class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>

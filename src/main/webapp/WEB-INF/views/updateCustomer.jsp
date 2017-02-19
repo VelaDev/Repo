@@ -273,7 +273,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 												name="email" placeholder="Email Address"
-												class="form-control" type="email" value="${customerDetails.email}" readonly="readonly">
+												class="form-control" type="email" value="${customerDetails.email}">
 										</div>
 									</div>
 								</div>
@@ -352,7 +352,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="tellphoneNumber1" name="tellphoneNumber1"
+													id="telephoneNumber1" name="telephoneNumber1"
 													placeholder="Telephone No" class="form-control" type="text" value="${customerDetails.telephoneNumber1}" onkeypress="return isNumber(event)">
 											</div>
 										</div>
@@ -611,7 +611,7 @@ function isNumber(evt) {
 															}
 														}
 													},
-													tellphoneNumber1 : {
+													telephoneNumber1 : {
 														validators : {
 															stringLength : {
 																max : 10,

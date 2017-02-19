@@ -19,7 +19,7 @@
 		<c:import url="templates/navbarmain.jsp"></c:import>
 		<div class="container">
 			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
+				<div class="alert alert-danger" role="alert">
 					<c:out value="${ retMessage}">
 					</c:out>
 				</div>
@@ -49,7 +49,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 												name="email" placeholder="Email" class="form-control"
-												type="email" value="${employee.email }">
+												type="email" value="${loggedInUser.email }" readonly="readonly">
 										</div>
 									</div>
 								</div>
@@ -61,7 +61,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-lock"></i></span> <input
 												placeholder="Full Names" class="form-control" type="text"
-												value="${employee.firstName } ${employee.lastName }">
+												value="${loggedInUser.firstName } ${loggedInUser.lastName }" readonly="readonly">
 										</div>
 									</div>
 								</div>
@@ -102,8 +102,7 @@
 									<br>
 									<br>
 									<button type="submit" name="changepassword" id="changepassword"
-										class="btn btn-lg btn-primary btn-block"
-										data-confirm="You are about the change your password, After clicking submit please login with the new password on the system">Change
+										class="btn btn-lg btn-primary btn-block">Change
 										Password</button>
 
 								</div>

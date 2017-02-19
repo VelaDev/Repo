@@ -23,6 +23,7 @@ import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
 import com.demo.model.LoginAttempt;
 import com.demo.model.UserLogDetails;
+import com.demo.service.CredentialsServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LoginAttemptServiceInt;
 import com.demo.service.TicketsServiceInt;
@@ -42,6 +43,8 @@ public class EmployeeController {
 	private OrdersServiceInt ordersServiceInt;
 	@Autowired
 	private UserLogDetailsServiceInt userLogDetailsServiceInt;
+	@Autowired
+	private CredentialsServiceInt credentialsServiceInt;
 	
 	@Autowired
 	private LoginAttemptServiceInt serviceInt;
@@ -84,24 +87,36 @@ public class EmployeeController {
 		String userName = employee.getEmail();
 		String password = employee.getPassword();
 		String retRole = null;
+		long numberOfDays = 1L;
 		
 		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
 		password = PasswordEncrypt.encryptPassword(password);
 		if(employee != null&& employee.getStatus().equalsIgnoreCase("ACTIVE")){
 			session.setAttribute("loggedInUser", employee);
 			
+			
 			if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 				retRole ="redirect:changePassword";
 			}else{
 				
-				serviceInt.userLoggeIn(employee);
+				numberOfDays = credentialsServiceInt.passwordDateDifference(userName);
+				
+				System.out.print(numberOfDays);
+				
+				if(numberOfDays > 65 && numberOfDays <= 75){
+					retRole ="redirect:changePassword";
+				}
+					
 				model.addObject("loggedInUser", employee.getEmail());
 				if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 					String userSessionID =session.getId();
+					
 					session.setAttribute("sessionID", userSessionID);
 					System.out.println(userSessionID);
 					userLogDetailsServiceInt.saveUserLogDetails(details);
+					
+					serviceInt.userLoggeIn(employee);
 					retRole= "redirect:home";
 				}
 				else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
@@ -110,6 +125,8 @@ public class EmployeeController {
 					session.setAttribute("sessionID", userSessionID);
 					System.out.println(userSessionID);
 					userLogDetailsServiceInt.saveUserLogDetails(details);
+					
+					serviceInt.userLoggeIn(employee);
 					retRole= "redirect:technicianHome";
 					
 				}
@@ -119,6 +136,7 @@ public class EmployeeController {
 					session.setAttribute("sessionID", userSessionID);
 					System.out.println(userSessionID);
 					userLogDetailsServiceInt.saveUserLogDetails(details);
+					serviceInt.userLoggeIn(employee);
 					retRole= "redirect:ticket";
 				}else{
 					
@@ -320,13 +338,16 @@ public class EmployeeController {
 	public ModelAndView changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
 		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
+		
 		if(retMessage.equalsIgnoreCase("OK")){
-			
+			retMessage = "Password successfully changed";
+			model.addObject("retMessage", retMessage);
+			   model.setViewName("changePassword");
 		}
 		else{
-			
-			model.addObject(retMessage, "Password exist, please create a new password");
-			model.setViewName("changePassword");
+			retMessage = "Password already used, please use another password";
+			  model.addObject("retMessage", retMessage);
+			   model.setViewName("changePassword");
 		}
 		
 		return model;

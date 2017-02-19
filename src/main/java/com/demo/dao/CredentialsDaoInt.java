@@ -9,6 +9,8 @@ public interface CredentialsDaoInt {
 	boolean saveNewPassword(Credentials credentials);
 	List<Credentials> getCredentialsForUser(String email);
 	List<Credentials> getCredentialsForUser();
+	long passwordDateDifference(String userName);
+	Credentials getEmployeePasswordInfo(String userName);
 	
 
 }

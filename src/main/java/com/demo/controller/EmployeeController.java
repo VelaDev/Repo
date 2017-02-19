@@ -339,6 +339,7 @@ public class EmployeeController {
 		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
 		
+		
 		if(retMessage.equalsIgnoreCase("OK")){
 			retMessage = "Password successfully changed";
 			model.addObject("retMessage", retMessage);

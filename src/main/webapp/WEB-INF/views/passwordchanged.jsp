@@ -44,7 +44,7 @@
 											class="img-responsive" alt="" />
 									</div>
 									<div class="errorLogin">
-										<h5>Password was changed successfully. Click <a href="login.html">here</a> to login with new password</h5>
+										<h6>Password was changed successfully. Click <a href="login.html">here</a> to login with new password</h6>
 									</div>
 								</form>
 							</div>

@@ -73,7 +73,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-user"></i></span> <input
 												name="customerName" id="clientName"
-												placeholder="Customer Name" class="form-control" type="text" value="${customer.customerName}">
+												placeholder="Customer Name" class="form-control" type="text" value="${customer.customerName}" readonly="readonly">
 										</div>
 									</div>
 								</div>
@@ -86,7 +86,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="tellphoneNumber" id="tellphoneNumber"
-												placeholder="Tellphone Number" class="form-control"
+												placeholder="Telephone Number" class="form-control"
 												type="text" onkeypress="return isNumber(event)" value="${customer.tellphoneNumber}" >
 										</div>
 									</div>
@@ -115,7 +115,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="streetName" id="streetName" placeholder="Street Name"
-												class="form-control" type="text"  value="${customer.streetName}">
+												class="form-control" type="text"  value="${customer.streetName}" >
 										</div>
 									</div>
 								</div>
@@ -203,16 +203,6 @@
 							</div>
 							<!--/Second column Customer Fields-->
 
-							<div class="form-group">
-								<label class="col-md-3 control-label"><b
-									class="optionalFields"> Click to add 2nd Contact Person</b> </label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<input id="contactPerson2" name="contactPerson2"
-											type="checkbox" value="true">
-									</div>
-								</div>
-							</div>
 							<!-- Contact Person 1 -->
 							<div class="col-sm-6">
 								<br>
@@ -265,7 +255,7 @@
 								</div>
 								<!-- Text input Contact Person Tellphone Number-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Tellphone No</label>
+									<label class="col-md-3 control-label">Telephone No</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
@@ -283,15 +273,23 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 												name="email" placeholder="Email Address"
-												class="form-control" type="email" value="${customerDetails.email}">
+												class="form-control" type="email" value="${customerDetails.email}" readonly="readonly">
 										</div>
 									</div>
 								</div>
 
 							</div>
 							<!-- /Contact Person 1 -->
-
-
+							<div class="form-group">
+								<label class="col-md-3 control-label"><b
+									class="optionalFields"> Click to add 2nd Contact Person</b> </label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<input id="contactPerson2" name="contactPerson2"
+											type="checkbox" value="true">
+									</div>
+								</div>
+							</div>
 
 							<!-- Contact Person 2 -->
 
@@ -343,19 +341,19 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="cellphoneNumber1" name="cellphoneNumber1"
-													placeholder="Cellphone No" class="form-control" type="text" value="${customerDetails.cellphoneNumber1}">
+													placeholder="Cellphone No" class="form-control" type="text" value="${customerDetails.cellphoneNumber1}"onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
 									<!-- Text input Contact Person 2 Tellphone Number-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Tellphone No</label>
+										<label class="col-md-3 control-label">Telephone No</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="tellphoneNumber1" name="tellphoneNumber1"
-													placeholder="Tellphone No" class="form-control" type="text" value="${customerDetails.telephoneNumber1}" >
+													placeholder="Telephone No" class="form-control" type="text" value="${customerDetails.telephoneNumber1}" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -368,7 +366,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
 													id="email1" name="email1" placeholder="Email Address"
-													class="form-control" type="email" value="${customerDetails.email1}">
+													class="form-control" type="email" value="${customerDetails.email1}" >
 											</div>
 										</div>
 									</div>
@@ -553,7 +551,7 @@ function isNumber(evt) {
 													streetNumber : {
 														validators : {
 															stringLength : {
-																min : 3,
+																min : 1,
 															},
 															notEmpty : {
 																message : 'Street number is required and cannot be empty'
@@ -599,6 +597,25 @@ function isNumber(evt) {
 															},
 															emailAddress : {
 																message : 'The email address is not valid'
+															}
+														}
+													},
+													cellphoneNumber1 : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+															notEmpty : {
+																message : 'Cellphone Number is required and cannot be empty'
+															}
+														}
+													},
+													tellphoneNumber1 : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
 															}
 														}
 													}

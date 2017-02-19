@@ -55,27 +55,6 @@ li {
 
 				<div class="panel-body">
 					<div class="tab-content">
-						<form action="searchClientforProduct" method="post"
-							id="searchClientforProduct">
-							<div class="row">
-								<!-- Text input Search-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Search Client </label>
-									<div class="col-md-4 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input
-												name="customerName" id="customerName" class="form-control"
-												type="text" placeholder='Search By Client Name'>
-										</div>
-									</div>
-									<div class="col-md-2">
-										<input class="btn btn-success" type='submit' value='Search' />
-									</div>
-								</div>
-							</div>
-							<hr>
-						</form>
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="saveProduct" modelAttribute="saveProduct"

@@ -106,7 +106,10 @@ public class EmployeeController {
 				if(numberOfDays > 65 && numberOfDays <= 75){
 					
 					retRole ="redirect:changePassword";
-				}else{
+				}else if(numberOfDays >75){
+					retRole= "redirect:loginattempted";
+				}
+				else{
 					model.addObject("loggedInUser", employee.getEmail());
 					if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 							employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){

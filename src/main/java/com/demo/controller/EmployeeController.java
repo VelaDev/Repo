@@ -101,51 +101,53 @@ public class EmployeeController {
 				
 				numberOfDays = credentialsServiceInt.passwordDateDifference(userName);
 				
-				System.out.print(numberOfDays);
+				System.out.println(numberOfDays);
 				
 				if(numberOfDays > 65 && numberOfDays <= 75){
+					
 					retRole ="redirect:changePassword";
-				}
-					
-				model.addObject("loggedInUser", employee.getEmail());
-				if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
-						employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
-					String userSessionID =session.getId();
-					
-					session.setAttribute("sessionID", userSessionID);
-					System.out.println(userSessionID);
-					userLogDetailsServiceInt.saveUserLogDetails(details);
-					
-					serviceInt.userLoggeIn(employee);
-					retRole= "redirect:home";
-				}
-				else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
-				{
-					String userSessionID =session.getId();
-					session.setAttribute("sessionID", userSessionID);
-					System.out.println(userSessionID);
-					userLogDetailsServiceInt.saveUserLogDetails(details);
-					
-					serviceInt.userLoggeIn(employee);
-					retRole= "redirect:technicianHome";
-					
-				}
-				else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
-				{
-					String userSessionID =session.getId();
-					session.setAttribute("sessionID", userSessionID);
-					System.out.println(userSessionID);
-					userLogDetailsServiceInt.saveUserLogDetails(details);
-					serviceInt.userLoggeIn(employee);
-					retRole= "redirect:ticket";
 				}else{
-					
-					
-					loginAttempt = serviceInt.getEmployeeDetails(employee);
-					serviceInt.upsertUserAttempt(loginAttempt);
-					retRole= "redirect:wrongpasswordoruser";
-					
+					model.addObject("loggedInUser", employee.getEmail());
+					if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
+							employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
+						String userSessionID =session.getId();
+						
+						session.setAttribute("sessionID", userSessionID);
+						System.out.println(userSessionID);
+						userLogDetailsServiceInt.saveUserLogDetails(details);
+						
+						serviceInt.userLoggeIn(employee);
+						retRole= "redirect:home";
+					}
+					else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
+					{
+						String userSessionID =session.getId();
+						session.setAttribute("sessionID", userSessionID);
+						System.out.println(userSessionID);
+						userLogDetailsServiceInt.saveUserLogDetails(details);
+						
+						serviceInt.userLoggeIn(employee);
+						retRole= "redirect:technicianHome";
+						
+					}
+					else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
+					{
+						String userSessionID =session.getId();
+						session.setAttribute("sessionID", userSessionID);
+						System.out.println(userSessionID);
+						userLogDetailsServiceInt.saveUserLogDetails(details);
+						serviceInt.userLoggeIn(employee);
+						retRole= "redirect:ticket";
+					}else{
+						
+						
+						loginAttempt = serviceInt.getEmployeeDetails(employee);
+						serviceInt.upsertUserAttempt(loginAttempt);
+						retRole= "redirect:wrongpasswordoruser";
+						
+					}
 				}
+			
 			}
 			
 		}else if(employee != null&& employee.getStatus().equalsIgnoreCase("BLOCKED")){

@@ -275,8 +275,7 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class='input-group date' id='datetimepicker6'>
 												<input type='text' class="form-control" name="startDate"
-													id="startDate" placeholder="YYYY-MM-DD"
-													value="${productObject.startDate.toString().substring(0,10) }" />
+													id="startDate" placeholder="YYYY-MM-DD" value="${productObject.startDate.toString().substring(0,10) }" />
 												<span class="input-group-addon"> <span
 													class="glyphicon glyphicon-calendar"></span>
 												</span>
@@ -316,8 +315,6 @@ li {
 											</div>
 										</div>
 									</div>
-
-
 
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">

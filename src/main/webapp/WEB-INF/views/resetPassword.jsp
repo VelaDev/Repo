@@ -39,8 +39,6 @@
 							id="searchEmployeeForPasswordReset">
 							<div class="row">
 
-
-
 								<!-- Text input Search-->
 								<!-- 		<div class="form-group">
 							<label class="col-md-3 control-label">Search Employee</label>

@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbarmain.jsp"></c:import>
+		<c:import url="templates/navbarpassword.jsp"></c:import>
 		<div class="container">
 			<c:if test="${not empty retMessage }">
 				<div class="alert alert-danger" role="alert">

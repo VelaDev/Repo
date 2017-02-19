@@ -14,6 +14,8 @@ import com.demo.dao.SpareMasterDaoInt;
 import com.demo.model.Device;
 import com.demo.model.SpareMaster;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
+
 
 
 @Repository("spareMasterDAO")
@@ -23,6 +25,8 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	
+	private SpareMaster spareMaster = null;
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SpareMaster> getSparesFromMastaData() {
@@ -59,10 +63,25 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 		}
 		return array;
 	}
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<SpareMaster> getModelDevice() {
+	public List<String> getModelDevice(String partNumber) {
+		spareMaster = new SpareMaster();
+		String modelParts = null;
+		List<String> myList = null;
+		try{
+			spareMaster = getSpareMaster(partNumber);
+			if(spareMaster !=null){
+				modelParts = spareMaster.getCompitableDevice();
+				
+				myList = new ArrayList<String>(Arrays.asList(modelParts.split(",")));
+			}
+			
+		}catch(Exception e){
+			e.getMessage();
+		}
 		
-		return null;
+		return myList;
 	}
 
 }

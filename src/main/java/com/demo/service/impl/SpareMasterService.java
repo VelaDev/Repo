@@ -32,5 +32,9 @@ public class SpareMasterService implements SpareMasterServiceInt{
 		
 		return spareMasterDaoInt.getSerials();
 	}
+	@Override
+	public List<String> getModelDevice(String partNumber) {
+		return spareMasterDaoInt.getModelDevice(partNumber);
+	}
 
 }

@@ -106,6 +106,7 @@ public class SparePartsController {
 		if(userName != null){
 			
 		model.addObject("sparePart", spareMasterServiceInt.getSpareMaster(partNumber));
+		model.addObject("models", spareMasterServiceInt.getModelDevice(partNumber));
 		model.setViewName("addParts");
 		}
 		else{

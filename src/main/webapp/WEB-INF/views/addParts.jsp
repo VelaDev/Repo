@@ -83,7 +83,7 @@
 						<!--Search-->
 
 						<div class="col-xs-10">
-							<form:form action="">
+							<form:form >
 								<div class="groupdetails-row-padding">
 									<div class="groupsearchdetails">
 
@@ -92,14 +92,10 @@
 											<table id="myDatatable" class="display datatable">
 												<thead>
 													<legend>Compatible Devices </legend>
-													<tr>
-														<th>Device Model</th>
-
-													</tr>
 												</thead>
 												<tbody>
 													<!-- Iterating over the list sent from Controller -->
-													<c:forEach items="${SpareParts}" var="device">
+													<c:forEach items="${models}" var="device">
 														<tr>
 															<td><h6>
 																	${ device}
@@ -118,7 +114,7 @@
 							</form:form>
 								<div class="groupsparedetails">
 									<legend>Spares</legend>
-									<form:form>
+									<form:form action="saveSpareParts" modelAttribute="saveSpareParts" method="post">
 										<div class="row">
 											<div class="col-xs-12">
 												<div class="col-xs-4 form-control-label">
@@ -163,6 +159,21 @@
 													<input type="text" id="description" name="description"
 														class="form-control input-sm"
 														value="${sparePart.description}" readonly="readonly">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-12">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Quantity</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" id="quantity" name="quantity"
+														class="form-control input-sm"
+														onkeypress="return isNumber(event)">
 												</div>
 											</div>
 										</div>
@@ -220,6 +231,17 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
+	
+	<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 
 	<script>
 		$(document)

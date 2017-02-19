@@ -107,7 +107,7 @@ public class EmployeeController {
 					
 					retRole ="redirect:changePassword";
 				}else if(numberOfDays >75){
-					retRole= "redirect:loginattempted";
+					retRole= "redirect:passwordExpired";
 				}
 				else{
 					model.addObject("loggedInUser", employee.getEmail());
@@ -348,7 +348,7 @@ public class EmployeeController {
 		if(retMessage.equalsIgnoreCase("OK")){
 			retMessage = "Password successfully changed";
 			model.addObject("retMessage", retMessage);
-			   model.setViewName("changePassword");
+			   model.setViewName("passwordchanged");
 		}
 		else{
 			retMessage = "Password already used, please use another password";
@@ -522,5 +522,19 @@ public class EmployeeController {
 			model.setViewName("loginattempted");
 		return model;
 	}
-	
+	@RequestMapping(value="passwordchanged",method=RequestMethod.GET)
+	public ModelAndView loginSuccess( ) {
+		
+		model = new ModelAndView();
+			
+			model.setViewName("passwordchanged");
+		return model;
+	}
+	@RequestMapping(value="passwordExpired",method=RequestMethod.GET)
+	public ModelAndView passwordExpired( ) {
+		model = new ModelAndView();
+			
+			model.setViewName("passwordExpired");
+		return model;
+	}
 }

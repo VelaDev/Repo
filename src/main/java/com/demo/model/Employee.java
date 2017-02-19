@@ -84,6 +84,6 @@ public class Employee implements Serializable{
 	@OneToMany(mappedBy="employee")
 	private Set<Leave> leave;
 	
-	@OneToMany(mappedBy ="employee", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
-	private Set<Employee> employee;
+	/*@OneToMany(mappedBy ="employee", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Credentials> credentials;*/
 }

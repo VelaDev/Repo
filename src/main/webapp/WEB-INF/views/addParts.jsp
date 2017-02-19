@@ -99,10 +99,10 @@
 												</thead>
 												<tbody>
 													<!-- Iterating over the list sent from Controller -->
-													<c:forEach items="" var="device">
+													<c:forEach items="${SpareParts}" var="device">
 														<tr>
 															<td><h6>
-																	<c:out value="" />
+																	${ device}
 																</h6></td>
 
 

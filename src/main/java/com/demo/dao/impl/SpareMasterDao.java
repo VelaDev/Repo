@@ -59,5 +59,10 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 		}
 		return array;
 	}
+	@Override
+	public List<SpareMaster> getModelDevice() {
+		
+		return null;
+	}
 
 }

@@ -314,7 +314,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 		try{
 			credential = new Credentials();
 			credential.setPassword(employee.getPassword());
-			credential.setEmployee(employee);
+			credential.setEmail(employee.getEmail());
 			credential.setStatus("Current");
 			credential.setPasswordDateInserted(dateFormat.format(date));
 		}catch(Exception e){

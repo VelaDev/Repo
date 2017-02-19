@@ -32,7 +32,7 @@ public class CredentialsDao implements CredentialsDaoInt{
 	public boolean saveNewPassword(Credentials credentials) {
 		boolean retFlag = false;
 		try{
-			   retFlag =  checkPasswordExists(credentials.getEmployee().getEmail(),credentials.getPassword());
+			   retFlag =  checkPasswordExists(credentials.getEmail(),credentials.getPassword());
 			   
 			   if(retFlag == false){
 				   
@@ -63,7 +63,7 @@ public class CredentialsDao implements CredentialsDaoInt{
 		try{
 			List <Credentials> currentPasswords = getCredentialsForUser();
 			for(Credentials cred : currentPasswords){
-				if(cred.getEmployee().getEmail().equalsIgnoreCase(username)&& cred.getPassword().equalsIgnoreCase(newPassword)){
+				if(cred.getEmail().equalsIgnoreCase(username)&& cred.getPassword().equalsIgnoreCase(newPassword)){
 					retFlag = true;
 					break;
 				}
@@ -118,10 +118,21 @@ public class CredentialsDao implements CredentialsDaoInt{
 			List <Credentials> currentPasswords = getCredentialsForUser();
 			
 			for(Credentials credObj:currentPasswords){
-				if(credObj.getEmployee().getEmail().equalsIgnoreCase(userName) && credObj.getStatus().equalsIgnoreCase("Current")){
+				if(credObj.getEmail().equalsIgnoreCase(userName) && credObj.getStatus().equalsIgnoreCase("Current")){
 					credentials = credObj;
 					break;
 				}
+			}
+			if(credentials !=null){
+				
+				for(Credentials credObj:currentPasswords){
+					if(credObj.getStatus().equalsIgnoreCase(credentials.getStatus())&& credentials.getEmail().equalsIgnoreCase(userName)){
+						credentials.setStatus("Old");
+						
+						sessionFactory.getCurrentSession().update(credentials);
+					}
+				}
+				
 			}
 		}catch(Exception e){
 			e.getMessage();

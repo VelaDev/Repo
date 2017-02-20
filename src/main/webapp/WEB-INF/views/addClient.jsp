@@ -184,16 +184,7 @@
 							</div>
 							<!--/Second column Customer Fields-->
 
-							<div class="form-group">
-								<label class="col-md-3 control-label"><b
-									class="optionalFields"> Click to add 2nd Contact Person</b> </label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<input id="contactPerson2" name="contactPerson2"
-											type="checkbox" value="true">
-									</div>
-								</div>
-							</div>
+							
 							<!-- Contact Person 1 -->
 							<div class="col-sm-6">
 								<br>
@@ -273,7 +264,16 @@
 							<!-- /Contact Person 1 -->
 
 
-
+							<div class="form-group">
+								<label class="col-md-3 control-label"><b
+									class="optionalFields"> Click to add 2nd Contact Person</b> </label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<input id="contactPerson2" name="contactPerson2"
+											type="checkbox" value="true">
+									</div>
+								</div>
+							</div>
 							<!-- Contact Person 2 -->
 
 
@@ -386,16 +386,6 @@
 	<!-- Script -->
 
 
-
-
-
-	<script type="text/javascript">
-		$('#contactPerson2').change(function() {
-			$('#contactPerson2checkboxdiv').toggle();
-		});
-	</script>
-
-
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
@@ -405,7 +395,13 @@
 	<%-- <script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
  --%>
 	<!-- /Script -->
-	
+
+<script type="text/javascript">
+		$('#contactPerson2').change(function() {
+			$('#contactPerson2checkboxdiv').toggle();
+		});
+</script>
+
 <script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
@@ -569,18 +565,7 @@ function isNumber(evt) {
 																message : 'Cellphone Number is required and cannot be empty'
 															}
 														}
-													},
-													telephoneNumber : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
-															notEmpty : {
-																message : 'Telephone Number is required and cannot be empty'
-															}
-														}
-													},													
+													},												
 													email : {
 														
 														validators : {

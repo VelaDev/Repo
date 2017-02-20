@@ -279,6 +279,7 @@
 								</div>
 
 							</div>
+							
 							<!-- /Contact Person 1 -->
 							<div class="form-group">
 								<label class="col-md-3 control-label"><b
@@ -405,26 +406,19 @@
 	<!-- Script -->
 
 
-
-
-
-	<script type="text/javascript">
-		$('#contactPerson2').change(function() {
-			$('#contactPerson2checkboxdiv').toggle();
-		});
-	</script>
-
-
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<%-- <script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
- --%>
-	<!-- /Script -->
 	
+<script type="text/javascript">
+		$('#contactPerson2').change(function() {
+			$('#contactPerson2checkboxdiv').toggle();
+		});
+</script>
+
 <script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;

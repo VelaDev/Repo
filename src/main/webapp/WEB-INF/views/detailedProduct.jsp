@@ -201,6 +201,7 @@ li {
 														<p class="customerAddress_title">Contact <ul class="address_list" style="display: block;">
 															<li id="cellphoneNumber" > ${device.contactPerson.firstName} ${device.contactPerson.lastName}</li>
 															<li id="streetNumber" id="telephoneNumber">${device.contactPerson.cellphone}</li>
+															<li id="streetNumber" id="telephoneNumber">${device.contactPerson.email}</li>
 															<li id="email"></li>
 														</ul></p>		
 													</div>

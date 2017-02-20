@@ -204,4 +204,20 @@ public class CustomerController {
 		}
 		return model;
 	}
+	@RequestMapping(value="searchCustomerdevices")
+	public ModelAndView searchCustomerDevices(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			
+			model.addObject("deviceList",deviceServiceInt.getDeviceListByClientName(customerName));
+			model.setViewName("customerListDevices");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 }

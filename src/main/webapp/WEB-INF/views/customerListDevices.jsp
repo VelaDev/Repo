@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>View Customers | Velaphanda Trading & Projects</title>
+<title>Customer Device List | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -20,7 +20,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Customers</b>
+							<b>Customers Device List</b>
 						</div>
 					</h3>
 				</div>
@@ -30,25 +30,25 @@
 									<table id="myDatatable" class="display datatable">
 										<thead>
 											<tr>
-												<th>Customer Name <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Email <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Serial No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Device Model <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<!-- <th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Update Customer</th>
 												<th>View Device</th>
-												<th>Add Device</th>
+												<th>Add Device</th> -->
 											</tr>
 										</thead>
 										<tbody>
 											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${displayCustomers}">
+											<c:forEach var="list" items="${deviceList}">
 												<tr>
-													<td>${list.customerName}</td>
-													<td>${list.email}</td>
-													<td>${list.tellphoneNumber}</td>
+													<td>${list.serialNumber}</td>
+													<td>${list.modelNumber}</td>
+													<%-- <td>${list.tellphoneNumber}</td>
                                                     <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update Customer</button></a></td>
                                                      <td><a href="searchCustomerdevices?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">View Devices</button></a></td>
                                                     <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-success">Add Device</button></a></td>
-												</tr>
+												 --%></tr>
 											</c:forEach>
 										</tbody>
 									</table>

@@ -332,7 +332,7 @@ li {
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Mono Reading" name="monoReading"
-													id="monoReading" value="${productObject.monoReading}" />
+													id="monoReading" onkeypress="return isNumber(event)" value="${productObject.monoReading}" />
 											</div>
 										</div>
 									</div>
@@ -342,7 +342,7 @@ li {
 										<div class="col-md-6">
 											<input type="text" class="form-control" name="mono"
 												placeholder="Enter Mono Reading" id="mono"
-												style='display: none;' value="${productObject.monoReading}" />
+												style='display: none;' onkeypress="return isNumber(event)" value="${productObject.monoReading}" />
 										</div>
 									</div>
 

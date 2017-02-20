@@ -247,7 +247,7 @@ li {
 											</div>
 										</div>
 									</div>
-<!-- Text input Contract Start Date-->
+									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-xs-3 control-label">Contract Start Date</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -756,7 +756,7 @@ $(document).ready(function() {
                         },
                         date: {
                         	format: 'YYYY-MM-DD',
-                            min: 'startDate',
+                        	min: 'endDate',
                             message: 'The installation date is not a valid'
                         }
                     }

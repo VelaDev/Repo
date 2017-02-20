@@ -156,7 +156,7 @@ li {
 												<div class="col-xs-12">
 													<div class="col-xs-4 form-control-label">
 														<h6>
-															<label>Mono/Colour</label>
+															<label>Mono Reading</label>
 														</h6>
 		
 													</div>
@@ -167,6 +167,23 @@ li {
 													</div>
 												</div>
 											</div>
+											
+											<div class="row">
+												<div class="col-xs-12">
+													<div class="col-xs-4 form-control-label">
+														<h6>
+															<label>Color Reading</label>
+														</h6>
+		
+													</div>
+													<div class="col-xs-8">														
+														<input type="text" class="form-control input-sm" id="colourReading"
+															value=""
+															disabled="disabled">
+													</div>
+												</div>
+											</div>
+											
 										</form:form>
 									</div>
 									
@@ -180,15 +197,12 @@ li {
 															<li id="streetNumber">${device.customer.city_town}</li>
 															<li id="city_town">${device.customer.province}</li>
 															
-														</ul></p>														
-														<p class="customerAddress_title">Contact </p>
-														
-														<label>Celephone Number</label>
-														<input type="text" class="form-control input-sm" id="cellphoneNumber" value="" disabled="disabled">
-																
-														<label>Telephone Number</label>
-														<input type="text" class="form-control input-sm" id="telephoneNumber" value=""disabled="disabled">
-																
+														</ul></p>																												
+														<p class="customerAddress_title">Contact <ul class="address_list" style="display: block;">
+															<li id="cellphoneNumber" ></li>
+															<li id="streetNumber" id="telephoneNumber"></li>
+															<li id="email"></li>
+														</ul></p>		
 													</div>
 																												
 										</div>

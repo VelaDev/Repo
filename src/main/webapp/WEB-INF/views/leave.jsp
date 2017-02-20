@@ -7,15 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap-datetimepicker.min.css" />">
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/formValidation.min.css" />"> 
 
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 </head>
 <body>
 	<div class="velaphanda_containter" id="velaphanda_containter">
@@ -34,7 +33,7 @@
 					<form:form class="well form-horizontal" method="POST"
 						action="leave" modelAttribute="leave" id="makeLeave">
 
-						<!-- Select type Leave Type-->
+							<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>
 							<div class="col-md-6 selectContainer">
@@ -55,7 +54,7 @@
 						<div class="form-group">
 							<label class="col-xs-3 control-label">First Date Leave</label>
 							<div class="col-md-6 inputGroupContainer">
-								<div class='input-group date' id='datetimepicker6'>
+								<div class="input-group input-append date" id="startDatePicker">
 									<input type='text' class="form-control" name="startDate"
 										id="startDate" placeholder="YYYY-MM-DD" /> <span
 										class="input-group-addon"> <span
@@ -68,7 +67,7 @@
 						<div class="form-group">
 							<label class="col-md-3 control-label">Last Date Leave</label>
 							<div class="col-md-6 inputGroupContainer">
-								<div class='input-group date' id='datetimepicker7'>
+								<div class="input-group input-append date" id="endDatePicker">
 									<input type='text' class="form-control" name="endDate"
 										id="endDate" placeholder="YYYY-MM-DD" /> <span
 										class="input-group-addon"> <span
@@ -128,19 +127,117 @@
 
 
 	<!-- Scripts -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/moment/moment.js" />"></script>
+	
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datetimepicker.min.js" />"></script>
+		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script> 
+
 	<!-- /Scripts -->
 
-	<script type="text/javascript">
+	
+<script>
+$(document).ready(function() {
+    $('#startDatePicker')
+        .datepicker({
+            format: 'yyyy-mm-dd'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the start date field
+            $('#makeLeave').formValidation('revalidateField', 'startDate');
+        });
+
+    $('#endDatePicker')
+        .datepicker({
+            format: 'yyyy-mm-dd'
+        })
+        .on('changeDate', function(e) {
+            $('#makeLeave').formValidation('revalidateField', 'endDate');
+        });
+
+    $('#makeLeave')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                leaveID: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Leave type is required,and can not be empty'
+                        }
+                    }
+                },
+                startDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The start date is required'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            max: 'endDate',
+                            message: 'The start date is not a valid'
+                        }
+                    }
+                },
+                endDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The end date is required'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            min: 'startDate',
+                            message: 'The end date is not a valid'
+                        }
+                    }
+                },
+				contactNumber : {
+					validators : {
+						stringLength : {
+							max : 10,
+							min : 10,
+						},
+						notEmpty : {
+							message : 'Contact Number is required, and can not be empty'
+						}
+					}
+				},
+				address: {
+                    validators: {
+					stringLength : {
+								min : 3,
+						}, 					
+                        notEmpty: {
+                            message: 'Address is required, and can not be empty'
+                        }
+                    }
+                }
+            }
+        })
+        .on('success.field.fv', function(e, data) {
+            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
+                // Revalidate the end date
+                data.fv.revalidateField('endDate');
+            }
+
+            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
+                // Need to revalidate the start date
+                data.fv.revalidateField('startDate');
+            }
+        });
+});
+</script>
+
+<script type="text/javascript">
+
 	function isNumber(evt) {
 	    evt = (evt) ? evt : window.event;
 	    var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -149,96 +246,8 @@
 	    }
 	    return true;
 	}
+	
 </script>
-
-	<script type="text/javascript">
-$(document).ready(function() {
-        $(function () {
-            $('#datetimepicker6').datetimepicker();
-            $('#datetimepicker7').datetimepicker({
-              
-            });
-            $("#datetimepicker6").on("dp.change", function (e) {
-                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-            });
-            $("#datetimepicker7").on("dp.change", function (e) {
-                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-            });
-        });
-    });
-</script>
-
-<!-- Validate add leave -->
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$('#makeLeave')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													leaveID : {
-														validators : {
-															
-															notEmpty : {
-																message : 'Leave type is required and cannot be empty'
-															}
-														}
-													},
-
-													startDate: {
-									                    validators: {
-									                        notEmpty: {
-									                            message: 'The start date is required'
-									                        },
-									                        date: {
-									                            max: 'endDate',
-									                            message: 'The start date is not a valid'
-									                        }
-									                    }
-									                },
-									                endDate: {
-									                    validators: {
-									                        notEmpty: {
-									                            message: 'The end date is required'
-									                        },
-									                        date: {
-									                            min: 'startDate',
-									                            message: 'The end date is not a valid'
-									                        }
-									                    }
-									                },
-									                contactNumber : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															}, 
-															notEmpty : {
-																message : 'Contact number is required and cannot be empty'
-															} 
-														}
-													},
-													address : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-															notEmpty : {
-																message : 'Street name is required and cannot be empty'
-															}
-														}
-													}
-													
-												}
-											});
-						});
-	</script>
 
 </body>
 </html>

@@ -3,27 +3,18 @@
 <html>
 <head>
 
-
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/stylesheet"
-	src="<c:url value="/resources/custom/css/vela_custom.css" />">
-<link type="text/stylesheet"
-	src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
 
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap-datetimepicker.min.css" />">
-<link
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
-<link
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
-	rel="stylesheet" type="text/css" />
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/formValidation.min.css" />"> 
 
 <style>
 li {
@@ -55,6 +46,27 @@ li {
 
 				<div class="panel-body">
 					<div class="tab-content">
+						<form action="searchClientforProduct" method="post"
+							id="searchClientforProduct">
+							<div class="row">
+								<!-- Text input Search-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Search Client </label>
+									<div class="col-md-4 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input
+												name="customerName" id="customerName" class="form-control"
+												type="text" placeholder='Search By Client Name'>
+										</div>
+									</div>
+									<div class="col-md-2">
+										<input class="btn btn-success" type='submit' value='Search' />
+									</div>
+								</div>
+							</div>
+							<hr>
+						</form>
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="saveProduct" modelAttribute="saveProduct"
@@ -176,9 +188,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber"
-													placeholder="Cellphone No" class="form-control" type="text"
-													onkeypress="return isNumber(event)">
+													id="cellphoneNumber" name="cellphoneNumber" placeholder="Cellphone No"
+													class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -190,9 +201,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="tellphoneNumber"
-													placeholder="Tellphone No" class="form-control" type="text"
-													onkeypress="return isNumber(event)">
+													id="telephoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
+													class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -233,18 +243,16 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" id="productModel"
-													placeholder="Model Number" class="form-control" type="text">
+													name="productModel" id="productModel" placeholder="Model Number"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-
-									<!-- Text input Contract Start Date-->
+<!-- Text input Contract Start Date-->
 									<div class="form-group">
-										<label class="col-xs-3 control-label">Contract Start
-											Date</label>
+										<label class="col-xs-3 control-label">Contract Start Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class='input-group date' id='datetimepicker6'>
+											<div class="input-group input-append date" id="startDatePicker">
 												<input type='text' class="form-control" name="startDate"
 													id="startDate" placeholder="YYYY-MM-DD" /> <span
 													class="input-group-addon"> <span
@@ -255,10 +263,9 @@ li {
 									</div>
 									<!-- Text input Contract End Date-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Contract End
-											Date</label>
+										<label class="col-md-3 control-label">Contract End	Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class='input-group date' id='datetimepicker7'>
+											<div class="input-group input-append date" id="endDatePicker">
 												<input type='text' class="form-control" name="endDate"
 													id="endDate" placeholder="YYYY-MM-DD" /> <span
 													class="input-group-addon"> <span
@@ -267,16 +274,13 @@ li {
 											</div>
 										</div>
 									</div>
-
 									<!-- Text input Installation Date-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Installation
-											Date</label>
+										<label class="col-md-3 control-label">Installation Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class='input-group date' id='datetimepicker8'>
-												<input type='text' class="form-control"
-													name="installationDate" id="installationDate"
-													placeholder="YYYY-MM-DD" /> <span
+											<div class="input-group input-append date" id="installDate">
+												<input type='text' class="form-control" id="installationDate" name="installationDate"
+													id="endDate" placeholder="YYYY-MM-DD" /> <span
 													class="input-group-addon"> <span
 													class="glyphicon glyphicon-calendar"></span>
 												</span>
@@ -583,402 +587,290 @@ li {
 	<!-- / velaphanda_containter -->
 
 	<!-- Script -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/moment/moment.js" />"></script>
+	
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datetimepicker.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
+		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script> 	
+	
+	
+	
 
 	<!-- /Script -->
 
 
-	<script type="text/javascript">
+<!-- Validate add Device -->
+<script>
 $(document).ready(function() {
-        $(function () {
-            $('#datetimepicker6').datetimepicker();
-            $('#datetimepicker7').datetimepicker({
-              
-            });
-            $("#datetimepicker6").on("dp.change", function (e) {
-                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-            });
-            $("#datetimepicker7").on("dp.change", function (e) {
-                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-            });
+    $('#startDatePicker')
+        .datepicker({
+            format: 'yyyy-mm-dd'
+        })
+        .on('changeDate', function(e) {
+            // Revalidate the start date field
+            $('#addOtherDevice').formValidation('revalidateField', 'startDate');
         });
-    });
+
+    $('#endDatePicker')
+        .datepicker({
+            format: 'yyyy-mm-dd'
+        })
+        .on('changeDate', function(e) {
+            $('#addOtherDevice').formValidation('revalidateField', 'endDate');
+        });
+
+    $('#addOtherDevice')
+        .formValidation({
+            framework: 'bootstrap',
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+            	startDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The start date is required'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            max: 'endDate',
+                            message: 'The start date is not a valid'
+                        }
+                    }
+                },
+                endDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The end date is required'
+                        },
+                        date: {
+                            format: 'YYYY-MM-DD',
+                            min: 'startDate',
+                            message: 'The end date is not a valid'
+                        }
+                    }
+                },
+                installationDate: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The end date is required'
+                        },
+                        date: {
+                        	format: 'YYYY-MM-DD',
+                            min: 'startDate',
+                            message: 'The installation date is not a valid'
+                        }
+                    }
+                },
+                customerName : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Customer name is required and cannot be empty'
+						}
+					}
+				},
+
+				tellphoneNumber : {
+					validators : {
+						stringLength : {
+							max : 10,
+							min : 10,
+						},
+
+						notEmpty : {
+							message : 'Tellphone number is required and cannot be empty'
+						},
+						phone : {
+							country : 'US',
+							message : 'Please provide a vaild tellphone number'
+						}
+					}
+				},
+				emailCompany : {
+					validators : {
+						notEmpty : {
+							message : 'Company email address is required and cannot be empty'
+						},
+						emailAddress : {
+							message : 'The email address is not valid'
+						}
+					}
+				},
+				email : {
+					validators : {
+						notEmpty : {
+							message : 'Email address is required and cannot be empty'
+						},
+						emailAddress : {
+							message : 'The email address is not valid'
+						}
+					}
+				},
+				streetName : {
+					validators : {
+						stringLength : {
+							min : 3,
+						},
+						notEmpty : {
+							message : 'Street name is required and cannot be empty'
+						}
+					}
+				},
+				city_town : {
+					validators : {
+						notEmpty : {
+							stringLength : {
+								min : 3,
+							},
+							message : 'City is required and cannot be empty'
+						}
+					}
+				},
+				province : {
+					validators : {
+						notEmpty : {
+							message : 'Province is required and cannot be empty'
+						}
+					}
+				},
+				zipcode : {
+					validators : {
+						stringLength : {
+							max : 4,
+							min : 4,
+						},
+						notEmpty : {
+							message : 'Zipcode is required and cannot be empty'
+						}
+					}
+				},
+				faxNumber : {
+					validators : {
+						stringLength : {
+							max : 10,
+							min : 10,
+						},/* 
+						notEmpty : {
+							message : 'Fax number is required and cannot be empty'
+						} */
+					}
+				},
+
+				streetNumber : {
+					validators : {
+						stringLength : {
+							min : 3,
+						},
+						notEmpty : {
+							message : 'Street number is required and cannot be empty'
+						}
+					}
+				},
+				firstName : {
+					validators : {
+						notEmpty : {
+							stringLength : {
+								min : 3,
+							},
+							message : 'First Name is required and cannot be empty'
+						}
+					}
+				},
+				lastName : {
+					validators : {
+						notEmpty : {
+							stringLength : {
+								min : 3,
+							},
+							message : 'Last Name is required and cannot be empty'
+						}
+					}
+				},
+				cellphoneNumber : {
+					validators : {
+						stringLength : {
+							max : 10,
+							min : 10,
+						},
+						notEmpty : {
+							message : 'Cellphone Number is required and cannot be empty'
+						}
+					}
+				},
+
+				email : {
+					validators : {
+						notEmpty : {
+							message : 'Email address is required and cannot be empty'
+						},
+						emailAddress : {
+							message : 'The email address is not valid'
+						}
+					}
+				},
+
+				serialNumber : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Serial Number is required and cannot be empty'
+						}
+					}
+				},
+				productModel : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Model number is required and cannot be empty'
+						}
+					}
+				}
+			
+            }
+        })
+        .on('success.field.fv', function(e, data) {
+            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
+                // Revalidate the end date
+                data.fv.revalidateField('endDate');
+            }
+
+            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
+                // Need to revalidate the start date
+                data.fv.revalidateField('startDate');
+            }
+        });
+});
 </script>
 
 
-
-	<!--Mono and Colour Selection-->
-	<script type="text/javascript">
-
-	function CheckColors(val){
-	 var element=document.getElementById('mono');
-	 if(val=='pick a mono'||val=='mono')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	  var element=document.getElementById('colour');
-	 if(val=='pick a colour'||val=='colour')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	}
-
-</script>
-
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchClientforProduct')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													customerName : {
-														validators : {
-															notEmpty : {
-																message : 'Client name is required to search and cannot be empty'
-															}
-														}
-													},
-												}
-											});
-						});
-</script>
-
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
-	function upperCaseF(a){
-	    setTimeout(function(){
-	        a.value = a.value.toUpperCase();
-	    }, 1);
-	}
-	</script>
-
-	<script type="text/javascript">
-		document.getElementById('bridgeunitserial').onchange = function() {
-			document.getElementById('bridgeunit').disabled = !this.checked;
-		};
-		document.getElementById('faxunit').onchange = function() {
-			document.getElementById('faxunitserial').disabled = !this.checked;
-		};
-		document.getElementById('onebintrayserial').onchange = function() {
-			document.getElementById('onebintray').disabled = !this.checked;
-		};
-		document.getElementById('finisher').onchange = function() {
-			document.getElementById('finisherserial').disabled = !this.checked;
-		};
-		document.getElementById('ltcserial').onchange = function() {
-			document.getElementById('ltc').disabled = !this.checked;
-		};
-		document.getElementById('additionalPaperTrays').onchange = function() {
-			document.getElementById('additionalserial').disabled = !this.checked;
-		};
-		document.getElementById('credenzaserial').onchange = function() {
-			document.getElementById('credenza').disabled = !this.checked;
-		};
-	</script>
-
-
-	<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
-
-	<!-- Validate add Client -->
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$('#addOtherDevice')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													customerName : {
-														validators : {
-															stringLength : {
-																min : 2,
-
-															},
-															notEmpty : {
-																message : 'Customer name is required and cannot be empty'
-															}
-														}
-													},
-
-													tellphoneNumber : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
-
-															notEmpty : {
-																message : 'Tellphone number is required and cannot be empty'
-															},
-															phone : {
-																country : 'US',
-																message : 'Please provide a vaild tellphone number'
-															}
-														}
-													},
-													emailCompany : {
-														validators : {
-															notEmpty : {
-																message : 'Company email address is required and cannot be empty'
-															},
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-													email : {
-														validators : {
-															notEmpty : {
-																message : 'Email address is required and cannot be empty'
-															},
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-													streetName : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-															notEmpty : {
-																message : 'Street name is required and cannot be empty'
-															}
-														}
-													},
-													city_town : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'City is required and cannot be empty'
-															}
-														}
-													},
-													province : {
-														validators : {
-															notEmpty : {
-																message : 'Province is required and cannot be empty'
-															}
-														}
-													},
-													startDate: {
-									                    validators: {
-									                        notEmpty: {
-									                            message: 'The start date is required'
-									                        },
-									                        date: {
-									                            max: 'endDate',
-									                            message: 'The start date is not a valid'
-									                        }
-									                    }
-									                },
-									                endDate: {
-									                    validators: {
-									                        notEmpty: {
-									                            message: 'The end date is required'
-									                        },
-									                        date: {
-									                            min: 'startDate',
-									                            message: 'The end date is not a valid'
-									                        }
-									                    }
-									                },
-									                installationDate: {
-									                    validators: {
-									                        notEmpty: {
-									                            message: 'The end date is required'
-									                        },
-									                        date: {
-									                            min: 'startDate',
-									                            message: 'The installation date is not a valid'
-									                        }
-									                    }
-									                },
-													zipcode : {
-														validators : {
-															stringLength : {
-																max : 4,
-																min : 4,
-															},
-															notEmpty : {
-																message : 'Zipcode is required and cannot be empty'
-															}
-														}
-													},
-													faxNumber : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},/* 
-															notEmpty : {
-																message : 'Fax number is required and cannot be empty'
-															} */
-														}
-													},
-
-													streetNumber : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-															notEmpty : {
-																message : 'Street number is required and cannot be empty'
-															}
-														}
-													},
-													firstName : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'First Name is required and cannot be empty'
-															}
-														}
-													},
-													lastName : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'Last Name is required and cannot be empty'
-															}
-														}
-													},
-													cellphoneNumber : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
-															notEmpty : {
-																message : 'Cellphone Number is required and cannot be empty'
-															}
-														}
-													},
-
-													email : {
-														validators : {
-															notEmpty : {
-																message : 'Email address is required and cannot be empty'
-															},
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-
-													serialNumber : {
-														validators : {
-															stringLength : {
-																min : 2,
-
-															},
-															notEmpty : {
-																message : 'Serial Number is required and cannot be empty'
-															}
-														}
-													},
-													productModel : {
-														validators : {
-															stringLength : {
-																min : 2,
-
-															},
-															notEmpty : {
-																message : 'Model number is required and cannot be empty'
-															}
-														}
-													}
-													
-												}
-											});
-						});
-	</script>
-
-	<!-- Other new fields -->
-	<script>
+<!-- Other new fields -->
+<script>
 		$(document)
 				.ready(
 						function() {
 
-									/*  machinetypeValidators = {
-										row : '.col-xs-4',
-										validators : {
-											 stringLength : {
-												min : 2,
-											},
-											notEmpty : {
-												message : 'Machine Accessory Type can not be empty'
-											} 
-										}
-									},
-									serialNumberValidators = {
-										row : '.col-xs-2',
-										validators : {
-											 stringLength : {
-												min : 2,
-											},
-											notEmpty : {
-												message : 'Serial Number can not be empty'
-											} 
-										}
-									}, */  deviceIndex = 0;
+									deviceIndex = 0;
 
 							$('#addOtherDevice')
-									/* .formValidation(
-											{
-												framework : 'bootstrap',
-												icon : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													'machinetype' : machinetypeValidators,
-													'serialNumber' : serialNumberValidators
-												}
-											})
- 									*/
+									
 									// Add button click handler
 									.on(
 											'click',
@@ -1012,23 +904,6 @@ function isNumber(evt) {
 																		+ deviceIndex
 																		+ '].serialNumber')
 														.end();
-
-												// Add new fields
-												// Note that we also pass the validator rules for new field as the third parameter
-												/* $('#addOtherDevice')
-														.formValidation(
-																'addField',
-																'device['
-																		+ deviceIndex
-																		+ '].machinetype',
-																machinetypeValidators)
-														.formValidation(
-																'addField',
-																'device['
-																		+ deviceIndex
-																		+ '].serialNumber',
-																serialNumberValidators); */
-
 											})
 
 									// Remove button click handler
@@ -1059,9 +934,8 @@ function isNumber(evt) {
 												$row.remove();
 											});
 						});
-	</script>
-
-	<script>
+</script>
+<script>
 		$(document).ready(
 				function() {
 					$('#addOtherDevice').on(
@@ -1075,80 +949,108 @@ function isNumber(evt) {
 								}
 							});
 				});
-	</script>
-	<script type="text/javascript">
-	
-	 $('#startDate')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the start date field
-            $('#eventForm').formValidation('revalidateField', 'startDate');
-        });
+</script>
 
-    $('#endDate')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        })
-        .on('changeDate', function(e) {
-            $('#eventForm').formValidation('revalidateField', 'endDate');
-        });
+<!--Mono and Colour Selection-->
+<script type="text/javascript">
 
-    $('.dateCompare')
-        .formValidation({
-            framework: 'bootstrap',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                name: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The name is required'
-                        }
-                    }
-                },
-                startDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The start date is required'
-                        },
-                        date: {
-                            format: 'MM/DD/YYYY',
-                            max: 'endDate',
-                            message: 'The start date is not a valid'
-                        }
-                    }
-                },
-                endDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The end date is required'
-                        },
-                        date: {
-                            format: 'MM/DD/YYYY',
-                            min: 'startDate',
-                            message: 'The end date is not a valid'
-                        }
-                    }
-                }
-            }
-        })
-        .on('success.field.fv', function(e, data) {
-            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
-                // We need to revalidate the end date
-                data.fv.revalidateField('endDate');
-            }
-
-            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
-                // We need to revalidate the start date
-                data.fv.revalidateField('startDate');
-            }
-        });
-});
+	function CheckColors(val){
+	 var element=document.getElementById('mono');
+	 if(val=='pick a mono'||val=='mono')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	  var element=document.getElementById('colour');
+	 if(val=='pick a colour'||val=='colour')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	}
 
 </script>
+
+<!-- Validate Search device for client -->
+<script>
+		$(document)
+				.ready(
+						function() {
+							$('#searchClientforProduct')
+									 framework: 'bootstrap',
+								            icon: {
+								                valid: 'glyphicon glyphicon-ok',
+								                invalid: 'glyphicon glyphicon-remove',
+								                validating: 'glyphicon glyphicon-refresh'
+								            },
+											fields : {
+											customerName : {
+												validators : {
+												notEmpty : {
+													message : 'Client name is required to search and cannot be empty'
+												}
+											}
+										},
+									}
+							});
+						});
+</script>
+
+
+
+
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
+</script>
+
+<!-- Enable datepicker -->
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#installationDate').datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+</script>
+
+<!-- Check if checkboxes are checked, if checked enable input text -->
+<script type="text/javascript">
+		document.getElementById('bridgeunitserial').onchange = function() {
+			document.getElementById('bridgeunit').disabled = !this.checked;
+		};
+		document.getElementById('faxunit').onchange = function() {
+			document.getElementById('faxunitserial').disabled = !this.checked;
+		};
+		document.getElementById('onebintrayserial').onchange = function() {
+			document.getElementById('onebintray').disabled = !this.checked;
+		};
+		document.getElementById('finisher').onchange = function() {
+			document.getElementById('finisherserial').disabled = !this.checked;
+		};
+		document.getElementById('ltcserial').onchange = function() {
+			document.getElementById('ltc').disabled = !this.checked;
+		};
+		document.getElementById('additionalPaperTrays').onchange = function() {
+			document.getElementById('additionalserial').disabled = !this.checked;
+		};
+		document.getElementById('credenzaserial').onchange = function() {
+			document.getElementById('credenza').disabled = !this.checked;
+		};
+</script>
+		
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
+
 </html>

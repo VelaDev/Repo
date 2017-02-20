@@ -32,14 +32,13 @@ span.techsystem{
   margin: auto;
 }
 .errorLogin h2{
-	color:#ff0000;
+  color:#ff0000;
 }
 .errorLogin h5{
-	color:#ff0000;
-	
+  color:#ff0000;	
 }
 .errorLogin h6{
-	color:green;
+  color:#43bf4;
 }
 
 .form {

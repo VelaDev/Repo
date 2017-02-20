@@ -7,14 +7,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/formValidation.min.css" />"> 
-
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"  >
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"  />
+<%-- <link type="text/stylesheet" src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
+ --%>
 <style>
 li {
 	list-style: none;
@@ -606,23 +604,17 @@ li {
 	</div>
 	<!-- / velaphanda_containter -->
 
-	<!-- Script -->
-	
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script> 
-
-	<!-- /Script -->
+		<!-- Script -->
+	 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>	
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>	
+	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
+	 --%>	
+	<!-- /Scripts -->
 
 
-<!-- Validate add Device -->
+<!-- Validate update Device -->
 <script>
 $(document).ready(function() {
     $('#startDatePicker')
@@ -878,95 +870,6 @@ $(document).ready(function() {
 </script>
 
 
-<!-- Other new fields -->
-<script>
-		$(document)
-				.ready(
-						function() {
-
-									deviceIndex = 0;
-
-							$('#updateOtherDevice')
-									
-									// Add button click handler
-									.on(
-											'click',
-											'.addButton',
-											function() {
-												deviceIndex++;
-												var $template = $('#deviceNewFields'), $clone = $template
-														.clone()
-														.removeClass('hide')
-														.removeAttr('id')
-														.attr(
-																'data-device-index',
-																deviceIndex)
-														.insertBefore($template);
-
-												// Update the name attributes
-												$clone
-														.find(
-																'[name="machinetype"]')
-														.attr(
-																'name',
-																'device['
-																		+ deviceIndex
-																		+ '].machinetype')
-														.end()
-														.find(
-																'[name="serialNumber"]')
-														.attr(
-																'name',
-																'device['
-																		+ deviceIndex
-																		+ '].serialNumber')
-														.end();
-											})
-
-									// Remove button click handler
-									.on(
-											'click',
-											'.removeButton',
-											function() {
-												var $row = $(this).parents(
-														'.form-group'), index = $row
-														.attr('data-book-index');
-
-												// Remove fields
-												$('#updateOtherDevice')
-														.formValidation(
-																'removeField',
-																$row
-																		.find('[name="book['
-																				+ index
-																				+ '].machinetype"]'))
-														.formValidation(
-																'removeField',
-																$row
-																		.find('[name="book['
-																				+ index
-																				+ '].serialNumber"]'));
-
-												// Remove element containing the fields
-												$row.remove();
-											});
-						});
-</script>
-<script>
-		$(document).ready(
-				function() {
-					$('#updateOtherDevice').on(
-							'added.field.fv removed.field.fv',
-							function(e, data) {
-								var $body = $('body'), $iframe = $body
-										.data('iframe.fv');
-								if ($iframe) {
-									// Adjust the height of iframe
-									$iframe.height($body.height());
-								}
-							});
-				});
-</script>
 
 <!--Mono and Colour Selection-->
 <script type="text/javascript">

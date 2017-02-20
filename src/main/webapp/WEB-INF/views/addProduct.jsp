@@ -8,13 +8,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/formValidation.min.css" />"> 
+<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"  >
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"  />
+<%-- <link type="text/stylesheet" src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
+ --%>
 
 <style>
 li {
@@ -84,7 +83,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
-													name="customerName" placeholder="Client Name"
+													name="customerName" placeholder="Client Name" readonly="readonly"
 													class="form-control" value="${customer.customerName}"
 													type="text">
 											</div>
@@ -99,7 +98,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													name="companyEmail" id="companyEmail"
+													name="companyEmail" id="companyEmail" readonly="readonly"
 													placeholder="Company Email" class="form-control"
 													value="${customer.email}" type="text">
 											</div>
@@ -587,23 +586,115 @@ li {
 	<!-- / velaphanda_containter -->
 
 	<!-- Script -->
-	
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script> 	
-	
-	
-	
+	 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>	
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>	
+	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
+	 --%>	
+	<!-- /Scripts -->
 
-	<!-- /Script -->
 
+<!-- Validate search DeviceSerialNumber -->
+<script>
+		$(document)
+				.ready(
+						function() {
+							$('#searchDeviceSerialNumber')
+									.formValidation({
+							            framework: 'bootstrap',
+							            icon: {
+							                valid: 'glyphicon glyphicon-ok',
+							                invalid: 'glyphicon glyphicon-remove',
+							                validating: 'glyphicon glyphicon-refresh'
+							            },
+											fields : {
+											customerName : {
+												validators : {
+												notEmpty : {
+													message : 'Client name is required to search and cannot be empty'
+												}
+											}
+										},
+									}
+							});
+						});
+</script>
+
+
+<!--Mono and Colour Selection-->
+	<script type="text/javascript">
+
+	function CheckColors(val){
+	 var element=document.getElementById('mono');
+	 if(val=='pick a mono'||val=='mono')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	  var element=document.getElementById('colour');
+	 if(val=='pick a colour'||val=='colour')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	}
+
+</script>
+
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
+</script>
+
+<!-- Enable datepicker -->
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#installationDate').datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+</script>
+
+<!-- Check if checkboxes are checked, if checked enable input text -->
+<script type="text/javascript">
+		document.getElementById('bridgeunitserial').onchange = function() {
+			document.getElementById('bridgeunit').disabled = !this.checked;
+		};
+		document.getElementById('faxunit').onchange = function() {
+			document.getElementById('faxunitserial').disabled = !this.checked;
+		};
+		document.getElementById('onebintrayserial').onchange = function() {
+			document.getElementById('onebintray').disabled = !this.checked;
+		};
+		document.getElementById('finisher').onchange = function() {
+			document.getElementById('finisherserial').disabled = !this.checked;
+		};
+		document.getElementById('ltcserial').onchange = function() {
+			document.getElementById('ltc').disabled = !this.checked;
+		};
+		document.getElementById('additionalPaperTrays').onchange = function() {
+			document.getElementById('additionalserial').disabled = !this.checked;
+		};
+		document.getElementById('credenzaserial').onchange = function() {
+			document.getElementById('credenza').disabled = !this.checked;
+		};
+</script>
+		
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 
 <!-- Validate add Device -->
 <script>
@@ -626,7 +717,7 @@ $(document).ready(function() {
         });
 
     $('#addOtherDevice')
-        .formValidation({
+       .formValidation({
             framework: 'bootstrap',
             icon: {
                 valid: 'glyphicon glyphicon-ok',
@@ -862,12 +953,12 @@ $(document).ready(function() {
 
 
 <!-- Other new fields -->
-<script>
+	<script>
 		$(document)
 				.ready(
 						function() {
 
-									deviceIndex = 0;
+									 deviceIndex = 0;
 
 							$('#addOtherDevice')
 									
@@ -919,7 +1010,7 @@ $(document).ready(function() {
 												$('#addOtherDevice')
 														.formValidation(
 																'removeField',
-																$row
+																//$row
 																		.find('[name="book['
 																				+ index
 																				+ '].machinetype"]'))
@@ -934,8 +1025,9 @@ $(document).ready(function() {
 												$row.remove();
 											});
 						});
-</script>
-<script>
+	</script>
+
+	<script>
 		$(document).ready(
 				function() {
 					$('#addOtherDevice').on(
@@ -949,108 +1041,6 @@ $(document).ready(function() {
 								}
 							});
 				});
-</script>
-
-<!--Mono and Colour Selection-->
-<script type="text/javascript">
-
-	function CheckColors(val){
-	 var element=document.getElementById('mono');
-	 if(val=='pick a mono'||val=='mono')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	  var element=document.getElementById('colour');
-	 if(val=='pick a colour'||val=='colour')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	}
-
-</script>
-
-<!-- Validate Search device for client -->
-<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchClientforProduct')
-									 framework: 'bootstrap',
-								            icon: {
-								                valid: 'glyphicon glyphicon-ok',
-								                invalid: 'glyphicon glyphicon-remove',
-								                validating: 'glyphicon glyphicon-refresh'
-								            },
-											fields : {
-											customerName : {
-												validators : {
-												notEmpty : {
-													message : 'Client name is required to search and cannot be empty'
-												}
-											}
-										},
-									}
-							});
-						});
-</script>
-
-
-
-
-<!-- Make all Serials numbers UpperCase  -->
-<script type="text/javascript">
-	function upperCaseF(a){
-	    setTimeout(function(){
-	        a.value = a.value.toUpperCase();
-	    }, 1);
-	}
-</script>
-
-<!-- Enable datepicker -->
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('#installationDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-</script>
-
-<!-- Check if checkboxes are checked, if checked enable input text -->
-<script type="text/javascript">
-		document.getElementById('bridgeunitserial').onchange = function() {
-			document.getElementById('bridgeunit').disabled = !this.checked;
-		};
-		document.getElementById('faxunit').onchange = function() {
-			document.getElementById('faxunitserial').disabled = !this.checked;
-		};
-		document.getElementById('onebintrayserial').onchange = function() {
-			document.getElementById('onebintray').disabled = !this.checked;
-		};
-		document.getElementById('finisher').onchange = function() {
-			document.getElementById('finisherserial').disabled = !this.checked;
-		};
-		document.getElementById('ltcserial').onchange = function() {
-			document.getElementById('ltc').disabled = !this.checked;
-		};
-		document.getElementById('additionalPaperTrays').onchange = function() {
-			document.getElementById('additionalserial').disabled = !this.checked;
-		};
-		document.getElementById('credenzaserial').onchange = function() {
-			document.getElementById('credenza').disabled = !this.checked;
-		};
-</script>
-		
-<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
+	</script>
 
 </html>

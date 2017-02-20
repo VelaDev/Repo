@@ -5,8 +5,6 @@
 <link href="<c:url value="/resources/custom/css/navbar.css" />" rel="stylesheet" type="text/css" />
 <link href="<c:url value="/resources/custom/css/vela_custom.css"/>" rel="stylesheet" type="text/css" />
 
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js" />"></script>
 
 
 <div class="vela_motto">

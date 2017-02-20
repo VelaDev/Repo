@@ -36,10 +36,6 @@
 												<th>Cell No</th>
 												<th>Device Details</th>
 												<th>Update Device</th>
-												<!-- <th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Update Customer</th>
-												<th>View Device</th>
-												<th>Add Device</th> -->
 											</tr>
 										</thead>
 										<tbody>
@@ -48,10 +44,10 @@
 												<tr>
 													<td>${list.serialNumber}</td>
 													<td>${list.modelNumber}</td>
-													<td>${list.contactPerson.firstName}</td>
+													<td>${list.contactPerson.firstName} ${list.contactPerson.lastName}</td>
 													<td>${list.contactPerson.cellphone}</td>
-                                                    <td><a href="#"><button class="btn btn-info">Update Customer</button></a></td>
-                                                     <td><a href="#"><button class="btn btn-info">View Devices</button></a></td>
+                                                    <td><a href="#"><button class="btn btn-info">Device Details</button></a></td>
+                                                     <td><a href="#"><button class="btn btn-info">Update Device</button></a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

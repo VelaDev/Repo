@@ -570,8 +570,19 @@ function isNumber(evt) {
 															}
 														}
 													},
-
+													telephoneNumber : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+															notEmpty : {
+																message : 'Telephone Number is required and cannot be empty'
+															}
+														}
+													},													
 													email : {
+														
 														validators : {
 															notEmpty : {
 																message : 'Email address is required and cannot be empty'

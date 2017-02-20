@@ -34,7 +34,7 @@
 												<th>Email <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Update Customer</th>
-												<!-- <th>Customer Contacts</th> -->
+												<th>View Device</th>
 												<th>Add Device</th>
 											</tr>
 										</thead>
@@ -46,7 +46,7 @@
 													<td>${list.email}</td>
 													<td>${list.tellphoneNumber}</td>
                                                     <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update Customer</button></a></td>
-                                                    <%-- <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update Customer</button></a></td> --%>
+                                                    <td><a href="/>"><button class="btn btn-info">View Device</button></a></td>
                                                     <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-success">Add Device</button></a></td>
 												</tr>
 											</c:forEach>

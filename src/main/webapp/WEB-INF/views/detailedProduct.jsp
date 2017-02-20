@@ -9,7 +9,9 @@
 .groupclientdetails {
 	float: left;
 }
-
+.groupclientaddress{
+	float: right;
+}
 .groupproductdetails {
 	float: right;
     margin-right: -20%;
@@ -18,6 +20,9 @@
 .content {
 	margin-left: -61%;
 	width: 180%;
+}
+li {
+	list-style: none;
 }
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -151,17 +156,43 @@
 												<div class="col-xs-12">
 													<div class="col-xs-4 form-control-label">
 														<h6>
-															<label>Customer Address</label>
+															<label>Mono/Colour</label>
 														</h6>
 		
 													</div>
-													<div class="col-xs-8">
-														<textarea rows="3" cols="29" disabled="disabled">${device.customer.streetName}, ${device.customer.city_town},${device.customer.province}</textarea>
+													<div class="col-xs-8">														
+														<input type="text" class="form-control input-sm" id="monoReading"
+															value=""
+															disabled="disabled">
 													</div>
 												</div>
 											</div>
-		
 										</form:form>
+									</div>
+									
+									<div class="groupclientaddress">
+												<legend>Address and Contacts</legend>												
+																	
+													<div id="customer_container"
+														style="width: auto; display: table;">
+														<p class="customerAddress_title">Address <ul class="address_list" style="display: block;">
+															<li id="streetName">${device.customer.streetName}</li>
+															<li id="streetNumber">${device.customer.city_town}</li>
+															<li id="city_town">${device.customer.province}</li>
+															
+														</ul></p>														
+														<p class="customerAddress_title">Contact </p>
+														
+														<label>Celephone Number</label>
+														<input type="text" class="form-control input-sm" id="cellphoneNumber" value="" disabled="disabled">
+																
+														<label>Telephone Number</label>
+														<input type="text" class="form-control input-sm" id="telephoneNumber" value=""disabled="disabled">
+																
+													</div>
+																												
+										</div>
+												
 									</div>
 								</div>
 							</form>

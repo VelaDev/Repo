@@ -286,7 +286,7 @@ li {
 									<div class="form-group">
 										<label class="col-md-3 control-label">Installation Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group input-append date" id="installDate">
+											<div class="input-group input-append date" id="installDatePicker">
 												<input type='text' class="form-control" id="installationDate" name="installationDate"
 													id="endDate" placeholder="YYYY-MM-DD" value="${productObject.installationDate.toString().substring(0,10) }"/> <span
 													class="input-group-addon"> <span
@@ -625,7 +625,8 @@ $(document).ready(function() {
             // Revalidate the start date field
             $('#updateOtherDevice').formValidation('revalidateField', 'startDate');
         });
-
+    
+   
     $('#endDatePicker')
         .datepicker({
             format: 'yyyy-mm-dd'
@@ -674,7 +675,7 @@ $(document).ready(function() {
                         },
                         date: {
                         	format: 'YYYY-MM-DD',
-                            min: 'startDate',
+                            min: 'endDate',
                             message: 'The installation date is not a valid'
                         }
                     }

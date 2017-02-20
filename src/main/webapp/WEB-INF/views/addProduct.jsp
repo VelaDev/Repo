@@ -187,7 +187,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphoneNumber" placeholder="Cellphone No"
+													id="cellphoneNumber" name="cellphone" placeholder="Cellphone No"
 													class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
@@ -200,7 +200,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="tellphoneNumber" placeholder="Tellphone No"
+													id="telephoneNumber" name="telephone" placeholder="Tellphone No"
 													class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>

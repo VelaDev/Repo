@@ -193,7 +193,7 @@ li {
 													<div id="customer_container"
 														style="width: auto; display: table;">
 														<p class="customerAddress_title">Address <ul class="address_list" style="display: block;">
-															<li id="streetName">${device.streetName}</li>
+															<li id="streetName">${device.streetNumber} ${device.streetName}</li>
 															<li id="streetNumber">${device.city_town}</li>
 															<li id="city_town">${device.province}</li>
 															

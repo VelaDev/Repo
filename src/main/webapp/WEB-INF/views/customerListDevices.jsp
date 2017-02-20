@@ -32,6 +32,10 @@
 											<tr>
 												<th>Serial No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Device Model <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Contact Person</th>
+												<th>Cell No</th>
+												<th>Device Details</th>
+												<th>Update Device</th>
 												<!-- <th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Update Customer</th>
 												<th>View Device</th>
@@ -44,11 +48,11 @@
 												<tr>
 													<td>${list.serialNumber}</td>
 													<td>${list.modelNumber}</td>
-													<%-- <td>${list.tellphoneNumber}</td>
-                                                    <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update Customer</button></a></td>
-                                                     <td><a href="searchCustomerdevices?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">View Devices</button></a></td>
-                                                    <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-success">Add Device</button></a></td>
-												 --%></tr>
+													<td>${list.contactPerson.firstName}</td>
+													<td>${list.contactPerson.cellphone}</td>
+                                                    <td><a href="#"><button class="btn btn-info">Update Customer</button></a></td>
+                                                     <td><a href="#"><button class="btn btn-info">View Devices</button></a></td>
+												</tr>
 											</c:forEach>
 										</tbody>
 									</table>

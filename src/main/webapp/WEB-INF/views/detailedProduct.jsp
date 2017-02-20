@@ -162,7 +162,7 @@ li {
 													</div>
 													<div class="col-xs-8">														
 														<input type="text" class="form-control input-sm" id="monoReading"
-															value=""
+															value="${device.monoReading}"
 															disabled="disabled">
 													</div>
 												</div>
@@ -178,7 +178,7 @@ li {
 													</div>
 													<div class="col-xs-8">														
 														<input type="text" class="form-control input-sm" id="colourReading"
-															value=""
+															value="${device.colour}"
 															disabled="disabled">
 													</div>
 												</div>
@@ -193,14 +193,14 @@ li {
 													<div id="customer_container"
 														style="width: auto; display: table;">
 														<p class="customerAddress_title">Address <ul class="address_list" style="display: block;">
-															<li id="streetName">${device.customer.streetName}</li>
-															<li id="streetNumber">${device.customer.city_town}</li>
-															<li id="city_town">${device.customer.province}</li>
+															<li id="streetName">${device.streetName}</li>
+															<li id="streetNumber">${device.city_town}</li>
+															<li id="city_town">${device.province}</li>
 															
 														</ul></p>																												
 														<p class="customerAddress_title">Contact <ul class="address_list" style="display: block;">
-															<li id="cellphoneNumber" ></li>
-															<li id="streetNumber" id="telephoneNumber"></li>
+															<li id="cellphoneNumber" > ${device.contactPerson.firstName} ${device.contactPerson.lastName}</li>
+															<li id="streetNumber" id="telephoneNumber">${device.contactPerson.cellphone}</li>
 															<li id="email"></li>
 														</ul></p>		
 													</div>

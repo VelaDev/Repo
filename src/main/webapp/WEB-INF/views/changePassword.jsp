@@ -153,28 +153,136 @@
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													newpassword: {
+													
+										            newpassword: {
 										                validators: {
 										                    notEmpty: {
-										                        message: 'The password is required and can\'t be empty'
+										                        message: 'You cant leave this empty'
 										                    },
 										                    identical: {
-										                        field: 'confirmpassword',
-										                        message: 'The password and its confirm are not the same'
+										                    	
+										                    	  field: 'confirmpassword',
+										                          message: 'Password are not the same'
+										                        
+										                              
+										                    },
+										                    callback:{
+										                        message: 'The password is not valid',
+										                        callback: function(value, password, $field){
+										                            if(value===''){
+										                                return true;
+										                             }
+
+										                            // Check the password strength
+										                            if (value.length < 4) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must be more than 6 characters long'
+										                                };
+										                            }
+
+										                            // The password doesn't contain any uppercase character
+										                            if (value === value.toLowerCase()) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain at least one upper case character'
+										                                }
+										                            }
+
+										                            // The password doesn't contain any uppercase character
+										                            if (value === value.toUpperCase()) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain at least one lower case character'
+										                                }
+										                            }
+
+										                            if(value.search(/[_~\-!@#\$%\^&\*\(\)]+$/) < 0) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain atleast one special character'
+										                                }
+										                            }
+										                            
+										                            // The password doesn't contain any digit
+										                            if (value.search(/[0-9]/) < 0) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain at least one digit'
+										                                }
+										                            }										                            
+										                            return true;
+										                        }               
+
 										                    }
-										                }
-										            },
+
+										                }          
+										            } ,
+										         
 										            confirmpassword: {
 										                validators: {
 										                    notEmpty: {
-										                        message: 'The confirm password is required and can\'t be empty'
+										                        message: 'You cant leave this empty'
 										                    },
 										                    identical: {
-										                        field: 'newpassword',
-										                        message: 'The password and its confirm are not the same'
+										                    	
+										                    	  field: 'newpassword',
+										                          message: 'Password are not the same'
+										                        
+										                              
+										                    },
+										                    callback:{
+										                        message: 'The password is not valid',
+										                        callback: function(value, password, $field){
+										                            if(value===''){
+										                                return true;
+										                             }
+
+										                            // Check the password strength
+										                            if (value.length < 6) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must be more than 6 characters long'
+										                                };
+										                            }
+
+										                            // The password doesn't contain any uppercase character
+										                            if (value === value.toLowerCase()) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain at least one upper case character'
+										                                }
+										                            }
+
+										                            // The password doesn't contain any uppercase character
+										                            if (value === value.toUpperCase()) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain at least one lower case character'
+										                                }
+										                            }
+
+										                            // The password doesn't contain any digit
+										                            if (value.search(/[0-9]/) < 0) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain at least one digit'
+										                                }
+										                            }
+
+										                            if(value.search(/[_~\-!@#\$%\^&\*\(\)]+$/) < 0) {
+										                                return {
+										                                    valid: false,
+										                                    message: 'It must contain atleast one special character'
+										                                }
+										                            }
+										                            return true;
+										                        }               
+
 										                    }
-										                }
-										            },
+
+										                }          
+										            }
 
 												}
 											});

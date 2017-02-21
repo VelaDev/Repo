@@ -133,7 +133,7 @@
 												class="glyphicon glyphicon-envelope"></i></span> <input
 												name="email" placeholder="Email Address"
 												class="form-control" type="text"
-												value='${ employeeObject.email}' readonly="readonly">
+												value='${ employeeObject.email}' >
 										</div>
 									</div>
 								</div>

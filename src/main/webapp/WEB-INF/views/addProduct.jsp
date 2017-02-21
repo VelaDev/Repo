@@ -350,7 +350,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													name="streetName" id="streetName" placeholder="Street Name"
+													name="streetName" id="streetName" onkeypress="return onlyAlphabets(event,this);"  placeholder="Street Name"
 													class="form-control" type="text">
 											</div>
 										</div>
@@ -593,109 +593,7 @@ li {
 	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
 	 --%>	
 	<!-- /Scripts -->
-
-
-<!-- Validate search DeviceSerialNumber -->
-<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchDeviceSerialNumber')
-									.formValidation({
-							            framework: 'bootstrap',
-							            icon: {
-							                valid: 'glyphicon glyphicon-ok',
-							                invalid: 'glyphicon glyphicon-remove',
-							                validating: 'glyphicon glyphicon-refresh'
-							            },
-											fields : {
-											customerName : {
-												validators : {
-												notEmpty : {
-													message : 'Client name is required to search and cannot be empty'
-												}
-											}
-										},
-									}
-							});
-						});
-</script>
-
-
-<!--Mono and Colour Selection-->
-	<script type="text/javascript">
-
-	function CheckColors(val){
-	 var element=document.getElementById('mono');
-	 if(val=='pick a mono'||val=='mono')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	  var element=document.getElementById('colour');
-	 if(val=='pick a colour'||val=='colour')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	}
-
-</script>
-
-<!-- Make all Serials numbers UpperCase  -->
-<script type="text/javascript">
-	function upperCaseF(a){
-	    setTimeout(function(){
-	        a.value = a.value.toUpperCase();
-	    }, 1);
-	}
-</script>
-
-<!-- Enable datepicker -->
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('#installationDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
-		});
-</script>
-
-<!-- Check if checkboxes are checked, if checked enable input text -->
-<script type="text/javascript">
-		document.getElementById('bridgeunitserial').onchange = function() {
-			document.getElementById('bridgeunit').disabled = !this.checked;
-		};
-		document.getElementById('faxunit').onchange = function() {
-			document.getElementById('faxunitserial').disabled = !this.checked;
-		};
-		document.getElementById('onebintrayserial').onchange = function() {
-			document.getElementById('onebintray').disabled = !this.checked;
-		};
-		document.getElementById('finisher').onchange = function() {
-			document.getElementById('finisherserial').disabled = !this.checked;
-		};
-		document.getElementById('ltcserial').onchange = function() {
-			document.getElementById('ltc').disabled = !this.checked;
-		};
-		document.getElementById('additionalPaperTrays').onchange = function() {
-			document.getElementById('additionalserial').disabled = !this.checked;
-		};
-		document.getElementById('credenzaserial').onchange = function() {
-			document.getElementById('credenza').disabled = !this.checked;
-		};
-</script>
-		
-<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
-
+	
 <!-- Validate add Device -->
 <script>
 $(document).ready(function() {
@@ -861,9 +759,7 @@ $(document).ready(function() {
 
 				streetNumber : {
 					validators : {
-						stringLength : {
-							min : 3,
-						},
+						
 						notEmpty : {
 							message : 'Street number is required and cannot be empty'
 						}
@@ -952,95 +848,127 @@ $(document).ready(function() {
 </script>
 
 
-<!-- Other new fields -->
-	<script>
+<!-- Validate search DeviceSerialNumber -->
+<script>
 		$(document)
 				.ready(
 						function() {
-
-									 deviceIndex = 0;
-
-							$('#addOtherDevice')
-									
-									// Add button click handler
-									.on(
-											'click',
-											'.addButton',
-											function() {
-												deviceIndex++;
-												var $template = $('#deviceNewFields'), $clone = $template
-														.clone()
-														.removeClass('hide')
-														.removeAttr('id')
-														.attr(
-																'data-device-index',
-																deviceIndex)
-														.insertBefore($template);
-
-												// Update the name attributes
-												$clone
-														.find(
-																'[name="machinetype"]')
-														.attr(
-																'name',
-																'device['
-																		+ deviceIndex
-																		+ '].machinetype')
-														.end()
-														.find(
-																'[name="serialNumber"]')
-														.attr(
-																'name',
-																'device['
-																		+ deviceIndex
-																		+ '].serialNumber')
-														.end();
-											})
-
-									// Remove button click handler
-									.on(
-											'click',
-											'.removeButton',
-											function() {
-												var $row = $(this).parents(
-														'.form-group'), index = $row
-														.attr('data-book-index');
-
-												// Remove fields
-												$('#addOtherDevice')
-														.formValidation(
-																'removeField',
-																//$row
-																		.find('[name="book['
-																				+ index
-																				+ '].machinetype"]'))
-														.formValidation(
-																'removeField',
-																$row
-																		.find('[name="book['
-																				+ index
-																				+ '].serialNumber"]'));
-
-												// Remove element containing the fields
-												$row.remove();
-											});
-						});
-	</script>
-
-	<script>
-		$(document).ready(
-				function() {
-					$('#addOtherDevice').on(
-							'added.field.fv removed.field.fv',
-							function(e, data) {
-								var $body = $('body'), $iframe = $body
-										.data('iframe.fv');
-								if ($iframe) {
-									// Adjust the height of iframe
-									$iframe.height($body.height());
-								}
+							$('#searchDeviceSerialNumber')
+									.formValidation({
+							            framework: 'bootstrap',
+							            icon: {
+							                valid: 'glyphicon glyphicon-ok',
+							                invalid: 'glyphicon glyphicon-remove',
+							                validating: 'glyphicon glyphicon-refresh'
+							            },
+											fields : {
+											customerName : {
+												validators : {
+												notEmpty : {
+													message : 'Client name is required to search and cannot be empty'
+												}
+											}
+										},
+									}
 							});
-				});
-	</script>
+						});
+</script>
 
+
+<!--Mono and Colour Selection-->
+	<script type="text/javascript">
+
+	function CheckColors(val){
+	 var element=document.getElementById('mono');
+	 if(val=='pick a mono'||val=='mono')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	  var element=document.getElementById('colour');
+	 if(val=='pick a colour'||val=='colour')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	   
+	}
+
+</script>
+
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
+</script>
+
+<!-- Enable datepicker -->
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#installationDate').datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+</script>
+
+<!-- Check if checkboxes are checked, if checked enable input text -->
+<script type="text/javascript">
+		document.getElementById('bridgeunitserial').onchange = function() {
+			document.getElementById('bridgeunit').disabled = !this.checked;
+		};
+		document.getElementById('faxunit').onchange = function() {
+			document.getElementById('faxunitserial').disabled = !this.checked;
+		};
+		document.getElementById('onebintrayserial').onchange = function() {
+			document.getElementById('onebintray').disabled = !this.checked;
+		};
+		document.getElementById('finisher').onchange = function() {
+			document.getElementById('finisherserial').disabled = !this.checked;
+		};
+		document.getElementById('ltcserial').onchange = function() {
+			document.getElementById('ltc').disabled = !this.checked;
+		};
+		document.getElementById('additionalPaperTrays').onchange = function() {
+			document.getElementById('additionalserial').disabled = !this.checked;
+		};
+		document.getElementById('credenzaserial').onchange = function() {
+			document.getElementById('credenza').disabled = !this.checked;
+		};
+</script>
+<!-- Accept alphabetical character only -->
+<script language="Javascript" type="text/javascript">
+
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+
+    </script>
+<!-- Accept alphanumeric characters only -->
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 </html>

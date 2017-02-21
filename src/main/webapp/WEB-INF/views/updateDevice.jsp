@@ -360,7 +360,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													name="streetName" id="streetName" placeholder="Street Name"
+													name="streetName" id="streetName" onkeypress="return onlyAlphabets(event,this);"  placeholder="Street Name"
 													class="form-control" type="text"
 													value="${productObject.streetName}">
 											</div>
@@ -780,9 +780,7 @@ $(document).ready(function() {
 
 				streetNumber : {
 					validators : {
-						stringLength : {
-							min : 3,
-						},
+						
 						notEmpty : {
 							message : 'Street number is required and cannot be empty'
 						}
@@ -964,6 +962,30 @@ $(document).ready(function() {
 		};
 </script>
 		
+<!-- Accept alphabetical character only -->
+<script language="Javascript" type="text/javascript">
+
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+
+    </script>
+<!-- Accept alphanumeric characters only -->
 <script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;

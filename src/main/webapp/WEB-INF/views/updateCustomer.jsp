@@ -115,7 +115,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="streetName" id="streetName" placeholder="Street Name"
-												class="form-control" type="text"  value="${customer.streetName}" >
+												class="form-control" type="text" onkeypress="return onlyAlphabets(event,this);"  value="${customer.streetName}" >
 										</div>
 									</div>
 								</div>
@@ -413,12 +413,38 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	
+<!-- Hide contact person 2 -->
 <script type="text/javascript">
 		$('#contactPerson2').change(function() {
 			$('#contactPerson2checkboxdiv').toggle();
 		});
 </script>
 
+<!-- Accept alphabetical character only -->
+<script language="Javascript" type="text/javascript">
+
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+
+    </script>
+
+<!-- Accept numbers only -->
 <script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
@@ -583,7 +609,17 @@ function isNumber(evt) {
 															}
 														}
 													},
-
+													telephoneNumber: {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															},
+															notEmpty : {
+																message : 'Telephone Number is required and cannot be empty'
+															}
+														}
+													},
 													email : {
 														validators : {
 															notEmpty : {

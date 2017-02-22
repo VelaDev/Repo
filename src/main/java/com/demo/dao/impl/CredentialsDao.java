@@ -35,7 +35,7 @@ public class CredentialsDao implements CredentialsDaoInt{
 			   retFlag =  checkPasswordExists(credentials.getEmail(),credentials.getPassword());
 			   
 			   if(retFlag == false){
-				   
+				   credentials.setStatus("Current");
 				   sessionFactory.getCurrentSession().save(credentials);
 				   retFlag = true;
 			   }else{

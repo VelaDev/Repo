@@ -360,7 +360,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													name="streetName" id="streetName" onkeypress="return onlyAlphabets(event,this);"  placeholder="Street Name"
+													 id="streetName" name="streetName" onkeypress="return onlyAlphabets(event,this);" placeholder="Street Name" 
 													class="form-control" type="text"
 													value="${productObject.streetName}">
 											</div>
@@ -604,14 +604,51 @@ li {
 	</div>
 	<!-- / velaphanda_containter -->
 
-		<!-- Script -->
-	 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<!-- Script -->
+	
+	
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>	
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>	
 	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	 --%>	
+	 --%>
+	 	
 	<!-- /Scripts -->
+
+<!-- Accept alphabetical characters only -->
+<script language="Javascript" type="text/javascript">
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123 ))
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+    </script>
+
+<!-- Accept alphanumeric characters only -->
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 
 
 <!-- Validate update Device -->
@@ -962,40 +999,7 @@ $(document).ready(function() {
 		};
 </script>
 		
-<!-- Accept alphabetical character only -->
-<script language="Javascript" type="text/javascript">
-
-        function onlyAlphabets(e, t) {
-            try {
-                if (window.event) {
-                    var charCode = window.event.keyCode;
-                }
-                else if (e) {
-                    var charCode = e.which;
-                }
-                else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
-                    return true;
-                else
-                    return false;
-            }
-            catch (err) {
-                alert(err.Description);
-            }
-        }
-
-    </script>
-<!-- Accept alphanumeric characters only -->
-<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
 
 
+</body>
 </html>

@@ -95,8 +95,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
-												name="streetName" id="streetName" placeholder="Street Name" onkeypress="return onlyAlphabets(event,this);" 
-												class="form-control" type="text">
+												name="streetName" id="streetName" placeholder="Street Name" class="form-control" type="text">
 										</div>
 									</div>
 								</div>
@@ -402,29 +401,18 @@
 		});
 </script>
 
-<!-- Accept alphabetical character only -->
-<script language="Javascript" type="text/javascript">
+		
+<!-- Accept alphabetical characters only -->
+<script type="text/javascript">
+	function testInput(event) {
+	   var value = String.fromCharCode(event.which);
+	   var pattern = new RegExp(/[a-zедц ]/i);
+	   return pattern.test(value);
+	}
 
-        function onlyAlphabets(e, t) {
-            try {
-                if (window.event) {
-                    var charCode = window.event.keyCode;
-                }
-                else if (e) {
-                    var charCode = e.which;
-                }
-                else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123))
-                    return true;
-                else
-                    return false;
-            }
-            catch (err) {
-                alert(err.Description);
-            }
-        }
+	$('#streetName').bind('keypress', testInput);
 
-    </script>
+</script>
 
 <!-- Accept numbers only -->
 <script type="text/javascript">

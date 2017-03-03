@@ -19,5 +19,6 @@ public interface EmployeeDaoInt {
 	String deactivateEmployee(String email);
 	Integer count();
 	List<Employee> getAllManagers();
+	String returnManagerEmail();
 
 }

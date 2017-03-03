@@ -323,4 +323,20 @@ public class EmployeeDao implements EmployeeDaoInt{
 		return credential;
 		
 	}
+
+	@Override
+	public String returnManagerEmail() {
+		List<Employee> empList = getAllManagers();
+		String managerEmail = "";
+		try{
+			for(Employee emp:empList){
+				managerEmail = emp.getEmail();
+				break;
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return managerEmail;
+	}
+	
 }

@@ -98,7 +98,6 @@ public class EmployeeController {
 			
 			
 			if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
-				//retRole ="redirect:changePassword";
 				model.setViewName("changePassword");
 			}else{
 				
@@ -108,13 +107,10 @@ public class EmployeeController {
 				
 				if(numberOfDays > 65 && numberOfDays <= 75){
 					int noDays = (int) (75 - numberOfDays);
-					String message = "Your password is about to expire in "+ noDays + " days.";
-					System.out.println(message);
+					String message = "Your password is about to expire in "+ noDays + " days, Please reset your password now.";
 					model.addObject("message", message);
-					//retRole ="redirect:changePassword";
 					model.setViewName("changePassword");
 				}else if(numberOfDays >75){
-					//retRole= "redirect:passwordExpired";
 					model.setViewName("passwordExpired");
 				}
 				else{
@@ -128,7 +124,6 @@ public class EmployeeController {
 						userLogDetailsServiceInt.saveUserLogDetails(details);
 						
 						serviceInt.userLoggeIn(employee);
-						/*retRole= "redirect:home";*/
 						model.setViewName("home");
 					}
 					else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
@@ -139,7 +134,6 @@ public class EmployeeController {
 						userLogDetailsServiceInt.saveUserLogDetails(details);
 						
 						serviceInt.userLoggeIn(employee);
-						//retRole= "redirect:technicianHome";
 						model.setViewName("technicianHome");
 						
 					}
@@ -150,14 +144,20 @@ public class EmployeeController {
 						System.out.println(userSessionID);
 						userLogDetailsServiceInt.saveUserLogDetails(details);
 						serviceInt.userLoggeIn(employee);
-						//retRole= "redirect:ticket";
 						model.setViewName("ticket");
 					}else{
 						
 						
 						loginAttempt = serviceInt.getEmployeeDetails(employee);
 						serviceInt.upsertUserAttempt(loginAttempt);
-						//retRole= "redirect:wrongpasswordoruser";
+						if(loginAttempt.getAttemptCount()==2){
+							String attempMessage = "You have "+ loginAttempt.getAttemptCount() + " attempts left";
+							model.addObject("attempMessage", attempMessage);
+						}
+						else if(loginAttempt.getAttemptCount()==3){
+							String attempMessage = "Your account is blocked after "+ loginAttempt.getAttemptCount() + " wrong attempts. Please consult your mange for password resert";
+							model.addObject("attempMessage", attempMessage);
+						}
 						model.setViewName("wrongpasswordoruser");
 						
 					}

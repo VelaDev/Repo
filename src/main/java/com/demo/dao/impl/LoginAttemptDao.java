@@ -27,6 +27,7 @@ public class LoginAttemptDao implements LoginAttemptDaoInt{
 	public void upsertUserAttempt(LoginAttempt userLoginAttempt) {
 		sessionFactory.getCurrentSession().saveOrUpdate(userLoginAttempt);
 		
+		
 	}
 
 	@Override
@@ -40,6 +41,7 @@ public class LoginAttemptDao implements LoginAttemptDaoInt{
 		LoginAttempt loginattempt = getLoginUser(employee.getEmail());
 		int tempCount = 0;
 		attempt = new LoginAttempt();
+		String managerEmail = "";
 		try{
 			
 			 if(loginattempt != null){
@@ -50,6 +52,8 @@ public class LoginAttemptDao implements LoginAttemptDaoInt{
 					 
 					 employee.setStatus("BLOCKED");
 					 sessionFactory.getCurrentSession().update(employee);
+					 managerEmail = employeeDaoInt.returnManagerEmail();
+					 JavaMail.accountLocked(employee, managerEmail);
 					 
 				 }
 			 }else{

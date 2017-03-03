@@ -70,7 +70,7 @@ public class JavaMail {
 }
   
   
-  public static void sendPasswordToEmployee( Employee emp, String password) {
+  public static void sendPasswordToEmployee( Employee emp, String passw) {
 	  String []to = {emp.getEmail()};
 	  String from=emailFrom;
       String pass=password;

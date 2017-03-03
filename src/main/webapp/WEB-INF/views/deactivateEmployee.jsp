@@ -175,6 +175,12 @@
 								          id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to activate this employee?">
 							
 						        </c:when>
+						         <c:when test="${employeeObject.status=='BLOCKED' }">
+						            <input type="submit" value="Activate Employee"
+								           class="btn btn-success btn-block btn-lg"
+								          id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to activate this employee?">
+							
+						        </c:when>
 						     <c:otherwise>
 						          <input type="submit" value="Deactivate Employee"
 								         class="btn btn-danger btn-block btn-lg"

@@ -24,6 +24,12 @@
 					</c:out>
 				</div>
 			</c:if>
+			<c:if test="${not empty message }">
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ message}">
+					</c:out>
+				</div>
+			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">

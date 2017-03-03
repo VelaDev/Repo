@@ -48,7 +48,7 @@
                                                    	<td>${list.email}</td>
 													<td>${list.tellphoneNumber}</td>
                                                     <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">Update Customer</button></a></td>
-                                                    <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">View Device</button></a></td>
+                                                    <td><a href="searchCustomerdevices?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-info">View Devices</button></a></td>
                                                     <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>"><button class="btn btn-success">Add Device</button></a></td>
 												</tr>
 											</c:forEach>

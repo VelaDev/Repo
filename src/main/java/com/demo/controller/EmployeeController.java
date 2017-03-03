@@ -80,7 +80,7 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value="authenticate",method={ RequestMethod.POST,RequestMethod.GET})
-	public String authenticateLogin(@ModelAttribute("authenticate")Employee employee,@RequestParam(value = "error", required = false) String error,
+	public ModelAndView authenticateLogin(@ModelAttribute("authenticate")Employee employee,@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout)
 	{
 		ModelAndView model = new ModelAndView();
@@ -93,21 +93,29 @@ public class EmployeeController {
 		password = PasswordEncrypt.encryptPassword(password);
 		if(employee != null&& employee.getStatus().equalsIgnoreCase("ACTIVE")){
 			session.setAttribute("loggedInUser", employee);
+			String user= employee.getFirstName()+" " + employee.getLastName();
+			session.setAttribute("user", user);
 			
 			
 			if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
-				retRole ="redirect:changePassword";
+				//retRole ="redirect:changePassword";
+				model.setViewName("changePassword");
 			}else{
 				
 				numberOfDays = credentialsServiceInt.passwordDateDifference(userName);
 				
-				System.out.println(numberOfDays);
+				System.out.println("Number of days : "+numberOfDays);
 				
 				if(numberOfDays > 65 && numberOfDays <= 75){
-					
-					retRole ="redirect:changePassword";
+					int noDays = (int) (75 - numberOfDays);
+					String message = "Your password is about to expire in "+ noDays + " days.";
+					System.out.println(message);
+					model.addObject("message", message);
+					//retRole ="redirect:changePassword";
+					model.setViewName("changePassword");
 				}else if(numberOfDays >75){
-					retRole= "redirect:passwordExpired";
+					//retRole= "redirect:passwordExpired";
+					model.setViewName("passwordExpired");
 				}
 				else{
 					model.addObject("loggedInUser", employee.getEmail());
@@ -120,7 +128,8 @@ public class EmployeeController {
 						userLogDetailsServiceInt.saveUserLogDetails(details);
 						
 						serviceInt.userLoggeIn(employee);
-						retRole= "redirect:home";
+						/*retRole= "redirect:home";*/
+						model.setViewName("home");
 					}
 					else if(employee.getRole().equalsIgnoreCase("TECHNICIAN") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
 					{
@@ -130,7 +139,8 @@ public class EmployeeController {
 						userLogDetailsServiceInt.saveUserLogDetails(details);
 						
 						serviceInt.userLoggeIn(employee);
-						retRole= "redirect:technicianHome";
+						//retRole= "redirect:technicianHome";
+						model.setViewName("technicianHome");
 						
 					}
 					else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
@@ -140,13 +150,15 @@ public class EmployeeController {
 						System.out.println(userSessionID);
 						userLogDetailsServiceInt.saveUserLogDetails(details);
 						serviceInt.userLoggeIn(employee);
-						retRole= "redirect:ticket";
+						//retRole= "redirect:ticket";
+						model.setViewName("ticket");
 					}else{
 						
 						
 						loginAttempt = serviceInt.getEmployeeDetails(employee);
 						serviceInt.upsertUserAttempt(loginAttempt);
-						retRole= "redirect:wrongpasswordoruser";
+						//retRole= "redirect:wrongpasswordoruser";
+						model.setViewName("wrongpasswordoruser");
 						
 					}
 				}
@@ -154,14 +166,15 @@ public class EmployeeController {
 			}
 			
 		}else if(employee != null&& employee.getStatus().equalsIgnoreCase("BLOCKED")){
-			retRole= "redirect:loginattempted";
+			//retRole= "redirect:loginattempted";
+			model.setViewName("loginattempted");
 		}
-		else{retRole= "redirect:error";
-			System.out.print("No such user");
+		else{//retRole= "redirect:error";
+			   model.setViewName("error");
 		}
 			
 			
-		return retRole;
+		return model;
 	}
 	
 	

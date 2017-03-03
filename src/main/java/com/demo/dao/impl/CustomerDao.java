@@ -18,6 +18,7 @@ import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.CustomerContactDetailsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.CustomerContactDetails;
+import com.demo.model.Employee;
 
 @Repository("clientDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -49,26 +50,7 @@ public class CustomerDao implements CustomerDaoInt{
 
 	@Override
 	public Customer getClientByClientName(String clientName) {
-		
-		Customer customer = null;
-		try{
-			
-			clientList = getClientList();
-			for(Customer tempClient:clientList)
-			{
-				if(tempClient.getCustomerName().equalsIgnoreCase(clientName))
-				{
-					customer= tempClient;
-					break;
-				}
-			}
-		}
-		catch(Exception e)
-		{
-			customer = null;
-		}
-	
-		return customer;
+		return(Customer) sessionFactory.getCurrentSession().get(Customer.class,clientName );
 	}
 
 	@SuppressWarnings("unchecked")

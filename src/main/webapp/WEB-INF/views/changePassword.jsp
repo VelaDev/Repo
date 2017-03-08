@@ -179,44 +179,19 @@
 										                                return true;
 										                             }
 
-										                            // Check the password strength
-										                            if (value.length < 4) {
+										                         // Check the password strength
+										                         //It must contain at least one upper case character
+										                         //It must contain at least one lower case character
+										                         //It must contain atleast one special character
+										                         //It must contain at least one digit
+										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*/) < 0 ) {
 										                                return {
 										                                    valid: false,
-										                                    message: 'It must be more than 6 characters long'
+										                                    message: 'Password must be more than 8 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
 										                                };
 										                            }
 
-										                            // The password doesn't contain any uppercase character
-										                            if (value === value.toLowerCase()) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain at least one upper case character'
-										                                }
-										                            }
-
-										                            // The password doesn't contain any uppercase character
-										                            if (value === value.toUpperCase()) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain at least one lower case character'
-										                                }
-										                            }
-
-										                            if(value.search(/[_~\-!@#\$%\^&\*\(\)]+$/) < 0) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain atleast one special character'
-										                                }
-										                            }
-										                            
-										                            // The password doesn't contain any digit
-										                            if (value.search(/[0-9]/) < 0) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain at least one digit'
-										                                }
-										                            }										                            
+										             										                            
 										                            return true;
 										                        }               
 
@@ -244,44 +219,18 @@
 										                                return true;
 										                             }
 
-										                            // Check the password strength
-										                            if (value.length < 6) {
+										                        	 // Check the password strength
+											                         //It must contain at least one upper case character
+											                         //It must contain at least one lower case character
+											                         //It must contain atleast one special character
+											                         //It must contain at least one digit
+										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*/) < 0) {
 										                                return {
 										                                    valid: false,
-										                                    message: 'It must be more than 6 characters long'
+										                                    message: 'Password must be more than 8 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
 										                                };
 										                            }
 
-										                            // The password doesn't contain any uppercase character
-										                            if (value === value.toLowerCase()) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain at least one upper case character'
-										                                }
-										                            }
-
-										                            // The password doesn't contain any uppercase character
-										                            if (value === value.toUpperCase()) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain at least one lower case character'
-										                                }
-										                            }
-
-										                            // The password doesn't contain any digit
-										                            if (value.search(/[0-9]/) < 0) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain at least one digit'
-										                                }
-										                            }
-
-										                            if(value.search(/[_~\-!@#\$%\^&\*\(\)]+$/) < 0) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'It must contain atleast one special character'
-										                                }
-										                            }
 										                            return true;
 										                        }               
 

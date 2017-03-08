@@ -158,15 +158,14 @@
 
 											<tr>
 
-												<td>${list.spare.partNumber}</td>
-												<td>${list.spare.description}</td>
-												<td>${list.modelNumber}</td>
-												<td>${list.spare.quantity}</td>
+												<td>${list.partNumber}</td>
+												<td>${list.description}</td>
+												<td>${list.compitableDevice}</td>
+												<td>${list.quantity}</td>
 												<td><input type="checkbox" class="form-group"
-													id="checkedOrder" name="selectedItem" value="${list.spare.partNumber},${list.modelNumber},${list.spare.description}"></td>
+													id="checkedOrder" name="selectedItem" value="${list.partNumber},${list.compitableDevice},${list.description}"></td>
 												<td><input type="text" class="form-group" id="quantity"
 													name="quantity"></td>
-
 												<%-- 	<th>
 											<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
 											--%>

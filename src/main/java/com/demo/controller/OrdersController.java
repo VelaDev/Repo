@@ -53,6 +53,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
+			
 			model.addObject("makeOrder", new OrdersBean());
 			model.addObject("compatibility", spareParts.getAllSpareParts());
 			model.addObject("managersList", employeeServiceInt.getAllManagers());

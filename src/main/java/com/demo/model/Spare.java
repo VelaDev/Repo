@@ -32,20 +32,20 @@ public class Spare implements Serializable{
 	@Id
 	@Column(name="Part_Number")
 	private String partNumber;
+	@Column(name="Item_Type")
+	private String itemType;
 	@Column(name="Description")
 	private String description;
-	@Column(name="Type")
-	private String type;
+	@Column(name="Compitable_Devices")
+	private String compitableDevice;
 	@Column(name="Quantity")
 	private int quantity;
-	@Column(name="Supplier_Name")
-	private String supplierName;
 	@Column(name="ReceivedBy")
 	private String receivedBy;
 	@Column(name="Date_Arrived")
 	private String dateTime;
-	@Column(name="Stock_Type")
-	private String stockType;
+	/*@Column(name="Compitable_Device")
+	private String compitableDevice;*/
 	
 	
 	/*@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)

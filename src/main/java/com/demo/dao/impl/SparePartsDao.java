@@ -14,8 +14,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.dao.SpareMasterDaoInt;
 import com.demo.dao.SparePartsDaoInt;
 import com.demo.model.Spare;
+import com.demo.model.SpareMaster;
 
 
 @Repository("sparePartsDAO")
@@ -24,11 +26,15 @@ public class SparePartsDao implements SparePartsDaoInt{
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	@Autowired
+	private SpareMasterDaoInt spareMasterDaoInt;
 	
 	private String retMessage = null;
 	
-	DateFormat dateFormat = null;
-	Date date = null;
+	private DateFormat dateFormat = null;
+	private Date date = null;
+	
+	private SpareMaster spareMaster = null;
 
 	@Override
 	public String saveSpareparts(Spare spareParts) {
@@ -37,10 +43,19 @@ public class SparePartsDao implements SparePartsDaoInt{
 		date = new Date();
 		
 		try{
-			   spareParts.setStockType("HO");
-			   spareParts.setDateTime(dateFormat.format(date));
-			   sessionFactory.getCurrentSession().save(spareParts);
-			   retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ " is successfully added";
+			spareMaster = spareMasterDaoInt.getSpareMaster(spareParts.getPartNumber());
+			if(spareMaster != null){
+				
+				   spareParts.setCompitableDevice(spareMaster.getCompitableDevice());
+				   spareParts.setDescription(spareMaster.getDescription());
+				   spareParts.setItemType(spareMaster.getItemType());
+				   spareParts.setDateTime(dateFormat.format(date));
+				   sessionFactory.getCurrentSession().save(spareParts);
+				   retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ " is successfully added";   
+			}else{
+				retMessage ="Part No : "+ spareParts.getPartNumber()+ " does not exist in spare master data. Plase add it into Spare Master Data first";
+			}
+			   
 		}
 		catch(Exception e){
 			retMessage = " Spare Part"+" "+spareParts.getPartNumber()+ "is not added " + e.getMessage();

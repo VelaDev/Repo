@@ -72,15 +72,15 @@
 										
 										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
 										    <c:choose>
-										     <c:when test="${list.status=='ACTIVE'}"> 
+										     <c:when test="${list.status=='Active'}"> 
 										        <button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button>
 									         </c:when>
 									         <c:when test="${list.status=='BLOCKED'}"> 
 										        <button class="btn btn-danger" data-bb-example-key="confirm-button-text" >Deactivate</button>
 									         </c:when>
-									         <c:otherwise>
+									         <c:when test="${list.status=='INACTIVE'}">
 									            <button class="btn btn-success" data-bb-example-key="confirm-button-text">Activate</button>
-									         </c:otherwise>
+									         </c:when>
 									         </c:choose>
 									         </a></td>
 									</tr>

@@ -50,7 +50,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 		
 		try{
 			  employee.setFirstTimeLogin(true);
-			  employee.setStatus("ACTIVE");
+			  employee.setStatus("Active");
 			  password = generatePassword();
 			  encryptPassword = PasswordEncrypt.encryptPassword(password);
 			  employee.setPassword(encryptPassword);
@@ -135,7 +135,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 			String pass = tempEmp.getPassword();
 			String cellNumber = updateEmployee.getCellNumber();
 			tempEmp.setPassword(pass);
-			tempEmp.setStatus("ACTIVE");
+			tempEmp.setStatus("Active");
 			tempEmp.setCellNumber(cellNumber);
 			tempEmp.setEmail(updateEmployee.getEmail());
 			tempEmp.setFirstName(updateEmployee.getFirstName());
@@ -143,7 +143,6 @@ public class EmployeeDao implements EmployeeDaoInt{
 			tempEmp.setLastName(updateEmployee.getLastName());
 			tempEmp.setRole(updateEmployee.getRole());
 			tempEmp.setTitle(updateEmployee.getTitle());
-			System.out.println(tempEmp.getCellNumber());
 			  sessionFactory.getCurrentSession().update(tempEmp);
 		      retMessage = "Employee"+ " "+ tempEmp.getFirstName()+" "+ tempEmp.getLastName()+ " " + "is successfully updated";
 		}
@@ -184,7 +183,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 passworChange = PasswordEncrypt.encryptPassword(password);
 				 emp.setPassword(passworChange);
 				 emp.setFirstTimeLogin(false);
-				 emp.setStatus("ACTIVE");
+				 emp.setStatus("Active");
 				 credential = getUserCredentials(emp);
 				 retFlag= credentialsDaoInt.saveNewPassword(credential);
 				 if(retFlag ==true){
@@ -213,7 +212,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				encryptPassword = PasswordEncrypt.encryptPassword(tempPassword);
 				emp.setPassword(encryptPassword);
 				emp.setFirstTimeLogin(true);
-				emp.setStatus("ACTIVE");
+				emp.setStatus("Active");
 			/*	passworChange = updateEmployee(emp);*/
 				sessionFactory.getCurrentSession().update(emp);
 				JavaMail.sendPasswordToEmployee(emp,tempPassword);
@@ -245,7 +244,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is deactivated" ;
 			}
 			else {
-				emp.setStatus("ACTIVE");
+				emp.setStatus("Active");
 				localRetMessage = updateActivateDeactivate(emp);
 				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is activated" ;
 			}

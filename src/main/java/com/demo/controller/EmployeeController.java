@@ -63,8 +63,9 @@ public class EmployeeController {
 	
 	
 	@RequestMapping({"/login", "/"})
-	public String loadLogin()
+	public ModelAndView loadLogin()
 	{
+		model = new ModelAndView();
 		details = new UserLogDetails();
 		
 		try{
@@ -75,7 +76,8 @@ public class EmployeeController {
 		}catch(Exception e){
 			e.getMessage();
 		}
-		return "login";
+		model.setViewName("login");
+		return model;
 	}
 	
 	

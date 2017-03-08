@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.CompatibilityBean;
+import com.demo.bean.CustomerBean;
 import com.demo.bean.SparePartsBean;
 import com.demo.model.Device;
 import com.demo.model.Employee;
@@ -44,6 +45,7 @@ public class SparePartsController {
 	    model = new ModelAndView("addParts");
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			model.addObject("saveSpareParts", new SparePartsBean());
 			getSerials = spareMasterServiceInt.getSerials();
 		System.out.println();
 			model.addObject("SpareParts",getSerials);

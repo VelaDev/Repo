@@ -22,6 +22,7 @@ import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.OrderDetailsInt;
 import com.demo.service.OrdersServiceInt;
+import com.demo.service.SparePartsServeceInt;
 
 
 @Controller
@@ -30,7 +31,7 @@ public class OrdersController {
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
 	@Autowired
-	private CompatibilityServiceInt compatibilityServiceInt;
+	private SparePartsServeceInt spareParts;
 	@Autowired
 	private EmployeeServiceInt employeeServiceInt;
 	@Autowired
@@ -53,7 +54,7 @@ public class OrdersController {
 		if(userName != null){
 			
 			model.addObject("makeOrder", new OrdersBean());
-			model.addObject("compatibility", compatibilityServiceInt.compitabilityList());
+			model.addObject("compatibility", spareParts.getAllSpareParts());
 			model.addObject("managersList", employeeServiceInt.getAllManagers());
 			model.addObject("customerList", customerServiceInt.getClientList());
 			model.setViewName("order");

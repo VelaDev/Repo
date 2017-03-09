@@ -27,7 +27,7 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			<br>
+			
 			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
 
@@ -45,94 +45,95 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<form:form modelAttribute="makeOrder" method="post"
-							action="makeOrder" id="makeOrder" name="makeOrder">
-							<!-- Below table will be displayed as Data table -->
-							<!--First column-->
-							<div class="col-md-4">
-								<!-- Text input Email-->
-								<div class="form-group">
-									<div class="col-md-8 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="stockType" class="form-control selectpicker">
-												<option value="">Stock Type</option>
-												<option value="Boot">Boot</option>
-												<option value="Site">Site</option>
-											</select>
-										</div>
+						<form:form class="well form-horizontal" modelAttribute="makeOrder"
+							method="post" action="makeOrder" id="makeOrder" name="makeOrder">
+
+
+							<!-- Select type Stock Type-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Stock Type</label>
+								<div class="col-md-6 selectContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-list"></i></span><select id="stockType"
+											name="stockType" class="form-control"
+											onchange='CheckStockType(this.value);'
+											class="form-control selectpicker">
+											<option>Select Stock Type</option>
+											<option value="Boot">Boot</option>
+											<option value="Site">Site</option>
+										</select>
 									</div>
 								</div>
 							</div>
-							<!-- /F Column -->
-							<!--First column-->
-							<div class="col-md-4">
-								<div class="form-group">
-									<div class="col-md-8 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input id="technician"
-												name="technician" placeholder="Technicain"
-												class="form-control" type="text" value="${loggedInUser.firstName} ${loggedInUser.lastName}">
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /F Column -->
-							<!--First column-->
-							<div class="col-md-4">
+
+							<div id="Site" style='display: none;'>
 								<!-- Text input Location-->
 								<div class="form-group">
-									<div class="col-md-8 inputGroupContainer">
+									<label class="col-md-3 control-label">Location</label>
+									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="	glyphicon glyphicon-map-marker"></i></span> <input
-												id="location" name="location" placeholder="Location"
-												class="form-control" type="text">
+												type="text" class="form-control" name="Site"
+												placeholder="Enter Location" id="Site" />
 										</div>
 									</div>
 								</div>
-							</div><br><br>
-							<!--First column-->
-							<div class="col-md-4">
-								<!-- Text input Email-->
-								<div class="form-group">
-									<div class="col-md-8 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <select
-												name="customer" class="form-control selectpicker">
-												<option>Customer Name</option>
-												<c:forEach items="${customerList}" var="customer">
-													<option value="${customer.customerName}">${customer.customerName}</option>
-												</c:forEach>
-											</select>
-										</div>
+
+							</div>
+
+							<!-- Text input Technician name-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Technician</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-user"></i></span> <input id="technician"
+											name="technician" placeholder="Technicain"
+											class="form-control" type="text"
+											value="${loggedInUser.firstName} ${loggedInUser.lastName}">
 									</div>
 								</div>
 							</div>
-							<!-- /F Column -->
-							<!--First column-->
-							<div class="col-md-4">
-								<!-- Text input Email-->
-								<div class="form-group">
-									<div class="col-md-8 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <select
-												name="approver" class="form-control selectpicker">
-												<option>Select Approver</option>
-												<c:forEach items="${managersList}" var="manager">
-													<option value="${manager.email}">${manager.firstName} ${manager.lastName}</option>
-												</c:forEach>
-											</select>
-										</div>
+
+
+							<!-- Text input Customer Name-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Customer Name</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-user"></i></span> <select name="customer"
+											class="form-control selectpicker">
+											<option>Customer Name</option>
+											<c:forEach items="${customerList}" var="customer">
+												<option value="${customer.customerName}">${customer.customerName}</option>
+											</c:forEach>
+										</select>
 									</div>
 								</div>
 							</div>
-							<!-- /F Column -->
-							<br />
+
+
+							<!-- Text input Approver-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Approver</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-user"></i></span> <select name="approver"
+											class="form-control selectpicker">
+											<option>Select Approver</option>
+											<c:forEach items="${managersList}" var="manager">
+												<option value="${manager.email}">${manager.firstName}
+													${manager.lastName}</option>
+											</c:forEach>
+										</select>
+									</div>
+								</div>
+							</div>
+
 							<br />
 							<div id="makeOrders">
 								<table id="myDatatable" class="display datatable">
@@ -144,7 +145,7 @@
 												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 											<th>Model No <img
 												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Available QTY <img
+											<th>Available QTY <img
 												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 											<th>Tick To Order</th>
 											<th>Quantity</th>
@@ -163,7 +164,8 @@
 												<td>${list.compitableDevice}</td>
 												<td>${list.quantity}</td>
 												<td><input type="checkbox" class="form-group"
-													id="checkedOrder" name="selectedItem" value="${list.partNumber},${list.compitableDevice},${list.description}"></td>
+													id="checkedOrder" name="selectedItem"
+													value="${list.partNumber},${list.compitableDevice},${list.description}"></td>
 												<td><input type="text" class="form-group" id="quantity"
 													name="quantity"></td>
 												<%-- 	<th>
@@ -180,8 +182,7 @@
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<br>
-									<br> <input type="submit" value="Make Order"
+									<br> <br> <input type="submit" value="Make Order"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="order" name="order">
 								</div>
@@ -235,8 +236,28 @@
 
 	<!-- /Script -->
 
+	<!--Stock type Selection-->
+	<script type="text/javascript">
+	
+		function CheckStockType(val){
+		 var element=document.getElementById('Site');
+		 if(val=='select stock type'||val=='Site')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+		   
+		  var element=document.getElementById('Boot');
+		 if(val=='select stock type'||val=='Boot')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+		   
+		}
+	
+	</script>
+
+
 	<!-- Validate Make Order -->
-	>
 
 	<script>
 		$(document)

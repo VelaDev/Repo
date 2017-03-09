@@ -93,7 +93,7 @@
 									<li><a href='<c:url value="availableSpareParts.html"/>'>Head Office</a></li>
 									<li><a href='<c:url value="bootSite.html"/>'>Boot Site</a></li>
 									<li><a href='<c:url value="stockSite.html"/>'>Stock Site</a></li>
-									<li><a href='<c:url value="stockSite.html"/>'>Make Order</a></li>
+									<li><a href='<c:url value="order.html"/>'>Make Order</a></li>
 
 								</ul></li>
 						</ul></li>

@@ -8,10 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link type="text/css" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"  >
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"  />
+<link type="text/css" rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 <%-- <link type="text/stylesheet" src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
  --%>
 
@@ -61,9 +65,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
-													name="customerName" placeholder="Client Name" readonly="readonly"
-													class="form-control" value="${customer.customerName}"
-													type="text">
+													name="customerName" placeholder="Client Name"
+													readonly="readonly" class="form-control"
+													value="${customer.customerName}" type="text">
 											</div>
 										</div>
 									</div>
@@ -165,8 +169,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphone" placeholder="Cellphone No"
-													class="form-control" type="text" onkeypress="return isNumber(event)">
+													id="cellphoneNumber" name="cellphone"
+													placeholder="Cellphone No" class="form-control" type="text"
+													onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -178,8 +183,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="telephone" placeholder="Tellphone No"
-													class="form-control" type="text" onkeypress="return isNumber(event)">
+													id="telephoneNumber" name="telephone"
+													placeholder="Tellphone No" class="form-control" type="text"
+													onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -220,16 +226,18 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" id="productModel" placeholder="Model Number"
-													class="form-control" type="text">
+													name="productModel" id="productModel"
+													placeholder="Model Number" class="form-control" type="text">
 											</div>
 										</div>
 									</div>
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
-										<label class="col-xs-3 control-label">Contract Start Date</label>
+										<label class="col-xs-3 control-label">Contract Start
+											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group input-append date" id="startDatePicker">
+											<div class="input-group input-append date"
+												id="startDatePicker">
 												<input type='text' class="form-control" name="startDate"
 													id="startDate" placeholder="YYYY-MM-DD" /> <span
 													class="input-group-addon"> <span
@@ -240,7 +248,8 @@ li {
 									</div>
 									<!-- Text input Contract End Date-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Contract End	Date</label>
+										<label class="col-md-3 control-label">Contract End
+											Date</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group input-append date" id="endDatePicker">
 												<input type='text' class="form-control" name="endDate"
@@ -253,11 +262,13 @@ li {
 									</div>
 									<!-- Text input Installation Date-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Installation Date</label>
+										<label class="col-md-3 control-label">Installation
+											Date</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group input-append date" id="installDate">
-												<input type='text' class="form-control" id="installationDate" name="installationDate"
-													id="endDate" placeholder="YYYY-MM-DD" /> <span
+												<input type='text' class="form-control"
+													id="installationDate" name="installationDate" id="endDate"
+													placeholder="YYYY-MM-DD" /> <span
 													class="input-group-addon"> <span
 													class="glyphicon glyphicon-calendar"></span>
 												</span>
@@ -328,8 +339,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													id="streetName"  name="streetName" onkeypress="return onlyAlphabets(event,this);" placeholder="Street Name"
-													class="form-control" type="text">
+													id="streetName" name="streetName"
+													onkeypress="return onlyAlphabets(event,this);"
+													placeholder="Street Name" class="form-control" type="text">
 											</div>
 										</div>
 									</div>
@@ -403,97 +415,80 @@ li {
 							<br>
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
-								<div class="row">
-									<div class="col-xs-2 form-control-label">
-										<label for="serailNo"><input type="checkbox"
-											id="bridgeunitserial" name="bridgeUnitSerialType" />&nbsp;Bridge
-											unit</label>
-									</div>
-									<div class="col-xs-3">
-										<label for="bridgeunit">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"
-											onkeydown="upperCaseF(this)" id="bridgeunit" disabled
-											name="bridgeUnitSerialTypeSerialNo" />
-									</div>
 
-									<div class="col-xs-2 form-control-label">
-										<label for="serailNo"><input type="checkbox"
-											id="faxunit" name="faxUnitSerialType" />&nbsp;Fax Unit:</label>
-									</div>
-									<div class="col-xs-3">
-										<label for="faxunitserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"
-											onkeydown="upperCaseF(this)" id="faxunitserial" disabled
-											name="faxUnitSerialTypeSerialNo" />
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-xs-2 form-control-label">
-										<label for="serailNo"><input type="checkbox"
-											id="onebintrayserial" name="bridgeUnitSerialType" />&nbsp;One
-											bin tray</label>
-									</div>
-									<div class="col-xs-3">
-										<label for="onebintray">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"
-											onkeydown="upperCaseF(this)" id="onebintray" disabled
-											name="OneBinTrayTypeSerialNo" />
-									</div>
+								<table id="tableselect"
+									class="table table-striped table-bordered table-hover table-condensed">
 
-									<div class="col-xs-2 form-control-label">
-										<label for="serailNo"><input type="checkbox"
-											id="finisher" name="finisherType" />&nbsp;Finisher:</label>
-									</div>
-									<div class="col-xs-3">
-										<label for="finisherserial">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"
-											onkeydown="upperCaseF(this)" id="finisherserial" disabled
-											name="finisherTypeSerialNo" />
-									</div>
-								</div>
-								<br>
-								<div class="row">
-									<div class="col-xs-2 form-control-label">
-										<label for="serailNo"><input type="checkbox"
-											id="ltcserial" name="ltcType" />&nbsp;LCT</label>
-									</div>
-									<div class="col-xs-3">
-										<label for="ltc">Serial Number:&nbsp;&nbsp;</label><input
-											type="text" class="form-control input-sm"
-											onkeydown="upperCaseF(this)" id="ltc" name="ltcTypeSerial"
-											disabled />
-									</div>
+									<thead>
+										<tr>
+											<th><input type="checkbox" id="selectallmachinetypes"
+												name="selectallmachinetypes" /> Machine Type</th>
+											<th>Serial Number</th>
+										</tr>
+									</thead>
+									<tbody>
 
+										<tr>
+											<td><input type="checkbox" class="select"
+												id="bridgeunitserial" name="bridgeUnitSerialType" /> Bridge
+												unit</td>
+											<td><input type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="bridgeunit"
+												name="bridgeUnitSerialTypeSerialNo" disabled="disabled" /></td>
+										</tr>
 
-									<div class="row">
-										<div class="col-xs-2 form-control-label">
-											<label for="serailNo"><input type="checkbox"
-												id="credenzaserial" name="credenza" />&nbsp;Credenza</label>
-										</div>
-										<div class="col-xs-3">
-											<label for="credenza">Serial Number:&nbsp;&nbsp;</label><input
-												type="text" class="form-control input-sm"
+										<tr>
+											<td><input type="checkbox" class="select" id="faxunit"
+												name="faxUnitSerialType" /> Fax Unit</td>
+											<td><input type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="faxunitserial"
+												name="faxUnitSerialTypeSerialNo" disabled="disabled" /></td>
+										</tr>
+
+										<tr>
+											<td><input type="checkbox" class="select"
+												id="onebintrayserial" name="bridgeUnitSerialType" /> One
+												bin tray</td>
+											<td><input type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="onebintray"
+												name="OneBinTrayTypeSerialNo" disabled="disabled" /></td>
+										</tr>
+
+										<tr>
+											<td><input type="checkbox" class="select" id="finisher"
+												name="finisherType" /> Finisher</td>
+											<td><input type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="finisherserial"
+												name="finisherTypeSerialNo" disabled="disabled" /></td>
+										</tr>
+
+										<tr>
+											<td><input type="checkbox" class="select" id="ltcserial"
+												name="ltcType" /> LCT</td>
+											<td><input type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="lct" name="ltcTypeSerial"
+												disabled="disabled" /></td>
+										</tr>
+
+										<tr>
+											<td><input type="checkbox" class="select"
+												id="credenzaserial" name="credenza" /> Credenza</td>
+											<td><input type="text" class="form-control input-sm"
 												onkeydown="upperCaseF(this)" id="credenza"
-												name="credenzaSerialNo" disabled />
-										</div>
+												name="credenzaSerialNo" disabled="disabled" /></td>
+										</tr>
 
-									</div>
-									<br>
-									<div class="col-xs-2 form-control-label">
-										<label for="serailNo"><input type="checkbox"
-											id="additionalPaperTrays" name="additionalPaperTrays" />&nbsp;&nbsp;Additional
-											paper trays:</label>
-									</div>
-									<div class="col-xs-3">
-										<label for="additionalserial">Serial
-											Number:&nbsp;&nbsp;</label><input type="text"
-											class="form-control input-sm" onkeydown="upperCaseF(this)"
-											id="additionalserial" name="additionalPaperTraysTypeSerial"
-											disabled />
-									</div>
-								</div>
+										<tr>
+											<td><input type="checkbox" class="select"
+												id="additionalPaperTrays" name="additionalPaperTrays" />
+												Additional paper trays</td>
+											<td><input type="text" class="form-control input-sm"
+												onkeydown="upperCaseF(this)" id="additionalserial"
+												name="additionalPaperTraysTypeSerial" disabled="disabled" /></td>
+										</tr>
 
+									</tbody>
+								</table>
 								<br /> <br />
 								<div class="row">
 
@@ -563,20 +558,24 @@ li {
 	</div>
 	<!-- / velaphanda_containter -->
 
-		<!-- Script -->
-	
-	
-	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>	
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>	
+	<!-- Script -->
+
+
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>
 	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
 	 --%>
-	 	
+
 	<!-- /Scripts -->
 
-<!-- Accept alphabetical characters only -->
-<script language="Javascript" type="text/javascript">
+	<!-- Accept alphabetical characters only -->
+	<script language="Javascript" type="text/javascript">
         function onlyAlphabets(e, t) {
             try {
                 if (window.event) {
@@ -597,8 +596,8 @@ li {
         }
     </script>
 
-<!-- Accept numbers only -->
-<script type="text/javascript">
+	<!-- Accept numbers only -->
+	<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -610,8 +609,8 @@ function isNumber(evt) {
 </script>
 
 
-<!-- Validate add Device -->
-<script>
+	<!-- Validate add Device -->
+	<script>
 $(document).ready(function() {
     $('#startDatePicker')
         .datepicker({
@@ -835,6 +834,90 @@ $(document).ready(function() {
 						}
 					}
 				},
+				bridgeunit : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Bridge unit is required and cannot be empty'
+						}
+					}
+				},
+				
+				faxunitserial : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Fax unit is required and cannot be empty'
+						}
+					}
+				},
+				
+				onebintray : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'One bintray is required and cannot be empty'
+						}
+					}
+				},
+				
+				finisherserial : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Finisher is required and cannot be empty'
+						}
+					}
+				},
+				
+				lct : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'LCT is required and cannot be empty'
+						}
+					}
+				},
+				
+				credenza : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Credenza is required and cannot be empty'
+						}
+					}
+				},
+				
+				additionalserial : {
+					validators : {
+						stringLength : {
+							min : 2,
+
+						},
+						notEmpty : {
+							message : 'Additional paper tray is required and cannot be empty'
+						}
+					}
+				},
+					
 				productModel : {
 					validators : {
 						stringLength : {
@@ -864,8 +947,8 @@ $(document).ready(function() {
 </script>
 
 
-<!-- Validate search DeviceSerialNumber -->
-<script>
+	<!-- Validate search DeviceSerialNumber -->
+	<script>
 		$(document)
 				.ready(
 						function() {
@@ -892,7 +975,7 @@ $(document).ready(function() {
 
 
 <!--Mono and Colour Selection-->
-	<script type="text/javascript">
+<script type="text/javascript">
 
 	function CheckColors(val){
 	 var element=document.getElementById('mono');
@@ -911,8 +994,8 @@ $(document).ready(function() {
 
 </script>
 
-<!-- Make all Serials numbers UpperCase  -->
-<script type="text/javascript">
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
 	function upperCaseF(a){
 	    setTimeout(function(){
 	        a.value = a.value.toUpperCase();
@@ -920,8 +1003,8 @@ $(document).ready(function() {
 	}
 </script>
 
-<!-- Enable datepicker -->
-<script type="text/javascript">
+	<!-- Enable datepicker -->
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#installationDate').datepicker({
 				format : "yyyy-mm-dd"
@@ -929,8 +1012,8 @@ $(document).ready(function() {
 		});
 </script>
 
-<!-- Check if checkboxes are checked, if checked enable input text -->
-<script type="text/javascript">
+	<!-- Check if checkboxes are checked, if checked enable input text -->
+	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;
 		};

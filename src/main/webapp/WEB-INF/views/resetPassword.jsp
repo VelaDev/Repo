@@ -34,7 +34,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-
+					<!-- 
 						<form action="searchEmployeeForPasswordReset" method="post"
 							id="searchEmployeeForPasswordReset">
 							<div class="row">
@@ -52,12 +52,12 @@
 							<div class="col-md-2">
 									<input class="btn btn-success" type='submit' name="search" value='Search' />
 							</div>
-							</div> -->
+							</div>
 							</div>
 
 							<hr>
-						</form>
-						<br>
+							 -->
+							 						
 						<form:form class="well form-horizontal" method="post"
 							action="resetPassword" modelAttribute="resetPassword"
 							id="resetPassword">

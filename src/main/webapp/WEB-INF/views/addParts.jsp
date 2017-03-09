@@ -27,7 +27,7 @@
 
 .groupsearchdetails {
 	float: right;
-	margin-right: -20%;
+	margin-right: -12%;
 }
 
 .content {
@@ -83,7 +83,7 @@
 						<!--Search-->
 
 						<div class="col-xs-10">
-							<form:form >
+							<form:form>
 								<div class="groupdetails-row-padding">
 									<div class="groupsearchdetails">
 
@@ -97,9 +97,7 @@
 													<!-- Iterating over the list sent from Controller -->
 													<c:forEach items="${models}" var="device">
 														<tr>
-															<td><h6>
-																	${ device}
-																</h6></td>
+															<td><h6>${ device}</h6></td>
 
 
 														</tr>
@@ -109,104 +107,131 @@
 											</table>
 										</div>
 
-									</div>
+									</div><!-- //group search details -->
 								</div>
 							</form:form>
+
+
+							<form:form action="saveSpareParts"
+								modelAttribute="saveSpareParts" method="post" id="saveSpareParts">
+
 								<div class="groupsparedetails">
 									<legend>Spares</legend>
-									<form:form action="saveSpareParts" modelAttribute="saveSpareParts" method="post">
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Part Number</label>
-													</h6>
 
-												</div>
-												<div class="col-xs-8">
-													<input type="text" id="partNumber" name="partNumber"
-														class="form-control input-sm"
-														value="${sparePart.partNumber}" readonly="readonly">
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="col-xs-4 form-control-label">
+												<h6>
+													<label>Part Number</label>
+												</h6>
+
+											</div>
+											<div class="col-xs-8">
+												<div class="form-group">
+													<div class="input-group">
+														<input type="text" id="partNumber" name="partNumber"
+															class="form-control" value="${sparePart.partNumber}">
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Item Type</label>
-													</h6>
+									</div>
 
-												</div>
-												<div class="col-xs-8">
-													<input type="text" id="itemType" name="itemType"
-														class="form-control input-sm"
-														value="${sparePart.itemType}" readonly="readonly">
-													</select>
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="col-xs-4 form-control-label">
+												<h6>
+													<label>Item Type</label>
+												</h6>
+
+											</div>
+											<div class="col-xs-8">
+
+												<div class="form-group">
+													<div class="input-group">
+														<input type="text" id="itemType" name="itemType"
+															class="form-control" value="${sparePart.itemType}">
+													</div>
 												</div>
 											</div>
 										</div>
+									</div>
 
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Description</label>
-													</h6>
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="col-xs-4 form-control-label">
+												<h6>
+													<label>Description</label>
+												</h6>
 
-												</div>
-												<div class="col-xs-8">
-													<input type="text" id="description" name="description"
-														class="form-control input-sm"
-														value="${sparePart.description}" readonly="readonly">
+											</div>
+											<div class="col-xs-8">
+												<div class="form-group">
+													<div class="input-group">
+														<input type="text" id="description" name="description"
+															class="form-control" value="${sparePart.description}">
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Quantity</label>
-													</h6>
+									</div>
 
-												</div>
-												<div class="col-xs-8">
-													<input type="text" id="quantity" name="quantity"
-														class="form-control input-sm"
-														onkeypress="return isNumber(event)">
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="col-xs-4 form-control-label">
+												<h6>
+													<label>Quantity</label>
+												</h6>
+
+											</div>
+											<div class="col-xs-8">
+												<div class="form-group">
+													<div class="input-group">
+														<input type="text" id="quantity" name="quantity"
+															class="form-control"
+															onkeypress="return isNumber(event)">
+													</div>
 												</div>
 											</div>
 										</div>
-										<div class="row">
-											<div class="col-xs-12">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Received By</label>
-													</h6>
+									</div>
 
-												</div>
-												<div class="col-xs-8">
-													<input type="text" id="receivedBy" name="receivedBy"
-														class="form-control input-sm"
-														value="${loggedInUser.firstName} ${loggedInUser.lastName}"
-														readonly="readonly">
+									<div class="row">
+										<div class="col-xs-12">
+											<div class="col-xs-4 form-control-label">
+												<h6>
+													<label>Received By</label>
+												</h6>
+
+											</div>
+											<div class="col-xs-8">
+												<div class="form-group">
+													<div class="input-group">
+														<input type="text" id="receivedBy" name="receivedBy"
+															class="form-control"
+															value="${loggedInUser.firstName} ${loggedInUser.lastName}"
+															readonly="readonly">
+													</div>
 												</div>
 											</div>
 										</div>
-										
-									</form:form>
+									</div>
 								</div>
+								<!-- //group spare details -->
+
+
+								<div class="form-group row">
+									<div class="col-sm-offset-2 col-sm-8">
+										<br> <br> <input type="submit" value="Add Spare"
+											class="btn btn-primary btn-block btn-lg" tabindex="9"
+											id="addSpare">
+									</div>
+								</div>
+
+							</form:form>
+
 						</div>
-
-						<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-8">
-								<br> <br> <input type="submit" value="Add Spare"
-									class="btn btn-primary btn-block btn-lg" tabindex="9"
-									id="addSpare">
-							</div>
-						</div>
-
-
+						
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -231,7 +256,7 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
-	
+
 	<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
@@ -299,10 +324,10 @@ function isNumber(evt) {
 															}
 														}
 													},
-													modelNumber : {
+													quantity : {
 														validators : {
 															notEmpty : {
-																message : 'Model mumber is required and cannot be empty'
+																message : 'Quantity is required and cannot be empty'
 															}
 														}
 													},
@@ -317,7 +342,6 @@ function isNumber(evt) {
 											});
 						});
 	</script>
-
 
 </body>
 </html>

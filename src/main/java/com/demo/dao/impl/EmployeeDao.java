@@ -50,7 +50,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 		
 		try{
 			  employee.setFirstTimeLogin(true);
-			  employee.setStatus("Active");
+			  employee.setStatus("ACTIVE");
 			  password = generatePassword();
 			  encryptPassword = PasswordEncrypt.encryptPassword(password);
 			  employee.setPassword(encryptPassword);
@@ -135,7 +135,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 			String pass = tempEmp.getPassword();
 			String cellNumber = updateEmployee.getCellNumber();
 			tempEmp.setPassword(pass);
-			tempEmp.setStatus("Active");
+			tempEmp.setStatus("ACTIVE");
 			tempEmp.setCellNumber(cellNumber);
 			tempEmp.setEmail(updateEmployee.getEmail());
 			tempEmp.setFirstName(updateEmployee.getFirstName());
@@ -183,7 +183,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 passworChange = PasswordEncrypt.encryptPassword(password);
 				 emp.setPassword(passworChange);
 				 emp.setFirstTimeLogin(false);
-				 emp.setStatus("Active");
+				 emp.setStatus("ACTIVE");
 				 credential = getUserCredentials(emp);
 				 retFlag= credentialsDaoInt.saveNewPassword(credential);
 				 if(retFlag ==true){
@@ -212,7 +212,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				encryptPassword = PasswordEncrypt.encryptPassword(tempPassword);
 				emp.setPassword(encryptPassword);
 				emp.setFirstTimeLogin(true);
-				emp.setStatus("Active");
+				emp.setStatus("ACTIVE");
 			/*	passworChange = updateEmployee(emp);*/
 				sessionFactory.getCurrentSession().update(emp);
 				JavaMail.sendPasswordToEmployee(emp,tempPassword);
@@ -244,7 +244,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is deactivated" ;
 			}
 			else {
-				emp.setStatus("Active");
+				emp.setStatus("ACTIVE");
 				localRetMessage = updateActivateDeactivate(emp);
 				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " is activated" ;
 			}

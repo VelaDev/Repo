@@ -7,7 +7,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+<link href="<c:url value="/resources/custom/css/vela_custom.css" />"
+	rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <link type="text/css" rel="stylesheet"
@@ -94,8 +95,7 @@ li {
 										style="width: auto; display: table;">
 										<p class="customerAddress_title">Customer Address</p>
 										<ul class="address_list" style="display: block;">
-											<li id="streetName">${customer.streetName}</li>
-											<li id="streetNumber">${customer.streetNumber}</li>
+											<li id="streetName">${customer.streetNumber} ${customer.streetName} </li>
 											<li id="city_town">${customer.city_town}</li>
 											<li id="zipcode">${customer.zipcode}</li>
 										</ul>
@@ -169,7 +169,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellphone"
+													id="cellphoneNumber" name="cellphoneNumber"
 													placeholder="Cellphone No" class="form-control" type="text"
 													onkeypress="return isNumber(event)">
 											</div>
@@ -183,7 +183,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber" name="telephone"
+													id="telephoneNumber" name="tellphoneNumber"
 													placeholder="Tellphone No" class="form-control" type="text"
 													onkeypress="return isNumber(event)">
 											</div>
@@ -196,12 +196,11 @@ li {
 
 
 							</fieldset>
-							<br>
-							<br>
+							
 
 							<fieldset>
 								<legend>Machine Details</legend>
-								<br>
+								
 								<!--First Column-->
 								<div class="col-md-6">
 
@@ -226,7 +225,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" id="productModel"
+													name="modelNumber" id="modelNumber"
 													placeholder="Model Number" class="form-control" type="text">
 											</div>
 										</div>
@@ -282,8 +281,8 @@ li {
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span><select name="colour"
-													class="form-control" onchange='CheckColors(this.value);'
+													class="glyphicon glyphicon-list"></i></span><select id="monocolour" name="colour"
+													class="form-control"  onchange='CheckColors(this.value);'
 													class="form-control selectpicker">
 													<option>Select Mono/Color</option>
 													<option value="mono">Mono</option>
@@ -411,8 +410,7 @@ li {
 
 							</fieldset>
 
-							<br>
-							<br>
+							
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
 
@@ -421,8 +419,8 @@ li {
 
 									<thead>
 										<tr>
-											<th><!-- <input type="checkbox" id="selectallmachinetypes"
-												name="selectallmachinetypes" />  -->Machine Type</th>
+											<th><input type="checkbox" id="selectallmachinetypes"
+												name="selectallmachinetypes" /> Machine Type</th>
 											<th>Serial Number</th>
 										</tr>
 									</thead>
@@ -533,14 +531,15 @@ li {
 
 
 							</fieldset>
+							
 							<br>
-							<br>
-							<br>
-							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
-									<input type="submit" value="Add Device"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="addProduct">
+							<div class="centerbutton">
+								<div class="form-group row">
+									<div class="col-sm-4">
+										<input type="submit" value="Add Device"
+											class="btn btn-primary btn-block" tabindex="9"
+											id="addProduct">
+									</div>
 								</div>
 							</div>
 						</form:form>
@@ -559,8 +558,6 @@ li {
 	<!-- / velaphanda_containter -->
 
 	<!-- Script -->
-
-
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
@@ -569,10 +566,7 @@ li {
 		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>
-		
-	<!-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	 -->
-	
+	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>	 --%>
 
 	<!-- /Scripts -->
 
@@ -598,7 +592,7 @@ li {
         }
     </script>
 
-	<!-- Accept numbers only -->
+	<!-- Accept alphanumeric characters only -->
 	<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
@@ -611,7 +605,7 @@ function isNumber(evt) {
 </script>
 
 
-	<!-- Validate add Device -->
+	<!-- Validate update Device -->
 	<script>
 $(document).ready(function() {
     $('#startDatePicker')
@@ -622,7 +616,8 @@ $(document).ready(function() {
             // Revalidate the start date field
             $('#addOtherDevice').formValidation('revalidateField', 'startDate');
         });
-
+    
+   
     $('#endDatePicker')
         .datepicker({
             format: 'yyyy-mm-dd'
@@ -632,7 +627,7 @@ $(document).ready(function() {
         });
 
     $('#addOtherDevice')
-       .formValidation({
+        .formValidation({
             framework: 'bootstrap',
             icon: {
                 valid: 'glyphicon glyphicon-ok',
@@ -643,35 +638,35 @@ $(document).ready(function() {
             	startDate: {
                     validators: {
                         notEmpty: {
-                            message: 'The start date is required'
+                            message: 'Contract start date is required'
                         },
                         date: {
                             format: 'YYYY-MM-DD',
                             max: 'endDate',
-                            message: 'The start date is not a valid'
+                            message: 'Contract start date is not a valid'
                         }
                     }
                 },
                 endDate: {
                     validators: {
                         notEmpty: {
-                            message: 'The end date is required'
+                            message: 'Contract end date is required'
                         },
                         date: {
                             format: 'YYYY-MM-DD',
                             min: 'startDate',
-                            message: 'The end date is not a valid'
+                            message: 'Contract end date is not a valid'
                         }
                     }
                 },
                 installationDate: {
                     validators: {
                         notEmpty: {
-                            message: 'The end date is required'
+                            message: 'The installation date is required'
                         },
                         date: {
                         	format: 'YYYY-MM-DD',
-                        	min: 'endDate',
+                            min: 'startDate',
                             message: 'The installation date is not a valid'
                         }
                     }
@@ -704,7 +699,7 @@ $(document).ready(function() {
 						}
 					}
 				},
-				emailCompany : {
+				companyEmail : {
 					validators : {
 						notEmpty : {
 							message : 'Company email address is required and cannot be empty'
@@ -824,7 +819,17 @@ $(document).ready(function() {
 						}
 					}
 				},
+				modelNumber : {
+					validators : {
+						stringLength : {
+							min : 2,
 
+						},
+						notEmpty : {
+							message : 'Model number is required and cannot be empty'
+						}
+					}
+				},
 				serialNumber : {
 					validators : {
 						stringLength : {
@@ -918,19 +923,8 @@ $(document).ready(function() {
 							message : 'Additional paper tray is required and cannot be empty'
 						}
 					}
-				},
-					
-				productModel : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Model number is required and cannot be empty'
-						}
-					}
 				}
+				
 			
             }
         })
@@ -949,35 +943,9 @@ $(document).ready(function() {
 </script>
 
 
-	<!-- Validate search DeviceSerialNumber -->
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchDeviceSerialNumber')
-									.formValidation({
-							            framework: 'bootstrap',
-							            icon: {
-							                valid: 'glyphicon glyphicon-ok',
-							                invalid: 'glyphicon glyphicon-remove',
-							                validating: 'glyphicon glyphicon-refresh'
-							            },
-											fields : {
-											customerName : {
-												validators : {
-												notEmpty : {
-													message : 'Client name is required to search and cannot be empty'
-												}
-											}
-										},
-									}
-							});
-						});
-</script>
 
-
-<!--Mono and Colour Selection-->
-<script type="text/javascript">
+	<!--Mono and Colour Selection-->
+	<script type="text/javascript">
 
 	function CheckColors(val){
 	 var element=document.getElementById('mono');
@@ -996,8 +964,8 @@ $(document).ready(function() {
 
 </script>
 
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
 	function upperCaseF(a){
 	    setTimeout(function(){
 	        a.value = a.value.toUpperCase();
@@ -1005,8 +973,8 @@ $(document).ready(function() {
 	}
 </script>
 
-	<!-- Enable datepicker -->
-	<script type="text/javascript">
+<!-- Enable datepicker -->
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#installationDate').datepicker({
 				format : "yyyy-mm-dd"
@@ -1014,8 +982,8 @@ $(document).ready(function() {
 		});
 </script>
 
-	<!-- Check if checkboxes are checked, if checked enable input text -->
-	<script type="text/javascript">
+<!-- Check if checkboxes are checked, if checked enable input text -->
+<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;
 		};

@@ -7,6 +7,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link href="<c:url value="/resources/custom/css/vela_custom.css" />"
+	rel="stylesheet" type="text/css" />
 <link type="text/css" rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <link type="text/css" rel="stylesheet"
@@ -100,7 +102,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input type="text"
-													id="Company Email" name="companyEmail" readonly="readonly"
+													id="Company Email"companyEmail id="companyEmail" name="companyEmail" readonly="readonly"
 													placeholder="Company Email" class="form-control"
 													value="${productObject.customer.email}">
 											</div>
@@ -114,8 +116,7 @@ li {
 										style="width: auto; display: table;">
 										<p class="customerAddress_title">Customer Address
 										<ul class="address_list" style="display: block;">
-											<li id="streetName">${productObject.customer.streetName}</li>
-											<li id="streetNumber">${productObject.customer.streetNumber}</li>
+											<li id="streetName">${productObject.customer.streetNumber} ${productObject.customer.streetName}</li>
 											<li id="city_town">${productObject.customer.city_town}</li>
 											<li id="zipcode">${productObject.customer.zipcode}</li>
 										</ul>
@@ -224,12 +225,11 @@ li {
 								<!-- /Contact Person  -->
 
 							</fieldset>
-							<br>
-							<br>
+							
 
 							<fieldset>
 								<legend>Machine Details</legend>
-								<br>
+								
 								<!--First Column-->
 								<div class="col-md-6">
 
@@ -255,7 +255,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="productModel" placeholder="Model Number"
+													name="modelNumber" id="modelNumber" placeholder="Model Number"
 													class="form-control" type="text"
 													value="${productObject.modelNumber}">
 											</div>
@@ -452,19 +452,18 @@ li {
 
 							</fieldset>
 
-							<br>
-							<br>
+							
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
 
-
+								
 								<table id="tableselect"
 									class="table table-striped table-bordered table-hover table-condensed">
 
 									<thead>
 										<tr>
-											<th><!-- <input type="checkbox" id="selectallmachinetypes"
-												name="selectallmachinetypes" />  -->Machine Type</th>
+											<th><input type="checkbox" id="selectallmachinetypes"
+												name="selectallmachinetypes" /> Machine Type</th>
 											<th>Serial Number</th>
 										</tr>
 									</thead>
@@ -532,7 +531,7 @@ li {
 									</tbody>
 								</table>
 
-								<br /> <br />
+								<br /> 
 								<div class="row">
 
 									<div class="form-group">
@@ -576,15 +575,16 @@ li {
 
 
 							</fieldset>
+							
 							<br>
-							<br>
-							<br>
+							<div class="centerbutton">
 							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
+								<div class="col-sm-4">
 									<input type="submit" value="Update Device"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										class="btn btn-primary btn-block" tabindex="9"
 										id="updateDevice">
 								</div>
+							</div>
 							</div>
 						</form:form>
 					</div>
@@ -602,8 +602,6 @@ li {
 	<!-- / velaphanda_containter -->
 
 	<!-- Script -->
-
-
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
@@ -612,8 +610,7 @@ li {
 		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>
-	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	 --%>
+	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>	 --%>
 
 	<!-- /Scripts -->
 
@@ -685,35 +682,35 @@ $(document).ready(function() {
             	startDate: {
                     validators: {
                         notEmpty: {
-                            message: 'The start date is required'
+                            message: 'Contract start date is required'
                         },
                         date: {
                             format: 'YYYY-MM-DD',
                             max: 'endDate',
-                            message: 'The start date is not a valid'
+                            message: 'Contract start date is not a valid'
                         }
                     }
                 },
                 endDate: {
                     validators: {
                         notEmpty: {
-                            message: 'The end date is required'
+                            message: 'Contract end date is required'
                         },
                         date: {
                             format: 'YYYY-MM-DD',
                             min: 'startDate',
-                            message: 'The end date is not a valid'
+                            message: 'Contract end date is not a valid'
                         }
                     }
                 },
                 installationDate: {
                     validators: {
                         notEmpty: {
-                            message: 'The end date is required'
+                            message: 'The installation date is required'
                         },
                         date: {
                         	format: 'YYYY-MM-DD',
-                            min: 'endDate',
+                            min: 'startDate',
                             message: 'The installation date is not a valid'
                         }
                     }
@@ -746,7 +743,7 @@ $(document).ready(function() {
 						}
 					}
 				},
-				emailCompany : {
+				companyEmail : {
 					validators : {
 						notEmpty : {
 							message : 'Company email address is required and cannot be empty'
@@ -866,7 +863,17 @@ $(document).ready(function() {
 						}
 					}
 				},
+				modelNumber : {
+					validators : {
+						stringLength : {
+							min : 2,
 
+						},
+						notEmpty : {
+							message : 'Model number is required and cannot be empty'
+						}
+					}
+				},
 				serialNumber : {
 					validators : {
 						stringLength : {
@@ -960,18 +967,8 @@ $(document).ready(function() {
 							message : 'Additional paper tray is required and cannot be empty'
 						}
 					}
-				},
-				productModel : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Model number is required and cannot be empty'
-						}
-					}
 				}
+				
 			
             }
         })
@@ -1037,11 +1034,8 @@ $(document).ready(function() {
 						});
 </script>
 
-
-
-
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
 	function upperCaseF(a){
 	    setTimeout(function(){
 	        a.value = a.value.toUpperCase();
@@ -1049,8 +1043,8 @@ $(document).ready(function() {
 	}
 </script>
 
-	<!-- Enable datepicker -->
-	<script type="text/javascript">
+<!-- Enable datepicker -->
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#installationDate').datepicker({
 				format : "yyyy-mm-dd"

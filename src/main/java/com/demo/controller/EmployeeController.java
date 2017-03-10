@@ -96,7 +96,9 @@ public class EmployeeController {
 		if(employee != null&& employee.getStatus().equalsIgnoreCase("ACTIVE")){
 			session.setAttribute("loggedInUser", employee);
 			String user= employee.getFirstName()+" " + employee.getLastName();
+			String userEmail = employee.getEmail();
 			session.setAttribute("user", user);
+			session.setAttribute("userEmail", userEmail);
 			
 			
 			if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
@@ -273,6 +275,7 @@ public class EmployeeController {
 	public ModelAndView displayEmployees(){
 		model= new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
+		
 		if(userName != null){
 			
 			model.addObject("displayEmployees", employeeService.getAllEmployees());

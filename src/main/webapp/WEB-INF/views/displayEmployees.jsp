@@ -71,22 +71,30 @@
 										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"><button class="btn btn-success"> Reset</button></a></td>
 										
 										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
-										    <c:choose>
-										     <c:when test="${list.status=='Active'}"> 
-										        <button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button>
-									         </c:when>
-									         <c:when test="${list.status=='BLOCKED'}"> 
-										        <button class="btn btn-danger" data-bb-example-key="confirm-button-text" >Deactivate</button>
-									         </c:when>
-									         <c:when test="${list.status=='INACTIVE'}">
-									            <button class="btn btn-success" data-bb-example-key="confirm-button-text">Activate</button>
-									         </c:when>
-									         </c:choose>
+										
+											    <c:choose>
+												     <c:when test="${list.status=='ACTIVE'}"> 
+												        <button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button>
+											         </c:when>
+											        <%--  <c:forEach var="list" items="${list.email}"> --%>						         	
+												         <c:when test="${list.status=='ACTIVE'} && ${list.email} == ${userEmail}"> 										      
+													        	<button class="btn btn-danger" disabled = "disabled" data-bb-example-key="confirm-button-text">Gone</button>
+												         </c:when>
+											        <%--  </c:forEach>  --%> 
+											         <c:when test="${list.status=='BLOCKED'}"> 
+												        <button class="btn btn-danger" data-bb-example-key="confirm-button-text" >Deactivate</button>
+											         </c:when>
+											         <c:when test="${list.status=='INACTIVE'}">
+											            <button class="btn btn-success" data-bb-example-key="confirm-button-text">Activate</button>
+											         </c:when>
+										         </c:choose>
+										         
 									         </a></td>
 									</tr>
               					</c:forEach>
 							</tbody>
 						</table>
+						<br>
 						
 					</div>
 					<!-- /tab-content -->

@@ -4,21 +4,30 @@
 	padding:0px;
 	box-sizing: border-box;
 }
+body{
+	
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #333;		
+}
+legend {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 17px;
+    line-height: inherit;
+    color: #333;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
 a{
 	text-decoration:none;
 }
 b.optionalFields{
 	color:red;
 }
-/*
-:valid pseudo-element:
-
-#serialNumber:valid { text-transform: uppercase; }
-#additionalserial:valid { text-transform: uppercase; }
-#additionalPaperTrays:valid { text-transform: uppercase; }
-#additionalPaperTrays:valid{text-transform:uppercase;}
-#credenza:valid{text-transform:uppercase;}
-*/
 
 
 /*devider hr*/
@@ -98,6 +107,41 @@ div#container{
 	margin-right: -19%;
     margin-top:-38% ;
 }
+.centerbutton{	
+	padding-left:41%;
+}
+/*input-group-addon for icons*/
+.input-group-addon {
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    text-align: center;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+/*Form Control size for text box and font*/
+.form-control {
+    display: block;
+    width: 100%;
+    height: 29px;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
 p.contactPerson_title, p.customerAddress_title{
 	font-size: 1.1em;
 	font-weight:bolder;

@@ -463,8 +463,8 @@ li {
 
 									<thead>
 										<tr>
-											<th><input type="checkbox" id="selectallmachinetypes"
-												name="selectallmachinetypes" /> Machine Type</th>
+											<th><!-- <input type="checkbox" id="selectallmachinetypes"
+												name="selectallmachinetypes" />  -->Machine Type</th>
 											<th>Serial Number</th>
 										</tr>
 									</thead>

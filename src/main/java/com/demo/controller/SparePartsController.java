@@ -101,6 +101,20 @@ public class SparePartsController {
 		}
 		return model;
 	}
+	@RequestMapping(value="stockSite", method=RequestMethod.GET)
+	public ModelAndView getSparePartSite(){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			model.addObject("orders",orderDetailsInt.getAllOrderDetails());
+			model.setViewName("stockSite");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
 	@RequestMapping(value="searchpartNumber")
 	public ModelAndView searchPartNumber(@RequestParam("partNumber") String partNumber) {
 		model = new ModelAndView();

@@ -421,8 +421,8 @@ li {
 
 									<thead>
 										<tr>
-											<th><input type="checkbox" id="selectallmachinetypes"
-												name="selectallmachinetypes" /> Machine Type</th>
+											<th><!-- <input type="checkbox" id="selectallmachinetypes"
+												name="selectallmachinetypes" />  -->Machine Type</th>
 											<th>Serial Number</th>
 										</tr>
 									</thead>
@@ -569,8 +569,10 @@ li {
 		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>
-	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-	 --%>
+		
+	<!-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
+	 -->
+	
 
 	<!-- /Scripts -->
 

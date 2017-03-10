@@ -55,7 +55,7 @@
 									<tr>
 									  <td>${list.partNumber}</td>
 										<td>${list.description}</td>
-										<td>${list.type}</td>
+										<td>${list.itemType}</td>
 										<td>${list.quantity}</td>
 										<td>${list.dateTime}</td>
 									</tr>

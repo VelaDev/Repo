@@ -59,6 +59,29 @@ select[multiple], select[size] {
 	margin-left: -61%;
 	width: 180%;
 }
+
+textarea {
+	height: 32%;
+	width: 118%;
+}
+
+#textarea {
+    -moz-appearance: textfield-multiline;
+    -webkit-appearance: textarea;
+    border: 1px solid gray;
+    font: medium -moz-fixed;
+    font: -webkit-small-control;
+    height: 100%;
+    overflow: auto;
+    padding: 2px;
+    resize: both;
+    width: 118%;
+    margin-top: 2%;
+    margin-left: 0%;
+}
+
+
+}
 </style>
 
 </head>
@@ -120,6 +143,8 @@ select[multiple], select[size] {
 								<div class="groupdetails-row-padding">
 
 									<div class="content"></div>
+									
+									<!-- //group search details -->
 
 									<div class="groupsearchdetails">
 										<legend>Compatible Devices </legend>
@@ -128,160 +153,153 @@ select[multiple], select[size] {
 												<div class="form-group-model">
 													<label>Model No</label> <input type="text"
 														class="form-control" name="modelNumber" id="modelNumber"
-														placeholder="Model Number"><br /> <a
-														href="javascript:void(0);" id="addModNo"><button
-															class="btn btn-info">Add</button></a> <a
-														href="javascript:void(0);" id="removeModNo"><button
-															class="btn btn-danger">Remove</button></a>
+														placeholder="Model Number"><br />
+													 <div id="button" class="btn btn-info">Add</div>
+													<div id="button" class="btn btn-danger">Remove</div>
 												</div>
 											</div>
 											<div class="col-sm-6">
 												<div class="listfromPopulatedModelNumber"
 													id="listfromPopulatedModelNumber">
-													<label>Model Numbers</label> <select
-														id="listfromPopulatedModelNo" multiple="multiple" col=10
-														rows=10>
-														<option></option>
-														<option></option>
-														<option></option>
-													</select>
+													<label>Model Numbers</label> 
+													<div class="listfromPopulatedModelNumber"id="listfromPopulatedModelNumber">
+													<div class="list" id="textarea" contenteditable></div>													
+												</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								<!-- //group search details -->
 						</div>
+						</form:form>
+
+
+
+						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
+							method="post" id="saveSpareParts">
+
+							<div class="groupsparedetails">
+								<legend>Spares</legend>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Part Number</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+											<div class="form-group">
+												<div class="input-group">
+													<input type="text" id="partNumber" name="partNumber"
+														class="form-control" value="${sparePart.partNumber}">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Item Type</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+
+											<div class="form-group">
+												<div class="input-group">
+													<input type="text" id="itemType" name="itemType"
+														class="form-control" value="${sparePart.itemType}">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Description</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+											<div class="form-group">
+												<div class="input-group">
+													<input type="text" id="description" name="description"
+														class="form-control" value="${sparePart.description}">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Quantity</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+											<div class="form-group">
+												<div class="input-group">
+													<input type="text" id="quantity" name="quantity"
+														class="form-control" onkeypress="return isNumber(event)">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Received By</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+											<div class="form-group">
+												<div class="input-group">
+													<input type="text" id="receivedBy" name="receivedBy"
+														class="form-control"
+														value="${loggedInUser.firstName} ${loggedInUser.lastName}"
+														readonly="readonly">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- //group spare details -->
+
+
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br> <br> <input type="submit" value="Add Spare"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="addSpare">
+								</div>
+							</div>
+
+						</form:form>
+
 					</div>
-					</form:form>
-
-
-
-					<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
-						method="post" id="saveSpareParts">
-
-						<div class="groupsparedetails">
-							<legend>Spares</legend>
-
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="col-xs-4 form-control-label">
-										<h6>
-											<label>Part Number</label>
-										</h6>
-
-									</div>
-									<div class="col-xs-8">
-										<div class="form-group">
-											<div class="input-group">
-												<input type="text" id="partNumber" name="partNumber"
-													class="form-control" value="${sparePart.partNumber}">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="col-xs-4 form-control-label">
-										<h6>
-											<label>Item Type</label>
-										</h6>
-
-									</div>
-									<div class="col-xs-8">
-
-										<div class="form-group">
-											<div class="input-group">
-												<input type="text" id="itemType" name="itemType"
-													class="form-control" value="${sparePart.itemType}">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="col-xs-4 form-control-label">
-										<h6>
-											<label>Description</label>
-										</h6>
-
-									</div>
-									<div class="col-xs-8">
-										<div class="form-group">
-											<div class="input-group">
-												<input type="text" id="description" name="description"
-													class="form-control" value="${sparePart.description}">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="col-xs-4 form-control-label">
-										<h6>
-											<label>Quantity</label>
-										</h6>
-
-									</div>
-									<div class="col-xs-8">
-										<div class="form-group">
-											<div class="input-group">
-												<input type="text" id="quantity" name="quantity"
-													class="form-control" onkeypress="return isNumber(event)">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-xs-12">
-									<div class="col-xs-4 form-control-label">
-										<h6>
-											<label>Received By</label>
-										</h6>
-
-									</div>
-									<div class="col-xs-8">
-										<div class="form-group">
-											<div class="input-group">
-												<input type="text" id="receivedBy" name="receivedBy"
-													class="form-control"
-													value="${loggedInUser.firstName} ${loggedInUser.lastName}"
-													readonly="readonly">
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- //group spare details -->
-
-
-						<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-8">
-								<br> <br> <input type="submit" value="Add Spare"
-									class="btn btn-primary btn-block btn-lg" tabindex="9"
-									id="addSpare">
-							</div>
-						</div>
-
-					</form:form>
 
 				</div>
-
+				<!-- /tab-content -->
 			</div>
-			<!-- /tab-content -->
+			<!-- /panel body -->
 		</div>
-		<!-- /panel body -->
-	</div>
-	<!--/panel success class-->
+		<!--/panel success class-->
 	</div>
 	<!-- /Container -->
 
@@ -301,6 +319,16 @@ select[multiple], select[size] {
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
 
+	<!-- Add Model number to datalist -->
+	<script type="text/javascript">
+ $(document).ready(function(){
+
+    $("#button").click(function(){
+            var input = $("input[name='modelNumber']").val();
+        $(".list").append('<div class="item">' + input + '</div>');
+    });
+});
+</script>
 
 	<script>
 

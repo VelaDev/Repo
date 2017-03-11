@@ -66,26 +66,20 @@
 										<td>${list.cellNumber}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>"><button class="btn btn-info">Login Activities</button></a></td>
-										<td><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>"><button class="btn btn-success">Update</button></a></td>
-										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"><button class="btn btn-success"> Reset</button></a></td>
-										
-										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
+										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>">Login Activities</a></td>
+										<td><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>">Update</a></td>
+										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"> Reset</a></td>										
+										<td><a  class="deactive_button" href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
 										
 											    <c:choose>
 												     <c:when test="${list.status=='ACTIVE'}"> 
-												        <button class="btn btn-danger" data-bb-example-key="confirm-button-text">Deactivate</button>
-											         </c:when>
-											        <%--  <c:forEach var="list" items="${list.email}"> --%>						         	
-												         <c:when test="${list.status=='ACTIVE'} && ${list.email} == ${userEmail}"> 										      
-													        	<button class="btn btn-danger" disabled = "disabled" data-bb-example-key="confirm-button-text">Gone</button>
-												         </c:when>
-											        <%--  </c:forEach>  --%> 
+												        Deactivate
+											         </c:when>											      
 											         <c:when test="${list.status=='BLOCKED'}"> 
-												        <button class="btn btn-danger" data-bb-example-key="confirm-button-text" >Deactivate</button>
+												        Deactivate
 											         </c:when>
 											         <c:when test="${list.status=='INACTIVE'}">
-											            <button class="btn btn-success" data-bb-example-key="confirm-button-text">Activate</button>
+											           Activate
 											         </c:when>
 										         </c:choose>
 										         

@@ -7,18 +7,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link href="<c:url value="/resources/custom/css/vela_custom.css" />"
-	rel="stylesheet" type="text/css" />
-<link type="text/css" rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
-<%-- <link type="text/stylesheet" src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">
- --%>
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
+<%-- <link type="text/stylesheet" src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">--%>
+
+
 <style>
 li {
 	list-style: none;
@@ -74,7 +69,7 @@ li {
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="updateProduct" modelAttribute="updateProduct"
-							id="updateOtherDevice">
+							id="updateDevice">
 
 							<fieldset>
 								<legend>Customer Details</legend>
@@ -123,20 +118,7 @@ li {
 										</p>
 
 									</div>
-								</div>
-								<%-- <div class="col-sm-6">
-									<div id="customer_container"
-										style="width: auto; display: table;">
-										<p class="contactPerson_title">Contact Person</p>
-										<ul class="list" style="display: block;">
-											<li id="firstName">${customer.firstName }</li>
-											<li id="lastName">${customer.lastName }</li>
-											<li id="email">${customer.email }</li>
-											<li id="cellphoneNumber">${customer.cellphoneNumber }</li>
-											<li id="telephoneNumber">${customer.telephoneNumber }</li>
-										</ul>
-									</div>
-								</div> --%>
+								</div>							
 
 								<br>
 							</fieldset>
@@ -368,8 +350,6 @@ li {
 
 								<!--Second column-->
 								<div class="col-sm-6">
-
-
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -453,85 +433,54 @@ li {
 							</fieldset>
 
 							
+							<!--Machine Accessories-->
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
 
+								<div class="tablemachinesacccso">								
+									<table id="tableselect" class="table table-striped table-bordered table-hover table-condensed">
+	
+										<thead>
+											<tr>
+												<th>Machine Type</th>
+												<th>Serial Number</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td><input type="checkbox" id="bridgeunitserial" name="bridgeUnitSerialType"> Bridge
+													unit</td>
+												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="bridgeunit" name="bridgeUnitSerialTypeSerialNo" disabled="disabled"></td>
+											</tr>
+											<tr>
+												<td><input type="checkbox" class="select" id="finisher" name="finisherType"> Finisher</td>
+												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="finisherserial" name="finisherTypeSerialNo" disabled="disabled"></td>
+											</tr>
+											<tr>
+												<td><input type="checkbox" class="select" id="faxunit" name="faxUnitSerialType"> Fax Unit</td>
+												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="faxunitserial" name="faxUnitSerialTypeSerialNo" disabled="disabled"></td>
+											</tr>
+											<tr>
+												<td><input type="checkbox" class="select" id="onebintrayserial" name="bridgeUnitSerialType"> One
+													bin tray</td>
+												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="onebintray" name="OneBinTrayTypeSerialNo" disabled="disabled"></td>
+											</tr>											
+											<tr>
+												<td><input type="checkbox" class="select" id="ltcserial" name="ltcType"> LCT</td>
+												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="lct" name="ltcTypeSerial" disabled="disabled"></td>
+											</tr>											
+											<tr>
+												<td><input type="checkbox" class="select" id="creserial" name="creType"> Credenza</td>
+												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="cre" name="creTypeserial" disabled="disabled"></td>
+											</tr>											
+											<tr>
+												<td><input type="checkbox" class="select" id="addserial" name="addType"> Additional paper trays</td>
+												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="add" name="addTypeserial" disabled="disabled"></td>
+											</tr>
+										</tbody>
+									</table>
 								
-								<table id="tableselect"
-									class="table table-striped table-bordered table-hover table-condensed">
-
-									<thead>
-										<tr>
-											<th><input type="checkbox" id="selectallmachinetypes"
-												name="selectallmachinetypes" /> Machine Type</th>
-											<th>Serial Number</th>
-										</tr>
-									</thead>
-									<tbody>
-
-										<tr>
-											<td><input type="checkbox" class="select"
-												id="bridgeunitserial" name="bridgeUnitSerialType" /> Bridge
-												unit</td>
-											<td><input type="text" class="form-control input-sm"
-												onkeydown="upperCaseF(this)" id="bridgeunit"
-												name="bridgeUnitSerialTypeSerialNo" disabled="disabled" /></td>
-										</tr>
-
-										<tr>
-											<td><input type="checkbox" class="select" id="faxunit"
-												name="faxUnitSerialType" /> Fax Unit</td>
-											<td><input type="text" class="form-control input-sm"
-												onkeydown="upperCaseF(this)" id="faxunitserial"
-												name="faxUnitSerialTypeSerialNo" disabled="disabled" /></td>
-										</tr>
-
-										<tr>
-											<td><input type="checkbox" class="select"
-												id="onebintrayserial" name="bridgeUnitSerialType" /> One
-												bin tray</td>
-											<td><input type="text" class="form-control input-sm"
-												onkeydown="upperCaseF(this)" id="onebintray"
-												name="OneBinTrayTypeSerialNo" disabled="disabled" /></td>
-										</tr>
-
-										<tr>
-											<td><input type="checkbox" class="select" id="finisher"
-												name="finisherType" /> Finisher</td>
-											<td><input type="text" class="form-control input-sm"
-												onkeydown="upperCaseF(this)" id="finisherserial"
-												name="finisherTypeSerialNo" disabled="disabled" /></td>
-										</tr>
-
-										<tr>
-											<td><input type="checkbox" class="select" id="ltcserial"
-												name="ltcType" /> LCT</td>
-											<td><input type="text" class="form-control input-sm"
-												onkeydown="upperCaseF(this)" id="ltc" name="ltcTypeSerial"
-												disabled="disabled" /></td>
-										</tr>
-
-										<tr>
-											<td><input type="checkbox" class="select"
-												id="credenzaserial" name="credenza" /> Credenza</td>
-											<td><input type="text" class="form-control input-sm"
-												onkeydown="upperCaseF(this)" id="credenza"
-												name="credenzaSerialNo" disabled="disabled" /></td>
-										</tr>
-
-										<tr>
-											<td><input type="checkbox" class="select"
-												id="additionalPaperTrays" name="additionalPaperTrays" />
-												Additional paper trays</td>
-											<td><input type="text" class="form-control input-sm"
-												onkeydown="upperCaseF(this)" id="additionalserial"
-												name="additionalPaperTraysTypeSerial" disabled="disabled" /></td>
-										</tr>
-
-									</tbody>
-								</table>
-
-								<br /> 
+								<br>
 								<div class="row">
 
 									<div class="form-group">
@@ -573,20 +522,21 @@ li {
 
 								</div>
 
-
+							</div>
+							
 							</fieldset>
 							
 							<br>
 							<div class="centerbutton">
-							<div class="form-group row">
-								<div class="col-sm-4">
-									<input type="submit" value="Update Device"
-										class="btn btn-primary btn-block" tabindex="9"
-										id="updateDevice">
+								<div class="form-group row">
+									<div class="col-sm-4">
+										<input type="submit" id="updateProduct" name="updateProduct" value="Update Device" class="btn btn-primary btn-block" tabindex="9">
+									</div>
 								</div>
 							</div>
-							</div>
 						</form:form>
+						
+						
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -602,91 +552,58 @@ li {
 	<!-- / velaphanda_containter -->
 
 	<!-- Script -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/framework/bootstrap.min.js"/>"></script>
-	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>	 --%>
-
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>	 --%>	
 	<!-- /Scripts -->
 
-	<!-- Accept alphabetical characters only -->
-	<script language="Javascript" type="text/javascript">
-        function onlyAlphabets(e, t) {
-            try {
-                if (window.event) {
-                    var charCode = window.event.keyCode;
-                }
-                else if (e) {
-                    var charCode = e.which;
-                }
-                else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123 ))
-                    return true;
-                else
-                    return false;
-            }
-            catch (err) {
-                alert(err.Description);
-            }
-        }
-    </script>
-
-	<!-- Accept alphanumeric characters only -->
+	
+<!-- Check if checkboxes are checked, if checked enable input text -->
 	<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
+		document.getElementById('bridgeunitserial').onchange = function() {
+			document.getElementById('bridgeunit').disabled = !this.checked;
+			document.getElementById('finisherserial').disabled = !this.checked;
+		};
+		
+		document.getElementById('faxunit').onchange = function() {
+			document.getElementById('faxunitserial').disabled = !this.checked;
+		};
+		document.getElementById('onebintrayserial').onchange = function() {
+			document.getElementById('onebintray').disabled = !this.checked;
+		};
+		
+		document.getElementById('ltcserial').onchange = function() {
+			document.getElementById('lct').disabled = !this.checked;
+		};
+		document.getElementById('creserial').onchange = function() {
+			document.getElementById('cre').disabled = !this.checked;
+		};
+		document.getElementById('addserial').onchange = function() {
+			document.getElementById('add').disabled = !this.checked;
+		};
+		
 </script>
-
-
-	<!-- Validate update Device -->
-	<script>
+<!-- Validate add device -->
+<script>
 $(document).ready(function() {
-    $('#startDatePicker')
-        .datepicker({
-            format: 'yyyy-mm-dd'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the start date field
-            $('#updateOtherDevice').formValidation('revalidateField', 'startDate');
-        });
-    
-   
-    $('#endDatePicker')
-        .datepicker({
-            format: 'yyyy-mm-dd'
-        })
-        .on('changeDate', function(e) {
-            $('#updateOtherDevice').formValidation('revalidateField', 'endDate');
-        });
-
-    $('#updateOtherDevice')
-        .formValidation({
-            framework: 'bootstrap',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-            	startDate: {
+    $('#addDevice').bootstrapValidator({
+        //framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+           
+			startDate: {
                     validators: {
                         notEmpty: {
                             message: 'Contract start date is required'
                         },
                         date: {
                             format: 'YYYY-MM-DD',
-                            max: 'endDate',
+                            //max: 'endDate',
                             message: 'Contract start date is not a valid'
                         }
                     }
@@ -698,7 +615,7 @@ $(document).ready(function() {
                         },
                         date: {
                             format: 'YYYY-MM-DD',
-                            min: 'startDate',
+                            //min: 'startDate',
                             message: 'Contract end date is not a valid'
                         }
                     }
@@ -710,7 +627,7 @@ $(document).ready(function() {
                         },
                         date: {
                         	format: 'YYYY-MM-DD',
-                            min: 'startDate',
+                            //min: 'startDate',
                             message: 'The installation date is not a valid'
                         }
                     }
@@ -726,7 +643,6 @@ $(document).ready(function() {
 						}
 					}
 				},
-
 				tellphoneNumber : {
 					validators : {
 						stringLength : {
@@ -770,16 +686,22 @@ $(document).ready(function() {
 						},
 						notEmpty : {
 							message : 'Street name is required and cannot be empty'
-						}
+						},
+		                regexp: {
+		                    regexp: /^[a-zA-Z]+$/,
+		                    message: 'The Street name can only consist of letter only'
+		                }
+						
 					}
 				},
 				city_town : {
 					validators : {
+						stringLength : {
+							max : 3,							
+						},
 						notEmpty : {
-							stringLength : {
-								min : 3,
-							},
-							message : 'City is required and cannot be empty'
+							message : 'City is required and cannot be empty'						
+							
 						}
 					}
 				},
@@ -815,10 +737,16 @@ $(document).ready(function() {
 
 				streetNumber : {
 					validators : {
-						
+						stringLength : {
+							//min : 3,
+						},
 						notEmpty : {
 							message : 'Street number is required and cannot be empty'
-						}
+						},
+		                regexp: {
+		                    regexp: /^[0-9]+$/,
+		                    message: 'The Street number can only consist of numbers '
+		                }
 					}
 				},
 				firstName : {
@@ -877,14 +805,18 @@ $(document).ready(function() {
 				serialNumber : {
 					validators : {
 						stringLength : {
-							min : 2,
+								min : 2,
 
-						},
-						notEmpty : {
-							message : 'Serial Number is required and cannot be empty'
+							},
+							notEmpty : {
+								message : 'Serial Number is required and cannot be empty'
+							},
+							regexp: {
+			                    regexp: /^[a-z-A-Z0-9]+$/,
+			                    message: 'The Street number can only consist of numbers '
+			                }
 						}
-					}
-				},
+				},	
 				bridgeunit : {
 					validators : {
 						stringLength : {
@@ -968,21 +900,8 @@ $(document).ready(function() {
 						}
 					}
 				}
-				
-			
-            }
-        })
-        .on('success.field.fv', function(e, data) {
-            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
-                // Revalidate the end date
-                data.fv.revalidateField('endDate');
-            }
-
-            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
-                // Need to revalidate the start date
-                data.fv.revalidateField('startDate');
-            }
-        });
+        }
+    });
 });
 </script>
 
@@ -1008,32 +927,6 @@ $(document).ready(function() {
 
 </script>
 
-	<!-- Validate search DeviceSerialNumber -->
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchDeviceSerialNumber')
-									.formValidation({
-							            framework: 'bootstrap',
-							            icon: {
-							                valid: 'glyphicon glyphicon-ok',
-							                invalid: 'glyphicon glyphicon-remove',
-							                validating: 'glyphicon glyphicon-refresh'
-							            },
-											fields : {
-											customerName : {
-												validators : {
-												notEmpty : {
-													message : 'Client name is required to search and cannot be empty'
-												}
-											}
-										},
-									}
-							});
-						});
-</script>
-
 <!-- Make all Serials numbers UpperCase  -->
 <script type="text/javascript">
 	function upperCaseF(a){
@@ -1043,39 +936,67 @@ $(document).ready(function() {
 	}
 </script>
 
-<!-- Enable datepicker -->
+	<!-- Accept alphabetical characters only -->
+	<script language="Javascript" type="text/javascript">
+        function onlyAlphabets(e, t) {
+            try {
+                if (window.event) {
+                    var charCode = window.event.keyCode;
+                }
+                else if (e) {
+                    var charCode = e.which;
+                }
+                else { return true; }
+                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123 ))
+                    return true;
+                else
+                    return false;
+            }
+            catch (err) {
+                alert(err.Description);
+            }
+        }
+    </script>
+
+<!-- Accept alphanumeric characters only -->
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
+
+<!-- <!-- Enable datepicker -
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#startDate').datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+</script> 
+
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#endDate').datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+</script> 
+
 <script type="text/javascript">
 		$(document).ready(function() {
 			$('#installationDate').datepicker({
 				format : "yyyy-mm-dd"
 			});
 		});
-</script>
+</script> -->
 
-	<!-- Check if checkboxes are checked, if checked enable input text -->
-	<script type="text/javascript">
-		document.getElementById('bridgeunitserial').onchange = function() {
-			document.getElementById('bridgeunit').disabled = !this.checked;
-		};
-		document.getElementById('faxunit').onchange = function() {
-			document.getElementById('faxunitserial').disabled = !this.checked;
-		};
-		document.getElementById('onebintrayserial').onchange = function() {
-			document.getElementById('onebintray').disabled = !this.checked;
-		};
-		document.getElementById('finisher').onchange = function() {
-			document.getElementById('finisherserial').disabled = !this.checked;
-		};
-		document.getElementById('ltcserial').onchange = function() {
-			document.getElementById('ltc').disabled = !this.checked;
-		};
-		document.getElementById('additionalPaperTrays').onchange = function() {
-			document.getElementById('additionalserial').disabled = !this.checked;
-		};
-		document.getElementById('credenzaserial').onchange = function() {
-			document.getElementById('credenza').disabled = !this.checked;
-		};
-</script>
+
 
 
 

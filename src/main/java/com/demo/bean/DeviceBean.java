@@ -12,7 +12,7 @@ public class DeviceBean {
 
 	
 	private String serialNumber;
-	private String productModel;
+	private String modelNumber;
 	private String startDate;
 	private String endDate;
 	private String installationDate;

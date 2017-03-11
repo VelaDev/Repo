@@ -29,6 +29,10 @@ b.optionalFields{
 	color:red;
 }
 
+a.deactive_button{
+	color:#ff0000;
+}
+
 
 /*devider hr*/
 .devider {
@@ -39,9 +43,7 @@ b.optionalFields{
 	margin-right: 13%;
 	margin-left: 6%;
 }
-.navigationButton{
-		
-}
+
 .vela_motto{	
 	margin-left: 9%;
     margin-bottom: -7%;
@@ -106,6 +108,10 @@ div#container{
 	margin-left: auto;
 	margin-right: -19%;
     margin-top:-38% ;
+}
+.tablemachinesacccso{
+	padding-left: 14%;
+    padding-right: 14%;
 }
 .centerbutton{	
 	padding-left:41%;

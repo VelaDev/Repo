@@ -110,7 +110,7 @@ public class DeviceDao implements DeviceDaoInt {
 		try{
 			
 			device.setEndDate(deviceBean.getEndDate());
-			device.setModelNumber(deviceBean.getProductModel());
+			device.setModelNumber(deviceBean.getModelNumber());
 			device.setSerialNumber(deviceBean.getSerialNumber());
 			device.setStartDate(deviceBean.getStartDate());
 			device.setColour(deviceBean.getColour());

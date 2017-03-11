@@ -57,10 +57,8 @@
 										<td>${list.modelNumber}</td>
 										<td>${list.startDate}</td>
 										<td>${list.endDate}</td>
-										<td><a
-											href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>"><button class="btn btn-success">Details</button></a></td>
-										<td><a
-											href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>"><button class="btn btn-info">Update</button></a></td>
+										<td><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">Details</a></td>
+										<td><a href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">Update</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -391,8 +391,7 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<%-- <script type="text/javascript" src="<c:url value="/resources/custom/js/ajaxController.js"/>"></script>
- --%>
+	
 	<!-- /Script -->
 <!-- Hide contact person 2 -->
 <script type="text/javascript">

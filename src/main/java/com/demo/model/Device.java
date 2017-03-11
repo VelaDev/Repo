@@ -80,4 +80,6 @@ public class Device implements Serializable{
 	@OneToMany(mappedBy ="device", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Accessories> accessories;
 	
+	
+	
 }

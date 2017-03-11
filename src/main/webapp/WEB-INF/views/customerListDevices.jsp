@@ -48,8 +48,8 @@
 													<td>${list.modelNumber}</td>
 													<td>${list.contactPerson.firstName} ${list.contactPerson.lastName}</td>
 													<td>${list.contactPerson.cellphone}</td>
-                                                    <td><a href="#"><button class="btn btn-info">Device Details</button></a></td>
-                                                     <td><a href="#"><button class="btn btn-info">Update Device</button></a></td>
+                                                    <td><a href="#">Device Details</a></td>
+                                                    <td><a href="#">Update Device</a></td>
 												</tr>
 											</c:forEach>
 										</tbody>

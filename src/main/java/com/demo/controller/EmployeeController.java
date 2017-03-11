@@ -154,8 +154,12 @@ public class EmployeeController {
 						
 						loginAttempt = serviceInt.getEmployeeDetails(employee);
 						serviceInt.upsertUserAttempt(loginAttempt);
-						if(loginAttempt.getAttemptCount()==2){
-							String attempMessage = "You have "+ loginAttempt.getAttemptCount() + " attempts left";
+						if(loginAttempt.getAttemptCount()==1){
+							String attempMessage = "You have 2 attempts left";
+							model.addObject("attempMessage", attempMessage);
+						}
+						else if(loginAttempt.getAttemptCount()==2){
+							String attempMessage = "You have 1 attempts left";
 							model.addObject("attempMessage", attempMessage);
 						}
 						else if(loginAttempt.getAttemptCount()==3){

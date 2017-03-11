@@ -18,9 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.CredentialsDaoInt;
 import com.demo.dao.EmployeeDaoInt;
+import com.demo.dao.LoginAttemptDaoInt;
 import com.demo.model.Credentials;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
+import com.demo.model.LoginAttempt;
 import com.demo.model.Tickets;
 
 
@@ -34,12 +36,15 @@ public class EmployeeDao implements EmployeeDaoInt{
 	
 	@Autowired
 	private CredentialsDaoInt credentialsDaoInt;
+	@Autowired 
+	private LoginAttemptDaoInt attemptDaoInt;
 	String retMessage = null;
 	private Employee emp = null;
 	private List<Employee> empEmail = null;
 	private List<Employee> empEmailReturn;
 	private String encryptPassword ="";
 	private Credentials credential = null;
+	private LoginAttempt loginAttempt;
 	
 	private Calendar cal = Calendar.getInstance();
 	private DateFormat dateFormat = null;
@@ -204,6 +209,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 	@Override
 	public String changePassword(String email) {
 		String passworChange = "";
+		loginAttempt = new LoginAttempt();
 		try
 		{
 			emp = getEmployeeByEmpNum(email);
@@ -215,6 +221,10 @@ public class EmployeeDao implements EmployeeDaoInt{
 				emp.setStatus("ACTIVE");
 			/*	passworChange = updateEmployee(emp);*/
 				sessionFactory.getCurrentSession().update(emp);
+				
+				loginAttempt.setUserName(emp.getEmail());
+				loginAttempt.setAttemptCount(0);
+				attemptDaoInt.upsertUserAttempt(loginAttempt);
 				JavaMail.sendPasswordToEmployee(emp,tempPassword);
 				retMessage = "Temp password for employee "+ emp.getFirstName() +" "+ emp.getLastName()+ " is "+ tempPassword+".\nTemp password is sent to employee through email.";
 			}

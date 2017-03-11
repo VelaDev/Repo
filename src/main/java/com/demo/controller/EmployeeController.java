@@ -162,7 +162,7 @@ public class EmployeeController {
 							String attempMessage = "You have 1 attempts left";
 							model.addObject("attempMessage", attempMessage);
 						}
-						else if(loginAttempt.getAttemptCount()==3){
+						else if(loginAttempt.getAttemptCount()>=3){
 							String attempMessage = "Your account is blocked after "+ loginAttempt.getAttemptCount() + " wrong attempts. Please consult your manage for password reset";
 							model.addObject("attempMessage", attempMessage);
 						}

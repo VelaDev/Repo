@@ -21,17 +21,34 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
-
+select[multiple], select[size] {
+    height: auto;
+    width: 100%;
+    height: 31%;
+}
+.col-sm-6{
+	width: 50%;
+}
+.buttonAddSpare{
+	padding-left: 10%;
+    margin-right: -12%;
+}
+.form-group-model{
+	margin-left:10%;
+}
 .buttonsCompitableDevice{
-	margin-left:40%;
+	margin-left:-11%;
 }
 .groupsparedetails {
 	float: left;
+	padding-left:10%;
+	margin-top: -12%;
+	
 }
 
 .groupsearchdetails {
 	float: right;
-	margin-right: -12%;
+	margin-right: -9%;
 }
 
 .content {
@@ -39,6 +56,7 @@
 	width: 180%;
 }
 </style>
+
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -73,10 +91,25 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="partNumber" id="partNumber" class="form-control"
+												name="partNumber" list="languages" id="partNumber" class="form-control"
 												type="text" placeholder='Search By Part Number'>
 										</div>
 									</div>
+									<datalist id="languages">
+								    <option value="HTML">
+								    <option value="CSS">
+								    <option value="JavaScript">
+								    <option value="Java">
+								    <option value="Ruby">
+								    <option value="PHP">
+								    <option value="Go">
+								    <option value="Erlang">
+								    <option value="Python">
+								    <option value="C">
+								    <option value="C#">
+								    <option value="C++">
+								  </datalist>
+								  
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />
 									</div>
@@ -89,12 +122,6 @@
 						<div class="col-xs-10">
 							<form:form>
 								<div class="groupdetails-row-padding">
-								
-									
-									
-									<div class="groupsearchdetails">
-										
-										<legend>Compatible Devices </legend>
 										
 										<div class="content">
 											<%-- <!-- Below table will be displayed as Data table -->
@@ -114,29 +141,32 @@
 											</table> --%>
 										</div> 
 										
-										<div class="buttonsCompitableDevice">										
-										
-											<!-- Text input Machine Model-->
-											<div class="form-group">
-												<label>Model No</label>	
-												<input name="modelNumber" id="modelNumber" placeholder="Model Number" class="form-control" type="text" ><br/>
+										<div class="groupsearchdetails">										
+										<legend>Compatible Devices </legend>										
+										<div class="buttonsCompitableDevice">
+											<div class="col-sm-6">
+												<div class="form-group-model">
+													<label>Model No</label>	
+													<input type="text" class="form-control" name="modelNumber" id="modelNumber" placeholder="Model Number" ><br/>
+													<a href="javascript:void(0);" id="addModNo"><button class="btn btn-info">Add </button></a>
+													<a href="javascript:void(0);" id="removeModNo"><button class="btn btn-danger">Remove</button></a>
+												</div>
 											</div>
-											<br/><br/>
-											<a href="#"><button class="btn btn-info">Add </button></a><br/>
-											<a href="#"><button class="btn btn-danger">Remove</button></a>
-										
-											<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
-												<select id="listfromPopulatedModelNo" multiple="multiple" rows=10>
-	        
-	    										</select>
+											<div class="col-sm-6"> 
+												<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
+													<label>Model Numbers</label>
+													<select id="listfromPopulatedModelNo" multiple="multiple" col=10 rows=10>
+														<option></option>
+														<option></option>
+														<option></option>
+													</select>
+												</div>
 											</div>
-										
 										</div>
-										
-										</div>
-										
-									</div><!-- //group search details -->
-								
+									</div>
+								</div><!-- //group search details -->
+							</div>
+							</div>
 							</form:form>
 
 							
@@ -286,7 +316,50 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
 
-	<script type="text/javascript">
+
+<script>
+
+// Get the <datalist> and <input> elements.
+var dataList = document.getElementById('json-datalist');
+var input = document.getElementById('ajax');
+
+// Create a new XMLHttpRequest.
+var request = new XMLHttpRequest();
+
+// Handle state changes for the request.
+request.onreadystatechange = function(response) {
+  if (request.readyState === 4) {
+    if (request.status === 200) {
+      // Parse the JSON
+      var jsonOptions = JSON.parse(request.responseText);
+  
+      // Loop over the JSON array.
+      jsonOptions.forEach(function(item) {
+        // Create a new <option> element.
+        var option = document.createElement('option');
+        // Set the value using the item in the JSON array.
+        option.value = item;
+        // Add the <option> element to the <datalist>.
+        dataList.appendChild(option);
+      });
+      
+      // Update the placeholder text.
+      input.placeholder = "e.g. datalist";
+    } else {
+      // An error occured :(
+      input.placeholder = "Couldn't load datalist options :(";
+    }
+  }
+};
+
+// Update the placeholder text.
+input.placeholder = "Loading options...";
+
+// Set up and make the request.
+request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+request.send();
+
+<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;

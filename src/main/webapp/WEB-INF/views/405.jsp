@@ -38,17 +38,17 @@
 						</div>
 						<div class="login-page">
 							<div class="form">
-								
-									<div class="mainlogo">
-										<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
-											class="img-responsive" alt="" />
-									</div>
-									<div class="errorLogin">
-										<h2>Something went wrong!!</h2>
-   										<b>Please report error below to system developer.</b>
-   										<p>Error Message : ${exception}</p>
-   										or <a href="login.html">Login</a> with correct credentials
-									</div>
+
+								<div class="mainlogo">
+									<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
+										class="img-responsive" alt="" />
+								</div>
+								<div class="errorLogin">
+									<h2>Something went wrong!!</h2>
+									<b>Please report error below to system developer.</b>
+									<p>Error Message : ${exception}</p>
+									or <a href="login.html">Login</a> with correct credentials
+								</div>
 							</div>
 						</div>
 						<!-- Footer -->

@@ -21,6 +21,10 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
+
+.buttonsCompitableDevice{
+	margin-left:40%;
+}
 .groupsparedetails {
 	float: left;
 }
@@ -85,10 +89,15 @@
 						<div class="col-xs-10">
 							<form:form>
 								<div class="groupdetails-row-padding">
+								
+									
+									
 									<div class="groupsearchdetails">
-
+										
+										<legend>Compatible Devices </legend>
+										
 										<div class="content">
-											<!-- Below table will be displayed as Data table -->
+											<%-- <!-- Below table will be displayed as Data table -->
 											<table id="myDatatable" class="display datatable">
 												<thead>
 													<legend>Compatible Devices </legend>
@@ -98,19 +107,39 @@
 													<c:forEach items="${models}" var="device">
 														<tr>
 															<td><h6>${ device}</h6></td>
-
-
 														</tr>
 													</c:forEach>
 
 												</tbody>
-											</table>
+											</table> --%>
+										</div> 
+										
+										<div class="buttonsCompitableDevice">										
+										
+											<!-- Text input Machine Model-->
+											<div class="form-group">
+												<label>Model No</label>	
+												<input name="modelNumber" id="modelNumber" placeholder="Model Number" class="form-control" type="text" ><br/>
+											</div>
+											<br/><br/>
+											<a href="#"><button class="btn btn-info">Add </button></a><br/>
+											<a href="#"><button class="btn btn-danger">Remove</button></a>
+										
+											<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
+												<select id="listfromPopulatedModelNo" multiple="multiple" rows=10>
+	        
+	    										</select>
+											</div>
+										
 										</div>
-
+										
+										</div>
+										
 									</div><!-- //group search details -->
-								</div>
+								
 							</form:form>
 
+							
 
 							<form:form action="saveSpareParts"
 								modelAttribute="saveSpareParts" method="post" id="saveSpareParts">

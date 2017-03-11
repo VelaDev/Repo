@@ -69,7 +69,7 @@
 										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>">Login Activities</a></td>
 										<td><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>">Update</a></td>
 										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"> Reset</a></td>										
-										<td><a  class="deactive_button" href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
+										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
 										
 											    <c:choose>
 												     <c:when test="${list.status=='ACTIVE'}"> 
@@ -90,7 +90,7 @@
 						</table>
 						<br>
 						
-					</div>
+					</div>/
 					<!-- /tab-content -->
 				</div>
 				<!-- /panel body -->

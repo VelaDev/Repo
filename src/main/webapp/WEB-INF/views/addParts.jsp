@@ -22,28 +22,32 @@
 
 <style>
 select[multiple], select[size] {
-    height: auto;
-    width: 100%;
-    height: 31%;
+	height: auto;
+	width: 100%;
+	height: 31%;
 }
-.col-sm-6{
+
+.col-sm-6 {
 	width: 50%;
 }
-.buttonAddSpare{
+
+.buttonAddSpare {
 	padding-left: 10%;
-    margin-right: -12%;
+	margin-right: -12%;
 }
-.form-group-model{
-	margin-left:10%;
+
+.form-group-model {
+	margin-left: 10%;
 }
-.buttonsCompitableDevice{
-	margin-left:-11%;
+
+.buttonsCompitableDevice {
+	margin-left: -11%;
 }
+
 .groupsparedetails {
 	float: left;
-	padding-left:10%;
+	padding-left: 10%;
 	margin-top: -12%;
-	
 }
 
 .groupsearchdetails {
@@ -91,25 +95,17 @@ select[multiple], select[size] {
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="partNumber" list="languages" id="partNumber" class="form-control"
-												type="text" placeholder='Search By Part Number'>
+												name="partNumber" list="spareParts" id="partNumber"
+												class="form-control" type="text"
+												placeholder='Search By Part Number'>
 										</div>
 									</div>
-									<datalist id="languages">
-								    <option value="HTML">
-								    <option value="CSS">
-								    <option value="JavaScript">
-								    <option value="Java">
-								    <option value="Ruby">
-								    <option value="PHP">
-								    <option value="Go">
-								    <option value="Erlang">
-								    <option value="Python">
-								    <option value="C">
-								    <option value="C#">
-								    <option value="C++">
-								  </datalist>
-								  
+
+									<datalist id="spareParts"> <!-- Iterating over the list sent from Controller -->
+									<c:forEach var="list" items="${spareParts}">
+										<option value="${list}">
+									</c:forEach> </datalist>
+
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />
 									</div>
@@ -122,40 +118,29 @@ select[multiple], select[size] {
 						<div class="col-xs-10">
 							<form:form>
 								<div class="groupdetails-row-padding">
-										
-										<div class="content">
-											<%-- <!-- Below table will be displayed as Data table -->
-											<table id="myDatatable" class="display datatable">
-												<thead>
-													<legend>Compatible Devices </legend>
-												</thead>
-												<tbody>
-													<!-- Iterating over the list sent from Controller -->
-													<c:forEach items="${models}" var="device">
-														<tr>
-															<td><h6>${ device}</h6></td>
-														</tr>
-													</c:forEach>
 
-												</tbody>
-											</table> --%>
-										</div> 
-										
-										<div class="groupsearchdetails">										
-										<legend>Compatible Devices </legend>										
+									<div class="content"></div>
+
+									<div class="groupsearchdetails">
+										<legend>Compatible Devices </legend>
 										<div class="buttonsCompitableDevice">
 											<div class="col-sm-6">
 												<div class="form-group-model">
-													<label>Model No</label>	
-													<input type="text" class="form-control" name="modelNumber" id="modelNumber" placeholder="Model Number" ><br/>
-													<a href="javascript:void(0);" id="addModNo"><button class="btn btn-info">Add </button></a>
-													<a href="javascript:void(0);" id="removeModNo"><button class="btn btn-danger">Remove</button></a>
+													<label>Model No</label> <input type="text"
+														class="form-control" name="modelNumber" id="modelNumber"
+														placeholder="Model Number"><br /> <a
+														href="javascript:void(0);" id="addModNo"><button
+															class="btn btn-info">Add</button></a> <a
+														href="javascript:void(0);" id="removeModNo"><button
+															class="btn btn-danger">Remove</button></a>
 												</div>
 											</div>
-											<div class="col-sm-6"> 
-												<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
-													<label>Model Numbers</label>
-													<select id="listfromPopulatedModelNo" multiple="multiple" col=10 rows=10>
+											<div class="col-sm-6">
+												<div class="listfromPopulatedModelNumber"
+													id="listfromPopulatedModelNumber">
+													<label>Model Numbers</label> <select
+														id="listfromPopulatedModelNo" multiple="multiple" col=10
+														rows=10>
 														<option></option>
 														<option></option>
 														<option></option>
@@ -164,145 +149,145 @@ select[multiple], select[size] {
 											</div>
 										</div>
 									</div>
-								</div><!-- //group search details -->
-							</div>
-							</div>
-							</form:form>
-
-							
-
-							<form:form action="saveSpareParts"
-								modelAttribute="saveSpareParts" method="post" id="saveSpareParts">
-
-								<div class="groupsparedetails">
-									<legend>Spares</legend>
-
-									<div class="row">
-										<div class="col-xs-12">
-											<div class="col-xs-4 form-control-label">
-												<h6>
-													<label>Part Number</label>
-												</h6>
-
-											</div>
-											<div class="col-xs-8">
-												<div class="form-group">
-													<div class="input-group">
-														<input type="text" id="partNumber" name="partNumber"
-															class="form-control" value="${sparePart.partNumber}">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xs-12">
-											<div class="col-xs-4 form-control-label">
-												<h6>
-													<label>Item Type</label>
-												</h6>
-
-											</div>
-											<div class="col-xs-8">
-
-												<div class="form-group">
-													<div class="input-group">
-														<input type="text" id="itemType" name="itemType"
-															class="form-control" value="${sparePart.itemType}">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xs-12">
-											<div class="col-xs-4 form-control-label">
-												<h6>
-													<label>Description</label>
-												</h6>
-
-											</div>
-											<div class="col-xs-8">
-												<div class="form-group">
-													<div class="input-group">
-														<input type="text" id="description" name="description"
-															class="form-control" value="${sparePart.description}">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xs-12">
-											<div class="col-xs-4 form-control-label">
-												<h6>
-													<label>Quantity</label>
-												</h6>
-
-											</div>
-											<div class="col-xs-8">
-												<div class="form-group">
-													<div class="input-group">
-														<input type="text" id="quantity" name="quantity"
-															class="form-control"
-															onkeypress="return isNumber(event)">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-
-									<div class="row">
-										<div class="col-xs-12">
-											<div class="col-xs-4 form-control-label">
-												<h6>
-													<label>Received By</label>
-												</h6>
-
-											</div>
-											<div class="col-xs-8">
-												<div class="form-group">
-													<div class="input-group">
-														<input type="text" id="receivedBy" name="receivedBy"
-															class="form-control"
-															value="${loggedInUser.firstName} ${loggedInUser.lastName}"
-															readonly="readonly">
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
 								</div>
-								<!-- //group spare details -->
-
-
-								<div class="form-group row">
-									<div class="col-sm-offset-2 col-sm-8">
-										<br> <br> <input type="submit" value="Add Spare"
-											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="addSpare">
-									</div>
-								</div>
-
-							</form:form>
-
+								<!-- //group search details -->
 						</div>
-						
 					</div>
-					<!-- /tab-content -->
-				</div>
-				<!-- /panel body -->
-			</div>
-			<!--/panel success class-->
-		</div>
-		<!-- /Container -->
+					</form:form>
 
-		<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
-		<!--/ Footer -->
+
+
+					<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
+						method="post" id="saveSpareParts">
+
+						<div class="groupsparedetails">
+							<legend>Spares</legend>
+
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="col-xs-4 form-control-label">
+										<h6>
+											<label>Part Number</label>
+										</h6>
+
+									</div>
+									<div class="col-xs-8">
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" id="partNumber" name="partNumber"
+													class="form-control" value="${sparePart.partNumber}">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="col-xs-4 form-control-label">
+										<h6>
+											<label>Item Type</label>
+										</h6>
+
+									</div>
+									<div class="col-xs-8">
+
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" id="itemType" name="itemType"
+													class="form-control" value="${sparePart.itemType}">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="col-xs-4 form-control-label">
+										<h6>
+											<label>Description</label>
+										</h6>
+
+									</div>
+									<div class="col-xs-8">
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" id="description" name="description"
+													class="form-control" value="${sparePart.description}">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="col-xs-4 form-control-label">
+										<h6>
+											<label>Quantity</label>
+										</h6>
+
+									</div>
+									<div class="col-xs-8">
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" id="quantity" name="quantity"
+													class="form-control" onkeypress="return isNumber(event)">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-xs-12">
+									<div class="col-xs-4 form-control-label">
+										<h6>
+											<label>Received By</label>
+										</h6>
+
+									</div>
+									<div class="col-xs-8">
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" id="receivedBy" name="receivedBy"
+													class="form-control"
+													value="${loggedInUser.firstName} ${loggedInUser.lastName}"
+													readonly="readonly">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- //group spare details -->
+
+
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<br> <br> <input type="submit" value="Add Spare"
+									class="btn btn-primary btn-block btn-lg" tabindex="9"
+									id="addSpare">
+							</div>
+						</div>
+
+					</form:form>
+
+				</div>
+
+			</div>
+			<!-- /tab-content -->
+		</div>
+		<!-- /panel body -->
+	</div>
+	<!--/panel success class-->
+	</div>
+	<!-- /Container -->
+
+	<!-- Footer -->
+	<c:import url="templates/footer.jsp"></c:import>
+	<!--/ Footer -->
 
 	</div>
 	<!-- / velaphanda_containter -->
@@ -317,7 +302,7 @@ select[multiple], select[size] {
 	<!-- /Scripts -->
 
 
-<script>
+	<script>
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');

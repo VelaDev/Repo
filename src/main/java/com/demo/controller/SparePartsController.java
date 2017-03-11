@@ -47,8 +47,7 @@ public class SparePartsController {
 		if(userName != null){
 			model.addObject("saveSpareParts", new SparePartsBean());
 			getSerials = spareMasterServiceInt.getSerials();
-		System.out.println();
-			model.addObject("SpareParts",getSerials);
+			model.addObject("spareParts",getSerials);
 			model.setViewName("addParts");
 		}
 		else{

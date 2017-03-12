@@ -155,13 +155,13 @@ public class EmployeeController {
 						loginAttempt = serviceInt.getEmployeeDetails(employee);
 						serviceInt.upsertUserAttempt(loginAttempt);
 						if(loginAttempt.getAttemptCount()==1){
-							String attempMessage = "Wrong username or password.You have 2 attempts left";
+							String attempMessage = "Invalid password.You have 2 attempts left";
 							model.addObject("attempMessage", attempMessage);
 							
 							model.setViewName("loginattempted");
 						}
 						else if(loginAttempt.getAttemptCount()==2){
-							String attempMessage = "Wrong username or password.You have 1 attempts left";
+							String attempMessage = "Invalid password.You have 1 attempts left";
 							model.addObject("attempMessage", attempMessage);
 							model.setViewName("loginattempted");
 						}

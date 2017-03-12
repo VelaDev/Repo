@@ -357,17 +357,19 @@ public class OrdersDao implements OrdersDaoInt{
 
 	@Override
 	public List<OrdersHeader> pendingOrders(String approveName) {
-		pendingOrders = new ArrayList<OrdersHeader>();
+		List<OrdersHeader>pendingOrder = new ArrayList<OrdersHeader>();
 		try{
 			List<OrdersHeader> pendingForApprover = pendingOrders() ;
-			for(OrdersHeader pendingOrder:pendingForApprover){
-				if(pendingOrder.getApprover().equalsIgnoreCase(approveName)){
-					pendingOrders.add(pendingOrder);
+			
+			for(OrdersHeader order:pendingForApprover){
+				if(order.getApprover().equalsIgnoreCase(approveName)){
+					
+					pendingOrder.add(order);
 				}
 			}
 		}catch(Exception e){
 			retMessage = e.getMessage();
 		}
-		return pendingOrders;
+		return pendingOrder;
 	}
 }

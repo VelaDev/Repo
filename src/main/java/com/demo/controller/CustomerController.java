@@ -167,7 +167,6 @@ public class CustomerController {
 		}
 		return model;
 	}
-	
 	@RequestMapping(value="searchCustomer")
 	public ModelAndView searchCustomer(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
@@ -187,6 +186,59 @@ public class CustomerController {
 		
 		return model;
 	}
+	@RequestMapping(value="viewCustomer",method=RequestMethod.GET)
+	public ModelAndView loadViewCustomerPage(){
+		
+		model = new ModelAndView("viewCustomer");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			model.addObject("viewCustomerData", new CustomerBean());
+			model.setViewName("viewCustomer");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="viewCustomerData",method=RequestMethod.POST)
+	public ModelAndView viewCustomer(@ModelAttribute("viewCustomerData")CustomerBean customerBean){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			retMessage =customerServiceInt.prepareCustomer(customerBean); 
+			model.addObject("retMessage", retMessage);
+			model.setViewName("viewCustomer");
+		}
+		else
+		{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value="viewCustomer")
+	public ModelAndView viewCustomer(@RequestParam("viewCustomer") String customerName,@ModelAttribute Customer customer) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			/*customer = customerServiceInt.getClientByClientName(viewCustomer);*/
+			
+			
+			model.addObject("customer", customerServiceInt.contactDetails(customerName));
+			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
+			model.setViewName("viewCustomer");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	
+	
 	@RequestMapping(value="displayCustomers",method=RequestMethod.GET)
 	public ModelAndView displayCustomers(Integer offset,Integer maxResults){
 		model= new ModelAndView();

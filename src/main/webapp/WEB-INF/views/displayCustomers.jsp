@@ -43,7 +43,7 @@
 											<c:forEach var="list" items="${displayCustomers}">
 												<tr>
 													
-													<td><a href="searchCustomerdevices?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
+													<td><a href="viewCustomer?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
                                                    	<td>${list.email}</td>
 													<td>${list.tellphoneNumber}</td>
                                                     <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>">Update Customer</a></td>

@@ -167,7 +167,7 @@ public class EmployeeController {
 							model.addObject("attempMessage", attempMessage);
 							model.addObject("count", loginAttempt.getAttemptCount());
 						}
-						model.setViewName("wrongpasswordoruser");
+						model.setViewName("lastAttemptLogin");
 						
 					}
 				}
@@ -558,6 +558,13 @@ public class EmployeeController {
 		model = new ModelAndView();
 			
 			model.setViewName("passwordExpired");
+		return model;
+	}
+	@RequestMapping(value="lastAttemptLogin",method=RequestMethod.GET)
+	public ModelAndView lastAttemptLogin( ) {
+		model = new ModelAndView();
+			
+			model.setViewName("lastAttemptLogin");
 		return model;
 	}
 }

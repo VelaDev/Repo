@@ -38,28 +38,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-
-						<!--  <form action="searchCustomer" method="post" id="searchCustomer">
-							<div class="row">
-								
-								<div class="form-group">
-									<label class="col-md-3 control-label">Search Customer </label>
-									<div class="col-md-4 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span> <input
-												name="clientName" id="clientName" class="form-control"
-												type="text" placeholder='Search By Client Name'>
-										</div>
-									</div>
-									<div class="col-md-2">
-										<input class="btn btn-success" type='submit' value='Search' />
-									</div>
-								</div>
-							</div>
-
-							<hr>
-						</form> --> 
+					 
 						<form:form class="well form-horizontal" method="post"
 							action="updateCustomerData" modelAttribute="updateCustomerData"
 							id="updateClient">
@@ -281,7 +260,7 @@
 							</div>
 							
 							<!-- /Contact Person 1 -->
-							<div class="form-group">
+							<!-- <div class="form-group">
 								<label class="col-md-3 control-label"><b
 									class="optionalFields"> Click to add 2nd Contact Person</b> </label>
 								<div class="col-md-6 inputGroupContainer">
@@ -290,12 +269,12 @@
 											type="checkbox" value="true">
 									</div>
 								</div>
-							</div>
+							</div> -->
 
 							<!-- Contact Person 2 -->
 
 
-							<div id="contactPerson2checkboxdiv" style="display: none">
+							<!-- <div id="contactPerson2checkboxdiv" style="display: none"> -->
 
 								<div class="col-sm-6">
 									<br />
@@ -373,8 +352,6 @@
 									</div>
 								</div>
 								<!--/Contact Person 2 -->
-
-							</div>
 							<!--/Hide Contact Person 2 -->
 
 

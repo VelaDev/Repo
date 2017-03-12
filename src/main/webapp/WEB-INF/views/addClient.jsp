@@ -263,7 +263,7 @@
 							<!-- /Contact Person 1 -->
 
 
-							<div class="form-group">
+						<!-- 	<div class="form-group">
 								<label class="col-md-3 control-label"><b
 									class="optionalFields"> Click to add 2nd Contact Person</b> </label>
 								<div class="col-md-6 inputGroupContainer">
@@ -272,11 +272,11 @@
 											type="checkbox" value="true">
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<!-- Contact Person 2 -->
 
 
-							<div id="contactPerson2checkboxdiv" style="display: none">
+							<!-- <div id="contactPerson2checkboxdiv" style="display: none"> -->
 
 								<div class="col-sm-6">
 									<br />
@@ -355,7 +355,7 @@
 								</div>
 								<!--/Contact Person 2 -->
 
-							</div>
+							<!-- </div> -->
 							<!--/Hide Contact Person 2 -->
 
 

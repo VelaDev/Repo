@@ -163,8 +163,9 @@ public class EmployeeController {
 							model.addObject("attempMessage", attempMessage);
 						}
 						else if(loginAttempt.getAttemptCount()>=3){
-							String attempMessage = "Your account is blocked after "+ loginAttempt.getAttemptCount() + " wrong attempts. Please consult your manage for password reset";
+							String attempMessage = "Your account is blocked after "+ loginAttempt.getAttemptCount() + " wrong attempts. Please consult your manager for password reset";
 							model.addObject("attempMessage", attempMessage);
+							model.addObject("count", loginAttempt.getAttemptCount());
 						}
 						model.setViewName("wrongpasswordoruser");
 						

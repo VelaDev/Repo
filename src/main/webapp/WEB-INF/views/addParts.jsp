@@ -91,11 +91,17 @@ textarea {
 		<div class="container">
 
 			<c:if test="${not empty retMessage }">
+			
 				<div class="alert alert-info" role="alert">
 					<c:out value="${ retMessage}">
 					</c:out>
 				</div>
 			</c:if>
+			
+			<%-- <c:if test="${empty models}">
+				<c:out value="${models}"></c:out>
+			</c:if> --%>
+			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -108,8 +114,7 @@ textarea {
 
 					<div class="tab-content">
 
-						<form:form action="searchpartNumber" method="post"
-							id="searchpartNumber">
+						<form:form action="searchpartNumber" method="post"	id="searchpartNumber">
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
@@ -123,11 +128,12 @@ textarea {
 												placeholder='Search By Part Number'>
 										</div>
 									</div>
-
-									<datalist id="spareParts"> <!-- Iterating over the list sent from Controller -->
-									<c:forEach var="list" items="${spareParts}">
-										<option value="${list}">
-									</c:forEach> </datalist>
+									<!-- Iterating over the list sent from Controller -->
+									<datalist id="spareParts"> 
+										<c:forEach var="list" items="${spareParts}">
+											<option value="${list}">
+										</c:forEach> 
+									</datalist>
 
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />
@@ -138,8 +144,15 @@ textarea {
 						</form:form>
 						<!--Search-->
 												
-						<%-- <form:form>
-						 --%>	<div class="col-xs-10">
+						<%-- <form:form>						 --%>	
+											
+						<%-- </form:form> --%>
+						
+						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
+							method="post" id="saveSpareParts">
+
+
+							 	<div class="col-xs-10">
 								<div class="groupdetails-row-padding">
 
 									<div class="content"></div>
@@ -151,7 +164,7 @@ textarea {
 											<div class="col-sm-6">
 												<div class="form-group-model">
 													<label>Model No</label> <input type="text"
-														class="form-control" name="modelNumber" id="modelNumber"
+														class="form-control" onkeydown="upperCaseF(this)" name="modelNumber" id="modelNumber"
 														placeholder="Model Number"><br />
 													 <a href="javascript:void(0);" id="addModNo"><button class="btn btn-info">Add </button></a>
 													<a href="javascript:void(0);" id="removeModNo"><button class="btn btn-danger">Remove</button></a>
@@ -160,9 +173,9 @@ textarea {
 											<div class="col-sm-6">
 												<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
 													<label>Model Numbers</label>
-													<select class="list" id="listfromPopulatedModelNo" multiple="multiple" col=10 rows=10>
+													<select class="list" id="listfromPopulatedModelNo" onchange="showData()" multiple="multiple" col=10 rows=10>
 													  <c:forEach var="list1" items="${models}">
-														     <option>${list1}</option>
+														     <option value=1>${list1}</option>
 													  </c:forEach>
 														
 													</select>																									
@@ -171,11 +184,7 @@ textarea {
 										</div>
 									 </div><!-- //group search details -->
 							 </div>
-						</div>						
-						<%-- </form:form> --%>
-						
-						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
-							method="post" id="saveSpareParts">
+						</div>	
 
 							<div class="groupsparedetails">
 								<legend>Spares</legend>
@@ -192,7 +201,7 @@ textarea {
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="partNumber" name="partNumber"
-														class="form-control" value="${sparePart.partNumber}">
+														class="form-control" value="${sparePart.partNumber}" class="partNo">
 												</div>
 											</div>
 										</div>
@@ -290,9 +299,9 @@ textarea {
 							</div>
 
 						</form:form>
-
+						
 					</div>
-
+					<p id="getme"></p>
 				</div>
 				<!-- /tab-content -->
 			</div>
@@ -337,20 +346,34 @@ textarea {
             $(this).remove();
         });
     });
-	
 </script>
-<!-- 
-<script type="text/javascript">
- $(document).ready(function(){
 
-    $("#button").click(function(){
-            var input = $("input[name='modelNumber']").val();
-        $(".list").append('<div class="item">' + input + '</div>');
-    });
-    
-});
+<script type="text/javascript">
+	$(document).ready(function() {
+		
+	    var list = ${list1};
+		$.each(list, function(value ) {
+			alert(value );
+			console.log(list);
+			document.writeLine(value);
+			
+		});
+		
+	});
 </script>
- -->
+
+
+<script type="text/javascript">		
+		
+function showData() {
+    var theSelect = listfromPopulatedModelNo;
+    var firstP = document.getElementById('getme');
+    getme.innerHTML = ('List from: ' + theSelect.selectedIndex + ' (0)');
+   
+}	
+</script>
+
+
 
 <!-- Create datalist to populate search -->
 <script type="text/javascript">

@@ -74,7 +74,7 @@ public class JavaMail {
 	  String []to = {emp.getEmail()};
 	  String from=emailFrom;
       String pass=password;
-      String body = "Hi "+ emp.getFirstName()+" "+emp.getLastName()+","+ "\n\nYour password is " + password + "\n\nRemember to change your password on your first login\n\nKind Regards\nVelaphanda Support Team";
+      String body = "Hi "+ emp.getFirstName()+" "+emp.getLastName()+","+ "\n\nYour password is " + passw + "\n\nRemember to change your password on your first login\n\nKind Regards\nVelaphanda Support Team";
       String subject ="Password Resert";
       Properties props = System.getProperties();
       String host = "smtp.gmail.com";

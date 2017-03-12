@@ -21,10 +21,9 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
-
 select[multiple], select[size] {
-    width: 120%;
-    height: 100%;
+	width: 120%;
+	height: 100%;
 }
 
 .col-sm-6 {
@@ -59,29 +58,11 @@ select[multiple], select[size] {
 	margin-left: -61%;
 	width: 180%;
 }
-
-textarea {
-	height: 32%;
-	width: 118%;
+.spareDevice {
+	margin-left:42%;
+	margin-right:32;
 }
 
-#textarea {
-    -moz-appearance: textfield-multiline;
-    -webkit-appearance: textarea;
-    border: 1px solid gray;
-    font: medium -moz-fixed;
-    font: -webkit-small-control;
-    height: 100%;
-    overflow: auto;
-    padding: 2px;
-    resize: both;
-    width: 118%;
-    margin-top: 2%;
-    margin-left: 0%;
-}
-
-
-}
 </style>
 
 </head>
@@ -91,17 +72,17 @@ textarea {
 		<div class="container">
 
 			<c:if test="${not empty retMessage }">
-			
+
 				<div class="alert alert-info" role="alert">
 					<c:out value="${ retMessage}">
 					</c:out>
 				</div>
 			</c:if>
-			
+
 			<%-- <c:if test="${empty models}">
 				<c:out value="${models}"></c:out>
 			</c:if> --%>
-			
+
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -111,10 +92,11 @@ textarea {
 					</h3>
 				</div>
 				<div class="panel-body">
-
+					<p id="getme"></p>
 					<div class="tab-content">
 
-						<form:form action="searchpartNumber" method="post"	id="searchpartNumber">
+						<form:form action="searchpartNumber" method="post"
+							id="searchpartNumber">
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
@@ -123,17 +105,17 @@ textarea {
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="partNumber" list="spareParts" onkeydown="upperCaseF(this)" id="partNumber"
+												name="partNumber" list="spareParts"
+												onkeydown="upperCaseF(this)" id="partNumber"
 												class="form-control" type="text"
 												placeholder='Search By Part Number'>
 										</div>
 									</div>
 									<!-- Iterating over the list sent from Controller -->
-									<datalist id="spareParts"> 
-										<c:forEach var="list" items="${spareParts}">
-											<option value="${list}">
-										</c:forEach> 
-									</datalist>
+									<datalist id="spareParts"> <c:forEach var="list"
+										items="${spareParts}">
+										<option value="${list}">
+									</c:forEach> </datalist>
 
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />
@@ -143,48 +125,54 @@ textarea {
 							<hr>
 						</form:form>
 						<!--Search-->
-												
-						<%-- <form:form>						 --%>	
-											
-						<%-- </form:form> --%>
-						
+
+
+
 						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
 							method="post" id="saveSpareParts">
 
-
-							 	<div class="col-xs-10">
+							<div class="col-xs-10">
 								<div class="groupdetails-row-padding">
 
 									<div class="content"></div>
-									
+
 									<!-- group search details -->
 									<div class="groupsearchdetails">
 										<legend>Compatible Devices </legend>
 										<div class="buttonsCompitableDevice">
-											<div class="col-sm-6">
-												<div class="form-group-model">
-													<label>Model No</label> <input type="text"
-														class="form-control" onkeydown="upperCaseF(this)" name="modelNumber" id="modelNumber"
-														placeholder="Model Number"><br />
-													 <a href="javascript:void(0);" id="addModNo"><button class="btn btn-info">Add </button></a>
-													<a href="javascript:void(0);" id="removeModNo"><button class="btn btn-danger">Remove</button></a>
-												</div>
-											</div>
-											<div class="col-sm-6">
-												<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
-													<label>Model Numbers</label>
-													<select name="compitableDevice" class="list" id="listfromPopulatedModelNo" onchange="showData()" multiple="multiple" col=10 rows=10>
-													  <c:forEach var="compitableDevice" items="${models}">
-														     <option id="compitableDevice">${compitableDevice}</option>
-													  </c:forEach>
-														
-													</select>																									
-												</div>
+											<div class='spareDevice'>
+												<a href="javascript:void(0);" id='anc_add' class="info-button">Add</a> 
+												<a href="javascript:void(0);" id='anc_rem' class="info-button-danger">Remove</a>
+												<div style="clear: both; margin: 10px 0;"></div>
+
+												<table id="tbl1"
+													class="table table-striped table-bordered table-hover table-condensed">
+													<thead>
+														<tr>
+															<th><span id="spn_col_1">Model Number</span></th>
+															<th><span id="spn_col_2">Action</span></th>
+														</tr>
+													</thead>
+													<tbody>
+													
+													<c:forEach var="compitableDevice" items="${models}">
+														<tr> 
+														    <td class="col_1"><input type="text" name="compitableDevice"
+																value="${compitableDevice}"></td>
+															<td class="col_2"><input type="checkbox"
+																name="compitableDevice" value=""></td>
+													 		
+														</tr>
+													</c:forEach>
+													
+													</tbody>
+												</table>
 											</div>
 										</div>
-									 </div><!-- //group search details -->
-							 </div>
-						</div>	
+									</div>
+									<!-- //group search details -->
+								</div>
+							</div>
 
 							<div class="groupsparedetails">
 								<legend>Spares</legend>
@@ -201,7 +189,8 @@ textarea {
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="partNumber" name="partNumber"
-														class="form-control" value="${sparePart.partNumber}" class="partNo">
+														class="form-control" value="${sparePart.partNumber}"
+														class="partNo">
 												</div>
 											</div>
 										</div>
@@ -299,9 +288,9 @@ textarea {
 							</div>
 
 						</form:form>
-						
+						<p id="getme"></p>
 					</div>
-					<p id="getme"></p>
+
 				</div>
 				<!-- /tab-content -->
 			</div>
@@ -327,56 +316,78 @@ textarea {
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
 
-<!-- Add Model number to datalist -->
-<script type="text/javascript">
-	
-	$(document).ready(function() {
-		$('#addModNo').click( function(){
-			var input = $("input[name='modelNumber']").val();
-			 console.log(input);
-            $('#listfromPopulatedModelNo').append("<option value='"+$(this).val()+"'>"+ input +"</option>");
-            //$(this).remove();
-     });
-	});
-	
-	$('#removeModNo').click(function(){
-        $('option:selected').each( function() {
-			var input = $("input[name='modelNumber']").val();
-            $('#listfromPopulatedModelNo').append("<option value='"+$(this).val()+"'>"+ input +"</option>");
-            $(this).remove();
-        });
-    });
+<!-- Table for spares -->
+<script>
+	$(document)
+			.ready(
+					function() {
+						var cnt = 2;
+						//var input = $("input[name='modelNumber']").val();
+						//input = ${list1}
+						$("#anc_add")
+								.click(
+										function() {
+											$('#tbl1 tr')
+													.last()
+													.after(
+															'<tr><td class="col_1"><input type="text" name="compitableDevice'  + $(this).val() +  '" value="'  +  $(this).val() + '"></td><td class="col_2"><input type="checkbox" name="txtbx2' + $(this).val() +  '" value="' + $(this).val()  + '"></td></tr>'
+															
+														);
+											cnt++;
+										});
+
+						$("#anc_rem").click(function() {
+							$('#tbl1 tr:last-child').remove();
+							cnt--;
+						});
+
+						$('#chk_col_1').click(
+								function() {
+									if ($('#chk_col_1').is(':checked')) {
+										$("#tbl1 .col_1 input").attr(
+												'disabled', 'disabled');
+										$('#spn_col_1').text('Enable Col');
+									} else {
+										$("#tbl1 .col_1 input").removeAttr(
+												'disabled');
+										$('#spn_col_1').text('Disable Col');
+									}
+								});
+
+						$('#chk_col_2').click(
+								function() {
+
+									if ($('#chk_col_2').is(':checked')) {
+										$("#tbl1 .col_2 input").attr(
+												'disabled', 'disabled');
+										$('#spn_col_2').text('Enable Col');
+									} else {
+										$("#tbl1 .col_2 input").removeAttr(
+												'disabled');
+										$('#spn_col_2').text('Disable Col');
+									}
+								});
+
+						$('#chk_col_3').click(
+								function() {
+									if ($('#chk_col_3').is(':checked')) {
+										$("#tbl1 .col_3 input").attr(
+												'disabled', 'disabled');
+										$('#spn_col_3').text('Enable Col');
+									} else {
+										$("#tbl1 .col_3 input").removeAttr(
+												'disabled');
+										$('#spn_col_3').text('Disable Col');
+									}
+								});
+
+					});
 </script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		
-	    var list = ${list1};
-		$.each(list, function(value ) {
-			alert(value );
-			console.log(list);
-			document.writeLine(value);
-			
-		});
-		
-	});
-</script>
 
 
-<script type="text/javascript">		
-		
-function showData() {
-    var theSelect = compitableDevice;
-    var firstP = document.getElementById('getme');
-    getme.innerHTML = ('List from: ' + theSelect.selectedIndex + ' (0)');
-   
-}	
-</script>
-
-
-
-<!-- Create datalist to populate search -->
-<script type="text/javascript">
+	<!-- Create datalist to populate search -->
+	<script type="text/javascript">
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');
@@ -429,8 +440,8 @@ function isNumber(evt) {
 }
 </script>
 
-<!-- Make all Serials numbers UpperCase  -->
-<script type="text/javascript">
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
 	function upperCaseF(a){
 	    setTimeout(function(){
 	        a.value = a.value.toUpperCase();

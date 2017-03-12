@@ -173,9 +173,9 @@ textarea {
 											<div class="col-sm-6">
 												<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
 													<label>Model Numbers</label>
-													<select class="list" id="listfromPopulatedModelNo" onchange="showData()" multiple="multiple" col=10 rows=10>
-													  <c:forEach var="list1" items="${models}">
-														     <option value=1>${list1}</option>
+													<select name="compitableDevice" class="list" id="listfromPopulatedModelNo" onchange="showData()" multiple="multiple" col=10 rows=10>
+													  <c:forEach var="compitableDevice" items="${models}">
+														     <option id="compitableDevice">${compitableDevice}</option>
 													  </c:forEach>
 														
 													</select>																									
@@ -366,7 +366,7 @@ textarea {
 <script type="text/javascript">		
 		
 function showData() {
-    var theSelect = listfromPopulatedModelNo;
+    var theSelect = compitableDevice;
     var firstP = document.getElementById('getme');
     getme.innerHTML = ('List from: ' + theSelect.selectedIndex + ' (0)');
    

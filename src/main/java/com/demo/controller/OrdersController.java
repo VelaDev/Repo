@@ -124,8 +124,7 @@ public class OrdersController {
 	    
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			model.addObject("OrderList",ordersServiceInt.getAllOrders(userName.getEmail()));
-			//model.addObject("","")
+			model.addObject("orderList", ordersServiceInt.getOpenOrders());
 			model.setViewName("approvedOrders");
 		}
 		else{
@@ -140,7 +139,7 @@ public class OrdersController {
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			model.addObject("pendingOrderList", ordersServiceInt.getOpenOrders());
+			model.addObject("pendingOrderList",ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.setViewName("displayOrders");
 		}
 		else{

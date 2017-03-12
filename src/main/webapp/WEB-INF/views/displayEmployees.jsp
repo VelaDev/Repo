@@ -16,7 +16,7 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
-	
+
 
 </head>
 <body class="bb-js" onload="load()" data-gr-c-s-loaded="true">
@@ -33,7 +33,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-					
+
 						<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">
 							<thead>
@@ -44,13 +44,13 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Email<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-								    <th>Cell No<img
+									<th>Cell No<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Status<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Role<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Login Activities</th>
+									<th>Login Activities</th>
 									<th>Update</th>
 									<th>Reset</th>
 									<th>Action</th>
@@ -66,31 +66,45 @@
 										<td>${list.cellNumber}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<td><a href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>">Login Activities</a></td>
-										<td><a href="searchEmployeeByName?email=<c:out value='${list.email}'/>">Update</a></td>
-										<td><a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>"> Reset</a></td>										
-										<td><a href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
-										
-											    <c:choose>
-												     <c:when test="${list.status=='ACTIVE'}"> 
+										<td><a
+											href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>">Login
+												Activities</a></td>
+										<td><a
+											href="searchEmployeeByName?email=<c:out value='${list.email}'/>">
+											
+											<c:choose>
+											  <c:when test="${list.status=='ACTIVE'}"> Update
+											  </c:when>
+											</c:choose>
+
+												</a></td>
+										<td><a
+											href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>">
+												Reset</a></td>
+										<td><a
+											href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
+
+												<c:choose>
+													<c:when test="${list.status=='ACTIVE'}"> 
 												        Deactivate
-											         </c:when>											      
-											         <c:when test="${list.status=='BLOCKED'}"> 
+										 	         </c:when>
+													<c:when test="${list.status=='BLOCKED'}"> 
 												        Deactivate
 											         </c:when>
-											         <c:when test="${list.status=='INACTIVE'}">
+													<c:when test="${list.status=='INACTIVE'}">
 											           Activate
 											         </c:when>
-										         </c:choose>
-										         
-									         </a></td>
+												</c:choose>
+
+										</a></td>
 									</tr>
-              					</c:forEach>
+								</c:forEach>
 							</tbody>
 						</table>
 						<br>
-						
-					</div>/
+
+					</div>
+					/
 					<!-- /tab-content -->
 				</div>
 				<!-- /panel body -->
@@ -106,9 +120,13 @@
 
 </body>
 <!-- Scripts -->
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"> </script>
+<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />">
 	
+</script>
+
 <script>
 	$(document).ready(function() {
 		$('#myDatatable').DataTable({
@@ -122,12 +140,12 @@
 
 <!-- Deactivate script -->
 <script>
-$(document).on('click', ':not(form)[data-confirm]', function(e){
-    if(!confirm($(this).data('confirm'))){
-      e.stopImmediatePropagation();
-      e.preventDefault();
+	$(document).on('click', ':not(form)[data-confirm]', function(e) {
+		if (!confirm($(this).data('confirm'))) {
+			e.stopImmediatePropagation();
+			e.preventDefault();
 		}
-});
+	});
 </script>
 
 <!-- /Scripts -->

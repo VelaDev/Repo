@@ -27,6 +27,7 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 	
 	private SpareMaster spareMaster = null;
 	@SuppressWarnings("unchecked")
+	private String retMessage = null;
 	@Override
 	public List<SpareMaster> getSparesFromMastaData() {
 		
@@ -84,6 +85,15 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 		}
 		
 		return myList;
+	}
+	@Override
+	public String saveSpareMasterData(SpareMaster spareMaster) {
+		try{
+			sessionFactory.getCurrentSession().save(spareMaster);
+		}catch(Exception e){
+			retMessage = e.getMessage();
+		}
+		return null;
 	}
 
 }

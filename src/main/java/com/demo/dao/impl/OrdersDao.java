@@ -95,14 +95,8 @@ public class OrdersDao implements OrdersDaoInt{
 			if(part != null){
 				orders.setApproved(true);
 				orders.setDateApproved(dateFormat.format(date));
-				//orders.setReceived(true);
-				//orders.setSpare(part);
-				//orders.setDevice(device);
 				String approvedBy = (String) session.getAttribute("loggedInUser");
-				//orders.setApprodedBy(approvedBy);
 				orders.setOrderNum(orders.getOrderNum());
-				//orders.setDescription(orders.getDescription());
-				//orders.setQuantity(orders.getQuantity());
 				cusOrder.setEmployee(emp);
 				cusOrder.setDateOrdered(orders.getDateOrdered());
 				
@@ -258,13 +252,11 @@ public class OrdersDao implements OrdersDaoInt{
 				  splitString = orderBean.getSelectedItem()[i];
 				  split = splitString.split(",");
 				  partNumber = split[0];
-				  modelNumber=split[1];
-				  description = split[2];
 				  part = sparePartsDaoInt.getSparePartBySerial(partNumber);
 				  quatity = Integer.parseInt(quantityArray[i]);
 				  orderDetails.setPartNumber(partNumber);
-				  orderDetails.setDescription(description);
-				  orderDetails.setModel(modelNumber);
+				  orderDetails.setDescription(part.getDescription());
+				  orderDetails.setModel(part.getCompitableDevice());
 				  orderDetails.setQuantity(quatity);
 				  orderDetails.setLocation(orderBean.getLocation());
 				  orderDetails.setStockType(cusOrder.getStockType());
@@ -274,7 +266,7 @@ public class OrdersDao implements OrdersDaoInt{
 				  
 				  orderDetailList.add(orderDetails);
 			  }
-			  
+			   
 			  
 			  retMessage = makeOrder(cusOrder);
 			  String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
@@ -328,8 +320,13 @@ public class OrdersDao implements OrdersDaoInt{
 			
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(orderNum);
 			retMessage = subtractOrderItems(orderDetailList);
-			retMessage = detailsDaoInt.incrementStockAvailability(orderDetailList);
-			retMessage = "Order "+ cusOrder.getOrderNum() + " is approved";
+			if(retMessage.equalsIgnoreCase("Ok")){
+				retMessage = detailsDaoInt.incrementStockAvailability(orderDetailList);
+				retMessage = "Order "+ cusOrder.getOrderNum() + " is approved";
+			}
+			else{
+				retMessage = "Order cannot be approved because ordered items are more that available items";
+			}
 			
 		}catch(Exception e){
 			retMessage = "Order "+ cusOrder.getOrderNum() + " is not approved";
@@ -344,9 +341,14 @@ public class OrdersDao implements OrdersDaoInt{
 			for(OrderDetails subtractQuatity:orderDetails){
 				part = sparePartsDaoInt.getSparePartBySerial(subtractQuatity.getPartNumber());
 				tempQuantity = part.getQuantity() - subtractQuatity.getQuantity();
-				part.setQuantity(tempQuantity);
-				sessionFactory.getCurrentSession().update(part);
-				
+				if(tempQuantity<=part.getQuantity()){
+					
+					part.setQuantity(tempQuantity);
+					sessionFactory.getCurrentSession().update(part);
+					retMessage = "Ok";
+				}else{
+					retMessage = "Ordered items are more than available items";
+				}
 			}
 			
 		}catch(Exception e){

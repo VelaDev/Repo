@@ -72,6 +72,8 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						
+						<input type="button" value="Print Order" class="btn btn-info">
 						</form:form>
 					</div>
 					<!-- /tab-content -->

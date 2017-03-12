@@ -42,7 +42,7 @@
 										</thead>
 										<tbody>
 											<!-- Iterating over the list sent from Controller -->
-											 <c:forEach var="list" items="${OrderList}">
+											 <c:forEach var="list" items="${orderList}">
 												<tr>
 													<td>${list.orderNum}</td>
 													<td>${list.status}</td>

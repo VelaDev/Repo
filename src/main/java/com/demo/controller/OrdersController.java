@@ -140,6 +140,21 @@ public class OrdersController {
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
+			model.addObject("pendingOrderList", ordersServiceInt.getOpenOrders());
+			model.setViewName("displayOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("pendingOrders")
+	public ModelAndView displayPendingOrders(){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
 			model.addObject("pendingOrderList", ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.setViewName("displayOrders");
 		}

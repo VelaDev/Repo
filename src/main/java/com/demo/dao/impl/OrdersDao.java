@@ -156,7 +156,7 @@ public class OrdersDao implements OrdersDaoInt{
 		 for(Object order:aList)
 		 {
 			 if(order instanceof OrdersHeader){
-				 if(((OrdersHeader) order).isApproved()==false){
+				 if(((OrdersHeader) order).getStatus().equalsIgnoreCase("Approved")){
 					 orderList.add((OrdersHeader) order);
 				 }
 			 }

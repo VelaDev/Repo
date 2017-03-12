@@ -1,6 +1,6 @@
 package com.demo.controller;
 
-import java.util.List;
+
 
 import javax.servlet.http.HttpSession;
 
@@ -12,13 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.bean.CompatibilityBean;
-import com.demo.bean.CustomerBean;
 import com.demo.bean.SparePartsBean;
-import com.demo.model.Device;
 import com.demo.model.Employee;
 import com.demo.model.Spare;
-import com.demo.model.SpareMaster;
 import com.demo.service.OrderDetailsInt;
 import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.SparePartsServeceInt;

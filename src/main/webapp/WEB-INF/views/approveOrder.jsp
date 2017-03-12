@@ -20,7 +20,7 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		<c:if test="${not empty retMessage }">
+			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
 					<c:out value="${ retMessage}">
 					</c:out>
@@ -36,8 +36,9 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-					<form:form modelAttribute="approveOrderItems" method="post"
-							action="approveOrderItems" id="approveOrderItems" name="approveOrderItems">
+						<form:form modelAttribute="approveOrderItems" method="post"
+							action="approveOrderItems" id="approveOrderItems"
+							name="approveOrderItems">
 							<!--First column-->
 							<div class="col-md-4">
 								<div class="form-group">
@@ -46,49 +47,52 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <input id="technician"
 												name="orderNum" placeholder="Order Number"
-												class="form-control" type="text" value="${OrderNum.orderNum}">
+												class="form-control" type="text"
+												value="${OrderNum.orderNum}">
 										</div>
 									</div>
 								</div>
-							</div><br><br>
+							</div>
+							<br>
+							<br>
 							<!-- /F Column -->
-						<!-- Below table will be displayed as Data table -->
-						<table id="myDatatable" class="display datatable">
-							<thead>
-								<tr>
-									<th>Part No<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Model No<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Desc<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Quantity<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Date<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Status</th>
-								</tr>
-							</thead>
-							<tbody>
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${pendingOrderList}">
+							<!-- Below table will be displayed as Data table -->
+							<table id="myDatatable" class="display datatable">
+								<thead>
 									<tr>
-										<td>${list.partNumber}</td>
-										<td>${list.model}</td>
-										<td>${list.description}</td>
-										<td>${list.quantity}</td> 
-										<td>${list.dateTime}</td> 
-										<td>${list.ordersHeader.status}</td> 
+										<th>Part No<img
+											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+										<th>Model No<img
+											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+										<th>Desc<img
+											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+										<th>Quantity<img
+											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+										<th>Date<img
+											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+										<th>Status</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<div class="form-group row">
+								</thead>
+								<tbody>
+									<!-- Iterating over the list sent from Controller -->
+									<c:forEach var="list" items="${pendingOrderList}">
+										<tr>
+											<td>${list.partNumber}</td>
+											<td>${list.model}</td>
+											<td>${list.description}</td>
+											<td>${list.quantity}</td>
+											<td>${list.dateTime}</td>
+											<td>${list.ordersHeader.status}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<br>
-									<br> <input type="submit" value="Approve order"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="order" name="order">
+									<br> <br>
+									<input type="submit" value="Approve order"
+												class="btn btn-primary btn-block btn-lg" tabindex="9"
+												id="order" name="order">
 								</div>
 							</div>
 						</form:form>

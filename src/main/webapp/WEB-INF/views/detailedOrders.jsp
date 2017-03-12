@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
+		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
 		<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">

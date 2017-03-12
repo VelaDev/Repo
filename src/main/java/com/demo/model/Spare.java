@@ -44,13 +44,6 @@ public class Spare implements Serializable{
 	private String receivedBy;
 	@Column(name="Date_Arrived")
 	private String dateTime;
-	/*@Column(name="Compitable_Device")
-	private String compitableDevice;*/
 	
-	
-	/*@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
-	private Set<OrdersHeader> order;*/
-	/*@OneToMany(mappedBy="spare",cascade=CascadeType.ALL)
-	private Set<Compatibility> compitability;*/
 
 }

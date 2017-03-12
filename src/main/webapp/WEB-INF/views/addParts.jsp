@@ -21,10 +21,10 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
+
 select[multiple], select[size] {
-	height: auto;
-	width: 100%;
-	height: 31%;
+    width: 120%;
+    height: 100%;
 }
 
 .col-sm-6 {
@@ -137,15 +137,14 @@ textarea {
 							<hr>
 						</form:form>
 						<!--Search-->
-
-						<div class="col-xs-10">
-							<form:form>
+												
+						<%-- <form:form>
+						 --%>	<div class="col-xs-10">
 								<div class="groupdetails-row-padding">
 
 									<div class="content"></div>
 									
-									<!-- //group search details -->
-
+									<!-- group search details -->
 									<div class="groupsearchdetails">
 										<legend>Compatible Devices </legend>
 										<div class="buttonsCompitableDevice">
@@ -154,27 +153,24 @@ textarea {
 													<label>Model No</label> <input type="text"
 														class="form-control" name="modelNumber" id="modelNumber"
 														placeholder="Model Number"><br />
-													 <div id="button" class="btn btn-info">Add</div>
-													<div id="button" class="btn btn-danger">Remove</div>
+													 <a href="javascript:void(0);" id="addModNo"><button class="btn btn-info">Add </button></a>
+													<a href="javascript:void(0);" id="removeModNo"><button class="btn btn-danger">Remove</button></a>
 												</div>
 											</div>
 											<div class="col-sm-6">
-												<div class="listfromPopulatedModelNumber"
-													id="listfromPopulatedModelNumber">
-													<label>Model Numbers</label> 
-													<div class="listfromPopulatedModelNumber"id="listfromPopulatedModelNumber">
-													<div class="list" id="textarea" contenteditable></div>													
-												</div>
+												<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
+													<label>Model Numbers</label>
+													<select class="list" id="listfromPopulatedModelNo" multiple="multiple" col=10 rows=10>
+														
+													</select>																									
 												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-						</div>
-						</form:form>
-
-
-
+									 </div><!-- //group search details -->
+							 </div>
+						</div>						
+						<%-- </form:form> --%>
+						
 						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
 							method="post" id="saveSpareParts">
 
@@ -319,18 +315,42 @@ textarea {
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
 
-	<!-- Add Model number to datalist -->
-	<script type="text/javascript">
+<!-- Add Model number to datalist -->
+<script type="text/javascript">
+	
+	$(document).ready(function() {
+		$('#addModNo').click( function(){
+			var input = $("input[name='modelNumber']").val();
+			 console.log(input);
+            $('#listfromPopulatedModelNo').append("<option value='"+$(this).val()+"'>"+ input +"</option>");
+            //$(this).remove();
+     });
+	});
+	
+	$('#removeModNo').click(function(){
+        $('option:selected').each( function() {
+			var input = $("input[name='modelNumber']").val();
+            $('#listfromPopulatedModelNo').append("<option value='"+$(this).val()+"'>"+ input +"</option>");
+            $(this).remove();
+        });
+    });
+	
+</script>
+<!-- 
+<script type="text/javascript">
  $(document).ready(function(){
 
     $("#button").click(function(){
             var input = $("input[name='modelNumber']").val();
         $(".list").append('<div class="item">' + input + '</div>');
     });
+    
 });
 </script>
+ -->
 
-	<script>
+<!-- Create datalist to populate search -->
+<script type="text/javascript">
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');

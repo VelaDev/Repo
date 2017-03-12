@@ -45,13 +45,11 @@
 									</div>
 									<div class="errorLogin"> 
 										  <c:if test="${not empty attempMessage }">
-				                              <div class="alert alert-info" role="alert">
+				                              <div class="alert alert-danger" role="alert">
 					                              <c:out value="${ attempMessage}">
 					                              </c:out>
 				                              </div>
 			                              </c:if>
-										
-										<a href="login.html">Login</a> with correct credentials
 									</div>
 								</form>
 							</div>

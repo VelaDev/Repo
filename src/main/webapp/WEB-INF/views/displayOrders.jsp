@@ -58,9 +58,20 @@
 										<td>${list.stockType}</td>
 										<td>${list.customer.customerName}</td>
 										<td><a
-											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-success">Details</button></a></td>
-											<td><a
-											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>"><button class="btn btn-info">Delivery</button></a></td>
+											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>"><button
+													class="btn btn-success">Details</button></a></td>
+										<td><a
+											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>">
+
+												<c:choose>
+													<c:when test="${list.status =='Approved'}">
+														<button class="btn btn-info">Delivery</button>
+													</c:when>
+                                                     <c:when test="${list.status =='Pending'}">
+                                                     <button class="btn btn-info" disabled="disabled">Delivery</button>
+                                                     </c:when>
+												</c:choose>
+										</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

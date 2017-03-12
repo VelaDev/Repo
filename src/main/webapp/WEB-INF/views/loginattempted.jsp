@@ -43,9 +43,15 @@
 										<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
 											class="img-responsive" alt="" />
 									</div>
-									<div class="errorLogin">
-										<h5>Your account has been locked because you have reached the maximum number of logon attempts. Please contact Administrator.</h5>
+									<div class="errorLogin"> 
+										  <c:if test="${not empty attempMessage }">
+				                              <div class="alert alert-danger" role="alert">
+					                              <c:out value="${ attempMessage}">
+					                              </c:out>
+				                              </div>
+			                              </c:if>
 										
+										<a href="login.html">Login</a> with correct credentials
 									</div>
 								</form>
 							</div>

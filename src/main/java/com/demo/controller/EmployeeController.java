@@ -157,18 +157,21 @@ public class EmployeeController {
 						if(loginAttempt.getAttemptCount()==1){
 							String attempMessage = "You have 2 attempts left";
 							model.addObject("attempMessage", attempMessage);
+							
+							model.setViewName("loginattempted");
 						}
 						else if(loginAttempt.getAttemptCount()==2){
 							String attempMessage = "You have 1 attempts left";
 							model.addObject("attempMessage", attempMessage);
+							model.setViewName("loginattempted");
 						}
 						else if(loginAttempt.getAttemptCount()>=3){
 							String attempMessage = "Your account is blocked after "+ loginAttempt.getAttemptCount() + " wrong attempts. Please consult your manager for password reset";
 							model.addObject("attempMessage", attempMessage);
 							model.addObject("count", loginAttempt.getAttemptCount());
+							
+							model.setViewName("lastAttemptLogin");
 						}
-						model.setViewName("lastAttemptLogin");
-						
 					}
 				}
 			

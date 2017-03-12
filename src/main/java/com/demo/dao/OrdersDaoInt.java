@@ -17,5 +17,6 @@ public interface OrdersDaoInt {
 	public String prepareOrderMaking(OrdersBean order);
 	public List<OrdersHeader> pendingOrders();
 	public String approveOrder(String orderNum);
+	public List<OrdersHeader>pendingOrders(String approveName);
 
 }

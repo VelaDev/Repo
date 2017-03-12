@@ -16,5 +16,6 @@ public interface OrdersServiceInt {
 	public String prepareOrderMaking(OrdersBean order);
 	public List<OrdersHeader> pendingOrders();
 	public String approveOrder(String orderNum);
+	public List<OrdersHeader> pendingOrders(String approveName);
 
 }

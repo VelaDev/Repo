@@ -2,27 +2,36 @@
 
 
 
-<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/custom/css/navbar.css" />" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/custom/css/vela_custom.css"/>" rel="stylesheet" type="text/css" />
+<link
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/custom/css/navbar.css" />"
+	rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/custom/css/vela_custom.css"/>"
+	rel="stylesheet" type="text/css" />
 
 
 
 <div class="vela_motto">
-<p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
+	<p>
+		<span class="motto">Velaphanda</span> <span class="techsystem">Technical
+			System</span>
+	</p>
 </div>
 <div class="velatp_logo">
- 	<a href="home.html"><img src="resources/bootstrap-3.3.6/images/mainlogoo.jpg"></a>
- <div class="userloggedin">
-	 <ul class="nav navbar-nav navbar-right">        
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user btn-lg "> ${user}</span><span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu">
-				<li><a href='<c:url value="login.html"/>'>Log Out</a></li>							
-	       </ul>
-        </li>
-      </ul>
- </div>
+	<a href="home.html"><img
+		src="resources/bootstrap-3.3.6/images/mainlogoo.jpg"></a>
+	<div class="userloggedin">
+		<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown"><a href="#" class="dropdown-toggle"
+				data-toggle="dropdown"><span
+					class="glyphicon glyphicon-user btn-lg "> ${user}</span><span
+					class="caret"></span></a>
+				<ul class="dropdown-menu" role="menu">
+					<li><a href='<c:url value="login.html"/>'>Log Out</a></li>
+				</ul></li>
+		</ul>
+	</div>
 </div>
 
 <div id="navbar">
@@ -48,7 +57,7 @@
 									Employee</a></li>
 							<li><a href='<c:url value="displayEmployees.html"/>'>View
 									Employee</a></li>
-						    <%-- <li><a href='<c:url value="testReports.html"/>'>Checking Reports</a></li> --%>
+							<%-- <li><a href='<c:url value="testReports.html"/>'>Checking Reports</a></li> --%>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Customers <b class="caret"></b></a>
@@ -59,13 +68,8 @@
 								<ul class="dropdown-menu">
 									<li><a href='<c:url value="addClient.html"/>'>Add
 											Customer</a></li>
-											<li><a href='<c:url value="displayCustomers.html"/>'>View
+									<li><a href='<c:url value="displayCustomers.html"/>'>View
 											Customers</a></li>
-									<%-- <li><a href='<c:url value="updateCustomer.html"/>'>Update
-											Customer</a></li> --%>
-									<%-- <li><a href='<c:url value="clientInformation.html"/>'>Search
-											Devices for a customer</a></li> --%>
-									<!-- <li><a href="#">Delete Customer</a></li> -->
 								</ul></li>
 							<li class="dropdown dropdown-submenu"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">Device
@@ -85,17 +89,28 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Spare Parts<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href='<c:url value="addParts.html"/>'>Receive Spares</a></li>
-							<li><a href='<c:url value="displayOrders.html"/>'>View Orders</a></li>
+							<li><a href='<c:url value="addParts.html"/>'>Receive
+									Spares</a></li>
 							<li class="dropdown dropdown-submenu"><a href="#"
-								class="dropdown-toggle" data-toggle="dropdown">Available Sapres</a>
+								class="dropdown-toggle" data-toggle="dropdown">Available
+									Sapres</a>
 								<ul class="dropdown-menu">
-									<li><a href='<c:url value="availableSpareParts.html"/>'>Head Office</a></li>
+									<li><a href='<c:url value="availableSpareParts.html"/>'>Head
+											Office</a></li>
 									<li><a href='<c:url value="bootSite.html"/>'>Boot Site</a></li>
-									<li><a href='<c:url value="stockSite.html"/>'>Stock Site</a></li>
+									<li><a href='<c:url value="stockSite.html"/>'>Stock
+											Site</a></li>
 									<!-- <li><a href='<c:url value="order.html"/>'>Make Order</a></li> -->
 
 								</ul></li>
+						</ul></li>
+
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Orders<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="displayOrders.html"/>'>View
+									Orders</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -108,13 +123,17 @@
 						</ul></li>
 
 				</ul>
-				
+
 			</div>
 		</div>
 	</nav>
 </div>
 <div class="nav navbar-nav navbar-right">
-	<a href="#" onclick="history.go(-1);"><span class="glyphicon glyphicon-circle-arrow-left btn-lg" title="Previous Page"></span></a>
-	<a href="#" onclick="history.go(1);"><span class="glyphicon glyphicon-circle-arrow-right btn-lg" title="Go Forward"></span></a>
+	<a href="#" onclick="history.go(-1);"><span
+		class="glyphicon glyphicon-circle-arrow-left btn-lg"
+		title="Previous Page"></span></a> <a href="#" onclick="history.go(1);"><span
+		class="glyphicon glyphicon-circle-arrow-right btn-lg"
+		title="Go Forward"></span></a>
 </div>
-<br/><br/>
+<br />
+<br />

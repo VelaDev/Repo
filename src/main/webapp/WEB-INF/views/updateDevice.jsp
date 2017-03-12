@@ -296,16 +296,16 @@ li {
 
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Mono/Color</label>
+										<label class="col-md-3 control-label">Mono/Colour</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span><select name="colour"
 													class="form-control" onchange='CheckColors(this.value);'
 													class="form-control selectpicker">
-													<option>Select Mono/Color</option>
+													<option>Select Mono/Colour</option>
 													<option value="mono">Mono</option>
-													<option value="colour">Color</option>
+													<option value="colour">Colour</option>
 												</select>
 											</div>
 										</div>

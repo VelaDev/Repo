@@ -354,4 +354,20 @@ public class OrdersDao implements OrdersDaoInt{
 		}
 		return retMessage;
 	}
+
+	@Override
+	public List<OrdersHeader> pendingOrders(String approveName) {
+		pendingOrders = new ArrayList<OrdersHeader>();
+		try{
+			List<OrdersHeader> pendingForApprover = pendingOrders() ;
+			for(OrdersHeader pendingOrder:pendingForApprover){
+				if(pendingOrder.getApprover().equalsIgnoreCase(approveName)){
+					pendingOrders.add(pendingOrder);
+				}
+			}
+		}catch(Exception e){
+			retMessage = e.getMessage();
+		}
+		return pendingOrders;
+	}
 }

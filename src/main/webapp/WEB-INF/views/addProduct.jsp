@@ -236,9 +236,9 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
 												<select id="monocolour" name="colour" class="form-control" onchange="CheckColors(this.value);">
-													<option>Select Mono/Color</option>
+													<option>Select Mono/Colour</option>
 													<option value="mono">Mono</option>
-													<option value="colour">Color</option>
+													<option value="colour">Colour</option>
 												</select>
 											</div>
 										</div>

@@ -16,7 +16,6 @@ import com.demo.bean.OrdersBean;
 import com.demo.model.Employee;
 import com.demo.model.OrdersHeader;
 import com.demo.model.OrderDetails;
-import com.demo.service.CompatibilityServiceInt;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
@@ -141,8 +140,7 @@ public class OrdersController {
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			
-			model.addObject("pendingOrderList", ordersServiceInt.getAllOrders());
+			model.addObject("pendingOrderList", ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.setViewName("displayOrders");
 		}
 		else{

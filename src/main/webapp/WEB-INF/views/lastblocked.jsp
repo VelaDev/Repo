@@ -44,15 +44,12 @@
 											class="img-responsive" alt="" />
 									</div>
 									<div class="errorLogin">
-										<h5 id="invalidPass">Invalid Password. Please try again</h5> 
 										  <c:if test="${not empty attempMessage }">
 				                              <div class="alert alert-info" role="alert">
 					                              <c:out value="${ attempMessage}">
 					                              </c:out>
 				                              </div>
 			                              </c:if>
-										
-										<a href="login.html">Login</a> with correct credentials
 									</div>
 								</form>
 							</div>
@@ -76,17 +73,4 @@
 	<!-- velaphanda_containter -->
 
 </body>
-
-<script type="text/javascript">		
-		var count1 = ${count};
-		if(count1 == 3){
-			console.log(count1);				
-			var element=document.getElementById('invalidPass');
-			 if(count==3)
-				 element.style.display='none';
-			 else			  
-			   element.style.display='block';
-			 console.log(count1);
-		}
-</script>
 </html>

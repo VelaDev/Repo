@@ -917,7 +917,7 @@ $(document).ready(function() {
 	 else  
 	   element.style.display='none';
 	   
-	  var element=document.getElementById('colour');
+	 var element=document.getElementById('colour');
 	 if(val=='pick a colour'||val=='colour')
 	   element.style.display='block';
 	 else  

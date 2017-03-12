@@ -118,7 +118,7 @@ textarea {
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="partNumber" list="spareParts" id="partNumber"
+												name="partNumber" list="spareParts" onkeydown="upperCaseF(this)" id="partNumber"
 												class="form-control" type="text"
 												placeholder='Search By Part Number'>
 										</div>
@@ -405,6 +405,16 @@ function isNumber(evt) {
     return true;
 }
 </script>
+
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
+</script>
+
 
 	<script>
 		$(document)

@@ -173,9 +173,6 @@ public class CustomerController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			/*customer = customerServiceInt.getClientByClientName(customerName);*/
-			
-			
 			model.addObject("customer", customerServiceInt.contactDetails(customerName));
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
 			model.setViewName("updateCustomer");
@@ -184,21 +181,6 @@ public class CustomerController {
 			model.setViewName("login");
 		}
 		
-		return model;
-	}
-	@RequestMapping(value="viewCustomer",method=RequestMethod.GET)
-	public ModelAndView loadViewCustomerPage(){
-		
-		model = new ModelAndView("viewCustomer");
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-		
-			model.addObject("viewCustomerData", new CustomerBean());
-			model.setViewName("viewCustomer");
-		}
-		else{
-			model.setViewName("login");
-		}
 		return model;
 	}
 	@RequestMapping(value="viewCustomerData",method=RequestMethod.POST)
@@ -219,7 +201,7 @@ public class CustomerController {
 	}
 	
 	@RequestMapping(value="viewCustomer")
-	public ModelAndView viewCustomer(@RequestParam("viewCustomer") String customerName,@ModelAttribute Customer customer) {
+	public ModelAndView viewCustomer(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){

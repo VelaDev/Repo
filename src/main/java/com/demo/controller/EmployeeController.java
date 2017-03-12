@@ -179,6 +179,7 @@ public class EmployeeController {
 			
 		}else if(employee != null&& employee.getStatus().equalsIgnoreCase("BLOCKED")){
 			//retRole= "redirect:loginattempted";
+			model.addObject("attempMessage", "Your acount has been BLOCKED after 3 wrong attempts, please consult your manager for password reset");
 			model.setViewName("loginattempted");
 		}
 		else{//retRole= "redirect:error";

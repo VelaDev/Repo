@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.SpareMasterDaoInt;
-import com.demo.model.Device;
 import com.demo.model.SpareMaster;
 
 import edu.emory.mathcs.backport.java.util.Arrays;
@@ -75,6 +74,9 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 				modelParts = spareMaster.getCompitableDevice();
 				
 				myList = new ArrayList<String>(Arrays.asList(modelParts.split(",")));
+			}
+			else{
+				myList =new ArrayList<String>(Arrays.asList(null));
 			}
 			
 		}catch(Exception e){

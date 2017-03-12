@@ -161,6 +161,9 @@ textarea {
 												<div class="listfromPopulatedModelNumber" id="listfromPopulatedModelNumber">
 													<label>Model Numbers</label>
 													<select class="list" id="listfromPopulatedModelNo" multiple="multiple" col=10 rows=10>
+													  <c:forEach var="list1" items="${models}">
+														     <option>${list1}</option>
+													  </c:forEach>
 														
 													</select>																									
 												</div>

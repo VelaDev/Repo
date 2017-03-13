@@ -492,7 +492,7 @@ li {
 										<div class="col-xs-4">
 											<input type="text" class="form-control"
 												onkeydown="upperCaseF(this)" id="serialNumber"
-												name="serialNumber" placeholder="Serial Number" />
+												name="serialNumber1" placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
 											<img class="add right"  src="resources/bootstrap-3.3.6/images/add.png" />

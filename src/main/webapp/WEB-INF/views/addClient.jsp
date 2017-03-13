@@ -558,7 +558,11 @@ function isNumber(evt) {
 															min : 3,
 														},
 														message : 'First Name is required and cannot be empty'
-													}
+													},
+													regexp: {
+									                    regexp: /^[a-z-A-Z]+$/,
+									                    message: 'First Name can consist of only alphabetical characters'
+									                }
 												}
 											},
 											lastName : {
@@ -568,7 +572,11 @@ function isNumber(evt) {
 															min : 3,
 														},
 														message : 'Last Name is required and cannot be empty'
-													}
+													},
+													regexp: {
+									                    regexp: /^[a-z-A-Z]+$/,
+									                    message: 'Last Name can consist of only alphabetical characters'
+									                }
 												}
 											},
 											cellphoneNumber : {
@@ -605,18 +613,30 @@ function isNumber(evt) {
 											},
 											firstName1 : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
-													}
+													notEmpty : {
+														stringLength : {
+															min : 3,
+														},
+														message : 'First Name is required and cannot be empty'
+													},
+													regexp: {
+									                    regexp: /^[a-z-A-Z]+$/,
+									                    message: 'First Name can consist of only alphabetical characters  '
+									                }
 												}
 											},
 											lastName1 : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
-													}
+													notEmpty : {
+														stringLength : {
+															min : 3,
+														},
+														message : 'Last Name is required and cannot be empty'
+													},
+													regexp: {
+									                    regexp: /^[a-z-A-Z]+$/,
+									                    message: 'Last Names can consist of only alphabetical characters '
+									                }
 												}
 											},
 											cellphoneNumber1 : {

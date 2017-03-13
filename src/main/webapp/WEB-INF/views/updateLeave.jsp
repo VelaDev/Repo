@@ -2,18 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title> Update Leave | Velaphanda Trading & Projects</title>
+<title>Update Leave | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" >
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/formValidation.min.css" />"> 
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+
 
 </head>
 <body>
@@ -104,9 +103,9 @@
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-3 col-sm-6">
-								<input type="submit" value="Make Leave"
+								<input type="submit" value="Update Leave"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
-									id="addLeave">
+									id="updateLeave">
 							</div>
 						</div>
 
@@ -127,46 +126,42 @@
 
 
 	<!-- Scripts -->
-	
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/formValidation.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script> 
-
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
 
-	
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#startDatePicker').datepicker({
+				format : "yyyy-mm-dd",
+				startDate: 'd0',
+		        autoclose: true
+			});
+		});
+</script> 
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#endDatePicker').datepicker({
+			format : "yyyy-mm-dd",
+			startDate: 'd0',
+	        autoclose: true
+		});
+	});
+</script> 
+
 <script>
 $(document).ready(function() {
-    $('#startDatePicker')
-        .datepicker({
-            format: 'yyyy-mm-dd'
-        })
-        .on('changeDate', function(e) {
-            // Revalidate the start date field
-            $('#updateLeave').formValidation('revalidateField', 'startDate');
-        });
-
-    $('#endDatePicker')
-        .datepicker({
-            format: 'yyyy-mm-dd'
-        })
-        .on('changeDate', function(e) {
-            $('#updateLeave').formValidation('revalidateField', 'endDate');
-        });
-
-    $('#updateLeave')
-        .formValidation({
-            framework: 'bootstrap',
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
+   
+    $('#updateLeave').bootstrapValidator({
+        //framework: 'bootstrap',
+        icon: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
             fields: {
                 leaveID: {
                     validators: {
@@ -221,19 +216,9 @@ $(document).ready(function() {
                     }
                 }
             }
-        })
-        .on('success.field.fv', function(e, data) {
-            if (data.field === 'startDate' && !data.fv.isValidField('endDate')) {
-                // Revalidate the end date
-                data.fv.revalidateField('endDate');
-            }
+        })        
+}); 
 
-            if (data.field === 'endDate' && !data.fv.isValidField('startDate')) {
-                // Need to revalidate the start date
-                data.fv.revalidateField('startDate');
-            }
-        });
-});
 </script>
 
 <script type="text/javascript">

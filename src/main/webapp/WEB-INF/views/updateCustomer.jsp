@@ -69,9 +69,7 @@
 												type="text" onkeypress="return isNumber(event)" value="${customer.tellphoneNumber}" >
 										</div>
 									</div>
-								</div>
-
-
+								</div>	
 								<!-- Text input Email-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Company Email</label>
@@ -85,7 +83,24 @@
 										</div>
 									</div>
 								</div>
+								<!-- Text input Street Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Street No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="streetNumber" id="streetNumber"
+												placeholder="Street No" class="form-control" onkeypress="return isNumber(event)"  type="text" value="${customer.streetNumber}" >
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<!-- / F Customer Fields -->
 
+							<!--Second column Customer Fields-->
+							<div class="col-sm-6">
 								<!-- Text input Street Name-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street Name</label>
@@ -98,11 +113,6 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<!-- / F Customer Fields -->
-
-							<!--Second column Customer Fields-->
-							<div class="col-sm-6">
 								<!-- Text input City or Town-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">City/Town</label>
@@ -166,19 +176,6 @@
 									</div>
 								</div>
 
-								<!-- Text input Street Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Street No</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input
-												name="streetNumber" id="streetNumber"
-												placeholder="Street No" class="form-control" onkeypress="return isNumber(event)"  type="text" value="${customer.streetNumber}" >
-										</div>
-									</div>
-								</div>
-
 							</div>
 							<!--/Second column Customer Fields-->
 
@@ -212,9 +209,6 @@
 										</div>
 									</div>
 								</div>
-
-
-
 							</div>
 
 							<div class="col-sm-6">
@@ -433,7 +427,7 @@ function isNumber(evt) {
 }
 </script>
 
-	<!-- Validate add Client -->
+	<!-- Validate update Client -->
 	<script type="text/javascript">
 		$(document)
 				.ready(
@@ -458,7 +452,6 @@ function isNumber(evt) {
 															}
 														}
 													},
-
 													tellphoneNumber : {
 														validators : {
 															stringLength : {
@@ -485,13 +478,13 @@ function isNumber(evt) {
 															}
 														}
 													},
-													email : {
+													streetNumber : {
 														validators : {
-															notEmpty : {
-																message : 'Email address is required and cannot be empty'
+															stringLength : {
+																min : 1,
 															},
-															emailAddress : {
-																message : 'The email address is not valid'
+															notEmpty : {
+																message : 'Street number is required and cannot be empty'
 															}
 														}
 													},
@@ -505,6 +498,7 @@ function isNumber(evt) {
 															}
 														}
 													},
+													
 													city_town : {
 														validators : {
 															notEmpty : {
@@ -545,13 +539,14 @@ function isNumber(evt) {
 														}
 													},
 
-													streetNumber : {
+													
+													email : {
 														validators : {
-															stringLength : {
-																min : 1,
-															},
 															notEmpty : {
-																message : 'Street number is required and cannot be empty'
+																message : 'Email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
 															}
 														}
 													},
@@ -586,17 +581,7 @@ function isNumber(evt) {
 															}
 														}
 													},
-													telephoneNumber: {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
-															notEmpty : {
-																message : 'Telephone Number is required and cannot be empty'
-															}
-														}
-													},
+													
 													email : {
 														validators : {
 															notEmpty : {
@@ -607,17 +592,30 @@ function isNumber(evt) {
 															}
 														}
 													},
+													firstName1 : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															}
+														}
+													},
+													lastName1 : {
+														validators : {
+															stringLength : {
+																max : 10,
+																min : 10,
+															}
+														}
+													},
 													cellphoneNumber1 : {
 														validators : {
 															stringLength : {
 																max : 10,
 																min : 10,
-															},
-															notEmpty : {
-																message : 'Cellphone Number is required and cannot be empty'
 															}
 														}
-													},
+													},													
 													telephoneNumber1 : {
 														validators : {
 															stringLength : {
@@ -625,7 +623,19 @@ function isNumber(evt) {
 																min : 10,
 															}
 														}
-													}
+													},
+													
+													email1 : {
+														validators : {
+															/* notEmpty : {
+																message : 'Email address is required and cannot be empty'
+															}, */
+															emailAddress : {
+																message : 'The email address is not valid'
+															}
+														}
+													},
+													
 												}
 											});
 						});

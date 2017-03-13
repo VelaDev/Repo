@@ -10,8 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
-<%--<link rel="stylesheet" type="text/stylesheet" src="<c:url value="/resources/dynamicfields/css/extented_fields.css" />">--%>
-
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <style>
 li {
 	list-style: none;
@@ -250,7 +249,7 @@ li {
 										<div class="form-group">
 											<label class="col-md-3 control-label"></label>
 											<div class="col-md-6">
-												<input type="text" class="form-control" placeholder="Enter Colour Reading" 
+												<input type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Enter Colour Reading" 
 												name="colourReading" id="colourReading">
 											</div>
 											<br>
@@ -259,7 +258,7 @@ li {
 										<div class="form-group">
 											<label class="col-md-3 control-label"></label>
 											<div class="col-md-6">
-												<input type="text" class="form-control" placeholder="Enter Mono Reading"
+												<input type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Enter Mono Reading"
 												name="monoReading" id="monoReading">
 											</div>
 										</div>
@@ -268,7 +267,7 @@ li {
 									<div class="form-group">
 										<label class="col-md-3 control-label"></label>
 										<div class="col-md-6">
-											<input type="text" class="form-control" name="mono" placeholder="Enter Mono Reading" 
+											<input type="text" class="form-control" onkeypress="return isNumber(event)" name="mono" placeholder="Enter Mono Reading" 
 											id="mono" style="display: none;">
 										</div>
 									</div>
@@ -393,38 +392,25 @@ li {
 								
 								<br>
 								<div class="row">
-
-									<div class="form-group">
+								
+								<div class="form-group">
 										<label class="col-xs-1 control-label">Others</label>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="machinetype" placeholder="Machine Accessory Type">
+											<input type="text" class="form-control" name="machinetype" id="machinetype"
+												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" onkeydown="upperCaseF(this)" id="serialNumber" name="serialNumberM" placeholder="Serial Number">
+											<input type="text" class="form-control"
+												onkeydown="upperCaseF(this)" id="serialNumberOtherAcco"
+												name="serialNumberOtherAcco" placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
-											<button type="button" class="btn btn-default addButton">
-												<i class="fa fa-plus"></i>
-											</button>
+											<img class="add right"  src="resources/bootstrap-3.3.6/images/add.png" />
 										</div>
-									</div>
-
-									<!-- The template for adding new field -->
-									<div class="form-group hide" id="deviceNewFields">
-										<div class="col-xs-4 col-xs-offset-1">
-											<input type="text" class="form-control" name="machinetype" placeholder="Machine Accessory Type">
-										</div>
-										<div class="col-xs-4">
-											<input type="text" class="form-control" onkeydown="upperCaseF(this)" id="serialNumber" name="serialNumberM" placeholder="Serial Number">
-										</div>
-
-										<div class="col-xs-1">
-											<button type="button" class="btn btn-default removeButton">
-												<i class="fa fa-minus"></i>
-											</button>
-										</div>
-									</div>
 								</div>
+									
+								</div>
+								
 								</div>
 							</fieldset><!--Machine Accessories-->
 							<br/>
@@ -451,18 +437,22 @@ li {
 	</div>
 	<!-- / velaphanda_containter -->
 
-	<!-- Script -->
+	<!-- Scripts -->
 	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<%-- <script type="text/javascript" src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>	 --%>	
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
-
+  
 <!-- Check if checkboxes are checked, if checked enable input text -->
 	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;
 			document.getElementById('finisherserial').disabled = !this.checked;
+		};
+		document.getElementById('finisher').onchange = function() {
+			document.getElementById('finisherserial').disabled = !this.checked;
+			document.getElementById('bridgeunit').disabled = !this.checked;
 		};
 		
 		document.getElementById('faxunit').onchange = function() {
@@ -483,6 +473,12 @@ li {
 		};
 		
 </script>
+
+
+<!-- Add Other Accessories -->
+<script type="text/javascript">
+</script>
+
 <!-- Validate add device -->
 <script>
 $(document).ready(function() {
@@ -596,7 +592,7 @@ $(document).ready(function() {
 				city_town : {
 					validators : {
 						stringLength : {
-							max : 3,							
+							min : 3,							
 						},
 						notEmpty : {
 							message : 'City is required and cannot be empty'						
@@ -633,7 +629,75 @@ $(document).ready(function() {
 						} */
 					}
 				},
-
+				monocolour: {
+					
+					validators : {
+						stringLenth : {
+							min : 4,
+							max : 6,
+						},
+						notEmpty : {
+							message : 'Mono Colour is required and cannot be empty'
+						}/* ,
+						regexp: {
+			                    regexp: /^[0-9]+$/,
+			                    message: 'Mono colour can only consist of numbers'
+			            } */
+						
+					}
+				},
+				colourReading: {
+					
+					validators : {
+						stringLenth : {
+							min : 4,
+							max : 6,
+						},
+						notEmpty : {
+							message : 'Colour reading is required and cannot be empty'
+						}/* ,
+						regexp: {
+		                    regexp: /^[0-9]+$/,
+		                    message: 'Mono colour can only consist of numbers'
+		          	    } */
+						
+					}
+				},
+				monocolour: {
+					
+					validators : {
+						stringLenth : {
+							min : 4,
+							max : 6,
+						},
+						notEmpty : {
+							message : 'Mono colour is required and cannot be empty'
+						}/* ,
+						regexp: {
+		                    regexp: /^[0-9]+$/,
+		                    message: 'Mono colour can only consist of numbers'
+		           		 } */
+						
+					}
+				},
+				
+				mono: {
+					
+					validators : {
+						stringLenth : {
+							min : 4,
+							max : 6,
+						},
+						notEmpty : {
+							message : 'Mono is required and cannot be empty'
+						}/* ,regexp: {
+		                    regexp: /^[0-9]+$/,
+		                    message: 'Mono colour can only consist of numbers'
+		           		 } */
+						
+					}
+				},
+				
 				streetNumber : {
 					validators : {
 						stringLength : {
@@ -701,6 +765,7 @@ $(document).ready(function() {
 						}
 					}
 				},
+				
 				serialNumber : {
 					validators : {
 						stringLength : {
@@ -715,7 +780,37 @@ $(document).ready(function() {
 			                    message: 'The Street number can only consist of numbers '
 			                }
 						}
-				},	
+				},
+				machinetype  : {
+					validators : {
+						stringLength : {
+								min : 2,
+
+							},
+							/* /* notEmpty : {
+								message : 'Machine type is required and cannot be empty'
+							} *//*,
+							regexp: {
+			                    regexp: /^[a-z-A-Z]+$/,
+			                    message: 'Machine type is required and cannot be empty'
+			                } */
+						}
+				},
+				serialNumberOtherAcco: {
+					validators : {
+						stringLength : {
+								min : 2,
+
+							},
+							/* notEmpty : {
+								message : 'Serial Number is required and cannot be empty'
+							},
+							regexp: {
+			                    regexp: /^[a-z-A-Z0-9]+$/,
+			                    message: 'Serial Number is required and cannot be empty '
+			                } */
+						}
+				},
 				bridgeunit : {
 					validators : {
 						stringLength : {
@@ -869,31 +964,37 @@ function isNumber(evt) {
 }
 </script>
 
-<!-- <!-- Enable datepicker -
+<!-- Enable datepicker for start, end and install-->
 
 <script type="text/javascript">
 		$(document).ready(function() {
-			$('#startDate').datepicker({
-				format : "yyyy-mm-dd"
+			$('#startDatePicker').datepicker({
+				format : "yyyy-mm-dd",
+				startDate: 'd0',
+		        autoclose: true
 			});
 		});
 </script> 
 
 <script type="text/javascript">
-		$(document).ready(function() {
-			$('#endDate').datepicker({
-				format : "yyyy-mm-dd"
-			});
+	$(document).ready(function() {
+		$('#endDatePicker').datepicker({
+			format : "yyyy-mm-dd",
+			startDate: 'd0',
+	        autoclose: true
 		});
+	});
 </script> 
 
 <script type="text/javascript">
 		$(document).ready(function() {
-			$('#installationDate').datepicker({
-				format : "yyyy-mm-dd"
+			$('#installDate').datepicker({
+				format : "yyyy-mm-dd",
+				startDate: 'd0',
+		        autoclose: true
 			});
 		});
-</script> -->
+</script>
 
 
 </body>

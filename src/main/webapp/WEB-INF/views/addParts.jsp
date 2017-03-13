@@ -385,9 +385,8 @@ select[multiple], select[size] {
 </script>
 
 
-
-	<!-- Create datalist to populate search -->
-	<script type="text/javascript">
+<!-- Create datalist to populate search -->
+<script type="text/javascript">
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');

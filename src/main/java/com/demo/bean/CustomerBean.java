@@ -7,6 +7,7 @@ public class CustomerBean {
 	private String customerName;
 	private boolean isActive;
 	private String tellphoneNumber;
+	private String tellphoneNumber1;
 	private String emailCompany;
 	private String streetName;
 	private String city_town;

@@ -27,11 +27,12 @@ public class DeviceBean {
 	private String faxUnitSerialType;
 	private String OneBinTrayType;
 	private String finisherType;
+	private String addTypeserial;
 	private String additionalPaperTrays;
 	private String ltcType;
 	
 	
-	
+	private String creTypeserial;
 	private String credenzaSerialNo;
 	private String bridgeUnitSerialTypeSerialNo;
 	private String faxUnitSerialTypeSerialNo;

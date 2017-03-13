@@ -186,7 +186,7 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span> 
-												<input name="modelNumber" id="modelNumber" placeholder="Model Number" class="form-control" type="text" >
+												<input name="modelNumber" onkeydown="upperCaseF(this)" id="modelNumber" placeholder="Model Number" class="form-control" type="text" >
 											</div>
 										</div>
 									</div>
@@ -276,6 +276,17 @@ li {
 
 								<!--Second column-->
 								<div class="col-sm-6">
+									
+									<!-- Text input Street Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+												<input name="streetNumber" id="streetNumber" placeholder="Street Number" class="form-control" type="text">
+											</div>
+										</div>
+									</div><!--/S Street Number-->
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -328,17 +339,9 @@ li {
 											</div>
 										</div>
 									</div>
-									<!-- Text input Street Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Street No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
-												<input name="streetNumber" id="streetNumber" placeholder="Street Number" class="form-control" type="text">
-											</div>
-										</div>
-									</div>
-									<!--/S Street Number-->
+									
+								</div>
+									
 
 							</fieldset><!-- /Machine Details  -->
 						
@@ -719,7 +722,11 @@ $(document).ready(function() {
 								min : 3,
 							},
 							message : 'First Name is required and cannot be empty'
-						}
+						},
+						regexp: {
+		                    regexp: /^[a-z-A-Z]+$/,
+		                    message: 'First Name can consist of only alphabetical characters'
+		                }
 					}
 				},
 				lastName : {
@@ -729,7 +736,11 @@ $(document).ready(function() {
 								min : 3,
 							},
 							message : 'Last Name is required and cannot be empty'
-						}
+						},
+						regexp: {
+		                    regexp: /^[a-z-A-Z]+$/,
+		                    message: 'Last Name can consist of only alphabetical characters'
+		                }
 					}
 				},
 				cellphoneNumber : {

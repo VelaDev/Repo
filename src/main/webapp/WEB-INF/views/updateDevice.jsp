@@ -235,7 +235,7 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="modelNumber" id="modelNumber" placeholder="Model Number"
+													name="modelNumber" id="modelNumber" onkeydown="upperCaseF(this)" placeholder="Model Number"
 													class="form-control" type="text"
 													value="${productObject.modelNumber}">
 											</div>
@@ -348,6 +348,21 @@ li {
 
 								<!--Second column-->
 								<div class="col-sm-6">
+								
+									<!-- Text input Street Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Street No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="streetNumber" id="streetNumber"
+													placeholder="Street Number" class="form-control"
+													type="text" value="${productObject.streetNumber}">
+											</div>
+										</div>
+									</div>
+									
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -411,20 +426,7 @@ li {
 											</div>
 										</div>
 									</div>
-									<!-- Text input Street Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Street No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-home"></i></span> <input
-													name="streetNumber" id="streetNumber"
-													placeholder="Street Number" class="form-control"
-													type="text" value="${productObject.streetNumber}">
-											</div>
-										</div>
-									</div>
-
+									
 								</div>
 								<!--/S Column-->
 
@@ -486,13 +488,13 @@ li {
 								<div class="form-group">
 										<label class="col-xs-1 control-label">Others</label>
 										<div class="col-xs-4">
-											<input type="text" class="form-control" name="machinetype"
+											<input type="text" class="form-control" name="machinetype" id="machinetype"
 												placeholder="Machine Accessory Type" />
 										</div>
 										<div class="col-xs-4">
 											<input type="text" class="form-control"
-												onkeydown="upperCaseF(this)" id="serialNumber"
-												name="serialNumber1" placeholder="Serial Number" />
+												onkeydown="upperCaseF(this)" id="serialNumberOtherAcco"
+												name="serialNumberOtherAcco" placeholder="Serial Number" />
 										</div>
 										<div class="col-xs-1">
 											<img class="add right"  src="resources/bootstrap-3.3.6/images/add.png" />
@@ -616,7 +618,7 @@ li {
 <!-- Validate add device -->
 <script>
 $(document).ready(function() {
-    $('#addDevice').bootstrapValidator({
+    $('#updateDevice').bootstrapValidator({
         //framework: 'bootstrap',
         icon: {
             valid: 'glyphicon glyphicon-ok',
@@ -853,7 +855,11 @@ $(document).ready(function() {
 								min : 3,
 							},
 							message : 'First Name is required and cannot be empty'
-						}
+						},
+						regexp: {
+		                    regexp: /^[a-z-A-Z]+$/,
+		                    message: 'First Name can consist of only alphabetical characters'
+		                }
 					}
 				},
 				lastName : {
@@ -863,7 +869,11 @@ $(document).ready(function() {
 								min : 3,
 							},
 							message : 'Last Name is required and cannot be empty'
-						}
+						},
+						regexp: {
+		                    regexp: /^[a-z-A-Z]+$/,
+		                    message: 'Last Name can consist of only alphabetical characters'
+		                }
 					}
 				},
 				cellphoneNumber : {

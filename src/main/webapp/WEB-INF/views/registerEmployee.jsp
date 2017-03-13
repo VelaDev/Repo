@@ -89,8 +89,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellNumber"
-													placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
+													id="cellphoneNumber" name="cellNumber" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -275,21 +274,23 @@
                 }
             },
             cellNumber : {
-                validators: {
-                	stringLength : {
-						max : 10,
-						min:10,
+				validators : {
+					notEmpty : {
+						message : 'Please enter 10 numbers'
 					},
-                    notEmpty: {
-                        message: 'Cell No is required and cannot be empty'
-                    }
-                }
-            },
+					phone : {
+						country : 'US',
+						message : 'Please enter 10 numbers'
+					}
+				}
+			},
         }
     });
 });
 
 </script>
+
+<!-- Accept alphanumeric characters only -->
 <script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;

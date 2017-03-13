@@ -255,14 +255,14 @@
 															}
 														}
 													},
-													cellphoneNumber : {
+													cellNumber : {
 														validators : {
 															notEmpty : {
-																message : 'Cellphone number is required and cannot be empty'
+																message : 'Please enter 10 numbers'
 															},
 															phone : {
 																country : 'US',
-																message : 'Please provide a vaild Cell Number with area code'
+																message : 'Please enter 10 numbers'
 															}
 														}
 													},
@@ -276,17 +276,6 @@
 															}
 														}
 													},
-													cellNumber : {
-										                validators: {
-										                	stringLength : {
-																max : 10,
-																min:10,
-															},
-										                    notEmpty: {
-										                        message: 'Cell No is required and cannot be empty'
-										                    }
-										                }
-										            },
 													role : {
 														validators : {
 															notEmpty : {

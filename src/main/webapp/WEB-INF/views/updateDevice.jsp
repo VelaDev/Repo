@@ -626,7 +626,7 @@ $(document).ready(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         fields: {
-           
+            
 			startDate: {
                     validators: {
                         notEmpty: {
@@ -634,7 +634,7 @@ $(document).ready(function() {
                         },
                         date: {
                             format: 'YYYY-MM-DD',
-                            //max: 'endDate',
+                            max: 'endDate',
                             message: 'Contract start date is not a valid'
                         }
                     }
@@ -646,7 +646,7 @@ $(document).ready(function() {
                         },
                         date: {
                             format: 'YYYY-MM-DD',
-                            //min: 'startDate',
+                            min: 'startDate',
                             message: 'Contract end date is not a valid'
                         }
                     }
@@ -658,7 +658,7 @@ $(document).ready(function() {
                         },
                         date: {
                         	format: 'YYYY-MM-DD',
-                            //min: 'startDate',
+                            min: 'endDate',
                             message: 'The installation date is not a valid'
                         }
                     }
@@ -674,19 +674,15 @@ $(document).ready(function() {
 						}
 					}
 				},
-				tellphoneNumber : {
+				
+				telephoneNumber : {
 					validators : {
-						stringLength : {
-							max : 10,
-							min : 10,
-						},
-
 						notEmpty : {
-							message : 'Tellphone number is required and cannot be empty'
+							message : 'Please enter 10 digits for telephone number'
 						},
 						phone : {
 							country : 'US',
-							message : 'Please provide a vaild tellphone number'
+							message : 'Please enter 10 digits for telephone number'
 						}
 					}
 				},
@@ -878,12 +874,12 @@ $(document).ready(function() {
 				},
 				cellphoneNumber : {
 					validators : {
-						stringLength : {
-							max : 10,
-							min : 10,
-						},
 						notEmpty : {
-							message : 'Cellphone Number is required and cannot be empty'
+							message : 'Please enter 10 digits for cellphone number'
+						},
+						phone : {
+							country : 'US',
+							message : 'Please enter 10 digits for cellphone number'
 						}
 					}
 				},
@@ -1110,6 +1106,52 @@ function isNumber(evt) {
 
 <!-- Enable datepicker for start, end and install-->
 <script type="text/javascript">
+
+$("#startDate, #endDate, #installationDate " ).datepicker();
+
+$("#endDate").change(function () {
+	
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("endDate").value;
+    //var installationDate = document.getElementById("installationDate").value;
+ 
+    if ((Date.parse(endDate) <= Date.parse(startDate))) {
+        alert("End date should be greater than Start date");
+        document.getElementById("endDate").value = "";
+    }
+
+});
+$("#installationDate").change(function () {
+	
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("endDate").value;
+    var installationDate = document.getElementById("installationDate").value;
+ 
+    if ((Date.parse(installationDate) <= Date.parse(endDate)  &&  Date.parse(startDate))) {
+        alert("Installation date should be greater than start date and end date");
+        document.getElementById("endDate").value = "";
+    }
+
+});
+
+/* else if((Date.parse(installationDate) >= Date.parse(endDate) && Date.parse(startDate))){
+	alert("Installation date should be greater than start date and end date");
+    document.getElementById("endDate").value = ""; */
+	
+
+</script>
+
+<!-- <script type="text/javascript">
+		$(document).ready(function() {
+			$('#startDate').datepicker({
+				format : "yyyy-mm-dd",
+				startDate: 'd0',
+		        autoclose: true
+			});
+		});
+</script>  -->
+
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
@@ -1119,6 +1161,15 @@ function isNumber(evt) {
 		});
 </script> 
 
+<!-- <script type="text/javascript">
+	$(document).ready(function() {
+		$('#endDate').datepicker({
+			format : "yyyy-mm-dd",
+			startDate: 'd0',
+	        autoclose: true
+		});
+	});
+</script>  -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
@@ -1128,7 +1179,15 @@ function isNumber(evt) {
 		});
 	});
 </script> 
-
+<!-- <script type="text/javascript">
+		$(document).ready(function() {
+			$('#installationDate').datepicker({
+				format : "yyyy-mm-dd",
+				startDate: 'd0',
+		        autoclose: true
+			});
+		});
+</script> -->
 <script type="text/javascript">
 		$(document).ready(function() {
 			$('#installDate').datepicker({

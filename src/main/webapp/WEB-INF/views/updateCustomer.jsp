@@ -449,22 +449,21 @@ function isNumber(evt) {
 															},
 															notEmpty : {
 																message : 'Customer name is required and cannot be empty'
-															}
+															},
+															regexp: {
+											                    regexp: /^[a-z-A-Z]+$/,
+											                    message: 'Customer name can consist of only alphabetical characters'
+											                }
 														}
 													},
 													tellphoneNumber : {
 														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
-
 															notEmpty : {
-																message : 'Tellphone number is required and cannot be empty'
+																message : 'Please enter 10 digits for tellphone number'
 															},
 															phone : {
 																country : 'US',
-																message : 'Please provide a vaild tellphone number'
+																message : 'please enter 10 digits for tellphone number'
 															}
 														}
 													},
@@ -529,17 +528,12 @@ function isNumber(evt) {
 													},
 													faxNumber : {
 														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},/* 
-															notEmpty : {
-																message : 'Fax number is required and cannot be empty'
-															} */
+															phone : {
+																country : 'US',
+																message : 'Please enter 10 digits for fax number number '
+															}
 														}
 													},
-
-													
 													email : {
 														validators : {
 															notEmpty : {
@@ -580,12 +574,23 @@ function isNumber(evt) {
 													},
 													cellphoneNumber : {
 														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
 															notEmpty : {
-																message : 'Cellphone Number is required and cannot be empty'
+																message : 'Please enter 10 digits for cellphone number'
+															},
+															phone : {
+																country : 'US',
+																message : 'Please enter 10 digits for cellphone number'
+															}
+														}
+													},
+													telephoneNumber : {
+														validators : {
+															notEmpty : {
+																message : 'Please enter 10 digits for telephone number'
+															},
+															phone : {
+																country : 'US',
+																message : 'Please enter 10 digits for telephone number'
 															}
 														}
 													},
@@ -600,13 +605,12 @@ function isNumber(evt) {
 															}
 														}
 													},
+													
+													//Contact Person 2(Optional)
 													firstName1 : {
 														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'First Name is required and cannot be empty'
+															stringLength : {
+																min : 3,
 															},
 															regexp: {
 											                    regexp: /^[a-z-A-Z]+$/,
@@ -616,11 +620,8 @@ function isNumber(evt) {
 													},
 													lastName1 : {
 														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'Last Name is required and cannot be empty'
+															stringLength : {
+																min : 3,
 															},
 															regexp: {
 											                    regexp: /^[a-z-A-Z]+$/,
@@ -630,26 +631,23 @@ function isNumber(evt) {
 													},
 													cellphoneNumber1 : {
 														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
+															phone : {
+																country : 'US',
+																message : 'Please enter 10 digits for cellphone number'
 															}
 														}
 													},													
 													telephoneNumber1 : {
 														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
+															phone : {
+																country : 'US',
+																message : 'Please enter 10 digits for telephone number'
 															}
 														}
 													},
 													
 													email1 : {
 														validators : {
-															/* notEmpty : {
-																message : 'Email address is required and cannot be empty'
-															}, */
 															emailAddress : {
 																message : 'The email address is not valid'
 															}
@@ -657,8 +655,9 @@ function isNumber(evt) {
 													},
 													
 												}
+											
 											});
-						});
+							});
 	</script>
 
 </body>

@@ -66,37 +66,63 @@
 										<td>${list.cellNumber}</td>
 										<td>${list.status}</td>
 										<td>${list.role}</td>
-										<td><a
-											href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>">Login
-												Activities</a></td>
-										<td><a
-											href="searchEmployeeByName?email=<c:out value='${list.email}'/>">
+										<td>
+											<a	href="searchEmployeeByNameForActivities?email=<c:out value='${list.email}'/>">Login	Activities</a>
+										</td>
+										<td>
+											<a href="searchEmployeeByName?email=<c:out value='${list.email}'/>">
 											
 											<c:choose>
-											  <c:when test="${list.status=='ACTIVE'}"> Update
-											  </c:when>
+											  <c:when test="${list.status=='ACTIVE'}"> Update </c:when>											  	
 											</c:choose>
-
-												</a></td>
-										<td><a
-											href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>">
-												Reset</a></td>
-										<td><a
-											href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
-
+											
+											<c:choose>
+											  <c:when test="${list.status=='INACTIVE'}">  </c:when>											  	
+											</c:choose>
+											
+											</a>
+										</td>
+										<td>
+											<a href="searchEmployeeForPasswordReset?email=<c:out value='${list.email}'/>">
+												 
+												<c:choose>
+													<c:when test="${list.status=='ACTIVE'}"> 
+												        Reset
+										 	         </c:when> 
+										 	         <c:when test="${list.status=='BLOCKED'}"> 
+												      	Reset
+											         </c:when>
+											  		<c:when test="${list.status=='INACTIVE'}">  </c:when>	
+											  		
+											  		<c:when test="${list.status=='INACTIVE'}"> </c:when>										  	
+												</c:choose>
+												
+											</a>
+										</td>
+										<td>
+											<a 	href="searchEmployeeForDeactivation?email=<c:out value='${list.email}'/>">
 												<c:choose>
 													<c:when test="${list.status=='ACTIVE'}"> 
 												        Deactivate
 										 	         </c:when>
+										 	         
 													<c:when test="${list.status=='BLOCKED'}"> 
-												        Deactivate
+												      
 											         </c:when>
-													<c:when test="${list.status=='INACTIVE'}">
-											           Activate
+											         										          
+													 <c:when test="${list.status=='INACTIVE'}">
+													 	Activate	
+													 </c:when>
+													 
+   												 	 <c:when test="${list.status=='INACTIVE'}">
+											          
 											         </c:when>
+											         
 												</c:choose>
-
-										</a></td>
+												
+													
+											</a>
+										</td>
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -104,7 +130,7 @@
 						<br>
 
 					</div>
-					/
+					
 					<!-- /tab-content -->
 				</div>
 				<!-- /panel body -->

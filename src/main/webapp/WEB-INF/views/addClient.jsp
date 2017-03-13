@@ -67,7 +67,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="tellphoneNumber" id="tellphoneNumber"
-												placeholder="Telephone Number" class="form-control"
+												placeholder="Telephone Number" maxlength="10" class="form-control"
 												type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
@@ -173,7 +173,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="faxNumber" id="faxNumber" placeholder="Fax Number"
-												class="form-control" type="text" onkeypress="return isNumber(event)">
+												class="form-control" type="text" maxlength="10" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
@@ -225,7 +225,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												id="cellphoneNumber" name="cellphoneNumber"
-												placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
+												placeholder="Cellphone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
@@ -237,7 +237,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												id="telephoneNumber" name="telephoneNumber"
-												placeholder="Telephone No" class="form-control" type="text" onkeypress="return isNumber(event)">
+												placeholder="Telephone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
@@ -318,7 +318,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="cellphoneNumber1" name="cellphoneNumber1"
-													placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
+													placeholder="Cellphone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -330,7 +330,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="tellphoneNumber1" name="telephoneNumber1"
-													placeholder="Telephone No" class="form-control" type="text" onkeypress="return isNumber(event)">
+													placeholder="Telephone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -441,33 +441,21 @@ function isNumber(evt) {
 													},
 													notEmpty : {
 														message : 'Customer name is required and cannot be empty'
-													}
+													},
+													regexp: {
+									                    regexp: /^[a-z-A-Z]+$/,
+									                    message: 'Customer name can consist of only alphabetical characters'
+									                }
 												}
 											},
 											tellphoneNumber : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
-													},
 													notEmpty : {
-														message : 'Telephone Number is required and cannot be empty'
-													}
-												}
-											},
-											tellphoneNumber : {
-												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
-													},
-
-													notEmpty : {
-														message : 'Tellphone number is required and cannot be empty'
+														message : 'Please enter 10 digits for tellphone number'
 													},
 													phone : {
 														country : 'US',
-														message : 'Please provide a vaild tellphone number'
+														message : 'please enter 10 digits for tellphone number'
 													}
 												}
 											},
@@ -481,13 +469,13 @@ function isNumber(evt) {
 													}
 												}
 											},
-											email : {
+											streetNumber : {
 												validators : {
-													notEmpty : {
-														message : 'Email address is required and cannot be empty'
+													stringLength : {
+														min : 1,
 													},
-													emailAddress : {
-														message : 'The email address is not valid'
+													notEmpty : {
+														message : 'Street number is required and cannot be empty'
 													}
 												}
 											},
@@ -501,6 +489,7 @@ function isNumber(evt) {
 													}
 												}
 											},
+											
 											city_town : {
 												validators : {
 													notEmpty : {
@@ -531,23 +520,19 @@ function isNumber(evt) {
 											},
 											faxNumber : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
-													},/* 
-													notEmpty : {
-														message : 'Fax number is required and cannot be empty'
-													} */
+													phone : {
+														country : 'US',
+														message : 'Please enter 10 digits for fax number number '
+													}
 												}
 											},
-
-											streetNumber : {
+											email : {
 												validators : {
-													stringLength : {
-														min : 1,
-													},
 													notEmpty : {
-														message : 'Street number is required and cannot be empty'
+														message : 'Email address is required and cannot be empty'
+													},
+													emailAddress : {
+														message : 'The email address is not valid'
 													}
 												}
 											},
@@ -581,26 +566,27 @@ function isNumber(evt) {
 											},
 											cellphoneNumber : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
-													},
 													notEmpty : {
-														message : 'Cellphone Number is required and cannot be empty'
+														message : 'Please enter 10 digits for cellphone number'
+													},
+													phone : {
+														country : 'US',
+														message : 'Please enter 10 digits for cellphone number'
 													}
 												}
 											},
-											tellphoneNumber: {
+											telephoneNumber : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
-													},
 													notEmpty : {
-														message : 'Telephone Number is required and cannot be empty'
+														message : 'Please enter 10 digits for telephone number'
+													},
+													phone : {
+														country : 'US',
+														message : 'Please enter 10 digits for telephone number'
 													}
 												}
 											},
+											
 											email : {
 												validators : {
 													notEmpty : {
@@ -611,13 +597,12 @@ function isNumber(evt) {
 													}
 												}
 											},
+											
+											//Contact Person 2(Optional)
 											firstName1 : {
 												validators : {
-													notEmpty : {
-														stringLength : {
-															min : 3,
-														},
-														message : 'First Name is required and cannot be empty'
+													stringLength : {
+														min : 3,
 													},
 													regexp: {
 									                    regexp: /^[a-z-A-Z]+$/,
@@ -627,40 +612,34 @@ function isNumber(evt) {
 											},
 											lastName1 : {
 												validators : {
-													notEmpty : {
-														stringLength : {
-															min : 3,
-														},
-														message : 'Last Name is required and cannot be empty'
+													stringLength : {
+														min : 3,
 													},
 													regexp: {
 									                    regexp: /^[a-z-A-Z]+$/,
-									                    message: 'Last Names can consist of only alphabetical characters '
+									                    message: 'Last Name can consist of only alphabetical characters '
 									                }
 												}
 											},
 											cellphoneNumber1 : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
+													phone : {
+														country : 'US',
+														message : 'Please enter 10 digits for cellphone number'
 													}
 												}
 											},													
 											telephoneNumber1 : {
 												validators : {
-													stringLength : {
-														max : 10,
-														min : 10,
+													phone : {
+														country : 'US',
+														message : 'Please enter 10 digits for telephone number'
 													}
 												}
 											},
 											
 											email1 : {
 												validators : {
-													/* notEmpty : {
-														message : 'Email address is required and cannot be empty'
-													}, */
 													emailAddress : {
 														message : 'The email address is not valid'
 													}
@@ -668,214 +647,12 @@ function isNumber(evt) {
 											},
 											
 										}
+									
 									});
 				});
 </script>
-<!-- Validate update Client -->
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$('#updateClient')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													customerName : {
-														validators : {
-															stringLength : {
-																min : 2,
 
-															},
-															notEmpty : {
-																message : 'Customer name is required and cannot be empty'
-															}
-														}
-													},
-													emailCompany : {
-														validators : {
-															notEmpty : {
-																message : 'Company email address is required and cannot be empty'
-															},
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-													email : {
-														validators : {
-															notEmpty : {
-																message : 'Email address is required and cannot be empty'
-															},
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-													streetName : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-															notEmpty : {
-																message : 'Street name is required and cannot be empty'
-															}
-														}
-													},
-													city_town : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'City is required and cannot be empty'
-															}
-														}
-													},
-													province : {
-														validators : {
-															notEmpty : {
-																message : 'Province is required and cannot be empty'
-															}
-														}
-													},
-													zipcode : {
-														validators : {
-															stringLength : {
-																max : 4,
-																min : 4,
-															},
-															notEmpty : {
-																message : 'Zipcode is required and cannot be empty'
-															}
-														}
-													},
-													faxNumber : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},/* 
-															notEmpty : {
-																message : 'Fax number is required and cannot be empty'
-															} */
-														}
-													},
 
-													streetNumber : {
-														validators : {
-															stringLength : {
-																min : 1,
-															},
-															notEmpty : {
-																message : 'Street number is required and cannot be empty'
-															}
-														}
-													},
-													firstName : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'First Name is required and cannot be empty'
-															}
-														}
-													},
-													lastName : {
-														validators : {
-															notEmpty : {
-																stringLength : {
-																	min : 3,
-																},
-																message : 'Last Name is required and cannot be empty'
-															}
-														}
-													},
-													cellphoneNumber : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
-															notEmpty : {
-																message : 'Cellphone Number is required and cannot be empty'
-															}
-														}
-													},
-													telephoneNumber: {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															},
-															notEmpty : {
-																message : 'Telephone Number is required and cannot be empty'
-															}
-														}
-													},
-													email : {
-														validators : {
-															notEmpty : {
-																message : 'Email address is required and cannot be empty'
-															},
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-													firstName1 : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															}
-														}
-													},
-													lastName1 : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															}
-														}
-													},
-													cellphoneNumber1 : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															}
-														}
-													},													
-													telephoneNumber1 : {
-														validators : {
-															stringLength : {
-																max : 10,
-																min : 10,
-															}
-														}
-													},
-													
-													email1 : {
-														validators : {
-															/* notEmpty : {
-																message : 'Email address is required and cannot be empty'
-															}, */
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-													
-												}
-											});
-						});
-	</script>
 
 </body>
 </body>

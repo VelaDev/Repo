@@ -5,22 +5,17 @@
 <title>Order | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--style-->
-<link
-	href="<c:url value="/resources/dynamicfields/css/extented_fields.css" />"
-	rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/custom/css/vela_custom.css" />"
-	rel="stylesheet" type="text/css" />
-<link
-	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
-	rel="stylesheet">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
+<!--style-->
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />"  />
+
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 <!--/style-->
 </head>
 <body>
@@ -46,7 +41,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="makeOrder" name="makeOrder">
+							method="post" action="makeOrder" id="makeOrder" name="makeOrder" onSubmit="return checkOrder();">
 
 
 							<!-- Select type Stock Type-->
@@ -206,22 +201,16 @@
 	</div>
 	<!-- / velaphanda_containter -->
 
-	<!-- Script -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-
-	<script type="text/javascript"
-		src="<c:url value="/resources/dynamicfields/js/extented_fields.js" />"></script>
-
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-
+	<!-- Scripts -->
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	
+	<!-- /Scripts -->
+		
+	
 	<script>
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
@@ -233,36 +222,15 @@
 		});
 	</script>
 
-	<!-- /Script -->
-
-	<!--Stock type Selection-->
-	<script type="text/javascript">
 	
-		function CheckStockType(val){
-		 var element=document.getElementById('Site');
-		 if(val=='select stock type'||val=='Site')
-		   element.style.display='block';
-		 else  
-		   element.style.display='none';
-		   
-		  var element=document.getElementById('Boot');
-		 if(val=='select stock type'||val=='Boot')
-		   element.style.display='block';
-		 else  
-		   element.style.display='none';
-		   
-		}
 	
-	</script>
-
-
-	<!-- Validate Make Order -->
+<!-- Validate Make Order -->
 
 	<script>
 		$(document)
 				.ready(
 						function() {
-							$('#order')
+							$('#makeOrder')
 									.bootstrapValidator(
 											{
 												//framework : 'bootstrap',
@@ -314,83 +282,61 @@
 																message : 'Delivery is required and cannot be empty'
 															}
 														}
-													}
+													},
+													checkedOrder: {
+										                validators: {
+										                    choice: {
+										                        min: 1,
+										                        //max: 4,
+										                        message: 'You need to tick checkbox to make an order'
+										                    }
+										                }
+										            }
 												}
 											})
 
-									// Add button click handler
-									.on(
-											'click',
-											'.addButton',
-											function() {
-												var $template = $('#newOrder'), $clone = $template
-														.clone()
-														.removeClass('hide')
-														.removeAttr('id')
-														.insertBefore($template);
-
-												// Add new fields
-												// Note that we DO NOT need to pass the set of validators
-												// because the new field has the same name with the original one
-												// which its validators are already set
-												$('#order')
-														.bootstrapValidator(
-																'addField',
-																$clone
-																		.find('[name="device"]'))
-														.bootstrapValidator(
-																'addField',
-																$clone
-																		.find('[name="part"]'))
-														.bootstrapValidator(
-																'addField',
-																$clone
-																		.find('[name="description"]'))
-														.bootstrapValidator(
-																'addField',
-																$clone
-																		.find('[name="quantity"]'))
-														.bootstrapValidator(
-																'addField',
-																$clone
-																		.find('[name="delivery"]'))
-											})
-									// Remove button click handler
-									.on(
-											'click',
-											'.removeButton',
-											function() {
-												var $row = $(this).closest(
-														'.form-group');
-
-												// Remove fields
-												$('#order')
-														.bootstrapValidator(
-																'removeField',
-																$row
-																		.find('[name="device"]'))
-														.bootstrapValidator(
-																'removeField',
-																$row
-																		.find('[name="part"]'))
-														.bootstrapValidator(
-																'removeField',
-																$row
-																		.find('[name="description"]'))
-														.bootstrapValidator(
-																'removeField',
-																$row
-																		.find('[name="quantity"]'))
-														.bootstrapValidator(
-																'removeField',
-																$row
-																		.find('[name="delivery"]'));
-
-												// Remove element containing the fields
-												$row.remove();
-											});
+							
 						});
 	</script>
+	
+	
+	<!-- /Script -->
+
+	<!--Stock type Selection-->
+	<script type="text/javascript">
+	
+		function CheckStockType(val){
+		 var element=document.getElementById('Site');
+		 if(val=='select stock type'||val=='Site')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+		   
+		  var element=document.getElementById('Boot');
+		 if(val=='select stock type'||val=='Boot')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+		   
+		}
+	
+	</script>
+
+	
+ <script type="text/javascript">
+	  function checkOrder() {
+	        if (!document.form.agree.checked) {
+	            missinginfo = "You need to tick checkbox to make an order\n Please tick the box and try again.";
+	            alert(missinginfo);
+	            return false;
+	        }
+	        else {
+	           	alert("Checked");
+	           	console.log("Checked");
+	            return true;
+	        }
+	    }
+</script>
 
 </body>
 </html>

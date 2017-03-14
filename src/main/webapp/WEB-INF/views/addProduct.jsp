@@ -141,7 +141,7 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-												<input id="cellphoneNumber" name="cellphoneNumber" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" >
+												<input id="cellphoneNumber" maxlength="10"  name="cellphoneNumber" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" >
 											</div>
 											
 										</div>
@@ -153,7 +153,7 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-												<input id="telephoneNumber" name="telephoneNumber" 
+												<input id="telephoneNumber" maxlength="10"  name="telephoneNumber" 
 												placeholder="Tellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" >
 											</div>
 										</div>
@@ -220,7 +220,7 @@ li {
 										<label class="col-md-3 control-label">Installation
 											Date</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group input-append date" id="installDate">
+											<div class="input-group input-append date" id="installDatePicker">
 												<input type="text" class="form-control" id="installationDate" name="installationDate" 
 												placeholder="YYYY-MM-DD"> <span class="input-group-addon"> 
 												<span class="glyphicon glyphicon-calendar"></span>
@@ -230,7 +230,7 @@ li {
 									</div>
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Mono/Color</label>
+										<label class="col-md-3 control-label">Mono/Colour</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
@@ -501,7 +501,7 @@ $(document).ready(function() {
                         },
                         date: {
                             format: 'YYYY-MM-DD',
-                            max: 'endDate',
+                            //max: 'endDate',
                             message: 'Contract start date is not a valid'
                         }
                     }
@@ -513,7 +513,7 @@ $(document).ready(function() {
                         },
                         date: {
                             format: 'YYYY-MM-DD',
-                            min: 'startDate',
+                           // min: 'startDate',
                             message: 'Contract end date is not a valid'
                         }
                     }
@@ -525,7 +525,7 @@ $(document).ready(function() {
                         },
                         date: {
                         	format: 'YYYY-MM-DD',
-                            min: 'endDate',
+                           // min: 'endDate',
                             message: 'The installation date is not a valid'
                         }
                     }
@@ -582,8 +582,8 @@ $(document).ready(function() {
 							message : 'Street name is required and cannot be empty'
 						},
 		                regexp: {
-		                    regexp: /^[a-zA-Z]+$/,
-		                    message: 'The Street name can only consist of letter only'
+		                	 regexp: /^[-_ a-zA-Z]+$/,			                   
+		                    message: 'Street name must only consist of letters'
 		                }
 						
 					}
@@ -596,7 +596,11 @@ $(document).ready(function() {
 						notEmpty : {
 							message : 'City is required and cannot be empty'						
 							
-						}
+						},
+						 regexp: {
+		                	 regexp: /^[-_ a-zA-Z]+$/,			                   
+		                    message: 'City or Town must only consist of letters'
+		                }
 					}
 				},
 				province : {
@@ -720,8 +724,8 @@ $(document).ready(function() {
 							message : 'First Name is required and cannot be empty'
 						},
 						regexp: {
-		                    regexp: /^[a-z-A-Z]+$/,
-		                    message: 'First Name can consist of only alphabetical characters'
+							regexp :/^[-_ a-zA-Z]+$/,
+		                    message: 'First Name must only consist of letters'
 		                }
 					}
 				},
@@ -734,8 +738,8 @@ $(document).ready(function() {
 							message : 'Last Name is required and cannot be empty'
 						},
 						regexp: {
-		                    regexp: /^[a-z-A-Z]+$/,
-		                    message: 'Last Name can consist of only alphabetical characters'
+							regexp :/^[-_ a-zA-Z]+$/,			                   
+		                    message: 'Last Name must only consist of letters'
 		                }
 					}
 				},
@@ -971,7 +975,7 @@ function isNumber(evt) {
 }
 </script>
 
-<!-- Enable datepicker for start, end and install-->
+<!--Compare start, end and installation date  between each other-->
 <script type="text/javascript">
 
 $("#startDate, #endDate, #installationDate " ).datepicker();
@@ -980,10 +984,9 @@ $("#endDate").change(function () {
 	
     var startDate = document.getElementById("startDate").value;
     var endDate = document.getElementById("endDate").value;
-    //var installationDate = document.getElementById("installationDate").value;
- 
+    
     if ((Date.parse(endDate) <= Date.parse(startDate))) {
-        alert("End date should be greater than Start date");
+        alert("Contract end date should be greater than Contract start date");
         document.getElementById("endDate").value = "";
     }
 
@@ -994,30 +997,15 @@ $("#installationDate").change(function () {
     var endDate = document.getElementById("endDate").value;
     var installationDate = document.getElementById("installationDate").value;
  
-    if ((Date.parse(installationDate) <= Date.parse(endDate)  &&  Date.parse(startDate))) {
-        alert("Installation date should be greater than start date and end date");
-        document.getElementById("endDate").value = "";
+    if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDate))) {
+        alert("Installation date should be between than contract start date and contract end date");
+        document.getElementById("installationDate").value = "";
     }
 
 });
-
-/* else if((Date.parse(installationDate) >= Date.parse(endDate) && Date.parse(startDate))){
-	alert("Installation date should be greater than start date and end date");
-    document.getElementById("endDate").value = ""; */
-	
-
 </script>
 
-<!-- <script type="text/javascript">
-		$(document).ready(function() {
-			$('#startDate').datepicker({
-				format : "yyyy-mm-dd",
-				startDate: 'd0',
-		        autoclose: true
-			});
-		});
-</script>  -->
-
+<!-- Enable datepicker for start, end and install date-->
 <script type="text/javascript">
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
@@ -1028,15 +1016,6 @@ $("#installationDate").change(function () {
 		});
 </script> 
 
-<!-- <script type="text/javascript">
-	$(document).ready(function() {
-		$('#endDate').datepicker({
-			format : "yyyy-mm-dd",
-			startDate: 'd0',
-	        autoclose: true
-		});
-	});
-</script>  -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
@@ -1046,18 +1025,10 @@ $("#installationDate").change(function () {
 		});
 	});
 </script> 
-<!-- <script type="text/javascript">
-		$(document).ready(function() {
-			$('#installationDate').datepicker({
-				format : "yyyy-mm-dd",
-				startDate: 'd0',
-		        autoclose: true
-			});
-		});
-</script> -->
+
 <script type="text/javascript">
 		$(document).ready(function() {
-			$('#installDate').datepicker({
+			$('#installDatePicker').datepicker({
 				format : "yyyy-mm-dd",
 				startDate: 'd0',
 		        autoclose: true

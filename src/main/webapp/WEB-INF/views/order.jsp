@@ -40,7 +40,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="putOrder" name="makeOrder" >
+							method="post" action="makeOrder" id="putInOrder" name="makeOrder" >
 
 
 							<!-- Select type Stock Type-->
@@ -69,7 +69,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="	glyphicon glyphicon-map-marker"></i></span> <input
-												type="text" class="form-control" name="Site"
+												type="text" class="form-control" id="location" name="Site"
 												placeholder="Enter Location" id="Site" />
 										</div>
 									</div>
@@ -98,7 +98,7 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <select name="customer"
+											class="glyphicon glyphicon-user"></i></span> <select id="customer" name="customer"
 											class="form-control selectpicker">
 											<option>Customer Name</option>
 											<c:forEach items="${customerList}" var="customer">
@@ -116,7 +116,7 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <select name="approver"
+											class="glyphicon glyphicon-user"></i></span> <select id="approver" name="approver"
 											class="form-control selectpicker">
 											<option>Select Approver</option>
 											<c:forEach items="${managersList}" var="manager">
@@ -177,7 +177,7 @@
 								<div class="col-sm-offset-2 col-sm-8">
 									<br> <br> <input type="submit" value="Make Order"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="order" name="order">
+										id="putorder" name="putorder">
 								</div>
 							</div>
 						</form:form>
@@ -201,11 +201,11 @@
 	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-	
+	<!-- Datatables -->
+	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>	
 	<!-- /Scripts -->
-		
 	
+	<!-- Paging the table -->
 	<script>
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
@@ -218,71 +218,59 @@
 	</script>
 		
 <!-- Validate Make Order -->
+<script>
+ $(document).ready(function() {
+    $('#putInOrder').bootstrapValidator({
+         feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	stockType: {
+                validators: {
+					notEmpty: {
+                        message: 'Stoke type is required and cannot be empty'
+                    }
+                }
+            },
+            location: {
+                validators: {
+					stringLength : {
+						min : 2,
+					},
+                    notEmpty: {
+                        message: 'location is required and cannot be empty'
+                    }
+                }
+            },
+            technician: {
+                validators: {
+                    notEmpty: {
+                        message: 'Technician is required and cannot be empty'
+                    }
+                }
+            },
+            customer: {
+                validators: {
+                    notEmpty: {
+                        message: 'customer is required and cannot be empty'
+                    }
+                }
+            },
+            approver: {
+                validators: {
+                    notEmpty: {
+                        message: 'Approver is required and cannot be empty'
+                    }
+                }
+            }
+            
+        }
+    });
+});
 
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#putOrder')
-									.bootstrapValidator(
-											{
-												//framework : 'bootstrap',
-												icon : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													device : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-															notEmpty : {
-																message : 'Serial number is required and cannot be empty'
-															}
-														}
-													},
-													part : {
-														validators : {
-															notEmpty : {
-																message : 'Part Number is required and cannot be empty'
-															}
-														}
-													},
-													description : {
-														validators : {
-															stringLength : {
-																min : 10,
-																max : 200,
-																message : 'Please enter at least 10 characters and no more than 200'
-															},
-															notEmpty : {
-																message : 'Descritipn is required and cannot be empty'
-															}
-														}
-													},
-													quantity : {
-														validators : {
-															notEmpty : {
-																message : 'Quantity is required and cannot be empty'
-															}
-														}
-													},
-													delivery : {
-														validators : {
-															notEmpty : {
-																message : 'Delivery is required and cannot be empty'
-															}
-														}
-													},
-													
-												}
-											})
-
-							
-						});
-	</script>
+</script>
 	
 	
 	<!-- /Script -->

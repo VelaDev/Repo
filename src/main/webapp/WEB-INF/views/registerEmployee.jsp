@@ -8,7 +8,8 @@
 	
   <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" /> 
   <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
-	
+  <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />"  />
+  
 </head>
 <body>
 	<div class="velaphanda_containter">	
@@ -173,15 +174,13 @@
 		<!--/ Footer -->
 	</div><!-- / velaphanda_containter -->
 	
-<!-- Validator -->
+<!-- Script -->
 <script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
 <script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
- 
+<!-- //Script -->
 
-
-<!-- Validatev register employee -->
+<!-- Validate register employee -->
 <script>
  $(document).ready(function() {
     $('#addEmployee').bootstrapValidator({
@@ -288,35 +287,19 @@
     });
 });
 
-</script>
-
-<!-- Accept alphanumeric characters only -->
-<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
-
-<script type="text/javascript">
-$(document).ready(function() {
-	$('#dateRegistered').datepicker({
-		format : "yyyy-mm-dd"
-	});
-});
-</script>
-
- <script type="text/javascript">
-            $(function () {
-                $('#dateTimeRegistered').datetimepicker();
-            });
-  </script>
-
-
-
-</body>
+</script>	
+	
+	<!-- Accept alphanumeric characters only -->
+	<script type="text/javascript">
+	function isNumber(evt) {
+	    evt = (evt) ? evt : window.event;
+	    var charCode = (evt.which) ? evt.which : evt.keyCode;
+	    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+	        return false;
+	    }
+	    return true;
+	}
+	</script>
+	
+	</body>
 </html>

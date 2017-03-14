@@ -73,7 +73,20 @@
 									</div>
 								</div>
 
-
+								<!-- Text input Fax Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Fax Number</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="faxNumber" id="faxNumber" placeholder="Fax Number"
+												class="form-control" type="text" maxlength="10" onkeypress="return isNumber(event)">
+										</div>
+									</div>
+								</div>
+								
+								
 								<!-- Text input Email-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Company Email</label>
@@ -87,6 +100,15 @@
 										</div>
 									</div>
 								</div>
+								
+								
+								
+							</div>
+							<!-- / F Customer Fields -->
+
+							<!--Second column Customer Fields-->
+							<div class="col-sm-6">
+								
 								<!-- Text input Street Number-->								
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street No</label>
@@ -98,13 +120,7 @@
 												placeholder="Street No" class="form-control" onkeypress="return isNumber(event)"  type="text">
 										</div>
 									</div>
-								</div>
-								
-							</div>
-							<!-- / F Customer Fields -->
-
-							<!--Second column Customer Fields-->
-							<div class="col-sm-6">
+								</div>								
 								
 								<!-- Text input Street Name-->
 								<div class="form-group">
@@ -165,18 +181,7 @@
 										</div>
 									</div>
 								</div>
-								<!-- Text input Fax Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Fax Number</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="faxNumber" id="faxNumber" placeholder="Fax Number"
-												class="form-control" type="text" maxlength="10" onkeypress="return isNumber(event)">
-										</div>
-									</div>
-								</div>
+								
 
 							</div>
 							<!--/Second column Customer Fields-->
@@ -443,7 +448,7 @@ function isNumber(evt) {
 														message : 'Customer name is required and cannot be empty'
 													},
 													regexp: {
-									                    regexp: /^[a-z-A-Z]+$/,
+									                    regexp: /^[-_ a-zA-Z0-9]+$/,
 									                    message: 'Customer name can consist of only alphabetical characters'
 									                }
 												}
@@ -455,7 +460,7 @@ function isNumber(evt) {
 													},
 													phone : {
 														country : 'US',
-														message : 'please enter 10 digits for tellphone number'
+														message : 'Please enter 10 digits for tellphone number'
 													}
 												}
 											},

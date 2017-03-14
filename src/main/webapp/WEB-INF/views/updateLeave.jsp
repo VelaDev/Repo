@@ -6,14 +6,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />"  />
-
 
 
 </head>
@@ -43,9 +40,9 @@
 										class="glyphicon glyphicon-list"></i></span> <select name="leaveID"
 										id="leaveID" class="form-control selectpicker">
 										<option value="">Select Leave</option>
-										<option value="Annual Vacation">Annual Vacation</option>
+										<option value="Annual Vacation Leave">Annual Vacation Leave</option>
 										<option value="Sick Leave">Sick Leave</option>
-										<option value="Emergency">Emergency</option>
+										<option value="Emergency Leave">Emergency Leave</option>
 									</select>
 								</div>
 							</div>
@@ -53,7 +50,7 @@
 
 						<!-- Text input First Date Leave-->
 						<div class="form-group">
-							<label class="col-xs-3 control-label">First Date Leave</label>
+							<label class="col-xs-3 control-label">Leave Start Date</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="startDatePicker">
 									<input type='text' class="form-control" name="startDate"
@@ -66,7 +63,7 @@
 						</div>
 						<!-- Text input Last Date Leave-->
 						<div class="form-group">
-							<label class="col-md-3 control-label">Last Date Leave</label>
+							<label class="col-md-3 control-label">Leave End Date</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="endDatePicker">
 									<input type='text' class="form-control" name="endDate"
@@ -175,24 +172,24 @@ $(document).ready(function() {
                 startDate: {
                     validators: {
                         notEmpty: {
-                            message: 'First date leave is required'
+                            message: 'Leave start date is required'
                         },
                         date: {
                             format: 'YYYY-MM-DD',
                             //max: 'endDate',
-                            message: 'First date leave is not a valid'
+                            message: 'Leave start date is not a valid'
                         }
                     }
                 },
                 endDate: {
                     validators: {
                         notEmpty: {
-                            message: 'Last date leave is required'
+                            message: 'Leave end date is required'
                         },
                         date: {
                             format: 'YYYY-MM-DD',
                             //min: 'startDate',
-                            message: 'Last date leave is not a valid'
+                            message: 'Leave end date is not a valid'
                         }
                     }
                 },

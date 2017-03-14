@@ -27,7 +27,6 @@
 					</c:out>
 				</div>
 			</c:if> --%>
-			<br />
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -70,7 +69,19 @@
 										</div>
 									</div>
 								</div>
-
+								
+								<!-- Text input Fax Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Fax Number</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="faxNumber" id="faxNumber" placeholder="Fax Number"
+												class="form-control" readonly="readonly" type="text" onkeypress="return isNumber(event)" value="${customer.faxNumber}">
+										</div>
+									</div>
+								</div>
 
 								<!-- Text input Email-->
 								<div class="form-group">
@@ -86,6 +97,26 @@
 									</div>
 								</div>
 
+								
+							</div>
+							<!-- / F Customer Fields -->
+
+							<!--Second column Customer Fields-->
+							<div class="col-sm-6">
+							
+							<!-- Text input Street Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Street No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="streetNumber" id="streetNumber"
+												placeholder="Street No" class="form-control" readonly="readonly" onkeypress="return isNumber(event)"  type="text" value="${customer.streetNumber}" >
+										</div>
+									</div>
+								</div>
+								
 								<!-- Text input Street Name-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street Name</label>
@@ -98,11 +129,8 @@
 										</div>
 									</div>
 								</div>
-							</div>
-							<!-- / F Customer Fields -->
-
-							<!--Second column Customer Fields-->
-							<div class="col-sm-6">
+							
+							
 								<!-- Text input City or Town-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">City/Town</label>
@@ -151,33 +179,7 @@
 												type="text" onkeypress="return isNumber(event)" readonly="readonly" value="${customer.zipcode}">
 										</div>
 									</div>
-								</div>
-
-								<!-- Text input Fax Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Fax Number</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="faxNumber" id="faxNumber" placeholder="Fax Number"
-												class="form-control" readonly="readonly" type="text" onkeypress="return isNumber(event)" value="${customer.faxNumber}">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Street Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Street No</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input
-												name="streetNumber" id="streetNumber"
-												placeholder="Street No" class="form-control" readonly="readonly" onkeypress="return isNumber(event)"  type="text" value="${customer.streetNumber}" >
-										</div>
-									</div>
-								</div>
+								</div>								
 
 							</div>
 							<!--/Second column Customer Fields-->

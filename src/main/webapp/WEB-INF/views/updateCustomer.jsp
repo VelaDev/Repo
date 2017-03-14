@@ -66,10 +66,24 @@
 												class="glyphicon glyphicon-earphone"></i></span> <input
 												name="tellphoneNumber" id="tellphoneNumber"
 												placeholder="Telephone Number" class="form-control"
-												type="text" onkeypress="return isNumber(event)" value="${customer.tellphoneNumber}" >
+												type="text" maxlength="10" onkeypress="return isNumber(event)" value="${customer.tellphoneNumber}" >
 										</div>
 									</div>
-								</div>	
+								</div>
+								
+								<!-- Text input Fax Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Fax Number</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												name="faxNumber" maxlength="10" id="faxNumber" placeholder="Fax Number"
+												class="form-control" type="text" onkeypress="return isNumber(event)" value="${customer.faxNumber}">
+										</div>
+									</div>
+								</div>
+									
 								<!-- Text input Email-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Company Email</label>
@@ -83,6 +97,15 @@
 										</div>
 									</div>
 								</div>
+								
+								
+								
+							</div>
+							<!-- / F Customer Fields -->
+
+							<!--Second column Customer Fields-->
+							<div class="col-sm-6">
+							
 								<!-- Text input Street Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street No</label>
@@ -95,12 +118,7 @@
 										</div>
 									</div>
 								</div>
-								
-							</div>
-							<!-- / F Customer Fields -->
-
-							<!--Second column Customer Fields-->
-							<div class="col-sm-6">
+							
 								<!-- Text input Street Name-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street Name</label>
@@ -163,18 +181,7 @@
 									</div>
 								</div>
 
-								<!-- Text input Fax Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Fax Number</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="faxNumber" id="faxNumber" placeholder="Fax Number"
-												class="form-control" type="text" onkeypress="return isNumber(event)" value="${customer.faxNumber}">
-										</div>
-									</div>
-								</div>
+								
 
 							</div>
 							<!--/Second column Customer Fields-->
@@ -221,7 +228,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="cellphoneNumber" name="cellphoneNumber"
+												id="cellphoneNumber" maxlength="10" name="cellphoneNumber"
 												placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" value="${customerDetails.cellphoneNumber}">
 										</div>
 									</div>
@@ -233,7 +240,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="telephoneNumber" name="telephoneNumber"
+												id="telephoneNumber" maxlength="10" name="telephoneNumber"
 												placeholder="Tellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" value="${customerDetails.telephoneNumber}">
 										</div>
 									</div>
@@ -314,7 +321,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber1" name="cellphoneNumber1"
+													id="cellphoneNumber1" maxlength="10" name="cellphoneNumber1"
 													placeholder="Cellphone No" class="form-control" type="text" value="${customerDetails.cellphoneNumber1}"onkeypress="return isNumber(event)">
 											</div>
 										</div>
@@ -326,7 +333,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber1" name="telephoneNumber1"
+													id="telephoneNumber1" maxlength="10" name="telephoneNumber1"
 													placeholder="Telephone No" class="form-control" type="text" value="${customerDetails.telephoneNumber1}" onkeypress="return isNumber(event)">
 											</div>
 										</div>

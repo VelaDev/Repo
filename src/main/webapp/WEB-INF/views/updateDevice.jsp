@@ -221,7 +221,7 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="serialNumber" id="serialNumber"
-													onkeydown="upperCaseF(this)" placeholder="Serial Number"
+													onkeydown="upperCaseF(this)" readonly="readonly" placeholder="Serial Number"
 													class="form-control" type="text"
 													value="${productObject.serialNumber}">
 											</div>

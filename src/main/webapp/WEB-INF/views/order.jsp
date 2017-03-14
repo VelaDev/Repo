@@ -266,14 +266,23 @@
                 }
             }
             
+            
         }
     });
 });
 
 </script>
 	
-	
-	<!-- /Script -->
+
+<script>
+$('#putorder').click(function () {
+    if (!$('#checkedOrder').is(':checked')) {
+        alert('You need to tick checkbox to make an order\n Please tick the box and try again');
+        return false;
+    }
+});
+
+</script>
 
 	<!--Stock type Selection-->
 	<script type="text/javascript">

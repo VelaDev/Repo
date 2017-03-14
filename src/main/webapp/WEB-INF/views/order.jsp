@@ -10,7 +10,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />"  />
 
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
@@ -41,7 +40,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="makeOrder" name="makeOrder" onSubmit="return checkOrder();">
+							method="post" action="makeOrder" id="putOrder" name="makeOrder" >
 
 
 							<!-- Select type Stock Type-->
@@ -181,9 +180,6 @@
 										id="order" name="order">
 								</div>
 							</div>
-
-
-
 						</form:form>
 
 
@@ -205,7 +201,6 @@
 	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 	
 	<!-- /Scripts -->
@@ -221,16 +216,14 @@
 			});
 		});
 	</script>
-
-	
-	
+		
 <!-- Validate Make Order -->
 
 	<script>
 		$(document)
 				.ready(
 						function() {
-							$('#makeOrder')
+							$('#putOrder')
 									.bootstrapValidator(
 											{
 												//framework : 'bootstrap',
@@ -283,15 +276,7 @@
 															}
 														}
 													},
-													checkedOrder: {
-										                validators: {
-										                    choice: {
-										                        min: 1,
-										                        //max: 4,
-										                        message: 'You need to tick checkbox to make an order'
-										                    }
-										                }
-										            }
+													
 												}
 											})
 
@@ -323,20 +308,7 @@
 	</script>
 
 	
- <script type="text/javascript">
-	  function checkOrder() {
-	        if (!document.form.agree.checked) {
-	            missinginfo = "You need to tick checkbox to make an order\n Please tick the box and try again.";
-	            alert(missinginfo);
-	            return false;
-	        }
-	        else {
-	           	alert("Checked");
-	           	console.log("Checked");
-	            return true;
-	        }
-	    }
-</script>
+
 
 </body>
 </html>

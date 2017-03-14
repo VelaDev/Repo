@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />"  />
+
 
 
 </head>
@@ -43,7 +45,7 @@
 										<option value="">Select Leave</option>
 										<option value="Annual Vacation">Annual Vacation</option>
 										<option value="Sick Leave">Sick Leave</option>
-										<option value="Family Problems">Family Problems</option>
+										<option value="Emergency">Emergency</option>
 									</select>
 								</div>
 							</div>
@@ -81,7 +83,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input
+										class="glyphicon glyphicon-earphone"></i></span> <input
 										id="contactNumber" name="contactNumber"
 										placeholder="Contact Number during absence"
 										class="form-control" type="text" onkeypress="return isNumber(event)">
@@ -136,7 +138,7 @@
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
-				startDate: 'd0',
+				//startDate: 'd0',
 		        autoclose: true
 			});
 		});
@@ -146,7 +148,7 @@
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
 			format : "yyyy-mm-dd",
-			startDate: 'd0',
+			//startDate: 'd0',
 	        autoclose: true
 		});
 	});
@@ -172,38 +174,39 @@ $(document).ready(function() {
             startDate: {
                 validators: {
                     notEmpty: {
-                        message: 'The start date is required'
+                        message: 'First date leave is required'
                     },
                     date: {
                         format: 'YYYY-MM-DD',
-                        max: 'endDate',
-                        message: 'The start date is not a valid'
+                        //max: 'endDate',
+                        message: 'First date leave is not a valid'
                     }
                 }
             },
             endDate: {
                 validators: {
                     notEmpty: {
-                        message: 'The end date is required'
+                        message: 'Last date leave is required'
                     },
                     date: {
                         format: 'YYYY-MM-DD',
-                        min: 'startDate',
-                        message: 'The end date is not a valid'
+                        //min: 'startDate',
+                        message: 'Last date leave is not a valid'
                     }
                 }
             },
-			contactNumber : {
+            contactNumber : {
 				validators : {
-					stringLength : {
-						max : 10,
-						min : 10,
-					},
 					notEmpty : {
-						message : 'Contact Number is required, and can not be empty'
+						message : 'Please enter 10 digits for contact number'
+					},
+					phone : {
+						country : 'US',
+						message : 'Please enter 10 digits for contact number'
 					}
 				}
 			},
+			
 			address: {
                 validators: {
 				stringLength : {

@@ -27,7 +27,7 @@
 					</c:out>
 				</div>
 			</c:if>
-			<br />
+			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -57,7 +57,7 @@
 									</div>
 								</div>
 
-								<!-- Text input Tellphone Number-->
+								<!-- Text input Telephone Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Telephone No</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -449,11 +449,7 @@ function isNumber(evt) {
 															},
 															notEmpty : {
 																message : 'Customer name is required and cannot be empty'
-															},
-															regexp: {
-											                    regexp: /^[a-z-A-Z]+$/,
-											                    message: 'Customer name can consist of only alphabetical characters'
-											                }
+															}
 														}
 													},
 													tellphoneNumber : {

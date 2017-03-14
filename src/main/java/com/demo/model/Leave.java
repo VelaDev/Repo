@@ -9,6 +9,8 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -34,12 +36,13 @@ public class Leave implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="Leave_ID")
-	private String leaveID;
+	private int leaveID;
 	@Column(name="First_Leave_Date")
-	private Date startDate;
+	private String startDate;
 	@Column(name="Last_Leave_Date")
-	private Date endDate;
+	private String endDate;
 	@Column(name="Approver")
 	private String approver;
 	@Column(name="Contact_Number")

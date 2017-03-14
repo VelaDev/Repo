@@ -1,5 +1,8 @@
 package com.demo.dao.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -19,14 +22,18 @@ public class LeaveDao implements LeaveDaoInt{
 	private SessionFactory sessionFactory;
 	
 	private String retMessage = null;
+	
 
 	@Override
 	public String leaveRequest(Leave leave) {
+	
 		try{
 			
+			//sessionFactory.getCurrentSession().save(leave);
+			retMessage = "Leave successfully submited";
 		}
 		catch(Exception e){
-			retMessage = "";
+			retMessage = "Leave not submitted " + e.getMessage();
 		}
 		return retMessage;
 	}

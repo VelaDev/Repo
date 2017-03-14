@@ -8,11 +8,16 @@
 
 
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />"  />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
 
 
 
@@ -30,11 +35,17 @@
 					</h3>
 				</div>
 				<div class="panel-body">
+					<c:if test="${not empty retMessage }">
 
+						<div class="alert alert-info" role="alert">
+							<c:out value="${ retMessage}">
+							</c:out>
+						</div>
+					</c:if>
 					<form:form class="well form-horizontal" method="POST"
-						action="leave" modelAttribute="leave" id="makeLeave">
+						action="makeLeave" modelAttribute="leamakeLeaveve" id="makeLeave">
 
-							<!-- Select type Leave Type-->
+						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>
 							<div class="col-md-6 selectContainer">
@@ -43,7 +54,8 @@
 										class="glyphicon glyphicon-list"></i></span> <select name="leaveID"
 										id="leaveID" class="form-control selectpicker">
 										<option value="">Select Leave</option>
-										<option value="Annual Vacation Leave">Annual Vacation Leave</option>
+										<option value="Annual Vacation Leave">Annual Vacation
+											Leave</option>
 										<option value="Sick Leave">Sick Leave</option>
 										<option value="Emergency Leave">Emergency Leave</option>
 									</select>
@@ -86,7 +98,8 @@
 										class="glyphicon glyphicon-earphone"></i></span> <input
 										id="contactNumber" name="contactNumber"
 										placeholder="Contact Number during absence"
-										class="form-control" type="text" onkeypress="return isNumber(event)">
+										class="form-control" type="text"
+										onkeypress="return isNumber(event)">
 								</div>
 							</div>
 						</div>
@@ -128,13 +141,17 @@
 
 
 	<!-- Scripts -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
 
-<script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
@@ -142,9 +159,9 @@
 		        autoclose: true
 			});
 		});
-</script> 
+</script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
 			format : "yyyy-mm-dd",
@@ -152,9 +169,9 @@
 	        autoclose: true
 		});
 	});
-</script> 
+</script>
 
-<script>
+	<script>
 $(document).ready(function() {
 	$('#makeLeave').bootstrapValidator({
 	   //framework: 'bootstrap',
@@ -223,7 +240,7 @@ $(document).ready(function() {
 
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	function isNumber(evt) {
 	    evt = (evt) ? evt : window.event;

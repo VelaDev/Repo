@@ -36,10 +36,20 @@ public class CustomerDao implements CustomerDaoInt{
 	Customer customer = null;
 
 	@Override
-	public String saveClient(Customer customer) {
+	public String saveClient(Customer localCustomer) {
+	
 		try{
-			sessionFactory.getCurrentSession().saveOrUpdate(customer);
-			retMessage =  "Customer "+ customer.getCustomerName() + " "+ "Was successfully added";
+			customer = getClientByClientName(localCustomer.getCustomerName());
+			if(customer ==null){
+				sessionFactory.getCurrentSession().save(localCustomer);
+				retMessage =  "Customer "+ localCustomer.getCustomerName() + " "+ "was successfully added";
+			}
+			else if (customer !=null){
+				sessionFactory.getCurrentSession().update(customer);
+				retMessage =  "Customer "+ customer.getCustomerName() + " "+ "Was successfully updated";
+			
+			}
+			
 		}
 		catch(Exception e){
 			retMessage = "Customer "+ customer.getCustomerName() + " is not added\n" + e.getMessage();

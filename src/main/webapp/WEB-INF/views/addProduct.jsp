@@ -141,7 +141,7 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-												<input id="cellphoneNumber" maxlength="10"  name="cellphoneNumber" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" >
+												<input id="cellphoneNumber" maxlength="10"  name="cellphone" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" >
 											</div>
 											
 										</div>
@@ -153,8 +153,8 @@ li {
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
-												<input id="telephoneNumber" maxlength="10"  name="telephoneNumber" 
-												placeholder="Tellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" >
+												<input id="telephoneNumber" maxlength="10"  name="telephone" 
+												placeholder="Telephone No" class="form-control" type="text" onkeypress="return isNumber(event)" >
 											</div>
 										</div>
 									</div>
@@ -250,7 +250,7 @@ li {
 											<label class="col-md-3 control-label"></label>
 											<div class="col-md-6">
 												<input type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Enter Colour Reading" 
-												name="colourReading" id="colourReading">
+												name="colour" id="colourReading">
 											</div>
 											<br>
 										</div>

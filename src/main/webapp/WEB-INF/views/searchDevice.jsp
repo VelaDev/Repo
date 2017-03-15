@@ -44,8 +44,8 @@
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>End Date <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Details</th>
-									<th>Update</th>
+									<th>View Details</th>
+									<th>Update Device</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -57,8 +57,8 @@
 										<td>${list.modelNumber}</td>
 										<td>${list.startDate}</td>
 										<td>${list.endDate}</td>
-										<td><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">Details</a></td>
-										<td><a href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">Update</a></td>
+										<td><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">Device Details</a></td>
+										<td><a href="searchDeviceSerialNumber?serialNumber=<c:out value='${list.serialNumber}'/>">Update Device</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

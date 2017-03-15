@@ -230,7 +230,7 @@ li {
 									</div>
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Mono/Colour</label>
+										<label class="col-md-3 control-label">Mono/Colour Reading</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
@@ -245,9 +245,9 @@ li {
 
 
 									<div id="colour" style="display: none;">
-										<!-- Text checkbox Colour Reading-->
+										<!-- Text checkbox Colour Reading-->										
 										<div class="form-group">
-											<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Enter Colour Reading" 
 												name="colour" id="colourReading">
@@ -256,7 +256,7 @@ li {
 										</div>
 										<!-- Text checkbox Mono Reading-->
 										<div class="form-group">
-											<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control" onkeypress="return isNumber(event)" placeholder="Enter Mono Reading"
 												name="monoReading" id="monoReading">
@@ -264,11 +264,13 @@ li {
 										</div>
 									</div>
 									<!-- Text checkbox Mono Reading-->
-									<div class="form-group">
-										<label class="col-md-3 control-label"></label>
-										<div class="col-md-6">
-											<input type="text" class="form-control" onkeypress="return isNumber(event)" name="mono" placeholder="Enter Mono Reading" 
-											id="mono" style="display: none;">
+									<div class="mono" id="mono" style="display: none;" >
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control" onkeypress="return isNumber(event)" name="mono" placeholder="Enter Mono Reading" 
+												id="mono" >
+											</div>
 										</div>
 									</div>
 								</div>

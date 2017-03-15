@@ -273,7 +273,7 @@ li {
 
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Mono/Colour</label>
+										<label class="col-md-3 control-label">Mono/Colour Reading</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
@@ -292,7 +292,7 @@ li {
 									<div id="colour" style='display: none;'>
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
-											<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Colour Reading" onkeypress="return isNumber(event)" name="colourReading"
@@ -302,7 +302,7 @@ li {
 										</div>
 										<!-- Text checkbox Mono Reading-->
 										<div class="form-group">
-											<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													placeholder="Enter Mono Reading" onkeypress="return isNumber(event)" name="monoReading"
@@ -312,13 +312,15 @@ li {
 										</div>
 									</div>
 									<!-- Text checkbox Mono Reading-->
-									<div class="form-group">
-										<label class="col-md-3 control-label"></label>
-										<div class="col-md-6">
-											<input type="text" class="form-control" onkeypress="return isNumber(event)" name="mono"
-												placeholder="Enter Mono Reading" id="mono"
-												style='display: none;' onkeypress="return isNumber(event)"
-												value="${productObject.monoReading}" />
+									<div class="mono" id="mono" style='display: none;'>
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control" onkeypress="return isNumber(event)" name="mono"
+													placeholder="Enter Mono Reading" id="mono"
+													 onkeypress="return isNumber(event)"
+													value="${productObject.monoReading}" />
+											</div>
 										</div>
 									</div>
 

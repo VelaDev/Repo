@@ -157,11 +157,10 @@ select[multiple], select[size] {
 													
 													<c:forEach var="compitableDevice" items="${models}">
 														<tr> 
-														    <td class="col_1"><input type="text" name="compitableDevice"
+														    <td class="col_1"><input type="text" readonly="readonly" name="compitableDevice"
 																value="${compitableDevice}"></td>
 															<td class="col_2"><input type="checkbox"
-																name="compitableDevice" value=""></td>
-													 		
+																name="compitableDevice" value=""></td>													 		
 														</tr>
 													</c:forEach>
 													
@@ -177,6 +176,26 @@ select[multiple], select[size] {
 							<div class="groupsparedetails">
 								<legend>Spares</legend>
 
+								
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Maintain New Spares</label>
+											</h6>
+
+										</div>
+										<div class="col-xs-8">
+											<div class="form-group">
+												<div class="input-group">
+													<input type="checkbox" class="form-control" readonly="readonly" class="checkSpares">
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="col-xs-4 form-control-label">
@@ -189,7 +208,7 @@ select[multiple], select[size] {
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="partNumber" name="partNumber"
-														class="form-control" value="${sparePart.partNumber}"
+														class="form-control" readonly="readonly" value="${sparePart.partNumber}"
 														class="partNo">
 												</div>
 											</div>
@@ -210,7 +229,7 @@ select[multiple], select[size] {
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="itemType" name="itemType"
-														class="form-control" value="${sparePart.itemType}">
+														class="form-control" readonly="readonly" value="${sparePart.itemType}">
 												</div>
 											</div>
 										</div>
@@ -229,7 +248,7 @@ select[multiple], select[size] {
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="description" name="description"
-														class="form-control" value="${sparePart.description}">
+														class="form-control" readonly="readonly" value="${sparePart.description}">
 												</div>
 											</div>
 										</div>
@@ -330,7 +349,7 @@ select[multiple], select[size] {
 											$('#tbl1 tr')
 													.last()
 													.after(
-															'<tr><td class="col_1"><input type="text" name="compitableDevice'  + $(this).val() +  '" value="'  +  $(this).val() + '"></td><td class="col_2"><input type="checkbox" name="txtbx2' + $(this).val() +  '" value="' + $(this).val()  + '"></td></tr>'
+															'<tr><td class="col_1"><input type="text" readonly="readonly" name="compitableDevice'  + $(this).val() +  '" value="'  +  $(this).val() + '"></td><td class="col_2"><input type="checkbox" readonly="readonly" name="txtbx2' + $(this).val() +  '" value="' + $(this).val()  + '"></td></tr>'
 															
 														);
 											cnt++;

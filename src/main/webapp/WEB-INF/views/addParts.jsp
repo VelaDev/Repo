@@ -231,17 +231,16 @@
 								</div>
 							</div>
 							<!-- //group spare details -->
-
 							<!-- group search details -->
 							<div class="groupsearchdetails">
 								<legend>Compatible Devices </legend>
 								<input type="button"  class="btn btn-info" value="Add"
 									onclick="addRow('compitableDev')" /> <input type="button"
 									value="Delete" class="btn btn-danger" onclick="deleteRow('compitableDev')" /><br />
-								<br /> <label class="col-md-3 control-label">Action</label> <label
-									class="col-md-3 control-label">Model Number</label>
+								<br/> <label class="col-md-3 control-label">Action</label> <label
+									class="col-md-3 control-label">Model Number</label><br/>
 
-								<table id="compitableDev"
+								<table id="compitableDev"  style="width:300px"
 									class="table table-striped table-bordered table-hover table-condensed">
 
 									<c:forEach var="compitableDevice" items="${models}">

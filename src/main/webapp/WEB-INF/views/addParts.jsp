@@ -231,12 +231,14 @@
 								</div>
 							</div>
 							<!-- //group spare details -->
+							
 							<!-- group search details -->
 							<div class="groupsearchdetails">
 								<legend>Compatible Devices </legend>
-								<input type="button"  class="btn btn-info" value="Add"
+								
+								<input type="button" value="Add"
 									onclick="addRow('compitableDev')" /> <input type="button"
-									value="Delete" class="btn btn-danger" onclick="deleteRow('compitableDev')" /><br />
+									value="Delete" onclick="deleteRow('compitableDev')" /><br />
 								<br/> <label class="col-md-3 control-label">Action</label> <label
 									class="col-md-3 control-label">Model Number</label><br/>
 

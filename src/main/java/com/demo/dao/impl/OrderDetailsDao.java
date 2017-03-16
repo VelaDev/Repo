@@ -40,12 +40,14 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 	return retMessage;
 	}
 	@Override
-	public List<OrderDetails> getOrderDetailsByOrderNum(String orderNum) {
+	public List<OrderDetails> getOrderDetailsByOrderNum(Integer recordID) {
+
+
 		ArrayList<OrderDetails> pendingList = new ArrayList<OrderDetails>();
 		try{
 			orders = getAllOrderDetails();
 			 for(OrderDetails order:orders){
-				 if(order.getOrdersHeader().getOrderNum().equalsIgnoreCase(orderNum)){
+				 if(order.getOrdersHeader().getRecordID().equals(recordID)){
 					 pendingList.add(order);
 				 }
 			 }
@@ -61,6 +63,8 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(OrderDetails.class);
 		return (List<OrderDetails>)criteria.list();
 	}
+	
+	
 	@Override
 	public List<OrderDetails> getOrderDetailsByTechnician(String email) {
 		ArrayList<OrderDetails> pendingList = new ArrayList<OrderDetails>();
@@ -117,14 +121,14 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 	}
 	@Override
 	public List<OrderDetails> getOrderDetailsByOrderNum(String key,
-			String orderNum) {
+			Integer recordID) {
 		
 		
 		ArrayList<OrderDetails> pendingList = new ArrayList<OrderDetails>();
 		try{
 			orders = getAllOrderDetails();
 			 for(OrderDetails order:orders){
-				 if(order.getOrdersHeader().getOrderNum().equalsIgnoreCase(orderNum)){
+				 if(order.getOrdersHeader().getRecordID()==recordID){
 					 pendingList.add(order);
 				 }
 			 }

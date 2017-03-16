@@ -22,7 +22,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Orders</b>
+							<b>Approved Orders</b>
 						</div>
 					</h3>
 				</div>

@@ -14,9 +14,9 @@ public class DeliveryReport {
 	@Autowired
 	private OrderDetailsInt detailsInt;
 
-	public List<OrderDetails> gettOrders(String key,String orderNumber){
+	/*public List<OrderDetails> gettOrders(String key,String orderNumber){
 		
 		List <OrderDetails> list = detailsInt.getOrderDetailsByOrderNum("orders",orderNumber);
 		return list;
-	}
+	}*/
 }

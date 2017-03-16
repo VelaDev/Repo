@@ -11,11 +11,11 @@ public interface OrdersServiceInt {
 	public List<OrdersHeader> getAllOrders();
 	public List<OrdersHeader> getApprovedOrdersByTechnicianName(String userName);
 	public List<OrdersHeader> getOpenOrders();
-	public OrdersHeader getOrder(String orderNum);
+	public OrdersHeader getOrder(Integer recordID);
 	public List<OrdersHeader> getAllOrders(String orderedBy);
 	public String prepareOrderMaking(OrdersBean order);
 	public List<OrdersHeader> pendingOrders();
-	public String approveOrder(String orderNum);
+	public String approveOrder(Integer recordID);
 	public List<OrdersHeader> pendingOrders(String approveName);
 
 }

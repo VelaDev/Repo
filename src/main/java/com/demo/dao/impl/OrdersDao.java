@@ -165,10 +165,10 @@ public class OrdersDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public OrdersHeader getOrder(String orderNum) {
+	public OrdersHeader getOrder(Integer recordID) {
 
 		return (OrdersHeader) sessionFactory.getCurrentSession().get(
-				OrdersHeader.class, orderNum);
+				OrdersHeader.class, recordID);
 	}
 
 	private Integer getRecordID() {
@@ -314,17 +314,17 @@ public class OrdersDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public String approveOrder(String orderNum) {
+	public String approveOrder(Integer recordID) {
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 		try {
-			cusOrder = getOrder(orderNum);
+			cusOrder = getOrder(recordID);
 			cusOrder.setStatus("Approved");
 			cusOrder.setApproved(true);
 			cusOrder.setDateApproved(dateFormat.format(date));
 			sessionFactory.getCurrentSession().update(cusOrder);
 
-			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(orderNum);
+			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 			retMessage = subtractOrderItems(orderDetailList);
 			if (retMessage.equalsIgnoreCase("Ok")) {
 				retMessage = detailsDaoInt

@@ -265,7 +265,7 @@ public class TicketsDao implements TicketsDaoInt {
 				  ticket.setEscalateReason(tickets.getEscalateReason());
 				  ticket.setEscalate(true);
 				  ticket.setStatus("Awaiting Spare");
-				  order = ordersDaoInt.getOrder(tickets.getOrderNumber());
+				  //order = ordersDaoInt.getOrder(tickets.getOrderNumber());
 				  ticket.setOrdersHeader(order);
 				  sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 				  historyDaoInt.insertTicketHistory(ticket);

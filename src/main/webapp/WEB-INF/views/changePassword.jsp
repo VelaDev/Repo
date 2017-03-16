@@ -55,7 +55,8 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
 												name="email" placeholder="Email" class="form-control"
-												type="email" value="${loggedInUser.email }" readonly="readonly">
+												type="email" value="${loggedInUser.email }"
+												readonly="readonly">
 										</div>
 									</div>
 								</div>
@@ -67,7 +68,8 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-lock"></i></span> <input
 												placeholder="Full Names" class="form-control" type="text"
-												value="${loggedInUser.firstName } ${loggedInUser.lastName }" readonly="readonly">
+												value="${loggedInUser.firstName } ${loggedInUser.lastName }"
+												readonly="readonly">
 										</div>
 									</div>
 								</div>
@@ -105,8 +107,7 @@
 							</div>
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<br>
-									<br>
+									<br> <br>
 									<button type="submit" name="changepassword" id="changepassword"
 										class="btn btn-lg btn-primary btn-block">Change
 										Password</button>
@@ -184,10 +185,10 @@
 										                         //It must contain at least one lower case character
 										                         //It must contain atleast one special character
 										                         //It must contain at least one digit
-										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*/) < 0 ) {
+										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*[!@#$%^&]/) < 0 ) {
 										                                return {
 										                                    valid: false,
-										                                    message: 'Password must be more than 8 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
+										                                    //message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
 										                                };
 										                            }
 
@@ -224,10 +225,10 @@
 											                         //It must contain at least one lower case character
 											                         //It must contain atleast one special character
 											                         //It must contain at least one digit
-										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*/) < 0) {
+										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*[*!@#$%^&*]*/) < 0) {
 										                                return {
 										                                    valid: false,
-										                                    message: 'Password must be more than 8 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
+										                                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
 										                                };
 										                            }
 

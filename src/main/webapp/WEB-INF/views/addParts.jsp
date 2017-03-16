@@ -22,8 +22,6 @@
 
 <style>
 
-
-
 .form-group-model {
 	margin-left: 10%;
 }
@@ -37,8 +35,6 @@
 .groupsearchdetails {
 	overflow:hidden;
 }
-
-
 
 </style>
 
@@ -55,11 +51,11 @@
 					</c:out>
 				</div>
 			</c:if>
-
-			<%-- <c:if test="${empty models}">
+			
+			<%--  <c:if test="${empty models}">
 				<c:out value="${models}"></c:out>
-			</c:if> --%>
-
+			</c:if>--%>
+			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -123,7 +119,7 @@
 										<div class="col-xs-8">
 											<div class="form-group">
 												<div class="input-group">
-													<input type="checkbox" class="form-control" readonly="readonly" class="checkSpares" id="checkSpares" name="checkSparess">
+													<input type="checkbox" id="checkSpares" name="checkSparess" value="true">
 												</div>
 											</div>
 										</div>
@@ -142,8 +138,8 @@
 										<div class="col-xs-8">
 											<div class="form-group">
 												<div class="input-group">
-													<input type="text" id="partNumber" name="partNumber"
-														class="form-control" readonly="readonly" value="${sparePart.partNumber}"
+													<input type="text" id="partNum" name="partNumber"
+														class="form-control" readOnly value="${sparePart.partNumber}"
 														class="partNo">
 												</div>
 											</div>
@@ -164,7 +160,7 @@
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="itemType" name="itemType"
-														class="form-control" readonly="readonly" value="${sparePart.itemType}">
+														class="form-control" readOnly value="${sparePart.itemType}">
 												</div>
 											</div>
 										</div>
@@ -183,7 +179,7 @@
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="description" name="description"
-														class="form-control" readonly="readonly" value="${sparePart.description}">
+														class="form-control" readOnly value="${sparePart.description}">
 												</div>
 											</div>
 										</div>
@@ -235,18 +231,19 @@
 						<!-- group search details -->
 						<div class="groupsearchdetails">
 								<legend>Compatible Devices </legend>
-								<input type="button" value="Add Row" onclick="addRow('compitableDevice')" />
-								<input type="button" value="Delete Row" onclick="deleteRow('compitableDevice')" /><br/><br/>
+								<input type="button" value="Add Row" onclick="addRow('compitableDev')" />
+								<input type="button" value="Delete Row" onclick="deleteRow('compitableDev')" /><br/><br/>
 								<label class="col-md-3 control-label">Action</label>
 								<label class="col-md-3 control-label">Model Number</label>
 								
-								<table id="compitableDevice" class="table table-striped table-bordered table-hover table-condensed">	
-									<c:forEach var="compitableDevice" items="${models}">
+								<table id="compitableDev" class="table table-striped table-bordered table-hover table-condensed">	
 										<tr>
-											<td><input type="checkbox" name="compitableDevice" value=""/></td>
-											<td><input type="text" class="form-control" disabled="disabled" name="compitableDevice" value="${compitableDevice}"></td>			
-										</tr>				
-									</c:forEach>
+											<td><input type="checkbox" value="true" name="compitableDevice" /></td>											
+											<c:forEach var="compitableDevice" items="${models}">									
+											<td><input type="text" class="form-control" readOnly id="compitableDevice" name="compitableDevice" value="${compitableDevice}"></td>
+											</c:forEach>
+											<td><input type="text" class="form-control" readOnly id="compitableDevice" name="compitableDevice" value=""></td>
+										</tr>
 								</table>								
 						</div><!-- //group search details -->	
 	
@@ -284,7 +281,41 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
+<!--if part number does not exist ccome here-->
+<script>
 
+// Validate "checkSpares" textbox
+var checkSpares = document.getElementById("checkSpares");
+
+var partNum = document.getElementById("partNum");
+var itemType = document.getElementById("itemType");
+var description = document.getElementById("description");
+var compitableDevice = document.getElementById("compitableDevice");
+
+checkSpares.addEventListener("click", function () {
+	partNum.readOnly = !checkSpares.checked;
+	itemType.readOnly = !checkSpares.checked;
+	description.readOnly = !checkSpares.checked;
+	compitableDevice.readOnly = !checkSpares.checked;
+});
+partNum.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    partNum.readOnly = !checkSpares.checked;
+});
+itemType.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    itemType.readOnly = !checkSpares.checked;
+});
+description.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    description.readOnly = !checkSpares.checked;
+});
+compitableDevice.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    compitableDevice.readOnly = !checkSpares.checked;
+});
+
+</script>
 <!-- Table for compitable device for partnumber -->
 <script language="javascript">
 
@@ -301,7 +332,7 @@
 				var newcell	= row.insertCell(i);
 
 				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-				alert(newcell.childNodes);
+				//alert(newcell.childNodes);
 				switch(newcell.childNodes[0].type) {
 					case "text":
 							newcell.childNodes[0].value = "";

@@ -21,21 +21,22 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
-
 .form-group-model {
 	margin-left: 10%;
 }
-.groupsparedetails, .groupsearchdetails{
-	padding:20px;
-}
-.groupsparedetails {
-	float:left;
-	width:50%;
-}
-.groupsearchdetails {
-	overflow:hidden;
+
+.groupsparedetails, .groupsearchdetails {
+	padding: 20px;
 }
 
+.groupsparedetails {
+	float: left;
+	width: 50%;
+}
+
+.groupsearchdetails {
+	overflow: hidden;
+}
 </style>
 
 </head>
@@ -51,11 +52,11 @@
 					</c:out>
 				</div>
 			</c:if>
-			
+
 			<%--  <c:if test="${empty models}">
 				<c:out value="${models}"></c:out>
 			</c:if>--%>
-			
+
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -105,9 +106,9 @@
 							method="post" id="saveSpareParts">
 
 							<!-- group spare details -->
-								<div class="groupsparedetails">
+							<div class="groupsparedetails">
 								<legend>Spares</legend>
-								
+
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="col-xs-4 form-control-label">
@@ -119,14 +120,15 @@
 										<div class="col-xs-8">
 											<div class="form-group">
 												<div class="input-group">
-													<input type="checkbox" id="checkSpares" name="checkSparess" value="true">
+													<input type="checkbox" id="checkSpares" name="checkSparess"
+														value="true">
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-								
-								
+
+
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="col-xs-4 form-control-label">
@@ -139,8 +141,8 @@
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="partNum" name="partNumber"
-														class="form-control" readOnly value="${sparePart.partNumber}"
-														class="partNo">
+														class="form-control" readOnly
+														value="${sparePart.partNumber}" class="partNo">
 												</div>
 											</div>
 										</div>
@@ -160,7 +162,8 @@
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="itemType" name="itemType"
-														class="form-control" readOnly value="${sparePart.itemType}">
+														class="form-control" readOnly
+														value="${sparePart.itemType}">
 												</div>
 											</div>
 										</div>
@@ -179,7 +182,8 @@
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="description" name="description"
-														class="form-control" readOnly value="${sparePart.description}">
+														class="form-control" readOnly
+														value="${sparePart.description}">
 												</div>
 											</div>
 										</div>
@@ -225,33 +229,47 @@
 										</div>
 									</div>
 								</div>
-						</div>
-						<!-- //group spare details -->
-	
-						<!-- group search details -->
-						<div class="groupsearchdetails">
-								<legend>Compatible Devices </legend>
-								<input type="button" value="Add Row" onclick="addRow('compitableDev')" />
-								<input type="button" value="Delete Row" onclick="deleteRow('compitableDev')" /><br/><br/>
-								<label class="col-md-3 control-label">Action</label>
-								<label class="col-md-3 control-label">Model Number</label>
-								
-								<table id="compitableDev" class="table table-striped table-bordered table-hover table-condensed">	
-										<tr>
-											<td><input type="checkbox" value="true" name="compitableDevice" /></td>											
-											<c:forEach var="compitableDevice" items="${models}">									
-											<td><input type="text" class="form-control" readOnly id="compitableDevice" name="compitableDevice" value="${compitableDevice}"></td>
-											</c:forEach>
-											<td><input type="text" class="form-control" readOnly id="compitableDevice" name="compitableDevice" value=""></td>
-										</tr>
-								</table>								
-						</div><!-- //group search details -->	
-	
-						<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-8">
-								<br> <br> <input type="submit" value="Add Spare" class="btn btn-primary btn-block btn-lg" tabindex="9" id="addSpare">
 							</div>
-						</div>
+							<!-- //group spare details -->
+
+							<!-- group search details -->
+							<div class="groupsearchdetails">
+								<legend>Compatible Devices </legend>
+								<input type="button"  class="btn btn-info" value="Add"
+									onclick="addRow('compitableDev')" /> <input type="button"
+									value="Delete" class="btn btn-danger" onclick="deleteRow('compitableDev')" /><br />
+								<br /> <label class="col-md-3 control-label">Action</label> <label
+									class="col-md-3 control-label">Model Number</label>
+
+								<table id="compitableDev"
+									class="table table-striped table-bordered table-hover table-condensed">
+
+									<c:forEach var="compitableDevice" items="${models}">
+										<tr>
+											<td><input type="checkbox" value="true"
+												name="compitableDevice" /></td>
+											<td><input type="text" class="form-control" readOnly
+												id="compitableDevice" name="compitableDevice"
+												value="${compitableDevice}"></td>
+										<tr>
+									</c:forEach>
+									<tr>
+										<td><input type="checkbox" value="true"
+											name="compitableDevice" /></td>
+										<td><input type="text" class="form-control" readOnly
+											id="compitableDevice" name="compitableDevice"></td>
+									</tr>
+								</table>
+							</div>
+							<!-- //group search details -->
+
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br> <br> <input type="submit" value="Add Spare"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="addSpare">
+								</div>
+							</div>
 
 						</form:form>
 						<p id="getme"></p>
@@ -281,8 +299,8 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
-<!--if part number does not exist ccome here-->
-<script>
+	<!--if part number does not exist ccome here-->
+	<script>
 
 // Validate "checkSpares" textbox
 var checkSpares = document.getElementById("checkSpares");
@@ -316,8 +334,8 @@ compitableDevice.addEventListener("focus", function (evt) {
 });
 
 </script>
-<!-- Table for compitable device for partnumber -->
-<script language="javascript">
+	<!-- Table for compitable device for partnumber -->
+	<script language="javascript">
 
 		//add row on table
 		function addRow(tableID) {
@@ -332,7 +350,7 @@ compitableDevice.addEventListener("focus", function (evt) {
 				var newcell	= row.insertCell(i);
 
 				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-				//alert(newcell.childNodes);
+				
 				switch(newcell.childNodes[0].type) {
 					case "text":
 							newcell.childNodes[0].value = "";
@@ -343,6 +361,15 @@ compitableDevice.addEventListener("focus", function (evt) {
 					case "select-one":
 							newcell.childNodes[0].selectedIndex = 0;
 							break;
+					case "text":
+							newcell.childNodes[0].value = "";
+							break;
+					case "checkbox":
+							newcell.childNodes[0].checked = false;
+							break;
+					case "select-one":
+						newcell.childNodes[0].selectedIndex = 0;
+							break;
 				}
 			}
 		}
@@ -351,10 +378,12 @@ compitableDevice.addEventListener("focus", function (evt) {
 			try {
 			var table = document.getElementById(tableID);
 			var rowCount = table.rows.length;
-
+			
 			for(var i=0; i<rowCount; i++) {
 				var row = table.rows[i];
+				var row = table.rows[i];
 				var chkbox = row.cells[0].childNodes[0];
+				var chkbox = row.cells[1].childNodes[1];
 				if(null != chkbox && true == chkbox.checked) {
 					if(rowCount <= 1) {
 						alert("You can not delete all tabele rows.");
@@ -368,13 +397,14 @@ compitableDevice.addEventListener("focus", function (evt) {
 			}
 			}catch(e) {
 				alert(e);
+				console.log(e);
 			}
 		}
 </script>
 
 
-<!-- Create datalist to populate search -->
-<script type="text/javascript">
+	<!-- Create datalist to populate search -->
+	<script type="text/javascript">
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');

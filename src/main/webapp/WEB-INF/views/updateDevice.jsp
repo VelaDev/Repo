@@ -8,10 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />"  />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <style>
 li {
 	list-style: none;
@@ -42,7 +46,7 @@ li {
 
 				<div class="panel-body">
 					<div class="tab-content">
-						
+
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="updateProduct" modelAttribute="updateProduct"
@@ -74,7 +78,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input type="text"
-													id="Company Email"companyEmail id="companyEmail" name="companyEmail" readonly="readonly"
+													id="Company Email" companyEmail id="companyEmail"
+													name="companyEmail" readonly="readonly"
 													placeholder="Company Email" class="form-control"
 													value="${productObject.customer.email}">
 											</div>
@@ -88,14 +93,15 @@ li {
 										style="width: auto; display: table;">
 										<p class="customerAddress_title">Customer Address
 										<ul class="address_list" style="display: block;">
-											<li id="streetName">${productObject.customer.streetNumber} ${productObject.customer.streetName}</li>
+											<li id="streetName">${productObject.customer.streetNumber}
+												${productObject.customer.streetName}</li>
 											<li id="city_town">${productObject.customer.city_town}</li>
 											<li id="zipcode">${productObject.customer.zipcode}</li>
 										</ul>
 										</p>
 
 									</div>
-								</div>							
+								</div>
 
 								<br>
 							</fieldset>
@@ -157,7 +163,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="cellphoneNumber" name="cellphone"
-													placeholder="Cellphone No" maxlength="10" class="form-control" type="text"
+													placeholder="Cellphone No" maxlength="10"
+													class="form-control" type="text"
 													onkeypress="return isNumber(event)"
 													value="${productObject.contactPerson.cellphone}">
 											</div>
@@ -172,7 +179,8 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="tellphoneNumber" name="tellphone"
-													placeholder="Tellphone No" maxlength="10" class="form-control" type="text"
+													placeholder="Tellphone No" maxlength="10"
+													class="form-control" type="text"
 													onkeypress="return isNumber(event)"
 													value="${productObject.contactPerson.telephone}">
 
@@ -184,11 +192,11 @@ li {
 								<!-- /Contact Person  -->
 
 							</fieldset>
-							
+
 
 							<fieldset>
 								<legend>Machine Details</legend>
-								
+
 								<!--First Column-->
 								<div class="col-md-6">
 
@@ -200,9 +208,9 @@ li {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													name="serialNumber" id="serialNumber"
-													onkeydown="upperCaseF(this)" readonly="readonly" placeholder="Serial Number"
-													class="form-control" type="text"
-													value="${productObject.serialNumber}">
+													onkeydown="upperCaseF(this)" readonly="readonly"
+													placeholder="Serial Number" class="form-control"
+													type="text" value="${productObject.serialNumber}">
 											</div>
 										</div>
 									</div>
@@ -214,7 +222,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="modelNumber" id="modelNumber" onkeydown="upperCaseF(this)" placeholder="Model Number"
+													name="modelNumber" id="modelNumber"
+													onkeydown="upperCaseF(this)" placeholder="Model Number"
 													class="form-control" type="text"
 													value="${productObject.modelNumber}">
 											</div>
@@ -273,7 +282,8 @@ li {
 
 									<!-- Select type Mono/Colour-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Mono/Colour Reading</label>
+										<label class="col-md-3 control-label">Mono/Colour
+											Reading</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
@@ -295,8 +305,9 @@ li {
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
-													placeholder="Enter Colour Reading" onkeypress="return isNumber(event)" name="colourReading"
-													id="colourReading" value="${productObject.colour}" //>
+													placeholder="Enter Colour Reading"
+													onkeypress="return isNumber(event)" name="colourReading"
+													id="colourReading" value="${productObject.colour}" />
 											</div>
 											<br />
 										</div>
@@ -305,7 +316,8 @@ li {
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
-													placeholder="Enter Mono Reading" onkeypress="return isNumber(event)" name="monoReading"
+													placeholder="Enter Mono Reading"
+													onkeypress="return isNumber(event)" name="monoReading"
 													id="monoReading" onkeypress="return isNumber(event)"
 													value="${productObject.monoReading}" />
 											</div>
@@ -316,9 +328,10 @@ li {
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control" onkeypress="return isNumber(event)" name="mono"
+												<input type="text" class="form-control"
+													onkeypress="return isNumber(event)" name="monoReading"
 													placeholder="Enter Mono Reading" id="mono"
-													 onkeypress="return isNumber(event)"
+													onkeypress="return isNumber(event)"
 													value="${productObject.monoReading}" />
 											</div>
 										</div>
@@ -329,7 +342,7 @@ li {
 
 								<!--Second column-->
 								<div class="col-sm-6">
-								
+
 									<!-- Text input Street Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street No</label>
@@ -343,7 +356,7 @@ li {
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street Name</label>
@@ -351,7 +364,8 @@ li {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
-													id="streetName" name="streetName" placeholder="Street Name" class="form-control" type="text"
+													id="streetName" name="streetName" placeholder="Street Name"
+													class="form-control" type="text"
 													value="${productObject.streetName}">
 											</div>
 										</div>
@@ -405,20 +419,21 @@ li {
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
 								<!--/S Column-->
 
 							</fieldset>
 
-							
+
 							<!--Machine Accessories-->
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
 
-								<div class="tablemachinesacccso">								
-									<table id="tableselect" class="table table-striped table-bordered table-hover table-condensed">
-	
+								<div class="tablemachinesacccso">
+									<table id="tableselect"
+										class="table table-striped table-bordered table-hover table-condensed">
+
 										<thead>
 											<tr>
 												<th>Machine Type</th>
@@ -427,62 +442,91 @@ li {
 										</thead>
 										<tbody>
 											<tr>
-												<td><input type="checkbox" id="bridgeunitserial" name="bridgeUnitSerialType"> Bridge
-													unit</td>
-												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="bridgeunit" name="bridgeUnitSerialTypeSerialNo" disabled="disabled" value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }" ></td>
+												<td><input type="checkbox" id="bridgeunitserial"
+													name="bridgeUnitSerialType"> Bridge unit</td>
+												<td><input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="bridgeunit"
+													name="bridgeUnitSerialTypeSerialNo" disabled="disabled"
+													value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }"></td>
 											</tr>
 											<tr>
-												<td><input type="checkbox" class="select" id="finisher" name="finisherType"> Finisher</td>
-												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="finisherserial" name="finisherTypeSerialNo" disabled="disabled" value="${AccessoryObject.finisherTypeSerialNo }"></td>
+												<td><input type="checkbox" class="select" id="finisher"
+													name="finisherType"> Finisher</td>
+												<td><input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="finisherserial"
+													name="finisherTypeSerialNo" disabled="disabled"
+													value="${AccessoryObject.finisherTypeSerialNo }"></td>
 											</tr>
 											<tr>
-												<td><input type="checkbox" class="select" id="faxunit" name="faxUnitSerialType"> Fax Unit</td>
-												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="faxunitserial" name="faxUnitSerialTypeSerialNo" disabled="disabled" value="${AccessoryObject.faxUnitSerialTypeSerialNo }"></td>
+												<td><input type="checkbox" class="select" id="faxunit"
+													name="faxUnitSerialType"> Fax Unit</td>
+												<td><input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="faxunitserial"
+													name="faxUnitSerialTypeSerialNo" disabled="disabled"
+													value="${AccessoryObject.faxUnitSerialTypeSerialNo }"></td>
 											</tr>
 											<tr>
-												<td><input type="checkbox" class="select" id="onebintrayserial" name="bridgeUnitSerialType"> One
-													bin tray</td>
-												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="onebintray" name="OneBinTrayTypeSerialNo" disabled="disabled" value="${AccessoryObject.oneBinTrayTypeSerialNo }"></td>
-											</tr>											
+												<td><input type="checkbox" class="select"
+													id="onebintrayserial" name="bridgeUnitSerialType">
+													One bin tray</td>
+												<td><input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="onebintray"
+													name="OneBinTrayTypeSerialNo" disabled="disabled"
+													value="${AccessoryObject.oneBinTrayTypeSerialNo }"></td>
+											</tr>
 											<tr>
-												<td><input type="checkbox" class="select" id="ltcserial" name="ltcType"> LCT</td>
-												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="lct" name="ltcTypeSerial" disabled="disabled" value="${AccessoryObject.ltcTypeSerial }"></td>
-											</tr>											
+												<td><input type="checkbox" class="select"
+													id="ltcserial" name="ltcType"> LCT</td>
+												<td><input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="lct" name="ltcTypeSerial"
+													disabled="disabled"
+													value="${AccessoryObject.ltcTypeSerial }"></td>
+											</tr>
 											<tr>
-												<td><input type="checkbox" class="select" id="creserial" name="creType"> Credenza</td>
-												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="cre" name="creTypeserial" disabled="disabled" value="${AccessoryObject.credenzaSerialNo }"></td>
-											</tr>											
+												<td><input type="checkbox" class="select"
+													id="creserial" name="creType"> Credenza</td>
+												<td><input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="cre" name="creTypeserial"
+													disabled="disabled"
+													value="${AccessoryObject.credenzaSerialNo }"></td>
+											</tr>
 											<tr>
-												<td><input type="checkbox" class="select" id="addserial" name="addType"> Additional paper trays</td>
-												<td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="add" name="addTypeserial" disabled="disabled" value="${AccessoryObject.additionalPaperTraysTypeSerial }"></td>
+												<td><input type="checkbox" class="select"
+													id="addserial" name="addType"> Additional paper
+													trays</td>
+												<td><input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="add" name="addTypeserial"
+													disabled="disabled"
+													value="${AccessoryObject.additionalPaperTraysTypeSerial }"></td>
 											</tr>
 										</tbody>
 									</table>
-								
-								<br>
-								
-								
-								<div class="row">
-								
-								<div class="form-group">
-										<label class="col-xs-1 control-label">Others</label>
-										<div class="col-xs-4">
-											<input type="text" class="form-control" name="machinetype" id="machinetype"
-												placeholder="Machine Accessory Type" />
+
+									<br>
+
+
+									<div class="row">
+
+										<div class="form-group">
+											<label class="col-xs-1 control-label">Others</label>
+											<div class="col-xs-4">
+												<input type="text" class="form-control" name="machinetype"
+													id="machinetype" placeholder="Machine Accessory Type" />
+											</div>
+											<div class="col-xs-4">
+												<input type="text" class="form-control"
+													onkeydown="upperCaseF(this)" id="serialNumberOtherAcco"
+													name="serialNumberOtherAcco" placeholder="Serial Number" />
+											</div>
+											<div class="col-xs-1">
+												<img class="add right"
+													src="resources/bootstrap-3.3.6/images/add.png" />
+											</div>
 										</div>
-										<div class="col-xs-4">
-											<input type="text" class="form-control"
-												onkeydown="upperCaseF(this)" id="serialNumberOtherAcco"
-												name="serialNumberOtherAcco" placeholder="Serial Number" />
-										</div>
-										<div class="col-xs-1">
-											<img class="add right"  src="resources/bootstrap-3.3.6/images/add.png" />
-										</div>
-								</div>
-									
-								</div>
-								
-								<!-- <div class="row">
+
+									</div>
+
+									<!-- <div class="row">
 
 									<div class="form-group">
 										<label class="col-xs-1 control-label">Others</label>
@@ -523,21 +567,23 @@ li {
 
 								</div> -->
 
-							</div>
-							
+								</div>
+
 							</fieldset>
-							
+
 							<br>
 							<div class="centerbutton">
 								<div class="form-group row">
 									<div class="col-sm-4">
-										<input type="submit" id="updateProduct" name="updateProduct" value="Update Device" class="btn btn-primary btn-block" tabindex="9">
+										<input type="submit" id="updateProduct" name="updateProduct"
+											value="Update Device" class="btn btn-primary btn-block"
+											tabindex="9">
 									</div>
 								</div>
 							</div>
 						</form:form>
-						
-						
+
+
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -553,13 +599,17 @@ li {
 	<!-- / velaphanda_containter -->
 
 	<!-- Scripts -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
-  
-<!-- Check if checkboxes are checked, if checked enable input text -->
+
+	<!-- Check if checkboxes are checked, if checked enable input text -->
 	<script type="text/javascript">
 		document.getElementById('bridgeunitserial').onchange = function() {
 			document.getElementById('bridgeunit').disabled = !this.checked;
@@ -590,12 +640,12 @@ li {
 </script>
 
 
-<!-- Add Other Accessories -->
-<script type="text/javascript">
+	<!-- Add Other Accessories -->
+	<script type="text/javascript">
 </script>
 
-<!-- Validate add device -->
-<script>
+	<!-- Validate add device -->
+	<script>
 $(document).ready(function() {
     $('#updateDevice').bootstrapValidator({
         //framework: 'bootstrap',
@@ -1076,8 +1126,8 @@ $(document).ready(function() {
 
 </script>
 
-<!-- Make all Serials numbers UpperCase  -->
-<script type="text/javascript">
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
 	function upperCaseF(a){
 	    setTimeout(function(){
 	        a.value = a.value.toUpperCase();
@@ -1107,8 +1157,8 @@ $(document).ready(function() {
         }
     </script>
 
-<!-- Accept alphanumeric characters only -->
-<script type="text/javascript">
+	<!-- Accept alphanumeric characters only -->
+	<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -1119,8 +1169,8 @@ function isNumber(evt) {
 }
 </script>
 
-<!--Compare start, end and installation date  between each other-->
-<script type="text/javascript">
+	<!--Compare start, end and installation date  between each other-->
+	<script type="text/javascript">
 
 $("#startDate, #endDate, #installationDate " ).datepicker();
 
@@ -1149,8 +1199,8 @@ $("#installationDate").change(function () {
 });
 </script>
 
-<!-- Enable datepicker for start, end and install date-->
-<script type="text/javascript">
+	<!-- Enable datepicker for start, end and install date-->
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
@@ -1158,9 +1208,9 @@ $("#installationDate").change(function () {
 		        autoclose: true
 			});
 		});
-</script> 
+</script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
 			format : "yyyy-mm-dd",
@@ -1168,9 +1218,9 @@ $("#installationDate").change(function () {
 	        autoclose: true
 		});
 	});
-</script> 
+</script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#installDatePicker').datepicker({
 				format : "yyyy-mm-dd",

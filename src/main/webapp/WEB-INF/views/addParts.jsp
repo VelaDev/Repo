@@ -21,46 +21,19 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
-select[multiple], select[size] {
-	width: 120%;
-	height: 100%;
-}
-
-.col-sm-6 {
-	width: 50%;
-}
-
-.buttonAddSpare {
-	padding-left: 10%;
-	margin-right: -12%;
-}
 
 .form-group-model {
 	margin-left: 10%;
 }
-
-.buttonsCompitableDevice {
-	margin-left: -11%;
+.groupsparedetails, .groupsearchdetails{
+	padding:20px;
 }
-
 .groupsparedetails {
-	float: left;
-	padding-left: 10%;
-	margin-top: -12%;
+	float:left;
+	width:50%;
 }
-
 .groupsearchdetails {
-	float: right;
-	margin-right: -9%;
-}
-
-.content {
-	margin-left: -61%;
-	width: 180%;
-}
-.spareDevice {
-	margin-left:42%;
-	margin-right:32;
+	overflow:hidden;
 }
 
 </style>
@@ -78,11 +51,11 @@ select[multiple], select[size] {
 					</c:out>
 				</div>
 			</c:if>
-
-			<%-- <c:if test="${empty models}">
+			
+			<%--  <c:if test="${empty models}">
 				<c:out value="${models}"></c:out>
-			</c:if> --%>
-
+			</c:if>--%>
+			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -131,52 +104,29 @@ select[multiple], select[size] {
 						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
 							method="post" id="saveSpareParts">
 
-							<div class="col-xs-10">
-								<div class="groupdetails-row-padding">
+							<!-- group spare details -->
+								<div class="groupsparedetails">
+								<legend>Spares</legend>
+								
+								<div class="row">
+									<div class="col-xs-12">
+										<div class="col-xs-4 form-control-label">
+											<h6>
+												<label>Maintain New Spares</label>
+											</h6>
 
-									<div class="content"></div>
-
-									<!-- group search details -->
-									<div class="groupsearchdetails">
-										<legend>Compatible Devices </legend>
-										<div class="buttonsCompitableDevice">
-											<div class='spareDevice'>
-												<a href="javascript:void(0);" id='anc_add' class="info-button">Add</a> 
-												<a href="javascript:void(0);" id='anc_rem' class="info-button-danger">Remove</a>
-												<div style="clear: both; margin: 10px 0;"></div>
-
-												<table id="tbl1"
-													class="table table-striped table-bordered table-hover table-condensed">
-													<thead>
-														<tr>
-															<th><span id="spn_col_1">Model Number</span></th>
-															<th><span id="spn_col_2">Action</span></th>
-														</tr>
-													</thead>
-													<tbody>
-													
-													<c:forEach var="compitableDevice" items="${models}">
-														<tr> 
-														    <td class="col_1"><input type="text" name="compitableDevice"
-																value="${compitableDevice}"></td>
-															<td class="col_2"><input type="checkbox"
-																name="compitableDevice" value=""></td>
-													 		
-														</tr>
-													</c:forEach>
-													
-													</tbody>
-												</table>
+										</div>
+										<div class="col-xs-8">
+											<div class="form-group">
+												<div class="input-group">
+													<input type="checkbox" id="checkSpares" name="checkSparess" value="true">
+												</div>
 											</div>
 										</div>
 									</div>
-									<!-- //group search details -->
 								</div>
-							</div>
-
-							<div class="groupsparedetails">
-								<legend>Spares</legend>
-
+								
+								
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="col-xs-4 form-control-label">
@@ -188,8 +138,8 @@ select[multiple], select[size] {
 										<div class="col-xs-8">
 											<div class="form-group">
 												<div class="input-group">
-													<input type="text" id="partNumber" name="partNumber"
-														class="form-control" value="${sparePart.partNumber}"
+													<input type="text" id="partNum" name="partNumber"
+														class="form-control" readOnly value="${sparePart.partNumber}"
 														class="partNo">
 												</div>
 											</div>
@@ -210,7 +160,7 @@ select[multiple], select[size] {
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="itemType" name="itemType"
-														class="form-control" value="${sparePart.itemType}">
+														class="form-control" readOnly value="${sparePart.itemType}">
 												</div>
 											</div>
 										</div>
@@ -229,7 +179,7 @@ select[multiple], select[size] {
 											<div class="form-group">
 												<div class="input-group">
 													<input type="text" id="description" name="description"
-														class="form-control" value="${sparePart.description}">
+														class="form-control" readOnly value="${sparePart.description}">
 												</div>
 											</div>
 										</div>
@@ -275,17 +225,33 @@ select[multiple], select[size] {
 										</div>
 									</div>
 								</div>
+						</div>
+						<!-- //group spare details -->
+	
+						<!-- group search details -->
+						<div class="groupsearchdetails">
+								<legend>Compatible Devices </legend>
+								<input type="button" value="Add Row" onclick="addRow('compitableDev')" />
+								<input type="button" value="Delete Row" onclick="deleteRow('compitableDev')" /><br/><br/>
+								<label class="col-md-3 control-label">Action</label>
+								<label class="col-md-3 control-label">Model Number</label>
+								
+								<table id="compitableDev" class="table table-striped table-bordered table-hover table-condensed">	
+										<tr>
+											<td><input type="checkbox" value="true" name="compitableDevice" /></td>											
+											<c:forEach var="compitableDevice" items="${models}">									
+											<td><input type="text" class="form-control" readOnly id="compitableDevice" name="compitableDevice" value="${compitableDevice}"></td>
+											</c:forEach>
+											<td><input type="text" class="form-control" readOnly id="compitableDevice" name="compitableDevice" value=""></td>
+										</tr>
+								</table>								
+						</div><!-- //group search details -->	
+	
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<br> <br> <input type="submit" value="Add Spare" class="btn btn-primary btn-block btn-lg" tabindex="9" id="addSpare">
 							</div>
-							<!-- //group spare details -->
-
-
-							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
-									<br> <br> <input type="submit" value="Add Spare"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="addSpare">
-								</div>
-							</div>
+						</div>
 
 						</form:form>
 						<p id="getme"></p>
@@ -315,73 +281,95 @@ select[multiple], select[size] {
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
-
-<!-- Table for spares -->
+<!--if part number does not exist ccome here-->
 <script>
-	$(document)
-			.ready(
-					function() {
-						var cnt = 2;
-						//var input = $("input[name='modelNumber']").val();
-						//input = ${list1}
-						$("#anc_add")
-								.click(
-										function() {
-											$('#tbl1 tr')
-													.last()
-													.after(
-															'<tr><td class="col_1"><input type="text" name="compitableDevice'  + $(this).val() +  '" value="'  +  $(this).val() + '"></td><td class="col_2"><input type="checkbox" name="txtbx2' + $(this).val() +  '" value="' + $(this).val()  + '"></td></tr>'
-															
-														);
-											cnt++;
-										});
 
-						$("#anc_rem").click(function() {
-							$('#tbl1 tr:last-child').remove();
-							cnt--;
-						});
+// Validate "checkSpares" textbox
+var checkSpares = document.getElementById("checkSpares");
 
-						$('#chk_col_1').click(
-								function() {
-									if ($('#chk_col_1').is(':checked')) {
-										$("#tbl1 .col_1 input").attr(
-												'disabled', 'disabled');
-										$('#spn_col_1').text('Enable Col');
-									} else {
-										$("#tbl1 .col_1 input").removeAttr(
-												'disabled');
-										$('#spn_col_1').text('Disable Col');
-									}
-								});
+var partNum = document.getElementById("partNum");
+var itemType = document.getElementById("itemType");
+var description = document.getElementById("description");
+var compitableDevice = document.getElementById("compitableDevice");
 
-						$('#chk_col_2').click(
-								function() {
+checkSpares.addEventListener("click", function () {
+	partNum.readOnly = !checkSpares.checked;
+	itemType.readOnly = !checkSpares.checked;
+	description.readOnly = !checkSpares.checked;
+	compitableDevice.readOnly = !checkSpares.checked;
+});
+partNum.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    partNum.readOnly = !checkSpares.checked;
+});
+itemType.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    itemType.readOnly = !checkSpares.checked;
+});
+description.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    description.readOnly = !checkSpares.checked;
+});
+compitableDevice.addEventListener("focus", function (evt) {
+     // Checkbox must be checked before data can be entered into textbox
+    compitableDevice.readOnly = !checkSpares.checked;
+});
 
-									if ($('#chk_col_2').is(':checked')) {
-										$("#tbl1 .col_2 input").attr(
-												'disabled', 'disabled');
-										$('#spn_col_2').text('Enable Col');
-									} else {
-										$("#tbl1 .col_2 input").removeAttr(
-												'disabled');
-										$('#spn_col_2').text('Disable Col');
-									}
-								});
+</script>
+<!-- Table for compitable device for partnumber -->
+<script language="javascript">
 
-						$('#chk_col_3').click(
-								function() {
-									if ($('#chk_col_3').is(':checked')) {
-										$("#tbl1 .col_3 input").attr(
-												'disabled', 'disabled');
-										$('#spn_col_3').text('Enable Col');
-									} else {
-										$("#tbl1 .col_3 input").removeAttr(
-												'disabled');
-										$('#spn_col_3').text('Disable Col');
-									}
-								});
+		//add row on table
+		function addRow(tableID) {
+			
+			var table = document.getElementById(tableID);
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+			var colCount = table.rows[0].cells.length;
 
-					});
+			for(var i=0; i<colCount; i++) {
+
+				var newcell	= row.insertCell(i);
+
+				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+				//alert(newcell.childNodes);
+				switch(newcell.childNodes[0].type) {
+					case "text":
+							newcell.childNodes[0].value = "";
+							break;
+					case "checkbox":
+							newcell.childNodes[0].checked = false;
+							break;
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+				}
+			}
+		}
+		//delete row
+		function deleteRow(tableID) {
+			try {
+			var table = document.getElementById(tableID);
+			var rowCount = table.rows.length;
+
+			for(var i=0; i<rowCount; i++) {
+				var row = table.rows[i];
+				var chkbox = row.cells[0].childNodes[0];
+				if(null != chkbox && true == chkbox.checked) {
+					if(rowCount <= 1) {
+						alert("You can not delete all tabele rows.");
+						break;
+					}
+					table.deleteRow(i);
+					rowCount--;
+					i--;
+				}
+
+			}
+			}catch(e) {
+				alert(e);
+			}
+		}
 </script>
 
 

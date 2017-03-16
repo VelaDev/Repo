@@ -51,9 +51,9 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public OrdersHeader getOrder(String orderNum) {
+	public OrdersHeader getOrder(Integer recordID) {
 	
-		return ordersDAO.getOrder(orderNum);
+		return ordersDAO.getOrder(recordID);
 	}
 
 	@Override
@@ -72,8 +72,8 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public String approveOrder(String orderNum) {
-		return ordersDAO.approveOrder(orderNum);
+	public String approveOrder(Integer recordID) {
+		return ordersDAO.approveOrder(recordID);
 	}
 
 	@Override

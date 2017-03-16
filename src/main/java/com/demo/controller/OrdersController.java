@@ -83,12 +83,12 @@ public class OrdersController {
 	} 
 	
 	@RequestMapping("approveOrder")
-    public ModelAndView getOrderDetails(@RequestParam String id, @ModelAttribute OrdersHeader ordersHeader) {
+    public ModelAndView getOrderDetails(@RequestParam Integer recordID, @ModelAttribute OrdersHeader ordersHeader) {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-		      ordersHeader = ordersServiceInt.getOrder(id);
+		      ordersHeader = ordersServiceInt.getOrder(recordID);
 		      if(ordersHeader !=null){
 		    	  model.setViewName("orderUpdate");
 		          model.addObject("orderObject", ordersHeader);
@@ -164,14 +164,13 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value="approveOrder",method=RequestMethod.GET)
-	public ModelAndView approveOrder(@RequestParam("orderNum") String orderNum,@ModelAttribute OrderDetails orderDetails){
+	public ModelAndView approveOrder(@RequestParam("recordID") Integer recordID,@ModelAttribute OrderDetails orderDetails){
 		model = new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			
-			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(orderNum));
-			model.addObject("OrderNum", ordersServiceInt.getOrder(orderNum));
+			model.addObject("pendingOrderList",orderDetailsInt.getOrderDetailsByOrderNum(recordID) );
+			model.addObject("RecordID", ordersServiceInt.getOrder(recordID));
 			model.setViewName("approveOrder");
 		}
 		else{
@@ -181,13 +180,13 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value="approveOrderItems",method=RequestMethod.POST)
-	public ModelAndView approveOrderItems(@RequestParam("orderNum") String orderNum){
+	public ModelAndView approveOrderItems(@RequestParam("recordID") Integer recordID){
 		model = new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
-			model.addObject("retMessage", ordersServiceInt.approveOrder(orderNum));
+			model.addObject("retMessage", ordersServiceInt.approveOrder(recordID));
 			model.setViewName("approveOrder");
 		}
 		else{
@@ -197,14 +196,14 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value="detailedOrders",method=RequestMethod.GET)
-	public ModelAndView detailedOrders(@RequestParam("orderNum") String orderNum){
+	public ModelAndView detailedOrders(@RequestParam("recordID") Integer recordID){
 		model = new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
-			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(orderNum));
-			model.addObject("OrderNum", ordersServiceInt.getOrder(orderNum));
+			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.setViewName("detailedOrders");
 		}
 		else{
@@ -214,13 +213,13 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value="deliveryNote",method=RequestMethod.GET)
-	public ModelAndView deliveries(@RequestParam("orderNum") String orderNum){
+	public ModelAndView deliveries(@RequestParam("recordID") Integer recordID){
 		model = new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			OrdersHeader order = ordersServiceInt.getOrder(orderNum);
-			List<OrderDetails> list = orderDetailsInt.getOrderDetailsByOrderNum("key",orderNum);
+			OrdersHeader order = ordersServiceInt.getOrder(recordID);
+			List<OrderDetails> list = orderDetailsInt.getOrderDetailsByOrderNum("key",recordID);
 			model.addObject("pendingOrderList",list );
 			model.addObject("OrderNum", order);
 			model.addObject("contactPerson", contactDetailsServiceInt.getContactPerson(order.getCustomer().getCustomerName()));

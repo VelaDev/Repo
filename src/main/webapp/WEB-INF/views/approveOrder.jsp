@@ -46,9 +46,9 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <input id="technician"
-												name="orderNum" placeholder="Order Number"
+												name="recordID" placeholder="Order Number"
 												class="form-control" type="text"
-												value="${OrderNum.orderNum}">
+												value="${RecordID.recordID}" readonly="readonly">
 										</div>
 									</div>
 								</div>

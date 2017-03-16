@@ -58,10 +58,10 @@
 										<td>${list.stockType}</td>
 										<td>${list.customer.customerName}</td>
 										<td><a
-											href="approveOrder?orderNum=<c:out value='${list.orderNum}'/>"><button
+											href="approveOrder?recordID=<c:out value='${list.recordID}'/>"><button
 													class="btn btn-success">Details</button></a></td>
 										<td><a
-											href="deliveryNote?orderNum=<c:out value='${list.orderNum}'/>">
+											href="deliveryNote?recordID=<c:out value='${list.recordID}'/>">
 
 												<c:choose>
 													<c:when test="${list.status =='Approved'}">

@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CompatibilityBean {
-
 	private String modelNumber;
 	private String partNumber;
+	
 }

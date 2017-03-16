@@ -18,9 +18,9 @@ public class OrderDetailsService implements OrderDetailsInt{
 	private OrderDetailsDaoInt orderDetailsDaoInt;
 
 	@Override
-	public List<OrderDetails> getOrderDetailsByOrderNum(String orderNum) {
+	public List<OrderDetails> getOrderDetailsByOrderNum(Integer recordID) {
 		
-		return orderDetailsDaoInt.getOrderDetailsByOrderNum(orderNum);
+		return orderDetailsDaoInt.getOrderDetailsByOrderNum(recordID);
 	}
 
 	@Override
@@ -42,9 +42,9 @@ public class OrderDetailsService implements OrderDetailsInt{
 
 	@Override
 	public List<OrderDetails> getOrderDetailsByOrderNum(String key,
-			String orderNum) {
+			Integer recordID) {
 		
-		return orderDetailsDaoInt.getOrderDetailsByOrderNum(key, orderNum);
+		return orderDetailsDaoInt.getOrderDetailsByOrderNum(key, recordID);
 	}
 
 }

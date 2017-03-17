@@ -6,17 +6,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
-<link
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
-	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/comfirm_alerts/css/main.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/comfirm_alerts/css/confirm.css" />">
 
 </head>
 <body>

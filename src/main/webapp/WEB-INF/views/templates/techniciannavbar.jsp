@@ -56,7 +56,6 @@
 						aria-expanded="false">Orders<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="order.html"/>'>Make Order</a></li>
-							<li><a href='<c:url value="viewPendingOrders.html"/>'>Pending Orders</a></li>
 							<li><a href='<c:url value="viewApprovedOrders.html"/>'>View Approved Orders</a></li>
 						</ul>
 					</li>

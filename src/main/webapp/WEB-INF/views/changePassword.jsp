@@ -6,12 +6,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
-<link
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
-	rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
+	 />
 
 </head>
 <body>
@@ -160,85 +157,41 @@
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													
-										            newpassword: {
-										                validators: {
-										                    notEmpty: {
-										                        message: 'You cant leave this empty'
-										                    },
-										                    identical: {
-										                    	
-										                    	  field: 'confirmpassword',
-										                          message: 'Password are not the same'
-										                        
-										                              
-										                    },
-										                    callback:{
-										                        message: 'The password is not valid',
-										                        callback: function(value, password, $field){
-										                            if(value===''){
-										                                return true;
-										                             }
-
-										                         // Check the password strength
-										                         //It must contain at least one upper case character
-										                         //It must contain at least one lower case character
-										                         //It must contain atleast one special character
-										                         //It must contain at least one digit
-										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*[!@#$%^&]/) < 0 ) {
-										                                return {
-										                                    valid: false,
-										                                    //message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
-										                                };
-										                            }
-
-										             										                            
-										                            return true;
-										                        }               
-
-										                    }
-
-										                }          
-										            } ,
-										         
-										            confirmpassword: {
-										                validators: {
-										                    notEmpty: {
-										                        message: 'You cant leave this empty'
-										                    },
-										                    identical: {
-										                    	
-										                    	  field: 'newpassword',
-										                          message: 'Password are not the same'
-										                        
-										                              
-										                    },
-										                    callback:{
-										                        message: 'The password is not valid',
-										                        callback: function(value, password, $field){
-										                            if(value===''){
-										                                return true;
-										                             }
-
-										                        	 // Check the password strength
-											                         //It must contain at least one upper case character
-											                         //It must contain at least one lower case character
-											                         //It must contain atleast one special character
-											                         //It must contain at least one digit
-										                            if (value.length < 4 || value === value.toLowerCase() || value === value.toUpperCase() || value.search(/[0-9-()]*[1-9][0-9-()]*[*!@#$%^&*]*/) < 0) {
-										                                return {
-										                                    valid: false,
-										                                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, at least one special character and  at least one digit'
-										                                };
-										                            }
-
-										                            return true;
-										                        }               
-
-										                    }
-
-										                }          
-										            }
+													 // Check the password strength
+							                         //It must contain at least one upper case character
+							                         //It must contain at least one lower case character
+							                         //It must contain atleast one special character
+							                         //It must contain at least one digit
+													newpassword: {
+											            validators: {
+											                identical: {
+											                    field: 'confirmPassword',
+											                    message: 'The password and its confirm are not the same'
+											                },
+															regexp: {
+											                    regexp: /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g,
+											                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, one special character and  at least one digit'
+											            	}
+											            }
+											        },
+											        // Check the password strength
+							                         //It must contain at least one upper case character
+							                         //It must contain at least one lower case character
+							                         //It must contain atleast one special character
+							                         //It must contain at least one digit
+											        confirmpassword: {
+											            validators: {
+											                identical: {
+											                    field: 'newpassword',
+											                    message: 'The password and its confirm are not the same'
+											                },
+															regexp: {
+											                    regexp: /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g,
+											                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, one special character and  at least one digit'
+											            	}
+																					               
+											            }
+											        }
 
 												}
 											});

@@ -28,7 +28,7 @@
 					class="glyphicon glyphicon-user btn-lg "> ${user}</span><span
 					class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
-					<li><a href='<c:url value="login.html"/>'>Log Out</a></li>
+					<li><a href='<c:url value="login.html"/>'><span	class="glyphicon glyphicon-off"></span> Log Out</a></li>
 				</ul></li>
 		</ul>
 	</div>

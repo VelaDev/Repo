@@ -7,18 +7,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <style>
-li {
-	list-style: none;
-}
+li { list-style: none;}
 </style>
 
 <title>Add Product | Velaphanda Trading & Projects</title>
@@ -283,7 +278,7 @@ li {
 										</div>
 									</div>
 
-
+									<!-- Both mono and colour reading  -->
 									<div id="colour" style="display: none;">
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
@@ -306,7 +301,9 @@ li {
 													id="monoReading">
 											</div>
 										</div>
-									</div>
+									</div><!-- Both mono and colour reading  -->
+									
+									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
 									<div class="form-group">
 										<label class="col-md-3 control-label"></label>
@@ -316,7 +313,9 @@ li {
 												placeholder="Enter Mono Reading" id="mono"
 												style="display: none;">
 										</div>
-									</div>
+									</div><!-- //Only mono Reading -->
+									
+									
 								</div>
 								<!--/First Column-->
 

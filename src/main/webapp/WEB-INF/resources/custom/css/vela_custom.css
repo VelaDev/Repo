@@ -86,7 +86,7 @@ div#container{
     font-size: 100%;
 }
 ul.address_list {
-    margin-left: -32%;
+    margin-left: 2%;
 }
 #payment_container {
 	/* background: #f9f9f9; */
@@ -150,8 +150,9 @@ ul.address_list {
 }
 
 p.contactPerson_title, p.customerAddress_title{
-	font-size: 1.1em;
-	font-weight:bolder;
+	 font-size: 1.1em;
+    font-weight: bolder;
+    margin-left: 23%
 }
 
 

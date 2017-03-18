@@ -282,7 +282,7 @@ li { list-style: none;}
 									<div id="colour" style="display: none;">
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
-											<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													onkeypress="return isNumber(event)"
@@ -293,7 +293,7 @@ li { list-style: none;}
 										</div>
 										<!-- Text checkbox Mono Reading-->
 										<div class="form-group">
-											<label class="col-md-3 control-label"></label>
+											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													onkeypress="return isNumber(event)"
@@ -305,16 +305,17 @@ li { list-style: none;}
 									
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
-									<div class="form-group">
-										<label class="col-md-3 control-label"></label>
-										<div class="col-md-6">
+									<div class="mono" id="mono" style='display: none;'>
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6">
 											<input type="text" class="form-control"
-												onkeypress="return isNumber(event)" name="mono"
+												onkeypress="return isNumber(event)" name="monoReading"
 												placeholder="Enter Mono Reading" id="mono"
 												style="display: none;">
+											</div>
 										</div>
 									</div><!-- //Only mono Reading -->
-									
 									
 								</div>
 								<!--/First Column-->

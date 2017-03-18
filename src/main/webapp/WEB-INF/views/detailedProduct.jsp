@@ -177,8 +177,8 @@ li {
 		
 													</div>
 													<div class="col-xs-8">														
-														<input type="text" class="form-control input-sm" id="colourReading"
-															value="${device.colour}"
+														<input type="text" class="form-control input-sm" name="colourReading" id="colourReading"
+															value="${device.colourReading}"
 															disabled="disabled">
 													</div>
 												</div>

@@ -7,8 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
-	 />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
 
 </head>
 <body>
@@ -127,49 +126,35 @@
 	</div>
 	<!-- / velaphanda_containter -->
 
-	<!-- Validator -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<!-- Password change alert script -->
-	<script>
-	$(document).on('click', ':not(form)[data-confirm]', function(e){
-    if(!confirm($(this).data('confirm'))){
-      e.stopImmediatePropagation();
-      e.preventDefault();
-		}
-	});
-	</script>
+	<!-- Script -->
+	<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" 	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<!-- /Script-->
+	
 	<!-- Validate Reset Password -->
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#changePass')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													 // Check the password strength
-							                         //It must contain at least one upper case character
+		$(document).ready(function() {
+							$('#changePass').bootstrapValidator( {
+							feedbackIcons : {
+								valid : 'glyphicon glyphicon-ok',
+								invalid : 'glyphicon glyphicon-remove',
+								validating : 'glyphicon glyphicon-refresh'
+							},
+							fields : {
+							 // Check the password strength
+							 //It must contain at least one upper case character
 							                         //It must contain at least one lower case character
 							                         //It must contain atleast one special character
 							                         //It must contain at least one digit
-													newpassword: {
+													/* newpassword: {
 											            validators: {
 											                identical: {
 											                    field: 'confirmPassword',
 											                    message: 'The password and its confirm are not the same'
 											                },
 															regexp: {
-											                    regexp: /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g,
+											                    regexp:  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
 											                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, one special character and  at least one digit'
 											            	}
 											            }
@@ -186,16 +171,66 @@
 											                    message: 'The password and its confirm are not the same'
 											                },
 															regexp: {
-											                    regexp: /^[a-zA-Z0-9!@#\$%\^\&*\)\(+=._-]{6,}$/g,
+											                    regexp: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
 											                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, one special character and  at least one digit'
 											            	}
 																					               
 											            }
-											        }
+											        }, */
+											        
+											        newpassword: {
+										                validators: {
+										                    notEmpty: {
+										                        message: 'The password is required and can\'t be empty'
+										                    },
+										                    identical: {
+										                        field: 'confirmpassword',
+										                        message: 'The password and its confirm are not the same'
+										                    },
+										                    stringLength: {
+										                        min: 6,
+										                        message: 'Password must be more than 6 characters long'
+										                    },
+										                    regexp: {
+											                    regexp: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[\d])(?=.*?[^\sa-zA-Z0-9]).{6,}$/,
+											                    message: 'Password must contain at least one upper case, one lower case, one special character and  at least one digit'
+											            	}
+										                }
+										            },
+										            confirmpassword: {
+										                validators: {
+										                    notEmpty: {
+										                        message: 'The confirm password is required and can\'t be empty'
+										                    },
+										                    identical: {
+										                        field: 'newpassword',
+										                        message: 'The password and its confirm are not the same'
+										                    },
+										                    stringLength: {
+										                        min: 6,
+										                        message: 'Password must be more than 6 characters long'
+										                    },
+										                    regexp: {
+										                    	regexp: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[\d])(?=.*?[^\sa-zA-Z0-9]).{6,}$/,
+											                    message: 'Password must contain at least one upper case, one lower case, one special character and  at least one digit'
+											            	}
+										                }
+										            },
 
 												}
 											});
 						});
 	</script>
+	
+	<!-- Password change alert script -->
+	<script>
+	$(document).on('click', ':not(form)[data-confirm]', function(e){
+    if(!confirm($(this).data('confirm'))){
+      e.stopImmediatePropagation();
+      e.preventDefault();
+		}
+	});
+	</script>
+	
 </body>
 </html>

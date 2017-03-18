@@ -61,8 +61,7 @@
 										items="${customerName}">
 										<option value="${list}">
 									</c:forEach> 
-								</datalist>
-								
+								</datalist>								
 
 								<!-- Text input Tellphone Number-->
 								<div class="form-group">

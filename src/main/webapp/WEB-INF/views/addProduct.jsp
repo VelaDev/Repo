@@ -631,17 +631,7 @@ $(document).ready(function() {
 					}
 				},
 				
-				telephoneNumber : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for telephone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for telephone number'
-						}
-					}
-				},
+				
 				companyEmail : {
 					validators : {
 						notEmpty : {
@@ -840,6 +830,17 @@ $(document).ready(function() {
 						phone : {
 							country : 'US',
 							message : 'Please enter 10 digits for cellphone number'
+						}
+					}
+				},
+				telephoneNumber : {
+					validators : {
+						notEmpty : {
+							message : 'Please enter 10 digits for telephone number'
+						},
+						phone : {
+							country : 'US',
+							message : 'Please enter 10 digits for telephone number'
 						}
 					}
 				},

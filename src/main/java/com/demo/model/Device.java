@@ -52,7 +52,8 @@ public class Device implements Serializable{
 	@Column(name="Device_Location")
 	private String deviceLocation;
 	@Column(name="Mono_Colour")
-	private String colour;
+	//private String colour;
+	private String colourReading;
 	@Column(name="Mono_Reading")
 	private String monoReading;
 	@Column(name="Province")

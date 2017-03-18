@@ -302,7 +302,7 @@ li { list-style: none; }
 												<input type="text" class="form-control"
 													placeholder="Enter Colour Reading"
 													onkeypress="return isNumber(event)" name="colourReading"
-													id="colourReading" value="${productObject.colour}" />
+													id="colourReading" value="${productObject.colourReading}" />
 											</div>
 											<br />
 										</div>

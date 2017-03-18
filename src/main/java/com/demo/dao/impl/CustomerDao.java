@@ -40,11 +40,11 @@ public class CustomerDao implements CustomerDaoInt{
 	
 		try{
 			customer = getClientByClientName(localCustomer.getCustomerName());
-			if(customer ==null){
+			if(customer == null){
 				sessionFactory.getCurrentSession().save(localCustomer);
 				retMessage =  "Customer "+ localCustomer.getCustomerName() + " "+ "was successfully added";
 			}
-			else if (customer !=null){
+			else if (customer != null){
 				sessionFactory.getCurrentSession().update(customer);
 				retMessage =  "Customer "+ customer.getCustomerName() + " "+ "Was successfully updated";
 			

@@ -16,17 +16,20 @@ public class CustomerBean {
 	private String faxNumber;
 	private String streetNumber;
 	//Contact person 1
+	private String contactKey;
 	private String firstName;
 	private String lastName;
 	private String telephoneNumber;
 	private String cellphoneNumber;
 	private String email;
+	private String contactType;
 	//Contactperson 2
 	private String firstName1;
 	private String lastName1;
 	private String telephoneNumber1;
 	private String cellphoneNumber1;
 	private String email1;
+	private String contactType1;
 	
 	
 	
@@ -153,6 +156,25 @@ public class CustomerBean {
 	public void setStreetNumber(String streetNumber) {
 		this.streetNumber = streetNumber;
 	}
+	public String getContactType() {
+		return contactType;
+	}
+	public void setContactType(String contactType) {
+		this.contactType = contactType;
+	}
+	public String getContactType1() {
+		return contactType1;
+	}
+	public void setContactType1(String contactType1) {
+		this.contactType1 = contactType1;
+	}
+	public String getContactKey() {
+		return contactKey;
+	}
+	public void setContactKey(String contactKey) {
+		this.contactKey = contactKey;
+	}
 	
+
 	
 }

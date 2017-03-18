@@ -14,7 +14,6 @@ import com.demo.dao.CustomerContactDetailsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.CustomerContactDetails;
 
-
 @Repository("customerContactDetailsDao")
 @Transactional(propagation=Propagation.REQUIRED)
 public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
@@ -28,6 +27,22 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 	public void saveContactDetails(List<CustomerContactDetails> contacts) {
 		try{
 			for(CustomerContactDetails contactDetails:contacts){
+				
+			  			
+				 //Assign Contact Type for Contact 1 and Contact 2
+				 if (contacts.indexOf(contactDetails) == 0)
+				 {
+					 contactDetails.setContactType("Primary");
+					 // ContactKey = Customer Name + Contact Type
+					 contactDetails.setContactKey(contactDetails.getCustomer().getCustomerName().trim() + " " + contactDetails.getContactType().trim());
+				 }
+				 else if((contacts.indexOf(contactDetails) == 1))
+				 {
+					 contactDetails.setContactType("Seconday");
+					 // ContactKey = Customer Name + Contact Type
+					 contactDetails.setContactKey(contactDetails.getCustomer().getCustomerName().trim() + " " + contactDetails.getContactType().trim());
+				 }
+				
 				sessionFactory.getCurrentSession().saveOrUpdate(contactDetails);
 			}
 		}catch(Exception e){
@@ -42,29 +57,40 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
         try{
 			
 			tempContacts = contacts();
-			int count = 0;
+			String currentContactType; 
 			for(CustomerContactDetails temp:tempContacts){
 				
-					if(temp.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
-						
-						if(count ==0){
-							returnCustomerContact.setFirstName(temp.getFirstName());
-							returnCustomerContact.setLastName(temp.getLastName());
-							returnCustomerContact.setEmail(temp.getEmail());
-							returnCustomerContact.setTelephoneNumber(temp.getTelephoneNumber());
-							returnCustomerContact.setCellphoneNumber(temp.getCellNumber());
-						}
-						else if (count ==1){
-							returnCustomerContact.setFirstName1(temp.getFirstName());
-							returnCustomerContact.setLastName1(temp.getLastName());
-							returnCustomerContact.setEmail1(temp.getEmail());
-							returnCustomerContact.setTelephoneNumber1(temp.getTelephoneNumber());
-							returnCustomerContact.setCellphoneNumber1(temp.getCellNumber());
-						}
-						count ++;
+				if(temp.getCustomer().getCustomerName().equalsIgnoreCase(customerName)== true)
+				{
+				    currentContactType = temp.getContactType();
+				if (currentContactType.equals("Primary") == true)
+				   {
+					//Retrieve Primary Contact from Database
+				  if (temp.getContactKey().equals(temp.getCustomer().getCustomerName() + " " + "Primary") == true)
+					{	  
+						returnCustomerContact.setFirstName(temp.getFirstName());
+						returnCustomerContact.setLastName(temp.getLastName());
+						returnCustomerContact.setEmail(temp.getEmail());
+						returnCustomerContact.setTelephoneNumber(temp.getTelephoneNumber());
+						returnCustomerContact.setCellphoneNumber(temp.getCellNumber());
+						returnCustomerContact.setContactType(temp.getContactType());
+
 					}
+				   }
+				   //Retrieve Alternate Contact from Database
+				  else if (currentContactType.equals("Primary") == false)
+				{
+				    if(temp.getContactKey().equals(temp.getCustomer().getCustomerName() + " " + "Seconday") == true)
+						returnCustomerContact.setFirstName1(temp.getFirstName());
+						returnCustomerContact.setLastName1(temp.getLastName());
+						returnCustomerContact.setEmail1(temp.getEmail());
+						returnCustomerContact.setTelephoneNumber1(temp.getTelephoneNumber());
+						returnCustomerContact.setCellphoneNumber1(temp.getCellNumber());
+						returnCustomerContact.setContactType(temp.getContactType());
+					}
+			   }
+			}
 					
-				}
         }
 		catch(Exception e){
 			

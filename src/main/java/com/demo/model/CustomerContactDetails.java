@@ -30,6 +30,9 @@ public class CustomerContactDetails implements Serializable{
 	
 	
 	@Id
+	// ContactKey = Customer Name + Contact Type
+	@Column(name = "Contact_Key", nullable = false) 
+	private String contactKey;
 	@Column(name="Email")
 	private String email;
 	@Column(name="First_Name")
@@ -39,8 +42,9 @@ public class CustomerContactDetails implements Serializable{
 	@Column(name="Telephone_Number")
 	private String telephoneNumber;
 	@Column(name="Cell_Number")
-	private String cellNumber;
-	
+	private String cellNumber;	
+	@Column(name="Contact_Type")
+	private String contactType;
 	@ManyToOne
 	@JoinColumn(name="Customer")
 	private Customer customer;

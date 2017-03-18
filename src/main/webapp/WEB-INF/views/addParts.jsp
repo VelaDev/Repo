@@ -398,8 +398,8 @@ compitableDevice.addEventListener("focus", function (evt) {
 </script>
 
 
-	<!-- Create datalist to populate search -->
-	<script type="text/javascript">
+<!-- Create datalist to populate search -->
+<script type="text/javascript">
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');
@@ -440,6 +440,8 @@ input.placeholder = "Loading options...";
 // Set up and make the request.
 request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
 request.send();
+
+</script>
 
 <script type="text/javascript">
 function isNumber(evt) {

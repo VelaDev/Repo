@@ -90,7 +90,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellNumber" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
+													id="cellphoneNumber" name="cellNumber" maxlength="10" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>

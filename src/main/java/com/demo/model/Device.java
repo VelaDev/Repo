@@ -51,11 +51,14 @@ public class Device implements Serializable{
 	private String installationDate;
 	@Column(name="Device_Location")
 	private String deviceLocation;
+	//Create Mono_Colour,Mono_Reading_And_Colour and Mono_Reading_Only table separately to eliminate color and mono going to single input field 
 	@Column(name="Mono_Colour")
-	//private String colour;
 	private String colourReading;
-	@Column(name="Mono_Reading")
-	private String monoReading;
+	@Column(name="Mono_Reading_And_Colour")
+	private String monoReadingAndColour;
+	@Column(name="Mono_Reading_Only")
+	private String monoReadingOnly;
+	//Create Mono_Colour,Mono_Reading_And_Colour and Mono_Reading_Only table separately to eliminate color and mono going to single input field 
 	@Column(name="Province")
 	private String province;
 	@Column(name="City_Town")

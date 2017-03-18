@@ -297,11 +297,12 @@ li { list-style: none;}
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													onkeypress="return isNumber(event)"
-													placeholder="Enter Mono Reading" name="monoReading"
+													placeholder="Enter Mono Reading" name="monoReadingAndColour"
 													id="monoReading">
 											</div>
 										</div>
 									</div><!-- Both mono and colour reading  -->
+									
 									
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
@@ -310,9 +311,9 @@ li { list-style: none;}
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 											<input type="text" class="form-control"
-												onkeypress="return isNumber(event)" name="monoReading"
+												onkeypress="return isNumber(event)" name="monoReadingOnly"
 												placeholder="Enter Mono Reading" id="mono"
-												style="display: none;">
+												>
 											</div>
 										</div>
 									</div><!-- //Only mono Reading -->
@@ -442,7 +443,7 @@ li { list-style: none;}
 											</tr>
 											<tr>
 												<td><input type="checkbox" class="select"
-													id="onebintrayserial" name="bridgeUnitSerialType">
+													id="onebintrayserial" name="oneBinSerialType">
 													One bin tray</td>
 												<td><input type="text" class="form-control"
 													onkeydown="upperCaseF(this)" id="onebintray"

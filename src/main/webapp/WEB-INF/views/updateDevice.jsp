@@ -173,7 +173,7 @@ li { list-style: none; }
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="tellphoneNumber" name="tellphone"
+													id="tellphoneNumber" name="telephone"
 													placeholder="Tellphone No" maxlength="10"
 													class="form-control" type="text"
 													onkeypress="return isNumber(event)"
@@ -293,7 +293,6 @@ li { list-style: none; }
 										</div>
 									</div>
 
-
 									<div id="colour" style='display: none;'>
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
@@ -305,33 +304,33 @@ li { list-style: none; }
 													id="colourReading" value="${productObject.colourReading}" />
 											</div>
 											<br />
-										</div>
+										</div>										
 										<!-- Text checkbox Mono Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
-													placeholder="Enter Mono Reading"
-													onkeypress="return isNumber(event)" name="monoReading"
-													id="monoReading" onkeypress="return isNumber(event)"
-													value="${productObject.monoReading}" />
+													onkeypress="return isNumber(event)"
+													placeholder="Enter Mono Reading" name="monoReadingAndColour"
+													id="monoReading" value="${productObject.monoReadingAndColour}" >
 											</div>
 										</div>
-									</div>
+									</div><!-- Both mono and colour reading  -->
+									
+									
+									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
 									<div class="mono" id="mono" style='display: none;'>
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)" name="monoReading"
-													placeholder="Enter Mono Reading" id="mono"
-													onkeypress="return isNumber(event)"
-													value="${productObject.monoReading}" />
+											<input type="text" class="form-control"
+												onkeypress="return isNumber(event)" name="monoReadingOnly"
+												placeholder="Enter Mono Reading" id="mono" value="${productObject.monoReadingOnly}"
+												>
 											</div>
 										</div>
-									</div>
-
+									</div><!-- //Only mono Reading -->
 								</div>
 								<!--/F Column-->
 
@@ -483,7 +482,7 @@ li { list-style: none; }
 												<td><input type="text" class="form-control"
 													onkeydown="upperCaseF(this)" id="cre" name="creTypeserial"
 													disabled="disabled"
-													value="${AccessoryObject.credenzaSerialNo }"></td>
+													value="${AccessoryObject.creTypeserial }"></td>
 											</tr>
 											<tr>
 												<td><input type="checkbox" class="select"
@@ -492,7 +491,7 @@ li { list-style: none; }
 												<td><input type="text" class="form-control"
 													onkeydown="upperCaseF(this)" id="add" name="addTypeserial"
 													disabled="disabled"
-													value="${AccessoryObject.additionalPaperTraysTypeSerial }"></td>
+													value="${AccessoryObject.addTypeserial }"></td>
 											</tr>
 										</tbody>
 									</table>

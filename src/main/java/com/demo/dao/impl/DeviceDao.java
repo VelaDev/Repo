@@ -112,21 +112,26 @@ public class DeviceDao implements DeviceDaoInt {
 			device.setEndDate(deviceBean.getEndDate());
 			device.setModelNumber(deviceBean.getModelNumber());
 			device.setSerialNumber(deviceBean.getSerialNumber());
-			device.setStartDate(deviceBean.getStartDate());
-			device.setColourReading(deviceBean.getColourReading());
+			device.setStartDate(deviceBean.getStartDate());			
 			device.setInstallationDate(deviceBean.getInstallationDate());
-			device.setMonoReading(deviceBean.getMonoReading());
+			////Create Mono_Colour,Mono_Reading_And_Colour and Mono_Reading_Only separately
+			device.setColourReading(deviceBean.getColourReading());
+			device.setMonoReadingOnly(deviceBean.getMonoReadingOnly());
+			device.setMonoReadingAndColour(deviceBean.getMonoReadingAndColour());		
+			
 			device.setAreaCode(deviceBean.getZipcode());
 			device.setCity_town(deviceBean.getCity_town());
 			device.setProvince(deviceBean.getProvince());
 			device.setStreetName(deviceBean.getStreetName());
 			device.setStreetNumber(deviceBean.getStreetNumber());
 			
-			contactPerson.setCellphone(deviceBean.getCellphone());
+			
 			contactPerson.setEmail(deviceBean.getEmail());
 			contactPerson.setFirstName(deviceBean.getFirstName());
 			contactPerson.setLastName(deviceBean.getLastName());
+			contactPerson.setCellphone(deviceBean.getCellphone());
 			contactPerson.setTelephone(deviceBean.getTelephone());
+			
 			
 			customer = customerDaoInt.getClientByClientName(deviceBean.getCustomerName());
 			
@@ -137,11 +142,11 @@ public class DeviceDao implements DeviceDaoInt {
 				
 			    list = new ArrayList<Accessories>();
 				Accessories accessory = new Accessories();
-				
-				if( deviceBean.getAdditionalPaperTraysTypeSerial() != null){
-					if(deviceBean.getAdditionalPaperTraysTypeSerial().length()>0){
+				//addTypeserial
+				if( deviceBean.getAddTypeserial() != null){
+					if(deviceBean.getAddTypeserial().length()>0){
 						
-						accessory.setSerial(deviceBean.getAdditionalPaperTraysTypeSerial());
+						accessory.setSerial(deviceBean.getAddTypeserial());
 						accessory.setAccessotyType("Additional Paper Trays");
 						accessory.setDevice(device);
 						list.add(accessory);
@@ -157,12 +162,12 @@ public class DeviceDao implements DeviceDaoInt {
 						list.add(accessory1);
 					}
 				}
-				
-				if( deviceBean.getCredenzaSerialNo()!=null){
-					if(deviceBean.getCredenzaSerialNo().length()>0){
+				//creTypeserial
+				if( deviceBean.getCreTypeserial()!=null){
+					if(deviceBean.getCreTypeserial().length()>0){
 						
 						Accessories accessory2 = new Accessories();
-						accessory2.setSerial(deviceBean.getCredenzaSerialNo());
+						accessory2.setSerial(deviceBean.getCreTypeserial());
 						accessory2.setAccessotyType("Credenza");
 						accessory2.setDevice(device);
 						list.add(accessory2);
@@ -258,13 +263,13 @@ public class DeviceDao implements DeviceDaoInt {
 						deviceBean.setFaxUnitSerialTypeSerialNo(access.getSerial());
 					}
 					else if(access.getAccessotyType().equalsIgnoreCase("Credenza")){
-						deviceBean.setCredenzaSerialNo(access.getSerial());
+						deviceBean.setCreTypeserial(access.getSerial());
 					}
 					else if (access.getAccessotyType().equalsIgnoreCase("Finisher")){
 						deviceBean.setFinisherTypeSerialNo(access.getSerial());
 					}
 					else if(access.getAccessotyType().equalsIgnoreCase("Additional Paper Trays")){
-						deviceBean.setAdditionalPaperTraysTypeSerial(access.getSerial());
+						deviceBean.setAddTypeserial(access.getSerial());
 					}
 					else if (access.getAccessotyType().equalsIgnoreCase("LTC")){
 						deviceBean.setLtcTypeSerial(access.getSerial());

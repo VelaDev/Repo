@@ -463,7 +463,7 @@ function isNumber(evt) {
 											                }
 														}
 													},
-													tellphoneNumber : {
+													telephoneNumber : {
 														validators : {
 															notEmpty : {
 																message : 'Please enter 10 digits for tellphone number'

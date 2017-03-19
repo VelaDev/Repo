@@ -64,9 +64,9 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="tellphoneNumber" id="tellphoneNumber"
+												name="telephoneNumber" id="telephoneNumber"
 												placeholder="Telephone Number" class="form-control"
-												type="text" maxlength="10" onkeypress="return isNumber(event)" value="${customer.tellphoneNumber}" >
+												type="text" maxlength="10" onkeypress="return isNumber(event)" value="${customer.telephoneNumber}" >
 										</div>
 									</div>
 								</div>
@@ -91,9 +91,9 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input
-												name="emailCompany" id="emailCompany"
+												name="email" id="email"
 												placeholder="Company Email Address" class="form-control"
-												type="text" value="${customer.emailCompany}" >
+												type="text" value="${customer.email}" >
 										</div>
 									</div>
 								</div>
@@ -228,8 +228,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="cellphoneNumber" maxlength="10" name="cellphoneNumber"
-												placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" value="${customerDetails.cellphoneNumber}">
+												id="contactCellNumber" maxlength="10" name="contactCellNumber"
+												placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" value="${customerDetails.contactCellNumber}">
 										</div>
 									</div>
 								</div>
@@ -240,8 +240,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="telephoneNumber" maxlength="10" name="telephoneNumber"
-												placeholder="Tellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" value="${customerDetails.telephoneNumber}">
+												id="contactTelephoneNumber" maxlength="10" name="contactTelephoneNumber"
+												placeholder="Tellphone No" class="form-control" type="text" onkeypress="return isNumber(event)" value="${customerDetails.contactTelephoneNumber}">
 										</div>
 									</div>
 								</div>
@@ -251,9 +251,9 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
-												name="email" placeholder="Email Address"
-												class="form-control" type="email" value="${customerDetails.email}">
+												class="glyphicon glyphicon-envelope"></i></span> <input id="contactEmail"
+												name="contactEmail" placeholder="Email Address"
+												class="form-control" type="email" value="${customerDetails.contactEmail}">
 										</div>
 									</div>
 								</div>
@@ -321,8 +321,8 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber1" maxlength="10" name="cellphoneNumber1"
-													placeholder="Cellphone No" class="form-control" type="text" value="${customerDetails.cellphoneNumber1}"onkeypress="return isNumber(event)">
+													id="contactCellNumber1" maxlength="10" name="contactCellNumber1"
+													placeholder="Cellphone No" class="form-control" type="text" value="${customerDetails.contactCellNumber1}"onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -333,8 +333,8 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="telephoneNumber1" maxlength="10" name="telephoneNumber1"
-													placeholder="Telephone No" class="form-control" type="text" value="${customerDetails.telephoneNumber1}" onkeypress="return isNumber(event)">
+													id="contactTelephoneNumber1" maxlength="10" name="contactTelephoneNumber1"
+													placeholder="Telephone No" class="form-control" type="text" value="${customerDetails.contactTelephoneNumber1}" onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
@@ -346,8 +346,8 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
-													id="email1" name="email1" placeholder="Email Address"
-													class="form-control" type="email" value="${customerDetails.email1}" >
+													id="contactEmail1" name="contactEmail1" placeholder="Email Address"
+													class="form-control" type="email" value="${customerDetails.contactEmail1}" >
 											</div>
 										</div>
 									</div>

@@ -45,7 +45,7 @@
 													
 													<td><a href="viewCustomer?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
                                                    	<td>${list.email}</td>
-													<td>${list.tellphoneNumber}</td>
+													<td>${list.telephoneNumber}</td>
                                                     <td><a href="searchCustomer?customerName=<c:out value='${list.customerName}'/>">Update Customer</a></td>
                                                     <td><a href="searchCustomerdevices?customerName=<c:out value='${list.customerName}'/>">View Devices</a></td>
                                                     <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>">Add Device</a></td>

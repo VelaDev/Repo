@@ -73,11 +73,117 @@ public class CustomerDao implements CustomerDaoInt{
 			    .setMaxResults(maxResults!=null?maxResults:10)
 			    .list();
 	}
+	
+	
 	@Override
-	public String updateClient(Customer customer) {
+	public String saveCustomer(CustomerBean customerBean) {
+	   
+		CustomerContactDetails contactDetails, contactDetails1 = null;
+		List<CustomerContactDetails>list = null;
+		Customer tempCustomer = new Customer();
 		try{
-			sessionFactory.getCurrentSession().update(customer);
-			retMessage = "Customer "+ customer.getCustomerName()+ " is successfully updated";
+	
+			//Customer Object
+			tempCustomer.setActive(true);
+			tempCustomer.setCity_town(customerBean.getCity_town());
+			tempCustomer.setCustomerName(customerBean.getCustomerName());
+			tempCustomer.setEmail(customerBean.getEmail());
+			tempCustomer.setFaxNumber(customerBean.getFaxNumber());
+			tempCustomer.setProvince(customerBean.getProvince());
+			tempCustomer.setStreetName(customerBean.getStreetName());
+			tempCustomer.setStreetNumber(customerBean.getStreetNumber());
+			tempCustomer.setTelephoneNumber(customerBean.getTelephoneNumber());
+			tempCustomer.setZipcode(customerBean.getZipcode());
+		    
+
+		    list = new ArrayList<CustomerContactDetails>();
+		    
+		    // Required contact person object
+		     contactDetails = new CustomerContactDetails();
+		     contactDetails.setContactCellNumber(customerBean.getContactCellNumber());
+		     contactDetails.setContactTelephoneNumber(customerBean.getContactTelephoneNumber());
+		     contactDetails.setContactEmail(customerBean.getContactEmail());
+		     contactDetails.setFirstName(customerBean.getFirstName());
+		     contactDetails.setLastName(customerBean.getLastName());
+		     contactDetails.setCustomer(tempCustomer);
+		     list.add(contactDetails);
+		     
+		     // Optional contact person object
+		     if(customerBean.getFirstName1() != null && customerBean.getFirstName1().length()>0){
+		    	 contactDetails1 = new CustomerContactDetails();
+		    	 contactDetails1.setContactCellNumber(customerBean.getContactCellNumber1());
+		    	 contactDetails1.setContactEmail(customerBean.getContactEmail1());
+		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
+		    	 contactDetails1.setLastName(customerBean.getLastName1());
+		    	 contactDetails1.setContactTelephoneNumber(customerBean.getContactTelephoneNumber1());
+		    	 contactDetails1.setCustomer(tempCustomer);
+		    	 list.add(contactDetails1);
+		     }
+			
+		    sessionFactory.getCurrentSession().save(tempCustomer);
+			retMessage =  "Customer "+ tempCustomer.getCustomerName() + " "+ "was successfully added";
+				
+			customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
+			
+		}
+		catch(Exception e){
+			retMessage = "Customer "+ customer.getCustomerName() + " is not added\n" + e.getMessage();
+		}
+		
+		return retMessage;
+	}
+
+	
+	
+	@Override
+	public String updateCustomer(CustomerBean customerBean) {
+		
+		CustomerContactDetails contactDetails, contactDetails1 = null;
+		List<CustomerContactDetails>list = null;
+		Customer tempCustomer = new Customer();
+		
+		try{
+			//Customer Object
+			tempCustomer.setActive(true);
+			tempCustomer.setCity_town(customerBean.getCity_town());
+			tempCustomer.setCustomerName(customerBean.getCustomerName());
+			tempCustomer.setEmail(customerBean.getEmail());
+			tempCustomer.setFaxNumber(customerBean.getFaxNumber());
+			tempCustomer.setProvince(customerBean.getProvince());
+			tempCustomer.setStreetName(customerBean.getStreetName());
+			tempCustomer.setStreetNumber(customerBean.getStreetNumber());
+			tempCustomer.setTelephoneNumber(customerBean.getTelephoneNumber());
+			tempCustomer.setZipcode(customerBean.getZipcode());
+		    
+
+		    list = new ArrayList<CustomerContactDetails>();
+		    
+		    // Required contact person object
+		     contactDetails = new CustomerContactDetails();
+		     contactDetails.setContactCellNumber(customerBean.getContactCellNumber());
+		     contactDetails.setContactTelephoneNumber(customerBean.getContactTelephoneNumber());
+		     contactDetails.setContactEmail(customerBean.getContactEmail());
+		     contactDetails.setFirstName(customerBean.getFirstName());
+		     contactDetails.setLastName(customerBean.getLastName());
+		     contactDetails.setCustomer(tempCustomer);
+		     list.add(contactDetails);
+		     
+		     // Optional contact person object
+		     if(customerBean.getFirstName1() != null && customerBean.getFirstName1().length()>0){
+		    	 contactDetails1 = new CustomerContactDetails();
+		    	 contactDetails1.setContactCellNumber(customerBean.getContactCellNumber1());
+		    	 contactDetails1.setContactEmail(customerBean.getContactEmail1());
+		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
+		    	 contactDetails1.setLastName(customerBean.getLastName1());
+		    	 contactDetails1.setContactTelephoneNumber(customerBean.getContactTelephoneNumber1());
+		    	 contactDetails1.setCustomer(tempCustomer);
+		    	 list.add(contactDetails1);
+		     }
+			
+			sessionFactory.getCurrentSession().update(tempCustomer);
+			retMessage = "Customer "+ tempCustomer.getCustomerName()+ " is successfully updated";
+			
+			customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
 		}
 		catch( Exception e){
 			retMessage = "Customer "+ customer.getCustomerName() + " is not updated\n" + e.getMessage();
@@ -97,27 +203,26 @@ public class CustomerDao implements CustomerDaoInt{
 		CustomerContactDetails contactDetails, contactDetails1 = null;
 		List<CustomerContactDetails>list = null;
 	  try{
-			
-		    
+			    
 		    customer = new Customer();
 		    // Client object
 			customer.setActive(true);
 		    customer.setCity_town(customerBean.getCity_town());
 		    customer.setCustomerName(customerBean.getCustomerName());
-		    customer.setEmail(customerBean.getEmailCompany());
+		    customer.setEmail(customerBean.getEmail());
 		    customer.setFaxNumber(customerBean.getFaxNumber());
 		    customer.setProvince(customerBean.getProvince());
 		    customer.setStreetName(customerBean.getStreetName());
 		    customer.setStreetNumber(customerBean.getStreetNumber());
-		    customer.setTellphoneNumber(customerBean.getTellphoneNumber());
+		    customer.setTelephoneNumber(customerBean.getTelephoneNumber());
 		    customer.setZipcode(customerBean.getZipcode());
 		    
 		    list = new ArrayList<CustomerContactDetails>();
 		    // Required contact person object
 		     contactDetails = new CustomerContactDetails();
-		     contactDetails.setCellNumber(customerBean.getCellphoneNumber());
-		     contactDetails.setTelephoneNumber(customerBean.getTelephoneNumber());
-		     contactDetails.setEmail(customerBean.getEmail());
+		     contactDetails.setContactCellNumber(customerBean.getContactCellNumber());
+		     contactDetails.setContactTelephoneNumber(customerBean.getContactTelephoneNumber());
+		     contactDetails.setContactEmail(customerBean.getContactEmail());
 		     contactDetails.setFirstName(customerBean.getFirstName());
 		     contactDetails.setLastName(customerBean.getLastName());
 		     contactDetails.setCustomer(customer);
@@ -126,11 +231,11 @@ public class CustomerDao implements CustomerDaoInt{
 		     // Optional contact person object
 		     if(customerBean.getFirstName1() != null && customerBean.getFirstName1().length()>0){
 		    	 contactDetails1 = new CustomerContactDetails();
-		    	 contactDetails1.setCellNumber(customerBean.getCellphoneNumber1());
-		    	 contactDetails1.setEmail(customerBean.getEmail1());
+		    	 contactDetails1.setContactCellNumber(customerBean.getContactCellNumber1());
+		    	 contactDetails1.setContactEmail(customerBean.getContactEmail1());
 		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
 		    	 contactDetails1.setLastName(customerBean.getLastName1());
-		    	 contactDetails1.setTelephoneNumber(customerBean.getTelephoneNumber1());
+		    	 contactDetails1.setContactTelephoneNumber(customerBean.getContactTelephoneNumber1());
 		    	 contactDetails1.setCustomer(customer);
 		    	 list.add(contactDetails1);
 		     }
@@ -159,12 +264,12 @@ public class CustomerDao implements CustomerDaoInt{
 			Customer customer= getClientByClientName(customerName);
 			returnCustomerContact.setCustomerName(customer.getCustomerName());
 			returnCustomerContact.setCity_town(customer.getCity_town());
-			returnCustomerContact.setEmailCompany(customer.getEmail());
+			returnCustomerContact.setEmail(customer.getEmail());
 			returnCustomerContact.setFaxNumber(customer.getFaxNumber());
 			returnCustomerContact.setProvince(customer.getProvince());
 			returnCustomerContact.setStreetName(customer.getStreetName());
 			returnCustomerContact.setStreetNumber(customer.getStreetNumber());
-			returnCustomerContact.setTellphoneNumber(customer.getTellphoneNumber());
+			returnCustomerContact.setTelephoneNumber(customer.getTelephoneNumber());
 			returnCustomerContact.setZipcode(customer.getZipcode());
 		}
 		catch(Exception ex){

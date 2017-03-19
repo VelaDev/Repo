@@ -38,7 +38,7 @@ public class Customer implements Serializable{
 	@Column(name="IsACTIVE")
 	private boolean isActive;
 	@Column(name="Telephone_Number")
-	private String tellphoneNumber;
+	private String telephoneNumber;
 	@Column(name="Emal")
 	private String email;
 	@Column(name="Street_Name")

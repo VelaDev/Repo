@@ -37,8 +37,8 @@ public class CustomerService implements CustomerServiceInt{
 	}
 
 	@Override
-	public String updateCustomer(Customer customer) {
-		retMessage = clientDAO.updateClient(customer);
+	public String updateCustomer(CustomerBean customerBean) {
+		retMessage = clientDAO.updateCustomer(customerBean);
 		return retMessage;
 	}
 
@@ -63,5 +63,12 @@ public class CustomerService implements CustomerServiceInt{
 	
 		return clientDAO.contactDetails(customerName);
 	}
+
+	@Override
+	public String saveCustomer(CustomerBean customerBean) {
+		retMessage = clientDAO.saveCustomer(customerBean);
+		return retMessage;
+	}
+
 
 }

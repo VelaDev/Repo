@@ -6,9 +6,8 @@ public class CustomerBean {
 	// Customer
 	private String customerName;
 	private boolean isActive;
-	private String tellphoneNumber;
-	private String tellphoneNumber1;
-	private String emailCompany;
+	private String telephoneNumber;
+	private String email;
 	private String streetName;
 	private String city_town;
 	private String province;
@@ -19,35 +18,49 @@ public class CustomerBean {
 	private String contactKey;
 	private String firstName;
 	private String lastName;
-	private String telephoneNumber;
-	private String cellphoneNumber;
-	private String email;
+	private String contactTelephoneNumber;
+	private String contactCellNumber;
+	private String contactEmail;
 	private String contactType;
+	
 	//Contactperson 2
 	private String firstName1;
 	private String lastName1;
-	private String telephoneNumber1;
-	private String cellphoneNumber1;
-	private String email1;
+	private String contactTelephoneNumber1;
+	private String contactCellNumber1;
+	private String contactEmail1;
 	private String contactType1;
 	
-	
-	
-	
-	
-	
-	public String getEmailCompany() {
-		return emailCompany;
+	public String getContactCellNumber1() {
+		return contactCellNumber1;
 	}
-	public void setEmailCompany(String emailCompany) {
-		this.emailCompany = emailCompany;
+	public void setContactCellNumber1(String contactCellNumber1) {
+		this.contactCellNumber1 = contactCellNumber1;
 	}
-	public String getCellphoneNumber() {
-		return cellphoneNumber;
+	
+	
+	
+	
+
+	public String getContactTelephoneNumber() {
+		return contactTelephoneNumber;
 	}
-	public void setCellphoneNumber(String cellphoneNumber) {
-		this.cellphoneNumber = cellphoneNumber;
+	public void setContactTelephoneNumber(String contactTelephoneNumber) {
+		this.contactTelephoneNumber = contactTelephoneNumber;
 	}
+	public String getContactTelephoneNumber1() {
+		return contactTelephoneNumber1;
+	}
+	public void setContactTelephoneNumber1(String contactTelephoneNumber1) {
+		this.contactTelephoneNumber1 = contactTelephoneNumber1;
+	}
+	public String getContactCellNumber() {
+		return contactCellNumber;
+	}
+	public void setContactCellNumber(String contactCellNumber) {
+		this.contactCellNumber = contactCellNumber;
+	}
+
 	public String getFirstName1() {
 		return firstName1;
 	}
@@ -60,25 +73,8 @@ public class CustomerBean {
 	public void setLastName1(String lastName1) {
 		this.lastName1 = lastName1;
 	}
-	public String getTelephoneNumber1() {
-		return telephoneNumber1;
-	}
-	public void setTelephoneNumber1(String telephoneNumber1) {
-		this.telephoneNumber1 = telephoneNumber1;
-	}
-	public String getEmail1() {
-		return email1;
-	}
-	public void setEmail1(String email1) {
-		this.email1 = email1;
-	}
-	public String getCellphoneNumber1() {
-		return cellphoneNumber1;
-	}
-	public void setCellphoneNumber1(String cellphoneNumber1) {
-		this.cellphoneNumber1 = cellphoneNumber1;
-	}
-	public String getFirstName() {
+	
+		public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {
@@ -89,12 +85,6 @@ public class CustomerBean {
 	}
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-	public String getTelephoneNumber() {
-		return telephoneNumber;
-	}
-	public void setTelephoneNumber(String telephoneNumber) {
-		this.telephoneNumber = telephoneNumber;
 	}
 	public String getCustomerName() {
 		return customerName;
@@ -108,11 +98,11 @@ public class CustomerBean {
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
-	public String getTellphoneNumber() {
-		return tellphoneNumber;
+	public String getTelephoneNumber() {
+		return telephoneNumber;
 	}
-	public void setTellphoneNumber(String tellphoneNumber) {
-		this.tellphoneNumber = tellphoneNumber;
+	public void setTelephoneNumber(String telephoneNumber) {
+		this.telephoneNumber = telephoneNumber;
 	}
 	public String getEmail() {
 		return email;
@@ -174,6 +164,20 @@ public class CustomerBean {
 	public void setContactKey(String contactKey) {
 		this.contactKey = contactKey;
 	}
+	public String getContactEmail() {
+		return contactEmail;
+	}
+	public void setContactEmail(String contactEmail) {
+		this.contactEmail = contactEmail;
+	}
+	public String getContactEmail1() {
+		return contactEmail1;
+	}
+	public void setContactEmail1(String contactEmail1) {
+		this.contactEmail1 = contactEmail1;
+	}
+	
+	
 	
 
 	

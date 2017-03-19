@@ -70,9 +70,9 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 					{	  
 						returnCustomerContact.setFirstName(temp.getFirstName());
 						returnCustomerContact.setLastName(temp.getLastName());
-						returnCustomerContact.setEmail(temp.getEmail());
-						returnCustomerContact.setTelephoneNumber(temp.getTelephoneNumber());
-						returnCustomerContact.setCellphoneNumber(temp.getCellNumber());
+						returnCustomerContact.setContactEmail(temp.getContactEmail());
+						returnCustomerContact.setContactTelephoneNumber(temp.getContactTelephoneNumber());
+						returnCustomerContact.setContactCellNumber(temp.getContactCellNumber());
 						returnCustomerContact.setContactType(temp.getContactType());
 
 					}
@@ -83,9 +83,9 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 				    if(temp.getContactKey().equals(temp.getCustomer().getCustomerName() + " " + "Seconday") == true)
 						returnCustomerContact.setFirstName1(temp.getFirstName());
 						returnCustomerContact.setLastName1(temp.getLastName());
-						returnCustomerContact.setEmail1(temp.getEmail());
-						returnCustomerContact.setTelephoneNumber1(temp.getTelephoneNumber());
-						returnCustomerContact.setCellphoneNumber1(temp.getCellNumber());
+						returnCustomerContact.setContactEmail1(temp.getContactEmail());
+						returnCustomerContact.setContactTelephoneNumber1(temp.getContactTelephoneNumber());
+						returnCustomerContact.setContactCellNumber1(temp.getContactCellNumber());
 						returnCustomerContact.setContactType(temp.getContactType());
 					}
 			   }

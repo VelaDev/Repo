@@ -66,7 +66,8 @@ public class CustomerController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			retMessage =customerServiceInt.prepareCustomer(customerBean);
+			//retMessage =customerServiceInt.prepareCustomer(customerBean);
+			retMessage =customerServiceInt.saveCustomer(customerBean);
 			model.addObject("retMessage",retMessage);
 			model.setViewName("addClient");
 		}else{
@@ -157,7 +158,8 @@ public class CustomerController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			retMessage =customerServiceInt.prepareCustomer(customerBean); 
+			//retMessage =customerServiceInt.prepareCustomer(customerBean); 
+			retMessage =customerServiceInt.updateCustomer(customerBean);
 			model.addObject("retMessage", retMessage);
 			model.setViewName("updateCustomer");
 		}

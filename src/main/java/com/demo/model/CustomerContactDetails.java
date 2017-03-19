@@ -33,16 +33,16 @@ public class CustomerContactDetails implements Serializable{
 	// ContactKey = Customer Name + Contact Type
 	@Column(name = "Contact_Key", nullable = false) 
 	private String contactKey;
-	@Column(name="Email")
-	private String email;
+	@Column(name="Contact_Email")
+	private String contactEmail;
 	@Column(name="First_Name")
 	private String firstName;
 	@Column(name="First_LastName")
 	private String lastName;
-	@Column(name="Telephone_Number")
-	private String telephoneNumber;
-	@Column(name="Cell_Number")
-	private String cellNumber;	
+	@Column(name="Contact_Telephone_Number")
+	private String contactTelephoneNumber;
+	@Column(name="Contact_Cell_Number")
+	private String contactCellNumber;	
 	@Column(name="Contact_Type")
 	private String contactType;
 	@ManyToOne

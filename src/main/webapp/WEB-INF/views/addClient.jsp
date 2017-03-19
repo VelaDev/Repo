@@ -63,7 +63,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												name="tellphoneNumber" id="tellphoneNumber"
+												name="telephoneNumber" id="telephoneNumber"
 												placeholder="Telephone Number" maxlength="10" class="form-control"
 												type="text" onkeypress="return isNumber(event)">
 										</div>
@@ -91,7 +91,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-envelope"></i></span> <input
-												name="emailCompany" id="emailCompany"
+												name="email" id="email"
 												placeholder="Company Email Address" class="form-control"
 												type="text">
 										</div>
@@ -226,7 +226,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="cellphoneNumber" name="cellphoneNumber"
+												id="contactCellNumber" name="contactCellNumber"
 												placeholder="Cellphone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
@@ -238,7 +238,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-earphone"></i></span> <input
-												id="telephoneNumber" name="telephoneNumber"
+												id="contactTelephoneNumber" name="contactTelephoneNumber"
 												placeholder="Telephone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
@@ -249,8 +249,8 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-envelope"></i></span> <input id="email"
-												name="email" placeholder="Email Address"
+												class="glyphicon glyphicon-envelope"></i></span> <input id="contactEmail"
+												name="contactEmail" placeholder="Email Address"
 												class="form-control" type="email">
 										</div>
 									</div>
@@ -319,7 +319,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber1" name="cellphoneNumber1"
+													id="contactCellNumber1" name="contactCellNumber1"
 													placeholder="Cellphone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
@@ -331,7 +331,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="tellphoneNumber1" name="telephoneNumber1"
+													id="contactTelephoneNumber1" name="contactTelephoneNumber1"
 													placeholder="Telephone No" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 											</div>
 										</div>
@@ -344,7 +344,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
-													id="email1" name="email1" placeholder="Email Address"
+													id="contactEmail1" name="contactEmail1" placeholder="Email Address"
 													class="form-control" type="email">
 											</div>
 										</div>

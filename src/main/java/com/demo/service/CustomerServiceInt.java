@@ -11,9 +11,10 @@ public interface CustomerServiceInt {
 	Customer getClientByClientName(String clientName);
 	List<Customer> getClientList(Integer offset, Integer maxResults);
 	List<Customer> getClientList();
-	String updateCustomer(Customer customer);
+	String updateCustomer(CustomerBean customerBean);
 	Integer count();
 	String prepareCustomer(CustomerBean customerBean);
 	CustomerBean contactDetails(String customerName);
+	String saveCustomer(CustomerBean customerBean);
 
 }

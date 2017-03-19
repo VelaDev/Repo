@@ -172,7 +172,7 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
+												class="glyphicon glyphicon-home"></i></span> <input maxlength="4" name="zipcode"
 												id="zipcode" placeholder="Area Code" class="form-control"
 												type="text" onkeypress="return isNumber(event)">
 										</div>
@@ -512,11 +512,12 @@ function isNumber(evt) {
 												validators : {
 													stringLength : {
 														max : 4,
-														min : 4,
-													},
+														min: 4,
+														},
 													notEmpty : {
 														message : 'Zipcode is required and cannot be empty'
 													}
+													
 												}
 											},
 											faxNumber : {
@@ -546,7 +547,7 @@ function isNumber(evt) {
 														message : 'First Name is required and cannot be empty'
 													},
 													regexp: {
-									                    regexp: /^[a-z-A-Z]+$/,
+														 regexp: /^[-_ a-zA-Z]+$/,
 									                    message: 'First Name can consist of only alphabetical characters'
 									                }
 												}
@@ -560,12 +561,12 @@ function isNumber(evt) {
 														message : 'Last Name is required and cannot be empty'
 													},
 													regexp: {
-									                    regexp: /^[a-z-A-Z]+$/,
+														 regexp: /^[-_ a-zA-Z]+$/,
 									                    message: 'Last Name can consist of only alphabetical characters'
 									                }
 												}
 											},
-											cellphoneNumber : {
+											contactCellNumber : {
 												validators : {
 													notEmpty : {
 														message : 'Please enter 10 digits for cellphone number'
@@ -576,7 +577,7 @@ function isNumber(evt) {
 													}
 												}
 											},
-											telephoneNumber : {
+											contactTelephoneNumber : {
 												validators : {
 													notEmpty : {
 														message : 'Please enter 10 digits for telephone number'
@@ -588,7 +589,7 @@ function isNumber(evt) {
 												}
 											},
 											
-											email : {
+											contactEmail : {
 												validators : {
 													notEmpty : {
 														message : 'Email address is required and cannot be empty'
@@ -606,7 +607,7 @@ function isNumber(evt) {
 														min : 3,
 													},
 													regexp: {
-									                    regexp: /^[a-z-A-Z]+$/,
+														 regexp: /^[-_ a-zA-Z]+$/,
 									                    message: 'First Name can consist of only alphabetical characters  '
 									                }
 												}
@@ -617,12 +618,12 @@ function isNumber(evt) {
 														min : 3,
 													},
 													regexp: {
-									                    regexp: /^[a-z-A-Z]+$/,
+														 regexp: /^[-_ a-zA-Z]+$/,
 									                    message: 'Last Name can consist of only alphabetical characters '
 									                }
 												}
 											},
-											cellphoneNumber1 : {
+											contactCellNumber1 : {
 												validators : {
 													phone : {
 														country : 'US',
@@ -630,7 +631,7 @@ function isNumber(evt) {
 													}
 												}
 											},													
-											telephoneNumber1 : {
+											contactTelephoneNumber1 : {
 												validators : {
 													phone : {
 														country : 'US',
@@ -639,7 +640,7 @@ function isNumber(evt) {
 												}
 											},
 											
-											email1 : {
+											contactEmail1 : {
 												validators : {
 													emailAddress : {
 														message : 'The email address is not valid'

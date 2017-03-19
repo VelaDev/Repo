@@ -230,30 +230,34 @@
 							<div class="groupsearchdetails">
 								<legend>Compatible Devices </legend>
 								
-								<input type="button" value="Add"
-									onclick="addRow('compitableDev')" /> <input type="button"
-									value="Delete" onclick="deleteRow('compitableDev')" /><br />
-								<br/> <label class="col-md-3 control-label">Action</label> <label
-									class="col-md-3 control-label">Model Number</label><br/>
-
-								<table id="compitableDev"  style="width:300px"
+								<input type="button" value="Add" onclick="addRow('compitableDev')" /> 
+								<input type="button" value="Delete" onclick="deleteRow('compitableDev')" />
+									
+								<table id="compitableDev"  style="width:300px" 
 									class="table table-striped table-bordered table-hover table-condensed">
-
-									<c:forEach var="compitableDevice" items="${models}">
+									<thead>
+									 <tr> 
+										<th>Action</th> 
+										<th>Model Number</th>				
+									 </tr>
+									</thead> 
+									<tbody>								
+										<c:forEach var="compitableDevice" items="${models}">
+											<tr>
+												<td><input type="checkbox" value="true"
+													name="compitableDevice" /></td>
+												<td><input type="text" class="form-control" readOnly
+													id="compitableDevice" name="compitableDevice"
+													value="${compitableDevice}"></td>
+											<tr>
+										</c:forEach>
 										<tr>
 											<td><input type="checkbox" value="true"
 												name="compitableDevice" /></td>
 											<td><input type="text" class="form-control" readOnly
-												id="compitableDevice" name="compitableDevice"
-												value="${compitableDevice}"></td>
-										<tr>
-									</c:forEach>
-									<tr>
-										<td><input type="checkbox" value="true"
-											name="compitableDevice" /></td>
-										<td><input type="text" class="form-control" readOnly
-											id="compitableDevice" name="compitableDevice"></td>
-									</tr>
+												id="compitableDevice" name="compitableDevice"></td>
+										</tr>
+									</tbody>
 								</table>
 							</div>
 							<!-- //group search details -->

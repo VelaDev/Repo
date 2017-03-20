@@ -114,17 +114,15 @@ public class DeviceDao implements DeviceDaoInt {
 			device.setSerialNumber(deviceBean.getSerialNumber());
 			device.setStartDate(deviceBean.getStartDate());			
 			device.setInstallationDate(deviceBean.getInstallationDate());
-			////Create Mono_Colour,Mono_Reading_And_Colour and Mono_Reading_Only separately
-			device.setColourReading(deviceBean.getColourReading());
-			device.setMonoReadingOnly(deviceBean.getMonoReadingOnly());
-			device.setMonoReadingAndColour(deviceBean.getMonoReadingAndColour());		
+			
+			device.setMonoReading(deviceBean.getMonoReading());
+			device.setColourReading(deviceBean.getColourReading());		
 			
 			device.setAreaCode(deviceBean.getZipcode());
 			device.setCity_town(deviceBean.getCity_town());
 			device.setProvince(deviceBean.getProvince());
 			device.setStreetName(deviceBean.getStreetName());
-			device.setStreetNumber(deviceBean.getStreetNumber());
-			
+			device.setStreetNumber(deviceBean.getStreetNumber());			
 			
 			contactPerson.setEmail(deviceBean.getEmail());
 			contactPerson.setFirstName(deviceBean.getFirstName());

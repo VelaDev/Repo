@@ -279,44 +279,34 @@ li { list-style: none;}
 									</div>
 
 									<!-- Both mono and colour reading  -->
-									<div id="colour" style="display: none;">
+									<div class="colour"  id="colour" style="display: none;">
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													onkeypress="return isNumber(event)"
-													placeholder="Enter Colour Reading" name="colourReading"
-													id="colourReading">
+													placeholder="Enter Colour Reading" id="colour" name="colourReading"
+													>
 											</div>
 											<br>
-										</div>
-										<!-- Text checkbox Mono Reading-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Mono Reading</label>
-											<div class="col-md-6">
-												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)"
-													placeholder="Enter Mono Reading" name="monoReadingAndColour"
-													id="monoReading">
-											</div>
-										</div>
+										</div>										
 									</div><!-- Both mono and colour reading  -->
-									
 									
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
-									<div class="mono" id="mono" style='display: none;'>
+									<div class="mono" id="mono" style="display: none;">
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 											<input type="text" class="form-control"
-												onkeypress="return isNumber(event)" name="monoReadingOnly"
-												placeholder="Enter Mono Reading" id="mono"
+												onkeypress="return isNumber(event)" id="mono" name="monoReading"
+												placeholder="Enter Mono Reading" 
 												>
 											</div>
 										</div>
 									</div><!-- //Only mono Reading -->
+									
 									
 								</div>
 								<!--/First Column-->
@@ -1004,16 +994,16 @@ $(document).ready(function() {
 
 	<!--Mono and Colour Selection-->
 	<script type="text/javascript">
-
+	
 	function CheckColors(val){
 	 var element=document.getElementById('mono');
-	 if(val=='pick a mono'||val=='mono')
+	 if(val=='pick a mono'||val=='mono'  || val == 'colour')
 	   element.style.display='block';
 	 else  
 	   element.style.display='none';
 	   
-	  var element=document.getElementById('colour');
-	 if(val=='pick a colour'||val=='colour')
+	 var element=document.getElementById('colour');
+	 if(val=='pick a colour'|| val=='colour')
 	   element.style.display='block';
 	 else  
 	   element.style.display='none';

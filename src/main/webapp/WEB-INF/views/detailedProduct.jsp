@@ -221,22 +221,15 @@ header, #content, #middle, #sidebar {
 											<div class="col-xs-8">
 												<div class="col-xs-4 form-control-label">
 													<h6>
-														<label>Mono/Colour Reading</label>
+														<label>Colour Reading</label>
 													</h6>
 
 												</div>
 												<div class="col-xs-8">
 													<input type="text" class="form-control input-sm"
-														id="monoReading" value="${device.monoReadingAndColour}"
+														id="monoReading" value="${device.colourReading}"
 														disabled="disabled">
-												</div>
-
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														name="colourReading" id="colourReading"
-														value="${device.colourReading}" disabled="disabled">
-												</div>
-
+												</div>												
 											</div>
 										</div>
 
@@ -251,7 +244,7 @@ header, #content, #middle, #sidebar {
 												</div>
 												<div class="col-xs-8">
 													<input type="text" class="form-control input-sm"
-														id="monoReading" value="${device.monoReadingOnly}"
+														id="monoReading" value="${device.monoReading}"
 														disabled="disabled">
 												</div>
 											</div>

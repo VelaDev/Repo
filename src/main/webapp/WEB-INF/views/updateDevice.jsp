@@ -292,31 +292,35 @@ li { list-style: none; }
 											</div>
 										</div>
 									</div>
-
-									<div id="colour" style='display: none;'>
+									
+									<!-- Both mono and colour reading  -->
+									<div class="colour"  id="colour" style="display: none;">
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
-													placeholder="Enter Colour Reading"
-													onkeypress="return isNumber(event)" name="colourReading"
-													id="colourReading" value="${productObject.colourReading}" />
-											</div>
-											<br />
-										</div>										
-										<!-- Text checkbox Mono Reading-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Mono Reading</label>
-											<div class="col-md-6">
-												<input type="text" class="form-control"
 													onkeypress="return isNumber(event)"
-													placeholder="Enter Mono Reading" name="monoReadingAndColour"
-													id="monoReading" value="${productObject.monoReadingAndColour}" >
+													placeholder="Enter Colour Reading" id="colour" name="colourReading"
+													 value="${productObject.colourReading}">
 											</div>
-										</div>
+											<br>
+										</div>										
 									</div><!-- Both mono and colour reading  -->
 									
+									<!-- Only Colour Reading -->
+									<!-- Text checkbox Mono Reading-->
+									<div class="colour"  id="colour"style="display: none;">
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour Reading</label>
+											<div class="col-md-6">
+											<input type="text" class="form-control"
+												onkeypress="return isNumber(event)" id="colour" name="colourReading"
+												placeholder="Enter Colour Reading"  value="${productObject.colourReading}"
+												>
+											</div>
+										</div>
+									</div><!-- //Only Colour Reading -->
 									
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
@@ -325,8 +329,8 @@ li { list-style: none; }
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 											<input type="text" class="form-control"
-												onkeypress="return isNumber(event)" name="monoReadingOnly"
-												placeholder="Enter Mono Reading" id="mono" value="${productObject.monoReadingOnly}"
+												onkeypress="return isNumber(event)" name="monoReading"
+												placeholder="Enter Colour Reading" id="mono" value="${productObject.monoReading}"
 												>
 											</div>
 										</div>
@@ -1098,20 +1102,18 @@ $(document).ready(function() {
 });
 </script>
 
-
-
 	<!--Mono and Colour Selection-->
 	<script type="text/javascript">
-
+	
 	function CheckColors(val){
 	 var element=document.getElementById('mono');
-	 if(val=='pick a mono'||val=='mono')
+	 if(val=='pick a mono'||val=='mono'  || val == 'colour')
 	   element.style.display='block';
 	 else  
 	   element.style.display='none';
 	   
-	  var element=document.getElementById('colour');
-	 if(val=='pick a colour'||val=='colour')
+	 var element=document.getElementById('colour');
+	 if(val=='pick a colour'|| val=='colour')
 	   element.style.display='block';
 	 else  
 	   element.style.display='none';
@@ -1119,7 +1121,6 @@ $(document).ready(function() {
 	}
 
 </script>
-
 	<!-- Make all Serials numbers UpperCase  -->
 	<script type="text/javascript">
 	function upperCaseF(a){

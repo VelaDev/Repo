@@ -18,18 +18,13 @@ public class DeviceBean {
 	private String installationDate;
 	
 	private String colourReading;
-	
-	private String monoReadingOnly;
-	private String monoReadingAndColour;
+	private String monoReading;	
 	
 	private String customerName;
 	private String accessoryName;
 	private String accessorySerial;
 	
-	
-	
-	
-	//input checkbox
+	// Machine Accessories input check box
 	private String bridgeUnitSerialType;
 	private String finisherType;
 	private String ltcType;																			
@@ -39,7 +34,7 @@ public class DeviceBean {
 	private String creType;
 	private String addType;
 	
-	//input textbox
+	//Machine Accessories input text box
 	private String bridgeUnitSerialTypeSerialNo;
 	private String finisherTypeSerialNo;
 	private String ltcTypeSerial;									
@@ -48,24 +43,6 @@ public class DeviceBean {
 	private String creTypeserial;
 	private String addTypeserial;
 	
-	
-	
-	
-	/*private String bridgeUnitSerialType;
-	private String faxUnitSerialType;*/
-	
-	/*private String finisherType;		
-	private String ltcType;
-	private String creType;	*/
-	
-	/*private String creTypeserial;	
-	private String bridgeUnitSerialTypeSerialNo;
-	private String faxUnitSerialTypeSerialNo;
-	private String OneBinTrayTypeSerialNo;
-	private String finisherTypeSerialNo;*/
-	/*private String LtcTypeSerial;
-	private String addType;
-*/
 	private String streetName;
 	private String city_town;
 	private String province;

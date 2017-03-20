@@ -224,54 +224,40 @@
 									</div>
 								</div>
 							</div>
-							<!-- //group spare details -->
+							<!-- //group spare details -->	
 							
 							<!-- group search details -->
-							<div class="groupsearchdetails">
+						<div class="groupsearchdetails">
 								<legend>Compatible Devices </legend>
+								<input type="button" value="Add Row" onclick="addRow('dataTable')" />
+								<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br/><br/>
+								<label class="col-md-3 control-label">Action</label>
+								<label class="col-md-3 control-label">Model Number</label>
 								
-								<input type="button" value="Add" onclick="addRow('compitableDev')" /> 
-								<input type="button" value="Delete" onclick="deleteRow('compitableDev')" />
-									
-								<table id="compitableDev"  style="width:300px" 
-									class="table table-striped table-bordered table-hover table-condensed">
-									<thead>
-									 <tr> 
-										<th>Action</th> 
-										<th>Model Number</th>				
-									 </tr>
-									</thead> 
-									<tbody>								
-										<c:forEach var="compitableDevice" items="${models}">
-											<tr>
-												<td><input type="checkbox" value="true"
-													name="compitableDevice" /></td>
-												<td><input type="text" class="form-control" readOnly
-													id="compitableDevice" name="compitableDevice"
-													value="${compitableDevice}"></td>
-											<tr>
-										</c:forEach>
+								<table id="dataTable" width="300px" style="width:300px" 
+									class="table table-striped table-bordered table-hover table-condensed">	
+									<c:forEach var="compitableDevice" items="${models}">
 										<tr>
-											<td><input type="checkbox" value="true"
-												name="compitableDevice" /></td>
-											<td><input type="text" class="form-control" readOnly
-												id="compitableDevice" name="compitableDevice"></td>
+											<td><input type="checkbox" name="compitableDevice" value=""/></td>
+											<td><input type="text" readOnly class="form-control" id="compitableDevice" name="compitableDevice" value="${compitableDevice}"></td>			
+										</tr>				
+									</c:forEach>
+										<tr>
+											<td><input type="checkbox" name="compitableDevice" value=""/></td>
+											<td><input type="text" readOnly class="form-control" id="compitableDevice" name="compitableDevice" value=""></td>			
 										</tr>
-									</tbody>
 								</table>
+																
+						</div><!-- //group search details -->
+						
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<br> <br> <input type="submit" value="Add Spare" class="btn btn-primary btn-block btn-lg" tabindex="9" id="addSpare">
 							</div>
-							<!-- //group search details -->
-
-							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
-									<br> <br> <input type="submit" value="Add Spare"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="addSpare">
-								</div>
-							</div>
+						</div>
 
 						</form:form>
-						<p id="getme"></p>
+						
 					</div>
 
 				</div>
@@ -298,8 +284,9 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
-	<!--if part number does not exist ccome here-->
-	<script>
+
+<!--if part number does not exist come here-->
+<script type="text/javascript">
 
 // Validate "checkSpares" textbox
 var checkSpares = document.getElementById("checkSpares");
@@ -330,18 +317,19 @@ description.addEventListener("focus", function (evt) {
 compitableDevice.addEventListener("focus", function (evt) {
      // Checkbox must be checked before data can be entered into textbox
     compitableDevice.readOnly = !checkSpares.checked;
+    compitableDevice.readOnly = !checkSpares.checked;
 });
 
 </script>
-	<!-- Table for compitable device for partnumber -->
-	<script language="javascript">
 
-		//add row on table
+<script language="javascript">
 		function addRow(tableID) {
-			
+
 			var table = document.getElementById(tableID);
+
 			var rowCount = table.rows.length;
 			var row = table.insertRow(rowCount);
+
 			var colCount = table.rows[0].cells.length;
 
 			for(var i=0; i<colCount; i++) {
@@ -349,7 +337,7 @@ compitableDevice.addEventListener("focus", function (evt) {
 				var newcell	= row.insertCell(i);
 
 				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-				
+				//alert(newcell.childNodes);
 				switch(newcell.childNodes[0].type) {
 					case "text":
 							newcell.childNodes[0].value = "";
@@ -360,32 +348,21 @@ compitableDevice.addEventListener("focus", function (evt) {
 					case "select-one":
 							newcell.childNodes[0].selectedIndex = 0;
 							break;
-					case "text":
-							newcell.childNodes[0].value = "";
-							break;
-					case "checkbox":
-							newcell.childNodes[0].checked = false;
-							break;
-					case "select-one":
-						newcell.childNodes[0].selectedIndex = 0;
-							break;
 				}
 			}
 		}
-		//delete row
+
 		function deleteRow(tableID) {
 			try {
 			var table = document.getElementById(tableID);
 			var rowCount = table.rows.length;
-			
+
 			for(var i=0; i<rowCount; i++) {
 				var row = table.rows[i];
-				var row = table.rows[i];
 				var chkbox = row.cells[0].childNodes[0];
-				var chkbox = row.cells[1].childNodes[1];
 				if(null != chkbox && true == chkbox.checked) {
 					if(rowCount <= 1) {
-						alert("You can not delete all tabele rows.");
+						alert("Cannot delete all the rows.");
 						break;
 					}
 					table.deleteRow(i);
@@ -393,13 +370,14 @@ compitableDevice.addEventListener("focus", function (evt) {
 					i--;
 				}
 
+
 			}
 			}catch(e) {
 				alert(e);
-				console.log(e);
 			}
 		}
-</script>
+
+	</script>
 
 
 <!-- Create datalist to populate search -->

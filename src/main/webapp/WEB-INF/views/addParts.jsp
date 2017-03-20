@@ -94,16 +94,14 @@
 							<hr>
 						</form:form>
 						<!--Search-->
-
-
-
+						
 						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
 							method="post" id="saveSpareParts">
 
 							<!-- group spare details -->
 							<div class="groupsparedetails">
 								<legend>Spares</legend>
-
+								
 								<div class="row">
 									<div class="col-xs-12">
 										<div class="col-xs-4 form-control-label">
@@ -137,7 +135,7 @@
 												<div class="input-group">
 													<input type="text" id="partNum" name="partNumber"
 														class="form-control" readOnly
-														value="${sparePart.partNumber}" class="partNo">
+														value="${sparePart.partNumber}"  class="partNo">
 												</div>
 											</div>
 										</div>
@@ -196,8 +194,8 @@
 										<div class="col-xs-8">
 											<div class="form-group">
 												<div class="input-group">
-													<input type="text" id="quantity" name="quantity"
-														class="form-control" onkeypress="return isNumber(event)">
+													<input type="number" id="quantity" name="quantity"
+														class="form-control" onkeyup="userTyped('checkSpares', this)">
 												</div>
 											</div>
 										</div>
@@ -226,7 +224,7 @@
 							</div>
 							<!-- //group spare details -->	
 							
-							<!-- group search details -->
+						<!-- group search details -->
 						<div class="groupsearchdetails">
 								<legend>Compatible Devices </legend>
 								<input type="button" value="Add Row" onclick="addRow('dataTable')" />
@@ -320,6 +318,33 @@ compitableDevice.addEventListener("focus", function (evt) {
     compitableDevice.readOnly = !checkSpares.checked;
 });
 
+</script>
+
+<!-- Disable checkbox if quantity is not zero -->
+<script type="text/javascript">
+
+function userTyped(commen, e){
+    if(e.value.length > 0){
+        document.getElementById(commen).disabled=false;
+    }else{
+        document.getElementById(commen).disabled=true;
+    }
+ }
+
+</script>
+
+
+<!--Mono and Colour Selection-->
+<script type="text/javascript">
+	
+	function CheckColors(val){
+	 var element=document.getElementById('partNum');
+	 if(val=='hide checkbox'||val== '' )
+		 element.style.display='none';
+	 else
+	 	element.style.display='block';
+	   
+	}
 </script>
 
 <script language="javascript">

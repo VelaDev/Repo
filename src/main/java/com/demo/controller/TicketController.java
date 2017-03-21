@@ -59,7 +59,6 @@ public class TicketController {
 	private Employee userName= null;
 	private String retMessage ="";
 	
-	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
 	public ModelAndView loadTicket() {
        
@@ -71,7 +70,6 @@ public class TicketController {
 			model.addObject("serialNumbers",getSerialNumbers);
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("logTicket", new TicketsBean());
-			
 			model.setViewName("ticket");
 		}
 		else{

@@ -69,28 +69,11 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="	glyphicon glyphicon-map-marker"></i></span> <input
-												type="text" class="form-control" id="location" name="Site"
-												placeholder="Enter Location" id="Site" />
+												type="text" class="form-control" id="location" id="Site" name="Site"
+												placeholder="Enter Location"  />
 										</div>
 									</div>
 								</div>
-
-							</div>
-
-							<!-- Text input Technician name-->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Technician</label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <input id="technician"
-											name="technician" placeholder="Technicain"
-											class="form-control" type="text"
-											value="${loggedInUser.firstName} ${loggedInUser.lastName}">
-									</div>
-								</div>
-							</div>
-
 
 							<!-- Text input Customer Name-->
 							<div class="form-group">
@@ -98,13 +81,28 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <select id="customer" name="customer"
+											class="glyphicon glyphicon-user"></i></span><select id="Site" name="Site"
 											class="form-control selectpicker">
 											<option>Customer Name</option>
 											<c:forEach items="${customerList}" var="customer">
 												<option value="${customer.customerName}">${customer.customerName}</option>
 											</c:forEach>
 										</select>
+									</div>
+								</div>
+							</div>
+							</div>							
+							
+							<!-- Text input Technician name-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Technician</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-user"></i></span> <input readOnly id="technician"
+											name="technician" placeholder="Technicain"
+											class="form-control" type="text"
+											value="${loggedInUser.firstName} ${loggedInUser.lastName}">
 									</div>
 								</div>
 							</div>
@@ -284,8 +282,8 @@
 
 </script>
 
-	<!--Stock type Selection-->
-	<script type="text/javascript">
+<!--Stock type Selection-->
+<script type="text/javascript">
 	
 		function CheckStockType(val){
 		 var element=document.getElementById('Site');
@@ -302,7 +300,7 @@
 		   
 		}
 	
-	</script>
+</script>
 
 	
 

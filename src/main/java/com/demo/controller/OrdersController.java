@@ -247,4 +247,34 @@ public class OrdersController {
 		
 		return model;
 	}
+	
+	@RequestMapping(value = "viewApprovedOrders",method=RequestMethod.GET)
+	public ModelAndView LoadViewApprovedOrders() {
+
+		model = new ModelAndView("viewApprovedOrders");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.setViewName("viewApprovedOrders");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
+	@RequestMapping(value = "orderHistory",method=RequestMethod.GET)
+	public ModelAndView LoadOrderHistory() {
+
+		model = new ModelAndView("orderHistory");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.setViewName("orderHistory");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
 }

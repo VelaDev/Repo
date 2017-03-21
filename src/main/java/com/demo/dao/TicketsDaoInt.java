@@ -23,5 +23,6 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllEmployees(String searchName);
 	List<PieChart> ticketsResults();
 	Integer count();
+	
 
 }

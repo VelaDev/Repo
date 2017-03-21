@@ -79,4 +79,9 @@ public class DeviceService implements DeviceServiceInt {
 		return deviceDAO.getDeviceList(offset, maxResults,clientName);
 	}
 
+	@Override
+	public String[] getSerials() {
+		return deviceDAO.getSerials();
+	}
+
 }

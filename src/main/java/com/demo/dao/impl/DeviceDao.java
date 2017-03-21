@@ -21,6 +21,7 @@ import com.demo.model.Accessories;
 import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.DeviceContactPerson;
+import com.demo.model.SpareMaster;
 
 @Repository("productDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -323,6 +324,31 @@ public class DeviceDao implements DeviceDaoInt {
 	@Override
 	public Integer count() {
 		return (Integer) sessionFactory.getCurrentSession().createCriteria(Customer.class).setProjection(Projections.rowCount()).uniqueResult();
+	}
+
+	@Override
+	public String[] getSerials() {
+		List<Device> list = null;
+		ArrayList<String> newList = null;
+		String array[] = null;
+		try{
+			list = getDeviceList();
+			newList = new ArrayList<String>();
+			
+			for(Device device:list){
+				newList.add(device.getSerialNumber());
+			}
+			
+			 array = new String[newList.size()];
+			
+			for(int i =0;i<newList.size();i++){
+				  array[i] = newList.get(i);
+				}
+		}
+		catch(Exception e){
+			e.getMessage();
+		}
+		return array;
 	}
 	
 }

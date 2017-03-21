@@ -14,16 +14,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.SparePartsBean;
 import com.demo.model.Employee;
-import com.demo.model.Spare;
+import com.demo.model.HOStock;
 import com.demo.service.OrderDetailsInt;
 import com.demo.service.SpareMasterServiceInt;
-import com.demo.service.SparePartsServeceInt;
+import com.demo.service.HOStockServeceInt;
 
 @Controller
 public class SparePartsController {
 	
 	@Autowired
-	private SparePartsServeceInt sparePartsServeceInt;
+	private HOStockServeceInt hOStockServeceInt;
 	@Autowired
 	private OrderDetailsInt orderDetailsInt;
 	@Autowired
@@ -53,12 +53,12 @@ public class SparePartsController {
 	}
 	
 	@RequestMapping(value="saveSpareParts", method=RequestMethod.POST)
-	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveSpareParts")Spare spareParts){
+	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveSpareParts")HOStock spareParts){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			retMessage = sparePartsServeceInt.saveSpareparts(spareParts);
+			retMessage = hOStockServeceInt.saveSpareparts(spareParts);
 			model.addObject("retMessage", retMessage);
 			model.setViewName("addParts");
 		}
@@ -74,7 +74,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("spareParts", sparePartsServeceInt.getAllSpareParts());
+			model.addObject("spareParts", hOStockServeceInt.getAllSpareParts());
 			model.setViewName("availableSpareParts");
 		}
 		else{

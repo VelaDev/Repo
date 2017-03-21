@@ -153,12 +153,12 @@
 
 											<tr>
 												<td>${list.partNumber}</td>
-												<td>${list.description}</td>
+												<td>${list.itemDescription}</td>
 												<td>${list.compitableDevice}</td>
 												<td>${list.quantity}</td>
 												<td><input type="checkbox" class="form-group"
 													id="checkedOrder" name="selectedItem" 
-													value="${list.partNumber},${list.compitableDevice},${list.description}"></td>
+													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
 												<td><input type="text" class="form-group" id="quantity"
 													name="quantity"></td>
 												<%-- 	<th>

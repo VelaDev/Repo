@@ -18,6 +18,7 @@ public interface DeviceDaoInt {
 	String prepareDeviceData(DeviceBean deviceBean);
 	DeviceBean getAccessoriesForUpdate(String serialNumber);
 	Integer count();
+	String[] getSerials();
 	
 
 }

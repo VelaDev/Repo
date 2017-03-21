@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Orders</b>
+							<b>Pending Orders</b>
 						</div>
 					</h3>
 				</div>
@@ -34,8 +34,8 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Record No<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<!-- <th>Record No<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
 									<th>Order No<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Order Status<img
@@ -47,32 +47,19 @@
 									<th>Customer<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Order Details</th>
-									<th>Delivery Note</th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${pendingOrderList}">
 									<tr>
-										<td>${list.recordID}</td>
+										<%-- <td>${list.recordID}</td> --%>
 										<td>${list.orderNum}</td>
 										<td>${list.status}</td>
 										<td>${list.dateOrdered}</td>
 										<td>${list.stockType}</td>
 										<td>${list.customer.customerName}</td>
-										<td><a href="approveOrder?recordID=<c:out value='${1}'/>">Details</a></td>
-										<td><a
-											href="deliveryNote?recordID=<c:out value='${list.recordID}'/>">
-
-												<c:choose>
-													<c:when test="${list.status =='Approved'}">
-														Delivery
-													</c:when>
-													<c:when test="${list.status =='Pending'}">
-														<button class="btn btn-info" disabled="disabled">Delivery</button>
-													</c:when>
-												</c:choose>
-										</a></td>
+										<td><a href="approveOrder?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

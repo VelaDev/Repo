@@ -79,10 +79,10 @@
 										<tr>
 											<td>${list.partNumber}</td>
 											<td>${list.model}</td>
-											<td>${list.description}</td>
+											<td>${list.itemDescription}</td>
 											<td>${list.quantity}</td>
 											<td>${list.dateTime}</td>
-											<td>${list.ordersHeader.status}</td>
+											<td>${list.orderHeader.status}</td>
 										</tr>
 									</c:forEach>
 								</tbody>

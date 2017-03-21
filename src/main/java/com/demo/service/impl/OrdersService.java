@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.OrdersBean;
 import com.demo.dao.OrdersDaoInt;
-import com.demo.model.OrdersHeader;
+import com.demo.model.OrderHeader;
 import com.demo.service.OrdersServiceInt;
 
 @Service("odersService")
@@ -20,9 +20,9 @@ public class OrdersService implements OrdersServiceInt{
 	private String retMessage = null;
 
 	@Override
-	public String makeOrder(OrdersHeader ordersHeader) {
+	public String makeOrder(OrderHeader orderHeader) {
 		try{
-			retMessage = ordersDAO.makeOrder(ordersHeader);
+			retMessage = ordersDAO.makeOrder(orderHeader);
 		}
 		catch(Exception e){}
 		return retMessage;
@@ -35,29 +35,29 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public List<OrdersHeader> getAllOrders() {
+	public List<OrderHeader> getAllOrders() {
 		return ordersDAO.getAllOrders();
 	}
 
 	@Override
-	public List<OrdersHeader> getApprovedOrdersByTechnicianName(String userName) {
+	public List<OrderHeader> getApprovedOrdersByTechnicianName(String userName) {
 		
 		return ordersDAO.getApprovedOrdersByTechnicianName(userName);
 	}
 
 	@Override
-	public List<OrdersHeader> getOpenOrders() {
+	public List<OrderHeader> getOpenOrders() {
 		return ordersDAO.getOpenOrders();
 	}
 
 	@Override
-	public OrdersHeader getOrder(Integer recordID) {
+	public OrderHeader getOrder(Integer recordID) {
 	
 		return ordersDAO.getOrder(recordID);
 	}
 
 	@Override
-	public List<OrdersHeader> getAllOrders(String orderedBy) {
+	public List<OrderHeader> getAllOrders(String orderedBy) {
 		return ordersDAO.getAllOrders(orderedBy);
 	}
 
@@ -67,7 +67,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public List<OrdersHeader> pendingOrders() {
+	public List<OrderHeader> pendingOrders() {
 		return ordersDAO.pendingOrders();
 	}
 
@@ -77,7 +77,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public List<OrdersHeader> pendingOrders(String approveName) {
+	public List<OrderHeader> pendingOrders(String approveName) {
 		return ordersDAO.pendingOrders(approveName);
 	}
 

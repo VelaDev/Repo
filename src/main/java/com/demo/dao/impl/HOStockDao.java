@@ -13,13 +13,13 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.SpareMasterDaoInt;
-import com.demo.dao.SparePartsDaoInt;
-import com.demo.model.Spare;
+import com.demo.dao.HOStockDaoInt;
+import com.demo.model.HOStock;
 import com.demo.model.SpareMaster;
 
-@Repository("sparePartsDAO")
+@Repository("HOStockDAO")
 @Transactional(propagation = Propagation.REQUIRED)
-public class SparePartsDao implements SparePartsDaoInt {
+public class HOStockDao implements HOStockDaoInt {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -32,23 +32,23 @@ public class SparePartsDao implements SparePartsDaoInt {
 	private Date date = null;
 
 	private SpareMaster spareMaster = null;
-	private Spare spare;
+	private HOStock hOStock;
 
 	@Override
-	public String saveSpareparts(Spare spareParts) {
+	public String saveSpareparts(HOStock spareParts) {
 
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 
 		try {
 
-			spare = getSparePartBySerial(spareParts.getPartNumber());
-			if (spare != null) {
-				int updateQuantity = spare.getQuantity()
+			hOStock = getSparePartBySerial(spareParts.getPartNumber());
+			if (hOStock != null) {
+				int updateQuantity = hOStock.getQuantity()
 						+ spareParts.getQuantity();
-				spare.setQuantity(updateQuantity);
-				sessionFactory.getCurrentSession().update(spare);
-				retMessage = "Quantity for Part No " + spare.getPartNumber()
+				hOStock.setQuantity(updateQuantity);
+				sessionFactory.getCurrentSession().update(hOStock);
+				retMessage = "Quantity for Part No " + hOStock.getPartNumber()
 						+ " is updated";
 
 			} else {
@@ -58,11 +58,11 @@ public class SparePartsDao implements SparePartsDaoInt {
 
 					spareParts.setCompitableDevice(spareMaster
 							.getCompitableDevice());
-					spareParts.setDescription(spareMaster.getDescription());
+					spareParts.setItemDescription(spareMaster.getDescription());
 					spareParts.setItemType(spareMaster.getItemType());
 					spareParts.setDateTime(dateFormat.format(date));
 					sessionFactory.getCurrentSession().save(spareParts);
-					retMessage = " Spare Part" + " "
+					retMessage = "Part Number : " + " "
 							+ spareParts.getPartNumber()
 							+ " is successfully added";
 				} else {
@@ -70,7 +70,7 @@ public class SparePartsDao implements SparePartsDaoInt {
 					spareMaster = new SpareMaster();
 					spareMaster.setCompitableDevice(spareParts
 							.getCompitableDevice());
-					spareMaster.setDescription(spareParts.getDescription());
+					spareMaster.setDescription(spareParts.getItemDescription());
 					spareMaster.setItemType(spareParts.getItemType());
 					spareMaster.setPartNumber(spareParts.getPartNumber());
 					spareMaster.setDateCaptured(date);
@@ -82,33 +82,33 @@ public class SparePartsDao implements SparePartsDaoInt {
 					spareParts.setPartNumber(spareMaster.getPartNumber());
 					spareParts.setCompitableDevice(spareMaster
 							.getCompitableDevice());
-					spareParts.setDescription(spareMaster.getDescription());
+					spareParts.setItemDescription(spareMaster.getDescription());
 					spareParts.setItemType(spareMaster.getItemType());
 					spareParts.setDateTime(dateFormat.format(date));
 					sessionFactory.getCurrentSession().save(spareParts);
 
-					retMessage = " Spare Part"
+					retMessage = "Part Number : "
 							+ " "
 							+ spareParts.getPartNumber()
-							+ " is successfully added into Spare Parts and Master Data";
+							+ " is successfully added into HOStock Parts and Master Data";
 				}
 			}
 		} catch (Exception e) {
-			retMessage = " Spare Part " + " " + spareParts.getPartNumber()
+			retMessage = " Part Number : " + " " + spareParts.getPartNumber()
 					+ " is not added " + e.getMessage();
 		}
 		return retMessage;
 	}
 
 	@Override
-	public Spare getSparePartBySerial(String serialNum) {
+	public HOStock getSparePartBySerial(String serialNum) {
 
-		return (Spare) sessionFactory.getCurrentSession().get(Spare.class,
+		return (HOStock) sessionFactory.getCurrentSession().get(HOStock.class,
 				serialNum);
 	}
 
 	@Override
-	public String updateSpareParts(Spare spareParts) {
+	public String updateSpareParts(HOStock spareParts) {
 
 		try {
 			sessionFactory.getCurrentSession().update(spareParts);
@@ -121,10 +121,10 @@ public class SparePartsDao implements SparePartsDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Spare> getAllSpareParts() {
+	public List<HOStock> getAllSpareParts() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				Spare.class);
-		return (List<Spare>) criteria.list();
+				HOStock.class);
+		return (List<HOStock>) criteria.list();
 	}
 
 }

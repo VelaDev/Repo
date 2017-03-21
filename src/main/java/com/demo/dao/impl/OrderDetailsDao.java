@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.model.OrderDetails;
-import com.demo.model.OrdersHeader;
+import com.demo.model.OrderHeader;
 
 @Repository("orderDetailsDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -47,7 +47,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		try{
 			orders = getAllOrderDetails();
 			 for(OrderDetails order:orders){
-				 if(order.getOrdersHeader().getRecordID().equals(recordID)){
+				 if(order.getOrderHeader().getRecordID().equals(recordID)){
 					 pendingList.add(order);
 				 }
 			 }
@@ -72,7 +72,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 			orders = getAllOrderDetails();
 			
 			 for(OrderDetails order:orders){
-				 if(order.getOrdersHeader().getEmployee().getEmail().equalsIgnoreCase(email)){
+				 if(order.getOrderHeader().getEmployee().getEmail().equalsIgnoreCase(email)){
 					 pendingList.add(order);
 				 }
 			 }
@@ -87,7 +87,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		try{
 			orders = getAllOrderDetails();
 			for(OrderDetails availableOrds:orders){
-				if(availableOrds.getOrdersHeader().getStatus().equalsIgnoreCase("Approved")&& availableOrds.getTechnician().equalsIgnoreCase(technician)){
+				if(availableOrds.getOrderHeader().getStatus().equalsIgnoreCase("Approved")&& availableOrds.getTechnician().equalsIgnoreCase(technician)){
 					availableOrders.add(availableOrds);
 				}
 			}
@@ -105,7 +105,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 			  for(OrderDetails details:availableStock){
 				  orderDetails = getOrderDetails(details.getOrderDertailNumber());
 				  
-				  if(details.getOrderDertailNumber()==orderDetails.getOrderDertailNumber()){
+				  if(details.getOrderDertailNumber()== orderDetails.getOrderDertailNumber()){
 					  tempQuantity =  orderDetails.getQuantity() + details.getQuantity();
 					  orderDetails.setQuantity(tempQuantity);
 					  sessionFactory.getCurrentSession().update(orderDetails);
@@ -128,7 +128,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		try{
 			orders = getAllOrderDetails();
 			 for(OrderDetails order:orders){
-				 if(order.getOrdersHeader().getRecordID()==recordID){
+				 if(order.getOrderHeader().getRecordID()==recordID){
 					 pendingList.add(order);
 				 }
 			 }

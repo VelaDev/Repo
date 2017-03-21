@@ -49,7 +49,7 @@
 									<tr>
 										<td>${list.model}</td>
 										<td>${list.partNumber}</td>
-										<td>${list.description}</td>
+										<td>${list.itemDescription}</td>
 										<td>${list.quantity}</td>
 									</tr>
               					</c:forEach>

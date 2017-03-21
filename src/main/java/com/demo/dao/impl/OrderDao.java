@@ -18,22 +18,23 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.OrdersBean;
+import com.demo.dao.ApprovedOrderStockDaoInt;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.DeviceDaoInt;
-import com.demo.dao.SparePartsDaoInt;
+import com.demo.dao.HOStockDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
-import com.demo.model.OrdersHeader;
+import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
-import com.demo.model.Spare;
+import com.demo.model.HOStock;
 import com.demo.model.Device;
 
 @Repository("ordersDAO")
 @Transactional(propagation = Propagation.REQUIRED)
-public class OrdersDao implements OrdersDaoInt {
+public class OrderDao implements OrdersDaoInt {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -43,36 +44,42 @@ public class OrdersDao implements OrdersDaoInt {
 	@Autowired
 	private EmployeeDaoInt employeeDaoInt;
 	@Autowired
-	private SparePartsDaoInt sparePartsDaoInt;
+	private HOStockDaoInt hOStockDaoInt;
 	@Autowired
 	private DeviceDaoInt deviceDaoInt;
 	@Autowired
 	private CustomerDaoInt customerDaoInt;
 	@Autowired
 	private OrderDetailsDaoInt detailsDaoInt;
-	
+	@Autowired
+	private ApprovedOrderStockDaoInt approvedOrderStockDaoInt;
+
 	private String retMessage = null;
 	private Customer cus;
 	private Employee emp = null;
-	private Spare part = null;
+	private HOStock part = null;
 	private Device device = null;
-	private OrdersHeader cusOrder = null;
+	private OrderHeader cusOrder = null;
 	private DateFormat dateFormat = null;
 	private Date date = null;
 	private List<OrderDetails> orderDetailList = null;
 	private OrderDetails orderDetails = null;
-	private List<OrdersHeader> pendingOrders;
+	private List<OrderHeader> pendingOrders;
+	private List<OrderDetails> listOrders;
 
 	@Override
-	public String makeOrder(OrdersHeader ordersHeader) {
-
+	public String makeOrder(OrderHeader orderHeader) {
+		emp = employeeDaoInt.getEmployeeByEmpNum(orderHeader.getApprover());
 		try {
-			sessionFactory.getCurrentSession().save(ordersHeader);
-			retMessage = "OrdersHeader" + " " + ordersHeader.getOrderNum()
-					+ " " + "is created";
+			sessionFactory.getCurrentSession().save(orderHeader);
+			JavaMail.sendEmail(orderHeader.getApprover(), orderHeader
+					.getEmployee().getEmail(), emp.getFirstName(), orderHeader);
+
+			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
+					+ "is created";
 		} catch (Exception e) {
-			retMessage = "OrdersHeader" + " " + ordersHeader.getOrderNum()
-					+ " " + "is not created";
+			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
+					+ "is not created " + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -83,10 +90,10 @@ public class OrdersDao implements OrdersDaoInt {
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 		String n = " ";
-		cusOrder = new OrdersHeader();
+		cusOrder = new OrderHeader();
 		try {
 
-			part = sparePartsDaoInt.getSparePartBySerial(orders.getPart());
+			part = hOStockDaoInt.getSparePartBySerial(orders.getPart());
 			device = deviceDaoInt.getDeviceBySerialNumbuer(orders.getDevice());
 			emp = employeeDaoInt.getEmployeeByEmpNum(orders.getEmployee());
 			if (part != null) {
@@ -116,28 +123,28 @@ public class OrdersDao implements OrdersDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrdersHeader> getAllOrders() {
+	public List<OrderHeader> getAllOrders() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				OrdersHeader.class);
-		return (List<OrdersHeader>) criteria.list();
+				OrderHeader.class);
+		return (List<OrderHeader>) criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrdersHeader> getApprovedOrdersByTechnicianName(String userName) {
+	public List<OrderHeader> getApprovedOrdersByTechnicianName(String userName) {
 
-		ArrayList<OrdersHeader> aList = new ArrayList<OrdersHeader>();
-		ArrayList<OrdersHeader> orderList = new ArrayList<OrdersHeader>();
+		ArrayList<OrderHeader> aList = new ArrayList<OrderHeader>();
+		ArrayList<OrderHeader> orderList = new ArrayList<OrderHeader>();
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				OrdersHeader.class);
+				OrderHeader.class);
 
 		aList.addAll(criteria.list());
 		for (Object order : aList) {
-			if (order instanceof OrdersHeader) {
-				if (((OrdersHeader) order).getEmployee().getEmail()
+			if (order instanceof OrderHeader) {
+				if (((OrderHeader) order).getEmployee().getEmail()
 						.equalsIgnoreCase(userName)
-						&& ((OrdersHeader) order).isApproved() == true) {
-					orderList.add((OrdersHeader) order);
+						&& ((OrderHeader) order).isApproved() == true) {
+					orderList.add((OrderHeader) order);
 				}
 			}
 		}
@@ -146,18 +153,18 @@ public class OrdersDao implements OrdersDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrdersHeader> getOpenOrders() {
+	public List<OrderHeader> getOpenOrders() {
 		ArrayList<?> aList = new ArrayList<Object>();
-		ArrayList<OrdersHeader> orderList = new ArrayList<OrdersHeader>();
+		ArrayList<OrderHeader> orderList = new ArrayList<OrderHeader>();
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				OrdersHeader.class);
+				OrderHeader.class);
 
 		aList.addAll(criteria.list());
 		for (Object order : aList) {
-			if (order instanceof OrdersHeader) {
-				if (((OrdersHeader) order).getStatus().equalsIgnoreCase(
+			if (order instanceof OrderHeader) {
+				if (((OrderHeader) order).getStatus().equalsIgnoreCase(
 						"Approved")) {
-					orderList.add((OrdersHeader) order);
+					orderList.add((OrderHeader) order);
 				}
 			}
 		}
@@ -165,20 +172,20 @@ public class OrdersDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public OrdersHeader getOrder(Integer recordID) {
+	public OrderHeader getOrder(Integer recordID) {
 
-		return (OrdersHeader) sessionFactory.getCurrentSession().get(
-				OrdersHeader.class, recordID);
+		return (OrderHeader) sessionFactory.getCurrentSession().get(
+				OrderHeader.class, recordID);
 	}
 
 	private Integer getRecordID() {
 
 		session2 = sessionFactory.openSession();
-		Integer result =(int) 1L;
+		Integer result = (int) 1L;
 		Query query = session2
-				.createQuery("from OrdersHeader order by recordID DESC");
+				.createQuery("from OrderHeader order by recordID DESC");
 		query.setMaxResults(1);
-		OrdersHeader orderNumber = (OrdersHeader) query.uniqueResult();
+		OrderHeader orderNumber = (OrderHeader) query.uniqueResult();
 
 		if (orderNumber != null) {
 			result = orderNumber.getRecordID();
@@ -187,13 +194,14 @@ public class OrdersDao implements OrdersDaoInt {
 		}
 		return result;
 	}
+
 	private Integer newRecordID() {
 		String tempOrder = "";
 		int tempOrderNum = 0;
 		Integer newOrderNum = getRecordID();
 
-		if (newOrderNum !=null) {
-			tempOrderNum =  newOrderNum+ 1;
+		if (newOrderNum != null) {
+			tempOrderNum = newOrderNum + 1;
 		} else {
 			tempOrderNum = 1;
 		}
@@ -203,18 +211,18 @@ public class OrdersDao implements OrdersDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrdersHeader> getAllOrders(String orderedBy) {
+	public List<OrderHeader> getAllOrders(String orderedBy) {
 		ArrayList<?> aList = new ArrayList<Object>();
-		ArrayList<OrdersHeader> orderList = new ArrayList<OrdersHeader>();
+		ArrayList<OrderHeader> orderList = new ArrayList<OrderHeader>();
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				OrdersHeader.class);
+				OrderHeader.class);
 
 		aList.addAll(criteria.list());
 		for (Object order : aList) {
-			if (order instanceof OrdersHeader) {
-				if (((OrdersHeader) order).getEmployee().getEmail()
+			if (order instanceof OrderHeader) {
+				if (((OrderHeader) order).getEmployee().getEmail()
 						.equalsIgnoreCase(orderedBy)) {
-					orderList.add((OrdersHeader) order);
+					orderList.add((OrderHeader) order);
 				}
 			}
 		}
@@ -225,7 +233,7 @@ public class OrdersDao implements OrdersDaoInt {
 	public String prepareOrderMaking(OrdersBean orderBean) {
 		orderDetailList = new ArrayList<OrderDetails>();
 
-		cusOrder = new OrdersHeader();
+		cusOrder = new OrderHeader();
 		String orderNumber = null;
 		Integer recordID = 1;
 		String[] split;
@@ -249,7 +257,7 @@ public class OrdersDao implements OrdersDaoInt {
 			cusOrder.setApprover(orderBean.getApprover());
 
 			recordID = newRecordID();
-			orderNumber = "VEL00"+recordID;
+			orderNumber = "VEL00" + recordID;
 			cusOrder.setRecordID(recordID);
 			cusOrder.setOrderNum(orderNumber);
 			cusOrder.setEmployee(emp);
@@ -261,16 +269,16 @@ public class OrdersDao implements OrdersDaoInt {
 				splitString = orderBean.getSelectedItem()[i];
 				split = splitString.split(",");
 				partNumber = split[0];
-				part = sparePartsDaoInt.getSparePartBySerial(partNumber);
+				part = hOStockDaoInt.getSparePartBySerial(partNumber);
 				quatity = Integer.parseInt(quantityArray[i]);
 				orderDetails.setPartNumber(partNumber);
-				orderDetails.setDescription(part.getDescription());
+				orderDetails.setItemDescription(part.getItemDescription());
 				orderDetails.setModel(part.getCompitableDevice());
 				orderDetails.setQuantity(quatity);
 				orderDetails.setLocation(orderBean.getLocation());
 				orderDetails.setStockType(cusOrder.getStockType());
 				orderDetails.setTechnician(orderBean.getTechnician());
-				orderDetails.setOrdersHeader(cusOrder);
+				orderDetails.setOrderHeader(cusOrder);
 				orderDetails.setDateTime(dateFormat.format(date));
 
 				orderDetailList.add(orderDetails);
@@ -298,13 +306,13 @@ public class OrdersDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public List<OrdersHeader> pendingOrders() {
-		ArrayList<OrdersHeader> pendingList = new ArrayList<OrdersHeader>();
+	public List<OrderHeader> pendingOrders() {
+		ArrayList<OrderHeader> pendingList = new ArrayList<OrderHeader>();
 		try {
 			pendingOrders = getAllOrders();
-			for (OrdersHeader ordersHeader : pendingOrders) {
-				if (ordersHeader.getStatus().equalsIgnoreCase("Pending")) {
-					pendingList.add(ordersHeader);
+			for (OrderHeader orderHeader : pendingOrders) {
+				if (orderHeader.getStatus().equalsIgnoreCase("Pending")) {
+					pendingList.add(orderHeader);
 				}
 			}
 		} catch (Exception e) {
@@ -317,18 +325,31 @@ public class OrdersDao implements OrdersDaoInt {
 	public String approveOrder(Integer recordID) {
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
+		
 		try {
 			cusOrder = getOrder(recordID);
 			cusOrder.setStatus("Approved");
 			cusOrder.setApproved(true);
 			cusOrder.setDateApproved(dateFormat.format(date));
 			sessionFactory.getCurrentSession().update(cusOrder);
+			
 
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 			retMessage = subtractOrderItems(orderDetailList);
 			if (retMessage.equalsIgnoreCase("Ok")) {
-				retMessage = detailsDaoInt
-						.incrementStockAvailability(orderDetailList);
+				/*
+				 * retMessage = detailsDaoInt
+				 * .incrementStockAvailability(orderDetailList);
+				 */
+
+				listOrders = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
+
+				String addStockToApprovedTable = approvedOrderStockDaoInt
+						.approveOrderStock(listOrders);
+				
+				emp = employeeDaoInt.getEmployeeByEmpNum(cusOrder.getApprover());
+				JavaMail.sendEmailForOrderApproved(cusOrder.getEmployee().getEmail(), cusOrder.getApprover(), emp.getFirstName(), cusOrder.getEmployee().getFirstName(), cusOrder);
+
 				retMessage = "Order " + cusOrder.getOrderNum() + " is approved";
 			} else {
 				retMessage = "Order cannot be approved because ordered items are more that available items";
@@ -345,7 +366,7 @@ public class OrdersDao implements OrdersDaoInt {
 
 		try {
 			for (OrderDetails subtractQuatity : orderDetails) {
-				part = sparePartsDaoInt.getSparePartBySerial(subtractQuatity
+				part = hOStockDaoInt.getSparePartBySerial(subtractQuatity
 						.getPartNumber());
 				tempQuantity = part.getQuantity()
 						- subtractQuatity.getQuantity();
@@ -366,12 +387,12 @@ public class OrdersDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public List<OrdersHeader> pendingOrders(String approveName) {
-		List<OrdersHeader> pendingOrder = new ArrayList<OrdersHeader>();
+	public List<OrderHeader> pendingOrders(String approveName) {
+		List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
 		try {
-			List<OrdersHeader> pendingForApprover = pendingOrders();
+			List<OrderHeader> pendingForApprover = pendingOrders();
 
-			for (OrdersHeader order : pendingForApprover) {
+			for (OrderHeader order : pendingForApprover) {
 				if (order.getApprover().equalsIgnoreCase(approveName)) {
 
 					pendingOrder.add(order);

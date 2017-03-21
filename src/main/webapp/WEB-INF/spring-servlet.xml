@@ -57,9 +57,9 @@
 				 <value>com.demo.model.Employee</value> 
 				 <value>com.demo.model.Device</value>
 				 <value>com.demo.model.Customer</value>
-				 <value>com.demo.model.Spare</value>
+				 <value>com.demo.model.HOStock</value>
 				 <value>com.demo.model.Tickets</value>
-				 <value>com.demo.model.OrdersHeader</value>
+				 <value>com.demo.model.OrderHeader</value>
 				 <value>com.demo.model.CustomerContactDetails</value>
 				 <value>com.demo.model.Accessories</value>
 				 <value>com.demo.model.Manager</value>
@@ -74,6 +74,9 @@
 				 <value>com.demo.model.SpareMaster</value>
 				 <value>com.demo.model.Credentials</value>
 				 <value>com.demo.model.LoginAttempt</value>
+				 <value>com.demo.model.SiteStock</value>
+				 <value>com.demo.model.BootStock</value>
+				 <value>com.demo.model.ApprovedOrderStock</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

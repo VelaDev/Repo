@@ -8,8 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -25,12 +23,12 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name= "OrdersHeader")
+@Table(name= "Order_Header")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class OrdersHeader implements Serializable{
+public class OrderHeader implements Serializable{
 
 	/**
 	 * 
@@ -61,6 +59,9 @@ public class OrdersHeader implements Serializable{
 	@Column(name="DateTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
+	@Column(name="Shipping_Date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date shippingDate;
 	
 	
 	@ManyToOne
@@ -69,7 +70,7 @@ public class OrdersHeader implements Serializable{
 	
 	/*@ManyToOne
 	@JoinColumn(name="Spare_Part")
-	private Spare spare;*/
+	private HOStock spare;*/
 	@ManyToOne
 	@JoinColumn(name="Customer_Name")
 	private Customer customer;
@@ -77,9 +78,9 @@ public class OrdersHeader implements Serializable{
 	@JoinColumn(name="Serial_Number")
 	private Device device;*/
 	
-	@OneToMany(mappedBy ="ordersHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy ="orderHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<OrderDetails> orderDetails;
 	
-	@OneToMany(mappedBy ="ordersHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy ="orderHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Tickets> tickets;
 }

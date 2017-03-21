@@ -19,6 +19,7 @@ public interface DeviceServiceInt {
 	DeviceBean getAccessoriesForUpdate(String serialNumber);
 	Integer count();
 	List<Device> getAllEmployees(Integer offset, Integer maxResults,String clientName);
+	String[] getSerials();
 	
 
 }

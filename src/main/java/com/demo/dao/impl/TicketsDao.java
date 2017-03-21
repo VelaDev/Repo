@@ -33,7 +33,7 @@ import com.demo.dao.TicketHistoryDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Device;
-import com.demo.model.OrdersHeader;
+import com.demo.model.OrderHeader;
 import com.demo.model.Tickets;
 
 @Repository("LogTicketsDAO")
@@ -61,7 +61,7 @@ public class TicketsDao implements TicketsDaoInt {
 
 	private Employee technician = null;
 	private Customer customer = null;
-	private OrdersHeader order = null;
+	private OrderHeader order = null;
 	private Device device = null;
 	 private Tickets ticket = null;
 	Calendar cal = Calendar.getInstance();
@@ -255,7 +255,7 @@ public class TicketsDao implements TicketsDaoInt {
 	@Override
 	public String updateTicket(TicketsBean tickets) {
 		ticket = new  Tickets();
-		order = new OrdersHeader();
+		order = new OrderHeader();
 		try{
 			
 			  ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
@@ -264,9 +264,9 @@ public class TicketsDao implements TicketsDaoInt {
 				  ticket.setComments(tickets.getComments());
 				  ticket.setEscalateReason(tickets.getEscalateReason());
 				  ticket.setEscalate(true);
-				  ticket.setStatus("Awaiting Spare");
+				  ticket.setStatus("Awaiting HOStock");
 				  //order = ordersDaoInt.getOrder(tickets.getOrderNumber());
-				  ticket.setOrdersHeader(order);
+				  ticket.setOrderHeader(order);
 				  sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 				  historyDaoInt.insertTicketHistory(ticket);
 				  retMessage = "SLA for ticket "+ ticket.getTicketNumber()+ " started";
@@ -390,7 +390,7 @@ public class TicketsDao implements TicketsDaoInt {
 					slaBrigged ++;
 					
 				}
-				else if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")){
+				else if(ticket.getStatus().equalsIgnoreCase("Awaiting HOStock")){
 					awaitingSpare ++;
 					
 				}
@@ -423,7 +423,7 @@ public class TicketsDao implements TicketsDaoInt {
 			beanList.add(pieChart4);
 			
 			pieChart5.setNumberTicket(awaitingSpare);
-			pieChart5.setStatus("Awaiting Spare");
+			pieChart5.setStatus("Awaiting HOStock");
 			beanList.add(pieChart5);
 		}
 		catch(Exception ex)

@@ -14,14 +14,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.OrdersBean;
 import com.demo.model.Employee;
-import com.demo.model.OrdersHeader;
+import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.OrderDetailsInt;
 import com.demo.service.OrdersServiceInt;
-import com.demo.service.SparePartsServeceInt;
+import com.demo.service.HOStockServeceInt;
 
 
 @Controller
@@ -30,7 +30,7 @@ public class OrdersController {
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
 	@Autowired
-	private SparePartsServeceInt spareParts;
+	private HOStockServeceInt spareParts;
 	@Autowired
 	private EmployeeServiceInt employeeServiceInt;
 	@Autowired
@@ -83,15 +83,15 @@ public class OrdersController {
 	} 
 	
 	@RequestMapping("approveOrder")
-    public ModelAndView getOrderDetails(@RequestParam Integer recordID, @ModelAttribute OrdersHeader ordersHeader) {
+    public ModelAndView getOrderDetails(@RequestParam Integer recordID, @ModelAttribute OrderHeader orderHeader) {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-		      ordersHeader = ordersServiceInt.getOrder(recordID);
-		      if(ordersHeader !=null){
+		      orderHeader = ordersServiceInt.getOrder(recordID);
+		      if(orderHeader !=null){
 		    	  model.setViewName("orderUpdate");
-		          model.addObject("orderObject", ordersHeader);
+		          model.addObject("orderObject", orderHeader);
 		      }
 		else{
 			
@@ -148,14 +148,14 @@ public class OrdersController {
 		
 		return model;
 	}
-	@RequestMapping("pendingOrders")
+	@RequestMapping(value ="pendingOrders", method=RequestMethod.GET)
 	public ModelAndView displayPendingOrders(){
 		model = new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			model.addObject("pendingOrderList", ordersServiceInt.pendingOrders(userName.getEmail()));
-			model.setViewName("displayOrders");
+			model.setViewName("pendingOrders");
 		}
 		else{
 			model.setViewName("login");
@@ -218,7 +218,7 @@ public class OrdersController {
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			OrdersHeader order = ordersServiceInt.getOrder(recordID);
+			OrderHeader order = ordersServiceInt.getOrder(recordID);
 			List<OrderDetails> list = orderDetailsInt.getOrderDetailsByOrderNum("key",recordID);
 			model.addObject("pendingOrderList",list );
 			model.addObject("OrderNum", order);

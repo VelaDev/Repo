@@ -41,7 +41,7 @@ public class Compatibility implements Serializable{/**
 	private String modelNumber;
 	@ManyToOne
 	@JoinColumn(name="Part_Number")
-	private Spare spare;
+	private HOStock hOStock;
 	@Column(name="DateTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;

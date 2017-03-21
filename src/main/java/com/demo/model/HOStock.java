@@ -17,12 +17,12 @@ import lombok.Setter;
 
 
 @Entity
-@Table(name="Spares")
+@Table(name="HO_Stock")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Spare implements Serializable{
+public class HOStock implements Serializable{
 
 	/**
 	 * 
@@ -34,8 +34,8 @@ public class Spare implements Serializable{
 	private String partNumber;
 	@Column(name="Item_Type")
 	private String itemType;
-	@Column(name="Description")
-	private String description;
+	@Column(name="Item_Description")
+	private String itemDescription;
 	@Column(name="Compitable_Devices")
 	private String compitableDevice;
 	@Column(name="Quantity")

@@ -84,7 +84,7 @@ public class Tickets implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="Order_Number")
-	private OrdersHeader ordersHeader;
+	private OrderHeader orderHeader;
 	
 	@OneToMany(mappedBy= "tickets",cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<TicketHistory> ticketHistory; 

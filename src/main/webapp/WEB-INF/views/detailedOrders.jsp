@@ -60,14 +60,14 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${pendingOrderList}">
 									<tr>
-									    <td>${list.ordersHeader.orderNum}</td>
+									    <td>${list.orderHeader.orderNum}</td>
 										<td>${list.partNumber}</td>
 										<td>${list.model}</td>
-										<td>${list.description}</td>
+										<td>${list.itemDescription}</td>
 										<td>${list.quantity}</td> 
 										<td>${list.dateTime}</td> 
-										<td>${list.ordersHeader.status}</td>
-										<td>${list.ordersHeader.stockType}</td> 
+										<td>${list.orderHeader.status}</td>
+										<td>${list.orderHeader.stockType}</td> 
 									</tr>
 								</c:forEach>
 							</tbody>

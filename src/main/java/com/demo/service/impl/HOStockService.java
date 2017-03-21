@@ -6,21 +6,21 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.demo.dao.SparePartsDaoInt;
-import com.demo.model.Spare;
-import com.demo.service.SparePartsServeceInt;
+import com.demo.dao.HOStockDaoInt;
+import com.demo.model.HOStock;
+import com.demo.service.HOStockServeceInt;
 
-@Service("sparePartsService")
-public class SparePartsService implements SparePartsServeceInt{
+@Service("HOStockService")
+public class HOStockService implements HOStockServeceInt{
 
 	@Autowired
-	private SparePartsDaoInt sparePartsDAO;
+	private HOStockDaoInt sparePartsDAO;
 	
 	private String retMessage = null;
 	
 	
 	@Override
-	public String saveSpareparts(Spare spareParts) {
+	public String saveSpareparts(HOStock spareParts) {
 		
 		retMessage =sparePartsDAO.saveSpareparts(spareParts);
 	    return retMessage;
@@ -28,14 +28,14 @@ public class SparePartsService implements SparePartsServeceInt{
 
 
 	@Override
-	public Spare getSparePartBySerial(String serialNum) {
+	public HOStock getSparePartBySerial(String serialNum) {
 		
 		return sparePartsDAO.getSparePartBySerial(serialNum);
 	}
 
 
 	@Override
-	public List<Spare> getAllSpareParts() {
+	public List<HOStock> getAllSpareParts() {
 		return sparePartsDAO.getAllSpareParts();
 	}
 

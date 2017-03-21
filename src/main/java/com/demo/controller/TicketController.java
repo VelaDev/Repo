@@ -46,6 +46,7 @@ public class TicketController {
 	private TicketsServiceInt ticketsServiceInt;
 	private List<PieChart> beanList = null;
 	Integer count = 1;
+	public String[] getSerialNumbers = null;
 	
 	@Autowired
 	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
@@ -66,6 +67,8 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		
+			getSerialNumbers = deviceServiceInt.getSerials();
+			model.addObject("serialNumbers",getSerialNumbers);
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("logTicket", new TicketsBean());
 			

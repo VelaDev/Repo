@@ -41,7 +41,7 @@ public class SiteStock implements Serializable{
 	@Column(name="Technician_Email")
 	private String technicianEmail;
 	@Column(name="Quantity")
-	private String quantity;
+	private int quantity;
 	@Column(name="Customer_Name")
 	private String customerName;
 	@Column(name="Location")

@@ -365,5 +365,53 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
+	public static void sendEmailForShipment(String managerEmail, String technicianEmail,String managerFirstName,
+			OrderHeader order) {
+
+
+		String[] to = { technicianEmail ,managerEmail};
+		String from = emailFrom;
+		String pass = password;
+		String body = "Hi " + managerFirstName
+				+ ",\n\nYou order is shipped please confirm if you received the order : "
+				+ order.getOrderNum() + ".\n\nKind Regards\nVelaphanda Team";
+		String subject = "New Order " + order.getOrderNum();
+		Properties props = System.getProperties();
+		String host = "smtp.gmail.com";
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.user", from);
+		props.put("mail.smtp.password", pass);
+		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.auth", "true");
+
+		Session session = Session.getDefaultInstance(props);
+		MimeMessage message = new MimeMessage(session);
+
+		try {
+			message.setFrom(new InternetAddress(from));
+			InternetAddress[] toAddress = new InternetAddress[to.length];
+
+			// To get the array of addresses
+			for (int i = 0; i < to.length; i++) {
+				toAddress[i] = new InternetAddress(to[i]);
+			}
+
+			for (int i = 0; i < toAddress.length; i++) {
+				message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+			}
+
+			message.setSubject(subject);
+			message.setText(body);
+			Transport transport = session.getTransport("smtp");
+			transport.connect(host, from, pass);
+			transport.sendMessage(message, message.getAllRecipients());
+			transport.close();
+		} catch (AddressException ae) {
+			ae.printStackTrace();
+		} catch (MessagingException me) {
+			me.printStackTrace();
+		}
+	}
 
 }

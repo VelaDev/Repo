@@ -34,6 +34,8 @@ public class SparePartsController {
 	private ModelAndView model = null;
 	private Employee userName = null;
 	public String[] getSerials = null;
+	private String retPage = null;
+	
 	
 	@RequestMapping(value="addParts", method=RequestMethod.GET)
 	public ModelAndView loadSaveSpareParts()
@@ -125,6 +127,20 @@ public class SparePartsController {
 		}
 		
 		return model;
+	}
+	@RequestMapping(value="shipment")
+	public String shipment(@RequestParam("recordID") int recordID) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+		retPage="redirect:approvedOrders";
+		}
+		else{
+			retPage="redirect:login";
+		}
+		
+		return retPage;
 	}
 	
 

@@ -8,6 +8,8 @@ import java.util.List;
 
 
 
+
+
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Tickets;
@@ -25,5 +27,5 @@ public interface TicketsServiceInt {
 	List<PieChart> ticketsResults();
 	List<Tickets> getAllLoggedTickets(Integer offset, Integer maxResults);
 	Integer count();
-
+	
 }

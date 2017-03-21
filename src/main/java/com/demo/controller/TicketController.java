@@ -57,9 +57,6 @@ public class TicketController {
 	private ModelAndView model = null;
 	private Employee userName= null;
 	private String retMessage ="";
-	@Autowired
-	public String[] getSerials = null;
-	
 	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
 	public ModelAndView loadTicket() {
@@ -70,8 +67,6 @@ public class TicketController {
 		
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("logTicket", new TicketsBean());
-			//getSerials = ticketsServiceInt.getSerials();
-			//model.addObject("serialNumbers",getSerials);
 			model.setViewName("ticket");
 		}
 		else{

@@ -85,4 +85,6 @@ public class TicketsService implements TicketsServiceInt{
 		return logTicketsDAO.count();
 	}
 
+	
+
 }

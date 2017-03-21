@@ -50,6 +50,6 @@ public class BootStock implements Serializable{
 	@Column(name="Technician_Email")
 	private String technicianEmail;
 	@Column(name="Quantity")
-	private String quantity;
+	private int quantity;
 
 }

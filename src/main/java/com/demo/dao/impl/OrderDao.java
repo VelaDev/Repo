@@ -19,12 +19,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.OrdersBean;
 import com.demo.dao.ApprovedOrderStockDaoInt;
+import com.demo.dao.BootStockDaoInt;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.HOStockDaoInt;
+import com.demo.dao.SiteStocDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
@@ -32,8 +34,8 @@ import com.demo.model.OrderDetails;
 import com.demo.model.HOStock;
 import com.demo.model.Device;
 
-@Repository("ordersDAO")
-@Transactional(propagation = Propagation.REQUIRED)
+@Repository("orderDAO")
+@Transactional(propagation=Propagation.REQUIRED)
 public class OrderDao implements OrdersDaoInt {
 
 	@Autowired
@@ -53,6 +55,11 @@ public class OrderDao implements OrdersDaoInt {
 	private OrderDetailsDaoInt detailsDaoInt;
 	@Autowired
 	private ApprovedOrderStockDaoInt approvedOrderStockDaoInt;
+	@Autowired
+	private SiteStocDaoInt siteStocDaoInt;
+	@Autowired
+	private BootStockDaoInt bootStockDaoInt;
+	private OrderHeader orderHeader = null;
 
 	private String retMessage = null;
 	private Customer cus;
@@ -250,8 +257,9 @@ public class OrderDao implements OrdersDaoInt {
 			Employee user = (Employee) session.getAttribute("loggedInUser");
 			emp = employeeDaoInt.getEmployeeByEmpNum(user.getEmail());
 			String customer = orderBean.getCustomer();
-			cus = customerDaoInt.getClientByClientName(customer);
-			cusOrder.setCustomer(cus);
+			if(customer !=null){
+				cus = customerDaoInt.getClientByClientName(customer);
+			}
 			cusOrder.setStockType(orderBean.getStockType());
 			cusOrder.setStatus("Pending");
 			cusOrder.setApprover(orderBean.getApprover());
@@ -400,6 +408,42 @@ public class OrderDao implements OrdersDaoInt {
 			}
 		} catch (Exception e) {
 			retMessage = e.getMessage();
+		}
+		return pendingOrder;
+	}
+
+	@Override
+	public void approveShipment(Integer recordID) {
+		orderHeader = getOrder(recordID);
+		date = new Date();
+		if(orderHeader!=null){
+			orderHeader.setStatus("Shipped");
+			orderHeader.setShippingDate(date);
+			sessionFactory.getCurrentSession().update(orderHeader);
+			
+			listOrders = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
+
+			if(orderHeader.getStockType().equalsIgnoreCase("Boot")){
+				bootStockDaoInt.saveBootStock(listOrders);
+			}
+			else{
+				siteStocDaoInt.saveSiteStock(listOrders);
+			}
+		}
+	}
+
+	@Override
+	public List<OrderHeader> shippedOrders() {
+		pendingOrders = getAllOrders();
+		List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
+		try{
+			for(OrderHeader orderHeader:pendingOrders){
+				if(orderHeader.getStatus().equalsIgnoreCase("Shipped")){
+					pendingOrder.add(orderHeader);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
 		}
 		return pendingOrder;
 	}

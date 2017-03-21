@@ -81,5 +81,17 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.pendingOrders(approveName);
 	}
 
+	@Override
+	public void approveShipment(Integer recordID) {
+		ordersDAO.approveShipment(recordID);
+		
+	}
+
+	@Override
+	public List<OrderHeader> shippedOrders() {
+
+		return ordersDAO.shippedOrders();
+	}
+
 
 }

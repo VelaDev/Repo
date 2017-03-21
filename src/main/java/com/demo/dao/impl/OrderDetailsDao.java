@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.model.OrderDetails;
-import com.demo.model.OrderHeader;
 
 @Repository("orderDetailsDAO")
 @Transactional(propagation=Propagation.REQUIRED)

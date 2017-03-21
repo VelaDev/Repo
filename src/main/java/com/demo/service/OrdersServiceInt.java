@@ -17,5 +17,7 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> pendingOrders();
 	public String approveOrder(Integer recordID);
 	public List<OrderHeader> pendingOrders(String approveName);
+	public void approveShipment(Integer recordID);
+	public List<OrderHeader> shippedOrders();
 
 }

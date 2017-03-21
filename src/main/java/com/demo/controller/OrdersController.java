@@ -44,6 +44,7 @@ public class OrdersController {
 	private ModelAndView model = null;
 	private String retMessage =null;
 	private Employee userName = null;
+	private String retPage = null;
 	
 	@RequestMapping(value="order",method=RequestMethod.GET)
 	public ModelAndView loadOrder(){
@@ -68,7 +69,7 @@ public class OrdersController {
 	@RequestMapping(value="makeOrder",method=RequestMethod.POST)
 	public ModelAndView makeOrder(@ModelAttribute("makeOrder")OrdersBean order)
 	{
-		
+		System.out.println("We here now");
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -275,6 +276,36 @@ public class OrdersController {
 			model.setViewName("login");
 		}
 
+		return model;
+	}
+	@RequestMapping(value="shipment")
+	public String shipment(@RequestParam("recordID") int recordID) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			ordersServiceInt.approveShipment(recordID);
+			
+		retPage="redirect:approvedOrders";
+		}
+		else{
+			retPage="redirect:login";
+		}
+		
+		return retPage;
+	}
+	@RequestMapping("shippedOrders")
+	public ModelAndView shippedOrders(){
+		model = new ModelAndView();
+		
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			model.addObject("pendingOrderList",ordersServiceInt.shippedOrders());
+			model.setViewName("shippedOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
 		return model;
 	}
 }

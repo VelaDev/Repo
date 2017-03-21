@@ -24,8 +24,6 @@ public class ApprovedStockOrderDao implements ApprovedOrderStockDaoInt{
 	private String retMessage = null;
 	@Override
 	public String approveOrderStock(List<OrderDetails> detailsDaos) {
-		String name = "Mohapi testing";
-		System.out.println(name);
 		try{
 			for(OrderDetails orderDetails:detailsDaos){
 				approvedOrderStock = new ApprovedOrderStock();

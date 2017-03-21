@@ -2,17 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Approved Orders | Velaphanda Trading & Projects</title>
+<title>Shipped Orders | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
@@ -29,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Approved Orders</b>
+							<b>Shipped Orders</b>
 						</div>
 					</h3>
 				</div>
@@ -39,40 +34,34 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Order No <img
+									<th>Order No<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Status <img
+									<th>Order Status<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Date <img
+									<th>Date Shipment<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Stock Type <img
+									<th>Stock Type<img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Details</th>
-									<th>Shipment</th>
+									<th>Customer<img
+										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Delivery Note</th>
-
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${orderList}">
+								<c:forEach var="list" items="${pendingOrderList}">
 									<tr>
 										<td>${list.orderNum}</td>
 										<td>${list.status}</td>
 										<td>${list.dateOrdered}</td>
 										<td>${list.stockType}</td>
-										<td><a
-											href="detailedOrders?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-										<td><a href="shipment?recordID=<c:out value='${list.recordID}'/>">Shipment</a></td>
+										<td>${list.customer.customerName}</td>
 										<td><a
 											href="deliveryNote?recordID=<c:out value='${list.recordID}'/>">
 
 												<c:choose>
-													<c:when test="${list.status =='Approved'}">
-														Delivery
-													</c:when>
 													<c:when test="${list.status =='Shipped'}">
-														
+														<button class="btn btn-info">Delivery</button>
 													</c:when>
 												</c:choose>
 										</a></td>
@@ -82,7 +71,6 @@
 						</table>
 					</div>
 					<!-- /tab-content -->
-
 				</div>
 				<!-- /panel body -->
 			</div>
@@ -96,6 +84,7 @@
 	<!-- / velaphanda_containter -->
 
 </body>
+
 <script type="text/javascript"
 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript"

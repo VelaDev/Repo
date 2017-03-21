@@ -111,6 +111,7 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="pendingOrders.html"/>'>Pending Orders</a></li>
 							<li><a href='<c:url value="approvedOrders.html"/>'>Approved Orders</a></li>
+							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped Orders</a></li>
 						</ul></li>
 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

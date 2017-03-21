@@ -16,6 +16,22 @@
 <link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <style>
 li { list-style: none; }
+
+.customerDeviceContainer {
+	padding: 25px;
+    margin-bottom: -1em;
+    width: auto;
+    display: table;
+    
+ }
+ p.customerDeviceAddressTitle {
+    font-size: 1.1em;
+    font-weight: bolder;
+    margin-left: 19%;
+}
+ul.addressDeviceList {
+    margin-left: -7%;
+}
 </style>
 
 </head>
@@ -84,17 +100,16 @@ li { list-style: none; }
 
 								<div class="col-sm-6">
 
-									<div id="customer_container"
+									<div id="customerDeviceContainer"
 										style="width: auto; display: table;">
-										<p class="customerAddress_title">Customer Address
-										<ul class="address_list" style="display: block;">
+										<p class="customerDeviceAddressTitle">Customer Address
+										<ul class="addressDeviceList" style="display: block;">
 											<li id="streetName">${productObject.customer.streetNumber}
 												${productObject.customer.streetName}</li>
 											<li id="city_town">${productObject.customer.city_town}</li>
 											<li id="zipcode">${productObject.customer.zipcode}</li>
 										</ul>
 										</p>
-
 									</div>
 								</div>
 
@@ -300,47 +315,32 @@ li { list-style: none; }
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)"
-													placeholder="Enter Colour Reading" id="colour" name="colourReading"
-													 value="${productObject.colourReading}">
+													onkeypress="return isNumber(event)" id="colour" name="colourReading"
+													placeholder="Enter Colour Reading" value="${productObject.colourReading}">
 											</div>
 											<br>
 										</div>										
 									</div><!-- Both mono and colour reading  -->
 									
-									<!-- Only Colour Reading -->
-									<!-- Text checkbox Mono Reading-->
-									<div class="colour"  id="colour"style="display: none;">
-										<div class="form-group">
-											<label class="col-md-3 control-label">Colour Reading</label>
-											<div class="col-md-6">
-											<input type="text" class="form-control"
-												onkeypress="return isNumber(event)" id="colour" name="colourReading"
-												placeholder="Enter Colour Reading"  value="${productObject.colourReading}"
-												>
-											</div>
-										</div>
-									</div><!-- //Only Colour Reading -->
-									
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
-									<div class="mono" id="mono" style='display: none;'>
+									<div class="mono" id="mono" style="display: none;">
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 											<input type="text" class="form-control"
-												onkeypress="return isNumber(event)" name="monoReading"
-												placeholder="Enter Colour Reading" id="mono" value="${productObject.monoReading}"
-												>
+												onkeypress="return isNumber(event)" id="mono" name="monoReading"
+												placeholder="Enter Mono Reading" value="${productObject.monoReading}">
 											</div>
 										</div>
 									</div><!-- //Only mono Reading -->
+									
+									
 								</div>
 								<!--/F Column-->
 
 								<!--Second column-->
 								<div class="col-sm-6">
-
 									<!-- Text input Street Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street No</label>
@@ -377,7 +377,7 @@ li { list-style: none; }
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="city_town" id="city_town" placeholder="City / Town"
 													class="form-control" type="text"
-													value="${productObject.streetName}">
+													value="${productObject.city_town}">
 											</div>
 										</div>
 									</div>
@@ -399,7 +399,7 @@ li { list-style: none; }
 													<option value="KwaZulu Natal">KwaZulu Natal</option>
 													<option value="Northern Cape">Northern Cape</option>
 													<option value="Eastern Cape">Eastern Cape</option>
-													<option value="Mpumalanga">Western Cape</option>
+													<option value="Western Cape">Western Cape</option>
 												</select>
 											</div>
 										</div>
@@ -411,7 +411,7 @@ li { list-style: none; }
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
-													id="zipcode" placeholder="Area Code" class="form-control"
+													id="zipcode" placeholder="Area Code" maxlength="4" class="form-control"
 													type="text" onkeypress="return isNumber(event)"
 													value="${productObject.areaCode}">
 											</div>
@@ -503,67 +503,36 @@ li { list-style: none; }
 									<br>
 
 
-									<div class="row">
+									<!-- Other Machine Accessories -->
 
 										<div class="form-group">
-											<label class="col-xs-1 control-label">Others</label>
-											<div class="col-xs-4">
-												<input type="text" class="form-control" name="machinetype"
-													id="machinetype" placeholder="Machine Accessory Type" />
-											</div>
-											<div class="col-xs-4">
-												<input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="serialNumberOtherAcco"
-													name="serialNumberOtherAcco" placeholder="Serial Number" />
-											</div>
-											<div class="col-xs-1">
-												<img class="add right"
-													src="resources/bootstrap-3.3.6/images/add.png" />
-											</div>
-										</div>
+									        <label class="col-xs-1 control-label">Others</label>
+									        <div class="col-xs-4">
+									            <input type="text" class="form-control" id="machinetype" name="machinetype" placeholder="Machine Accessory Type" />
+									        </div>
+									        <div class="col-xs-4">
+									            <input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" placeholder="Serial Number" />
+									        </div>
+									        <div class="col-xs-1">
+									            <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
+									        </div>
+									    </div>
+	
+									    <!-- The template for adding new field -->
+									    <div class="form-group hide" id="addDeviceTemplate">
+									        <div class="col-xs-4 col-xs-offset-1">
+									            <input type="text" class="form-control" id="machinetype" name="machinetype" placeholder="Machine Accessory Type" />
+									        </div>
+									        <div class="col-xs-4">
+									              <input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" placeholder="Serial Number" />
+									        </div>
+									        <div class="col-xs-1">
+									            <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
+									        </div>
+									    </div>
+									<!-- Other Machine Accessories -->
 
-									</div>
-
-									<!-- <div class="row">
-
-									<div class="form-group">
-										<label class="col-xs-1 control-label">Others</label>
-										<div class="col-xs-4">
-											<input type="text" class="form-control" name="machinetype"
-												placeholder="Machine Accessory Type" />
-										</div>
-										<div class="col-xs-4">
-											<input type="text" class="form-control"
-												onkeydown="upperCaseF(this)" id="serialNumber"
-												name="serialNumberM" placeholder="Serial Number" />
-										</div>
-										<div class="col-xs-1">
-											<button type="button" class="btn btn-default addButton">
-												<i class="fa fa-plus"></i>
-											</button>
-										</div>
-									</div>
-
-									The template for adding new field
-									<div class="form-group hide" id="deviceNewFields">
-										<div class="col-xs-4 col-xs-offset-1">
-											<input type="text" class="form-control" name="machinetype"
-												placeholder="Machine Accessory Type" />
-										</div>
-										<div class="col-xs-4">
-											<input type="text" class="form-control"
-												onkeydown="upperCaseF(this)" id="serialNumber"
-												name="serialNumberM" placeholder="Serial Number" />
-										</div>
-
-										<div class="col-xs-1">
-											<button type="button" class="btn btn-default removeButton">
-												<i class="fa fa-minus"></i>
-											</button>
-										</div>
-									</div>
-
-								</div> -->
+									
 
 								</div>
 
@@ -597,51 +566,13 @@ li { list-style: none; }
 	<!-- / velaphanda_containter -->
 
 	<!-- Scripts -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
+	<script type="text/javascript"	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
 
-	<!-- Check if checkboxes are checked, if checked enable input text -->
-	<script type="text/javascript">
-		document.getElementById('bridgeunitserial').onchange = function() {
-			document.getElementById('bridgeunit').disabled = !this.checked;
-			document.getElementById('finisherserial').disabled = !this.checked;
-		};
-		document.getElementById('finisher').onchange = function() {
-			document.getElementById('finisherserial').disabled = !this.checked;
-			document.getElementById('bridgeunit').disabled = !this.checked;
-		};
-		
-		document.getElementById('faxunit').onchange = function() {
-			document.getElementById('faxunitserial').disabled = !this.checked;
-		};
-		document.getElementById('onebintrayserial').onchange = function() {
-			document.getElementById('onebintray').disabled = !this.checked;
-		};
-		
-		document.getElementById('ltcserial').onchange = function() {
-			document.getElementById('lct').disabled = !this.checked;
-		};
-		document.getElementById('creserial').onchange = function() {
-			document.getElementById('cre').disabled = !this.checked;
-		};
-		document.getElementById('addserial').onchange = function() {
-			document.getElementById('add').disabled = !this.checked;
-		};
-		
-</script>
-
-
-	<!-- Add Other Accessories -->
-	<script type="text/javascript">
-</script>
-
+	
 	<!-- Validate add device -->
 	<script>
 $(document).ready(function() {
@@ -654,560 +585,559 @@ $(document).ready(function() {
         },
         fields: {
             
-			startDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Contract start date is required'
-                        },
-                        date: {
-                            format: 'YYYY-MM-DD',
-                            //max: 'endDate',
-                            message: 'Contract start date is not a valid'
-                        }
-                    }
-                },
-                endDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Contract end date is required'
-                        },
-                        date: {
-                            format: 'YYYY-MM-DD',
-                            //min: 'startDate',
-                            message: 'Contract end date is not a valid'
-                        }
-                    }
-                },
-                installationDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The installation date is required'
-                        },
-                        date: {
-                        	format: 'YYYY-MM-DD',
-                           // min: 'endDate',
-                            message: 'The installation date is not a valid'
-                        }
-                    }
-                },
-                customerName : {
-					validators : {
-						stringLength : {
-							min : 2,
+            customerName : {
+				validators : {
+					stringLength : {
+						min : 2,
 
-						},
-						notEmpty : {
-							message : 'Customer name is required and cannot be empty'
-						}
+					},
+					notEmpty : {
+						message : 'Customer name is required and cannot be empty'
 					}
-				},
-				
-				telephoneNumber : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for telephone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for telephone number'
-						}
-					}
-				},
-				companyEmail : {
-					validators : {
-						notEmpty : {
-							message : 'Company email address is required and cannot be empty'
-						},
-						emailAddress : {
-							message : 'The email address is not valid'
-						}
-					}
-				},
-				email : {
-					validators : {
-						notEmpty : {
-							message : 'Email address is required and cannot be empty'
-						},
-						emailAddress : {
-							message : 'The email address is not valid'
-						}
-					}
-				},
-				streetName : {
-					validators : {
+				}
+			},
+			//Contact Person
+			firstName : {
+				validators : {
+					notEmpty : {
 						stringLength : {
 							min : 3,
 						},
-						notEmpty : {
-							message : 'Street name is required and cannot be empty'
+						message : 'First Name is required and cannot be empty'
+					},
+					regexp: {
+						regexp :/^[-_ a-zA-Z]+$/,
+	                    message: 'First Name must only consist of letters'
+	                }
+				}
+			},
+			lastName : {
+				validators : {
+					notEmpty : {
+						stringLength : {
+							min : 3,
 						},
+						message : 'Last Name is required and cannot be empty'
+					},
+					regexp: {
+						regexp :/^[-_ a-zA-Z]+$/,			                   
+	                    message: 'Last Name must only consist of letters'
+	                }
+				}
+			},
+			cellphoneNumber : {
+				validators : {
+					notEmpty : {
+						message : 'Please enter 10 digits for cellphone number'
+					},
+					phone : {
+						country : 'US',
+						message : 'Please enter 10 digits for cellphone number'
+					}
+				}
+			},
+			telephoneNumber : {
+				validators : {
+					notEmpty : {
+						message : 'Please enter 10 digits for telephone number'
+					},
+					phone : {
+						country : 'US',
+						message : 'Please enter 10 digits for telephone number'
+					}
+				}
+			},
+			
+			cellphone : {
+				validators : {
+					notEmpty : {
+						message : 'Please enter 10 digits for cellphone number'
+					},
+					phone : {
+						country : 'US',
+						message : 'Please enter 10 digits for cellphone number'
+					}
+				}
+			},
+			telephone : {
+				validators : {
+					notEmpty : {
+						message : 'Please enter 10 digits for telephone number'
+					},
+					phone : {
+						country : 'US',
+						message : 'Please enter 10 digits for telephone number'
+					}
+				}
+			},
 
-		                regexp: {
-		                	regexp: /^[-_ a-zA-Z]+$/,			                   
-		                    message: 'Street name must only consist of letters'
-		                }
-						
+			email : {
+				validators : {
+					notEmpty : {
+						message : 'Email address is required and cannot be empty'
+					},
+					emailAddress : {
+						message : 'The email address is not valid'
 					}
-				},
-				city_town : {
-					validators : {
-						stringLength : {
-							min : 3,							
+				}
+			},//Contact Person
+			
+			
+			//Machine Details
+			
+            serialNumber : {
+				validators : {
+					stringLength : {
+							min : 2,
+
 						},
 						notEmpty : {
-							message : 'City is required and cannot be empty'						
-							
-						}
-					}
-				},
-				province : {
-					validators : {
-						notEmpty : {
-							message : 'Province is required and cannot be empty'
-						}
-					}
-				},
-				zipcode : {
-					validators : {
-						stringLength : {
-							max : 4,
-							min : 4,
+							message : 'Serial Number is required and cannot be empty'
 						},
-						notEmpty : {
-							message : 'Zipcode is required and cannot be empty'
-						}
-					}
-				},
-				faxNumber : {
-					validators : {
-						stringLength : {
-							max : 10,
-							min : 10,
-						},/* 
-						notEmpty : {
-							message : 'Fax number is required and cannot be empty'
-						} */
-					}
-				},
-				monocolour: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Mono Colour is required and cannot be empty'
-						}/* ,
 						regexp: {
-			                    regexp: /^[0-9]+$/,
-			                    message: 'Mono colour can only consist of numbers'
-			            } */
-						
-					}
-				},
-				colourReading: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Colour reading is required and cannot be empty'
-						}/* ,
-						regexp: {
-		                    regexp: /^[0-9]+$/,
-		                    message: 'Mono colour can only consist of numbers'
-		          	    } */
-						
-					}
-				},
-				monocolour: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Mono colour is required and cannot be empty'
-						}/* ,
-						regexp: {
-		                    regexp: /^[0-9]+$/,
-		                    message: 'Mono colour can only consist of numbers'
-		           		 } */
-						
-					}
-				},
-				
-				mono: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Mono is required and cannot be empty'
-						}/* ,regexp: {
-		                    regexp: /^[0-9]+$/,
-		                    message: 'Mono colour can only consist of numbers'
-		           		 } */
-						
-					}
-				},
-				
-				streetNumber : {
-					validators : {
-						stringLength : {
-							//min : 3,
-						},
-						notEmpty : {
-							message : 'Street number is required and cannot be empty'
-						},
-		                regexp: {
-		                    regexp: /^[0-9]+$/,
+		                    regexp: /^[a-z-A-Z0-9]+$/,
 		                    message: 'The Street number can only consist of numbers '
 		                }
 					}
-				},
-				firstName : {
-					validators : {
-						notEmpty : {
-							stringLength : {
-								min : 3,
-							},
-							message : 'First Name is required and cannot be empty'
-						},
-						regexp: {
-							regexp: /^[-_ a-zA-Z]+$/,	
-		                    message: 'First Name must only consist of letters'
-		                },
-		               
-					}
-				},
-				lastName : {
-					validators : {
-						notEmpty : {
-							stringLength : {
-								min : 3,
-							},
-							message : 'Last Name is required and cannot be empty'
-						},
-						regexp: {
-							regexp: /^[-_ a-zA-Z]+$/,
-		                    message: 'Last Name must only consist of letters'
-		                }
-					}
-				},
-				cellphoneNumber : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for cellphone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for cellphone number'
-						}
-					}
-				},
-				cellphone : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for cellphone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for cellphone number'
-						}
-					}
-				},
-				
-				tellphoneNumber : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for tellphone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for tellphone number'
-						}
-					}
-				},
-				tellphone : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for tellphone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for tellphone number'
-						}
-					}
-				},
+			},
+			modelNumber : {
+				validators : {
+					stringLength : {
+						min : 2,
 
-				email : {
-					validators : {
-						notEmpty : {
-							message : 'Email address is required and cannot be empty'
-						},
-						emailAddress : {
-							message : 'The email address is not valid'
-						}
-					}
-				},
-				modelNumber : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Model number is required and cannot be empty'
-						}
-					}
-				},
-				
-				serialNumber : {
-					validators : {
-						stringLength : {
-								min : 2,
-
-							},
-							notEmpty : {
-								message : 'Serial Number is required and cannot be empty'
-							},
-							regexp: {
-			                    regexp: /^[a-z-A-Z0-9]+$/,
-			                    message: 'The Street number can only consist of numbers '
-			                }
-						}
-				},
-				machinetype  : {
-					validators : {
-						stringLength : {
-								min : 2,
-
-							},
-							/* /* notEmpty : {
-								message : 'Machine type is required and cannot be empty'
-							} *//*,
-							regexp: {
-			                    regexp: /^[a-z-A-Z]+$/,
-			                    message: 'Machine type is required and cannot be empty'
-			                } */
-						}
-				},
-				serialNumberOtherAcco: {
-					validators : {
-						stringLength : {
-								min : 2,
-
-							},
-							/* notEmpty : {
-								message : 'Serial Number is required and cannot be empty'
-							},
-							regexp: {
-			                    regexp: /^[a-z-A-Z0-9]+$/,
-			                    message: 'Serial Number is required and cannot be empty '
-			                } */
-						}
-				},
-				bridgeunit : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Bridge unit is required and cannot be empty'
-						}
-					}
-				},
-				
-				faxunitserial : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Fax unit is required and cannot be empty'
-						}
-					}
-				},
-				
-				onebintray : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'One bintray is required and cannot be empty'
-						}
-					}
-				},
-				
-				finisherserial : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Finisher is required and cannot be empty'
-						}
-					}
-				},
-				
-				lct : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'LCT is required and cannot be empty'
-						}
-					}
-				},
-				
-				credenza : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Credenza is required and cannot be empty'
-						}
-					}
-				},
-				
-				additionalserial : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Additional paper tray is required and cannot be empty'
-						}
+					},
+					notEmpty : {
+						message : 'Model number is required and cannot be empty'
 					}
 				}
-        }
-    });
+			},
+			startDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'Contract start date is required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                        //max: 'endDate',
+                        message: 'Contract start date is not a valid'
+                    }
+                }
+            },
+            endDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'Contract end date is required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                       // min: 'startDate',
+                        message: 'Contract end date is not a valid'
+                    }
+                }
+            },
+            installationDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'The installation date is required'
+                    },
+                    date: {
+                    	format: 'YYYY-MM-DD',
+                       // min: 'endDate',
+                        message: 'The installation date is not a valid'
+                    }
+                }
+            },		
+			streetNumber : {
+				validators : {
+					stringLength : {
+						//min : 3,
+					},
+					notEmpty : {
+						message : 'Street number is required and cannot be empty'
+					},
+	                regexp: {
+	                    regexp: /^[0-9]+$/,
+	                    message: 'The Street number can only consist of numbers '
+	                }
+				}
+			},
+			streetName : {
+				validators : {
+					stringLength : {
+						min : 3,
+					},
+					notEmpty : {
+						message : 'Street name is required and cannot be empty'
+					},
+	                regexp: {
+	                	 regexp: /^[-_ a-zA-Z]+$/,			                   
+	                    message: 'Street name must only consist of letters'
+	                }
+					
+				}
+			},
+			city_town : {
+				validators : {
+					stringLength : {
+						min : 3,							
+					},
+					notEmpty : {
+						message : 'City is required and cannot be empty'						
+						
+					},
+					 regexp: {
+	                	 regexp: /^[-_ a-zA-Z]+$/,			                   
+	                    message: 'City or Town must only consist of letters'
+	                }
+				}
+			},
+			province : {
+				validators : {
+					notEmpty : {
+						message : 'Province is required and cannot be empty'
+					}
+				}
+			},
+			zipcode : {
+				validators : {
+					stringLength : {
+						max : 4,
+						min : 4,
+					},
+					notEmpty : {
+						message : 'Zipcode is required and cannot be empty'
+					}
+				}
+			},
+			
+			
+			colourReading: {
+				
+				validators : {
+					stringLenth : {
+						min : 4,
+						max : 6,
+					},
+					notEmpty : {
+						message : 'Colour reading is required and cannot be empty'
+					}/* ,
+					regexp: {
+	                    regexp: /^[0-9]+$/,
+	                    message: 'Mono colour can only consist of numbers'
+	          	    } */
+					
+				}
+			},
+			monoReading: {
+				
+				validators : {
+					stringLenth : {
+						min : 4,
+						max : 6,
+					},
+					notEmpty : {
+						message : 'Mono reading is required and cannot be empty'
+					}/* ,
+					regexp: {
+	                    regexp: /^[0-9]+$/,
+	                    message: 'Mono colour can only consist of numbers'
+	           		 } */
+					
+				}
+			},//Machine Details
+			
+			
+			//Machine Accesories
+			machinetype  : {
+				validators : {
+					stringLength : {
+							min : 2,
+
+						},
+						/* /* notEmpty : {
+							message : 'Machine type is required and cannot be empty'
+						} *//*,
+						regexp: {
+		                    regexp: /^[a-z-A-Z]+$/,
+		                    message: 'Machine type is required and cannot be empty'
+		                } */
+					}
+			},
+			serialNumberOtherAcco: {
+				validators : {
+					stringLength : {
+							min : 2,
+
+						},
+						/* notEmpty : {
+							message : 'Serial Number is required and cannot be empty'
+						},
+						regexp: {
+		                    regexp: /^[a-z-A-Z0-9]+$/,
+		                    message: 'Serial Number is required and cannot be empty '
+		                } */
+					}
+			},
+			bridgeunit : {
+				validators : {
+					stringLength : {
+						min : 2,
+
+					},
+					notEmpty : {
+						message : 'Bridge unit is required and cannot be empty'
+					}
+				}
+			},
+			
+			faxunitserial : {
+				validators : {
+					stringLength : {
+						min : 2,
+
+					},
+					notEmpty : {
+						message : 'Fax unit is required and cannot be empty'
+					}
+				}
+			},
+			
+			onebintray : {
+				validators : {
+					stringLength : {
+						min : 2,
+
+					},
+					notEmpty : {
+						message : 'One bintray is required and cannot be empty'
+					}
+				}
+			},
+			
+			finisherserial : {
+				validators : {
+					stringLength : {
+						min : 2,
+
+					},
+					notEmpty : {
+						message : 'Finisher is required and cannot be empty'
+					}
+				}
+			},
+			
+			lct : {
+				validators : {
+					stringLength : {
+						min : 2,
+
+					},
+					notEmpty : {
+						message : 'LCT is required and cannot be empty'
+					}
+				}
+			},
+			
+			credenza : {
+				validators : {
+					stringLength : {
+						min : 2,
+
+					},
+					notEmpty : {
+						message : 'Credenza is required and cannot be empty'
+					}
+				}
+			},
+			
+			additionalserial : {
+				validators : {
+					stringLength : {
+						min : 2,
+
+					},
+					notEmpty : {
+						message : 'Additional paper tray is required and cannot be empty'
+					}
+				}
+			}
+    }
+});
 });
 </script>
 
-	<!--Mono and Colour Selection-->
-	<script type="text/javascript">
-	
-	function CheckColors(val){
-	 var element=document.getElementById('mono');
-	 if(val=='pick a mono'||val=='mono'  || val == 'colour')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	 var element=document.getElementById('colour');
-	 if(val=='pick a colour'|| val=='colour')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	}
+
+<!---Script to add other Accossory-->
+<script>
+$(document).ready(function() {
+    var machinetypeValidators = {
+            row: '.col-xs-4',   // The machinetype is placed inside a <div class="col-xs-4"> element
+            validators: {
+                notEmpty: {
+                    message: 'The machine type is required'
+                }
+            }
+        },
+        serialNumberOtherAccessoryValidators = {
+            row: '.col-xs-4',
+            validators: {
+                notEmpty: {
+                    message: 'The serial number is required'
+                }
+            }
+        },
+        machinIndex = 0;
+
+    $('#updateDevice')
+        .bootstrapValidator({
+            icon: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                'machinetype': machinetypeValidators,
+                'serialNumberOtherAccessory': serialNumberOtherAccessoryValidators,
+            }
+        })
+
+        // Add button click handler
+        .on('click', '.addButton', function() {
+            machinIndex++;
+            var $template = $('#addDeviceTemplate'),
+                $clone    = $template
+                                .clone()
+                                .removeClass('hide')
+                                .removeAttr('id')
+                                .attr('data-otherAccossory-index', machinIndex)
+                                .insertBefore($template);
+
+            // Update the name attributes
+            $clone
+                .find('[name="machinetype"]').attr('name', 'otherAccossory[' + machinIndex + '].machinetype').end()
+                .find('[name="serialNumberOtherAccessory"]').attr('name', 'otherAccossory[' + machinIndex + '].serialNumberOtherAccessory').end();
+                
+            // Add new fields
+            // Note that we also pass the validator rules for new field as the third parameter
+            $('#updateDevice')
+                .bootstrapValidator('addField', 'otherAccossory[' + machinIndex + '].title', machinetypeValidators)
+                .bootstrapValidator('addField', 'otherAccossory[' + machinIndex + '].isbn', serialNumberOtherAccessoryValidators);
+			})
+
+        // Remove button click handler
+        .on('click', '.removeButton', function() {
+            var $row  = $(this).parents('.form-group'),
+                index = $row.attr('data-otherAccossory-index');
+
+            // Remove fields
+            $('#updateDevice')
+                .bootstrapValidator('removeField', $row.find('[name="otherAccossory[' + machinIndex + '].machinetype"]'))
+                .bootstrapValidator('removeField', $row.find('[name="otherAccossory[' + machinIndex + '].serialNumberOtherAccessory"]'));
+
+            // Remove element containing the fields
+            $row.remove();
+        });
+});
+</script>
+
+
+<!--Mono and Colour Selection-->
+<script type="text/javascript">
+
+function CheckColors(val){
+ var element=document.getElementById('mono');
+ if(val=='pick a mono'||val=='mono'  || val == 'colour')
+   element.style.display='block';
+ else  
+   element.style.display='none';
+   
+ var element=document.getElementById('colour');
+ if(val=='pick a colour'|| val=='colour')
+   element.style.display='block';
+ else  
+   element.style.display='none';
+   
+}
 
 </script>
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
-	function upperCaseF(a){
-	    setTimeout(function(){
-	        a.value = a.value.toUpperCase();
-	    }, 1);
-	}
-</script>
 
-	<!-- Accept alphabetical characters only -->
-	<script language="Javascript" type="text/javascript">
-        function onlyAlphabets(e, t) {
-            try {
-                if (window.event) {
-                    var charCode = window.event.keyCode;
-                }
-                else if (e) {
-                    var charCode = e.which;
-                }
-                else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123 ))
-                    return true;
-                else
-                    return false;
-            }
-            catch (err) {
-                alert(err.Description);
-            }
-        }
-    </script>
-
-	<!-- Accept alphanumeric characters only -->
-	<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+function upperCaseF(a){
+    setTimeout(function(){
+        a.value = a.value.toUpperCase();
+    }, 1);
 }
 </script>
 
-	<!--Compare start, end and installation date  between each other-->
-	<script type="text/javascript">
+<!-- Accept alphabetical characters only -->
+<script language="Javascript" type="text/javascript">
+    function onlyAlphabets(e, t) {
+        try {
+            if (window.event) {
+                var charCode = window.event.keyCode;
+            }
+            else if (e) {
+                var charCode = e.which;
+            }
+            else { return true; }
+            if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123 ))
+                return true;
+            else
+                return false;
+        }
+        catch (err) {
+            alert(err.Description);
+        }
+    }
+</script>
 
-$("#startDate, #endDate, #installationDate " ).datepicker();
+<!-- Accept alphanumeric characters only -->
+<script type="text/javascript">
+function isNumber(evt) {
+evt = (evt) ? evt : window.event;
+var charCode = (evt.which) ? evt.which : evt.keyCode;
+if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+    return false;
+}
+return true;
+}
+</script>
+
+<!--Compare start, end and installation date between each other-->
+<script type="text/javascript">
+
+$("#startDate, #endDate, #installationDate").datepicker();
 
 $("#endDate").change(function () {
-	
-    var startDate = document.getElementById("startDate").value;
-    var endDate = document.getElementById("endDate").value;
-    
-    if ((Date.parse(endDate) <= Date.parse(startDate))) {
-        alert("Contract end date should be greater than Contract start date");
-        document.getElementById("endDate").value = "";
-    }
+
+var startDate = document.getElementById("startDate").value;
+var endDate = document.getElementById("endDate").value;
+
+if ((Date.parse(endDate) <= Date.parse(startDate))) {
+    alert("Contract end date should be greater than Contract start date");
+    document.getElementById("endDate").value = "";
+}
 
 });
 $("#installationDate").change(function () {
-	
-    var startDate = document.getElementById("startDate").value;
-    var endDate = document.getElementById("endDate").value;
-    var installationDate = document.getElementById("installationDate").value;
- 
-    if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDate))) {
-        alert("Installation date should be between than contract start date and contract end date");
-        document.getElementById("installationDate").value = "";
-    }
+
+var startDate = document.getElementById("startDate").value;
+var endDate = document.getElementById("endDate").value;
+var installationDate = document.getElementById("installationDate").value;
+
+if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDate))) {
+    alert("Installation date should be between contract start date and contract end date");
+    document.getElementById("installationDate").value = "";
+}
 
 });
 </script>
 
-	<!-- Enable datepicker for start, end and install date-->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#startDatePicker').datepicker({
-				format : "yyyy-mm-dd",
-				startDate: 'd0',
-		        autoclose: true
-			});
-		});
-</script>
-
-	<script type="text/javascript">
+<!-- Enable datepicker for start, end and install date-->
+<script type="text/javascript">
 	$(document).ready(function() {
-		$('#endDatePicker').datepicker({
+		$('#startDatePicker').datepicker({
 			format : "yyyy-mm-dd",
 			startDate: 'd0',
 	        autoclose: true
@@ -1215,19 +1145,55 @@ $("#installationDate").change(function () {
 	});
 </script>
 
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#installDatePicker').datepicker({
-				format : "yyyy-mm-dd",
-				startDate: 'd0',
-		        autoclose: true
-			});
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#endDatePicker').datepicker({
+		format : "yyyy-mm-dd",
+		startDate: 'd0',
+        autoclose: true
+	});
+});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#installDatePicker').datepicker({
+			format : "yyyy-mm-dd",
+			startDate: 'd0',
+	        autoclose: true
 		});
+	});
 </script>
 
 
-
-
-
+<!-- Check if checkboxes are checked, if checked enable input text -->
+<script type="text/javascript">
+	document.getElementById('bridgeunitserial').onchange = function() {
+		document.getElementById('bridgeunit').disabled = !this.checked;
+		document.getElementById('finisherserial').disabled = !this.checked;
+	};
+	document.getElementById('finisher').onchange = function() {
+		document.getElementById('finisherserial').disabled = !this.checked;
+		document.getElementById('bridgeunit').disabled = !this.checked;
+	};
+	
+	document.getElementById('faxunit').onchange = function() {
+		document.getElementById('faxunitserial').disabled = !this.checked;
+	};
+	document.getElementById('onebintrayserial').onchange = function() {
+		document.getElementById('onebintray').disabled = !this.checked;
+	};
+	
+	document.getElementById('ltcserial').onchange = function() {
+		document.getElementById('lct').disabled = !this.checked;
+	};
+	document.getElementById('creserial').onchange = function() {
+		document.getElementById('cre').disabled = !this.checked;
+	};
+	document.getElementById('addserial').onchange = function() {
+		document.getElementById('add').disabled = !this.checked;
+	};
+	
+</script>
 </body>
 </html>

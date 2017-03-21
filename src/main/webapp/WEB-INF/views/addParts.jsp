@@ -95,132 +95,104 @@
 						</form:form>
 						<!--Search-->
 						
-						<form:form action="saveSpareParts" modelAttribute="saveSpareParts"
+						<form:form class="well form-horizontal" action="saveSpareParts" modelAttribute="saveSpareParts"
 							method="post" id="saveSpareParts">
 
 							<!-- group spare details -->
 							<div class="groupsparedetails">
 								<legend>Spares</legend>
 								
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-4 form-control-label">
-											<h6>
-												<label>Maintain New Spares</label>
-											</h6>
+								
+								<!--First Column-->
+								<div class="col-md-12">
 
-										</div>
-										<div class="col-xs-8">
-											<div class="form-group">
-												<div class="input-group">
-													<input type="checkbox" id="checkSpares" name="checkSparess"
-														value="true">
-												</div>
+									<!-- Check box input Maintain New Spares-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Maintain New Spares</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												 <input type="checkbox" id="checkSpares" name="checkSparess" value="true">
 											</div>
 										</div>
 									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-4 form-control-label">
-											<h6>
-												<label>Part Number</label>
-											</h6>
-
-										</div>
-										<div class="col-xs-8">
-											<div class="form-group">
-												<div class="input-group">
-													<input type="text" id="partNum" name="partNumber"
-														class="form-control" readOnly
-														value="${sparePart.partNumber}"  class="partNo">
-												</div>
+									
+									
+									<!-- Text input Part Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Part Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													id="partNum" readOnly name="partNumber" onkeydown="upperCaseF(this)" placeholder="Enter Part Number" class="form-control"
+													type="text" value="${sparePart.partNumber}" >
 											</div>
 										</div>
 									</div>
-								</div>
 
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-4 form-control-label">
-											<h6>
-												<label>Item Type</label>
-											</h6>
-
-										</div>
-										<div class="col-xs-8">
-
-											<div class="form-group">
-												<div class="input-group">
-													<input type="text" id="itemType" name="itemType"
-														class="form-control" readOnly
-														value="${sparePart.itemType}">
-												</div>
+									
+									<!-- Select type Item Type-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Item Type</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span><select id="itemType"
+													class="form-control" readOnly name="itemType"
+													class="form-control selectpicker">
+													<option value="${sparePart.itemType}">${sparePart.itemType}</option>
+													<option value="Toner">Toner</option>
+													<option value="Part">Part</option>
+												</select>
 											</div>
 										</div>
 									</div>
-								</div>
 
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-4 form-control-label">
-											<h6>
-												<label>Description</label>
-											</h6>
-
-										</div>
-										<div class="col-xs-8">
-											<div class="form-group">
-												<div class="input-group">
-													<input type="text" id="description" name="description"
-														class="form-control" readOnly
-														value="${sparePart.description}">
-												</div>
+									<!-- Text input Description-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Description</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													 id="description" readOnly name="description" type="text"
+														class="form-control" value="${sparePart.description}">
 											</div>
 										</div>
 									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-4 form-control-label">
-											<h6>
-												<label>Quantity</label>
-											</h6>
-
-										</div>
-										<div class="col-xs-8">
-											<div class="form-group">
-												<div class="input-group">
-													<input type="number" id="quantity" name="quantity"
+									
+									
+									<!-- Text input Quantity-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Quantity</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													 type="number" placeholder="Enter Quantity" id="quantity" name="quantity"
 														class="form-control" onkeyup="userTyped('checkSpares', this)">
-												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="row">
-									<div class="col-xs-12">
-										<div class="col-xs-4 form-control-label">
-											<h6>
-												<label>Received By</label>
-											</h6>
-
-										</div>
-										<div class="col-xs-8">
-											<div class="form-group">
-												<div class="input-group">
-													<input type="text" id="receivedBy" name="receivedBy"
-														class="form-control"
-														value="${loggedInUser.firstName} ${loggedInUser.lastName}"
+									
+									
+									<!-- Text input Received By-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Received By</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-user"></i></span> <input type="text"
+													id="receivedBy" name="receivedBy"class="form-control"
+													value="${loggedInUser.firstName} ${loggedInUser.lastName}"
 														readonly="readonly">
-												</div>
 											</div>
 										</div>
 									</div>
+									
 								</div>
+								
+							
 							</div>
 							<!-- //group spare details -->	
 							

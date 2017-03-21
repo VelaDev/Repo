@@ -53,7 +53,7 @@ public class DeviceDao implements DeviceDaoInt {
 		try{
 			
 		       sessionFactory.getCurrentSession().saveOrUpdate(device);
-		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer :" + device.getCustomer().getCustomerName();
+		        retMessage = "Device "+ device.getSerialNumber() + " is succefully added. The device belongs to customer : " + device.getCustomer().getCustomerName();
 		   }
 		catch(Exception e){
 			    retMessage = "Device "+ device.getSerialNumber() + " is not added\n" + e.getMessage();

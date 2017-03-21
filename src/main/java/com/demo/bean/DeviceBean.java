@@ -10,19 +10,14 @@ import lombok.Setter;
 @Setter
 public class DeviceBean {
 
-	
+	private String customerName;
 	private String serialNumber;
 	private String modelNumber;
 	private String startDate;
 	private String endDate;
 	private String installationDate;
-	
 	private String colourReading;
 	private String monoReading;	
-	
-	private String customerName;
-	private String accessoryName;
-	private String accessorySerial;
 	
 	// Machine Accessories input check box
 	private String bridgeUnitSerialType;
@@ -42,6 +37,12 @@ public class DeviceBean {
 	private String faxUnitSerialTypeSerialNo;
 	private String creTypeserial;
 	private String addTypeserial;
+	
+	//other Machine Accessories
+	private String machineType;
+	private String serialNumberOtherAccessory;
+	private String accessoryName;
+	private String accessorySerial;
 	
 	private String streetName;
 	private String city_town;

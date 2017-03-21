@@ -50,13 +50,11 @@ public class Device implements Serializable{
 	@Column(name="Installation_Date")
 	private String installationDate;
 	@Column(name="Device_Location")
-	private String deviceLocation;
-	
+	private String deviceLocation;	
 	@Column(name="Colour_Reading")
 	private String colourReading;
 	@Column(name="Mono_Reading")
-	private String monoReading;
-	
+	private String monoReading;	
 	@Column(name="Province")
 	private String province;
 	@Column(name="City_Town")

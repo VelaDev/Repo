@@ -178,27 +178,7 @@
 								</div>
 
 
-								<!-- Text area -->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Description</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="description"
-												placeholder="Description"></textarea>
-										</div>
-									</div>
-								</div>
-								
-									
-								
-
-
-							</div>
-							<!--/S Column-->
-							
-							<!-- Text area Subject-->
+								<!-- Text area Subject-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Subject</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -207,6 +187,21 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="subject"
 												required="required"></textarea>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/S Column-->
+							
+							<!-- Text area -->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Description</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="description"
+												placeholder="Description"></textarea>
 										</div>
 									</div>
 								</div>

@@ -45,10 +45,12 @@
 									</div>
 									
 										<!-- Iterating over the list sent from Controller -->
-									<datalist id="spareParts "> <c:forEach var="list"
-										items="${spareParts}">
-										<option value="${list}">
-									</c:forEach> </datalist>
+									<datalist id=serialNumbers> 
+										<c:forEach var="list"
+											items="${serialNumbers}">
+											<option value="${list}">
+										</c:forEach> 
+									</datalist>
 									
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />

@@ -491,7 +491,7 @@ ul.addressDeviceList {
 									            <input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" />
 									        </div>
 									        <div class="col-xs-4">
-									            <input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" placeholder="Serial Number" />
+									            <input type="text" class="form-control" id="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" name="serialNumberOtherAccessory" placeholder="Serial Number" />
 									        </div>
 									        <div class="col-xs-1">
 									            <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
@@ -504,7 +504,7 @@ ul.addressDeviceList {
 									            <input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" />
 									        </div>
 									        <div class="col-xs-4">
-									              <input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" placeholder="Serial Number" />
+									              <input type="text" class="form-control" id="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" name="serialNumberOtherAccessory" placeholder="Serial Number" />
 									        </div>
 									        <div class="col-xs-1">
 									            <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>

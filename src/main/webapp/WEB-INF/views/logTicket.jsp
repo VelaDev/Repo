@@ -40,12 +40,22 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
 												name="serialNumber" id="serialNumber" class="form-control"
-												type="text" placeholder='Search By Serial Number'>
+												type="text" onkeydown="upperCaseF(this)" placeholder='Search By Serial Number'>
 										</div>
 									</div>
+									
+										<!-- Iterating over the list sent from Controller -->
+									<datalist id="spareParts "> <c:forEach var="list"
+										items="${spareParts}">
+										<option value="${list}">
+									</c:forEach> </datalist>
+									
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />
 									</div>
+										
+													
+					
 								</div>
 							</div>
 							<hr>
@@ -66,7 +76,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-barcode"></i></span> <input
-												name="device" value="${product.serialNumber }"
+												name="device" readonly="readonly" value="${product.serialNumber }"
 												class="form-control" type="text">
 										</div>
 									</div>
@@ -312,5 +322,62 @@
 											});
 						});
 	</script>
+
+
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
+</script>
+	
+	
+<!-- Create datalist to populate search -->
+<script type="text/javascript">
+
+// Get the <datalist> and <input> elements.
+var dataList = document.getElementById('json-datalist');
+var input = document.getElementById('ajax');
+
+// Create a new XMLHttpRequest.
+var request = new XMLHttpRequest();
+
+// Handle state changes for the request.
+request.onreadystatechange = function(response) {
+  if (request.readyState === 4) {
+    if (request.status === 200) {
+      // Parse the JSON
+      var jsonOptions = JSON.parse(request.responseText);
+  
+      // Loop over the JSON array.
+      jsonOptions.forEach(function(item) {
+        // Create a new <option> element.
+        var option = document.createElement('option');
+        // Set the value using the item in the JSON array.
+        option.value = item;
+        // Add the <option> element to the <datalist>.
+        dataList.appendChild(option);
+      });
+      
+      // Update the placeholder text.
+      input.placeholder = "e.g. datalist";
+    } else {
+      // An error occured :(
+      input.placeholder = "Couldn't load datalist options :(";
+    }
+  }
+};
+
+// Update the placeholder text.
+input.placeholder = "Loading options...";
+
+// Set up and make the request.
+request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+request.send();
+
+</script>
+	
 </body>
 </html>

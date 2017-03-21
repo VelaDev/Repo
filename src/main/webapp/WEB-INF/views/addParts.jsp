@@ -81,7 +81,8 @@
 										</div>
 									</div>
 									<!-- Iterating over the list sent from Controller -->
-									<datalist id="spareParts"> <c:forEach var="list"
+									<datalist id="spareParts"> 
+									<c:forEach var="list"
 										items="${spareParts}">
 										<option value="${list}">
 									</c:forEach> </datalist>

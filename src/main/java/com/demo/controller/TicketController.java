@@ -65,9 +65,6 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		
-			getSerialNumbers = deviceServiceInt.getSerials();
-			model.addObject("serialNumbers",getSerialNumbers);
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("logTicket", new TicketsBean());
 			model.setViewName("ticket");
@@ -81,7 +78,7 @@ public class TicketController {
 		
 	}	
 	
-	@RequestMapping(value="/logTicket",method=RequestMethod.POST)
+	@RequestMapping(value="logTicket",method=RequestMethod.POST)
 	public ModelAndView logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
 	
 		model = new ModelAndView();
@@ -190,13 +187,14 @@ public class TicketController {
 	@RequestMapping(value="logTicket",method=RequestMethod.GET)
 	public ModelAndView loadTicketAdmin() {
        
-		model = new ModelAndView();
+		model = new ModelAndView("logTicket");
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			System.out.println("We here");
 			model.addObject("logTicket", new TicketsBean());
-			
+			getSerialNumbers = deviceServiceInt.getSerials();
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("serialNumbers",getSerialNumbers);
 			model.setViewName("logTicket");
 		}
 		else{

@@ -39,18 +39,20 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="serialNumber" id="serialNumber" class="form-control"
+												name="serialNumber" list="serialNumbers" class="form-control"
 												type="text" onkeydown="upperCaseF(this)" placeholder='Search By Serial Number'>
 										</div>
 									</div>
-									
-										<!-- Iterating over the list sent from Controller -->
-									<datalist id=serialNumbers> 
-										<c:forEach var="list"
-											items="${serialNumbers}">
-											<option value="${list}">
-										</c:forEach> 
-									</datalist>
+									<!-- Iterating over the list sent from Controller -->
+									<datalist id="serialNumbers"> 
+									<c:forEach var="list"
+										items="${serialNumbers}">
+										<option value="${list}">
+									</c:forEach> </datalist>
+
+									<div class="col-md-2">
+										<input class="btn btn-success" type='submit' value='Search' />
+									</div>
 									
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />

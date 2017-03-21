@@ -54,7 +54,7 @@
 								<c:forEach var="list" items="${spareParts}">
 									<tr>
 									  <td>${list.partNumber}</td>
-										<td>${list.description}</td>
+										<td>${list.itemDescription}</td>
 										<td>${list.itemType}</td>
 										<td>${list.quantity}</td>
 										<td>${list.dateTime}</td>

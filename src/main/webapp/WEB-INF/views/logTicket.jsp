@@ -54,12 +54,6 @@
 										<input class="btn btn-success" type='submit' value='Search' />
 									</div>
 									
-									<div class="col-md-2">
-										<input class="btn btn-success" type='submit' value='Search' />
-									</div>
-										
-													
-					
 								</div>
 							</div>
 							<hr>
@@ -82,6 +76,19 @@
 												class="glyphicon glyphicon-barcode"></i></span> <input
 												name="device" readonly="readonly" value="${product.serialNumber }"
 												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text area Subject-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Subject</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="subject"
+												required="required"></textarea>
 										</div>
 									</div>
 								</div>
@@ -180,18 +187,8 @@
 								</div>
 
 
-								<!-- Text area Subject-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Subject</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="subject"
-												required="required"></textarea>
-										</div>
-									</div>
-								</div>
+								
+								
 							</div>
 							<!--/S Column-->
 							

@@ -214,7 +214,9 @@
 			});
 		});
 	</script>
-		
+
+
+	
 <!-- Validate Make Order -->
 <script>
  $(document).ready(function() {
@@ -273,12 +275,29 @@
 	
 
 <script>
- $('#putorder').click(function () {
+/*  $('#putorder').click(function () {
     if (!$('#checkedOrder').is(':checked')) {
-        alert('You need to tick checkbox to make an order\n Please tick the box and try again');
+        alert('You need to tick checkbox to place an order\n Please tick the box and try again');
         return false;
     }
-}); 
+});  */
+
+</script>
+
+
+<script type="text/javascript">
+
+$('#putorder').on('click', function() {
+	  var checked = $('#myDatatable').find(':checked').length;
+
+	  if (!checked){
+		  alert('You need to tick checkbox to place an order\n Please tick the box and try again!');
+		  return false;
+	  }else{
+		    alert('You have selected to place ' + checked + ' order(s)' );
+				  
+	  }
+	});
 
 </script>
 

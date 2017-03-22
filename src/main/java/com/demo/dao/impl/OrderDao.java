@@ -259,6 +259,7 @@ public class OrderDao implements OrdersDaoInt {
 			String customer = orderBean.getCustomer();
 			if(customer !=null){
 				cus = customerDaoInt.getClientByClientName(customer);
+				cusOrder.setCustomer(cus);
 			}
 			cusOrder.setStockType(orderBean.getStockType());
 			cusOrder.setStatus("Pending");
@@ -416,19 +417,16 @@ public class OrderDao implements OrdersDaoInt {
 	public void approveShipment(Integer recordID) {
 		orderHeader = getOrder(recordID);
 		date = new Date();
-		if(orderHeader!=null){
+		if(orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Approved")){
+			
 			orderHeader.setStatus("Shipped");
 			orderHeader.setShippingDate(date);
 			sessionFactory.getCurrentSession().update(orderHeader);
-			
-			listOrders = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
-
-			if(orderHeader.getStockType().equalsIgnoreCase("Boot")){
-				bootStockDaoInt.saveBootStock(listOrders);
-			}
-			else{
-				siteStocDaoInt.saveSiteStock(listOrders);
-			}
+			JavaMail.sendEmailForShipment(orderHeader.getApprover(),orderHeader);
+		}
+		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
+			orderHeader.setStatus("Received");
+			sessionFactory.getCurrentSession().update(orderHeader);
 		}
 	}
 
@@ -439,6 +437,22 @@ public class OrderDao implements OrdersDaoInt {
 		try{
 			for(OrderHeader orderHeader:pendingOrders){
 				if(orderHeader.getStatus().equalsIgnoreCase("Shipped")){
+					pendingOrder.add(orderHeader);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+		return pendingOrder;
+	}
+
+	@Override
+	public List<OrderHeader> shippedOrders(String technicianEmail) {
+		pendingOrders = getAllOrders();
+		List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
+		try{
+			for(OrderHeader orderHeader:pendingOrders){
+				if(orderHeader.getStatus().equalsIgnoreCase("Shipped") && orderHeader.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
 					pendingOrder.add(orderHeader);
 				}
 			}

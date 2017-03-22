@@ -22,7 +22,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Approved Orders</b>
+							<b>Receive Orders</b>
 						</div>
 					</h3>
 				</div>
@@ -36,19 +36,19 @@
 												<th>Order Status <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 												<th>Date <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th> 
 												<th>Stock Type <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												 <th>Order Details</th>
+												 <th>Receive Order</th>
 												
 											</tr>
 										</thead>
 										<tbody>
 											<!-- Iterating over the list sent from Controller -->
-											 <c:forEach var="list" items="${orderList}">
+											 <c:forEach var="list" items="${shipment}">
 												<tr>
 													<td>${list.orderNum}</td>
 													<td>${list.status}</td>
 													<td>${list.dateOrdered}</td>
 													<td>${list.stockType}</td>
-													<td><a href="detailedOrders?orderNum=<c:out value='${list.orderNum}'/>">Details</a></td>
+													<td><a href="shipmentReceived?recordID=<c:out value='${list.recordID}'/>">Receive Order</a></td>
 													
 												</tr>
 											</c:forEach>

@@ -93,5 +93,11 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.shippedOrders();
 	}
 
+	@Override
+	public List<OrderHeader> shippedOrders(String technicianEmail) {
+		// TODO Auto-generated method stub
+		return ordersDAO.shippedOrders(technicianEmail);
+	}
+
 
 }

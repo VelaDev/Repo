@@ -69,7 +69,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="	glyphicon glyphicon-map-marker"></i></span> <input
-												type="text" class="form-control" id="location" id="Site" name="Site"
+												type="text" class="form-control" id="location" id="Site" name="location"
 												placeholder="Enter Location"  />
 										</div>
 									</div>
@@ -81,7 +81,7 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span><select id="Site" name="Site"
+											class="glyphicon glyphicon-user"></i></span><select id="Site" name="Customer"
 											class="form-control selectpicker">
 											<option>Customer Name</option>
 											<c:forEach items="${customerList}" var="customer">

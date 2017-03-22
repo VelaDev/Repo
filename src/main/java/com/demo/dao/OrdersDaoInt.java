@@ -20,5 +20,6 @@ public interface OrdersDaoInt {
 	public List<OrderHeader>pendingOrders(String approveName);
 	public void approveShipment(Integer recordID);
 	public List<OrderHeader> shippedOrders();
+	public List<OrderHeader> shippedOrders(String technicianEmail);
 
 }

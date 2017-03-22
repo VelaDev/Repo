@@ -365,17 +365,17 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
-	public static void sendEmailForShipment(String managerEmail, String technicianEmail,String managerFirstName,
+	public static void sendEmailForShipment(String managerEmail,
 			OrderHeader order) {
 
 
-		String[] to = { technicianEmail ,managerEmail};
+		String[] to = { order.getEmployee().getEmail() ,managerEmail};
 		String from = emailFrom;
 		String pass = password;
-		String body = "Hi " + managerFirstName
+		String body = "Hi " + order.getEmployee().getFirstName()
 				+ ",\n\nYou order is shipped please confirm if you received the order : "
 				+ order.getOrderNum() + ".\n\nKind Regards\nVelaphanda Team";
-		String subject = "New Order " + order.getOrderNum();
+		String subject = "Order " + order.getOrderNum()+ " Shipment";
 		Properties props = System.getProperties();
 		String host = "smtp.gmail.com";
 		props.put("mail.smtp.starttls.enable", "true");

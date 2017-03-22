@@ -278,6 +278,7 @@ public class OrdersController {
 		model = new ModelAndView("orderHistory");
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
+			model.addObject("orderList", ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.setViewName("orderHistory");
 		} else {
 			model.setViewName("login");
@@ -330,5 +331,24 @@ public class OrdersController {
 		}
 
 		return retPage;
+	}
+			
+			@RequestMapping(value = "orderitemHistory", method = RequestMethod.GET)
+	public ModelAndView orderHistory(
+			@RequestParam("recordID") Integer recordID) {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.addObject("pendingOrderList",
+					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.setViewName("orderItemHistory");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
 	}
 }

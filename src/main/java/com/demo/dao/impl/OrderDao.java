@@ -346,10 +346,6 @@ public class OrderDao implements OrdersDaoInt {
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 			retMessage = subtractOrderItems(orderDetailList);
 			if (retMessage.equalsIgnoreCase("Ok")) {
-				/*
-				 * retMessage = detailsDaoInt
-				 * .incrementStockAvailability(orderDetailList);
-				 */
 
 				listOrders = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 
@@ -427,6 +423,15 @@ public class OrderDao implements OrdersDaoInt {
 		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
 			orderHeader.setStatus("Received");
 			sessionFactory.getCurrentSession().update(orderHeader);
+			
+			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
+				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
+				siteStocDaoInt.saveSiteStock(orderDetailList);
+			}
+			else{
+				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
+				 bootStockDaoInt.saveBootStock(orderDetailList);;
+			}
 		}
 	}
 

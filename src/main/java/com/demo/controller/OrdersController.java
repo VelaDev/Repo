@@ -278,7 +278,6 @@ public class OrdersController {
 		model = new ModelAndView("orderHistory");
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-
 			model.setViewName("orderHistory");
 		} else {
 			model.setViewName("login");

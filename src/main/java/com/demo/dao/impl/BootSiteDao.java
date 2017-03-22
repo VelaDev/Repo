@@ -23,6 +23,7 @@ public class BootSiteDao implements BootStockDaoInt{
 	private BootStock bootStock;
 	@Override
 	public void saveBootStock(List<OrderDetails> detailsDaos) {
+		System.out.println("We here");
 		try{
 			
 			for(OrderDetails stock:detailsDaos){
@@ -35,7 +36,7 @@ public class BootSiteDao implements BootStockDaoInt{
 				bootStock.setTechnicianEmail(stock.getTechnician());
 				bootStock.setTechnicianName(stock.getTechnician());
 				
-				sessionFactory.getCurrentSession().saveOrUpdate(detailsDaos);
+				sessionFactory.getCurrentSession().saveOrUpdate(bootStock);
 			}
 			
 		}catch(Exception exception){

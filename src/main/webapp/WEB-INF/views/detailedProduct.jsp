@@ -293,10 +293,8 @@ header, #content, #middle, #sidebar {
 											<thead>
 												
 												<tr>
-													<th>Accessory Type <img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Serial No<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Accessory Type</th>
+													<th>Serial No</th>
 
 												</tr>
 											</thead>

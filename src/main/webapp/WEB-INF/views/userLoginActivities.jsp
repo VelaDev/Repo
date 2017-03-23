@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Display Employees | Velaphanda Trading & Projects</title>
+<title>Display User Log Activities | Velaphanda Trading & Projects</title>
 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,16 +38,11 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>First Name<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Last Name<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Email<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Login Date Time<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Logout Date Time<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Email</th>
+									<th>Login Date Time</th>
+									<th>Logout Date Time</th>
 								</tr>
 							</thead>
 							<tbody>

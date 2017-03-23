@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
+<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
@@ -33,14 +33,15 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Make Order</b>
+							<b>Place Order</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
+					
 						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="putInOrder" name="makeOrder" >
+							method="post" action="makeOrder" id="putInOrder">
 
 
 							<!-- Select type Stock Type-->
@@ -53,7 +54,7 @@
 											name="stockType" class="form-control"
 											onchange='CheckStockType(this.value);'
 											class="form-control selectpicker">
-											<option>Select Stock Type</option>
+											<option value="">Select Stock Type</option>
 											<option value="Boot">Boot</option>
 											<option value="Site">Site</option>
 										</select>
@@ -61,19 +62,7 @@
 								</div>
 							</div>
 
-							<div id="Site" style='display: none;'>
-								<!-- Text input Location-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Location</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="	glyphicon glyphicon-map-marker"></i></span> <input
-												type="text" class="form-control" id="location" id="Site" name="location"
-												placeholder="Enter Location"  />
-										</div>
-									</div>
-								</div>
+							<div id="Site" style='display: none;'>								
 
 							<!-- Text input Customer Name-->
 							<div class="form-group">
@@ -81,9 +70,9 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span><select id="Site" name="Customer"
+											class="glyphicon glyphicon-user"></i></span><select id="Site" name="customer"
 											class="form-control selectpicker">
-											<option>Customer Name</option>
+											<option value="">Customer Name</option>
 											<c:forEach items="${customerList}" var="customer">
 												<option value="${customer.customerName}">${customer.customerName}</option>
 											</c:forEach>
@@ -116,7 +105,7 @@
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-user"></i></span> <select id="approver" name="approver"
 											class="form-control selectpicker">
-											<option>Select Approver</option>
+											<option value="">Select Approver</option>
 											<c:forEach items="${managersList}" var="manager">
 												<option value="${manager.email}">${manager.firstName}
 													${manager.lastName}</option>
@@ -131,18 +120,13 @@
 								<table id="myDatatable" class="display datatable">
 									<thead>
 										<tr>
-											<th>Part No <img
-												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-											<th>Description <img
-												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-											<th>Model No <img
-												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-											<th>Available QTY <img
-												src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+											<th>Part No</th>
+											<th>Description</th>
+											<th>Model No </th>
+											<th>Available QTY</th>
 											<th>Tick To Order</th>
 											<th>Quantity</th>
-											<!-- <th>Edit<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
+											<!-- <th>Edit</th> -->
 										</tr>
 									</thead>
 									<tbody>
@@ -178,6 +162,7 @@
 										id="putorder" name="putorder">
 								</div>
 							</div>
+							
 						</form:form>
 
 
@@ -197,8 +182,8 @@
 
 	<!-- Scripts -->
 	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
 	<!-- Datatables -->
 	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>	
 	<!-- /Scripts -->
@@ -254,7 +239,7 @@
             customer: {
                 validators: {
                     notEmpty: {
-                        message: 'customer is required and cannot be empty'
+                        message: 'Customer is required and cannot be empty'
                     }
                 }
             },
@@ -264,9 +249,7 @@
                         message: 'Approver is required and cannot be empty'
                     }
                 }
-            }
-            
-            
+            } 
         }
     });
 });
@@ -286,8 +269,7 @@
 
 
 <script type="text/javascript">
-
-$('#putorder').on('click', function() {
+ $('#putorder').on('click', function() {
 	  var checked = $('#myDatatable').find(':checked').length;
 
 	  if (!checked){
@@ -310,13 +292,7 @@ $('#putorder').on('click', function() {
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
-		   
-		  var element=document.getElementById('Boot');
-		 if(val=='select stock type'||val=='Boot')
-		   element.style.display='block';
-		 else  
-		   element.style.display='none';
-		   
+		 
 		}
 	
 </script>

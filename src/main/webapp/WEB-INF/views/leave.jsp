@@ -6,8 +6,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -18,8 +16,6 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-
-
 
 </head>
 <body>

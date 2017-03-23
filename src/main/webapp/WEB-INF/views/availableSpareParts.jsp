@@ -37,16 +37,11 @@
 					     <table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Part No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Description <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Stock Type <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>QTY <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Date <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Part No</th>
+									<th>Description</th>
+									<th>Stock Type </th>
+									<th>QTY</th>
+									<th>Date </th>
 								</tr>
 							</thead>
 							<tbody>

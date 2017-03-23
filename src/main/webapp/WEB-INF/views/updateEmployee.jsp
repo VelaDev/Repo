@@ -198,92 +198,115 @@
 													invalid : 'glyphicon glyphicon-remove',
 													validating : 'glyphicon glyphicon-refresh'
 												},
-												fields : {
-													firstName : {
-														validators : {
-															stringLength : {
-																min : 2,
-															},
-															notEmpty : {
-																message : 'First Name is required and cannot be empty'
-															}
-														}
-													},
-													lastName : {
-														validators : {
-															stringLength : {
-																min : 2,
-															},
-															notEmpty : {
-																message : 'Last Name is required and cannot be empty'
-															}
-														}
-													},
-													title : {
-														validators : {
-															notEmpty : {
-																message : 'Title is required and cannot be empty'
-															}
-														}
-													},
-													gender : {
-														validators : {
-															notEmpty : {
-																message : 'Gender is required and cannot be empty'
-															}
-														}
-													},
-													username : {
-														validators : {
-															notEmpty : {
+												 fields: {
+											        	firstName: {
+											                validators: {
 																stringLength : {
 																	min : 2,
 																},
-																message : 'Username is required and cannot be empty'
-															}
-														}
-													},
-													password : {
-														validators : {
-															notEmpty : {
+											                    notEmpty: {
+											                        message: 'First Name is required and cannot be empty'
+											                    }
+											                }
+											            },
+											            lastName: {
+											                validators: {
+																stringLength : {
+																	min : 2,
+																},
+											                    notEmpty: {
+											                        message: 'Last Name is required and cannot be empty'
+											                    }
+											                }
+											            },
+											            title: {
+											                validators: {
+											                    notEmpty: {
+											                        message: 'Title is required and cannot be empty'
+											                    }
+											                }
+											            },
+											            gender: {
+											                validators: {
+											                    notEmpty: {
+											                        message: 'Gender is required and cannot be empty'
+											                    }
+											                }
+											            },
+											            username: {
+											                validators: {
+											                    notEmpty: {
+																stringLength : {
+																	min : 2,
+																},
+											                        message: 'Username is required and cannot be empty'
+											                    }
+											                }
+											            },
+											            password: {
+											                validators: {
+											                    notEmpty: {
 																stringLength : {
 																	min : 4,
 																},
-																message : 'Password is required and cannot be empty'
+											                        message: 'Password is required and cannot be empty'
+											                    }
+											                }
+											            },
+											            cellphoneNumber : {
+															validators : {
+																notEmpty : {
+																	message : 'Cellphone number is required and cannot be empty'
+																},
+																regexp: {
+																	
+																	regexp: /^0[0-9].*$/,
+																	message :'Cellphone number must start with 0 (Zero)'
+																}, 
+																phone : {
+																	country : 'US',
+																	message : 'Please provide a vaild Cellphone Number'
+																}
+																
 															}
-														}
-													},
-													cellNumber : {
-														validators : {
-															notEmpty : {
-																message : 'Please enter 10 numbers'
-															},
-															phone : {
-																country : 'US',
-																message : 'Please enter 10 numbers'
+														},
+											            email: {
+											                validators: {
+											                    notEmpty: {
+											                        message: 'The email address is required and cannot be empty'
+											                    },
+											                     emailAddress: {
+											                        message: 'The email address is not valid'
+											                    } 
+											                }
+											            },
+											            role: {
+											                validators: {
+											                    notEmpty: {
+											                        message: 'Role is required and cannot be empty'
+											                    }
+											                }
+											            },
+											            cellNumber : {
+															validators : {
+																notEmpty : {
+																	message : 'Please enter 10 numbers'
+																},
+																regexp: {
+																	
+																	regexp: /^0[0-9].*$/,
+																	message :'Cellphone number must start with 0 (Zero)'
+																}, 
+																phone : {
+																	country : 'US',
+																	message : 'Please provide a vaild Cellphone Number'
+																}
+																
 															}
-														}
-													},
-													email : {
-														validators : {
-															notEmpty : {
-																message : 'The email address is required and cannot be empty'
-															},
-															emailAddress : {
-																message : 'The email address is not valid'
-															}
-														}
-													},
-													role : {
-														validators : {
-															notEmpty : {
-																message : 'Role is required and cannot be empty'
-															}
-														}
-													},
-												}
+														},
+											        }
+											    });
 											});
-						});
 	</script>
 	<!--Validate search-->
 	<script>

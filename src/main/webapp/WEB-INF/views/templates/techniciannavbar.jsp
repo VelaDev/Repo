@@ -55,7 +55,7 @@
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Orders<span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href='<c:url value="order.html"/>'>Make Order</a></li>
+							<li><a href='<c:url value="order.html"/>'>Place Order</a></li>
 							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
 							<li><a href='<c:url value="viewApprovedOrders.html"/>'>View Approved Orders</a></li>
 						</ul>

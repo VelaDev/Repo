@@ -34,16 +34,11 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Customer Name <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Serial No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Model No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Start Date <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>End Date <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Customer Name</th>
+									<th>Serial No</th>
+									<th>Model No </th>
+									<th>Start Date </th>
+									<th>End Date </th>
 									<th>View Details</th>
 									<th>Update Device</th>
 								</tr>

@@ -38,18 +38,12 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>First Name<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Last Name<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Email<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Cell No<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Status<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Role<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th>Email</th>
+									<th>Cell No</th>
+									<th>Status</th>
+									<th>Role</th>
 									<th>Login Activities</th>
 									<th>Update</th>
 									<th>Reset</th>

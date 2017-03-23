@@ -60,16 +60,11 @@
 							<table id="myDatatable" class="display datatable">
 								<thead>
 									<tr>
-										<th>Part No<img
-											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Model No<img
-											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Desc<img
-											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Quantity<img
-											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-										<th>Date<img
-											src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+										<th>Part No</th>
+										<th>Model No</th>
+										<th>Desc</th>
+										<th>Quantity</th>
+										<th>Order Date</th>
 										<th>Status</th>
 									</tr>
 								</thead>
@@ -80,7 +75,7 @@
 											<td>${list.partNumber}</td>
 											<td>${list.model}</td>
 											<td>${list.itemDescription}</td>
-											<td>${list.quantity}</td>
+											<td><input type="text" id="quantity" name="quantity" value="${list.quantity}"></td>
 											<td>${list.dateTime}</td>
 											<td>${list.orderHeader.status}</td>
 										</tr>

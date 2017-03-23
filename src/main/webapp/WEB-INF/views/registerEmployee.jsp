@@ -249,10 +249,16 @@
 					notEmpty : {
 						message : 'Cellphone number is required and cannot be empty'
 					},
+					regexp: {
+						
+						regexp: /^0[0-9].*$/,
+						message :'Cellphone number must start with 0 (Zero)'
+					}, 
 					phone : {
 						country : 'US',
-						message : 'Please provide a vaild Cell Number with area code'
+						message : 'Please provide a vaild Cellphone Number'
 					}
+					
 				}
 			},
             email: {
@@ -277,10 +283,16 @@
 					notEmpty : {
 						message : 'Please enter 10 numbers'
 					},
+					regexp: {
+						
+						regexp: /^0[0-9].*$/,
+						message :'Cellphone number must start with 0 (Zero)'
+					}, 
 					phone : {
 						country : 'US',
-						message : 'Please enter 10 numbers'
+						message : 'Please provide a vaild Cellphone Number'
 					}
+					
 				}
 			},
         }

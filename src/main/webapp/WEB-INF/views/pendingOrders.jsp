@@ -34,18 +34,12 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<!-- <th>Record No<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th> -->
-									<th>Order No<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Status<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Date<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Stock Type<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Customer<img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<!-- <th>Record No</th> -->
+									<th>Order No</th>
+									<th>Order Status</th>
+									<th>Order Date</th>
+									<th>Stock Type</th>
+									<th>Customer</th>
 									<th>Order Details</th>
 								</tr>
 							</thead>

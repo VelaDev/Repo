@@ -32,8 +32,8 @@
 									<table id="myDatatable" class="display datatable">
 										<thead>
 											<tr>
-												<th>Serial No <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Device Model <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Serial No </th>
+												<th>Device Model</th>
 												<th>Contact Person</th>
 												<th>Cell No</th>
 												<th>Device Details</th>

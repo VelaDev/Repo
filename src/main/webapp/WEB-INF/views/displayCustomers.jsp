@@ -30,9 +30,9 @@
 									<table id="myDatatable" class="display datatable">
 										<thead>
 											<tr>
-												<th>Customer Name <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Email <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-												<th>Tell <img src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+												<th>Customer Name</th>
+												<th>Email</th>
+												<th>Tell</th>
 												<th>Update Customer</th>
 												<th>View Device</th>
 												<th>Add Device</th>

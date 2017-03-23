@@ -39,18 +39,12 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Record ID <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Part No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Compatible Devices <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Desc <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Quantity <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Order Status <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Record ID </th>
+									<th>Part No</th>
+									<th>Compatible Devices </th>
+									<th>Desc</th>
+									<th>Quantity </th>
+									<th>Order Status</th>
 
 
 								</tr>

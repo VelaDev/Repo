@@ -32,16 +32,11 @@
 					<table id="myDatatable" class="display datatable">
 						<thead>
 							<tr>
-								<th>Type of Leave<img
-									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-								<th>First Date Leave<img
-									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-								<th>Last Date Leave<img
-									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-								<th>Contact Number<img
-									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-								<th>Address<img
-									src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+								<th>Type of Leave</th>
+								<th>First Date Leave</th>
+								<th>Last Date Leave</th>
+								<th>Contact Number</th>
+								<th>Address</th>
 								<th>Update</th>
 
 							</tr>

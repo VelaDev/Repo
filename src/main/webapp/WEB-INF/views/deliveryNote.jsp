@@ -62,8 +62,8 @@ li{
 										</ul>
 										<ul class="address_list" style="display: block;">
 										    <li id="streetNumber">Contact Person : ${contactPerson.firstName} ${contactPerson.lastName}</li>
-											<li id="streetName">Contact No: ${contactPerson.cellNumber}</li>
-											<li id="city_town">E-Mail: ${contactPerson.email}</li>
+											<li id="streetName">Contact No: ${contactPerson.contactCellNumber}</li>
+											<li id="city_town">E-Mail: ${contactPerson.contactEmail}</li>
 										</ul>
 									</div>
 									<div id="logo_container"

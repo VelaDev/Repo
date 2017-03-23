@@ -454,6 +454,11 @@ function isNumber(evt) {
 													notEmpty : {
 														message : 'Please enter 10 digits for tellphone number'
 													},
+													regexp: {
+														
+														regexp: /^0[0-9].*$/,
+														message :'Tellphone number must start with 0 (Zero)'
+													},
 													phone : {
 														country : 'US',
 														message : 'Please enter 10 digits for tellphone number'
@@ -571,6 +576,11 @@ function isNumber(evt) {
 													notEmpty : {
 														message : 'Please enter 10 digits for cellphone number'
 													},
+													regexp: {
+														
+														regexp: /^0[0-9].*$/,
+														message :'Cellphone number must start with 0 (Zero)'
+													},
 													phone : {
 														country : 'US',
 														message : 'Please enter 10 digits for cellphone number'
@@ -585,6 +595,11 @@ function isNumber(evt) {
 													phone : {
 														country : 'US',
 														message : 'Please enter 10 digits for telephone number'
+													},
+													regexp: {
+														
+														regexp: /^0[0-9].*$/,
+														message :'Telephone number must start with 0 (Zero)'
 													}
 												}
 											},
@@ -628,6 +643,11 @@ function isNumber(evt) {
 													phone : {
 														country : 'US',
 														message : 'Please enter 10 digits for cellphone number'
+													},
+													regexp: {
+														
+														regexp: /^0[0-9].*$/,
+														message :'Cellphone number must start with 0 (Zero)'
 													}
 												}
 											},													
@@ -636,6 +656,11 @@ function isNumber(evt) {
 													phone : {
 														country : 'US',
 														message : 'Please enter 10 digits for telephone number'
+													},
+													regexp: {
+														
+														regexp: /^0[0-9].*$/,
+														message :'Tellphone number must start with 0 (Zero)'
 													}
 												}
 											},

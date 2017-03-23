@@ -298,7 +298,6 @@
         }
     });
 });
-
 </script>	
 	
 	<!-- Accept alphanumeric characters only -->

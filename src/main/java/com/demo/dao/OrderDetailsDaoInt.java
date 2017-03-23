@@ -13,4 +13,6 @@ public interface OrderDetailsDaoInt {
 	List<OrderDetails> getAllAvailableOrderDetails(String technician);
 	List<OrderDetails> getOrderDetailsByTechnician(String email);
 	String incrementStockAvailability(List<OrderDetails> orderDetails);
+	List<OrderDetails> getAllBootStockOrders();
+	List<OrderDetails> getAllSiteStockOrders();
 }

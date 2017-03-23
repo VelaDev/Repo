@@ -47,4 +47,14 @@ public class OrderDetailsService implements OrderDetailsInt{
 		return orderDetailsDaoInt.getOrderDetailsByOrderNum(key, recordID);
 	}
 
+	@Override
+	public List<OrderDetails> getAllBootStockOrders() {
+		return orderDetailsDaoInt.getAllBootStockOrders();
+	}
+
+	@Override
+	public List<OrderDetails> getAllSiteStockOrders() {
+		return orderDetailsDaoInt.getAllSiteStockOrders();
+	}
+
 }

@@ -25,6 +25,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 	private String retMessage = null;
 	
 	private List<OrderDetails> orders = null;
+	private List<OrderDetails> retOrder = null;
 	@Override
 	public String saveOrderDetails(List<OrderDetails> orderDetails) {
 		try{
@@ -134,5 +135,35 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		}catch(Exception e){	
 		}
 		return pendingList;
+	}
+	@Override
+	public List<OrderDetails> getAllBootStockOrders() {
+		orders = getAllOrderDetails();
+		retOrder = new ArrayList<OrderDetails>();
+		try{
+			for(OrderDetails order:orders){
+				if(order.getOrderHeader().getStockType().equalsIgnoreCase("Boot")){
+					retOrder.add(order);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return retOrder;
+	}
+	@Override
+	public List<OrderDetails> getAllSiteStockOrders() {
+		orders = getAllOrderDetails();
+		retOrder = new ArrayList<OrderDetails>();
+		try{
+			for(OrderDetails order:orders){
+				if(order.getOrderHeader().getStockType().equalsIgnoreCase("Site")){
+					retOrder.add(order);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return retOrder;
 	}
 }

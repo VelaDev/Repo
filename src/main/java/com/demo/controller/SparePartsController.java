@@ -91,7 +91,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("orders",orderDetailsInt.getAllOrderDetails());
+			model.addObject("orders",orderDetailsInt.getAllBootStockOrders());
 			model.setViewName("bootSite");
 		}
 		else{
@@ -105,7 +105,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("orders",orderDetailsInt.getAllOrderDetails());
+			model.addObject("orders",orderDetailsInt.getAllSiteStockOrders());
 			model.setViewName("stockSite");
 		}
 		else{

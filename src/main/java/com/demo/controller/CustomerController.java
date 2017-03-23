@@ -185,32 +185,12 @@ public class CustomerController {
 		
 		return model;
 	}
-	@RequestMapping(value="viewCustomerData",method=RequestMethod.POST)
-	public ModelAndView viewCustomer(@ModelAttribute("viewCustomerData")CustomerBean customerBean){
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-		
-			retMessage =customerServiceInt.prepareCustomer(customerBean); 
-			model.addObject("retMessage", retMessage);
-			model.setViewName("viewCustomer");
-		}
-		else
-		{
-			model.setViewName("login");
-		}
-		return model;
-	}
 	
 	@RequestMapping(value="viewCustomer")
 	public ModelAndView viewCustomer(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		
-			/*customer = customerServiceInt.getClientByClientName(viewCustomer);*/
-			
-			
 			model.addObject("customer", customerServiceInt.contactDetails(customerName));
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
 			model.setViewName("viewCustomer");

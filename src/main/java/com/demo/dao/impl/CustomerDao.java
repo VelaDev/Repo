@@ -1,7 +1,5 @@
 package com.demo.dao.impl;
 
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,129 +19,112 @@ import com.demo.model.CustomerContactDetails;
 import com.demo.model.Employee;
 
 @Repository("clientDAO")
-@Transactional(propagation=Propagation.REQUIRED)
-public class CustomerDao implements CustomerDaoInt{
-	
+@Transactional(propagation = Propagation.REQUIRED)
+public class CustomerDao implements CustomerDaoInt {
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
-	
+
 	@Autowired
 	private CustomerContactDetailsDaoInt customerContactDetailsDaoIntDaoInt;
-	
+
 	private String retMessage = null;
 	List<Customer> clientList = null;
 	Customer customer = null;
 
 	@Override
-	public String saveClient(Customer localCustomer) {
-	
-		try{
-			customer = getClientByClientName(localCustomer.getCustomerName());
-			if(customer == null){
-				sessionFactory.getCurrentSession().save(localCustomer);
-				retMessage =  "Customer "+ localCustomer.getCustomerName() + " "+ "was successfully added";
-			}
-			else if (customer != null){
-				sessionFactory.getCurrentSession().update(customer);
-				retMessage =  "Customer "+ customer.getCustomerName() + " "+ "Was successfully updated";
-			
-			}
-			
-		}
-		catch(Exception e){
-			retMessage = "Customer "+ customer.getCustomerName() + " is not added\n" + e.getMessage();
-		}
-		
-		return retMessage;
-	}
-
-	@Override
 	public Customer getClientByClientName(String clientName) {
-		return(Customer) sessionFactory.getCurrentSession().get(Customer.class,clientName );
+		return (Customer) sessionFactory.getCurrentSession().get(
+				Customer.class, clientName);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Customer> getClientList(Integer offset, Integer maxResults) {
-		
-		return sessionFactory.openSession()
-			    .createCriteria(Customer.class)
-			    .setFirstResult(offset!=null?offset:0)
-			    .setMaxResults(maxResults!=null?maxResults:10)
-			    .list();
+
+		return sessionFactory.openSession().createCriteria(Customer.class)
+				.setFirstResult(offset != null ? offset : 0)
+				.setMaxResults(maxResults != null ? maxResults : 10).list();
 	}
-	
-	
+
 	@Override
 	public String saveCustomer(CustomerBean customerBean) {
-	   
-		CustomerContactDetails contactDetails, contactDetails1 = null;
-		List<CustomerContactDetails>list = null;
-		Customer tempCustomer = new Customer();
-		try{
-	
-			//Customer Object
-			tempCustomer.setActive(true);
-			tempCustomer.setCity_town(customerBean.getCity_town());
-			tempCustomer.setCustomerName(customerBean.getCustomerName());
-			tempCustomer.setEmail(customerBean.getEmail());
-			tempCustomer.setFaxNumber(customerBean.getFaxNumber());
-			tempCustomer.setProvince(customerBean.getProvince());
-			tempCustomer.setStreetName(customerBean.getStreetName());
-			tempCustomer.setStreetNumber(customerBean.getStreetNumber());
-			tempCustomer.setTelephoneNumber(customerBean.getTelephoneNumber());
-			tempCustomer.setZipcode(customerBean.getZipcode());
-		    
 
-		    list = new ArrayList<CustomerContactDetails>();
-		    
-		    // Required contact person object
-		     contactDetails = new CustomerContactDetails();
-		     contactDetails.setContactCellNumber(customerBean.getContactCellNumber());
-		     contactDetails.setContactTelephoneNumber(customerBean.getContactTelephoneNumber());
-		     contactDetails.setContactEmail(customerBean.getContactEmail());
-		     contactDetails.setFirstName(customerBean.getFirstName());
-		     contactDetails.setLastName(customerBean.getLastName());
-		     contactDetails.setCustomer(tempCustomer);
-		     list.add(contactDetails);
-		     
-		     // Optional contact person object
-		     if(customerBean.getFirstName1() != null && customerBean.getFirstName1().length()>0){
-		    	 contactDetails1 = new CustomerContactDetails();
-		    	 contactDetails1.setContactCellNumber(customerBean.getContactCellNumber1());
-		    	 contactDetails1.setContactEmail(customerBean.getContactEmail1());
-		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
-		    	 contactDetails1.setLastName(customerBean.getLastName1());
-		    	 contactDetails1.setContactTelephoneNumber(customerBean.getContactTelephoneNumber1());
-		    	 contactDetails1.setCustomer(tempCustomer);
-		    	 list.add(contactDetails1);
-		     }
-			
-		    sessionFactory.getCurrentSession().save(tempCustomer);
-			retMessage =  "Customer "+ tempCustomer.getCustomerName() + " "+ "was successfully added";
-				
-			customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
-			
+		CustomerContactDetails contactDetails, contactDetails1 = null;
+		List<CustomerContactDetails> list = null;
+		Customer tempCustomer = new Customer();
+		try {
+
+			customer = getClientByClientName(customerBean.getCustomerName());
+			if (customer == null) {
+
+				// Customer Object
+				tempCustomer.setActive(true);
+				tempCustomer.setCity_town(customerBean.getCity_town());
+				tempCustomer.setCustomerName(customerBean.getCustomerName());
+				tempCustomer.setEmail(customerBean.getEmail());
+				tempCustomer.setFaxNumber(customerBean.getFaxNumber());
+				tempCustomer.setProvince(customerBean.getProvince());
+				tempCustomer.setStreetName(customerBean.getStreetName());
+				tempCustomer.setStreetNumber(customerBean.getStreetNumber());
+				tempCustomer.setTelephoneNumber(customerBean
+						.getTelephoneNumber());
+				tempCustomer.setZipcode(customerBean.getZipcode());
+
+				list = new ArrayList<CustomerContactDetails>();
+
+				// Required contact person object
+				contactDetails = new CustomerContactDetails();
+				contactDetails.setContactCellNumber(customerBean
+						.getContactCellNumber());
+				contactDetails.setContactTelephoneNumber(customerBean
+						.getContactTelephoneNumber());
+				contactDetails.setContactEmail(customerBean.getContactEmail());
+				contactDetails.setFirstName(customerBean.getFirstName());
+				contactDetails.setLastName(customerBean.getLastName());
+				contactDetails.setCustomer(tempCustomer);
+				list.add(contactDetails);
+
+				// Optional contact person object
+				if (customerBean.getFirstName1() != null
+						&& customerBean.getFirstName1().length() > 0) {
+					contactDetails1 = new CustomerContactDetails();
+					contactDetails1.setContactCellNumber(customerBean
+							.getContactCellNumber1());
+					contactDetails1.setContactEmail(customerBean
+							.getContactEmail1());
+					contactDetails1.setFirstName(customerBean.getFirstName1());
+					contactDetails1.setLastName(customerBean.getLastName1());
+					contactDetails1.setContactTelephoneNumber(customerBean
+							.getContactTelephoneNumber1());
+					contactDetails1.setCustomer(tempCustomer);
+					list.add(contactDetails1);
+				}
+				sessionFactory.getCurrentSession().save(tempCustomer);
+				customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
+				retMessage = "Customer " + tempCustomer.getCustomerName() + " "
+						+ "was successfully added";
+			} else {
+				retMessage = "Customer " + customer.getCustomerName() + " "
+						+ "already exist. Please add new customer with a different name";
+			}
+		} catch (Exception e) {
+			retMessage = "Customer " + customer.getCustomerName()
+					+ " is not added\n" + e.getMessage();
 		}
-		catch(Exception e){
-			retMessage = "Customer "+ customer.getCustomerName() + " is not added\n" + e.getMessage();
-		}
-		
+
 		return retMessage;
 	}
 
-	
-	
 	@Override
 	public String updateCustomer(CustomerBean customerBean) {
-		
+
 		CustomerContactDetails contactDetails, contactDetails1 = null;
-		List<CustomerContactDetails>list = null;
+		List<CustomerContactDetails> list = null;
 		Customer tempCustomer = new Customer();
-		
-		try{
-			//Customer Object
+
+		try {
+			// Customer Object
 			tempCustomer.setActive(true);
 			tempCustomer.setCity_town(customerBean.getCity_town());
 			tempCustomer.setCustomerName(customerBean.getCustomerName());
@@ -154,114 +135,69 @@ public class CustomerDao implements CustomerDaoInt{
 			tempCustomer.setStreetNumber(customerBean.getStreetNumber());
 			tempCustomer.setTelephoneNumber(customerBean.getTelephoneNumber());
 			tempCustomer.setZipcode(customerBean.getZipcode());
-		    
 
-		    list = new ArrayList<CustomerContactDetails>();
-		    
-		    // Required contact person object
-		     contactDetails = new CustomerContactDetails();
-		     contactDetails.setContactCellNumber(customerBean.getContactCellNumber());
-		     contactDetails.setContactTelephoneNumber(customerBean.getContactTelephoneNumber());
-		     contactDetails.setContactEmail(customerBean.getContactEmail());
-		     contactDetails.setFirstName(customerBean.getFirstName());
-		     contactDetails.setLastName(customerBean.getLastName());
-		     contactDetails.setCustomer(tempCustomer);
-		     list.add(contactDetails);
-		     
-		     // Optional contact person object
-		     if(customerBean.getFirstName1() != null && customerBean.getFirstName1().length()>0){
-		    	 contactDetails1 = new CustomerContactDetails();
-		    	 contactDetails1.setContactCellNumber(customerBean.getContactCellNumber1());
-		    	 contactDetails1.setContactEmail(customerBean.getContactEmail1());
-		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
-		    	 contactDetails1.setLastName(customerBean.getLastName1());
-		    	 contactDetails1.setContactTelephoneNumber(customerBean.getContactTelephoneNumber1());
-		    	 contactDetails1.setCustomer(tempCustomer);
-		    	 list.add(contactDetails1);
-		     }
-			
+			list = new ArrayList<CustomerContactDetails>();
+
+			// Required contact person object
+			contactDetails = new CustomerContactDetails();
+			contactDetails.setContactCellNumber(customerBean
+					.getContactCellNumber());
+			contactDetails.setContactTelephoneNumber(customerBean
+					.getContactTelephoneNumber());
+			contactDetails.setContactEmail(customerBean.getContactEmail());
+			contactDetails.setFirstName(customerBean.getFirstName());
+			contactDetails.setLastName(customerBean.getLastName());
+			contactDetails.setCustomer(tempCustomer);
+			list.add(contactDetails);
+
+			// Optional contact person object
+			if (customerBean.getFirstName1() != null
+					&& customerBean.getFirstName1().length() > 0) {
+				contactDetails1 = new CustomerContactDetails();
+				contactDetails1.setContactCellNumber(customerBean
+						.getContactCellNumber1());
+				contactDetails1
+						.setContactEmail(customerBean.getContactEmail1());
+				contactDetails1.setFirstName(customerBean.getFirstName1());
+				contactDetails1.setLastName(customerBean.getLastName1());
+				contactDetails1.setContactTelephoneNumber(customerBean
+						.getContactTelephoneNumber1());
+				contactDetails1.setCustomer(tempCustomer);
+				list.add(contactDetails1);
+			}
+
 			sessionFactory.getCurrentSession().update(tempCustomer);
-			retMessage = "Customer "+ tempCustomer.getCustomerName()+ " is successfully updated";
-			
+			retMessage = "Customer " + tempCustomer.getCustomerName()
+					+ " is successfully updated";
+
 			customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
-		}
-		catch( Exception e){
-			retMessage = "Customer "+ customer.getCustomerName() + " is not updated\n" + e.getMessage();
+		} catch (Exception e) {
+			retMessage = "Customer " + customer.getCustomerName()
+					+ " is not updated\n" + e.getMessage();
 		}
 		return retMessage;
 	}
 
 	@Override
 	public Integer count() {
-		return (Integer) sessionFactory.getCurrentSession().createCriteria(Customer.class).setProjection(Projections.rowCount()).uniqueResult();
-		
-	}
+		return (Integer) sessionFactory.getCurrentSession()
+				.createCriteria(Customer.class)
+				.setProjection(Projections.rowCount()).uniqueResult();
 
-	@Override
-	public String prepareCustomer(CustomerBean customerBean) {
-		
-		CustomerContactDetails contactDetails, contactDetails1 = null;
-		List<CustomerContactDetails>list = null;
-	  try{
-			    
-		    customer = new Customer();
-		    // Client object
-			customer.setActive(true);
-		    customer.setCity_town(customerBean.getCity_town());
-		    customer.setCustomerName(customerBean.getCustomerName());
-		    customer.setEmail(customerBean.getEmail());
-		    customer.setFaxNumber(customerBean.getFaxNumber());
-		    customer.setProvince(customerBean.getProvince());
-		    customer.setStreetName(customerBean.getStreetName());
-		    customer.setStreetNumber(customerBean.getStreetNumber());
-		    customer.setTelephoneNumber(customerBean.getTelephoneNumber());
-		    customer.setZipcode(customerBean.getZipcode());
-		    
-		    list = new ArrayList<CustomerContactDetails>();
-		    // Required contact person object
-		     contactDetails = new CustomerContactDetails();
-		     contactDetails.setContactCellNumber(customerBean.getContactCellNumber());
-		     contactDetails.setContactTelephoneNumber(customerBean.getContactTelephoneNumber());
-		     contactDetails.setContactEmail(customerBean.getContactEmail());
-		     contactDetails.setFirstName(customerBean.getFirstName());
-		     contactDetails.setLastName(customerBean.getLastName());
-		     contactDetails.setCustomer(customer);
-		     list.add(contactDetails);
-		     
-		     // Optional contact person object
-		     if(customerBean.getFirstName1() != null && customerBean.getFirstName1().length()>0){
-		    	 contactDetails1 = new CustomerContactDetails();
-		    	 contactDetails1.setContactCellNumber(customerBean.getContactCellNumber1());
-		    	 contactDetails1.setContactEmail(customerBean.getContactEmail1());
-		    	 contactDetails1.setFirstName(customerBean.getFirstName1());
-		    	 contactDetails1.setLastName(customerBean.getLastName1());
-		    	 contactDetails1.setContactTelephoneNumber(customerBean.getContactTelephoneNumber1());
-		    	 contactDetails1.setCustomer(customer);
-		    	 list.add(contactDetails1);
-		     }
-		    
-		    retMessage = saveClient(customer);
-		    customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
-		}catch(Exception e){
-			retMessage = "Customer "+ customer.getCustomerName() +" "+ "is not added";
-		}
-	    
-	    
-		return retMessage;
 	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Customer> getClientList() {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Customer.class);
-		return (List<Customer>)criteria.list(); 
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				Customer.class);
+		return (List<Customer>) criteria.list();
 	}
 
 	@Override
 	public CustomerBean contactDetails(String customerName) {
 		CustomerBean returnCustomerContact = new CustomerBean();
-		try{
-			Customer customer= getClientByClientName(customerName);
+		try {
+			Customer customer = getClientByClientName(customerName);
 			returnCustomerContact.setCustomerName(customer.getCustomerName());
 			returnCustomerContact.setCity_town(customer.getCity_town());
 			returnCustomerContact.setEmail(customer.getEmail());
@@ -269,11 +205,11 @@ public class CustomerDao implements CustomerDaoInt{
 			returnCustomerContact.setProvince(customer.getProvince());
 			returnCustomerContact.setStreetName(customer.getStreetName());
 			returnCustomerContact.setStreetNumber(customer.getStreetNumber());
-			returnCustomerContact.setTelephoneNumber(customer.getTelephoneNumber());
+			returnCustomerContact.setTelephoneNumber(customer
+					.getTelephoneNumber());
 			returnCustomerContact.setZipcode(customer.getZipcode());
-		}
-		catch(Exception ex){
-			
+		} catch (Exception ex) {
+
 		}
 		return returnCustomerContact;
 	}

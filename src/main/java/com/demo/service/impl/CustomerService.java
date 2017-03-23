@@ -17,13 +17,6 @@ public class CustomerService implements CustomerServiceInt{
 	@Autowired
 	private CustomerDaoInt clientDAO;
 	private String retMessage = null;
-
-	@Override
-	public String saveClient(Customer customer) {
-		retMessage = clientDAO.saveClient(customer);
-		return retMessage;
-	}
-
 	@Override
 	public Customer getClientByClientName(String clientName) {
 		
@@ -46,11 +39,6 @@ public class CustomerService implements CustomerServiceInt{
 	public Integer count() {
 		
 		return clientDAO.count();
-	}
-
-	@Override
-	public String prepareCustomer(CustomerBean customerBean) {
-		return clientDAO.prepareCustomer(customerBean);
 	}
 
 	@Override

@@ -610,6 +610,11 @@ $(document).ready(function() {
 						phone : {
 							country : 'US',
 							message : 'Please enter 10 digits for cellphone number'
+						},
+						regexp: {
+							
+							regexp: /^0[0-9].*$/,
+							message :'Cellphone number must start with 0 (Zero)'
 						}
 					}
 				},
@@ -621,6 +626,11 @@ $(document).ready(function() {
 						phone : {
 							country : 'US',
 							message : 'Please enter 10 digits for telephone number'
+						},
+						regexp: {
+							
+							regexp: /^0[0-9].*$/,
+							message :'Tellphone number must start with 0 (Zero)'
 						}
 					}
 				},
@@ -633,6 +643,11 @@ $(document).ready(function() {
 						phone : {
 							country : 'US',
 							message : 'Please enter 10 digits for cellphone number'
+						},
+						regexp: {
+							
+							regexp: /^0[0-9].*$/,
+							message :'Cellphone number must start with 0 (Zero)'
 						}
 					}
 				},
@@ -644,6 +659,11 @@ $(document).ready(function() {
 						phone : {
 							country : 'US',
 							message : 'Please enter 10 digits for telephone number'
+						},
+						regexp: {
+							
+							regexp: /^0[0-9].*$/,
+							message :'Tellphone number must start with 0 (Zero)'
 						}
 					}
 				},

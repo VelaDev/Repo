@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.bean.SparePartsBean;
 import com.demo.model.Employee;
 import com.demo.model.HOStock;
+import com.demo.model.SpareMaster;
 import com.demo.service.OrderDetailsInt;
 import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.HOStockServeceInt;
@@ -36,6 +37,7 @@ public class SparePartsController {
 	public String[] getSerials = null;
 	private String retPage = null;
 	private HOStock stock;
+	private SpareMaster master;
 	
 	
 	@RequestMapping(value="addParts", method=RequestMethod.GET)
@@ -118,9 +120,14 @@ public class SparePartsController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			
-		model.addObject("sparePart", spareMasterServiceInt.getSpareMaster(partNumber));
-		model.addObject("models", spareMasterServiceInt.getModelDevice(partNumber));
+			master =spareMasterServiceInt.getSpareMaster(partNumber);
+			if(master !=null){
+				model.addObject("sparePart", master);
+				model.addObject("models", spareMasterServiceInt.getModelDevice(partNumber));
+			}else{
+				model.addObject("retMessage", "Part Number does not exist in MasterData. Please select checkbox for Maintain New Spares to add new Spare/Part");
+			}
+		
 		model.setViewName("addParts");
 		}
 		else{

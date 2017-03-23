@@ -34,14 +34,10 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-									<th>Ticket No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Ticket Status <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Customer Name <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Telephone No <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+									<th>Ticket No</th>
+									<th>Ticket Status</th>
+									<th>Customer Name</th>
+									<th>Telephone No</th>
 									<th>Ticket Details</th>
 								</tr>
 							</thead>

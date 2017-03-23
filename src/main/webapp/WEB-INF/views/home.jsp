@@ -80,18 +80,12 @@
 										<table id="myDatatable" class="display datatable">
 											<thead>
 												<tr>
-													<th>Ticket No <img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-														<th>Subject<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Description<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>														
-													<th>Date<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Status<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-													<th>Technician<img
-														src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
+													<th>Ticket No</th>
+													<th>Subject</th>
+													<th>Description</th>														
+													<th>Date</th>
+													<th>Status</th>
+													<th>Technician</th>
 													<th>Update</th>
 
 												</tr>

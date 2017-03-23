@@ -147,7 +147,28 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
 
-	<script type="text/javascript">
+<!--Compare start, end and installation date between each other-->
+<script type="text/javascript">
+
+$("#startDate, #endDate").datepicker();
+
+$("#endDate").change(function () {
+
+var startDate = document.getElementById("startDate").value;
+var endDate = document.getElementById("endDate").value;
+
+if ((Date.parse(endDate) <= Date.parse(startDate))) {
+    alert("Leave End Date should be greater than Leave Start Date");
+    document.getElementById("endDate").value = "";
+}
+
+});
+
+
+</script>
+
+
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
@@ -157,7 +178,7 @@
 		});
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
 			format : "yyyy-mm-dd",
@@ -167,7 +188,7 @@
 	});
 </script>
 
-	<script>
+<script>
 $(document).ready(function() {
 	$('#makeLeave').bootstrapValidator({
 	   //framework: 'bootstrap',
@@ -216,6 +237,11 @@ $(document).ready(function() {
 					phone : {
 						country : 'US',
 						message : 'Please enter 10 digits for contact number'
+					},
+					regexp: {
+						
+						regexp: /^0[0-9].*$/,
+						message :'Tellphone number must start with 0 (Zero)'
 					}
 				}
 			},

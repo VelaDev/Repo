@@ -50,7 +50,6 @@ public class DeviceDao implements DeviceDaoInt {
 	Device localdevice = null;
 	@Override
 	public String saveDevice(Device device) {
-		
 		try {
 			 localdevice = getDeviceBySerialNumbuer(device.getSerialNumber());
 			if (localdevice == null) {

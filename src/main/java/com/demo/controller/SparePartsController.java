@@ -127,7 +127,6 @@ public class SparePartsController {
 			}else{
 				model.addObject("retMessage", "Part Number does not exist in MasterData. Please select checkbox for Maintain New Spares to add new Spare/Part");
 			}
-		
 		model.setViewName("addParts");
 		}
 		else{

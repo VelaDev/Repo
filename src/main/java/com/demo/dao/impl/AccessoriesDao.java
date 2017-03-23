@@ -41,10 +41,16 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 
 		try{
 
-		        for(Accessories access:accessories){
+			if(accessories.isEmpty()==false){
+				for(Accessories access:accessories){
 			         sessionFactory.getCurrentSession().saveOrUpdate(access);
 			         retMessage ="OK";
 		            }
+			}
+			else{
+				retMessage = "OK";
+			}
+		        
 		}catch (Exception e) {
 				retMessage = e.getMessage();
 			}

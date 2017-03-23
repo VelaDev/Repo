@@ -21,7 +21,6 @@ import com.demo.model.Accessories;
 import com.demo.model.Customer;
 import com.demo.model.Device;
 import com.demo.model.DeviceContactPerson;
-import com.demo.model.SpareMaster;
 
 @Repository("productDAO")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -85,8 +84,6 @@ public class DeviceDao implements DeviceDaoInt {
 				Device.class);
 		return (List<Device>) criteria.list();
 	}
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<Accessories> accessories(Device device) {
 		/*
@@ -99,7 +96,7 @@ public class DeviceDao implements DeviceDaoInt {
 	@Override
 	public String updateDevice(Device device) {
 		try {
-
+System.out.print("We here nou");
 			sessionFactory.getCurrentSession().update(device);
 			retMessage = "Device " + device.getSerialNumber()
 					+ " is successfully updated. Device belongs to customer : "
@@ -236,7 +233,13 @@ public class DeviceDao implements DeviceDaoInt {
 				if (retMessage.equalsIgnoreCase("OK")) {
 
 					device.setContactPerson(contactPerson);
-					retMessage = saveDevice(device);
+					if(deviceBean.getUpdateFlag().equalsIgnoreCase("YES"))
+					{
+						retMessage= updateDevice(device);
+					}else{
+						retMessage = saveDevice(device);
+					}
+					
 					retAccessory = accessoriesDaoInt.saveAccessories(list);
 					if (retAccessory.equalsIgnoreCase("Error")) {
 						retMessage = "Device not inserted into the table "

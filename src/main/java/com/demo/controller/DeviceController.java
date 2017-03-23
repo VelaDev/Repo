@@ -227,7 +227,7 @@ public class DeviceController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		
+		    deviceBean.setUpdateFlag("YES");
 			retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
 			model.addObject("retMessage", retMessage);
 			model.setViewName("updateDevice");

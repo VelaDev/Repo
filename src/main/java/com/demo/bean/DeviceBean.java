@@ -56,4 +56,6 @@ public class DeviceBean {
 	private String telephone;
 	private String tellphoneNumber;
 	
+	private String updateFlag;
+	
 }

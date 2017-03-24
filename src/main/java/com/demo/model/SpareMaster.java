@@ -34,7 +34,7 @@ public class SpareMaster implements Serializable{/**
 	@Column(name="Item_Type")
 	private String itemType;
 	@Column(name="Description")
-	private String description;
+	private String itemDescription;
 	@Column(name="Compitable_Devices")
 	private String compitableDevice;
 	@Column(name="Captured_By")

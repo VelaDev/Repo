@@ -58,7 +58,7 @@ public class HOStockDao implements HOStockDaoInt {
 
 					spareParts.setCompitableDevice(spareMaster
 							.getCompitableDevice());
-					spareParts.setItemDescription(spareMaster.getDescription());
+					spareParts.setItemDescription(spareMaster.getItemDescription());
 					spareParts.setItemType(spareMaster.getItemType());
 					spareParts.setDateTime(dateFormat.format(date));
 					sessionFactory.getCurrentSession().save(spareParts);
@@ -70,7 +70,7 @@ public class HOStockDao implements HOStockDaoInt {
 					spareMaster = new SpareMaster();
 					spareMaster.setCompitableDevice(spareParts
 							.getCompitableDevice());
-					spareMaster.setDescription(spareParts.getItemDescription());
+					spareMaster.setItemDescription(spareParts.getItemDescription());
 					spareMaster.setItemType(spareParts.getItemType());
 					spareMaster.setPartNumber(spareParts.getPartNumber());
 					spareMaster.setDateCaptured(date);
@@ -82,7 +82,7 @@ public class HOStockDao implements HOStockDaoInt {
 					spareParts.setPartNumber(spareMaster.getPartNumber());
 					spareParts.setCompitableDevice(spareMaster
 							.getCompitableDevice());
-					spareParts.setItemDescription(spareMaster.getDescription());
+					spareParts.setItemDescription(spareMaster.getItemDescription());
 					spareParts.setItemType(spareMaster.getItemType());
 					spareParts.setDateTime(dateFormat.format(date));
 					sessionFactory.getCurrentSession().save(spareParts);

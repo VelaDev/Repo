@@ -333,7 +333,7 @@ public class OrdersController {
 		return retPage;
 	}
 			
-			@RequestMapping(value = "orderitemHistory", method = RequestMethod.GET)
+	@RequestMapping(value = "orderitemHistory", method = RequestMethod.GET)
 	public ModelAndView orderHistory(
 			@RequestParam("recordID") Integer recordID) {
 		model = new ModelAndView();
@@ -351,4 +351,21 @@ public class OrdersController {
 
 		return model;
 	}
+	
+	@RequestMapping(value = "declineOrder", method = RequestMethod.GET)
+	public ModelAndView displayDeclineOrders() {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",
+					ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.setViewName("declineOrder");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
 }

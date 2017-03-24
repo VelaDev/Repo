@@ -14,7 +14,13 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-
+<style type="">
+	
+	.declineButton{
+		margin-left:51%;
+		margin-right:-59%;
+	}
+</style>
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -82,14 +88,24 @@
 									</c:forEach>
 								</tbody>
 							</table>
-							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
-									<br> <br>
-									<input type="submit" value="Approve order"
-												class="btn btn-primary btn-block btn-lg" tabindex="9"
-												id="order" name="order">
-								</div>
+							
+							<div class="col-sm-12">
+							
+									<div class="col-sm-5">
+										<br> <br>
+										<input type="submit" value="Approve order"
+													class="btn btn-primary btn-block btn-lg" tabindex="9"
+													id="order" name="order">
+									</div><!-- Approve -->
+									
+									<div class="declineButton">
+										<div class="col-sm-5">
+										<br> <br>									
+											<a href="declineOrder.html" class="btn btn-danger btn-block btn-lg" tabindex="9"	id="declineOrder" name="declorder" >Decline Order</a>
+										</div><!-- Decline -->
+									</div>
 							</div>
+								
 						</form:form>
 					</div>
 					<!-- /tab-content -->

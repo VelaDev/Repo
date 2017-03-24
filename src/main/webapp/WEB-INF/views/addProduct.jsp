@@ -693,7 +693,7 @@ $(document).ready(function() {
 							},
 							regexp: {
 			                    regexp: /^[a-z-A-Z0-9]+$/,
-			                    message: 'The Street number can only consist of numbers '
+			                    message: 'Serial Number can only consist of numbers '
 			                }
 						}
 				},

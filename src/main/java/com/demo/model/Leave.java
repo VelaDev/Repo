@@ -39,16 +39,14 @@ public class Leave implements Serializable{
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="Leave_ID")
 	private int leaveID;
+	@Column(name="Leave_Type")
+	private String leaveType;
 	@Column(name="First_Leave_Date")
 	private String startDate;
 	@Column(name="Last_Leave_Date")
 	private String endDate;
-	@Column(name="Approver")
-	private String approver;
 	@Column(name="Contact_Number")
 	private String contactNumber;
-	@Column(name="Status")
-	private String status;
 	@Column(name="Address")
 	private String address;
 	

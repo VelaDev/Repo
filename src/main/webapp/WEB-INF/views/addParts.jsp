@@ -156,7 +156,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													 id="description" readOnly name="description" type="text"
+													 id="description" readOnly name="itemDescription" type="text"
 														class="form-control" value="${sparePart.itemDescription}">
 											</div>
 										</div>

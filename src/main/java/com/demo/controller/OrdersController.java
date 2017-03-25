@@ -381,5 +381,36 @@ public class OrdersController {
 
 		return model;
 	}
+	@RequestMapping(value = "viewAllOrders",method = RequestMethod.GET)
+	public ModelAndView viewOrders() {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("orders", ordersServiceInt.getAllOrders());
+			model.setViewName("viewAllOrders");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "placeOrderForTechnician", method = RequestMethod.GET)
+	public ModelAndView loadMakeOrder() {
+
+		model = new ModelAndView("placeOrderForTechnician");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.addObject("makeOrder", new OrdersBean());
+			/*model.addObject("compatibility", spareParts.getAllSpareParts());
+			model.addObject("managersList", employeeServiceInt.getAllManagers());
+			model.addObject("customerList", customerServiceInt.getClientList());*/
+			model.setViewName("placeOrderForTechnician");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
 	
 }

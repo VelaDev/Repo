@@ -66,9 +66,7 @@ public class CustomerController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			//retMessage =customerServiceInt.prepareCustomer(customerBean);
-			retMessage =customerServiceInt.saveCustomer(customerBean);
-			model.addObject("retMessage",retMessage);
+			model.addObject("retMessage",customerServiceInt.saveCustomer(customerBean));
 			model.setViewName("addClient");
 		}else{
 			model.setViewName("login");

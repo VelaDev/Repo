@@ -517,6 +517,18 @@ ul.addressDeviceList {
 							<!--Machine Accessories-->
 							
 							<br />
+							
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<br><br>
+								<input type="submit" id="addProduct" name="addProduct"
+											value="Add Device"
+									class="btn btn-primary btn-block btn-lg" tabindex="9"
+									id="updateProduct">
+							</div>
+						</div>
+							
+							<!-- 
 							<div class="centerbutton">
 								<div class="form-group row">
 									<div class="col-sm-4">
@@ -526,7 +538,7 @@ ul.addressDeviceList {
 									</div>
 								</div>
 							</div>
-
+ -->
 						</form:form>
 					</div>
 					<!-- /tab-content -->

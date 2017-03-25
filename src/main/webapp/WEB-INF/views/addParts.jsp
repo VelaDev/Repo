@@ -23,8 +23,10 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
-.tableContect{
- position:fixed;
+
+.model{ 
+margin-left:3%
+
 }
 
 .form-group-model {
@@ -221,10 +223,11 @@
 									<input type="button" value="Add Row"
 										onclick="addRow('dataTable')" /> <input type="button"
 										value="Delete Row" onclick="deleteRow('dataTable')" /><br />
-									<br /> <label class="col-md-3 control-label">Action</label> <label
-										class="col-md-3 control-label">Model</label>
+									<br /> 
 									<table id="dataTable" width="300px" style="width: 300px"
 										class="table table-striped table-bordered table-hover table-condensed">
+										<label class="">Action</label>
+										 <label	class="model">Model</label>
 										<c:forEach var="compitableDevice" items="${models}">
 											<tr>
 												<td><input type="checkbox" name="compitableDevice"

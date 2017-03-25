@@ -108,7 +108,7 @@ public class DeviceController {
 				break;
 			}
 	        model.addObject("accessories", accessories);
-	        model.addObject("device", device);
+	        model.addObject("device",deviceServiceInt.getDeviceBySerialNumber(serialNumber) );
 	        model.setViewName("detailedProduct");
 	   }else{
 		   model.setViewName("login");

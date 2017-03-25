@@ -468,15 +468,33 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public String declineOrder(Integer recordID,String reasonForeclined) {
+	public String declineOrder(String orderNum,String reasonForeclined) {
+		
 		try{
-			cusOrder = getOrder(recordID);
+			cusOrder = declineOrder(orderNum);
 			cusOrder.setComments(reasonForeclined);
+			System.out.println("Mic check ");
 			cusOrder.setStatus("Declined");
 			sessionFactory.getCurrentSession().update(cusOrder);
+			retMessage = "Order " + cusOrder.getOrderNum()+ " is declined";
 		}catch(Exception e){
 			retMessage = e.getMessage();
 		}
-		return null;
+		return retMessage;
+	}
+	private OrderHeader declineOrder(String orderNum){
+		OrderHeader order = null;
+		try{
+			order = new OrderHeader();
+			pendingOrders = getAllOrders();
+			for(OrderHeader tempOrder:pendingOrders){
+				if(tempOrder.getOrderNum().equalsIgnoreCase(orderNum)){
+					order = tempOrder;
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+		return order;
 	}
 }

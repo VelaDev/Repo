@@ -372,7 +372,8 @@ public class OrdersController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("retMessage", ordersServiceInt.declineOrder(order.getRecordID(), order.getComments()));
+			retMessage=ordersServiceInt.declineOrder(order.getOrderNum(), order.getComments());
+			model.addObject("retMessage", retMessage);
 			model.setViewName("declineOrder");
 		} else {
 			model.setViewName("login");

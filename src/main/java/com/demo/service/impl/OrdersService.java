@@ -99,8 +99,8 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public String declineOrder(Integer recordID,String reasonForeclined) {
-		return ordersDAO.declineOrder(recordID,reasonForeclined);
+	public String declineOrder(String orderNum,String reasonForeclined) {
+		return ordersDAO.declineOrder(orderNum,reasonForeclined);
 	}
 
 

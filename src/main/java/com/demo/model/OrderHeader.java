@@ -48,7 +48,7 @@ public class OrderHeader implements Serializable{
 	private boolean approved;
 	@Column(name="Date_Approved")
 	private String dateApproved;
-	@Column(name="Comments")
+	@Column(name="Declined_Reason")
 	private String comments;
 	@Column(name="Approver")
 	private String approver;

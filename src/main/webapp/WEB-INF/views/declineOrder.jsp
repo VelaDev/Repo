@@ -27,8 +27,8 @@
 		<div class="container">
 
 			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
+				<div class="alert alert-danger" role="alert">
+					<c:out value="${retMessage}">
 					</c:out>
 				</div>
 			</c:if>
@@ -45,7 +45,7 @@
 					<div class="tab-content">
 
 						<form:form class="well form-horizontal" method="post"
-							action="declineOrder" id="decline" modelAttribute="declineOrder">
+							action="declinedOrder" id="decline" modelAttribute="declinedOrder">
 
 
 							<!-- Text input Order Number-->
@@ -71,7 +71,7 @@
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-pencil"></i></span>
 										<textarea cols="10" rows="10" class="form-control"
-											id="declineReason" name="declineReason" required="required"></textarea>
+											id="comments" name="comments" required="required"></textarea>
 									</div>
 								</div>
 							</div>

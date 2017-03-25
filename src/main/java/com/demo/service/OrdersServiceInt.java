@@ -20,6 +20,6 @@ public interface OrdersServiceInt {
 	public void approveShipment(Integer recordID);
 	public List<OrderHeader> shippedOrders();
 	public List<OrderHeader> shippedOrders(String technicianEmail);
-	public String declineOrder(Integer recordID,String reasonForeclined);
+	public String declineOrder(String orderNum,String reasonForeclined);
 
 }

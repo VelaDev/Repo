@@ -112,16 +112,17 @@
 							<li><a href='<c:url value="pendingOrders.html"/>'>Pending Orders</a></li>
 							<li><a href='<c:url value="approvedOrders.html"/>'>Approved Orders</a></li>
 							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped Orders</a></li>
+							<li><a href='<c:url value="placeOrderForTechnicin.html"/>'>Place Order</a></li>
 						</ul></li>
 
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+				<%-- 	<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Tickets<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="monitoringTickets.html"/>'>Open
 									Tickets</a></li>
 							<li><a href='<c:url value="logTicket.html"/>'>Log Ticket</a></li>
-						</ul></li>
+						</ul></li> --%>
 
 				</ul>
 

@@ -6,16 +6,27 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
+.tableContect{
+ position:fixed;
+}
+
 .form-group-model {
 	margin-left: 10%;
 }
@@ -81,8 +92,7 @@
 										</div>
 									</div>
 									<!-- Iterating over the list sent from Controller -->
-									<datalist id="spareParts"> 
-									<c:forEach var="list"
+									<datalist id="spareParts"> <c:forEach var="list"
 										items="${spareParts}">
 										<option value="${list}">
 									</c:forEach> </datalist>
@@ -95,29 +105,31 @@
 							<hr>
 						</form:form>
 						<!--Search-->
-						
-						<form:form class="well form-horizontal" action="saveSpareParts" modelAttribute="saveSpareParts"
-							method="post" id="saveSpareParts">
+
+						<form:form class="well form-horizontal" action="saveSpareParts"
+							modelAttribute="saveSpareParts" method="post" id="saveSpareParts">
 
 							<!-- group spare details -->
 							<div class="groupsparedetails">
 								<legend>Spares</legend>
-								
-								
+
+
 								<!--First Column-->
 								<div class="col-md-12">
 
 									<!-- Check box input Maintain New Spares-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Maintain New Spares</label>
+										<label class="col-md-3 control-label">Maintain New
+											Spares</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
-												 <input type="checkbox" id="checkSpares" name="checkSparess" value="true">
+												<input type="checkbox" id="checkSpares" name="checkSparess"
+													value="true">
 											</div>
 										</div>
 									</div>
-									
-									
+
+
 									<!-- Text input Part Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Part Number</label>
@@ -125,13 +137,15 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													id="partNum" readOnly name="partNumber" onkeydown="upperCaseF(this)" placeholder="Enter Part Number" class="form-control"
-													type="text" value="${sparePart.partNumber}" >
+													id="partNum" readOnly name="partNumber"
+													onkeydown="upperCaseF(this)"
+													placeholder="Enter Part Number" class="form-control"
+													type="text" value="${sparePart.partNumber}">
 											</div>
 										</div>
 									</div>
 
-									
+
 									<!-- Select type Item Type-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Item Type</label>
@@ -156,13 +170,14 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													 id="description" readOnly name="itemDescription" type="text"
-														class="form-control" value="${sparePart.itemDescription}">
+													id="description" readOnly name="itemDescription"
+													type="text" class="form-control"
+													value="${sparePart.itemDescription}">
 											</div>
 										</div>
 									</div>
-									
-									
+
+
 									<!-- Text input Quantity-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Quantity</label>
@@ -170,13 +185,14 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													 type="number" placeholder="Enter Quantity" id="quantity" name="quantity"
-														class="form-control" onkeyup="userTyped('checkSpares', this)">
+													type="number" placeholder="Enter Quantity" id="quantity"
+													name="quantity" class="form-control"
+													onkeyup="userTyped('checkSpares', this)">
 											</div>
 										</div>
 									</div>
-									
-									
+
+
 									<!-- Text input Received By-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Received By</label>
@@ -184,51 +200,63 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input type="text"
-													id="receivedBy" name="receivedBy"class="form-control"
+													id="receivedBy" name="receivedBy" class="form-control"
 													value="${loggedInUser.firstName} ${loggedInUser.lastName}"
-														readonly="readonly">
+													readonly="readonly">
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
-								
-							
+
+
 							</div>
-							<!-- //group spare details -->	
-							
-						<!-- group search details -->
-						<div class="groupsearchdetails">
+							<!-- //group spare details -->
+
+							<!-- group search details -->
+							<div class="groupsearchdetails">
 								<legend>Compatible Devices </legend>
-								<input type="button" value="Add Row" onclick="addRow('dataTable')" />
-								<input type="button" value="Delete Row" onclick="deleteRow('dataTable')" /><br/><br/>
-								<label class="col-md-3 control-label">Action</label>
-								<label class="col-md-3 control-label">Model Number</label>
-								
-								<table id="dataTable" width="300px" style="width:300px" 
-									class="table table-striped table-bordered table-hover table-condensed">	
-									<c:forEach var="compitableDevice" items="${models}">
+
+								<div class="tableContect">
+									<input type="button" value="Add Row"
+										onclick="addRow('dataTable')" /> <input type="button"
+										value="Delete Row" onclick="deleteRow('dataTable')" /><br />
+									<br /> <label class="col-md-3 control-label">Action</label> <label
+										class="col-md-3 control-label">Model</label>
+									<table id="dataTable" width="300px" style="width: 300px"
+										class="table table-striped table-bordered table-hover table-condensed">
+										<c:forEach var="compitableDevice" items="${models}">
+											<tr>
+												<td><input type="checkbox" name="compitableDevice"
+													value="" /></td>
+												<td><input type="text" readOnly class="form-control"
+													id="compitableDevice" name="compitableDevice"
+													value="${compitableDevice}"></td>
+											</tr>
+										</c:forEach>
 										<tr>
-											<td><input type="checkbox" name="compitableDevice" value=""/></td>
-											<td><input type="text" readOnly class="form-control" id="compitableDevice" name="compitableDevice" value="${compitableDevice}"></td>			
-										</tr>				
-									</c:forEach>
-										<tr>
-											<td><input type="checkbox" name="compitableDevice" value=""/></td>
-											<td><input type="text" readOnly class="form-control" id="compitableDevice" name="compitableDevice" value=""></td>			
+											<td><input type="checkbox" name="compitableDevice"
+												value="" /></td>
+											<td><input type="text" readOnly class="form-control"
+												id="compitableDevice" name="compitableDevice" value=""></td>
 										</tr>
-								</table>
-																
-						</div><!-- //group search details -->
-						
-						<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-8">
-								<br> <br> <input type="submit" value="Add Spare" class="btn btn-primary btn-block btn-lg" tabindex="9" id="addSpare">
+									</table>
+								</div>
+
+
 							</div>
-						</div>
+							<!-- //group search details -->
+
+							<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br> <br> <input type="submit" value="Add Spare"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="addSpare">
+								</div>
+							</div>
 
 						</form:form>
-						
+
 					</div>
 
 				</div>
@@ -256,8 +284,8 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<!-- /Scripts -->
 
-<!--if part number does not exist come here-->
-<script type="text/javascript">
+	<!--if part number does not exist come here-->
+	<script type="text/javascript">
 
 // Validate "checkSpares" textbox
 var checkSpares = document.getElementById("checkSpares");
@@ -293,8 +321,8 @@ compitableDevice.addEventListener("focus", function (evt) {
 
 </script>
 
-<!-- Disable checkbox if quantity is not zero -->
-<script type="text/javascript">
+	<!-- Disable checkbox if quantity is not zero -->
+	<script type="text/javascript">
 
 function userTyped(commen, e){
     if(e.value.length > 0){
@@ -307,8 +335,8 @@ function userTyped(commen, e){
 </script>
 
 
-<!--Mono and Colour Selection-->
-<script type="text/javascript">
+	<!--Mono and Colour Selection-->
+	<script type="text/javascript">
 	
 	function CheckColors(val){
 	 var element=document.getElementById('partNum');
@@ -320,7 +348,7 @@ function userTyped(commen, e){
 	}
 </script>
 
-<script language="javascript">
+	<script language="javascript">
 		function addRow(tableID) {
 
 			var table = document.getElementById(tableID);
@@ -378,8 +406,8 @@ function userTyped(commen, e){
 	</script>
 
 
-<!-- Create datalist to populate search -->
-<script type="text/javascript">
+	<!-- Create datalist to populate search -->
+	<script type="text/javascript">
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');
@@ -423,7 +451,7 @@ request.send();
 
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;

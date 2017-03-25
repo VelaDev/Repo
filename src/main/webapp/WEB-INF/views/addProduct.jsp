@@ -1135,7 +1135,7 @@ $("#installationDate").change(function () {
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
-				startDate: 'd0',
+				//startDate: 'd0',
 		        autoclose: true
 			});
 		});
@@ -1145,7 +1145,7 @@ $("#installationDate").change(function () {
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
 			format : "yyyy-mm-dd",
-			startDate: 'd0',
+		//	startDate: 'd0',
 	        autoclose: true
 		});
 	});
@@ -1155,7 +1155,7 @@ $("#installationDate").change(function () {
 		$(document).ready(function() {
 			$('#installDatePicker').datepicker({
 				format : "yyyy-mm-dd",
-				startDate: 'd0',
+				//startDate: 'd0',
 		        autoclose: true
 			});
 		});

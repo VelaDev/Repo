@@ -32,7 +32,6 @@
 					</c:out>
 				</div>
 			</c:if>
-
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">

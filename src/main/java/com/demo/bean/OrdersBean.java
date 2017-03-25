@@ -34,6 +34,7 @@ public class OrdersBean {
 	private String stockType;
 	private String technician;
 	private String approver;
+	private Integer recordID;
 	
 	
 }

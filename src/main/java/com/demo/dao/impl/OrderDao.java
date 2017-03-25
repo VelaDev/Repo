@@ -472,6 +472,7 @@ public class OrderDao implements OrdersDaoInt {
 		try{
 			cusOrder = getOrder(recordID);
 			cusOrder.setComments(reasonForeclined);
+			cusOrder.setStatus("Declined");
 			sessionFactory.getCurrentSession().update(cusOrder);
 		}catch(Exception e){
 			retMessage = e.getMessage();

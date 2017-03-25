@@ -357,8 +357,22 @@ public class OrdersController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			System.out.print(recordID);
+			model.addObject("declinedOrder", new OrdersBean());
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.setViewName("declineOrder");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
+	@RequestMapping(value = "declinedOrder",method = RequestMethod.POST)
+	public ModelAndView declineOrders(@ModelAttribute("declinedOrder") OrdersBean order) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("retMessage", ordersServiceInt.declineOrder(order.getRecordID(), order.getComments()));
 			model.setViewName("declineOrder");
 		} else {
 			model.setViewName("login");

@@ -84,6 +84,7 @@
 											<td><input type="text" id="quantity" name="quantity" value="${list.quantity}"></td>
 											<td>${list.dateTime}</td>
 											<td>${list.orderHeader.status}</td>
+											
 										</tr>
 									</c:forEach>
 								</tbody>
@@ -101,7 +102,7 @@
 									<div class="declineButton">
 										<div class="col-sm-5">
 										<br> <br>									
-											<a href="declineOrder.html" class="btn btn-danger btn-block btn-lg" tabindex="9"	id="declineOrder" name="declorder" >Decline Order</a>
+											<a href="declineOrder?recordID= <c:out value='${list.orderHeader.recordID}'/>" class="btn btn-danger btn-block btn-lg" tabindex="9"	id="declineOrder" name="declorder" >Decline Order</a>
 										</div><!-- Decline -->
 									</div>
 							</div>

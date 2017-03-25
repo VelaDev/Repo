@@ -95,8 +95,12 @@ public class OrdersService implements OrdersServiceInt{
 
 	@Override
 	public List<OrderHeader> shippedOrders(String technicianEmail) {
-		// TODO Auto-generated method stub
 		return ordersDAO.shippedOrders(technicianEmail);
+	}
+
+	@Override
+	public String declineOrder(Integer recordID,String reasonForeclined) {
+		return ordersDAO.declineOrder(recordID,reasonForeclined);
 	}
 
 

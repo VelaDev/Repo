@@ -466,4 +466,16 @@ public class OrderDao implements OrdersDaoInt {
 		}
 		return pendingOrder;
 	}
+
+	@Override
+	public String declineOrder(Integer recordID,String reasonForeclined) {
+		try{
+			cusOrder = getOrder(recordID);
+			cusOrder.setComments(reasonForeclined);
+			sessionFactory.getCurrentSession().update(cusOrder);
+		}catch(Exception e){
+			retMessage = e.getMessage();
+		}
+		return null;
+	}
 }

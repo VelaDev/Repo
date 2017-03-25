@@ -352,14 +352,13 @@ public class OrdersController {
 		return model;
 	}
 	
-	@RequestMapping(value = "declineOrder", method = RequestMethod.GET)
-	public ModelAndView displayDeclineOrders() {
+	@RequestMapping(value = "declineOrder",method = RequestMethod.GET)
+	public ModelAndView displayDeclineOrders(@RequestParam("recordID") Integer recordID) {
 		model = new ModelAndView();
-
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("pendingOrderList",
-					ordersServiceInt.pendingOrders(userName.getEmail()));
+			System.out.print(recordID);
+			//model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.setViewName("declineOrder");
 		} else {
 			model.setViewName("login");

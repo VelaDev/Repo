@@ -96,7 +96,6 @@ public class DeviceDao implements DeviceDaoInt {
 	@Override
 	public String updateDevice(Device device) {
 		try {
-System.out.print("We here nou");
 			sessionFactory.getCurrentSession().update(device);
 			retMessage = "Device " + device.getSerialNumber()
 					+ " is successfully updated. Device belongs to customer : "
@@ -233,10 +232,10 @@ System.out.print("We here nou");
 				if (retMessage.equalsIgnoreCase("OK")) {
 
 					device.setContactPerson(contactPerson);
-					if(deviceBean.getUpdateFlag().equalsIgnoreCase("YES"))
+					if(deviceBean.getUpdateFlag()== "YES")
 					{
 						retMessage= updateDevice(device);
-					}else{
+					}else if(deviceBean.getUpdateFlag()==null){
 						retMessage = saveDevice(device);
 					}
 					

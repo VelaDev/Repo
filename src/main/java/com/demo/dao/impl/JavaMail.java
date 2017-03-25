@@ -10,17 +10,14 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.demo.dao.EmployeeDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
 import com.demo.model.Tickets;
 
 public class JavaMail {
 
-	private static String emailFrom = "velatp2016@gmail.com";
-	private static String password = "Vel@ph@nd@";
+	private static String emailFrom = "helpdesk@velaphanda.co.za";
+	private static String password = "@Vela1357";
 	
 
 	public static void sendFromGMail(Tickets ticket) {
@@ -35,12 +32,12 @@ public class JavaMail {
 				+ ticket.getDescription() + "\n\nKind Regards\nVelaphanda Team";
 		String subject = "Ticket No " + ticket.getTicketNumber();
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);
@@ -86,12 +83,12 @@ public class JavaMail {
 				+ "\n\nRemember to change your password on your first login\n\nKind Regards\nVelaphanda Support Team";
 		String subject = "Password Resert";
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);
@@ -137,12 +134,12 @@ public class JavaMail {
 				+ "\n\nKind Regards\nVelaphanda Team";
 		String subject = "Ticket No " + ticket.getTicketNumber() + " Reminder";
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);
@@ -185,12 +182,12 @@ public class JavaMail {
 				+ "\n\nKind Regards\nVelaphanda Team";
 		String subject = "Password Reset Required";
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);
@@ -233,12 +230,12 @@ public class JavaMail {
 		String subject = "Ticket No " + ticket.getTicketNumber()
 				+ " SLA Bridged";
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);
@@ -281,12 +278,12 @@ public class JavaMail {
 				+ ",\n\nOrder : "+ order.getOrderNum()+ "is approved by "+  managerFirstName + ".\n\nKind Regards\nVelaphanda Team";
 		String subject = "Order Approval " + order.getOrderNum();
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);
@@ -329,12 +326,12 @@ public class JavaMail {
 				+ order.getOrderNum() + ".\n\nKind Regards\nVelaphanda Team";
 		String subject = "New Order " + order.getOrderNum();
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);
@@ -377,12 +374,12 @@ public class JavaMail {
 				+ order.getOrderNum() + ".\n\nKind Regards\nVelaphanda Team";
 		String subject = "Order " + order.getOrderNum()+ " Shipment";
 		Properties props = System.getProperties();
-		String host = "smtp.gmail.com";
+		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", host);
 		props.put("mail.smtp.user", from);
 		props.put("mail.smtp.password", pass);
-		props.put("mail.smtp.port", "587");
+		props.put("mail.smtp.port", "25");
 		props.put("mail.smtp.auth", "true");
 
 		Session session = Session.getDefaultInstance(props);

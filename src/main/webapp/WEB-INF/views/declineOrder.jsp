@@ -56,7 +56,7 @@
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-barcode"></i></span> <input id="orderNum"
-											name="orderNum" class="form-control" type="text" value='${declineOrder.orderNum }'
+											name="orderNum" class="form-control" type="text" value='${OrderNum.orderNum }'
 											readonly="readonly">
 									</div>
 								</div>

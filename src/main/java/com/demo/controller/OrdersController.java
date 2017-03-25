@@ -358,7 +358,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			System.out.print(recordID);
-			//model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.setViewName("declineOrder");
 		} else {
 			model.setViewName("login");

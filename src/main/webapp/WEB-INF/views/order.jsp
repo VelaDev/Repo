@@ -41,7 +41,7 @@
 					<div class="tab-content">
 					
 						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="putInOrder">
+							method="post" action="makeOrder" id="putInOrder" onsubmit="return checkChecked('putInOrder');">
 
 
 							<!-- Select type Stock Type-->
@@ -257,30 +257,25 @@
 </script>
 	
 
-<script>
-/*  $('#putorder').click(function () {
-    if (!$('#checkedOrder').is(':checked')) {
-        alert('You need to tick checkbox to place an order\n Please tick the box and try again');
-        return false;
-    }
-});  */
-
-</script>
 
 
 <script type="text/javascript">
- $('#putorder').on('click', function() {
-	  var checked = $('#myDatatable').find(':checked').length;
-
-	  if (!checked){
-		  alert('You need to tick checkbox to place an order\n Please tick the box and try again!');
-		  return false;
-	  }else{
-		    alert('You have selected to place ' + checked + ' order(s)' );
-				  
-	  }
-	});
-
+ 
+function checkChecked(searchForm) {
+	    var anyBoxesChecked = false;
+	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
+	        if ($(this).is(":checked")) {
+				alert('Your order will be processed by selected Manager');
+	            anyBoxesChecked = true;
+	        }
+	    });
+	 
+	    if (anyBoxesChecked == false) {
+	      alert('You need to tick atleast one checkbox to place an order\n Please tick the checkbox and try again!');
+	      return false;
+	    } 
+	}
+ 
 </script>
 
 <!--Stock type Selection-->

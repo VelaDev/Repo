@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Add Spares | Velaphanda Trading & Projects</title>
+<title>Receive Spares | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -119,17 +119,7 @@ margin-left:3%
 								<!--First Column-->
 								<div class="col-md-12">
 
-									<!-- Check box input Maintain New Spares-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Maintain New
-											Spares</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<input type="checkbox" id="checkSpares" name="checkSparess"
-													value="true">
-											</div>
-										</div>
-									</div>
+									
 
 
 									<!-- Text input Part Number-->
@@ -237,16 +227,9 @@ margin-left:3%
 													value="${compitableDevice}"></td>
 											</tr>
 										</c:forEach>
-										<tr>
-											<td><input type="checkbox" name="compitableDevice"
-												value="" /></td>
-											<td><input type="text" readOnly class="form-control"
-												id="compitableDevice" name="compitableDevice" value=""></td>
-										</tr>
+										
 									</table>
 								</div>
-
-
 							</div>
 							<!-- //group search details -->
 

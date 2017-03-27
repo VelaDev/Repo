@@ -95,7 +95,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-barcode"></i></span> <input
-										id="description"  name="itemDescription" type="text"
+										id="itemDescription"  name="itemDescription" type="text"
 										class="form-control" value="">
 								</div>
 							</div>
@@ -106,10 +106,9 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input type="text"
-										id="receivedBy" name="receivedBy" class="form-control"
-										value=""
-										>
+										class="glyphicon glyphicon-user"></i></span> 
+										<input type="text" id="receivedBy"  name="receivedBy" class="form-control"
+										value="${loggedInUser.firstName} ${loggedInUser.lastName}" 	readonly="readonly"	/>
 								</div>
 							</div>
 						</div>
@@ -117,7 +116,7 @@
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-3 col-sm-6">
-								<input type="submit" value="Add Spares Parts"
+								<input type="submit" value="Add Spare Parts"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
 									id="addSpareP">
 							</div>
@@ -184,7 +183,7 @@
 															}
 														}
 													},
-													description : {
+													itemDescription : {
 														validators : {
 															notEmpty : {
 																message : 'Description is required and cannot be empty'
@@ -205,7 +204,7 @@
 															}
 														}
 													}
-:												}
+												}
 											});
 						});
 	</script>

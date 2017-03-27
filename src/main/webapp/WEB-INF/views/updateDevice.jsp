@@ -238,6 +238,22 @@ ul.addressDeviceList {
 													value="${productObject.modelNumber}">
 											</div>
 										</div>
+									</div>									
+																		
+									<!-- Select type Brand-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Brand</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select
+													id="brand" name="brand" class="form-control">
+													<option>Select Brand</option>
+													<option value="samsung">Samsung</option>
+													<option value="kaynon">Kaynon</option>
+												</select>
+											</div>
+										</div>
 									</div>
 
 									<!-- Text input Contract Start Date-->
@@ -319,7 +335,21 @@ ul.addressDeviceList {
 													placeholder="Enter Colour Reading" value="${productObject.colourReading}">
 											</div>
 											<br>
-										</div>										
+										</div>	
+										
+										<!-- Text checkbox Colour Copy Cost-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour Copy Cost</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control"
+													onkeypress="return isNumber(event)"
+													placeholder="Enter Mono Copy Cost" id="colour"
+													name="colourCopyCost" value="">
+													<%-- ${productObject.colourCopyCost} --%>
+											</div>
+											<br>
+										</div>
+																			
 									</div><!-- Both mono and colour reading  -->
 									
 									<!-- Only mono Reading -->
@@ -333,6 +363,20 @@ ul.addressDeviceList {
 												placeholder="Enter Mono Reading" value="${productObject.monoReading}">
 											</div>
 										</div>
+										
+										<!-- Text checkbox Mono Copy Cost-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Copy Cost</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control"
+													onkeypress="return isNumber(event)"
+													placeholder="Enter Mono Copy Cost" id="colour"
+													name="monoCopyCost" value="">
+													<%-- ${productObject.monoCopyCost} --%>
+											</div>
+											<br>
+										</div>
+										
 									</div><!-- //Only mono Reading -->
 									
 									
@@ -500,45 +544,37 @@ ul.addressDeviceList {
 										</tbody>
 									</table>
 
-									<br>
-
-
-									
 									<!-- Other Machine Accessories -->
+									<h5>Other Machine Accessories</h5>
 
-										<div class="form-group">
-									        <label class="col-xs-1 control-label">Others</label>
-									        <div class="col-xs-4">
-									            <input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" />
-									        </div>
-									        <div class="col-xs-4">
-									            <input type="text" class="form-control" id="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" name="serialNumberOtherAccessory" placeholder="Serial Number" />
-									        </div>
-									        <div class="col-xs-1">
-									            <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
-									        </div>
-									    </div>
-	
-									    <!-- The template for adding new field -->
-									    <div class="form-group hide" id="addDeviceTemplate">
-									        <div class="col-xs-4 col-xs-offset-1">
-									            <input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" />
-									        </div>
-									        <div class="col-xs-4">
-									              <input type="text" class="form-control" id="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" name="serialNumberOtherAccessory" placeholder="Serial Number" />
-									        </div>
-									        <div class="col-xs-1">
-									            <button type="button" class="btn btn-default removeButton"><i class="fa fa-minus"></i></button>
-									        </div>
-									    </div>
+									<table id="dataTable"
+										class="table table-striped table-bordered table-hover table-condensed">
+										<tr>
+											<th>Machine Type</th>
+											<th>Serial Number</th>
+											<th>Action</th>
+										</tr>
+
+										<tr>
+											<td><input type="text" class="form-control"
+												id="machineType" name="machineType"
+												placeholder="Machine Accessory Type"></td>
+											<td><input type="text" class="form-control"
+												id="serialNumberOtherAccessory"
+												name="serialNumberOtherAccessory"
+												onkeydown="upperCaseF(this)" placeholder="Serial Number"></td>
+											<td><button type="button" class="btn btn-success"
+													onclick="add_row();">Add Row</button></td>
+										</tr>
+
+									</table>
+
 									<!-- Other Machine Accessories -->
 
 								</div>
 							</fieldset>
 							<!--Machine Accessories-->
-							
-							<br />
-
+						
 							<br>
 							<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">
@@ -743,6 +779,13 @@ $(document).ready(function() {
 					}
 				}
 			},
+			brand : {
+				validators : {
+					notEmpty : {
+						message : 'Brand is required and cannot be empty'
+					}
+				}
+			},
 			startDate: {
                 validators: {
                     notEmpty: {
@@ -880,35 +923,21 @@ $(document).ready(function() {
 			
 			
 			//Machine Accesories
-			machineType  : {
+			machineType: {
 				validators : {
 					stringLength : {
-							min : 2,
+						min : 2,
 
-						},
-						/* /* notEmpty : {
-							message : 'Machine type is required and cannot be empty'
-						} *//*,
-						regexp: {
-		                    regexp: /^[a-z-A-Z]+$/,
-		                    message: 'Machine type is required and cannot be empty'
-		                } */
 					}
+				}
 			},
-			serialNumberOtherAcco: {
+			serialNumberOtherAccessory: {
 				validators : {
 					stringLength : {
-							min : 2,
+						min : 2,
 
-						},
-						/* notEmpty : {
-							message : 'Serial Number is required and cannot be empty'
-						},
-						regexp: {
-		                    regexp: /^[a-z-A-Z0-9]+$/,
-		                    message: 'Serial Number is required and cannot be empty '
-		                } */
 					}
+				}
 			},
 			bridgeunit : {
 				validators : {
@@ -998,80 +1027,28 @@ $(document).ready(function() {
 });
 </script>
 
-
 <!---Script to add other Accossory-->
-<script>
-$(document).ready(function() {
-    var machinetypeValidators = {
-            row: '.col-xs-4',   // The machinetype is placed inside a <div class="col-xs-4"> element
-            validators: {
-                notEmpty: {
-                    message: 'The machine type is required'
-                }
-            }
-        },
-        serialNumberOtherAccessoryValidators = {
-            row: '.col-xs-4',
-            validators: {
-                notEmpty: {
-                    message: 'The serial number is required'
-                }
-            }
-        },
-        machinIndex = 0;
+<!--Create a table to add other accessories-->
+<script type="text/javascript">
+//Delete a row on table
+function delete_row(no)
+{
+	document.getElementById("row"+no+"").outerHTML="";
+}
+//Add a row on table
+function add_row()
+{
+	var machineType = document.getElementById("machineType").value;
+	var serialNumberOtherAccessory = document.getElementById("serialNumberOtherAccessory").value;
+	var table=document.getElementById("dataTable");
+	var table_len=(table.rows.length)-1;
+	var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+machineType+" <input type='text' class='form-control' id='machineType' name='machineType' placeholder='Machine Accessory Type'  > </td><td id='name_row"+table_len+"'>"+serialNumberOtherAccessory+" <input type='text' class='form-control' id='serialNumberOtherAccessory' name='serialNumberOtherAccessory' onkeydown='upperCaseF(this)' placeholder='Serial Number'  ></td><td> <input type='button' value='Delete' class='btn btn-danger' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
 
-    $('#updateDevice')
-        .bootstrapValidator({
-            icon: {
-                valid: 'glyphicon glyphicon-ok',
-                invalid: 'glyphicon glyphicon-remove',
-                validating: 'glyphicon glyphicon-refresh'
-            },
-            fields: {
-                'machinetype': machinetypeValidators,
-                'serialNumberOtherAccessory': serialNumberOtherAccessoryValidators,
-            }
-        })
-
-        // Add button click handler
-        .on('click', '.addButton', function() {
-            machinIndex++;
-            var $template = $('#addDeviceTemplate'),
-                $clone    = $template
-                                .clone()
-                                .removeClass('hide')
-                                .removeAttr('id')
-                                .attr('data-otherAccossory-index', machinIndex)
-                                .insertBefore($template);
-
-            // Update the name attributes
-            $clone
-                .find('[name="machinetype"]').attr('name', 'otherAccossory[' + machinIndex + '].machinetype').end()
-                .find('[name="serialNumberOtherAccessory"]').attr('name', 'otherAccossory[' + machinIndex + '].serialNumberOtherAccessory').end();
-                
-            // Add new fields
-            // Note that we also pass the validator rules for new field as the third parameter
-            $('#updateDevice')
-                .bootstrapValidator('addField', 'otherAccossory[' + machinIndex + '].title', machinetypeValidators)
-                .bootstrapValidator('addField', 'otherAccossory[' + machinIndex + '].isbn', serialNumberOtherAccessoryValidators);
-			})
-
-        // Remove button click handler
-        .on('click', '.removeButton', function() {
-            var $row  = $(this).parents('.form-group'),
-                index = $row.attr('data-otherAccossory-index');
-
-            // Remove fields
-            $('#updateDevice')
-                .bootstrapValidator('removeField', $row.find('[name="otherAccossory[' + machinIndex + '].machinetype"]'))
-                .bootstrapValidator('removeField', $row.find('[name="otherAccossory[' + machinIndex + '].serialNumberOtherAccessory"]'));
-
-            // Remove element containing the fields
-            $row.remove();
-        });
-});
+	document.getElementById("machineType").value="";
+	document.getElementById("serialNumberOtherAccessory").value="";
+	
+}
 </script>
-
 
 <!--Mono and Colour Selection-->
 <script type="text/javascript">

@@ -178,8 +178,8 @@
 	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>	
 	<!-- /Scripts -->
 	
-	<!-- Paging the table -->
-	<script>
+<!-- Paging the table -->
+<script>
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
 				"jQueryUI" : true,
@@ -188,11 +188,9 @@
 			/* few more options are available to use */
 			});
 		});
-	</script>
+</script>
 
-
-	
-<!-- Validate Make Order -->
+<!-- Validate Make Order for Technician -->
 <script>
  $(document).ready(function() {
     $('#putInOrder').bootstrapValidator({
@@ -249,23 +247,22 @@
 
 
 <script type="text/javascript">
-		/*Compare available quantity with entered quantity*/
-		function compareQuantity(element, availableQuantity) {					
-		
-			if (availableQuantity > element.value){		
-				//alert("Your quantity is less than available quantity order.\n You can now place your order"); 
-				console.log("True,",element.value + " is less than " + availableQuantity);
-				console.log("Place an Order");
-			}
-			else if(availableQuantity < element.value) {
+/*Compare available quantity with entered quantity*/
+function compareQuantity(element, availableQuantity) {					
+	
+	if (availableQuantity > element.value){		
+		//alert("Your quantity is less than available quantity order.\n You can now place your order"); 
+		console.log("True,",element.value + " is less than " + availableQuantity);
+		console.log("Place an Order");
+		}else if(availableQuantity < element.value) {
 				alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
 				element.value = null;
 				console.log("False,",availableQuantity + " is small than " + element.value);
 				console.log("You can not place an order, enter less quantity");
 				console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
-				}
-			   
 		}
+}
+
 </script>
 
 <script type="text/javascript">
@@ -300,9 +297,6 @@ function checkChecked(searchForm) {
 		}
 	
 </script>
-
-	
-
 
 </body>
 </html>

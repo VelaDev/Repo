@@ -36,5 +36,9 @@ public class SpareMasterService implements SpareMasterServiceInt{
 	public List<String> getModelDevice(String partNumber) {
 		return spareMasterDaoInt.getModelDevice(partNumber);
 	}
+	@Override
+	public String saveSpareMasterData(SpareMaster spareMaster) {
+		return spareMasterDaoInt.saveSpareMasterData(spareMaster);
+	}
 
 }

@@ -10,4 +10,5 @@ public interface SpareMasterServiceInt {
 	SpareMaster getSpareMaster(String partNumber);
 	String[] getSerials();
 	List<String> getModelDevice(String partNumber);
+	String saveSpareMasterData(SpareMaster spareMaster );
 }

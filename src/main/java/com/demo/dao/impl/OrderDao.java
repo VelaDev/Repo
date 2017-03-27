@@ -83,10 +83,10 @@ public class OrderDao implements OrdersDaoInt {
 					.getEmployee().getEmail(), emp.getFirstName(), orderHeader);
 
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
-					+ "is created";
+					+ "is placed";
 		} catch (Exception e) {
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
-					+ "is not created " + e.getMessage();
+					+ "is not placed " + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -381,7 +381,7 @@ public class OrderDao implements OrdersDaoInt {
 					sessionFactory.getCurrentSession().update(part);
 					retMessage = "Ok";
 				} else {
-					retMessage = "Ordered items are more than available items";
+					retMessage = "Error";
 				}
 			}
 
@@ -473,7 +473,6 @@ public class OrderDao implements OrdersDaoInt {
 		try{
 			cusOrder = declineOrder(orderNum);
 			cusOrder.setComments(reasonForeclined);
-			System.out.println("Mic check ");
 			cusOrder.setStatus("Declined");
 			sessionFactory.getCurrentSession().update(cusOrder);
 			retMessage = "Order " + cusOrder.getOrderNum()+ " is declined";

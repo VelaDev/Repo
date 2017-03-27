@@ -167,4 +167,17 @@ public class SparePartsController {
 		
 		return model;
 	}
+	@RequestMapping(value="spareToMasterData", method=RequestMethod.POST)
+	public ModelAndView addSpareToMAsterData(@ModelAttribute("spareToMasterData")SpareMaster spareMaster){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("retMessage", spareMasterServiceInt.saveSpareMasterData(spareMaster));
+			model.setViewName("addSpares");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
 }

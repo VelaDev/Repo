@@ -412,5 +412,24 @@ public class OrdersController {
 
 		return model;
 	}
+	@RequestMapping(value = "viewAllOrderDetails", method = RequestMethod.GET)
+	public ModelAndView displayOrderDeails(
+			@RequestParam("recordID") Integer recordID,
+			@ModelAttribute OrderDetails orderDetails) {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",
+					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("RecordID", ordersServiceInt.getOrder(recordID));
+			model.setViewName("viewAllOrderDetails");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+
 	
 }

@@ -123,9 +123,12 @@ public class DeviceDao implements DeviceDaoInt {
 			device.setSerialNumber(deviceBean.getSerialNumber());
 			device.setStartDate(deviceBean.getStartDate());
 			device.setInstallationDate(deviceBean.getInstallationDate());
+			device.setModelBrand(deviceBean.getModelBrand());
 
 			device.setMonoReading(deviceBean.getMonoReading());
 			device.setColourReading(deviceBean.getColourReading());
+			device.setMonoCopyCost(deviceBean.getMonoCopyCost());
+			device.setColourCopyCost(deviceBean.getColourCopyCost());
 
 			device.setAreaCode(deviceBean.getZipcode());
 			device.setCity_town(deviceBean.getCity_town());

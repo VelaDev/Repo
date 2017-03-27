@@ -70,6 +70,10 @@ public class Device implements Serializable{
 	private Date dateTime;
 	@Column(name="Model_Brand")
 	private String modelBrand;
+	@Column(name="Mono_Copy_Cost")
+	private String monoCopyCost;
+	@Column(name="Colour_Copy_Cost")
+	private String colourCopyCost;
 	
 	@OneToOne
 	@JoinColumn(name="Device_Contact")

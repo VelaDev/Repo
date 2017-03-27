@@ -90,7 +90,7 @@ public class HOStockDao implements HOStockDaoInt {
 					retMessage = "Part Number : "
 							+ " "
 							+ spareParts.getPartNumber()
-							+ " is successfully added into HOStock Parts and Master Data";
+							+ " is successfully added";
 				}
 			}
 		} catch (Exception e) {

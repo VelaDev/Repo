@@ -25,7 +25,7 @@
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<div align="left">
+						<div align="center">
 							<b>Add Spares</b>
 						</div>
 					</h3>
@@ -39,7 +39,7 @@
 						</div>
 					</c:if>
 					<form:form class="well form-horizontal" method="POST"
-						action="addSparesParts" modelAttribute="addSparesParts"
+						action="spareToMasterData" modelAttribute="spareToMasterData"
 						id="spareParts">
 
 						<!-- Text input Part Number-->
@@ -49,7 +49,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-barcode"></i></span> <input id="partNum"
-										 name="partNumber" onkeydown="upperCaseF(this)"
+										name="partNumber" onkeydown="upperCaseF(this)"
 										placeholder="Enter Part Number" class="form-control"
 										type="text" value="">
 								</div>
@@ -58,13 +58,13 @@
 
 						<!-- Text input Machine Model-->
 						<div class="form-group">
-							<label class="col-md-3 control-label">Model No</label>
+							<label class="col-md-3 control-label">Compatible Devices</label>
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-barcode"></i></span> <input
-										name="modelNumber" onkeydown="upperCaseF(this)"
-										id="modelNumber" placeholder="Model Number"
+										name="compitableDevice" onkeydown="upperCaseF(this)"
+										id="modelNumber" placeholder="Compatible Devices"
 										class="form-control" type="text">
 								</div>
 							</div>
@@ -78,7 +78,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span><select id="itemType"
-										class="form-control"  name="itemType"
+										class="form-control" name="itemType"
 										class="form-control selectpicker">
 										<option value="">Select Item Type</option>
 										<option value="Toner">Toner</option>
@@ -95,7 +95,7 @@
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-barcode"></i></span> <input
-										id="itemDescription"  name="itemDescription" type="text"
+										id="description" name="itemDescription" type="text"
 										class="form-control" value="">
 								</div>
 							</div>
@@ -106,12 +106,15 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> 
-										<input type="text" id="receivedBy"  name="receivedBy" class="form-control"
-										value="${loggedInUser.firstName} ${loggedInUser.lastName}" 	readonly="readonly"	/>
+										class="glyphicon glyphicon-user"></i></span> <input type="text"
+										id="receivedBy" name="receivedBy" class="form-control"
+										value="${loggedInUser.firstName} ${loggedInUser.lastName}"
+										readonly="readonly">
 								</div>
 							</div>
 						</div>
+
+
 
 						<br>
 						<div class="form-group row">
@@ -121,8 +124,6 @@
 									id="addSpareP">
 							</div>
 						</div>
-
-
 					</form:form>
 
 				</div>
@@ -145,7 +146,7 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	
+
 	<!-- /Scripts -->
 
 	<!-- Validate add part -->
@@ -197,10 +198,10 @@
 															}
 														}
 													},
-													modelNumber: {
+													compitableDevice: {
 														validators : {
 															notEmpty : {
-																message : 'Model Number by is required and cannot be empty'
+																message : 'Compitable Device by is required and cannot be empty'
 															}
 														}
 													}
@@ -209,7 +210,7 @@
 						});
 	</script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	function isNumber(evt) {
 	    evt = (evt) ? evt : window.event;
@@ -222,7 +223,7 @@
 	
 </script>
 
-<!-- Make all Serials numbers UpperCase  -->
+	<!-- Make all Serials numbers UpperCase  -->
 	<script type="text/javascript">
 	function upperCaseF(a){
 	    setTimeout(function(){

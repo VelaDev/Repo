@@ -137,17 +137,9 @@
 												<td>${list.partNumber}</td>
 												<td>${list.itemDescription}</td>
 												<td>${list.compitableDevice}</td>
-												<td>${list.quantity}</td>
-												<td><input type="checkbox" class="form-group"
-													id="checkedOrder" name="selectedItem" 
-													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
-												<td><input type="text" class="form-group" id="quantity"
-													name="quantity"></td>
-												<%-- 	<th>
-											<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
-											--%>
-
-											</tr>
+											 	<td><input type="text" id="${list.partNumber}_avaliableQuantity"    name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
+								                <td><input type="checkbox" class="form-group"    id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+								                <td><input type="text" id="${list.partNumber}_quantity"  onkeypress="return isNumber(event)" name="quantity"   class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td></tr>
 
 										</c:forEach>
 									</tbody>
@@ -184,6 +176,7 @@
 	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- Datatables -->
 	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>	
 	<!-- /Scripts -->
@@ -249,25 +242,48 @@
                         message: 'Approver is required and cannot be empty'
                     }
                 }
-            } 
+            }
+            
         }
     });
 });
 
 </script>
-	
-
 
 
 <script type="text/javascript">
- 
+		/*Compare available quantity with entered quantity*/
+		function compareQuantity(element, availableQuantity) {
+					
+		
+		if (availableQuantity > element.value){		
+			alert("Your quantity is less than available quantity order.\n You can now place your order"); 
+			console.log("True,",element.value + " is less than " + availableQuantity);
+			console.log("Place an Order");
+		}
+		else if(availableQuantity < element.value) {
+			alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
+			element.value = null;
+			console.log("False,",availableQuantity + " is small than " + element.value);
+			console.log("You can not place an order, enter less quantity");
+			console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
+		}
+		   
+		}
+</script>
+
+
+<script type="text/javascript">
+/*Check if checkbox is checked*/
 function checkChecked(searchForm) {
 	    var anyBoxesChecked = false;
 	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
 	        if ($(this).is(":checked")) {
-				alert('Your order will be processed by selected Manager');
-	            anyBoxesChecked = true;
+				anyBoxesChecked = true;
 	        }
+	       /*  else if(anyBoxesChecked == true){	        	
+	        	alert('Your order will be processed by selected Manager');
+	        } */
 	    });
 	 
 	    if (anyBoxesChecked == false) {
@@ -292,7 +308,16 @@ function checkChecked(searchForm) {
 	
 </script>
 
-	
+	<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 
 
 </body>

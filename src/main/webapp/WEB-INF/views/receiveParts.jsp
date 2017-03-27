@@ -165,7 +165,6 @@ margin-left:3%
 										</div>
 									</div>
 
-
 									<!-- Text input Quantity-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Quantity</label>

@@ -256,7 +256,7 @@
 		function compareQuantity(element, availableQuantity) {					
 		
 			if (availableQuantity > element.value){		
-				alert("Your quantity is less than available quantity order.\n You can now place your order"); 
+				//alert("Your quantity is less than available quantity order.\n You can now place your order"); 
 				console.log("True,",element.value + " is less than " + availableQuantity);
 				console.log("Place an Order");
 			}

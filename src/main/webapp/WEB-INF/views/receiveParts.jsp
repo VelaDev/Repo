@@ -196,7 +196,6 @@ margin-left:3%
 
 								</div>
 
-
 							</div>
 							<!-- //group spare details -->
 

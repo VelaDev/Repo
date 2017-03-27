@@ -20,7 +20,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter" id="velaphanda_containter">
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
+		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
 			<div class="panel panel-success">
 				<div class="panel-heading">
@@ -39,7 +39,7 @@
 						</div>
 					</c:if>
 					<form:form class="well form-horizontal" method="POST"
-						action="addSpares" modelAttribute="addSpares"
+						action="addSparesParts" modelAttribute="addSparesParts"
 						id="spareParts">
 
 						<!-- Text input Part Number-->

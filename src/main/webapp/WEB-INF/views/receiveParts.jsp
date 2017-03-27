@@ -118,10 +118,6 @@ margin-left:3%
 
 								<!--First Column-->
 								<div class="col-md-12">
-
-									
-
-
 									<!-- Text input Part Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Part Number</label>
@@ -177,7 +173,7 @@ margin-left:3%
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													type="number" placeholder="Enter Quantity" id="quantity"
+													type="number" readonly placeholder="Enter Quantity" id="quantity"
 													name="quantity" class="form-control"
 													onkeyup="userTyped('checkSpares', this)">
 											</div>

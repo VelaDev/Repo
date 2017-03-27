@@ -92,7 +92,7 @@
 						<ul class="dropdown-menu">
 						<li><a href='<c:url value="addSpares.html"/>'>Add
 									Spares</a></li>
-							<li><a href='<c:url value="addParts.html"/>'>Receive
+							<li><a href='<c:url value="receiveParts.html"/>'>Receive
 									Spares</a></li>
 							<li class="dropdown dropdown-submenu"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">Available

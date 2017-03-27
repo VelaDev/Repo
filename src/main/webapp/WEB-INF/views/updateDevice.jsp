@@ -503,12 +503,13 @@ ul.addressDeviceList {
 									<br>
 
 
+									
 									<!-- Other Machine Accessories -->
 
 										<div class="form-group">
 									        <label class="col-xs-1 control-label">Others</label>
 									        <div class="col-xs-4">
-									            <input type="text" class="form-control" id="machinetype" name="machinetype" placeholder="Machine Accessory Type" />
+									            <input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" />
 									        </div>
 									        <div class="col-xs-4">
 									            <input type="text" class="form-control" id="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" name="serialNumberOtherAccessory" placeholder="Serial Number" />
@@ -521,7 +522,7 @@ ul.addressDeviceList {
 									    <!-- The template for adding new field -->
 									    <div class="form-group hide" id="addDeviceTemplate">
 									        <div class="col-xs-4 col-xs-offset-1">
-									            <input type="text" class="form-control" id="machinetype" name="machinetype" placeholder="Machine Accessory Type" />
+									            <input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" />
 									        </div>
 									        <div class="col-xs-4">
 									              <input type="text" class="form-control" id="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" name="serialNumberOtherAccessory" placeholder="Serial Number" />
@@ -532,11 +533,11 @@ ul.addressDeviceList {
 									    </div>
 									<!-- Other Machine Accessories -->
 
-									
-
 								</div>
-
 							</fieldset>
+							<!--Machine Accessories-->
+							
+							<br />
 
 							<br>
 							<div class="form-group row">

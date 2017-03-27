@@ -266,7 +266,7 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setApprover(orderBean.getApprover());
 
 			recordID = newRecordID();
-			orderNumber = "VEL00" + recordID;
+			orderNumber = "ORD00" + recordID;
 			cusOrder.setRecordID(recordID);
 			cusOrder.setOrderNum(orderNumber);
 			cusOrder.setEmployee(emp);

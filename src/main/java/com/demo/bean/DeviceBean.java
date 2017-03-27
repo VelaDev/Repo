@@ -1,6 +1,5 @@
 package com.demo.bean;
 
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,37 +12,38 @@ public class DeviceBean {
 	private String customerName;
 	private String serialNumber;
 	private String modelNumber;
+	private String modelBrand;
 	private String startDate;
 	private String endDate;
 	private String installationDate;
 	private String colourReading;
-	private String monoReading;	
-	
+	private String monoReading;
+
 	// Machine Accessories input check box
 	private String bridgeUnitSerialType;
 	private String finisherType;
-	private String ltcType;																			
+	private String ltcType;
 	private String faxUnitSerialType;
 	private String oneBinSerialType;
 	private String OneBinTrayType;
 	private String creType;
 	private String addType;
-	
-	//Machine Accessories input text box
+
+	// Machine Accessories input text box
 	private String bridgeUnitSerialTypeSerialNo;
 	private String finisherTypeSerialNo;
-	private String ltcTypeSerial;									
-	private String OneBinTrayTypeSerialNo;											
+	private String ltcTypeSerial;
+	private String OneBinTrayTypeSerialNo;
 	private String faxUnitSerialTypeSerialNo;
 	private String creTypeserial;
 	private String addTypeserial;
-	
-	//other Machine Accessories
-	private String machineType;
-	private String serialNumberOtherAccessory;
+
+	// other Machine Accessories
+	private String[] machineType;
+	private String[] serialNumberOtherAccessory;
 	private String accessoryName;
 	private String accessorySerial;
-	
+
 	private String streetName;
 	private String city_town;
 	private String province;
@@ -55,7 +55,7 @@ public class DeviceBean {
 	private String cellphone;
 	private String telephone;
 	private String tellphoneNumber;
-	
+
 	private String updateFlag;
-	
+
 }

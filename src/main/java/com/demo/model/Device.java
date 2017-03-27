@@ -68,6 +68,8 @@ public class Device implements Serializable{
 	@Column(name="DateTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
+	@Column(name="Model_Brand")
+	private String modelBrand;
 	
 	@OneToOne
 	@JoinColumn(name="Device_Contact")

@@ -38,7 +38,7 @@ public class DeviceDao implements DeviceDaoInt {
 	private String retMessage = null;
 	@SuppressWarnings("unused")
 	private Date currentDate = null;
-	ArrayList<Device> productList = null;
+	ArrayList<Device> productList = null;      
 	ArrayList<?> aList = null;
 	ArrayList<Accessories> list = null;
 	Customer customer = null;
@@ -111,7 +111,7 @@ public class DeviceDao implements DeviceDaoInt {
 	public String prepareDeviceData(DeviceBean deviceBean) {
 		// Purpose : This method prepares the device data before inserting into
 		// the table
-
+		String[] split;
 		String retAccessory = null;
 		customer = new Customer();
 		contactPerson = new DeviceContactPerson();

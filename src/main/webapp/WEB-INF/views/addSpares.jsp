@@ -100,22 +100,6 @@
 								</div>
 							</div>
 						</div>
-
-
-						<!-- Text input Quantity-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Quantity</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-barcode"></i></span> <input type="number"
-										placeholder="Enter Quantity" id="quantity" name="quantity"
-										class="form-control">
-								</div>
-							</div>
-						</div>
-
-
 						<!-- Text input Received By-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Received By</label>

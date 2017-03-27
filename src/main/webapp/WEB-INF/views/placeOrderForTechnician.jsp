@@ -82,20 +82,22 @@
 							</div>
 							</div>							
 							
-							<!-- Text input Technician name-->
+							
 							<div class="form-group">
-								<label class="col-md-3 control-label">Technician</label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <input readOnly id="technician"
-											name="technician" placeholder="Technicain"
-											class="form-control" type="text"
-											value="${loggedInUser.firstName} ${loggedInUser.lastName}">
+									<label class="col-md-3 control-label">Technician</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="technicianUserName" class="form-control selectpicker">
+												<option>Select Technician</option>
+												<c:forEach items="${technicians}" var="technician">
+													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
+												</c:forEach>
+											</select>
+										</div>
 									</div>
 								</div>
-							</div>
-
 
 							<!-- Text input Approver-->
 							<div class="form-group">
@@ -103,10 +105,8 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i><input readOnly id="technician"
-											name="technician" placeholder="Technicain"
-											class="form-control" type="text"
-											value="${loggedInUser.firstName} ${loggedInUser.lastName}"></span> 
+											class="glyphicon glyphicon-user"></i></span><input readOnly id="approver"
+											name="approver" class="form-control" type="text" value="${loggedInUser.firstName} ${loggedInUser.lastName}"/> 
 									</div>
 								</div>
 							</div>
@@ -133,15 +133,9 @@
 												<td>${list.partNumber}</td>
 												<td>${list.itemDescription}</td>
 												<td>${list.compitableDevice}</td>
-												<td>${list.quantity}</td>
-												<td><input type="checkbox" class="form-group"
-													id="checkedOrder" name="selectedItem" 
-													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
-												<td><input type="text" class="form-group" id="quantity"
-													name="quantity"></td>
-												<%-- 	<th>
-											<a href="detailedProduct?serialNumber=<c:out value='${list.partNumber}'/>">details</a></th>
-											--%>
+												<td><input type="text" id="${list.partNumber}_avaliableQuantity"    name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
+								                <td><input type="checkbox" class="form-group"    id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+								                <td><input type="text" id="${list.partNumber}_quantity"  onkeypress="return isNumber(event)" name="quantity"   class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
 
 											</tr>
 
@@ -153,7 +147,7 @@
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<br> <br> <input type="submit" value="Make Order"
+									<br> <br> <input type="submit" value="Place Order"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="putorder" name="putorder">
 								</div>
@@ -254,6 +248,25 @@
 	
 
 
+<script type="text/javascript">
+		/*Compare available quantity with entered quantity*/
+		function compareQuantity(element, availableQuantity) {					
+		
+			if (availableQuantity > element.value){		
+				//alert("Your quantity is less than available quantity order.\n You can now place your order"); 
+				console.log("True,",element.value + " is less than " + availableQuantity);
+				console.log("Place an Order");
+			}
+			else if(availableQuantity < element.value) {
+				alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
+				element.value = null;
+				console.log("False,",availableQuantity + " is small than " + element.value);
+				console.log("You can not place an order, enter less quantity");
+				console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
+				}
+			   
+		}
+</script>
 
 <script type="text/javascript">
  

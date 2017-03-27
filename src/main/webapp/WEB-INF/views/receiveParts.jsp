@@ -205,18 +205,13 @@ margin-left:3%
 								<legend>Compatible Devices </legend>
 
 								<div class="tableContect">
-									<input type="button" value="Add Row"
-										onclick="addRow('dataTable')" /> <input type="button"
-										value="Delete Row" onclick="deleteRow('dataTable')" /><br />
-									<br /> 
+									
 									<table id="dataTable" width="300px" style="width: 300px"
 										class="table table-striped table-bordered table-hover table-condensed">
-										<label class="">Action</label>
 										 <label	class="model">Model</label>
 										<c:forEach var="compitableDevice" items="${models}">
 											<tr>
-												<td><input type="checkbox" name="compitableDevice"
-													value="" /></td>
+												
 												<td><input type="text" readOnly class="form-control"
 													id="compitableDevice" name="compitableDevice"
 													value="${compitableDevice}"></td>

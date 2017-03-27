@@ -402,9 +402,9 @@ public class OrdersController {
 		if (userName != null) {
 
 			model.addObject("makeOrder", new OrdersBean());
-			/*model.addObject("compatibility", spareParts.getAllSpareParts());
-			model.addObject("managersList", employeeServiceInt.getAllManagers());
-			model.addObject("customerList", customerServiceInt.getClientList());*/
+			model.addObject("compatibility", spareParts.getAllSpareParts());
+			model.addObject("technicianList", employeeServiceInt.getAllTechnicians());
+			model.addObject("customerList", customerServiceInt.getClientList());
 			model.setViewName("placeOrderForTechnician");
 		} else {
 			model.setViewName("login");

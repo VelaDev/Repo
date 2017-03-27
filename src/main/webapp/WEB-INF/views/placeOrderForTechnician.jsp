@@ -91,7 +91,7 @@
 												class="glyphicon glyphicon-list"></i></span> <select
 												name="technicianUserName" class="form-control selectpicker">
 												<option>Select Technician</option>
-												<c:forEach items="${technicians}" var="technician">
+												<c:forEach items="${technicianList}" var="technician">
 													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
 												</c:forEach>
 											</select>

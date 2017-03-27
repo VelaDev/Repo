@@ -172,7 +172,7 @@ margin-left:3%
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
-													type="number" readonly placeholder="Enter Quantity" id="quantity"
+													type="number" placeholder="Enter Quantity" id="quantity"
 													name="quantity" class="form-control"
 													onkeyup="userTyped('checkSpares', this)">
 											</div>
@@ -208,7 +208,7 @@ margin-left:3%
 									
 									<table id="dataTable" width="300px" style="width: 300px"
 										class="table table-striped table-bordered table-hover table-condensed">
-										 <label	class="model">Model</label>
+										 <label	class="model">Model No</label>
 										<c:forEach var="compitableDevice" items="${models}">
 											<tr>
 												

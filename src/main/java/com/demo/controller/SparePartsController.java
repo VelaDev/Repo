@@ -39,6 +39,22 @@ public class SparePartsController {
 	private HOStock stock;
 	private SpareMaster master;
 	
+	@RequestMapping(value="addSpares", method=RequestMethod.GET)
+	public ModelAndView loadAddSpares()
+	{
+	    model = new ModelAndView("addSpares");
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("saveSpareParts", new SparePartsBean());
+			getSerials = spareMasterServiceInt.getSerials();
+			model.addObject("spareParts",getSerials);
+			model.setViewName("addSpares");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
 	
 	@RequestMapping(value="addParts", method=RequestMethod.GET)
 	public ModelAndView loadSaveSpareParts()

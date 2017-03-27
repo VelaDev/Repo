@@ -56,16 +56,32 @@ public class SparePartsController {
 		return model;
 	}
 	
-	@RequestMapping(value="addParts", method=RequestMethod.GET)
+	@RequestMapping(value="addSparesParts", method=RequestMethod.POST)
+	public ModelAndView SaveSpareParts(@ModelAttribute("addSparesParts")HOStock spareParts){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+		
+			retMessage = hOStockServeceInt.saveSpareparts(spareParts);
+			model.addObject("retMessage", retMessage);
+			model.setViewName("addSpares");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value="receiveParts", method=RequestMethod.GET)
 	public ModelAndView loadSaveSpareParts()
 	{
-	    model = new ModelAndView("addParts");
+	    model = new ModelAndView("receiveParts");
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("saveSpareParts", new SparePartsBean());
 			getSerials = spareMasterServiceInt.getSerials();
 			model.addObject("spareParts",getSerials);
-			model.setViewName("addParts");
+			model.setViewName("receiveParts");
 		}
 		else{
 			model.setViewName("login");
@@ -81,7 +97,7 @@ public class SparePartsController {
 		
 			retMessage = hOStockServeceInt.saveSpareparts(spareParts);
 			model.addObject("retMessage", retMessage);
-			model.setViewName("addParts");
+			model.setViewName("receiveParts");
 		}
 		else{
 			model.setViewName("login");
@@ -143,7 +159,7 @@ public class SparePartsController {
 			}else{
 				model.addObject("retMessage", "Part Number does not exist in MasterData. Please select checkbox for Maintain New Spares to add new Spare/Part");
 			}
-		model.setViewName("addParts");
+		model.setViewName("receiveParts");
 		}
 		else{
 			model.setViewName("login");

@@ -271,7 +271,7 @@ function checkChecked(searchForm) {
 	    var anyBoxesChecked = false;
 	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
 	        if ($(this).is(":checked")) {
-				alert('Your order will be processed by selected Manager');
+				//alert('Your order will be processed by selected Manager');
 	            anyBoxesChecked = true;
 	        }
 	    });

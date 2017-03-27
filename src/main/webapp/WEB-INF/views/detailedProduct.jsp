@@ -193,6 +193,20 @@ header, #content, #middle, #sidebar {
 											<div class="col-xs-8">
 												<div class="col-xs-4 form-control-label">
 													<h6>
+														<label>Installation Date</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" class="form-control input-sm"
+														value="${device.installationDate}" disabled="disabled">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-xs-8">
+												<div class="col-xs-4 form-control-label">
+													<h6>
 														<label>Contract End Date</label>
 													</h6>
 
@@ -232,6 +246,22 @@ header, #content, #middle, #sidebar {
 												</div>												
 											</div>
 										</div>
+										
+										<div class="row">
+											<div class="col-xs-8">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Colour CopyCost</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" class="form-control input-sm"
+														id="monoReading" value="${device.colourCopyCost}"
+														disabled="disabled">
+												</div>												
+											</div>
+										</div>
 
 										<div class="row">
 											<br />
@@ -245,6 +275,23 @@ header, #content, #middle, #sidebar {
 												<div class="col-xs-8">
 													<input type="text" class="form-control input-sm"
 														id="monoReading" value="${device.monoReading}"
+														disabled="disabled">
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<br />
+											<div class="col-xs-8">
+												<div class="col-xs-4 form-control-label">
+													<h6>
+														<label>Mono Copy Cost</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" class="form-control input-sm"
+														id="monoReading" value="${device.monoCopyCost}"
 														disabled="disabled">
 												</div>
 											</div>

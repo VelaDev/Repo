@@ -564,8 +564,6 @@ ul.addressDeviceList {
 							</fieldset>
 							<!--Machine Accessories-->
 
-							<br />
-
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
 									<br>
@@ -878,7 +876,7 @@ $(document).ready(function() {
 					}
 				},
 				
-				
+
 				colourReading: {
 					
 					validators : {
@@ -888,14 +886,25 @@ $(document).ready(function() {
 						},
 						notEmpty : {
 							message : 'Colour reading is required and cannot be empty'
-						}/* ,
-						regexp: {
-		                    regexp: /^[0-9]+$/,
-		                    message: 'Mono colour can only consist of numbers'
-		          	    } */
+						}
 						
 					}
 				},
+				
+				colourCopyCost: {
+					
+					validators : {
+						stringLenth : {
+							min : 4,
+							max : 6,
+						},
+						notEmpty : {
+							message : 'Colour Copy Cost is required and cannot be empty'
+						}
+						
+					}
+				},
+				
 				monoReading: {
 					
 					validators : {
@@ -905,33 +914,29 @@ $(document).ready(function() {
 						},
 						notEmpty : {
 							message : 'Mono reading is required and cannot be empty'
-						}/* ,
-						regexp: {
-		                    regexp: /^[0-9]+$/,
-		                    message: 'Mono colour can only consist of numbers'
-		           		 } */
+						}
 						
 					}
-				},//Machine Details
+				},
+				monoCopyCost: {
+					
+					validators : {
+						stringLenth : {
+							min : 4,
+							max : 6,
+						},
+						notEmpty : {
+							message : 'Mono Copy Cost is required and cannot be empty'
+						}
+						
+					}
+				},
+				//Machine Details
+				
 				
 				
 				//Machine Accesories
-				machineType: {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						}
-					}
-				},
-				serialNumberOtherAccessory: {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						}
-					}
-				},
+				
 				bridgeunit : {
 					validators : {
 						stringLength : {

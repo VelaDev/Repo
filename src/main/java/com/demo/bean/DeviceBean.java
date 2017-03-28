@@ -41,8 +41,8 @@ public class DeviceBean {
 	private String addTypeserial;
 
 	// other Machine Accessories
-	private String[] machineType;
-	private String[] serialNumberOtherAccessory;
+	private String machineType;
+	private String serialNumberOtherAccessory;
 	private String accessoryName;
 	private String accessorySerial;
 

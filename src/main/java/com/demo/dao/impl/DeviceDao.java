@@ -2,6 +2,7 @@ package com.demo.dao.impl;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -111,7 +112,6 @@ public class DeviceDao implements DeviceDaoInt {
 	public String prepareDeviceData(DeviceBean deviceBean) {
 		// Purpose : This method prepares the device data before inserting into
 		// the table
-		String[] split;
 		String retAccessory = null;
 		customer = new Customer();
 		contactPerson = new DeviceContactPerson();
@@ -229,6 +229,21 @@ public class DeviceDao implements DeviceDaoInt {
 						list.add(accessory6);
 					}
 				}
+				List<String> accessoryType = new ArrayList<String>(Arrays.asList(deviceBean.getMachineType().split(",")));
+				List<String> accessorySerial = new ArrayList<String>(Arrays.asList(deviceBean.getSerialNumberOtherAccessory().split(",")));
+				for(int i =0;i<accessoryType.size();i++){
+					for(int x=0;x<accessorySerial.size();x++){
+						if(i==x){
+							Accessories otherAccessorry = new Accessories();
+							otherAccessorry.setAccessotyType(accessoryType.get(i));
+							otherAccessorry.setSerial(accessorySerial.get(x));
+							otherAccessorry.setDevice(device);
+							list.add(otherAccessorry);
+						}
+					}
+				}
+				
+
 
 				retMessage = contactPersonDaoInt
 						.saveContactPerson(contactPerson);

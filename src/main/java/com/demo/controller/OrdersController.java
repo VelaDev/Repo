@@ -401,7 +401,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("makeOrder", new OrdersBean());
+			model.addObject("placeOrderForTechnician", new OrdersBean());
 			model.addObject("compatibility", spareParts.getAllSpareParts());
 			model.addObject("technicianList", employeeServiceInt.getAllTechnicians());
 			model.addObject("customerList", customerServiceInt.getClientList());

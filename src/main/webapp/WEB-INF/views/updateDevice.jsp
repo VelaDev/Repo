@@ -9,28 +9,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
-<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <style>
-li { list-style: none; }
+li {
+	list-style: none;
+}
+
+.machinetype {
+	margin-left: 3%;
+}
+
+.serial {
+	margin-left: 41%;
+}
 
 .customerDeviceContainer {
 	padding: 25px;
-    margin-bottom: -1em;
-    width: auto;
-    display: table;
-    
- }
- p.customerDeviceAddressTitle {
-    font-size: 1.1em;
-    font-weight: bolder;
-    margin-left: 19%;
+	margin-bottom: -1em;
+	width: auto;
+	display: table;
 }
+
+p.customerDeviceAddressTitle {
+	font-size: 1.1em;
+	font-weight: bolder;
+	margin-left: 19%;
+}
+
 ul.addressDeviceList {
-    margin-left: -7%;
+	margin-left: -7%;
 }
 </style>
 
@@ -235,19 +251,19 @@ ul.addressDeviceList {
 													name="modelNumber" id="modelNumber"
 													onkeydown="upperCaseF(this)" placeholder="Model Number"
 													class="form-control" type="text"
-													value="${productObject.modelNumber}">
+													value="${productObject.modelNumber}" readonly>
 											</div>
 										</div>
-									</div>									
-																		
+									</div>
+
 									<!-- Select type Brand-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Brand</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select
-													id="brand" name="brand" class="form-control">
+													class="glyphicon glyphicon-list"></i></span> <select id="brand"
+													name="brand" class="form-control">
 													<option>Select Brand</option>
 													<option value="samsung">Samsung</option>
 													<option value="kaynon">Kaynon</option>
@@ -323,47 +339,52 @@ ul.addressDeviceList {
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Both mono and colour reading  -->
-									<div class="colour"  id="colour" style="display: none;">
+									<div class="colour" id="colour" style="display: none;">
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)" id="colour" name="colourReading"
-													placeholder="Enter Colour Reading" value="${productObject.colourReading}">
+													onkeypress="return isNumber(event)" id="colour"
+													name="colourReading" placeholder="Enter Colour Reading"
+													value="${productObject.colourReading}">
 											</div>
 											<br>
-										</div>	
-										
+										</div>
+
 										<!-- Text checkbox Colour Copy Cost-->
 										<div class="form-group">
-											<label class="col-md-3 control-label">Colour Copy Cost</label>
+											<label class="col-md-3 control-label">Colour Copy
+												Cost</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
 													onkeypress="return isNumber(event)"
 													placeholder="Enter Mono Copy Cost" id="colour"
-													name="colourCopyCost" value="${productObject.colourCopyCost}">
-													
+													name="colourCopyCost"
+													value="${productObject.colourCopyCost}">
+
 											</div>
 											<br>
 										</div>
-																			
-									</div><!-- Both mono and colour reading  -->
-									
+
+									</div>
+									<!-- Both mono and colour reading  -->
+
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
 									<div class="mono" id="mono" style="display: none;">
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
-											<input type="text" class="form-control"
-												onkeypress="return isNumber(event)" id="mono" name="monoReading"
-												placeholder="Enter Mono Reading" value="${productObject.monoReading}">
+												<input type="text" class="form-control"
+													onkeypress="return isNumber(event)" id="mono"
+													name="monoReading" placeholder="Enter Mono Reading"
+													value="${productObject.monoReading}">
 											</div>
 										</div>
-										
+
 										<!-- Text checkbox Mono Copy Cost-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Copy Cost</label>
@@ -372,14 +393,15 @@ ul.addressDeviceList {
 													onkeypress="return isNumber(event)"
 													placeholder="Enter Mono Copy Cost" id="colour"
 													name="monoCopyCost" value="${productObject.monoCopyCost}">
-													
+
 											</div>
 											<br>
 										</div>
-										
-									</div><!-- //Only mono Reading -->
-									
-									
+
+									</div>
+									<!-- //Only mono Reading -->
+
+
 								</div>
 								<!--/F Column-->
 
@@ -455,8 +477,9 @@ ul.addressDeviceList {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
-													id="zipcode" placeholder="Area Code" maxlength="4" class="form-control"
-													type="text" onkeypress="return isNumber(event)"
+													id="zipcode" placeholder="Area Code" maxlength="4"
+													class="form-control" type="text"
+													onkeypress="return isNumber(event)"
 													value="${productObject.areaCode}">
 											</div>
 										</div>
@@ -545,28 +568,30 @@ ul.addressDeviceList {
 									</table>
 
 									<!-- Other Machine Accessories -->
+									
 									<h5>Other Machine Accessories</h5>
+									<input type="button" class="btn btn-success" value="Add"
+										onclick="addRow('dataTable')" /> <input type="button"
+										class="btn btn-danger" value="Delete"
+										onclick="deleteRow('dataTable')" /><br />
+									<br> <label>Delete</label> <label class="machinetype">Machine
+										Type</label> <label class="serial">Serial Number</label>
 
 									<table id="dataTable"
 										class="table table-striped table-bordered table-hover table-condensed">
 										<tr>
-											<th>Machine Type</th>
-											<th>Serial Number</th>
-											<th>Action</th>
-										</tr>
-
-										<tr>
+											<td><input type="checkbox" id="checkToDelete"
+												name="checkToDelete" value="" /></td>
 											<td><input type="text" class="form-control"
 												id="machineType" name="machineType"
-												placeholder="Machine Accessory Type"></td>
+												placeholder="Machine Accessory Type"
+												value="${AccessoryObject.machineType }"></td>
 											<td><input type="text" class="form-control"
 												id="serialNumberOtherAccessory"
 												name="serialNumberOtherAccessory"
-												onkeydown="upperCaseF(this)" placeholder="Serial Number"></td>
-											<td><button type="button" class="btn btn-success"
-													onclick="add_row();">Add Row</button></td>
+												onkeydown="upperCaseF(this)" placeholder="Serial Number"
+												value="${AccessoryObject.serialNumberOtherAccessory }"></td>
 										</tr>
-
 									</table>
 
 									<!-- Other Machine Accessories -->
@@ -574,17 +599,17 @@ ul.addressDeviceList {
 								</div>
 							</fieldset>
 							<!--Machine Accessories-->
-							
+
 							<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-8">
-								<br><br>
-								<input type="submit" id="updateProduct" name="updateProduct"
-											value="Update Device"
-									class="btn btn-primary btn-block btn-lg" tabindex="9"
-									id="updateProduct">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br>
+									<br> <input type="submit" id="updateProduct"
+										name="updateProduct" value="Update Device"
+										class="btn btn-primary btn-block btn-lg" tabindex="9"
+										id="updateProduct">
+								</div>
 							</div>
-							</div>
-						
+
 							<!-- 
 							<div class="centerbutton">
 								<div class="form-group row">
@@ -613,13 +638,17 @@ ul.addressDeviceList {
 	<!-- / velaphanda_containter -->
 
 	<!-- Scripts -->
-	<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
-	<script type="text/javascript"	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
 
-	
+
 	<!-- Validate add device -->
 	<script>
 $(document).ready(function() {
@@ -1031,31 +1060,64 @@ $(document).ready(function() {
 });
 </script>
 
-<!---Script to add other Accossory-->
-<!--Create a table to add other accessories-->
-<script type="text/javascript">
-//Delete a row on table
-function delete_row(no)
-{
-	document.getElementById("row"+no+"").outerHTML="";
-}
-//Add a row on table
-function add_row()
-{
-	var machineType = document.getElementById("machineType").value;
-	var serialNumberOtherAccessory = document.getElementById("serialNumberOtherAccessory").value;
-	var table=document.getElementById("dataTable");
-	var table_len=(table.rows.length)-1;
-	var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+machineType+" <input type='text' class='form-control' id='machineType' name='machineType' placeholder='Machine Accessory Type'  > </td><td id='name_row"+table_len+"'>"+serialNumberOtherAccessory+" <input type='text' class='form-control' id='serialNumberOtherAccessory' name='serialNumberOtherAccessory' onkeydown='upperCaseF(this)' placeholder='Serial Number'  ></td><td> <input type='button' value='Delete' class='btn btn-danger' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
+	<!---Script to add other Accossory-->
+	<!--Create a table to add other accessories-->
+	<script type="text/javascript">
+function addRow(tableID) {
 
-	document.getElementById("machineType").value="";
-	document.getElementById("serialNumberOtherAccessory").value="";
-	
+	var table = document.getElementById(tableID);
+
+	var rowCount = table.rows.length;
+	var row = table.insertRow(rowCount);
+
+	var colCount = table.rows[0].cells.length;
+
+	for(var i=0; i<colCount; i++) {
+
+		var newcell	= row.insertCell(i);
+
+		newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+		//alert(newcell.childNodes);
+		switch(newcell.childNodes[0].type) {
+			case "text":
+					newcell.childNodes[0].value = "";
+					break;
+			case "checkbox":
+					newcell.childNodes[0].checked = false;
+					break;
+		}
+	}
 }
+
+function deleteRow(tableID) {
+	try {
+	var table = document.getElementById(tableID);
+	var rowCount = table.rows.length;
+
+	for(var i=0; i<rowCount; i++) {
+		var row = table.rows[i];
+		var chkbox = row.cells[0].childNodes[0];
+		if(null != chkbox && true == chkbox.checked) {
+			if(rowCount <= 1) {
+				alert("Cannot delete all the rows.");
+				break;
+			}
+			table.deleteRow(i);
+			rowCount--;
+			i--;
+		}
+
+
+	}
+	}catch(e) {
+		alert(e);
+	}
+}
+
 </script>
 
-<!--Mono and Colour Selection-->
-<script type="text/javascript">
+	<!--Mono and Colour Selection-->
+	<script type="text/javascript">
 
 function CheckColors(val){
  var element=document.getElementById('mono');
@@ -1074,8 +1136,8 @@ function CheckColors(val){
 
 </script>
 
-<!-- Make all Serials numbers UpperCase  -->
-<script type="text/javascript">
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
 function upperCaseF(a){
     setTimeout(function(){
         a.value = a.value.toUpperCase();
@@ -1083,8 +1145,8 @@ function upperCaseF(a){
 }
 </script>
 
-<!-- Accept alphabetical characters only -->
-<script language="Javascript" type="text/javascript">
+	<!-- Accept alphabetical characters only -->
+	<script language="Javascript" type="text/javascript">
     function onlyAlphabets(e, t) {
         try {
             if (window.event) {
@@ -1105,8 +1167,8 @@ function upperCaseF(a){
     }
 </script>
 
-<!-- Accept alphanumeric characters only -->
-<script type="text/javascript">
+	<!-- Accept alphanumeric characters only -->
+	<script type="text/javascript">
 function isNumber(evt) {
 evt = (evt) ? evt : window.event;
 var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -1117,8 +1179,8 @@ return true;
 }
 </script>
 
-<!--Compare start, end and installation date between each other-->
-<script type="text/javascript">
+	<!--Compare start, end and installation date between each other-->
+	<script type="text/javascript">
 
 $("#startDate, #endDate, #installationDate").datepicker();
 
@@ -1147,8 +1209,8 @@ if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDa
 });
 </script>
 
-<!-- Enable datepicker for start, end and install date-->
-<script type="text/javascript">
+	<!-- Enable datepicker for start, end and install date-->
+	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#startDatePicker').datepicker({
 			format : "yyyy-mm-dd",
@@ -1158,7 +1220,7 @@ if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDa
 	});
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 $(document).ready(function() {
 	$('#endDatePicker').datepicker({
 		format : "yyyy-mm-dd",
@@ -1168,7 +1230,7 @@ $(document).ready(function() {
 });
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#installDatePicker').datepicker({
 			format : "yyyy-mm-dd",
@@ -1179,8 +1241,8 @@ $(document).ready(function() {
 </script>
 
 
-<!-- Check if checkboxes are checked, if checked enable input text -->
-<script type="text/javascript">
+	<!-- Check if checkboxes are checked, if checked enable input text -->
+	<script type="text/javascript">
 	document.getElementById('bridgeunitserial').onchange = function() {
 		document.getElementById('bridgeunit').disabled = !this.checked;
 		document.getElementById('finisherserial').disabled = !this.checked;

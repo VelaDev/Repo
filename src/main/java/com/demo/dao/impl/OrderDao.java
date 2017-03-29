@@ -261,15 +261,25 @@ public class OrderDao implements OrdersDaoInt {
 				cus = customerDaoInt.getClientByClientName(customer);
 				cusOrder.setCustomer(cus);
 			}
+			if(emp.getRole().equalsIgnoreCase("Manager")){
+				cusOrder.setApprover(emp.getEmail());
+				
+				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
+				cusOrder.setEmployee(emp);
+			}
+			else{
+				cusOrder.setEmployee(emp);
+				cusOrder.setApprover(orderBean.getApprover());
+			}
 			cusOrder.setStockType(orderBean.getStockType());
 			cusOrder.setStatus("Pending");
-			cusOrder.setApprover(orderBean.getApprover());
+			
 
 			recordID = newRecordID();
 			orderNumber = "ORD00" + recordID;
 			cusOrder.setRecordID(recordID);
 			cusOrder.setOrderNum(orderNumber);
-			cusOrder.setEmployee(emp);
+			
 			cusOrder.setApproved(false);
 			cusOrder.setDateOrdered(dateFormat.format(date));
 

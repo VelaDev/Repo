@@ -25,6 +25,7 @@ public class OrdersBean {
 	private String location;
 	
 	private String employee;
+	private String technicianUserName;
 	private String part;
 	private String customer;
 	private String device;

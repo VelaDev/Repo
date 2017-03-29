@@ -20,6 +20,7 @@ public class DeviceBean {
 	private String monoReading;
 	private String monoCopyCost;
 	private String colourCopyCost;
+	
 
 	// Machine Accessories input check box
 	private String bridgeUnitSerialType;

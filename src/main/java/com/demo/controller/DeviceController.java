@@ -103,10 +103,10 @@ public class DeviceController {
 		if(userName != null){
 			
 			accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
-			for(Accessories devices:accessories){
+			/*for(Accessories devices:accessories){
 				device = devices.getDevice();
 				break;
-			}
+			}*/
 	        model.addObject("accessories", accessories);
 	        model.addObject("device",deviceServiceInt.getDeviceBySerialNumber(serialNumber) );
 	        model.setViewName("detailedProduct");

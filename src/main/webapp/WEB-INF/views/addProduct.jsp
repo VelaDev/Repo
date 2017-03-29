@@ -21,7 +21,12 @@
 li {
 	list-style: none;
 }
-
+.machinetype{
+		margin-left:3%;
+	}
+	.serial{
+		margin-left:41%;
+	}
 .customerDeviceContainer {
 	padding: 25px;
 	margin-bottom: -1em;
@@ -536,26 +541,29 @@ ul.addressDeviceList {
 									<!-- Other Machine Accessories -->
 									<h5>Other Machine Accessories</h5>
 
+									<h5>Other Machine Accessories</h5>
+									<input type="button" class="btn btn-success" value="Add"
+										onclick="addRow('dataTable')" /> <input type="button"
+										class="btn btn-danger" value="Delete"
+										onclick="deleteRow('dataTable')" /><br />
+									<br> <label>Delete</label> <label class="machinetype">Machine
+										Type</label> <label class="serial">Serial Number</label>
+
 									<table id="dataTable"
 										class="table table-striped table-bordered table-hover table-condensed">
 										<tr>
-											<th>Machine Type</th>
-											<th>Serial Number</th>
-											<th>Action</th>
-										</tr>
-
-										<tr>
+											<td><input type="checkbox" id="checkToDelete"
+												name="checkToDelete" value="" /></td>
 											<td><input type="text" class="form-control"
 												id="machineType" name="machineType"
-												placeholder="Machine Accessory Type"></td>
+												placeholder="Machine Accessory Type"
+												></td>
 											<td><input type="text" class="form-control"
 												id="serialNumberOtherAccessory"
 												name="serialNumberOtherAccessory"
-												onkeydown="upperCaseF(this)" placeholder="Serial Number"></td>
-											<td><button type="button" class="btn btn-success"
-													onclick="add_row();">Add Row</button></td>
+												onkeydown="upperCaseF(this)" placeholder="Serial Number"
+												></td>
 										</tr>
-
 									</table>
 
 									<!-- Other Machine Accessories -->
@@ -1028,24 +1036,57 @@ $(document).ready(function() {
 <!---Script to add other Accossory-->
 <!--Create a table to add other accessories-->
 <script type="text/javascript">
-//Delete a row on table
-function delete_row(no)
-{
-	document.getElementById("row"+no+"").outerHTML="";
-}
-//Add a row on table
-function add_row()
-{
-	var machineType = document.getElementById("machineType").value;
-	var serialNumberOtherAccessory = document.getElementById("serialNumberOtherAccessory").value;
-	var table=document.getElementById("dataTable");
-	var table_len=(table.rows.length)-1;
-	var row = table.insertRow(table_len).outerHTML="<tr id='row"+table_len+"'><td id='name_row"+table_len+"'>"+machineType+" <input type='text' class='form-control' id='machineType' name='machineType' placeholder='Machine Accessory Type'  > </td><td id='name_row"+table_len+"'>"+serialNumberOtherAccessory+" <input type='text' class='form-control' id='serialNumberOtherAccessory' name='serialNumberOtherAccessory' onkeydown='upperCaseF(this)' placeholder='Serial Number'  ></td><td> <input type='button' value='Delete' class='btn btn-danger' class='delete' onclick='delete_row("+table_len+")'></td></tr>";
+function addRow(tableID) {
 
-	document.getElementById("machineType").value="";
-	document.getElementById("serialNumberOtherAccessory").value="";
-	
+	var table = document.getElementById(tableID);
+
+	var rowCount = table.rows.length;
+	var row = table.insertRow(rowCount);
+
+	var colCount = table.rows[0].cells.length;
+
+	for(var i=0; i<colCount; i++) {
+
+		var newcell	= row.insertCell(i);
+
+		newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+		//alert(newcell.childNodes);
+		switch(newcell.childNodes[0].type) {
+			case "text":
+					newcell.childNodes[0].value = "";
+					break;
+			case "checkbox":
+					newcell.childNodes[0].checked = false;
+					break;
+		}
+	}
 }
+
+function deleteRow(tableID) {
+	try {
+	var table = document.getElementById(tableID);
+	var rowCount = table.rows.length;
+
+	for(var i=0; i<rowCount; i++) {
+		var row = table.rows[i];
+		var chkbox = row.cells[0].childNodes[0];
+		if(null != chkbox && true == chkbox.checked) {
+			if(rowCount <= 1) {
+				alert("Cannot delete all the rows.");
+				break;
+			}
+			table.deleteRow(i);
+			rowCount--;
+			i--;
+		}
+
+
+	}
+	}catch(e) {
+		alert(e);
+	}
+}
+
 </script>
 
 

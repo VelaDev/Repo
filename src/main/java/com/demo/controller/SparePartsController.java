@@ -157,7 +157,7 @@ public class SparePartsController {
 				model.addObject("sparePart", master);
 				model.addObject("models", spareMasterServiceInt.getModelDevice(partNumber));
 			}else{
-				model.addObject("retMessage", "Part Number does not exist.");
+				model.addObject("errorRetMessage", "Part Number does not exist.");
 			}
 		model.setViewName("receiveParts");
 		}

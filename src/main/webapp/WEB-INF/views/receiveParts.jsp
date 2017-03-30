@@ -23,10 +23,8 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style>
-
-.model{ 
-margin-left:3%
-
+.model {
+	margin-left: 3%
 }
 
 .form-group-model {
@@ -60,10 +58,14 @@ margin-left:3%
 					</c:out>
 				</div>
 			</c:if>
+			<c:if test="${not empty errorRetMessage }">
 
-			<%--  <c:if test="${empty models}">
-				<c:out value="${models}"></c:out>
-			</c:if>--%>
+				<div class="alert alert-danger" role="alert">
+					<c:out value="${ errorRetMessage}">
+					</c:out>
+					click <a href="addSpares.html">here </a>to add spare
+				</div>
+			</c:if>
 
 			<div class="panel panel-success">
 				<div class="panel-heading">
@@ -204,19 +206,19 @@ margin-left:3%
 								<legend>Compatible Devices </legend>
 
 								<div class="tableContect">
-									
+
 									<table id="dataTable" width="300px" style="width: 300px"
 										class="table table-striped table-bordered table-hover table-condensed">
-										 <label	class="model">Model No</label>
+										<label class="model">Model No</label>
 										<c:forEach var="compitableDevice" items="${models}">
 											<tr>
-												
+
 												<td><input type="text" readOnly class="form-control"
 													id="compitableDevice" name="compitableDevice"
 													value="${compitableDevice}"></td>
 											</tr>
 										</c:forEach>
-										
+
 									</table>
 								</div>
 							</div>

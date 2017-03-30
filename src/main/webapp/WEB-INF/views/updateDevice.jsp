@@ -415,6 +415,34 @@ ul.addressDeviceList {
 
 								<!--Second column-->
 								<div class="col-sm-6">
+								
+									<!-- Text input Building Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Building Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="buildingName" id="buildingName"
+													placeholder="Building Name" class="form-control"
+													type="text" value="${productObject.buildingName}">
+											</div>
+										</div>
+									</div>
+									<!-- Text input Floor Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Floor Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="floorNumber" id="floorNumber"
+													placeholder="Floor Number" maxlength="4" class="form-control"
+													type="text" value="${productObject.floorNumber}">
+											</div>
+										</div>
+									</div>
+								
 									<!-- Text input Street Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street No</label>
@@ -526,10 +554,39 @@ ul.addressDeviceList {
 									</table>
 									
 									<!-- Other Machine Accessories -->
+									<h5>Other Machine Accessories</h5>
+									
+									<input type="button" class="btn btn-success" value="Add"
+										onclick="addRow('dataTable')" /> <input type="button"
+										class="btn btn-danger" value="Delete"
+										onclick="deleteRow('dataTable')" /><br />
+									<br> <label>Delete</label> <label class="machinetype">Machine
+										Type</label> <label class="serial">Serial Number</label>
+
+									<table id="dataTable"
+										class="table table-striped table-bordered table-hover table-condensed">
+										<tr>
+											<td><input type="checkbox" id="checkToDelete"
+												name="checkToDelete" value="" /></td>
+											<td><input type="text" class="form-control"
+												id="machineType" name="machineType"
+												placeholder="Machine Accessory Type"
+												></td>
+											<td><input type="text" class="form-control"
+												id="serialNumberOtherAccessory"
+												name="serialNumberOtherAccessory"
+												onkeydown="upperCaseF(this)" placeholder="Serial Number"
+												></td>
+										</tr>
+									</table>
+
+									<!-- Other Machine Accessories -->
 
 								</div>
 							</fieldset>
 							<!--Machine Accessories-->
+							
+							
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
@@ -551,6 +608,7 @@ ul.addressDeviceList {
 									</div>
 								</div>
 							</div> -->
+							
 						</form:form>
 
 
@@ -567,20 +625,21 @@ ul.addressDeviceList {
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-
+		
+	
 	<!-- Scripts -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
+	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	
+	<!-- Datatables -->	
+	<script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	<!-- //Datatables -->
+	
 	<!-- /Scripts -->
-
-
-	<!-- Validate add device -->
+	
+	<!-- Validate update device -->
 	<script>
 $(document).ready(function() {
     $('#updateDevice').bootstrapValidator({
@@ -780,8 +839,32 @@ $(document).ready(function() {
                         message: 'The installation date is not a valid'
                     }
                 }
-            },		
-			streetNumber : {
+            },
+            buildingName : {            	
+            	validators : {            		
+				stringLength : {
+					min : 2,
+				},
+				notEmpty : {
+					message : 'Building name is required and cannot be empty'
+					}
+				}
+			},            
+			floorNumber : {
+				validators : {
+					stringLength : {
+						//min : 3,
+					},
+					notEmpty : {
+						message : 'Floor number is required and cannot be empty'
+					},
+	                regexp: {
+	                    regexp: /^[0-9]+$/,
+	                    message: 'Floor number can only consist of numbers '
+	                }
+				}
+			},
+            streetNumber : {
 				validators : {
 					stringLength : {
 						//min : 3,
@@ -991,9 +1074,8 @@ $(document).ready(function() {
 });
 </script>
 
-	<!---Script to add other Accossory-->
-	<!--Create a table to add other accessories-->
-	<script type="text/javascript">
+<!--Create a table to add other accessories-->
+<script type="text/javascript">
 function addRow(tableID) {
 
 	var table = document.getElementById(tableID);
@@ -1047,8 +1129,8 @@ function deleteRow(tableID) {
 
 </script>
 
-	<!--Mono and Colour Selection-->
-	<script type="text/javascript">
+<!--Mono and Colour Selection-->
+<script type="text/javascript">
 
 function CheckColors(val){
  var element=document.getElementById('mono');
@@ -1067,8 +1149,8 @@ function CheckColors(val){
 
 </script>
 
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
 function upperCaseF(a){
     setTimeout(function(){
         a.value = a.value.toUpperCase();
@@ -1076,8 +1158,8 @@ function upperCaseF(a){
 }
 </script>
 
-	<!-- Accept alphabetical characters only -->
-	<script language="Javascript" type="text/javascript">
+<!-- Accept alphabetical characters only -->
+<script language="Javascript" type="text/javascript">
     function onlyAlphabets(e, t) {
         try {
             if (window.event) {
@@ -1098,8 +1180,8 @@ function upperCaseF(a){
     }
 </script>
 
-	<!-- Accept alphanumeric characters only -->
-	<script type="text/javascript">
+<!-- Accept alphanumeric characters only -->
+<script type="text/javascript">
 function isNumber(evt) {
 evt = (evt) ? evt : window.event;
 var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -1145,7 +1227,7 @@ if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDa
 	$(document).ready(function() {
 		$('#startDatePicker').datepicker({
 			format : "yyyy-mm-dd",
-			startDate: 'd0',
+			//startDate: 'd0',
 	        autoclose: true
 		});
 	});
@@ -1155,7 +1237,7 @@ if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDa
 $(document).ready(function() {
 	$('#endDatePicker').datepicker({
 		format : "yyyy-mm-dd",
-		startDate: 'd0',
+		//startDate: 'd0',
         autoclose: true
 	});
 });
@@ -1165,46 +1247,11 @@ $(document).ready(function() {
 	$(document).ready(function() {
 		$('#installDatePicker').datepicker({
 			format : "yyyy-mm-dd",
-			startDate: 'd0',
+			//startDate: 'd0',
 	        autoclose: true
 		});
 	});
 </script>
-
-
-	<!-- Check if checkboxes are checked, if checked enable input text -->
-	<script type="text/javascript">
-	document.getElementById('bridgeunitserial').onchange = function() {
-		document.getElementById('bridgeunit').disabled = !this.checked;
-		document.getElementById('finisherserial').disabled = !this.checked;
-	};
-	document.getElementById('finisher').onchange = function() {
-		document.getElementById('finisherserial').disabled = !this.checked;
-		document.getElementById('bridgeunit').disabled = !this.checked;
-	};
-	
-	document.getElementById('faxunit').onchange = function() {
-		document.getElementById('faxunitserial').disabled = !this.checked;
-	};
-	document.getElementById('onebintrayserial').onchange = function() {
-		document.getElementById('onebintray').disabled = !this.checked;
-	};
-	
-	document.getElementById('ltcserial').onchange = function() {
-		document.getElementById('lct').disabled = !this.checked;
-	};
-	document.getElementById('creserial').onchange = function() {
-		document.getElementById('cre').disabled = !this.checked;
-	};
-	document.getElementById('addserial').onchange = function() {
-		document.getElementById('add').disabled = !this.checked;
-	};
-	
-</script>
-</body>
-<script type="text/javascript"	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<%-- <script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script> --%>
 
 <script>
 	$(document).ready(function() {
@@ -1216,4 +1263,7 @@ $(document).ready(function() {
 		});
 	});
 </script>
+
+</body>
+
 </html>

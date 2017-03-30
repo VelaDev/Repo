@@ -396,6 +396,33 @@ ul.addressDeviceList {
 								<!--Second column-->
 								<div class="col-sm-6">
 
+										<!-- Text input Building Name-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Building Name</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="buildingName" id="buildingName"
+													placeholder="Building Name" class="form-control"
+													type="text" >
+											</div>
+										</div>
+									</div>
+									<!-- Text input Floor Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Floor Number</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-home"></i></span> <input
+													name="floorNumber" id="floorNumber"
+													placeholder="Floor Number" maxlength="4" class="form-control"
+													type="text" >
+											</div>
+										</div>
+									</div>
+									
 									<!-- Text input Street Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street No</label>
@@ -838,6 +865,31 @@ $(document).ready(function() {
 		                regexp: {
 		                    regexp: /^[0-9]+$/,
 		                    message: 'The Street number can only consist of numbers '
+		                }
+					}
+				},
+				buildingName : {            	
+	            	validators : {            		
+					stringLength : {
+						min : 2,
+					},
+					notEmpty : {
+						message : 'Building name is required and cannot be empty'
+						}
+					}
+				},
+	            
+	            floorNumber : {
+					validators : {
+						stringLength : {
+							//min : 3,
+						},
+						notEmpty : {
+							message : 'Floor number is required and cannot be empty'
+						},
+		                regexp: {
+		                    regexp: /^[0-9]+$/,
+		                    message: 'Floor number can only consist of numbers '
 		                }
 					}
 				},

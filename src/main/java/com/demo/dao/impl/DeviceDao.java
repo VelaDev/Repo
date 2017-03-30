@@ -130,6 +130,8 @@ public class DeviceDao implements DeviceDaoInt {
 			device.setMonoCopyCost(deviceBean.getMonoCopyCost());
 			device.setColourCopyCost(deviceBean.getColourCopyCost());
 
+			device.setBuildingName(deviceBean.getBuildingName());
+			device.setFloorNumber(deviceBean.getFloorNumber());
 			device.setAreaCode(deviceBean.getZipcode());
 			device.setCity_town(deviceBean.getCity_town());
 			device.setProvince(deviceBean.getProvince());

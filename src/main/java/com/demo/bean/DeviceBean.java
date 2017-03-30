@@ -47,6 +47,8 @@ public class DeviceBean {
 	private String accessoryName;
 	private String accessorySerial;
 
+	private String buildingName;
+	private String floorNumber;
 	private String streetName;
 	private String city_town;
 	private String province;

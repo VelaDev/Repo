@@ -63,6 +63,10 @@ public class Device implements Serializable{
 	private String streetNumber;
 	@Column(name="Street_Name")
 	private String streetName;
+	@Column(name="Building_Name")
+	private String buildingName;
+	@Column(name="Floor_Number")
+	private String floorNumber;
 	@Column(name="Area_Code")
 	private String areaCode;
 	@Column(name="DateTime")

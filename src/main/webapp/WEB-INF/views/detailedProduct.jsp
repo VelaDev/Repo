@@ -179,6 +179,21 @@ header, #content, #middle, #sidebar {
 											<div class="col-xs-8">
 												<div class="col-xs-4 form-control-label">
 													<h6>
+														<label>Brand:</label>
+													</h6>
+
+												</div>
+												<div class="col-xs-8">
+													<input type="text" class="form-control input-sm"
+														value="${device.modelBrand}" disabled="disabled">
+												</div>
+											</div>
+										</div>
+										
+										<div class="row">
+											<div class="col-xs-8">
+												<div class="col-xs-4 form-control-label">
+													<h6>
 														<label>Contract Start Date:</label>
 													</h6>
 

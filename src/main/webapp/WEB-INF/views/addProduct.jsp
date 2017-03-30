@@ -256,7 +256,7 @@ ul.addressDeviceList {
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
-													id="brand" name="brand" class="form-control">
+													id="modelBrand" name="modelBrand" class="form-control">
 													<option>Select Brand</option>
 													<option value="Samsung">Samsung</option>
 													<option value="Canon">Canon</option>
@@ -784,7 +784,7 @@ $(document).ready(function() {
 						}
 					}
 				},
-				brand : {
+				modelBrand : {
 					validators : {
 						notEmpty : {
 							message : 'Brand is required and cannot be empty'

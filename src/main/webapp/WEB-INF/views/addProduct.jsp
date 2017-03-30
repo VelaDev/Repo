@@ -540,8 +540,7 @@ ul.addressDeviceList {
 
 									<!-- Other Machine Accessories -->
 									<h5>Other Machine Accessories</h5>
-
-									<h5>Other Machine Accessories</h5>
+									
 									<input type="button" class="btn btn-success" value="Add"
 										onclick="addRow('dataTable')" /> <input type="button"
 										class="btn btn-danger" value="Delete"

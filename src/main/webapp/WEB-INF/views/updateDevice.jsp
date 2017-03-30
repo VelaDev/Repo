@@ -578,21 +578,38 @@ ul.addressDeviceList {
 
 									<table id="dataTable"
 										class="table table-striped table-bordered table-hover table-condensed">
+										
 										<tr>
-											<td><input type="checkbox" id="checkToDelete"
+										<td><input type="checkbox" id="checkToDelete"
 												name="checkToDelete" value="" /></td>
+												
+										<c:forEach var="accessoryList" items="${accessories}">
+											
 											<td><input type="text" class="form-control"
 												id="machineType" name="machineType"
 												placeholder="Machine Accessory Type"
-												value="${AccessoryObject.machineType }"></td>
+												value="${accessoryList.accessotyType }"></td>
 											<td><input type="text" class="form-control"
 												id="serialNumberOtherAccessory"
 												name="serialNumberOtherAccessory"
 												onkeydown="upperCaseF(this)" placeholder="Serial Number"
-												value="${AccessoryObject.serialNumberOtherAccessory }"></td>
+												value="${accessoryList.serial}"></td>																			
+											
+										</c:forEach>
+										
+											<td><input type="text" class="form-control"
+												id="machineType" name="machineType"
+												placeholder="Machine Accessory Type">
+											</td>
+											<td><input type="text" class="form-control"
+												id="serialNumberOtherAccessory"
+												name="serialNumberOtherAccessory"
+												onkeydown="upperCaseF(this)" placeholder="Serial Number">
+											</td>
+										
 										</tr>
+										
 									</table>
-
 									<!-- Other Machine Accessories -->
 
 								</div>

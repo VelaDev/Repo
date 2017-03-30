@@ -8,7 +8,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_custom.css" />">
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">	
+  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -501,121 +504,27 @@ ul.addressDeviceList {
 								<legend align="left">Machine Accessories</legend>
 
 								<div class="tablemachinesacccso">
-									<table id="tableselect"
-										class="table table-striped table-bordered table-hover table-condensed">
-
+									<table id="myDatatable" class="display datatable">
 										<thead>
 											<tr>
 												<th>Machine Type</th>
 												<th>Serial Number</th>
+												<th>Remove Accessory</th>
 											</tr>
 										</thead>
 										<tbody>
-											<tr>
-												<td><input type="checkbox" id="bridgeunitserial"
-													name="bridgeUnitSerialType"> Bridge unit</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="bridgeunit"
-													name="bridgeUnitSerialTypeSerialNo" disabled="disabled"
-													value="${AccessoryObject.bridgeUnitSerialTypeSerialNo }"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select" id="finisher"
-													name="finisherType"> Finisher</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="finisherserial"
-													name="finisherTypeSerialNo" disabled="disabled"
-													value="${AccessoryObject.finisherTypeSerialNo }"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select" id="faxunit"
-													name="faxUnitSerialType"> Fax Unit</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="faxunitserial"
-													name="faxUnitSerialTypeSerialNo" disabled="disabled"
-													value="${AccessoryObject.faxUnitSerialTypeSerialNo }"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="onebintrayserial" name="bridgeUnitSerialType">
-													One bin tray</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="onebintray"
-													name="OneBinTrayTypeSerialNo" disabled="disabled"
-													value="${AccessoryObject.oneBinTrayTypeSerialNo }"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="ltcserial" name="ltcType"> LCT</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="lct" name="ltcTypeSerial"
-													disabled="disabled"
-													value="${AccessoryObject.ltcTypeSerial }"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="creserial" name="creType"> Credenza</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="cre" name="creTypeserial"
-													disabled="disabled"
-													value="${AccessoryObject.creTypeserial }"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="addserial" name="addType"> Additional paper
-													trays</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="add" name="addTypeserial"
-													disabled="disabled"
-													value="${AccessoryObject.addTypeserial }"></td>
-											</tr>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach var="list" items="${accessories}">
+												<tr>
+											
+                                                   	<td>${list.accessotyType}</td>
+													<td>${list.serial}</td>
+													<td><a href="removeAccessory?serial=<c:out value='${list.serial}'/>">Remove</a></td>
+                                                    </tr>
+											</c:forEach>
 										</tbody>
 									</table>
-
-									<!-- Other Machine Accessories -->
 									
-									<h5>Other Machine Accessories</h5>
-									<input type="button" class="btn btn-success" value="Add"
-										onclick="addRow('dataTable')" /> <input type="button"
-										class="btn btn-danger" value="Delete"
-										onclick="deleteRow('dataTable')" /><br />
-									<br> <label>Delete</label> <label class="machinetype">Machine
-										Type</label> <label class="serial">Serial Number</label>
-
-									<table id="dataTable"
-										class="table table-striped table-bordered table-hover table-condensed">
-										
-										<tr>
-										<td><input type="checkbox" id="checkToDelete"
-												name="checkToDelete" value="" /></td>
-												
-										<c:forEach var="accessoryList" items="${accessories}">
-											
-											<td><input type="text" class="form-control"
-												id="machineType" name="machineType"
-												placeholder="Machine Accessory Type"
-												value="${accessoryList.accessotyType }"></td>
-											<td><input type="text" class="form-control"
-												id="serialNumberOtherAccessory"
-												name="serialNumberOtherAccessory"
-												onkeydown="upperCaseF(this)" placeholder="Serial Number"
-												value="${accessoryList.serial}"></td>																			
-											
-										</c:forEach>
-										
-											<td><input type="text" class="form-control"
-												id="machineType" name="machineType"
-												placeholder="Machine Accessory Type">
-											</td>
-											<td><input type="text" class="form-control"
-												id="serialNumberOtherAccessory"
-												name="serialNumberOtherAccessory"
-												onkeydown="upperCaseF(this)" placeholder="Serial Number">
-											</td>
-										
-										</tr>
-										
-									</table>
 									<!-- Other Machine Accessories -->
 
 								</div>
@@ -1293,4 +1202,18 @@ $(document).ready(function() {
 	
 </script>
 </body>
+<script type="text/javascript"	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+<%-- <script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script> --%>
+
+<script>
+	$(document).ready(function() {
+		$('#myDatatable').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
 </html>

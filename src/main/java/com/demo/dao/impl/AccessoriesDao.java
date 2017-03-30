@@ -13,6 +13,10 @@ import java.util.List;
 
 
 
+
+
+
+
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.AccessoriesDaoInt;
 import com.demo.model.Accessories;
+import com.demo.model.Device;
 
 @Repository("accessoriesDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -83,7 +88,7 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 			aList.addAll(criteria.list());
 			for (Object access : aList) {
 				if (access instanceof Accessories) {
-					if (((Accessories) access).getDevice().getSerialNumber()!=null&&((Accessories) access).getDevice().getSerialNumber().equalsIgnoreCase(serialNo)) {
+					if (((Accessories) access).getDevice().getSerialNumber()!=null&&((Accessories) access).getDevice().getSerialNumber().equalsIgnoreCase(serialNo)&&((Accessories) access).getDevice().getSerialNumber()!="") {
 						accessoriesList.add((Accessories) access);
 					}
 				}
@@ -92,5 +97,25 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 		return null;
 	}
 		return accessoriesList;
+	}
+
+	@Override
+	public String removeAccessory(String serialNo) {
+		try{
+			Accessories accessories = getAccessories(serialNo);
+			sessionFactory.getCurrentSession().delete(accessories);
+			
+			retMessage="Accessory "+ serialNo +" is removed";
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return retMessage;
+	}
+
+	@Override
+	public Accessories getAccessories(String serialNo) {
+		
+		return (Accessories) sessionFactory.getCurrentSession().get(Accessories.class,
+				serialNo);
 	}
 }

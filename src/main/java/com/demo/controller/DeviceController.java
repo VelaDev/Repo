@@ -180,9 +180,11 @@ public class DeviceController {
 		     deviceBean = deviceServiceInt.getAccessoriesForUpdate(serialNumber);
 		     if(device != null)
 				{
+		    		accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
 				    model.addObject("customer",contactDetailsServiceInt.contactDetails(device.getCustomer().getCustomerName()));
 				    model.addObject("productObject", device);
 				    model.addObject("AccessoryObject", deviceBean);
+				    model.addObject("accessories", accessories);
 				}
 				else{
 					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");
@@ -197,15 +199,16 @@ public class DeviceController {
 	}
 	
 	@RequestMapping(value="searchDeviceBySerialNo")
-	public ModelAndView searchDeviceBySerialNo1(@RequestParam("SerialNo") String serialNumber,Device device){
+	public ModelAndView searchDeviceBySerialNo1(@RequestParam("serialNumber") String serialNumber,Device device){
 		model= new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		if(device != null){
+			accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
 			model.addObject("productObject", device);
-		    model.addObject("accessories", accessoriesInt.getAccessoriesByDeviceSerial(serialNumber));
+		    model.addObject("accessories", accessories);
 		    
 		}
 		else{
@@ -258,6 +261,20 @@ public class DeviceController {
 			model.setViewName("login");
 		}
 		
+		return model;
+	}
+	@RequestMapping(value="removeAccessory")
+	public ModelAndView removeAccessory(@RequestParam("serial")String serial)
+	{
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("retMessage",accessoriesInt.removeAccessory(serial));
+			model.setViewName("updateDevice");
+		}
+		else{
+			model.setViewName("login");
+		}
 		return model;
 	}
 }

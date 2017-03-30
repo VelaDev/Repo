@@ -7,6 +7,7 @@ import com.demo.model.OrderDetails;
 
 public interface ApprovedOrderStockDaoInt {
 	
+	
 	public String approveOrderStock(List<OrderDetails> detailsDaos);
 	
 	public List<ApprovedOrderStock> getApprovedOrdersByOrderNumber(String orderNumber);

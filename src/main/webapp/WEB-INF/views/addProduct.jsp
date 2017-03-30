@@ -258,8 +258,15 @@ ul.addressDeviceList {
 													class="glyphicon glyphicon-list"></i></span> <select
 													id="brand" name="brand" class="form-control">
 													<option>Select Brand</option>
-													<option value="samsung">Samsung</option>
-													<option value="kaynon">Kaynon</option>
+													<option value="Samsung">Samsung</option>
+													<option value="Canon">Canon</option>
+													<option value="Oce">Oce</option>
+													<option value="HP">HP</option>													
+													<option value="Kyocera">Kyocera</option>
+													<option value="Nasua">Nasua</option>
+													<option value="Rico">Rico</option>
+													<option value="Riso">Riso</option>
+
 												</select>
 											</div>
 										</div>

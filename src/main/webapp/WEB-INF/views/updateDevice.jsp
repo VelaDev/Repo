@@ -8,20 +8,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_custom.css" />">
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">	
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">	
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+  
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <style>
 li {
 	list-style: none;

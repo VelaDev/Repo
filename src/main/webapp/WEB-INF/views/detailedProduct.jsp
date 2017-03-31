@@ -31,7 +31,7 @@ ul.address_list {
 /* STRUCTURE */
 
 #content {
-	width: 42%;
+	width: 40%;
 	float: left;
 	padding: 5px 15px;
 }
@@ -44,7 +44,7 @@ ul.address_list {
 }
 
 #sidebar {
-	width: 33%;
+	width: 35%;
 	padding: 5px 15px;
 	float: left;
 }
@@ -60,7 +60,7 @@ MEDIA QUERIES
 		width: 94%;
 	}
 	#content {
-		width: 41%;
+		width: 40%;
 		padding: 1% 4%;
 	}
 	#middle {

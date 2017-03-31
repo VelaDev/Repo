@@ -480,6 +480,7 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public String declineOrder(String orderNum,String reasonForeclined) {
 		
+		
 		try{
 			cusOrder = declineOrder(orderNum);
 			cusOrder.setComments(reasonForeclined);

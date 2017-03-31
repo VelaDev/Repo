@@ -90,7 +90,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select
 												name="technicianUserName" id="technicianUserName" class="form-control selectpicker">
-												<option>Select Technician</option>
+												<option value="">Select Technician</option>
 												<c:forEach items="${technicianList}" var="technician">
 													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
 												</c:forEach>

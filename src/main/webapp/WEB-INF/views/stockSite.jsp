@@ -31,7 +31,7 @@
 				<div class="panel-body">
 					
 					<div class="tab-content">
-					       <h4 align="center">Stock Site</h4>
+					       <h4 align="center">Site Stock</h4>
 					       <form action="">
 					       <!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">

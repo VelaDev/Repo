@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Boot Site | Velaphanda Trading & Projects</title>
+<title>Boot Stock | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,7 +31,7 @@
 				<div class="panel-body">
 					
 					<div class="tab-content">
-					       <h4 align="center">Boot Site</h4>
+					       <h4 align="center">Boot Stock</h4>
 					       <form action="">
 					       <!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">

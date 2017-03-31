@@ -89,7 +89,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select
-												name="technicianUserName" class="form-control selectpicker">
+												name="technicianUserName" id="technicianUserName" class="form-control selectpicker">
 												<option>Select Technician</option>
 												<c:forEach items="${technicianList}" var="technician">
 													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
@@ -217,7 +217,7 @@
                     }
                 }
             },
-            technician: {
+            technicianUserName: {
                 validators: {
                     notEmpty: {
                         message: 'Technician is required and cannot be empty'

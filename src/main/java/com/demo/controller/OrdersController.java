@@ -71,7 +71,14 @@ public class OrdersController {
 		if (userName != null) {
 			retMessage = ordersServiceInt.prepareOrderMaking(order);
 			model.addObject("retMessage", retMessage);
-			model.setViewName("order");
+			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
+				
+				model.setViewName("placeOrderForTechnician");
+			}else if(userName.getRole().equalsIgnoreCase("Technician")){
+				
+				model.setViewName("order");
+			}
+			
 		} else {
 			model.setViewName("login");
 		}

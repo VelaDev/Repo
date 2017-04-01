@@ -37,24 +37,24 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-								   <th>Model No </th>
+								   <th>Record ID </th>
 									<th>Part No</th>
 									<th>Description</th>
-									<th>Stock Type</th>
 									<th>QTY </th>
 									<th>Technician </th>
+									<th>Customer </th>
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${orders}">
 									<tr>
-									    <td>${list.model}</td>
+									    <td>${list.recordID}</td>
 									    <td>${list.partNumber}</td>
 										<td>${list.itemDescription}</td>
-										<td>${list.stockType}</td>
 										<td>${list.quantity}</td>
-										<td>${list.technician}</td>
+										<td>${list.technicianName}</td>
+										<td>${list.customerName}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

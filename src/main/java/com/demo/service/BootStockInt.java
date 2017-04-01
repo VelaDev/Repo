@@ -1,13 +1,11 @@
-package com.demo.dao;
+package com.demo.service;
 
 import java.util.List;
 
 import com.demo.model.BootStock;
-import com.demo.model.OrderDetails;
 
-public interface BootStockDaoInt {
+public interface BootStockInt {
 	
-	void saveBootStock(List<OrderDetails> detailsDaos);
 	List<BootStock> getAllOrders();
 	List<BootStock> getAllOrders(String technician);
 

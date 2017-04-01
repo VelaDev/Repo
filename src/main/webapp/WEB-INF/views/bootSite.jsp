@@ -37,13 +37,11 @@
 						<table id="myDatatable" class="display datatable">
 							<thead>
 								<tr>
-								   <th>Model No <img
+								   <th>Record ID <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Part No <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>Description <img
-										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
-									<th>Stock Type <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
 									<th>QTY <img
 										src="resources/bootstrap-3.3.6/images/sort_both.png"></th>
@@ -55,12 +53,11 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${orders}">
 									<tr>
-									    <td>${list.model}</td>
-									    <td>${list.partNumber}</td>
+									    <td>${list.recordID}</td>
+										<td>${list.partNumber}</td>
 										<td>${list.itemDescription}</td>
-										<td>${list.stockType}</td>
 										<td>${list.quantity}</td>
-										<td>${list.technician}</td>
+										<td>${list.technicianName}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

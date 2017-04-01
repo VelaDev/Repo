@@ -266,6 +266,7 @@ public class OrderDao implements OrdersDaoInt {
 				
 				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
 				cusOrder.setEmployee(emp);
+				String tempTechnician = emp.getFirstName() + " " +emp.getLastName();
 			}
 			else{
 				cusOrder.setEmployee(emp);
@@ -296,7 +297,12 @@ public class OrderDao implements OrdersDaoInt {
 				orderDetails.setQuantity(quatity);
 				orderDetails.setLocation(orderBean.getLocation());
 				orderDetails.setStockType(cusOrder.getStockType());
-				orderDetails.setTechnician(orderBean.getTechnician());
+				if(orderBean.getTechnician()!= null){
+					orderDetails.setTechnician(orderBean.getTechnician());
+				}
+				else{
+					orderDetails.setTechnician(emp.getFirstName()+" " +emp.getLastName());
+				}
 				orderDetails.setOrderHeader(cusOrder);
 				orderDetails.setDateTime(dateFormat.format(date));
 

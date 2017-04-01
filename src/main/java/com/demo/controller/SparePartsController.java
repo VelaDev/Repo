@@ -16,7 +16,9 @@ import com.demo.bean.SparePartsBean;
 import com.demo.model.Employee;
 import com.demo.model.HOStock;
 import com.demo.model.SpareMaster;
+import com.demo.service.BootStockInt;
 import com.demo.service.OrderDetailsInt;
+import com.demo.service.SiteStockInt;
 import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.HOStockServeceInt;
 
@@ -29,6 +31,11 @@ public class SparePartsController {
 	private OrderDetailsInt orderDetailsInt;
 	@Autowired
 	private SpareMasterServiceInt spareMasterServiceInt;
+	@Autowired
+	private BootStockInt bootStock;
+	
+	@Autowired
+	private SiteStockInt siteStock;
 	@Autowired
 	private HttpSession session = null;
 	private String retMessage = null;
@@ -125,7 +132,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("orders",orderDetailsInt.getAllBootStockOrders());
+			model.addObject("orders",bootStock.getAllOrders());
 			model.setViewName("bootSite");
 		}
 		else{
@@ -139,7 +146,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("orders",orderDetailsInt.getAllSiteStockOrders());
+			model.addObject("orders",siteStock.getAllOrders());
 			model.setViewName("stockSite");
 		}
 		else{

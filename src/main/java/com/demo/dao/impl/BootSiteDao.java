@@ -1,7 +1,9 @@
 package com.demo.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,6 +23,9 @@ public class BootSiteDao implements BootStockDaoInt{
 	private SessionFactory sessionFactory;
 	
 	private BootStock bootStock;
+	List<BootStock> bootStockList = null;
+	List<BootStock> bootStocks = null;
+	
 	@Override
 	public void saveBootStock(List<OrderDetails> detailsDaos) {
 		System.out.println("We here");
@@ -43,6 +48,28 @@ public class BootSiteDao implements BootStockDaoInt{
 			exception.getMessage();
 		}
 		
+	}
+	@Override
+	public List<BootStock> getAllOrders() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				BootStock.class);
+		return (List<BootStock>) criteria.list();
+	}
+	@Override
+	public List<BootStock> getAllOrders(String technician) {
+		
+		bootStockList = new ArrayList<BootStock>();
+		try{
+			bootStocks = getAllOrders();
+			 for(BootStock stock:bootStocks){
+				 if(stock.getTechnicianName().equalsIgnoreCase(technician)){
+					 bootStockList.add(stock);
+				 }
+			 }
+		}catch(Exception e){
+			
+		}
+		return bootStockList;
 	}
 
 }

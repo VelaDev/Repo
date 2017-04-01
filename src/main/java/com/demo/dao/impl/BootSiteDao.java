@@ -28,7 +28,6 @@ public class BootSiteDao implements BootStockDaoInt{
 	
 	@Override
 	public void saveBootStock(List<OrderDetails> detailsDaos) {
-		System.out.println("We here");
 		try{
 			
 			for(OrderDetails stock:detailsDaos){
@@ -61,9 +60,10 @@ public class BootSiteDao implements BootStockDaoInt{
 		bootStockList = new ArrayList<BootStock>();
 		try{
 			bootStocks = getAllOrders();
-			 for(BootStock stock:bootStocks){
-				 if(stock.getTechnicianName().equalsIgnoreCase(technician)){
-					 bootStockList.add(stock);
+			 for(BootStock boot:bootStocks){
+				 String name = boot.getTechnicianName();
+				 if(name.equalsIgnoreCase(technician)){
+					 bootStockList.add(boot);
 				 }
 			 }
 		}catch(Exception e){

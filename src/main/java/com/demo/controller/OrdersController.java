@@ -16,12 +16,14 @@ import com.demo.bean.OrdersBean;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
+import com.demo.service.BootStockInt;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.OrderDetailsInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.HOStockServeceInt;
+import com.demo.service.SiteStockInt;
 
 @Controller
 public class OrdersController {
@@ -38,6 +40,10 @@ public class OrdersController {
 	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
 	@Autowired
 	private OrderDetailsInt orderDetailsInt;
+	@Autowired
+	private BootStockInt bootStock;
+	@Autowired
+	private SiteStockInt siteStock;
 	@Autowired
 	private HttpSession session;
 	private ModelAndView model = null;
@@ -253,9 +259,24 @@ public class OrdersController {
 		if (userName != null) {
 			String technician = userName.getFirstName() + " "
 					+ userName.getLastName();
-			model.addObject("availableOrders",
-					orderDetailsInt.getAllAvailableOrderDetails(technician));
+			model.addObject("availableOrders",siteStock.getAllOrders(technician));
 			model.setViewName("availableStock");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "availableBootStock", method = RequestMethod.GET)
+	public ModelAndView availableBootStock() {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			String technician = userName.getFirstName() + " "
+					+ userName.getLastName();
+			model.addObject("availableOrders",bootStock.getAllOrders(technician));
+			model.setViewName("availableBootStock");
 		} else {
 			model.setViewName("login");
 		}

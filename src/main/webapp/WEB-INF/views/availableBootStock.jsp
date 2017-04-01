@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Display Site Stock | Velaphanda Trading & Projects</title>
+<title>Display Boot Stock | Velaphanda Trading & Projects</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link type="text/css" rel="stylesheet"
@@ -23,7 +23,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Available Site Stock</b>
+							<b>Available Boot Stock</b>
 						</div>
 					</h3>
 				</div>
@@ -37,7 +37,6 @@
 									<th>Part No</th>
 									<th>Description</th>
 									<th>QTY </th>
-									<th>Customer </th>
 								</tr>
 							</thead>
 							<tbody>
@@ -48,7 +47,6 @@
 									    <td>${list.partNumber}</td>
 										<td>${list.itemDescription}</td>
 										<td>${list.quantity}</td>
-										<td>${list.customerName}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

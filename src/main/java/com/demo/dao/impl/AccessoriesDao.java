@@ -3,20 +3,6 @@ package com.demo.dao.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,84 +15,92 @@ import com.demo.model.Accessories;
 import com.demo.model.Device;
 
 @Repository("accessoriesDAO")
-@Transactional(propagation=Propagation.REQUIRED)
-public class AccessoriesDao implements AccessoriesDaoInt{
+@Transactional(propagation = Propagation.REQUIRED)
+public class AccessoriesDao implements AccessoriesDaoInt {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
-	
+
 	List<Accessories> accessoriesList = null;
 	ArrayList<?> aList = null;
-	Accessories acc= null;
-	
+	Accessories acc = null;
+
 	private String retMessage = null;
+
 	@Override
 	public String saveAccessories(List<Accessories> accessories) {
 
-		try{
+		try {
 
-			if(accessories.isEmpty()==false){
-				for(Accessories access:accessories){
-			         sessionFactory.getCurrentSession().saveOrUpdate(access);
-			         retMessage ="OK";
-		            }
-			}
-			else{
+			if (accessories.isEmpty() == false) {
+				for (Accessories access : accessories) {
+					if (access.getSerial() != null) {
+						sessionFactory.getCurrentSession().saveOrUpdate(access);
+						retMessage = "OK";
+					}
+
+				}
+			} else {
 				retMessage = "OK";
 			}
-		        
-		}catch (Exception e) {
-				retMessage = e.getMessage();
-			}
+
+		} catch (Exception e) {
+			retMessage = e.getMessage();
+		}
 		return retMessage;
 	}
 
 	@Override
 	public String updateAccessories(List<Accessories> accessories) {
-		
-		try{
-			for(Accessories access:accessories){
+
+		try {
+			for (Accessories access : accessories) {
 				sessionFactory.getCurrentSession().update(access);
-				retMessage ="OK";
+				retMessage = "OK";
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			retMessage = "Error";
 		}
 		return retMessage;
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Accessories> getAccessoriesByDeviceSerial(String serialNo) {
-		try{
-			
-		    aList = new ArrayList<Object>();
-		     accessoriesList = new ArrayList<Accessories>();
-			Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Accessories.class);
+		try {
+
+			aList = new ArrayList<Object>();
+			accessoriesList = new ArrayList<Accessories>();
+			Criteria criteria = sessionFactory.getCurrentSession()
+					.createCriteria(Accessories.class);
 			aList.addAll(criteria.list());
 			for (Object access : aList) {
 				if (access instanceof Accessories) {
-					if (((Accessories) access).getDevice().getSerialNumber()!=null&&((Accessories) access).getDevice().getSerialNumber().equalsIgnoreCase(serialNo)&&((Accessories) access).getDevice().getSerialNumber()!="") {
+					if (((Accessories) access).getDevice().getSerialNumber() != null
+							&& ((Accessories) access).getDevice()
+									.getSerialNumber()
+									.equalsIgnoreCase(serialNo)
+							&& ((Accessories) access).getDevice()
+									.getSerialNumber() != "") {
 						accessoriesList.add((Accessories) access);
 					}
 				}
 			}
-	}catch(Exception ex){
-		return null;
-	}
+		} catch (Exception ex) {
+			return null;
+		}
 		return accessoriesList;
 	}
 
 	@Override
 	public String removeAccessory(String serialNo) {
-		try{
+		try {
 			Accessories accessories = getAccessories(serialNo);
 			sessionFactory.getCurrentSession().delete(accessories);
-			
-			retMessage="Accessory "+ serialNo +" is removed";
-		}catch(Exception e){
+
+			retMessage = "Accessory " + serialNo + " is removed";
+		} catch (Exception e) {
 			e.getMessage();
 		}
 		return retMessage;
@@ -114,8 +108,8 @@ public class AccessoriesDao implements AccessoriesDaoInt{
 
 	@Override
 	public Accessories getAccessories(String serialNo) {
-		
-		return (Accessories) sessionFactory.getCurrentSession().get(Accessories.class,
-				serialNo);
+
+		return (Accessories) sessionFactory.getCurrentSession().get(
+				Accessories.class, serialNo);
 	}
 }

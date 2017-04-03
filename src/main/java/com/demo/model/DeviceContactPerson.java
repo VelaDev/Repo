@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -37,8 +40,8 @@ public class DeviceContactPerson implements Serializable{/**
 	private String telephone;
 	@Column(name="Cellphone")
 	private String cellphone;
-	@OneToOne(mappedBy="contactPerson")
-	private Device device;
 	
+	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Device> devices;
 
 }

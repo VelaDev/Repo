@@ -79,7 +79,7 @@ public class Device implements Serializable{
 	@Column(name="Colour_Copy_Cost")
 	private String colourCopyCost;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="Device_Contact")
 	private DeviceContactPerson contactPerson;
 	

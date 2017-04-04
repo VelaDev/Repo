@@ -39,14 +39,23 @@ li {
 	display: table;
 }
 
-p.customerDeviceAddressTitle {
+p.customerAddressTitle {
 	font-size: 1.1em;
 	font-weight: bolder;
-	margin-left: 19%;
+	margin-left: 23%;
+    margin-right: -25%;
 }
 
 ul.addressDeviceList {
 	margin-left: -7%;
+}
+input.currency {
+    text-align: right;
+    padding-right: 15px;
+}
+.resize{
+	margin-left: 12%;
+    margin-right: 12%;
 }
 </style>
 
@@ -118,14 +127,14 @@ ul.addressDeviceList {
 
 									<div id="customerDeviceContainer"
 										style="width: auto; display: table;">
-										<p class="customerDeviceAddressTitle">Customer Address
-										<ul class="addressDeviceList" style="display: block;">
-											<li id="streetName">${productObject.customer.streetNumber}
-												${productObject.customer.streetName}</li>
-											<li id="city_town">${productObject.customer.city_town}</li>
-											<li id="zipcode">${productObject.customer.zipcode}</li>
-										</ul>
-										</p>
+										<div class="customerDeviceAddressTitle"><p class="customerAddressTitle">Customer Address</p>
+											<ul class="addressDeviceList" style="display: block;">
+												<li id="streetName">${productObject.customer.streetNumber}
+													${productObject.customer.streetName}</li>
+												<li id="city_town">${productObject.customer.city_town}</li>
+												<li id="zipcode">${productObject.customer.zipcode}</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 
@@ -364,12 +373,14 @@ ul.addressDeviceList {
 											<label class="col-md-3 control-label">Colour Copy
 												Cost</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)"
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon">$</i></span>
+												<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"
 													placeholder="Enter Mono Copy Cost" id="colour"
 													name="colourCopyCost"
-													value="${productObject.colourCopyCost}">
-
+													value="${productObject.colourCopyCost}"/>
+												</div>
 											</div>
 											<br>
 										</div>
@@ -394,11 +405,13 @@ ul.addressDeviceList {
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Copy Cost</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)"
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon">$</i></span>
+													<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"
 													placeholder="Enter Mono Copy Cost" id="colour"
 													name="monoCopyCost" value="${productObject.monoCopyCost}">
-
+												</div>
 											</div>
 											<br>
 										</div>
@@ -550,34 +563,30 @@ ul.addressDeviceList {
 										</tbody>
 									</table>
 									
-									<!-- Other Machine Accessories -->
-									<h5>Other Machine Accessories</h5>
 									
-									<input type="button" class="btn btn-success" value="Add"
-										onclick="addRow('dataTable')" /> <input type="button"
-										class="btn btn-danger" value="Delete"
-										onclick="deleteRow('dataTable')" /><br />
-									<br> <label>Delete</label> <label class="machinetype">Machine
-										Type</label> <label class="serial">Serial Number</label>
-
-									<table id="dataTable"
-										class="table table-striped table-bordered table-hover table-condensed">
-										<tr>
-											<td><input type="checkbox" id="checkToDelete"
-												name="checkToDelete" value="" /></td>
-											<td><input type="text" class="form-control"
-												id="machineType" name="machineType"
-												placeholder="Machine Accessory Type"
-												></td>
-											<td><input type="text" class="form-control"
-												id="serialNumberOtherAccessory"
-												name="serialNumberOtherAccessory"
-												onkeydown="upperCaseF(this)" placeholder="Serial Number"
-												></td>
-										</tr>
-									</table>
-
 									<!-- Other Machine Accessories -->
+									
+										<h5>Other Machine Accessories</h5>									
+											<p><input type="button" class="btn btn-success"  value="Add More"></p>
+											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">
+													<thead>
+														<tr>
+															<th>Machine Type</th>
+															<th>Serial Number</th>
+															<th>Delete</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type"></td>
+															<td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"></td>
+															<td><input type="button" class="btn btn-danger" value="Remove" ></td>
+														</tr>
+													<tbody>
+											</table>					
+										
+									<!-- //Other Machine Accessories -->
+									
 
 								</div>
 							</fieldset>
@@ -595,16 +604,7 @@ ul.addressDeviceList {
 								</div>
 							</div>
 
-							<!-- 
-							<div class="centerbutton">
-								<div class="form-group row">
-									<div class="col-sm-4">
-										<input type="submit" id="updateProduct" name="updateProduct"
-											value="Update Device" class="btn btn-primary btn-block"
-											tabindex="9">
-									</div>
-								</div>
-							</div> -->
+						
 							
 						</form:form>
 
@@ -1071,59 +1071,24 @@ $(document).ready(function() {
 });
 </script>
 
+<!---Script to add other Accossory-->
+<script type="text/javascript">
+
+$('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
+    $(this).closest('tr').remove();
+	})
+$('p input[type="button"]').click(function () {
+    $('#otherMachineAccessories').append('<tr><td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" /></td><td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+});
+
+</script>
 <!--Create a table to add other accessories-->
 <script type="text/javascript">
-function addRow(tableID) {
-
-	var table = document.getElementById(tableID);
-
-	var rowCount = table.rows.length;
-	var row = table.insertRow(rowCount);
-
-	var colCount = table.rows[0].cells.length;
-
-	for(var i=0; i<colCount; i++) {
-
-		var newcell	= row.insertCell(i);
-
-		newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-		//alert(newcell.childNodes);
-		switch(newcell.childNodes[0].type) {
-			case "text":
-					newcell.childNodes[0].value = "";
-					break;
-			case "checkbox":
-					newcell.childNodes[0].checked = false;
-					break;
-		}
-	}
-}
-
-function deleteRow(tableID) {
-	try {
-	var table = document.getElementById(tableID);
-	var rowCount = table.rows.length;
-
-	for(var i=0; i<rowCount; i++) {
-		var row = table.rows[i];
-		var chkbox = row.cells[0].childNodes[0];
-		if(null != chkbox && true == chkbox.checked) {
-			if(rowCount <= 1) {
-				alert("Cannot delete all the rows.");
-				break;
-			}
-			table.deleteRow(i);
-			rowCount--;
-			i--;
-		}
-
-
-	}
-	}catch(e) {
-		alert(e);
-	}
-}
-
+var element=document.getElementById('others');
+		if (val=='pick machine type' || val=='Other Machine Accessories')
+			 element.style.display='block';
+		 else  
+		   element.style.display='none';
 </script>
 
 <!--Mono and Colour Selection-->

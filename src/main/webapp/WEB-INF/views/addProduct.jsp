@@ -29,14 +29,23 @@ li {
 	display: table;
 }
 
-p.customerDeviceAddressTitle {
+p.customerAddressTitle {
 	font-size: 1.1em;
 	font-weight: bolder;
-	margin-left: 19%;
+	margin-left: 23%;
+    margin-right: -25%;
 }
 
 ul.addressDeviceList {
 	margin-left: -7%;
+}
+input.currency {
+    text-align: right;
+    padding-right: 15px;
+}
+.resize{
+	margin-left: 12%;
+    margin-right: 12%;
 }
 </style>
 
@@ -66,9 +75,7 @@ ul.addressDeviceList {
 				<div class="panel-body">
 					<div class="tab-content">
 
-
-						<form:form class="well form-horizontal" method="POST"
-							action="saveProduct" modelAttribute="saveProduct" id="addDevice">
+						<form:form class="well form-horizontal" method="POST" action="saveProduct" modelAttribute="saveProduct" id="addDevice">
 
 							<!--Customer Details-->
 							<fieldset>
@@ -110,14 +117,14 @@ ul.addressDeviceList {
 
 									<div id="customerDeviceContainer"
 										style="width: auto; display: table;">
-										<p class="customerDeviceAddressTitle">Customer Address
-										<ul class="addressDeviceList" style="display: block;">
-											<li id="streetName">${customer.streetNumber}
-												${customer.streetName}</li>
-											<li id="city_town">${customer.city_town}</li>
-											<li id="zipcode">${customer.zipcode}</li>
-										</ul>
-										</p>
+										<div class="customerDeviceAddress"><p class="customerAddressTitle">Customer Address</p>
+											<ul class="addressDeviceList" style="display: block;">
+												<li id="streetName">${customer.streetNumber}
+													${customer.streetName}</li>
+												<li id="city_town">${customer.city_town}</li>
+												<li id="zipcode">${customer.zipcode}</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 								<br />
@@ -332,6 +339,7 @@ ul.addressDeviceList {
 
 									<!-- Both mono and colour reading  -->
 									<div class="colour" id="colour" style="display: none;">
+									
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
@@ -348,16 +356,18 @@ ul.addressDeviceList {
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Copy Cost</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)"
-													placeholder="Enter Mono Copy Cost" id="colour"
-													name="colourCopyCost">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon">$</i></span>
+													<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" placeholder="Enter Colour Copy Cost" id="colour" name="colourCopyCost" />
+												</div>
 											</div>
 											<br>
 										</div>
+										
 									</div>
 									<!-- Both mono and colour reading  -->
-
+									
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
 									<div class="mono" id="mono" style="display: none;">
@@ -374,10 +384,13 @@ ul.addressDeviceList {
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Copy Cost</label>
 											<div class="col-md-6">
-												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)"
+												<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon">$</i></span>
+												<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"												
 													placeholder="Enter Mono Copy Cost" id="colour"
 													name="monoCopyCost">
+												</div>
 											</div>
 											<br>
 										</div>
@@ -444,6 +457,7 @@ ul.addressDeviceList {
 											</div>
 										</div>
 									</div>
+									
 									<!-- Text input City or Town-->
 									<div class="form-group ">
 										<label class="col-md-3 control-label">City/Town</label>
@@ -456,6 +470,7 @@ ul.addressDeviceList {
 											</div>
 										</div>
 									</div>
+									
 									<!-- Select type Province-->
 									<div class="form-group ">
 										<label class="col-md-3 control-label">Province</label>
@@ -492,6 +507,7 @@ ul.addressDeviceList {
 											</div>
 										</div>
 									</div>
+									
 								</div>
 
 							</fieldset>
@@ -501,104 +517,159 @@ ul.addressDeviceList {
 							<!--Machine Accessories-->
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
-
-								<div class="tablemachinesacccso">
-									<table id="tableselect"
-										class="table table-striped table-bordered table-hover table-condensed">
-
-										<thead>
-											<tr>
-												<th>Machine Type</th>
-												<th>Serial Number</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td><input type="checkbox" id="bridgeunitserial"
-													name="bridgeUnitSerialType"> Bridge unit</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="bridgeunit"
-													name="bridgeUnitSerialTypeSerialNo" disabled="disabled"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select" id="finisher"
-													name="finisherType"> Finisher</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="finisherserial"
-													name="finisherTypeSerialNo" disabled="disabled"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select" id="faxunit"
-													name="faxUnitSerialType"> Fax Unit</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="faxunitserial"
-													name="faxUnitSerialTypeSerialNo" disabled="disabled"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="onebintrayserial" name="oneBinSerialType"> One
-													bin tray</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="onebintray"
-													name="OneBinTrayTypeSerialNo" disabled="disabled"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="ltcserial" name="ltcType"> LCT</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="lct" name="ltcTypeSerial"
-													disabled="disabled"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="creserial" name="creType"> Credenza</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="cre" name="creTypeserial"
-													disabled="disabled"></td>
-											</tr>
-											<tr>
-												<td><input type="checkbox" class="select"
-													id="addserial" name="addType"> Additional paper
-													trays</td>
-												<td><input type="text" class="form-control"
-													onkeydown="upperCaseF(this)" id="add" name="addTypeserial"
-													disabled="disabled"></td>
-											</tr>
-										</tbody>
-									</table>
-
-									<!-- Other Machine Accessories -->
-									<h5>Other Machine Accessories</h5>
+								
+								<!-- Select type Machine Accessories-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Machine Accessories Type</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span> <select id="machineAccessories"
+													name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value);">
+													<option value="">Please select Machine Accessories</option>
+													<option value="Bridge Unit">Bridge Unit</option>
+													<option value="Finisher">Finisher</option>
+													<option value="Fax Unit">Fax Unit</option>
+													<option value="One Bin Tray">One Bin Tray</option>													
+													<option value="LCT">LCT</option>
+													<option value="Credenza">Credenza</option>
+													<option value="Additional Paper Trays">Additional Paper Trays</option>
+													<option value="Other Machine Accessories">Other Machine Accessories</option>
+												</select>
+											</div>
+										</div>
+									</div>
 									
-									<input type="button" class="btn btn-success" value="Add"
-										onclick="addRow('dataTable')" /> <input type="button"
-										class="btn btn-danger" value="Delete"
-										onclick="deleteRow('dataTable')" /><br />
-									<br> <label>Delete</label> <label class="machinetype">Machine
-										Type</label> <label class="serial">Serial Number</label>
-
-									<table id="dataTable"
-										class="table table-striped table-bordered table-hover table-condensed">
-										<tr>
-											<td><input type="checkbox" id="checkToDelete"
-												name="checkToDelete" value="" /></td>
-											<td><input type="text" class="form-control"
-												id="machineType" name="machineType"
-												placeholder="Machine Accessory Type"
-												></td>
-											<td><input type="text" class="form-control"
-												id="serialNumberOtherAccessory"
-												name="serialNumberOtherAccessory"
-												onkeydown="upperCaseF(this)" placeholder="Serial Number"
-												></td>
-										</tr>
-									</table>
-
+									<div class="bridgeAndFinisher" id="bridgeFinisher" style="display:none;">
+										<!-- Text input Bridge unit-->
+										<div class="form-group ">
+											<label class="col-md-3 control-label">Bridge Unit</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinisher" placeholder="Enter Bridge Unit Serial Number"
+														class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Finisher-->
+										<div class="form-group ">
+											<label class="col-md-3 control-label">Finisher</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinisher" placeholder="Enter Finisher Serial Number"
+														class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+										
+									</div>
+									
+									<!-- Text input Fax Unit-->
+									<div class="faxUnitSerial" id="faxUnitSerial" style="display:none;">									
+										<div class="form-group ">
+											<label class="col-md-3 control-label">Fax Unit</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="faxUnitSerial" placeholder="Enter Fax Unit Serial Number"
+														class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input One bin tray-->
+									<div class="oneBinTraySerial" id="oneBinTraySerial" style="display:none;">
+										<div class="form-group ">
+											<label class="col-md-3 control-label">One bin tray</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" id="oneBinTraySerial" placeholder="Enter One bin tray Serial Number"
+														class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input LCT-->
+									<div class="lctSerial" id="lctSerial" style="display:none;">
+										<div class="form-group ">
+											<label class="col-md-3 control-label">LCT</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="ltcTypeSerial" onkeydown="upperCaseF(this)" id="lctSerial" placeholder="Enter LCT Serial Number"
+														class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input Credenza-->
+									<div class="credenzaSerial" id="credenzaSerial" style="display:none;">									
+										<div class="form-group ">
+											<label class="col-md-3 control-label">Credenza</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="creTypeserial" onkeydown="upperCaseF(this)" id="credenzaSerial" placeholder="Enter Credenza Serial Number"
+														class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+									</div>
+									
+									<!-- Text input Additional paper trays-->
+									<div class="additionalPaperTraysSerial" id="additionalPaperTraysSerial" style="display:none;">	
+										<div class="form-group ">
+											<label class="col-md-3 control-label">Additional paper trays</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="addTypeserial" onkeydown="upperCaseF(this)" id="additionalPaperTraysSerial" placeholder="Enter Additional paper trays Serial Number"
+														class="form-control" type="text">
+												</div>
+											</div>
+										</div>
+									</div>
+								
 									<!-- Other Machine Accessories -->
-
-								</div>
+									<div class="col-sm-offset-2 col-sm-8" id="others" style="display: none;" >									
+										<div class="resize">
+										<h5>Other Machine Accessories</h5>									
+											<p><input type="button" class="btn btn-success"  value="Add More"></p>
+											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">
+													<thead>
+														<tr>
+															<th>Machine Type</th>
+															<th>Serial Number</th>
+															<th>Delete</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type"></td>
+															<td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"></td>
+															<td><input type="button" class="btn btn-danger" value="Remove" ></td>
+														</tr>
+													<tbody>
+											</table>					
+										</div>
+									</div><!-- //Other Machine Accessories -->
+								
 							</fieldset>
-							<!--Machine Accessories-->
+							<!--//Machine Accessories-->
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
@@ -608,20 +679,11 @@ ul.addressDeviceList {
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="updateProduct">
 								</div>
-							</div>
-
-							<!-- 
-							<div class="centerbutton">
-								<div class="form-group row">
-									<div class="col-sm-4">
-										<input type="submit" id="addProduct" name="addProduct"
-											value="Add Device" class="btn btn-primary btn-block"
-											tabindex="9">
-									</div>
-								</div>
-							</div>
- -->
+							</div> 
+							
+							
 						</form:form>
+						<!-- /form-content -->
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -630,9 +692,11 @@ ul.addressDeviceList {
 			<!--/panel success class-->
 		</div>
 		<!-- /Container -->
+		
 		<!-- Footer -->
 		<c:import url="templates/footer.jsp"></c:import>
 		<!--/ Footer -->
+		
 	</div>
 	<!-- / velaphanda_containter -->
 
@@ -644,11 +708,10 @@ ul.addressDeviceList {
 	<!-- /Scripts -->
 
 
-	<!-- Validate add device -->
-	<script>
+<!-- Validate add device -->
+<script>
 $(document).ready(function() {
     $('#addDevice').bootstrapValidator({
-        //framework: 'bootstrap',
         icon: {
             valid: 'glyphicon glyphicon-ok',
             invalid: 'glyphicon glyphicon-remove',
@@ -988,6 +1051,7 @@ $(document).ready(function() {
 						
 					}
 				},
+				
 				//Machine Details
 				
 				
@@ -1005,7 +1069,16 @@ $(document).ready(function() {
 						}
 					}
 				},
-				
+				machineAccessories : {
+					
+					validators :{
+						
+						notEmpty : {
+							message : 'Machine Accessories is required and cannot be empty'
+						}
+						
+					}
+				},
 				faxunitserial : {
 					validators : {
 						stringLength : {
@@ -1083,68 +1156,23 @@ $(document).ready(function() {
 </script>
 
 <!---Script to add other Accossory-->
-<!--Create a table to add other accessories-->
 <script type="text/javascript">
-function addRow(tableID) {
 
-	var table = document.getElementById(tableID);
-
-	var rowCount = table.rows.length;
-	var row = table.insertRow(rowCount);
-
-	var colCount = table.rows[0].cells.length;
-
-	for(var i=0; i<colCount; i++) {
-
-		var newcell	= row.insertCell(i);
-
-		newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-		//alert(newcell.childNodes);
-		switch(newcell.childNodes[0].type) {
-			case "text":
-					newcell.childNodes[0].value = "";
-					break;
-			case "checkbox":
-					newcell.childNodes[0].checked = false;
-					break;
-		}
-	}
-}
-
-function deleteRow(tableID) {
-	try {
-	var table = document.getElementById(tableID);
-	var rowCount = table.rows.length;
-
-	for(var i=0; i<rowCount; i++) {
-		var row = table.rows[i];
-		var chkbox = row.cells[0].childNodes[0];
-		if(null != chkbox && true == chkbox.checked) {
-			if(rowCount <= 1) {
-				alert("Cannot delete all the rows.");
-				break;
-			}
-			table.deleteRow(i);
-			rowCount--;
-			i--;
-		}
-
-
-	}
-	}catch(e) {
-		alert(e);
-	}
-}
+$('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
+    $(this).closest('tr').remove();
+	})
+$('p input[type="button"]').click(function () {
+    $('#otherMachineAccessories').append('<tr><td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" /></td><td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+});
 
 </script>
 
-
-	<!--Mono and Colour Selection-->
-	<script type="text/javascript">
+<!--Mono and Colour Selection-->
+<script type="text/javascript">
 	
 	function CheckColors(val){
 	 var element=document.getElementById('mono');
-	 if(val=='pick a mono'||val=='mono'  || val == 'colour')
+	 if(val=='pick a mono/colour' ||val=='mono'  || val == 'colour')
 	   element.style.display='block';
 	 else  
 	   element.style.display='none';
@@ -1159,7 +1187,59 @@ function deleteRow(tableID) {
 
 </script>
 
-	<!-- Make all Serials numbers UpperCase  -->
+
+<!--Machine Accessories Selection-->
+<script type="text/javascript">
+	
+	function CheckMachineAccessories(val){
+		
+		var element=document.getElementById('bridgeFinisher');
+		if(val=='pick machine type' || val=='Bridge Unit' || val=='Finisher')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+		 
+		var element=document.getElementById('faxUnitSerial');
+		if(val=='pick machine type' || val=='Fax Unit')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+		
+		var element=document.getElementById('oneBinTraySerial');
+		if(val=='pick machine type' || val=='One Bin Tray')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+	   
+		var element=document.getElementById('lctSerial');
+		if(val=='pick machine type' || val=='LCT')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+		
+		var element=document.getElementById('credenzaSerial');
+		if(val=='pick machine type' || val=='Credenza')
+		   element.style.display='block';
+		 else  
+		   element.style.display='none';
+
+		var element=document.getElementById('additionalPaperTraysSerial');
+		if (val=='pick machine type' || val=='Additional Paper Trays')
+			 element.style.display='block';
+		 else  
+		   element.style.display='none';
+		
+		var element=document.getElementById('others');
+		if (val=='pick machine type' || val=='Other Machine Accessories')
+			 element.style.display='block';
+		 else  
+		   element.style.display='none';
+	}
+
+</script>
+
+
+<!-- Make all Serials numbers UpperCase  -->
 	<script type="text/javascript">
 	function upperCaseF(a){
 	    setTimeout(function(){
@@ -1232,8 +1312,8 @@ $("#installationDate").change(function () {
 });
 </script>
 
-	<!-- Enable datepicker for start, end and install date-->
-	<script type="text/javascript">
+<!-- Enable datepicker for start, end and install date-->
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
@@ -1243,7 +1323,7 @@ $("#installationDate").change(function () {
 		});
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
 			format : "yyyy-mm-dd",
@@ -1253,7 +1333,7 @@ $("#installationDate").change(function () {
 	});
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#installDatePicker').datepicker({
 				format : "yyyy-mm-dd",
@@ -1263,36 +1343,6 @@ $("#installationDate").change(function () {
 		});
 </script>
 
-
-	<!-- Check if checkboxes are checked, if checked enable input text -->
-	<script type="text/javascript">
-		document.getElementById('bridgeunitserial').onchange = function() {
-			document.getElementById('bridgeunit').disabled = !this.checked;
-			document.getElementById('finisherserial').disabled = !this.checked;
-		};
-		document.getElementById('finisher').onchange = function() {
-			document.getElementById('finisherserial').disabled = !this.checked;
-			document.getElementById('bridgeunit').disabled = !this.checked;
-		};
-		
-		document.getElementById('faxunit').onchange = function() {
-			document.getElementById('faxunitserial').disabled = !this.checked;
-		};
-		document.getElementById('onebintrayserial').onchange = function() {
-			document.getElementById('onebintray').disabled = !this.checked;
-		};
-		
-		document.getElementById('ltcserial').onchange = function() {
-			document.getElementById('lct').disabled = !this.checked;
-		};
-		document.getElementById('creserial').onchange = function() {
-			document.getElementById('cre').disabled = !this.checked;
-		};
-		document.getElementById('addserial').onchange = function() {
-			document.getElementById('add').disabled = !this.checked;
-		};
-		
-</script>
 
 
 </body>

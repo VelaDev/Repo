@@ -241,8 +241,7 @@ public class OrdersController {
 					.getOrderDetailsByOrderNum("key", recordID);
 			model.addObject("pendingOrderList", list);
 			model.addObject("OrderNum", order);
-			model.addObject("contactPerson", contactDetailsServiceInt
-					.getContactPerson(order.getCustomer().getCustomerName()));
+			//model.addObject("contactPerson", contactDetailsServiceInt.getContactPerson(userName.getFirstName()));
 			model.setViewName("deliveryNote");
 		} else {
 			model.setViewName("login");

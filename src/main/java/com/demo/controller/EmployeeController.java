@@ -203,6 +203,7 @@ public class EmployeeController {
 			model.addObject("home", ticketsServiceInt.getAllLoggedTickets(offset, maxResults));
 			model.addObject("ticketResults",beanList);
 			model.addObject("count",count);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("home");
 		}
 		else{

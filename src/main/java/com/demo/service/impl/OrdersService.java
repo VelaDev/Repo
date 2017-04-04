@@ -103,5 +103,11 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.declineOrder(orderNum,reasonForeclined);
 	}
 
+	@Override
+	public int pendingOrdersCount(String approveName) {
+
+		return ordersDAO.pendingOrdersCount(approveName);
+	}
+
 
 }

@@ -513,4 +513,24 @@ public class OrderDao implements OrdersDaoInt {
 		}
 		return order;
 	}
+
+	@Override
+	public int pendingOrdersCount(String approveName) {
+		
+		List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
+		int tempCount = 0;
+		try {
+			List<OrderHeader> pendingForApprover = pendingOrders();
+
+			for (OrderHeader order : pendingForApprover) {
+				if (order.getApprover().equalsIgnoreCase(approveName)) {
+
+					tempCount ++;
+				}
+			}
+		} catch (Exception e) {
+			retMessage = e.getMessage();
+		}
+		return tempCount;
+	}
 }

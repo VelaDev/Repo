@@ -21,5 +21,6 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> shippedOrders();
 	public List<OrderHeader> shippedOrders(String technicianEmail);
 	public String declineOrder(String orderNum,String reasonForeclined);
+	public int pendingOrdersCount(String approveName);
 
 }

@@ -522,6 +522,7 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			List<OrderHeader> pendingForApprover = pendingOrders();
 
+			
 			for (OrderHeader order : pendingForApprover) {
 				if (order.getApprover().equalsIgnoreCase(approveName)) {
 

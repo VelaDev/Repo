@@ -161,7 +161,7 @@ header, #content, #middle, #sidebar {
 											
 											
 												<div class="machinedetailsdetailsfloatleft">
-													<label id="customerName" name="customerName">Company Name </label> <br> 
+													<label id="customerName" name="customerName">Customer Name </label> <br> 
 													<label id="serialNumber" name="serialNumber">Serial No </label> <br> 
 													<label id="modelNumber" name="modelNumber">Model Number </label> <br> 
 													<label id="modelBrand" name="modelBrand">Model Brand </label> <br> 
@@ -192,25 +192,23 @@ header, #content, #middle, #sidebar {
 								<section id="middle">
 
 									<div class="groupclientaddress">
-										<legend>Address and Contacts</legend>
+										<legend>Address and Contact Person</legend>
 	
 										<div id="customerr_container" style="width: auto; display: table;">
 											<p class="customerAddress_title">Address
 											<ul class="address_list" style="display: block;">
-												<li id="streetName">${device.streetNumber}
-													${device.streetName}</li>
-												<li id="streetNumber">${device.city_town}</li>
-												<li id="city_town">${device.province}</li>	
+												<li id="streetNumberStreetName">${device.streetNumber}	${device.streetName}</li>
+												<li id="city_town">${device.city_town}</li>
+												<li id="province">${device.province}</li>	
 											</ul>
 											</p>
 											<p class="customerAddress_title">Contact
 											<ul class="address_list" style="display: block;">
-												<li id="cellphoneNumber">
-													${device.contactPerson.firstName}
-													${device.contactPerson.lastName}</li>
-												<li id="streetNumber" id="telephoneNumber">${device.contactPerson.cellphone}</li>
-												<li id="streetNumber" id="telephoneNumber">${device.contactPerson.email}</li>
-												<li id="email"></li>
+												<li id="firstNameLastname">${device.contactPerson.firstName} ${device.contactPerson.lastName}</li>
+												<li id="cellphone">${device.contactPerson.cellphone}</li>
+												<li id="telephone">${device.contactPerson.telephone}</li>
+												<li id="email">${device.contactPerson.email}</li>
+												
 											</ul>
 											</p>
 										</div>

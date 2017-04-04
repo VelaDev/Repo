@@ -12,6 +12,15 @@
 li {
 	list-style: none;
 }
+.machinedetailsfloatright {
+    float: left;
+    /* margin-right: 40%; */
+    padding-left: 23px;
+}
+.machinedetailsdetailsfloatleft {
+	float: left;
+	margin-left: 10px;
+}
 #customerr_container {
     /* padding: 25px; */
     /* margin-bottom: -7em; */
@@ -53,6 +62,14 @@ ul.address_list {
 /************************************************************************************
 MEDIA QUERIES
 *************************************************************************************/
+@media only screen and (max-width: 760px), (max-device-width: 1024px) and (min-device-width: 768px){
+	.machinedetailsfloatright {
+		float: left;
+		margin-right: -31%;
+		padding-left: 9%;
+		margin-top: 0%;
+	}
+}
 /* for 980px or less */
 @media screen and (max-width: 980px) {
 	
@@ -137,253 +154,106 @@ header, #content, #middle, #sidebar {
 					<div class="tab-content">
 						<div class="groupdetails-row-padding">
 
-
-
 							<div id="pagewrap">
-
-
 								<section id="content">
-
-								<div class="groupclientdetails">
-									<legend>Machine Details</legend>
-									<form:form>
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Serial No:</label>
-													</h6>
-
+									<div class="groupclientdetails">
+										<legend>Machine Details</legend>
+											
+											
+												<div class="machinedetailsdetailsfloatleft">
+													<label id="customerName" name="customerName">Company Name </label> <br> 
+													<label id="serialNumber" name="serialNumber">Serial No </label> <br> 
+													<label id="modelNumber" name="modelNumber">Model Number </label> <br> 
+													<label id="modelBrand" name="modelBrand">Model Brand </label> <br> 
+													<label id="startDate" name="startDate">Start Date </label> <br> 
+													<label id="installationDate" name="installationDate">Installation Date </label> <br> 
+													<label id="endDate" name="endDate">End Date </label> <br> 
+													<label id="colourReading" name="colourReading">Colour Reading </label> <br> 
+													<label id="colourCopyCost" name="colourCopyCost">Colour Copy Cost </label> <br> 
+													<label id="monoReading" name="monoReading">Mono Reading </label> <br> 
+													<label id="monoCopyCost" name="monoCopyCost">Mono Copy Cost </label> <br> 
+												</div>								
+												<div class="machinedetailsfloatright ">	
+												   <label id="customerName" name="customerName">: ${device.customer.customerName}</label><br> 
+												   <label id="serialNumber" name="serialNumber">: ${device.serialNumber}</label><br>
+												   <label id="modelNumber" name="modelNumber">: ${device.modelNumber}</label><br> 
+												   <label id="modelBrand" name="modelBrand">: ${device.modelBrand}</label><br> 
+												   <label id="startDate" name="startDate">: ${device.startDate}</label><br> 
+												   <label id="installationDate" name="installationDate">: ${device.installationDate}</label><br> 
+												   <label id="endDate" name="endDate">: ${device.endDate}</label><br> 
+												   <label id="colourReading" name="colourReading">: ${device.colourReading}</label><br>
+												   <label id="colourCopyCost" name="colourCopyCost">: R${device.colourCopyCost}</label><br> 
+												   <label id="monoReading" name="monoReading">: ${device.monoReading}</label><br>
+												   <label id="monoCopyCost" name="monoCopyCost">: R${device.monoCopyCost}</label><br>
 												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														value="${device.serialNumber}" disabled="disabled">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Model No:</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														value="${device.modelNumber}" disabled="disabled">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Brand:</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														value="${device.modelBrand}" disabled="disabled">
-												</div>
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Contract Start Date:</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														value="${device.startDate}" disabled="disabled">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Installation Date</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														value="${device.installationDate}" disabled="disabled">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Contract End Date</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														value="${device.endDate}" disabled="disabled">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Company Name</label>
-													</h6>
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														value="${device.customer.customerName}"
-														disabled="disabled">
-												</div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Colour Reading</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														id="monoReading" value="${device.colourReading}"
-														disabled="disabled">
-												</div>												
-											</div>
-										</div>
-										
-										<div class="row">
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Colour CopyCost</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														id="monoReading" value="${device.colourCopyCost}"
-														disabled="disabled">
-												</div>												
-											</div>
-										</div>
-
-										<div class="row">
-											<br />
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Mono Reading</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														id="monoReading" value="${device.monoReading}"
-														disabled="disabled">
-												</div>
-											</div>
-										</div>
-										
-										<div class="row">
-											<br />
-											<div class="col-xs-8">
-												<div class="col-xs-4 form-control-label">
-													<h6>
-														<label>Mono Copy Cost</label>
-													</h6>
-
-												</div>
-												<div class="col-xs-8">
-													<input type="text" class="form-control input-sm"
-														id="monoReading" value="${device.monoCopyCost}"
-														disabled="disabled">
-												</div>
-											</div>
-										</div>
-
-									</form:form>
-								</div>
+									</div>
 								</section>
 
 								<section id="middle">
 
-								<div class="groupclientaddress">
-									<legend>Address and Contacts</legend>
-
-									<div id="customerr_container" style="width: auto; display: table;">
-										<p class="customerAddress_title">Address
-										<ul class="address_list" style="display: block;">
-											<li id="streetName">${device.streetNumber}
-												${device.streetName}</li>
-											<li id="streetNumber">${device.city_town}</li>
-											<li id="city_town">${device.province}</li>
-
-										</ul>
-										</p>
-										<p class="customerAddress_title">Contact
-										<ul class="address_list" style="display: block;">
-											<li id="cellphoneNumber">
-												${device.contactPerson.firstName}
-												${device.contactPerson.lastName}</li>
-											<li id="streetNumber" id="telephoneNumber">${device.contactPerson.cellphone}</li>
-											<li id="streetNumber" id="telephoneNumber">${device.contactPerson.email}</li>
-											<li id="email"></li>
-										</ul>
-										</p>
+									<div class="groupclientaddress">
+										<legend>Address and Contacts</legend>
+	
+										<div id="customerr_container" style="width: auto; display: table;">
+											<p class="customerAddress_title">Address
+											<ul class="address_list" style="display: block;">
+												<li id="streetName">${device.streetNumber}
+													${device.streetName}</li>
+												<li id="streetNumber">${device.city_town}</li>
+												<li id="city_town">${device.province}</li>	
+											</ul>
+											</p>
+											<p class="customerAddress_title">Contact
+											<ul class="address_list" style="display: block;">
+												<li id="cellphoneNumber">
+													${device.contactPerson.firstName}
+													${device.contactPerson.lastName}</li>
+												<li id="streetNumber" id="telephoneNumber">${device.contactPerson.cellphone}</li>
+												<li id="streetNumber" id="telephoneNumber">${device.contactPerson.email}</li>
+												<li id="email"></li>
+											</ul>
+											</p>
+										</div>
+	
 									</div>
-
-								</div>
 								</section>
 
 								<aside id="sidebar">
 								
-								<div class="groupproductdetails">
-								<legend>Machine Accessories</legend>
-										<!-- Below table will be displayed as Data table -->
-										<table id="myDatatable" class="display datatable">
-											<thead>
-												
-												<tr>
-													<th>Accessory Type</th>
-													<th>Serial No</th>
-
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-
-												<c:forEach items="${accessories}" var="accessory">
+									<div class="groupproductdetails">
+									<legend>Machine Accessories</legend>
+											<!-- Below table will be displayed as Data table -->
+											<table id="myDatatable" class="display datatable">
+												<thead>
+													
 													<tr>
-														<td><h6>
-																<c:out value="${accessory.accessotyType}" />
-															</h6></td>
-														<td><h6>
-																<c:out value="${accessory.serial}" />
-															</h6></td>
-
+														<th>Accessory Type</th>
+														<th>Serial No</th>
+	
 													</tr>
-												</c:forEach>
-
-											</tbody>
-										</table>
-									
-								</div>
+												</thead>
+												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+	
+													<c:forEach items="${accessories}" var="accessory">
+														<tr>
+															<td><h6>
+																	<c:out value="${accessory.accessotyType}" />
+																</h6></td>
+															<td><h6>
+																	<c:out value="${accessory.serial}" />
+																</h6></td>
+	
+														</tr>
+													</c:forEach>
+	
+												</tbody>
+											</table>
+										
+									</div>
 								</aside>
 								
 							</div>
-
-
 
 						</div><!--  -->
 					</div>

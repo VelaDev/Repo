@@ -234,6 +234,7 @@ public class OrdersController {
 	public ModelAndView deliveries(@RequestParam("recordID") Integer recordID) {
 		model = new ModelAndView();
 
+		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			OrderHeader order = ordersServiceInt.getOrder(recordID);

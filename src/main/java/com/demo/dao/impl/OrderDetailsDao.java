@@ -128,7 +128,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		try{
 			orders = getAllOrderDetails();
 			 for(OrderDetails order:orders){
-				 if(order.getOrderHeader().getRecordID()==recordID){
+				 if(order.getOrderHeader().getRecordID().equals(recordID)){
 					 pendingList.add(order);
 				 }
 			 }

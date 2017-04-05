@@ -239,9 +239,11 @@ public class EmployeeController {
 		
 			retMessage = employeeService.saveEmployee(employee);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("registerEmployee");
 		}
 		else{
+			
 			model.setViewName("login");
 		}
 		return model;
@@ -255,6 +257,7 @@ public class EmployeeController {
 		if(userName != null){
 		
 			model.addObject("technicianTickets", ticketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("technicianHome");
 			}
 			else{
@@ -289,6 +292,7 @@ public class EmployeeController {
 		if(userName != null){
 			
 			model.addObject("displayEmployees", employeeService.getAllEmployees());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("displayEmployees");
 		}
 		else{
@@ -304,6 +308,7 @@ public class EmployeeController {
 		if(userName !=null){
 			
 			model.addObject("updateEmployee", new EmployeeBean());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateEmployee");
 		}
 		else{
@@ -342,6 +347,7 @@ public class EmployeeController {
 		
 			retMessage = employeeService.updateEmployee(employee);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateEmployee");
 		}
 		else{
@@ -441,6 +447,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			employee = employeeService.getEmployeeByEmpNumber(empName);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
@@ -466,6 +473,7 @@ public class EmployeeController {
 			
 			retMessage = employeeService.deactivateEmployee(email);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("deactivateEmployee");
 		}
 		else{
@@ -486,6 +494,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			employee = employeeService.getEmployeeByEmpNumber(email);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		if(employee != null){
 			
 			model.addObject("loginUsers", userLogDetailsServiceInt.userActivities(email));

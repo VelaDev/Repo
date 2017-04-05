@@ -10,7 +10,28 @@
 <link href="<c:url value="/resources/custom/css/vela_custom.css"/>"
 	rel="stylesheet" type="text/css" />
 
+<style>
 
+.ourbadge {
+
+	display: inline-block;
+    min-width: 1px;
+    padding: 4px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #f11212;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    margin-top: -8px;
+	
+}
+
+</style>
 
 <div class="vela_motto">
 	<p>
@@ -119,9 +140,13 @@
 									Orders</a></li>
 							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped
 									Orders</a></li>
-
-
 						</ul></li>
+						
+						<li class="dropdown"><a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
+						aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger"> ${inboxCount}</span></a>
+						</li>
+						
+					
 
 					<%-- 	<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"

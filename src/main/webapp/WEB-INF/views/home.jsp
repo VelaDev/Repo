@@ -35,7 +35,10 @@
 								Overall</a></li>
 						<li><a href="#ticketDetails" data-toggle="tab">Ticket
 								Details</a></li>
-								<li ><a href="#"> Order Inbox <span class="badge"> ${inboxCount}</span></a></li>
+						<%-- <li ><a href='<c:url value="pendingOrders.html"/>'> Order Inbox <span class="badge"> ${inboxCount}</span></a></li>
+						 --%>		
+								
+								
 					</ul>
 					<div class="tab-content">
 

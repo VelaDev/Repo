@@ -41,6 +41,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
+				
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Tickets<span class="caret"></span></a>
@@ -51,6 +52,7 @@
 							<li><a href='<c:url value="#"/>'>Closed Tickets</a></li>
 						</ul>
 					</li>
+					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Orders<span class="caret"></span></a>
@@ -69,7 +71,8 @@
 							<li><a href='<c:url value="availableBootStock.html"/>'>Available Boot Stock</a></li>
 						</ul>
 					</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle"
+					
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Leave<span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -78,6 +81,7 @@
 							<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
 						</ul>
 					</li>
+					
 				</ul>
 			</div>
 		</div>

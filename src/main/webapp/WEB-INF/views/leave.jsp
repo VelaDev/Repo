@@ -20,7 +20,9 @@
 </head>
 <body>
 	<div class="velaphanda_containter" id="velaphanda_containter">
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
+			
+		<c:import url="templates/techniciannavbar.jsp"></c:import>	
+	
 		<div class="container">
 			<div class="panel panel-success">
 				<div class="panel-heading">
@@ -31,6 +33,7 @@
 					</h3>
 				</div>
 				<div class="panel-body">
+					
 					<c:if test="${not empty retMessage }">
 
 						<div class="alert alert-info" role="alert">
@@ -38,6 +41,7 @@
 							</c:out>
 						</div>
 					</c:if>
+					
 					<form:form class="well form-horizontal" method="POST"
 						action="makeLeave" modelAttribute="leamakeLeaveve" id="makeLeave">
 

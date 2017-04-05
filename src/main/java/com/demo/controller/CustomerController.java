@@ -21,6 +21,7 @@ import com.demo.service.AccessoriesInt;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.DeviceServiceInt;
+import com.demo.service.OrdersServiceInt;
 
 
 
@@ -34,6 +35,11 @@ public class CustomerController {
 	private DeviceServiceInt deviceServiceInt;
 	@Autowired
 	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
+	
+	/*Order inbox count on every page*/
+	@Autowired
+	private OrdersServiceInt ordersServiceInt;	
+	
 	@Autowired
 	private HttpSession session;
 	@Autowired
@@ -51,6 +57,7 @@ public class CustomerController {
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("saveClient", new CustomerBean());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addClient");
 		
 		}
@@ -67,6 +74,7 @@ public class CustomerController {
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("retMessage",customerServiceInt.saveCustomer(customerBean));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addClient");
 		}else{
 			model.setViewName("login");
@@ -80,7 +88,7 @@ public class CustomerController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("clientInformation");
 		}else{
 			model.setViewName("login");
@@ -102,9 +110,11 @@ public class CustomerController {
 		
 		        model.addObject("clientInformation",deviceList );
 				model.addObject("customer", customer);
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.setViewName("clientInformation");
 		}
 		else{
+			
 			model.setViewName("login");
 		}
 		
@@ -119,6 +129,7 @@ public class CustomerController {
 			customer = customerServiceInt.getClientByClientName(customerName);
 			if(customer != null){
 				model.addObject("customer", customer);
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.addObject("customerContact",contactDetailsServiceInt.contactDetails(customerName));
 			}
 			else
@@ -126,7 +137,7 @@ public class CustomerController {
 				model.addObject("retMessage", "Customer : " + customerName + " does not exist");
 				model.addObject("customer", null);
 			}
-		
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addProduct");
 		}
 		else{
@@ -143,6 +154,7 @@ public class CustomerController {
 		if(userName != null){
 		
 			model.addObject("updateCustomerData", new CustomerBean());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateCustomer");
 		}
 		else{
@@ -159,6 +171,7 @@ public class CustomerController {
 			//retMessage =customerServiceInt.prepareCustomer(customerBean); 
 			retMessage =customerServiceInt.updateCustomer(customerBean);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateCustomer");
 		}
 		else
@@ -175,6 +188,7 @@ public class CustomerController {
 		
 			model.addObject("customer", customerServiceInt.contactDetails(customerName));
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateCustomer");
 		}
 		else{
@@ -191,6 +205,7 @@ public class CustomerController {
 		if(userName != null){
 			model.addObject("customer", customerServiceInt.contactDetails(customerName));
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("viewCustomer");
 		}
 		else{
@@ -212,6 +227,7 @@ public class CustomerController {
 			model.addObject("count",count);
 			model.addObject("offset", offset);
 			model.addObject("displayCustomers", customerServiceInt.getClientList());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("displayCustomers");
 		}
 		else{

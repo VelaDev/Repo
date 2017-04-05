@@ -133,29 +133,42 @@
 							<li><a href='<c:url value="placeOrderForTechnician.html"/>'>Place
 									Order</a></li>
 							<li><a href='<c:url value="viewAllOrders.html"/>'>View
-									Orders</a></li>
+									Orders</a></li><%-- 
 							<li><a href='<c:url value="pendingOrders.html"/>'>Pending
-									Orders</a></li>
+									Orders</a></li> --%>
 							<li><a href='<c:url value="approvedOrders.html"/>'>Approved
 									Orders</a></li>
 							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped
 									Orders</a></li>
-						</ul></li>
+						</ul>
+					</li>
 						
-						<li class="dropdown"><a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
-						aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger"> ${inboxCount}</span></a>
-						</li>
-						
-					
-
-					<%-- 	<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Tickets<span class="caret"></span></a>
-						<ul class="dropdown-menu">
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">Tickets<span class="caret"></span></a>
+							<ul class="dropdown-menu">
 							<li><a href='<c:url value="monitoringTickets.html"/>'>Open
 									Tickets</a></li>
 							<li><a href='<c:url value="logTicket.html"/>'>Log Ticket</a></li>
-						</ul></li> --%>
+							</ul>
+					</li> 
+						
+					<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">Leave<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href='<c:url value="leave.html"/>'>Request Leave</a></li>
+								<li><a href='<c:url value="updateLeave.html"/>'>Update Leave</a></li>
+								<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
+							</ul>
+					</li>
+					
+					<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
+							</li>
+					</ul>
 
 				</ul>
 

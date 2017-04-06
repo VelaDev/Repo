@@ -24,45 +24,75 @@ public class LeaveController {
 	private String retMessage = null;
 	private Employee userName = null;
 
-	@RequestMapping(value = "leave", method = RequestMethod.GET)
+	@RequestMapping(value={"leave", "requestLeave"}, method = RequestMethod.GET)
 	public ModelAndView loadLeave() {
-
-		model = new ModelAndView("leave");
+		
+		
+		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
+		
 		if (userName != null) {
-
-			model.setViewName("leave");
+			
+			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
+				
+				model.setViewName("requestLeave");
+				
+			}else if(userName.getRole().equalsIgnoreCase("Technician")){
+				
+				model.setViewName("leave");
+			}
+						
 		} else {
 			model.setViewName("login");
 		}
 
 		return model;
 	}
+	
 
-	@RequestMapping(value = "viewLeaveRequests", method = RequestMethod.GET)
+	@RequestMapping(value = {"viewLeaveRequests","viewRequestedLeave" }, method = RequestMethod.GET)
 	public ModelAndView loadViewLeaveRequestss() {
 
-		model = new ModelAndView("viewLeaveRequests");
+		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-
-			model.setViewName("viewLeaveRequests");
-		} else {
+			
+			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
+				
+				model.setViewName("viewRequestedLeave");
+				
+			}else if(userName.getRole().equalsIgnoreCase("Technician")){
+				
+					model.setViewName("viewLeaveRequests");
+				}
+			
+			}
+			else {
 			model.setViewName("login");
 		}
 
 		return model;
 	}
 
-	@RequestMapping(value = "updateLeave", method = RequestMethod.GET)
+	@RequestMapping(value ={"updateLeave", "updateMakeLeave"}, method = RequestMethod.GET)
 	public ModelAndView loadUpdateLeave() {
 
-		model = new ModelAndView("updateLeave");
+		model = new ModelAndView();
+		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-
-			model.setViewName("updateLeave");
-		} else {
+			
+			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
+				
+				model.setViewName("updateMakeLeave");
+				
+			}else if(userName.getRole().equalsIgnoreCase("Technician")){
+				
+					model.setViewName("updateLeave");
+				}
+			
+			}
+			else {
 			model.setViewName("login");
 		}
 
@@ -75,13 +105,20 @@ public class LeaveController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
+			
 			model.addObject("retMessage", leaveInt.leaveRequest(leave));
-			model.setViewName("leave");
-
+			
+			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
+				
+				model.setViewName("requestLeave");
+				
+			}else if(userName.getRole().equalsIgnoreCase("Technician")){
+				
+				model.setViewName("leave");
+			}
 		} else {
 			model.setViewName("login");
 		}
-
 		return model;
 	}
 }

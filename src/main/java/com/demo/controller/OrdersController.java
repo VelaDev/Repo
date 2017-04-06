@@ -77,6 +77,7 @@ public class OrdersController {
 		if (userName != null) {
 			retMessage = ordersServiceInt.prepareOrderMaking(order);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
 				
 				model.setViewName("placeOrderForTechnician");

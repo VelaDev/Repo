@@ -157,18 +157,17 @@
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Leave<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href='<c:url value="leave.html"/>'>Request Leave</a></li>
-								<li><a href='<c:url value="updateLeave.html"/>'>Update Leave</a></li>
-								<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
+								<li><a href='<c:url value="requestLeave.html"/>'>Request Leave</a></li>
+								<li><a href='<c:url value="updateMakeLeave.html"/>'>Update Leave</a></li>
+								<li><a href='<c:url value="viewRequestedLeave.html"/>'>View Requested Leave</a></li>
 							</ul>
 					</li>
 					
-					<ul class="nav navbar-nav navbar-right">
-							<li>
-								<a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
+					<li>
+					    <a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
-							</li>
-					</ul>
+					</li>
+					
 
 				</ul>
 

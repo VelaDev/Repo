@@ -24,6 +24,14 @@
 		<c:import url="templates/techniciannavbar.jsp"></c:import>	
 	
 		<div class="container">
+			
+			<c:if test="${not empty retMessage }">
+
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ retMessage}">
+					</c:out>
+				</div>
+			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -34,16 +42,8 @@
 				</div>
 				<div class="panel-body">
 					
-					<c:if test="${not empty retMessage }">
-
-						<div class="alert alert-info" role="alert">
-							<c:out value="${ retMessage}">
-							</c:out>
-						</div>
-					</c:if>
-					
 					<form:form class="well form-horizontal" method="POST"
-						action="makeLeave" modelAttribute="leamakeLeaveve" id="makeLeave">
+						action="makeLeave" modelAttribute="makeLeave" id="makeLeave">
 
 						<!-- Select type Leave Type-->
 						<div class="form-group">

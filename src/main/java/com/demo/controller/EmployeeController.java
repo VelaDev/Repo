@@ -255,7 +255,6 @@ public class EmployeeController {
 		 model = new ModelAndView();
 		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		
 			model.addObject("technicianTickets", ticketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("technicianHome");

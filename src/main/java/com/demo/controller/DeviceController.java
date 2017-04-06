@@ -22,11 +22,14 @@ import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.DeviceServiceInt;
+import com.demo.service.OrdersServiceInt;
 
 
 @Controller
 public class DeviceController {
 	
+	@Autowired
+	private OrdersServiceInt ordersServiceInt;
 	@Autowired
 	private DeviceServiceInt deviceServiceInt;
     @Autowired
@@ -55,6 +58,7 @@ public class DeviceController {
 		if(userName != null){
 		
 			model.addObject("saveProduct", new DeviceBean());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addProduct");
 		}
 		else{
@@ -71,6 +75,7 @@ public class DeviceController {
 			if(userName != null){
 				retMessage =deviceServiceInt.prepareDeviceData(deviceBean);
 		        model.addObject("retMessage", retMessage);
+		        model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		        model.setViewName("addProduct");
 			}
 			else{
@@ -87,6 +92,7 @@ public class DeviceController {
 		if(userName != null){
 		
 			model.addObject("productList", deviceServiceInt.getDeviceList());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("showProducts");
 		}
 		else{
@@ -109,6 +115,7 @@ public class DeviceController {
 			}*/
 	        model.addObject("accessories", accessories);
 	        model.addObject("device",deviceServiceInt.getDeviceBySerialNumber(serialNumber) );
+	        model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 	        model.setViewName("detailedProduct");
 	   }else{
 		   model.setViewName("login");
@@ -125,6 +132,7 @@ public class DeviceController {
 		if(device != null){
 			
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("product", device);
 		}
 		else{
@@ -146,6 +154,7 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("updateDevice", new DeviceBean());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		    model.setViewName("updateDevice");
 		}
 		else{
@@ -161,6 +170,7 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("deviceList", deviceServiceInt.getDeviceList());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("searchDevice");
 		}
 		else{
@@ -182,6 +192,7 @@ public class DeviceController {
 				{
 		    		accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
 				    model.addObject("customer",contactDetailsServiceInt.contactDetails(device.getCustomer().getCustomerName()));
+				    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				    model.addObject("productObject", device);
 				    model.addObject("AccessoryObject", deviceBean);
 				    model.addObject("accessories", accessories);
@@ -207,6 +218,7 @@ public class DeviceController {
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		if(device != null){
 			accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("productObject", device);
 		    model.addObject("accessories", accessories);
 		    
@@ -233,6 +245,7 @@ public class DeviceController {
 		    deviceBean.setUpdateFlag("YES");
 			retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateDevice");
 		}
 		else{
@@ -249,6 +262,7 @@ public class DeviceController {
 		if(device != null){
 			
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("product", device);
 		}
 		else{
@@ -270,6 +284,7 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("retMessage",accessoriesInt.removeAccessory(serial));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateDevice");
 		}
 		else{

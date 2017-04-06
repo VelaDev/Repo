@@ -12,10 +12,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.demo.model.Employee;
 import com.demo.model.Leave;
 import com.demo.service.LeaveInt;
+import com.demo.service.OrdersServiceInt;
 
 @Controller
 public class LeaveController {
 
+	@Autowired
+	private OrdersServiceInt ordersServiceInt;
 	@Autowired
 	private HttpSession session;
 	@Autowired
@@ -32,7 +35,7 @@ public class LeaveController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		
 		if (userName != null) {
-			
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
 				
 				model.setViewName("requestLeave");
@@ -56,7 +59,7 @@ public class LeaveController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));			
 			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
 				
 				model.setViewName("viewRequestedLeave");
@@ -81,7 +84,7 @@ public class LeaveController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));			
 			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
 				
 				model.setViewName("updateMakeLeave");
@@ -107,7 +110,7 @@ public class LeaveController {
 		if (userName != null) {
 			
 			model.addObject("retMessage", leaveInt.leaveRequest(leave));
-			
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
 				
 				model.setViewName("requestLeave");

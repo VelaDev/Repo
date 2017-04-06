@@ -62,6 +62,7 @@ public class OrdersController {
 			model.addObject("compatibility", spareParts.getAllSpareParts());
 			model.addObject("managersList", employeeServiceInt.getAllManagers());
 			model.addObject("customerList", customerServiceInt.getClientList());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("order");
 		} else {
 			model.setViewName("login");
@@ -103,6 +104,7 @@ public class OrdersController {
 			if (orderHeader != null) {
 				model.setViewName("orderUpdate");
 				model.addObject("orderObject", orderHeader);
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			} else {
 
 			}
@@ -120,6 +122,7 @@ public class OrdersController {
 
 			retMessage = ordersServiceInt.updateOrder(order);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("orderUpdate");
 		} else {
 			model.setViewName("login");
@@ -135,6 +138,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("orderList", ordersServiceInt.getOpenOrders());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("approvedOrders");
 		} else {
 			model.setViewName("login");
@@ -165,8 +169,8 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("pendingOrderList",
-					ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("pendingOrderList", ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("pendingOrders");
 		} else {
 			model.setViewName("login");
@@ -183,9 +187,9 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("pendingOrderList",
-					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("RecordID", ordersServiceInt.getOrder(recordID));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("approveOrder");
 		} else {
 			model.setViewName("login");
@@ -202,8 +206,8 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("retMessage",
-					ordersServiceInt.approveOrder(recordID));
+			model.addObject("retMessage",ordersServiceInt.approveOrder(recordID));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("approveOrder");
 		} else {
 			model.setViewName("login");
@@ -220,8 +224,8 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("pendingOrderList",
-					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("pendingOrderList",orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.setViewName("detailedOrders");
 		} else {
@@ -244,6 +248,7 @@ public class OrdersController {
 			model.addObject("pendingOrderList", list);
 			model.addObject("OrderNum", order);
 			//model.addObject("contactPerson", contactDetailsServiceInt.getContactPerson(userName.getFirstName()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("deliveryNote");
 		} else {
 			model.setViewName("login");
@@ -261,6 +266,7 @@ public class OrdersController {
 			String technician = userName.getFirstName() + " "
 					+ userName.getLastName();
 			model.addObject("availableOrders",siteStock.getAllOrders(technician));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableStock");
 		} else {
 			model.setViewName("login");
@@ -277,6 +283,7 @@ public class OrdersController {
 			String technician = userName.getFirstName() + " "
 					+ userName.getLastName();
 			model.addObject("availableOrders",bootStock.getAllOrders(technician));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableBootStock");
 		} else {
 			model.setViewName("login");
@@ -293,6 +300,7 @@ public class OrdersController {
 		if (userName != null) {
 			
 			model.addObject("shipment",ordersServiceInt.shippedOrders(userName.getEmail()) );
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("viewApprovedOrders");
 		} else {
 			model.setViewName("login");
@@ -308,6 +316,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("orderList", ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("orderHistory");
 		} else {
 			model.setViewName("login");
@@ -322,7 +331,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			ordersServiceInt.approveShipment(recordID);
-
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			retPage = "redirect:approvedOrders";
 		} else {
 			retPage = "redirect:login";
@@ -337,8 +346,8 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("pendingOrderList",
-					ordersServiceInt.shippedOrders());
+			model.addObject("pendingOrderList",	ordersServiceInt.shippedOrders());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("shippedOrders");
 		} else {
 			model.setViewName("login");
@@ -353,6 +362,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			ordersServiceInt.approveShipment(recordID);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 
 			retPage = "redirect:viewApprovedOrders";
 		} else {
@@ -370,9 +380,9 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("pendingOrderList",
-					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("orderItemHistory");
 		} else {
 			model.setViewName("login");
@@ -388,6 +398,7 @@ public class OrdersController {
 		if (userName != null) {
 			model.addObject("declinedOrder", new OrdersBean());
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("declineOrder");
 		} else {
 			model.setViewName("login");
@@ -403,6 +414,7 @@ public class OrdersController {
 		if (userName != null) {
 			retMessage=ordersServiceInt.declineOrder(order.getOrderNum(), order.getComments());
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("declineOrder");
 		} else {
 			model.setViewName("login");
@@ -416,6 +428,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("orders", ordersServiceInt.getAllOrders());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("viewAllOrders");
 		} else {
 			model.setViewName("login");
@@ -434,6 +447,7 @@ public class OrdersController {
 			model.addObject("compatibility", spareParts.getAllSpareParts());
 			model.addObject("technicianList", employeeServiceInt.getAllTechnicians());
 			model.addObject("customerList", customerServiceInt.getClientList());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("placeOrderForTechnician");
 		} else {
 			model.setViewName("login");
@@ -449,9 +463,9 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("pendingOrderList",
-					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("pendingOrderList", orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("RecordID", ordersServiceInt.getOrder(recordID));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("viewAllOrderDetails");
 		} else {
 			model.setViewName("login");

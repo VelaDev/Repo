@@ -30,6 +30,7 @@ import com.demo.service.TicketHistoryInt;
 @Controller
 public class TicketController {
 	
+	
 	@Autowired
 	private TicketsServiceInt logTicketService;
 	@Autowired
@@ -67,6 +68,7 @@ public class TicketController {
 		if(userName !=null){
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("logTicket", new TicketsBean());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticket");
 		}
 		else{
@@ -86,6 +88,7 @@ public class TicketController {
 		if(userName !=null){
 			retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);
+		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		   model.setViewName("ticket");
 		}
 		else{
@@ -103,6 +106,7 @@ public class TicketController {
 		if(userName !=null){
 		
 			model.addObject("ticketList", logTicketService.getAllOpenTickets());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("monitoringTickets");
 		}
 		else{
@@ -123,6 +127,7 @@ public class TicketController {
 			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomer().getCustomerName()));
 			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
 			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticketDetails");
 		}
 		else{
@@ -139,6 +144,7 @@ public class TicketController {
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
 		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticketDetails");
 		}
 		else{
@@ -157,6 +163,7 @@ public class TicketController {
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
 		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("userUpdateTicket");
 		}
 		else{
@@ -168,6 +175,7 @@ public class TicketController {
 	}
 	@RequestMapping("searchTechnician")
     public ModelAndView searchEmployee(@RequestParam("searchName") String searchName) {  
+		model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
         return new ModelAndView("");      
     }
 	
@@ -177,6 +185,7 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			model.addObject("", "");
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("clientInfo");
 		}
 		else{
@@ -195,6 +204,7 @@ public class TicketController {
 			getSerialNumbers = deviceServiceInt.getSerials();
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("serialNumbers",getSerialNumbers);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("logTicket");
 		}
 		else{
@@ -211,6 +221,7 @@ public class TicketController {
 			ticket = logTicketService.getLoggedTicketByTicketNumber(ticketNumber);
 			model.addObject("ticketupdate", ticket);
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticketUpdate");
 		}
 		else{
@@ -227,6 +238,7 @@ public class TicketController {
 			ticket = logTicketService.getLoggedTicketByTicketNumber(ticketNumber);
 			model.addObject("ticketupdate", ticket);
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("userUpdateTicket");
 		}
 		else{
@@ -244,6 +256,7 @@ public class TicketController {
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
 		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticketUpdate");
 		}
 		else{
@@ -261,6 +274,7 @@ public class TicketController {
 		if(userName !=null){
 			retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);
+		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		   model.setViewName("logTicket");
 		}
 		else{
@@ -281,6 +295,7 @@ public class TicketController {
 			model.addObject("home", ticketsServiceInt.getAllLoggedTickets(offset, maxResults));
 			model.addObject("ticketResults",beanList);
 			model.addObject("count",count);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("userTicket");
 		}
 		else{

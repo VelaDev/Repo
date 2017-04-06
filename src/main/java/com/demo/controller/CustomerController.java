@@ -243,6 +243,7 @@ public class CustomerController {
 		
 			
 			model.addObject("deviceList",deviceServiceInt.getDeviceListByClientName(customerName));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("customerListDevices");
 		}
 		else{

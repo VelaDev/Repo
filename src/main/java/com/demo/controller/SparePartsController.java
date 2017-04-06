@@ -18,6 +18,7 @@ import com.demo.model.HOStock;
 import com.demo.model.SpareMaster;
 import com.demo.service.BootStockInt;
 import com.demo.service.OrderDetailsInt;
+import com.demo.service.OrdersServiceInt;
 import com.demo.service.SiteStockInt;
 import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.HOStockServeceInt;
@@ -26,14 +27,15 @@ import com.demo.service.HOStockServeceInt;
 public class SparePartsController {
 	
 	@Autowired
+	private OrdersServiceInt ordersServiceInt;
+	@Autowired
 	private HOStockServeceInt hOStockServeceInt;
 	@Autowired
 	private OrderDetailsInt orderDetailsInt;
 	@Autowired
 	private SpareMasterServiceInt spareMasterServiceInt;
 	@Autowired
-	private BootStockInt bootStock;
-	
+	private BootStockInt bootStock;	
 	@Autowired
 	private SiteStockInt siteStock;
 	@Autowired
@@ -55,6 +57,7 @@ public class SparePartsController {
 			model.addObject("saveSpareParts", new SparePartsBean());
 			getSerials = spareMasterServiceInt.getSerials();
 			model.addObject("spareParts",getSerials);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addSpares");
 		}
 		else{
@@ -71,6 +74,7 @@ public class SparePartsController {
 		
 			retMessage = hOStockServeceInt.saveSpareparts(spareParts);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addSpares");
 		}
 		else{
@@ -88,6 +92,7 @@ public class SparePartsController {
 			model.addObject("saveSpareParts", new SparePartsBean());
 			getSerials = spareMasterServiceInt.getSerials();
 			model.addObject("spareParts",getSerials);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("receiveParts");
 		}
 		else{
@@ -104,6 +109,7 @@ public class SparePartsController {
 		
 			retMessage = hOStockServeceInt.saveSpareparts(spareParts);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("receiveParts");
 		}
 		else{
@@ -119,6 +125,7 @@ public class SparePartsController {
 		if(userName != null){
 			
 			model.addObject("spareParts", hOStockServeceInt.getAllSpareParts());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableSpareParts");
 		}
 		else{
@@ -133,6 +140,7 @@ public class SparePartsController {
 		if(userName != null){
 			
 			model.addObject("orders",bootStock.getAllOrders());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("bootSite");
 		}
 		else{
@@ -147,6 +155,7 @@ public class SparePartsController {
 		if(userName != null){
 			
 			model.addObject("orders",siteStock.getAllOrders());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("stockSite");
 		}
 		else{
@@ -160,9 +169,11 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			master =spareMasterServiceInt.getSpareMaster(partNumber);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(master !=null){
 				model.addObject("sparePart", master);
 				model.addObject("models", spareMasterServiceInt.getModelDevice(partNumber));
+				
 			}else{
 				model.addObject("errorRetMessage", "Part Number does not exist.");
 			}
@@ -180,6 +191,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("retMessage", spareMasterServiceInt.saveSpareMasterData(spareMaster));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addSpares");
 		}
 		else{

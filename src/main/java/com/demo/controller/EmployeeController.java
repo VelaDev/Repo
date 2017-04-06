@@ -220,6 +220,7 @@ public class EmployeeController {
 		if(userName !=null){
 			
 			model.addObject("addEmployee", new EmployeeBean());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("registerEmployee");
 		}
 		else{
@@ -324,6 +325,7 @@ public class EmployeeController {
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		}
 		else{
 			model.addObject("", null);
@@ -368,6 +370,7 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
+		model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		model.setViewName("changePassword");
 		
 		return model;
@@ -381,6 +384,7 @@ public class EmployeeController {
 		if(retMessage.equalsIgnoreCase("OK")){
 			retMessage = "Password successfully changed";
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			   model.setViewName("passwordchanged");
 		}
 		else{
@@ -401,6 +405,7 @@ public class EmployeeController {
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		}
 		else{
 			model.addObject("", null);
@@ -423,6 +428,7 @@ public class EmployeeController {
 			
 			retMessage = employeeService.changePassword(email);
 			model.addObject("retMessage", retMessage);
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("resetPassword");
 		}
 		else{
@@ -436,6 +442,7 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
+		model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		model.setViewName("deactivateEmployee");
 		
 		return model;

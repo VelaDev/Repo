@@ -81,7 +81,6 @@ public class LeaveController {
 	public ModelAndView loadUpdateLeave() {
 
 		model = new ModelAndView();
-		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));			

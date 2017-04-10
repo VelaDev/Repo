@@ -160,8 +160,7 @@
 								<li><a href='<c:url value="updateMakeLeave.html"/>'>Update Leave</a></li>
 								<li><a href='<c:url value="viewRequestedLeave.html"/>'>View Requested Leave</a></li>
 							</ul>
-					</li>
-					
+					</li>					
 					<li>
 					    <a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>

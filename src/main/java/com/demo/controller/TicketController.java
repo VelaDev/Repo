@@ -86,7 +86,7 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			retMessage = logTicketService.logTicket(logTickets);
+		   retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);
 		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		   model.setViewName("ticket");

@@ -47,7 +47,7 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${employees}">
 									<tr>
-									   <td><a href="searchClientforProduct?email=<c:out value='${list.email}'/>">${list.firstName} ${list.lastName}</a></td>
+									   <td><a href="loadBootStock?technician=<c:out value='${list.firstName} ${list.lastName}'/>">${list.firstName} ${list.lastName}</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

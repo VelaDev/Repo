@@ -29,47 +29,53 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					
+
 					<div class="tab-content">
-					       <h4 align="center">Head Office</h4>
-					       <form>
-						<!-- Below table will be displayed as Data table -->
-					     <table id="myDatatable" class="display datatable">
-							<thead>
-								<tr>
-									<th>Part No</th>
-									<th>Description</th>
-									<th>Stock Type </th>
-									<th>QTY</th>
-									<th>Date </th>
-								</tr>
-							</thead>
-							<tbody>
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${spareParts}">
+						<h4 align="center">Head Office</h4>
+						<form>
+							<!-- Below table will be displayed as Data table -->
+							<table id="myDatatable" class="display datatable">
+								<thead>
 									<tr>
-									  <td>${list.partNumber}</td>
-										<td>${list.itemDescription}</td>
-										<td>${list.itemType}</td>
-										<td>${list.quantity}</td>
-										<td>${list.dateTime}</td>
+										<th>Part No</th>
+										<th>Compatible Devices</th>
+										<th>Description</th>
+										<th>Stock Type</th>
+										<th>QTY</th>
+										<th>Date</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<!-- Iterating over the list sent from Controller -->
+									<c:forEach var="list" items="${spareParts}">
+										<tr>
+											<c:choose>
+												<c:when test="${list.quantity >=0}">
+													<td>${list.partNumber}</td>
+													<td>${list.compitableDevice}</td>
+													<td>${list.itemDescription}</td>
+													<td>${list.itemType}</td>
+													<td>${list.quantity}</td>
+													<td>${list.dateTime}</td>
+												</c:when>
+											</c:choose>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
 						</form>
 					</div>
 					<!-- /tab-content -->
-					    </div>
 				</div>
-				<!-- /panel body -->
 			</div>
-			<!--/panel success class-->
+			<!-- /panel body -->
 		</div>
-		<!-- /Container -->
-		<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
-		<!--/ Footer -->
+		<!--/panel success class-->
+	</div>
+	<!-- /Container -->
+	<!-- Footer -->
+	<c:import url="templates/footer.jsp"></c:import>
+	<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
 

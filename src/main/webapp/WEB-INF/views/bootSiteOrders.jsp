@@ -20,12 +20,6 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-			<c:if test="${not empty errorRetMessage }">
-				<div class="alert alert-danger" role="alert">
-					<c:out value="${ errorRetMessage}">
-					</c:out>
-				</div>
-			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">

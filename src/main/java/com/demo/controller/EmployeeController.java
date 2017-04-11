@@ -22,6 +22,7 @@ import com.demo.bean.PieChart;
 import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
 import com.demo.model.LoginAttempt;
+import com.demo.model.SpareMaster;
 import com.demo.model.UserLogDetails;
 import com.demo.service.CredentialsServiceInt;
 import com.demo.service.EmployeeServiceInt;
@@ -33,6 +34,8 @@ import com.demo.service.UserLogDetailsServiceInt;
 @Controller
 public class EmployeeController {
 	
+	@Autowired
+	private EmployeeServiceInt employeeServiceInt;
 	@Autowired
 	private EmployeeServiceInt employeeService;
 	@Autowired
@@ -54,6 +57,7 @@ public class EmployeeController {
 	ModelAndView model = null;
 	Employee userName = null;
 	private UserLogDetails details;
+	private Employee techName;
 	
 	private LoginAttempt loginAttempt;
 	String retPage = null;
@@ -211,7 +215,28 @@ public class EmployeeController {
 		}
 		return model;
 	}
-	
+	//Search for technician
+	@RequestMapping(value="searchtechnicianName")
+	public ModelAndView searchTechnicianName(@RequestParam("technicianName") String technicianName) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());			
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if(techName !=null){
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				
+			}else{
+				model.addObject("errorRetMessage", "Technicain does not exist.");
+			}
+		model.setViewName("bootSite");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 	@RequestMapping(value="registerEmployee",method=RequestMethod.GET)
 	public ModelAndView loadAddEmployee() {
 		

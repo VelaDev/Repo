@@ -81,7 +81,7 @@ public class JavaMail {
 				+ "\n\nYour password is "
 				+ passw
 				+ "\n\nRemember to change your password on your first login\n\nKind Regards\nVelaphanda Support Team";
-		String subject = "Password Resert";
+		String subject = "Password Reset";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");

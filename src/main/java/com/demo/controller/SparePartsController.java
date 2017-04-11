@@ -17,6 +17,7 @@ import com.demo.model.Employee;
 import com.demo.model.HOStock;
 import com.demo.model.SpareMaster;
 import com.demo.service.BootStockInt;
+import com.demo.service.EmployeeServiceInt;
 import com.demo.service.OrderDetailsInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.SiteStockInt;
@@ -26,6 +27,8 @@ import com.demo.service.HOStockServeceInt;
 @Controller
 public class SparePartsController {
 	
+	@Autowired
+	private EmployeeServiceInt employeeService;
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
 	@Autowired
@@ -139,7 +142,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("orders",bootStock.getAllOrders());
+			model.addObject("employees",employeeService.getAllTechnicians());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("bootSite");
 		}
@@ -153,8 +156,8 @@ public class SparePartsController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			
-			model.addObject("orders",siteStock.getAllOrders());
+			;;;;;;;;
+			//model.addObject("orders",siteStock.getAllOrders());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("stockSite");
 		}

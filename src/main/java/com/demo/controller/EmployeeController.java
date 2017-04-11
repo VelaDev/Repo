@@ -130,7 +130,7 @@ public class EmployeeController {
 						session.setAttribute("sessionID", userSessionID);
 						System.out.println(userSessionID);
 						userLogDetailsServiceInt.saveUserLogDetails(details);
-						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));						
+						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));	
 						serviceInt.userLoggeIn(employee);
 						model.setViewName("home");
 					}

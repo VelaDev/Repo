@@ -21,12 +21,6 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-			<c:if test="${not empty errorRetMessage }">
-				<div class="alert alert-danger" role="alert">
-					<c:out value="${ errorRetMessage}">
-					</c:out>
-				</div>
-			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -51,9 +45,9 @@
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${orders}">
+								<c:forEach var="list" items="${employees}">
 									<tr>
-									   <td><a href="searchClientforProduct?technicianName=<c:out value='${list.technicianName}'/>">${list.technicianName}</a></td>
+									   <td><a href="searchClientforProduct?email=<c:out value='${list.email}'/>">${list.firstName} ${list.lastName}</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

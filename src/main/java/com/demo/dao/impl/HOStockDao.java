@@ -2,6 +2,7 @@ package com.demo.dao.impl;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,9 @@ public class HOStockDao implements HOStockDaoInt {
 
 	private SpareMaster spareMaster = null;
 	private HOStock hOStock;
-
+	private List<HOStock> tempList = null;
+	private List<HOStock> tempHOList = null;
+	
 	@Override
 	public String saveSpareparts(HOStock spareParts) {
 
@@ -126,5 +129,22 @@ public class HOStockDao implements HOStockDaoInt {
 				HOStock.class);
 		return (List<HOStock>) criteria.list();
 	}
+
+	@Override
+	public List<HOStock> getAllSparePartsWithoutZero() {
+		tempList = new ArrayList<HOStock>();
+		try{
+			tempHOList = getAllSpareParts();
+			for(HOStock hoStock:tempHOList){
+				if(hoStock.getQuantity()>0){
+					tempList.add(hoStock);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return tempList;
+	}
+	
 
 }

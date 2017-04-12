@@ -9,5 +9,6 @@ public interface HOStockServeceInt {
 	public String saveSpareparts(HOStock spareParts);
 	public HOStock getSparePartBySerial(String serialNum);
 	public List<HOStock> getAllSpareParts();
+	public List<HOStock> getAllSparePartsWithoutZero();
 
 }

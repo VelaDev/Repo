@@ -49,16 +49,14 @@
 									<!-- Iterating over the list sent from Controller -->
 									<c:forEach var="list" items="${spareParts}">
 										<tr>
-											<c:choose>
-												<c:when test="${list.quantity >=0}">
-													<td>${list.partNumber}</td>
-													<td>${list.compitableDevice}</td>
-													<td>${list.itemDescription}</td>
-													<td>${list.itemType}</td>
-													<td>${list.quantity}</td>
-													<td>${list.dateTime}</td>
-												</c:when>
-											</c:choose>
+
+											<td>${list.partNumber}</td>
+											<td>${list.compitableDevice}</td>
+											<td>${list.itemDescription}</td>
+											<td>${list.itemType}</td>
+											<td>${list.quantity}</td>
+											<td>${list.dateTime}</td>
+
 										</tr>
 									</c:forEach>
 								</tbody>

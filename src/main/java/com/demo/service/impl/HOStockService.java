@@ -39,4 +39,11 @@ public class HOStockService implements HOStockServeceInt{
 		return sparePartsDAO.getAllSpareParts();
 	}
 
+
+	@Override
+	public List<HOStock> getAllSparePartsWithoutZero() {
+		// TODO Auto-generated method stub
+		return sparePartsDAO.getAllSparePartsWithoutZero();
+	}
+
 }

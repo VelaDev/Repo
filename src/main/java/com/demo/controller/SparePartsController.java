@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.SparePartsBean;
-import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.HOStock;
 import com.demo.model.SpareMaster;
@@ -130,7 +129,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			model.addObject("spareParts", hOStockServeceInt.getAllSpareParts());
+			model.addObject("spareParts", hOStockServeceInt.getAllSparePartsWithoutZero());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableSpareParts");
 		}

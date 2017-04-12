@@ -9,5 +9,7 @@ public interface LeaveDaoInt {
 	String leaveRequest(Leave leave);
 	String updateLeaveRequest(Leave leave);
 	List<Leave> leaveRequests(String email);
+	List<Leave> leaveRequests();
+	Leave getLeave(String leaveID);
 
 }

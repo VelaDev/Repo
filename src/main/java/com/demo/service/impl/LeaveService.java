@@ -39,4 +39,15 @@ public class LeaveService implements LeaveInt{
 		return leaveDaoInt.leaveRequests(email);
 	}
 
+	@Override
+	public List<Leave> leaveRequests() {
+		
+		return leaveDaoInt.leaveRequests();
+	}
+
+	@Override
+	public Leave getLeave(String leaveID) {
+		return leaveDaoInt.getLeave(leaveID);
+	}
+
 }

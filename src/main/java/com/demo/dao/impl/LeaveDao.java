@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -52,6 +53,20 @@ public class LeaveDao implements LeaveDaoInt{
 	public List<Leave> leaveRequests(String email) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Leave> leaveRequests() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				Leave.class);
+		return (List<Leave>) criteria.list();
+	}
+
+	@Override
+	public Leave getLeave(String leaveID) {
+		return (Leave) sessionFactory.getCurrentSession().get(Leave.class,
+				leaveID);
 	}
 
 }

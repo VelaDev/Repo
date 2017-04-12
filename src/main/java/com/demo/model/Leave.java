@@ -36,9 +36,8 @@ public class Leave implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="Leave_ID")
-	private int leaveID;
+	private String leaveID;
 	@Column(name="Leave_Type")
 	private String leaveType;
 	@Column(name="First_Leave_Date")

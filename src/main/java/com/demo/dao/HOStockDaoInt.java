@@ -11,5 +11,5 @@ public interface HOStockDaoInt {
 	public HOStock getSparePartBySerial(String serialNum);
 	public String updateSpareParts(HOStock spareParts);
 	public List<HOStock> getAllSpareParts();
-
+	public List<HOStock> getAllSparePartsWithoutZero();
 }

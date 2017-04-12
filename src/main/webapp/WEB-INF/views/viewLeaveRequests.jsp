@@ -32,28 +32,28 @@
 					<table id="myDatatable" class="display datatable">
 						<thead>
 							<tr>
+								<th>Employee Names</th>
+								<th>Email</th>
 								<th>Type of Leave</th>
 								<th>First Date Leave</th>
 								<th>Last Date Leave</th>
 								<th>Contact Number</th>
 								<th>Address</th>
 								<th>Update</th>
-
 							</tr>
 						</thead>
 						<tbody>
 							<!-- Iterating over the list sent from Controller -->
-							<c:forEach items="" var="leave" varStatus="itr">
+							<c:forEach items="${leaveList}" var="leave" varStatus="itr">
 								<tr>
-									<td><c:out value="${leave.leaveID}" /></td>
+									<td><c:out value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
+									<td><c:out value="${leave.employee.email}" /></td>
+									<td><c:out value="${leave.leaveType}" /></td>
 									<td><c:out value="${leave.startDate}" /></td>
-									<td><c:out value="${leave.dateTime}" /></td>
+									<td><c:out value="${leave.endDate}" /></td>
 									<td><c:out value="${leave.contactNumber}" /></td>
 									<td><c:out value="${leave.address}" /></td>
-									<td><c:out
-											value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
-									<td><a href="=<c:out value='${leave.LeaveID}'/>"><button
-												class="btn btn-info">Edit</button></a></td>
+									<td><a 	href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">Edit</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

@@ -87,7 +87,6 @@ public class LeaveController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("restMessage", leaveInt.updateLeaveRequest(leave));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager")
@@ -127,6 +126,31 @@ public class LeaveController {
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 
 				model.setViewName("leave");
+			}
+		} else {
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value = {"updateLeave","updateMakeLeave"}, method = RequestMethod.POST)
+	public ModelAndView updateLeave(@ModelAttribute("updateLeave") Leave leave) {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.addObject("retMessage", leaveInt.updateLeaveRequest(leave));
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+
+				model.setViewName("updateMakeLeave");
+
+			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
+
+				model.setViewName("updateLeave");
 			}
 		} else {
 			model.setViewName("login");

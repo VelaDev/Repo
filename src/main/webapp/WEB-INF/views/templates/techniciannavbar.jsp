@@ -77,7 +77,7 @@
 						aria-expanded="false">Leave<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="leave.html"/>'>Request Leave</a></li>
-							<li><a href='<c:url value="updateLeave.html"/>'>Update Leave</a></li>
+							<%-- <li><a href='<c:url value="updateLeave.html"/>'>Update Leave</a></li> --%>
 							<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
 						</ul>
 					</li>

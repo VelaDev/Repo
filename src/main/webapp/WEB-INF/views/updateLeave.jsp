@@ -35,6 +35,20 @@
 					<form:form class="well form-horizontal" method="POST"
 						action="updateLeave" modelAttribute="updateLeave" id="updateLeave">
 
+						<!-- Text input Leave ID-->
+						<div class="form-group">
+							<label class="col-xs-3 control-label">Leave ID</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+								 <span
+										class="input-group-addon"> <span
+										class="glyphicon glyphicon-barcode"></span></span>
+									<input type='text' class="form-control" name="leaveID"
+										id="leaveID"  value="${leave.leaveID}" readonly="readonly"/>
+									
+								</div>
+							</div>
+						</div>
 						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>

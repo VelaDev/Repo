@@ -32,14 +32,14 @@
 					<table id="myDatatable" class="display datatable">
 						<thead>
 							<tr>
-								<th>Emp Names</th>
+								<th>Employee Names</th>
 								<th>Email</th>
 								<th>Type of Leave</th>
 								<th>First Date Leave</th>
 								<th>Last Date Leave</th>
 								<th>Contact Number</th>
 								<th>Address</th>
-								<th>Edit</th>
+								<th>Update</th>
 
 							</tr>
 						</thead>

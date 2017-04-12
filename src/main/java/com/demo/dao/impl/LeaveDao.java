@@ -45,13 +45,23 @@ public class LeaveDao implements LeaveDaoInt{
 		}
 		return retMessage;
 	}
-
+		
 	@Override
 	public String updateLeaveRequest(Leave leave) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Employee employee = (Employee) session.getAttribute("loggedInUser");
+		try{
+			leave.setEmployee(employee);
+			sessionFactory.getCurrentSession().update(leave);
+			retMessage = "Leave "+leave.getLeaveID()+" sucessfully updated";
+		}
+		catch(Exception e){
+			retMessage = "Leave was not updated" + e.getMessage();
+		}
+		return retMessage;
 	}
-
+	
+	
 	@Override
 	public List<Leave> leaveRequests(String email) {
 		tempLeave = new ArrayList<Leave>();

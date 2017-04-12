@@ -41,10 +41,10 @@
 							<thead>
 								<tr>
 								   	<th>Part No</th>
+								   	<th>Customer</th>
 									<th>Description</th>
-									<th>QTY </th>
-									<th>Technician </th>
-									<th>Customer </th>
+									<th>Quantity</th>
+									<th>Stock Type</th>	
 								</tr>
 							</thead>
 							<tbody>
@@ -53,10 +53,11 @@
 									<tr>
 									   
 									    <td>${list.partNumber}</td>
+									    <td>${list.customerName}</td>
 										<td>${list.itemDescription}</td>
 										<td>${list.quantity}</td>
-										<td>${list.technicianName}</td>
-										<td>${list.customerName}</td>
+										<td>${list.stockType}</td>										
+										
 									</tr>
 								</c:forEach>
 							</tbody>

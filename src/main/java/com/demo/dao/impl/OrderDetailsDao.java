@@ -87,7 +87,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		try{
 			orders = getAllOrderDetails();
 			for(OrderDetails availableOrds:orders){
-				if(availableOrds.getOrderHeader().getStatus().equalsIgnoreCase("Approved")&& availableOrds.getTechnician().equalsIgnoreCase(technician)){
+				if(availableOrds.getOrderHeader().getStockType().equalsIgnoreCase("Boot") && availableOrds.getOrderHeader().getStatus().equalsIgnoreCase("Approved")&& availableOrds.getTechnician().equalsIgnoreCase(technician)){
 					availableOrders.add(availableOrds);
 				}
 			}
@@ -98,6 +98,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 		
 		return availableOrders;
 	}
+	
 	public String incrementStockAvailability(List<OrderDetails> availableStock){
 		OrderDetails orderDetails = null;
 		int tempQuantity = 0;
@@ -165,5 +166,22 @@ public class OrderDetailsDao implements OrderDetailsDaoInt{
 			e.getMessage();
 		}
 		return retOrder;
+	}
+	@Override
+	public List<OrderDetails> getAllAvailableOrderDetailsForCustomer(String customerName) {
+		ArrayList<OrderDetails> availableOrders = new ArrayList<OrderDetails>();
+		try{
+			orders = getAllOrderDetails();
+			for(OrderDetails availableOrds:orders){
+				if(availableOrds.getOrderHeader().getStockType().equalsIgnoreCase("Site") && availableOrds.getOrderHeader().getStatus().equalsIgnoreCase("Approved") && availableOrds.getTechnician().equalsIgnoreCase(customerName)){
+					availableOrders.add(availableOrds);
+				}
+			}
+			
+		}catch(Exception e){
+			
+		}
+		
+		return availableOrders;
 	}
 }

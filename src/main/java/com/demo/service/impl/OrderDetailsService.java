@@ -41,6 +41,11 @@ public class OrderDetailsService implements OrderDetailsInt{
 	}
 
 	@Override
+	public List<OrderDetails> getAllAvailableOrderDetailsForCustomer(String customerName) {
+		return orderDetailsDaoInt.getAllAvailableOrderDetailsForCustomer(customerName);
+	}
+	
+	@Override
 	public List<OrderDetails> getOrderDetailsByOrderNum(String key,
 			Integer recordID) {
 		
@@ -56,5 +61,7 @@ public class OrderDetailsService implements OrderDetailsInt{
 	public List<OrderDetails> getAllSiteStockOrders() {
 		return orderDetailsDaoInt.getAllSiteStockOrders();
 	}
+
+	
 
 }

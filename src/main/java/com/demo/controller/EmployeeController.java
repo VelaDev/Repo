@@ -237,6 +237,7 @@ public class EmployeeController {
 		
 		return model;
 	}
+	
 	@RequestMapping(value="registerEmployee",method=RequestMethod.GET)
 	public ModelAndView loadAddEmployee() {
 		

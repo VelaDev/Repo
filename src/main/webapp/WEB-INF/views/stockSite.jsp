@@ -45,9 +45,9 @@
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${orders}">
+								<c:forEach var="list" items="${customer}">
 									<tr>
-									   <td><a href="searchClientforProduct?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>									  
+									   <td><a href="loadStockSite?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>									  
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -12,5 +12,5 @@ public interface OrderDetailsInt {
 	List<OrderDetails> getOrderDetailsByOrderNum(String key,Integer recordID);
 	List<OrderDetails> getAllBootStockOrders();
 	List<OrderDetails> getAllSiteStockOrders();
-
+	List<OrderDetails> getAllAvailableOrderDetailsForCustomer(String customerName);
 }

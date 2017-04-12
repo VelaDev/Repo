@@ -54,7 +54,8 @@ public class OrderDetails implements Serializable{/**
 	private int quantity;
 	@Column(name="Technician")
 	private String technician;
-	
+	/*@Column(name="Customer_Name")
+	private String customerName;*/
 	@ManyToOne
 	@JoinColumn(name="Order_Number")
 	private OrderHeader orderHeader;

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.model.Employee;
@@ -27,96 +28,104 @@ public class LeaveController {
 	private String retMessage = null;
 	private Employee userName = null;
 
-	@RequestMapping(value={"leave", "requestLeave"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "leave", "requestLeave" }, method = RequestMethod.GET)
 	public ModelAndView loadLeave() {
-		
-		
+
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
-		
+
 		if (userName != null) {
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
-				
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+
 				model.setViewName("requestLeave");
-				
-			}else if(userName.getRole().equalsIgnoreCase("Technician")){
-				
+
+			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
+
 				model.setViewName("leave");
 			}
-						
+
 		} else {
 			model.setViewName("login");
 		}
 
 		return model;
 	}
-	
 
-	@RequestMapping(value = {"viewLeaveRequests","viewRequestedLeave" }, method = RequestMethod.GET)
+	@RequestMapping(value = { "viewLeaveRequests", "viewRequestedLeave" }, method = RequestMethod.GET)
 	public ModelAndView loadViewLeaveRequestss() {
 
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
-				
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+				model.addObject("leaveList", leaveInt.leaveRequests());
 				model.setViewName("viewRequestedLeave");
-				
-			}else if(userName.getRole().equalsIgnoreCase("Technician")){
-				
-					model.setViewName("viewLeaveRequests");
-				}
-			
+
+			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
+				model.addObject("leaveList",
+						leaveInt.leaveRequests(userName.getEmail()));
+				model.setViewName("viewLeaveRequests");
 			}
-			else {
+
+		} else {
 			model.setViewName("login");
 		}
 
 		return model;
 	}
 
-	@RequestMapping(value ={"updateLeave", "updateMakeLeave"}, method = RequestMethod.GET)
-	public ModelAndView loadUpdateLeave(@ModelAttribute("updateLeave")Leave leave) {
+	@RequestMapping(value = { "updateLeave", "updateMakeLeave" }, method = RequestMethod.GET)
+	public ModelAndView loadUpdateLeave(@RequestParam("leaveID") int leaveID,
+			@ModelAttribute("updateLeave") Leave leave) {
 
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("restMessage",leaveInt.updateLeaveRequest(leave));			
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));			
-			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
-				
+			model.addObject("restMessage", leaveInt.updateLeaveRequest(leave));
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+
+				model.addObject("leave", leaveInt.getLeave(leaveID));
 				model.setViewName("updateMakeLeave");
-				
-			}else if(userName.getRole().equalsIgnoreCase("Technician")){
-				
-					model.setViewName("updateLeave");
-				}
-			
+
+			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
+
+				model.addObject("leave", leaveInt.getLeave(leaveID));
+				model.setViewName("updateLeave");
 			}
-			else {
+
+		} else {
 			model.setViewName("login");
 		}
 
 		return model;
 	}
 
-	@RequestMapping(value = "makeLeave",method=RequestMethod.POST)
-	public ModelAndView submitLeave(@ModelAttribute("makeLeave")Leave leave) {
+	@RequestMapping(value = "makeLeave", method = RequestMethod.POST)
+	public ModelAndView submitLeave(@ModelAttribute("makeLeave") Leave leave) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			
+
 			model.addObject("retMessage", leaveInt.leaveRequest(leave));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
-				
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+
 				model.setViewName("requestLeave");
-				
-			}else if(userName.getRole().equalsIgnoreCase("Technician")){
-				
+
+			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
+
 				model.setViewName("leave");
 			}
 		} else {

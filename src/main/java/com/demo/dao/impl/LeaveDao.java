@@ -64,7 +64,7 @@ public class LeaveDao implements LeaveDaoInt{
 	}
 
 	@Override
-	public Leave getLeave(String leaveID) {
+	public Leave getLeave(int leaveID) {
 		return (Leave) sessionFactory.getCurrentSession().get(Leave.class,
 				leaveID);
 	}

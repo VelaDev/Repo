@@ -46,7 +46,7 @@ public class LeaveService implements LeaveInt{
 	}
 
 	@Override
-	public Leave getLeave(String leaveID) {
+	public Leave getLeave(int leaveID) {
 		return leaveDaoInt.getLeave(leaveID);
 	}
 

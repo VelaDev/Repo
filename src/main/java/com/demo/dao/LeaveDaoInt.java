@@ -10,6 +10,6 @@ public interface LeaveDaoInt {
 	String updateLeaveRequest(Leave leave);
 	List<Leave> leaveRequests(String email);
 	List<Leave> leaveRequests();
-	Leave getLeave(String leaveID);
+	Leave getLeave(int leaveID);
 
 }

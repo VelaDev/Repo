@@ -54,7 +54,6 @@
 										<td>${list.itemDescription}</td>
 										<td>${list.quantity}</td>
 										<td>${list.stockType}</td>
-										
 									</tr>
 								</c:forEach>
 							</tbody>

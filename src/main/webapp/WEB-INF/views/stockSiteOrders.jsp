@@ -41,7 +41,7 @@
 							<thead>
 								<tr>
 								   	<th>Part No</th>
-								   	<th>Customer</th>
+								    <th>Customer</th>
 									<th>Description</th>
 									<th>Quantity</th>
 									<th>Stock Type</th>	
@@ -51,13 +51,11 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${orders}">
 									<tr>
-									   
 									    <td>${list.partNumber}</td>
-									    <td>${list.customerName}</td>
-										<td>${list.itemDescription}</td>
+									    <td>${list.itemDescription}</td>
 										<td>${list.quantity}</td>
 										<td>${list.stockType}</td>										
-										
+										<td>${list.orderHeader.customer.customerName}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

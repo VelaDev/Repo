@@ -80,6 +80,32 @@
 									</div>
 								</div>
 								
+								<!-- Text input Machine Model-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Machine Model</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												value="${product.modelNumber }"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text input Customer Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Customer Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												 value="${product.customer.customerName }"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+								
 								<!-- Text area Subject-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Subject</label>
@@ -89,6 +115,45 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="subject"
 												required="required"></textarea>
+										</div>
+									</div>
+								</div>
+								<!-- Assign Technician -->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Assign Technician</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="technicianUserName" class="form-control selectpicker">
+												<option>Select Technician</option>
+												<c:forEach items="${technicians}" var="technician">
+													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+							<!--/F Column-->
+
+							<!--Second column-->
+							<div class="col-sm-6">
+
+								<!-- Select type Priority-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Priority</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="priority" class="form-control selectpicker">
+												<option value="">Select Priority</option>
+												<option value="High">High</option>
+												<option value="Medium">Medium</option>
+												<option value="Low">Low</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -106,60 +171,7 @@
 										</div>
 									</div>
 								</div>
-
-								<!-- Select type Province-->
-
-								<div class="form-group">
-									<label class="col-md-3 control-label">Priority</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="priority" class="form-control selectpicker">
-												<option value="">Select Priority</option>
-												<option value="High">High</option>
-												<option value="Medium">Medium</option>
-												<option value="Low">Low</option>
-											</select>
-										</div>
-									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-md-3 control-label">Assign Technician</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="technicianUserName" class="form-control selectpicker">
-												<option>Select Technician</option>
-												<c:forEach items="${technicians}" var="technician">
-													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-								</div>
-
-							</div>
-							<!--/F Column-->
-
-							<!--Second column-->
-							<div class="col-sm-6">
-
-								<!-- Text input Machine Model-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Machine Model</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												value="${product.modelNumber }"
-												class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-
+								
 								<!-- Text input Contract End Date-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Contract End Date</label>
@@ -172,27 +184,7 @@
 										</div>
 									</div>
 								</div>
-
-								<!-- Text input Customer Name-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Customer Name</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												 value="${product.customer.customerName }"
-												class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-
-
-								
-								
-							</div>
-							<!--/S Column-->
-							
-							<!-- Text area -->
+								<!-- Text area -->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Description</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -200,19 +192,22 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
-												placeholder="Description"></textarea>
+												placeholder="Description" style="margin: 0px; height: 91px; width: 242px;"></textarea>
 										</div>
 									</div>
 								</div>
-							
-							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
-									<br>
-									<br> <input type="submit" value="Log Ticket"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="logTicket">
-								</div>
+								
 							</div>
+							<!--/S Column-->
+							
+								<div class="form-group row">
+									<div class="col-sm-offset-2 col-sm-8">
+										<br>
+										<br> <input type="submit" value="Log Ticket"
+											class="btn btn-primary btn-block btn-lg" tabindex="9"
+											id="logTicket">
+									</div>
+								</div>
 
 						</form:form>
 

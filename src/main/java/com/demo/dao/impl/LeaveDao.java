@@ -1,6 +1,7 @@
 package com.demo.dao.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -24,6 +25,8 @@ public class LeaveDao implements LeaveDaoInt{
 	private SessionFactory sessionFactory;
 	@Autowired
 	private HttpSession session;
+	private List<Leave> tempLeave = null;
+	private List<Leave> leaveList = null;
 	
 	
 	private String retMessage = null;
@@ -51,8 +54,18 @@ public class LeaveDao implements LeaveDaoInt{
 
 	@Override
 	public List<Leave> leaveRequests(String email) {
-		// TODO Auto-generated method stub
-		return null;
+		tempLeave = new ArrayList<Leave>();
+		try{
+			leaveList = leaveRequests();
+			for(Leave leave:leaveList){
+				if(leave.getEmployee().getEmail().equalsIgnoreCase(email)){
+					tempLeave.add(leave);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return tempLeave;
 	}
 
 	@SuppressWarnings("unchecked")

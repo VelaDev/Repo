@@ -59,7 +59,7 @@ public class LeaveController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));			
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
 				
 				model.setViewName("viewRequestedLeave");
@@ -78,11 +78,12 @@ public class LeaveController {
 	}
 
 	@RequestMapping(value ={"updateLeave", "updateMakeLeave"}, method = RequestMethod.GET)
-	public ModelAndView loadUpdateLeave() {
+	public ModelAndView loadUpdateLeave(@ModelAttribute("updateLeave")Leave leave) {
 
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
+			model.addObject("restMessage",leaveInt.updateLeaveRequest(leave));			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));			
 			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
 				

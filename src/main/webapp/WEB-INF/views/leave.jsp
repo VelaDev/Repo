@@ -202,7 +202,7 @@ $(document).ready(function() {
         validating: 'glyphicon glyphicon-refresh'
     },
         fields: {
-            leaveID: {
+        	leaveType: {
                 validators: {
                     notEmpty: {
                         message: 'Leave type is required,and can not be empty'

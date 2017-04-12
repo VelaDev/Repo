@@ -35,15 +35,15 @@
 					<form:form class="well form-horizontal" method="POST"
 						action="updateLeave" modelAttribute="updateLeave" id="updateLeave">
 
-							<!-- Select type Leave Type-->
+						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>
 							<div class="col-md-6 selectContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span> <select name="leaveID"
+										class="glyphicon glyphicon-list"></i></span> <select name="leaveType"
 										id="leaveID" class="form-control selectpicker">
-										<option value="">Select Leave</option>
+										<option value="${leave.leaveType}">${leave.leaveType}</option>
 										<option value="Annual Vacation Leave">Annual Vacation Leave</option>
 										<option value="Sick Leave">Sick Leave</option>
 										<option value="Emergency Leave">Emergency Leave</option>
@@ -58,7 +58,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="startDatePicker">
 									<input type='text' class="form-control" name="startDate"
-										id="startDate" placeholder="YYYY-MM-DD" /> <span
+										id="startDate" placeholder="YYYY-MM-DD" value="${leave.startDate}" /> <span
 										class="input-group-addon"> <span
 										class="glyphicon glyphicon-calendar"></span>
 									</span>
@@ -71,7 +71,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="endDatePicker">
 									<input type='text' class="form-control" name="endDate"
-										id="endDate" placeholder="YYYY-MM-DD" /> <span
+										id="endDate" placeholder="YYYY-MM-DD" value="${leave.endDate}"/> <span
 										class="input-group-addon"> <span
 										class="glyphicon glyphicon-calendar"></span>
 									</span>
@@ -87,7 +87,7 @@
 										class="glyphicon glyphicon-earphone"></i></span> <input
 										id="contactNumber" name="contactNumber"
 										placeholder="Contact Number during absence"
-										class="form-control" type="text" onkeypress="return isNumber(event)">
+										class="form-control" type="text" onkeypress="return isNumber(event)" value="${leave.contactNumber}">
 								</div>
 							</div>
 						</div>
@@ -99,7 +99,7 @@
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-home"></i></span> <input id="address"
 										name="address" placeholder="Address during absence"
-										class="form-control" type="text">
+										class="form-control" type="text" value="${leave.address}">
 								</div>
 							</div>
 						</div>
@@ -111,11 +111,8 @@
 									id="updateLeave">
 							</div>
 						</div>
-
-
 					</form:form>
-
-				</div>
+				 </div>
 				<!-- /panel body -->
 			</div>
 			<!--/panel success class-->
@@ -126,8 +123,7 @@
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-
-
+	
 	<!-- Scripts -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
@@ -190,7 +186,7 @@ $(document).ready(function() {
         validating: 'glyphicon glyphicon-refresh'
     },
         fields: {
-            leaveID: {
+        	leaveType: {
                 validators: {
                     notEmpty: {
                         message: 'Leave type is required,and can not be empty'

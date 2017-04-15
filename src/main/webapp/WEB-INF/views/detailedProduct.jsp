@@ -174,7 +174,7 @@ header, #content, #middle, #sidebar {
 													<label id="monoCopyCost" name="monoCopyCost">Mono Copy Cost </label> <br> 
 												</div>								
 												<div class="machinedetailsfloatright ">	
-												   <label id="customerName" name="customerName">: ${device.customer.customerName}</label><br> 
+												   <label id="customerName" name="customerName">: ${device.customerDevice.customerName}</label><br> 
 												   <label id="serialNumber" name="serialNumber">: ${device.serialNumber}</label><br>
 												   <label id="modelNumber" name="modelNumber">: ${device.modelNumber}</label><br> 
 												   <label id="modelBrand" name="modelBrand">: ${device.modelBrand}</label><br> 

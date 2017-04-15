@@ -57,10 +57,10 @@ public class DeviceDao implements DeviceDaoInt {
 				retMessage = "Device "
 						+ device.getSerialNumber()
 						+ " is succefully added. The device belongs to customer : "
-						+ device.getCustomer().getCustomerName();
+						+ device.getCustomerDevice().getCustomerName();
 
 			}else{
-				retMessage = "Device "+ localdevice.getSerialNumber()+ "is already assigned to customer " +localdevice.getCustomer().getCustomerName()+". One device canot be assigned twice to a customer ";
+				retMessage = "Device "+ localdevice.getSerialNumber()+ "is already assigned to customer " +localdevice.getCustomerDevice().getCustomerName()+". One device canot be assigned twice to a customer ";
 			}
 		} catch (Exception e) {
 			retMessage = "Device " + device.getSerialNumber()
@@ -100,7 +100,7 @@ public class DeviceDao implements DeviceDaoInt {
 			sessionFactory.getCurrentSession().update(device);
 			retMessage = "Device " + device.getSerialNumber()
 					+ " is successfully updated. Device belongs to customer : "
-					+ device.getCustomer().getCustomerName();
+					+ device.getCustomerDevice().getCustomerName();
 		} catch (Exception e) {
 			retMessage = "Device " + device.getSerialNumber()
 					+ " is not updated\n" + e.getMessage();
@@ -148,7 +148,7 @@ public class DeviceDao implements DeviceDaoInt {
 					.getCustomerName());
 
 			if (customer != null) {
-				device.setCustomer(customer);
+				
 
 				list = new ArrayList<Accessories>();
 				Accessories accessory = new Accessories();
@@ -235,12 +235,15 @@ public class DeviceDao implements DeviceDaoInt {
 				List<String> accessorySerial = new ArrayList<String>(Arrays.asList(deviceBean.getSerialNumberOtherAccessory().split(",")));
 				for(int i =0;i<accessoryType.size();i++){
 					for(int x=0;x<accessorySerial.size();x++){
-						if(i==x){
-							Accessories otherAccessorry = new Accessories();
-							otherAccessorry.setAccessotyType(accessoryType.get(i));
-							otherAccessorry.setSerial(accessorySerial.get(x));
-							otherAccessorry.setDevice(device);
-							list.add(otherAccessorry);
+						
+						if(accessorySerial.toString().length()>3){
+							if(i==x){
+								Accessories otherAccessorry = new Accessories();
+								otherAccessorry.setAccessotyType(accessoryType.get(i));
+								otherAccessorry.setSerial(accessorySerial.get(x));
+								otherAccessorry.setDevice(device);
+								list.add(otherAccessorry);
+							}
 						}
 					}
 				}
@@ -250,8 +253,9 @@ public class DeviceDao implements DeviceDaoInt {
 				retMessage = contactPersonDaoInt
 						.saveContactPerson(contactPerson);
 				if (retMessage.equalsIgnoreCase("OK")) {
-
+					device.setCustomerDevice(customer);
 					device.setContactPerson(contactPerson);
+					
 					if(deviceBean.getUpdateFlag()== "YES")
 					{
 						retMessage= updateDevice(device);
@@ -263,6 +267,8 @@ public class DeviceDao implements DeviceDaoInt {
 					if (retAccessory.equalsIgnoreCase("Error")) {
 						retMessage = "Device not inserted into the table "
 								+ retAccessory;
+					}else{
+						
 					}
 
 				} else {
@@ -351,11 +357,11 @@ public class DeviceDao implements DeviceDaoInt {
 			aList.addAll(criteria.list());
 			for (Object pro : aList) {
 				if (pro instanceof Device) {
-					if (((Device) pro).getCustomer().getCustomerName() != null
-							&& ((Device) pro).getCustomer().getCustomerName()
+					if (((Device) pro).getCustomerDevice().getCustomerName() != null
+							&& ((Device) pro).getCustomerDevice().getCustomerName()
 									.startsWith(name)) {
 						productList.add((Device) pro);
-						customer = ((Device) pro).getCustomer();
+						customer = ((Device) pro).getCustomerDevice();
 					}
 				}
 			}

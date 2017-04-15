@@ -82,7 +82,7 @@ public class CustomerDao implements CustomerDaoInt {
 				contactDetails.setContactEmail(customerBean.getContactEmail());
 				contactDetails.setFirstName(customerBean.getFirstName());
 				contactDetails.setLastName(customerBean.getLastName());
-				contactDetails.setCustomer(tempCustomer);
+				contactDetails.setCustomerContactDetails(tempCustomer);
 				list.add(contactDetails);
 
 				// Optional contact person object
@@ -97,7 +97,7 @@ public class CustomerDao implements CustomerDaoInt {
 					contactDetails1.setLastName(customerBean.getLastName1());
 					contactDetails1.setContactTelephoneNumber(customerBean
 							.getContactTelephoneNumber1());
-					contactDetails1.setCustomer(tempCustomer);
+					contactDetails1.setCustomerContactDetails(tempCustomer);
 					list.add(contactDetails1);
 				}
 				sessionFactory.getCurrentSession().save(tempCustomer);
@@ -147,7 +147,7 @@ public class CustomerDao implements CustomerDaoInt {
 			contactDetails.setContactEmail(customerBean.getContactEmail());
 			contactDetails.setFirstName(customerBean.getFirstName());
 			contactDetails.setLastName(customerBean.getLastName());
-			contactDetails.setCustomer(tempCustomer);
+			contactDetails.setCustomerContactDetails(tempCustomer);
 			list.add(contactDetails);
 
 			// Optional contact person object
@@ -162,7 +162,7 @@ public class CustomerDao implements CustomerDaoInt {
 				contactDetails1.setLastName(customerBean.getLastName1());
 				contactDetails1.setContactTelephoneNumber(customerBean
 						.getContactTelephoneNumber1());
-				contactDetails1.setCustomer(tempCustomer);
+				contactDetails1.setCustomerContactDetails(tempCustomer);
 				list.add(contactDetails1);
 			}
 

@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b><!-- Available Spares -->Sides<!-- Site Stock --></b>
+							<b><!-- Available Spares -->Sites<!-- Site Stock --></b>
 						</div>
 					</h3>
 				</div>

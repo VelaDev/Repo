@@ -22,7 +22,7 @@ public class JavaMail {
 
 	public static void sendFromGMail(Tickets ticket) {
 		String[] to = { ticket.getEmployee().getEmail(),
-				ticket.getDevice().getCustomer().getEmail() };
+				ticket.getDevice().getCustomerDevice().getEmail() };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + ticket.getEmployee().getFirstName() + ","

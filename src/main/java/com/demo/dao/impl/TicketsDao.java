@@ -107,7 +107,7 @@ public class TicketsDao implements TicketsDaoInt {
 					
 					historyDaoInt.insertTicketHistory(ticket);
 					
-					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getCustomer().getCustomerName();
+					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getCustomerDevice().getCustomerName();
 					JavaMail.sendFromGMail(ticket);
 				}
 				else{

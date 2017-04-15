@@ -298,6 +298,7 @@ public class OrderDao implements OrdersDaoInt {
 				orderDetails.setQuantity(quatity);
 				orderDetails.setLocation(orderBean.getLocation());
 				orderDetails.setStockType(cusOrder.getStockType());
+				orderDetails.setItemType(part.getItemType());
 				if(orderBean.getTechnician()!= null){
 					orderDetails.setTechnician(orderBean.getTechnician());
 				}

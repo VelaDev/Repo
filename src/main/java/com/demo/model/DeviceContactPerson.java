@@ -41,7 +41,7 @@ public class DeviceContactPerson implements Serializable{/**
 	@Column(name="Cellphone")
 	private String cellphone;
 	
-	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy ="contactPerson", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Device> devices;
 
 }

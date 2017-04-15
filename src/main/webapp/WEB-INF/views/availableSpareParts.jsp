@@ -24,14 +24,14 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Available Spares & Parts</b>
+							<b>Head Office Stock</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
 
 					<div class="tab-content">
-						<h4 align="center">Head Office</h4>
+						
 						<form>
 							<!-- Below table will be displayed as Data table -->
 							<table id="myDatatable" class="display datatable">
@@ -40,9 +40,8 @@
 										<th>Part No</th>
 										<th>Compatible Devices</th>
 										<th>Description</th>
-										<th>Stock Type</th>
+										<th>Item Type</th>
 										<th>QTY</th>
-										<th>Date</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -55,7 +54,6 @@
 											<td>${list.itemDescription}</td>
 											<td>${list.itemType}</td>
 											<td>${list.quantity}</td>
-											<td>${list.dateTime}</td>
 
 										</tr>
 									</c:forEach>

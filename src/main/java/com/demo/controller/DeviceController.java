@@ -191,7 +191,7 @@ public class DeviceController {
 		     if(device != null)
 				{
 		    		accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
-				    model.addObject("customer",contactDetailsServiceInt.contactDetails(device.getCustomer().getCustomerName()));
+				    model.addObject("customer",contactDetailsServiceInt.contactDetails(device.getCustomerDevice().getCustomerName()));
 				    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				    model.addObject("productObject", device);
 				    model.addObject("AccessoryObject", deviceBean);

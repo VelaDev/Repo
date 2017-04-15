@@ -41,10 +41,10 @@
 							<thead>
 								<tr>
 								   	<th>Part No</th>
-								   	<th>COmpatible Devices</th>
+								   	<th>Compatible Devices</th>
 									<th>Description</th>
 									<th>Quantity </th>
-									<th>Stock type </th>
+									<th>Item type </th>
 								</tr>
 							</thead>
 							<tbody>

@@ -28,7 +28,7 @@ public class ApprovedStockOrderDao implements ApprovedOrderStockDaoInt{
 			for(OrderDetails orderDetails:detailsDaos){
 				approvedOrderStock = new ApprovedOrderStock();
 				approvedOrderStock.setItemDescription(orderDetails.getItemDescription());
-				approvedOrderStock.setItemType(orderDetails.getPartType());
+				approvedOrderStock.setItemType(orderDetails.getItemType());
 				approvedOrderStock.setPartNumber(orderDetails.getPartNumber());
 				approvedOrderStock.setQuantity(orderDetails.getQuantity());
 				approvedOrderStock.setRecordID(orderDetails.getOrderDertailNumber());

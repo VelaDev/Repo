@@ -58,10 +58,10 @@ public class Customer implements Serializable{
 	private Date dateTime;
 	
 	
-	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	@OneToMany(mappedBy ="customerContactDetails", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<CustomerContactDetails> customerContactDetails;
 	
-	@OneToMany(mappedBy ="customer", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
-	private Set<Device> devices;
+	@OneToMany(mappedBy ="customerDevice", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
+	private Set<Device> customerDevice;
 
 }

@@ -86,7 +86,7 @@ public class Device implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="Customer")
-	private Customer customer;
+	private Customer customerDevice;
     
 	@OneToMany(mappedBy ="device", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Accessories> accessories;

@@ -45,8 +45,9 @@ public class CustomerContactDetails implements Serializable{
 	private String contactCellNumber;	
 	@Column(name="Contact_Type")
 	private String contactType;
+	
 	@ManyToOne
 	@JoinColumn(name="Customer")
-	private Customer customer;
+	private Customer customerContactDetails;
 
 }

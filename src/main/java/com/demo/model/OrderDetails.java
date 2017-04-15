@@ -40,8 +40,8 @@ public class OrderDetails implements Serializable{/**
 	private String stockType;
 	@Column(name="Location")
 	private String location;
-	@Column(name="Part_Type")
-	private String partType;
+	@Column(name="Item_Type")
+	private String itemType;
 	@Column(name="Part_Number")
 	private String partNumber;
 	@Column(name="Model")

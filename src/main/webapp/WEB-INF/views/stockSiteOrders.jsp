@@ -48,7 +48,6 @@
 										<th>Quantity</th>
 										<th>Stock Type</th>
 										<th>Customer</th>
-										<th>Technician</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -61,7 +60,6 @@
 											<td>${list.quantity}</td>
 											<td>${list.itemType}</td>
 											<td>${list.customerName}</td>
-											<td>${list.technicianName}</td>
 										</tr>
 									</c:forEach>
 								</tbody>

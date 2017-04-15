@@ -33,7 +33,7 @@ public class BootSiteDao implements BootStockDaoInt{
 			for(OrderDetails stock:detailsDaos){
 				bootStock = new BootStock();
 				bootStock.setItemDescription(stock.getItemDescription());
-				bootStock.setItemType(stock.getStockType());
+				bootStock.setItemType(stock.getItemType());
 				bootStock.setPartNumber(stock.getPartNumber());
 				bootStock.setQuantity(stock.getQuantity());
 				bootStock.setRecordID(stock.getOrderDertailNumber());

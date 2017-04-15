@@ -101,7 +101,7 @@ input.currency {
 													class="glyphicon glyphicon-user"></i></span> <input type="text"
 													id="customerName" name="customerName" readonly="readonly"
 													placeholder="Client Name" class="form-control"
-													value="${productObject.customer.customerName}">
+													value="${productObject.customerDevice.customerName}">
 											</div>
 										</div>
 									</div>
@@ -117,7 +117,7 @@ input.currency {
 													id="Company Email" companyEmail id="companyEmail"
 													name="companyEmail" readonly="readonly"
 													placeholder="Company Email" class="form-control"
-													value="${productObject.customer.email}">
+													value="${productObject.customerDevice.email}">
 											</div>
 										</div>
 									</div>
@@ -129,10 +129,10 @@ input.currency {
 										style="width: auto; display: table;">
 										<div class="customerDeviceAddressTitle"><p class="customerAddressTitle">Customer Address</p>
 											<ul class="addressDeviceList" style="display: block;">
-												<li id="streetName">${productObject.customer.streetNumber}
-													${productObject.customer.streetName}</li>
-												<li id="city_town">${productObject.customer.city_town}</li>
-												<li id="zipcode">${productObject.customer.zipcode}</li>
+												<li id="streetName">${productObject.customerDevice.streetNumber}
+													${productObject.customerDevice.streetName}</li>
+												<li id="city_town">${productObject.customerDevice.city_town}</li>
+												<li id="zipcode">${productObject.customerDevice.zipcode}</li>
 											</ul>
 										</div>
 									</div>

@@ -34,13 +34,13 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 				 {
 					 contactDetails.setContactType("Primary");
 					 // ContactKey = Customer Name + Contact Type
-					 contactDetails.setContactKey(contactDetails.getCustomer().getCustomerName().trim() + " " + contactDetails.getContactType().trim());
+					 contactDetails.setContactKey(contactDetails.getCustomerContactDetails().getCustomerName().trim() + " " + contactDetails.getContactType().trim());
 				 }
 				 else if((contacts.indexOf(contactDetails) == 1))
 				 {
 					 contactDetails.setContactType("Seconday");
 					 // ContactKey = Customer Name + Contact Type
-					 contactDetails.setContactKey(contactDetails.getCustomer().getCustomerName().trim() + " " + contactDetails.getContactType().trim());
+					 contactDetails.setContactKey(contactDetails.getCustomerContactDetails().getCustomerName().trim() + " " + contactDetails.getContactType().trim());
 				 }
 				
 				sessionFactory.getCurrentSession().saveOrUpdate(contactDetails);
@@ -60,13 +60,13 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 			String currentContactType; 
 			for(CustomerContactDetails temp:tempContacts){
 				
-				if(temp.getCustomer().getCustomerName().equalsIgnoreCase(customerName)== true)
+				if(temp.getCustomerContactDetails().getCustomerName().equalsIgnoreCase(customerName)== true)
 				{
 				    currentContactType = temp.getContactType();
 				if (currentContactType.equals("Primary") == true)
 				   {
 					//Retrieve Primary Contact from Database
-				  if (temp.getContactKey().equals(temp.getCustomer().getCustomerName() + " " + "Primary") == true)
+				  if (temp.getContactKey().equals(temp.getCustomerContactDetails().getCustomerName() + " " + "Primary") == true)
 					{	  
 						returnCustomerContact.setFirstName(temp.getFirstName());
 						returnCustomerContact.setLastName(temp.getLastName());
@@ -80,7 +80,7 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 				   //Retrieve Alternate Contact from Database
 				  else if (currentContactType.equals("Primary") == false)
 				{
-				    if(temp.getContactKey().equals(temp.getCustomer().getCustomerName() + " " + "Seconday") == true)
+				    if(temp.getContactKey().equals(temp.getCustomerContactDetails().getCustomerName() + " " + "Seconday") == true)
 						returnCustomerContact.setFirstName1(temp.getFirstName());
 						returnCustomerContact.setLastName1(temp.getLastName());
 						returnCustomerContact.setContactEmail1(temp.getContactEmail());
@@ -105,7 +105,7 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 			
 			tempContacts = contacts();
 			for(CustomerContactDetails temp:tempContacts){
-				if(temp.getCustomer().getCustomerName().equalsIgnoreCase(customerName));
+				if(temp.getCustomerContactDetails().getCustomerName().equalsIgnoreCase(customerName));
 				
 			}
 		}
@@ -129,7 +129,7 @@ public class CustomerContactDetailsDao implements CustomerContactDetailsDaoInt{
 		try{
 			   List<CustomerContactDetails> list = contacts();
 			   for(CustomerContactDetails temp:list){
-				   if(temp.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+				   if(temp.getCustomerContactDetails().getCustomerName().equalsIgnoreCase(customerName)){
 					   contactDetails = temp;
 					   break;
 				   }

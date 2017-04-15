@@ -104,7 +104,7 @@ public class CustomerController {
 		if(userName != null){
 			deviceList = deviceServiceInt.getAllEmployees(offset, maxResults, clientName);
 		      for(Device dev:deviceList){
-			       customer = dev.getCustomer();
+			       customer = dev.getCustomerDevice();
 			      break;
 		      }
 		

@@ -19,8 +19,12 @@ public class SitStockService implements SiteStockInt{
 		return siteStock.getAllOrders();
 	}
 	@Override
-	public List<SiteStock> getAllOrders(String technician) {
-		return siteStock.getAllOrders(technician);
+	public List<SiteStock> getOrdersForCustomer(String customerName) {
+		return siteStock.getOrdersForCustomer(customerName);
+	}
+	@Override
+	public List<SiteStock> getOrdersByTechnician(String technician) {
+		return siteStock.getOrdersByTechnician(technician);
 	}
 
 }

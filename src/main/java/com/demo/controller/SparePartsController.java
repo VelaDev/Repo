@@ -158,8 +158,7 @@ public class SparePartsController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			
-			model.addObject("orders",orderDetailsInt.getAllAvailableOrderDetails(technician));
+			model.addObject("orders",bootStock.getAllOrders(technician));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("bootSiteOrders");
 		}
@@ -189,7 +188,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		
 		if(userName != null){
-			model.addObject("orders", orderDetailsInt.getAllAvailableOrderDetailsForCustomer(customerName));		
+			model.addObject("orders", siteStock.getOrdersForCustomer(customerName));		
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("stockSiteOrders");
 		}

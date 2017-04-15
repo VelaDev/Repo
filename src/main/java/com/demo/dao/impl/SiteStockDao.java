@@ -57,17 +57,34 @@ public class SiteStockDao implements SiteStocDaoInt {
 	}
 
 	@Override
-	public List<SiteStock> getAllOrders(String technician) {
+	public List<SiteStock> getOrdersForCustomer(String customerName) {
 		sitetStockList = new ArrayList<SiteStock>();
 		try{
 			siteStocks = getAllOrders();
 			 for(SiteStock stock:siteStocks){
-				 if(stock.getTechnicianName().equalsIgnoreCase(technician)){
+				 if(stock.getCustomerName().equalsIgnoreCase(customerName)){
 					 sitetStockList.add(stock);
 				 }
 			 }
 		}catch(Exception e){
 			
+		}
+		return sitetStockList;
+	}
+
+	@Override
+	public List<SiteStock> getOrdersByTechnician(String technicianName) {
+		sitetStockList = new ArrayList<SiteStock>();
+		try{
+			siteStocks = getAllOrders();
+			 for(SiteStock site:siteStocks){
+				 String name = site.getTechnicianName();
+				 if(name.equalsIgnoreCase(technicianName)){
+					 sitetStockList.add(site);
+				 }
+			 }
+		}catch(Exception e){
+			e.getMessage();
 		}
 		return sitetStockList;
 	}

@@ -92,7 +92,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt {
 				if (availableOrds.getOrderHeader().getStockType()
 						.equalsIgnoreCase("Boot")
 						&& availableOrds.getOrderHeader().getStatus()
-								.equalsIgnoreCase("Approved")
+								.equalsIgnoreCase("Received")
 						&& availableOrds.getTechnician().equalsIgnoreCase(
 								technician)) {
 					availableOrders.add(availableOrds);
@@ -194,7 +194,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt {
 				if (availableOrds.getOrderHeader().getStockType()
 						.equalsIgnoreCase("Site")
 						&& availableOrds.getOrderHeader().getStatus()
-								.equalsIgnoreCase("Approved")
+								.equalsIgnoreCase("Received")
 						&& availableOrds.getOrderHeader().getCustomer()
 								.getCustomerName()
 								.equalsIgnoreCase(customerName)) {

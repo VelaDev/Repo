@@ -24,56 +24,62 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b><!-- Available Spares -->Site Stock</b>
+							<b>
+								<!-- Available Spares -->Site Stock
+							</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
-					
+
 					<div class="tab-content">
-						
-						 <!--  <h4 align="center">Site Stock</h4> -->
-					     
-						
-					       <form action="">
-					       <!-- Below table will be displayed as Data table -->
+
+						<!--  <h4 align="center">Site Stock</h4> -->
+
+
+						<form action="">
+							<!-- Below table will be displayed as Data table -->
 							<table id="myDatatable" class="display datatable">
-							<thead>
-								<tr>
-								   	<th>Part No</th>
-								    <th>Customer</th>
-									<th>Description</th>
-									<th>Quantity</th>
-									<th>Stock Type</th>	
-								</tr>
-							</thead>
-							<tbody>
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${orders}">
+								<thead>
 									<tr>
-									    <td>${list.partNumber}</td>
-									    <td>${list.itemDescription}</td>
-										<td>${list.quantity}</td>
-										<td>${list.stockType}</td>										
-										<td>${list.orderHeader.customer.customerName}</td>
+										<th>Part No</th>
+										<th>Compatible Devices</th>
+										<th>Description</th>
+										<th>Quantity</th>
+										<th>Stock Type</th>
+										<th>Customer</th>
+										<th>Technician</th>
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-					       </form>
-					 </div>
-					<!-- /tab-content -->
-					    </div>
+								</thead>
+								<tbody>
+									<!-- Iterating over the list sent from Controller -->
+									<c:forEach var="list" items="${orders}">
+										<tr>
+											<td>${list.partNumber}</td>
+											<td>${list.compatibleDevice}</td>
+											<td>${list.itemDescription}</td>
+											<td>${list.quantity}</td>
+											<td>${list.itemType}</td>
+											<td>${list.customerName}</td>
+											<td>${list.technicianName}</td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</form>
 					</div>
+					<!-- /tab-content -->
 				</div>
-				<!-- /panel body -->
 			</div>
-			<!--/panel success class-->
 		</div>
-		<!-- /Container -->
-		<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
-		<!--/ Footer -->
+		<!-- /panel body -->
+	</div>
+	<!--/panel success class-->
+	</div>
+	<!-- /Container -->
+	<!-- Footer -->
+	<c:import url="templates/footer.jsp"></c:import>
+	<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
 

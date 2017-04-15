@@ -265,7 +265,7 @@ public class OrdersController {
 		if (userName != null) {
 			String technician = userName.getFirstName() + " "
 					+ userName.getLastName();
-			model.addObject("availableOrders",siteStock.getAllOrders(technician));
+			model.addObject("availableOrders",siteStock.getOrdersByTechnician(technician));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableStock");
 		} else {

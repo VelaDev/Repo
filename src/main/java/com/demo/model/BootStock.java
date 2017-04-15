@@ -41,5 +41,7 @@ public class BootStock implements Serializable{
 	private String technicianEmail;
 	@Column(name="Quantity")
 	private int quantity;
+	@Column(name="Compatible_Device")
+	private String compatibleDevice;
 
 }

@@ -41,6 +41,7 @@
 							<thead>
 								<tr>
 								   	<th>Part No</th>
+								   	<th>COmpatible Devices</th>
 									<th>Description</th>
 									<th>Quantity </th>
 									<th>Stock type </th>
@@ -51,9 +52,10 @@
 								<c:forEach var="list" items="${orders}">
 									<tr>									   
 									    <td>${list.partNumber}</td>
+									     <td>${list.compatibleDevice}</td>
 										<td>${list.itemDescription}</td>
 										<td>${list.quantity}</td>
-										<td>${list.stockType}</td>
+										<td>${list.itemType}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

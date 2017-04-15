@@ -292,6 +292,7 @@ public class OrderDao implements OrdersDaoInt {
 				part = hOStockDaoInt.getSparePartBySerial(partNumber);
 				quatity = Integer.parseInt(quantityArray[i]);
 				orderDetails.setPartNumber(partNumber);
+				orderDetails.setCompatibleDevice(part.getCompitableDevice());
 				orderDetails.setItemDescription(part.getItemDescription());
 				orderDetails.setModel(part.getCompitableDevice());
 				orderDetails.setQuantity(quatity);

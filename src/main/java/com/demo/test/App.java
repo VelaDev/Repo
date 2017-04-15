@@ -58,7 +58,7 @@ public class App
     }
 */
     	
-    		String[] to = { "cassino.happies@gmail.com" };
+    		/*String[] to = { "cassino.happies@gmail.com" };
     		String from = "helpdesk@velaphanda.co.za";
     		String pass = "@Vela1357";
     		String body = "Hi "  + ",";
@@ -98,7 +98,13 @@ public class App
     			ae.printStackTrace();
     		} catch (MessagingException me) {
     			me.printStackTrace();
-    		}
+    		}*/
+    	String temID = "0001";
+    	int recordID = 1;
+    	
+    	int newrecordID = Integer.valueOf(temID) + recordID;
+    	
+    	System.out.print(newrecordID);
     }}
 		    
 

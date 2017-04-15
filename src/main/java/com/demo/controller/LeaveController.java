@@ -39,11 +39,12 @@ public class LeaveController {
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
-
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.setViewName("requestLeave");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 
+				model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 				model.setViewName("leave");
 			}
 
@@ -68,6 +69,7 @@ public class LeaveController {
 				model.setViewName("viewRequestedLeave");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
+				model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 				model.addObject("leaveList",
 						leaveInt.leaveRequests(userName.getEmail()));
 				model.setViewName("viewLeaveRequests");
@@ -96,7 +98,7 @@ public class LeaveController {
 				model.setViewName("updateMakeLeave");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
-
+				model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 				model.addObject("leave", leaveInt.getLeave(leaveID));
 				model.setViewName("updateLeave");
 			}
@@ -132,24 +134,25 @@ public class LeaveController {
 		}
 		return model;
 	}
-	
-	@RequestMapping(value = {"updateLeave","updateMakeLeave"}, method = RequestMethod.POST)
+
+	@RequestMapping(value = { "updateLeave", "updateMakeLeave" }, method = RequestMethod.POST)
 	public ModelAndView updateLeave(@ModelAttribute("updateLeave") Leave leave) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("retMessage", leaveInt.updateLeaveRequest(leave));
+			retMessage = leaveInt.updateLeaveRequest(leave);
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
-
+				model.addObject("retMessage", retMessage);
 				model.setViewName("updateMakeLeave");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 
+				model.addObject("retMessage", retMessage);
 				model.setViewName("updateLeave");
 			}
 		} else {

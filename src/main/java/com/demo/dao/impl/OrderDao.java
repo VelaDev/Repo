@@ -518,7 +518,7 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public int pendingOrdersCount(String approveName) {
 		
-		List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
+		//List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
 		int tempCount = 0;
 		try {
 			List<OrderHeader> pendingForApprover = pendingOrders();
@@ -534,5 +534,39 @@ public class OrderDao implements OrdersDaoInt {
 			retMessage = e.getMessage();
 		}
 		return tempCount;
+	}
+
+	@Override
+	public int technicianOrdersCount(String technicianName) {
+		int tempCount = 0;
+		try {
+			List<OrderHeader> shipperOrdersForTechnician = getShippedOrders();
+
+			
+			for (OrderHeader order : shipperOrdersForTechnician) {
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianName)) {
+
+					tempCount ++;
+				}
+			}
+		} catch (Exception e) {
+			retMessage = e.getMessage();
+		}
+		return tempCount;
+	}
+	private List<OrderHeader> getShippedOrders(){
+		List<OrderHeader> shippedOrders = new ArrayList<OrderHeader>();
+		try{
+			pendingOrders = getAllOrders();
+			for(OrderHeader orderHeader:pendingOrders){
+				if(orderHeader.getStatus().equalsIgnoreCase("Shipped")){
+					shippedOrders.add(orderHeader);
+				}
+			}
+		}catch(Exception e)
+		{
+			e.getMessage();
+		}
+		return shippedOrders;
 	}
 }

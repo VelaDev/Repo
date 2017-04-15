@@ -62,7 +62,7 @@ public class OrdersController {
 			model.addObject("compatibility", spareParts.getAllSpareParts());
 			model.addObject("managersList", employeeServiceInt.getAllManagers());
 			model.addObject("customerList", customerServiceInt.getClientList());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 			model.setViewName("order");
 		} else {
 			model.setViewName("login");
@@ -266,7 +266,7 @@ public class OrdersController {
 			String technician = userName.getFirstName() + " "
 					+ userName.getLastName();
 			model.addObject("availableOrders",siteStock.getOrdersByTechnician(technician));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 			model.setViewName("availableStock");
 		} else {
 			model.setViewName("login");
@@ -283,7 +283,7 @@ public class OrdersController {
 			String technician = userName.getFirstName() + " "
 					+ userName.getLastName();
 			model.addObject("availableOrders",bootStock.getAllOrders(technician));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 			model.setViewName("availableBootStock");
 		} else {
 			model.setViewName("login");
@@ -300,7 +300,7 @@ public class OrdersController {
 		if (userName != null) {
 			
 			model.addObject("shipment",ordersServiceInt.shippedOrders(userName.getEmail()) );
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 			model.setViewName("viewApprovedOrders");
 		} else {
 			model.setViewName("login");
@@ -316,7 +316,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("orderList", ordersServiceInt.getAllOrders(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 			model.setViewName("orderHistory");
 		} else {
 			model.setViewName("login");

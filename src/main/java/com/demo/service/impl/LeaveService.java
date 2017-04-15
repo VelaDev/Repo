@@ -30,7 +30,7 @@ public class LeaveService implements LeaveInt{
 	@Override
 	public String updateLeaveRequest(Leave leave) {
 		retMessage = leaveDaoInt.updateLeaveRequest(leave);
-		return null;
+		return retMessage;
 	}
 
 	@Override

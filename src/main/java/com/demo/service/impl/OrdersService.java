@@ -109,5 +109,11 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.pendingOrdersCount(approveName);
 	}
 
+	@Override
+	public int technicianOrdersCount(String technicianName) {
+		
+		return ordersDAO.technicianOrdersCount(technicianName);
+	}
+
 
 }

@@ -1,7 +1,28 @@
 
 <%@include file="taglibs.jsp"%>
 
+<style>
 
+.ourbadge {
+
+	display: inline-block;
+    min-width: 1px;
+    padding: 4px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    background-color: #f11212;
+    border-radius: 12px;
+    margin-bottom: 4px;
+    margin-top: -8px;
+	
+}
+
+</style>
 <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
 <link href="<c:url value="/resources/custom/css/navbar.css" />" rel="stylesheet" type="text/css" />
 <link href="<c:url value="/resources/custom/css/vela_custom.css"/>" rel="stylesheet" type="text/css" />
@@ -59,7 +80,6 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="order.html"/>'>Place Order</a></li>
 							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
-							<li><a href='<c:url value="viewApprovedOrders.html"/>'>View Approved Orders</a></li>
 						</ul>
 					</li>
 					
@@ -80,6 +100,10 @@
 							<%-- <li><a href='<c:url value="updateLeave.html"/>'>Update Leave</a></li> --%>
 							<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
 						</ul>
+					</li>
+					<li>
+					    <a href='<c:url value="viewApprovedOrders.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
 					</li>
 					
 				</ul>

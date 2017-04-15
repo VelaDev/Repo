@@ -39,7 +39,7 @@
 								<th>Last Date Leave</th>
 								<th>Contact Number</th>
 								<th>Address</th>
-								<th>Update</th>
+								<th>Update Leave</th>
 
 							</tr>
 						</thead>
@@ -57,7 +57,7 @@
 									<td><c:out value="${leave.address}" /></td>
 
 									<td><a
-										href="updateMakeLeave?leaveID=<c:out value='${leave.leaveID}'/>">Edit</a></td>
+										href="updateMakeLeave?leaveID=<c:out value='${leave.leaveID}'/>">Update Leave</a></td>
 								</tr>
 							</c:forEach>
 						</tbody>

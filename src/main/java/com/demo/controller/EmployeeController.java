@@ -92,7 +92,6 @@ public class EmployeeController {
 		ModelAndView model = new ModelAndView();
 		String userName = employee.getEmail();
 		String password = employee.getPassword();
-		String retRole = null;
 		long numberOfDays = 1L;
 		
 		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
@@ -142,6 +141,7 @@ public class EmployeeController {
 						userLogDetailsServiceInt.saveUserLogDetails(details);
 						
 						serviceInt.userLoggeIn(employee);
+						model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(employee.getEmail()));
 						model.setViewName("technicianHome");
 						
 					}
@@ -283,7 +283,7 @@ public class EmployeeController {
 		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("technicianTickets", ticketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 			model.setViewName("technicianHome");
 			}
 			else{

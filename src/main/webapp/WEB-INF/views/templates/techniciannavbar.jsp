@@ -103,7 +103,7 @@
 					</li>
 					<li>
 					    <a href='<c:url value="viewApprovedOrders.html"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
+								aria-expanded="false">Ship Orders<span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
 					</li>
 					
 				</ul>

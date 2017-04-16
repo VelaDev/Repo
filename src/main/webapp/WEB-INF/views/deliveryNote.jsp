@@ -1,8 +1,22 @@
+
 <%@include file="templates/taglibs.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
 <title> Delivery Note | Velaphanda Trading & Projects</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+ <script type="text/javascript" src="jspdf.debug.js"></script>
+ 
+<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
+ 
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,6 +40,8 @@
 <link type="text/stylesheet"
 	src="<c:url value="/resources/custom/css/vela_custom.css" />">
 <style>
+
+
 li{
 	list-style: none;
 }
@@ -43,34 +59,40 @@ li{
 						</div>
 					</h3>
 				</div>
-				<div class="panel-body" id="deliveryNote">
+				<div class="panel-body" id="deliveryNote" style="background-color:white;"> 
 					<div class="tab-content">
-					<input type="button" id="btnPrint" class="btn btn-info" value="Print Delivery"  /><br>
+					<a href="printdeliveryNote?recordID=<c:out value='${recordID}'/>"><button>Print Delivery</button></a>
 					  <form:form>
 							
 							<fieldset>
 								<div class="col-sm-6">
-
-									<div id="customer_container"
-										style="width: auto; display: table;">
-										<p class="customerAddress_title"><b>DELIVERY TO</b></p>
-										<ul class="address_list" style="display: block;">
-										    <li id="streetNumber">${OrderNum.customer.customerName}</li>
-											<li id="streetName">${OrderNum.customer.streetNumber} ${OrderNum.customer.streetName}</li>
-											<li id="city_town">${OrderNum.customer.city_town}</li>
-											<li id="zipcode">${OrderNum.customer.province}</li>
+								  <table id="headerTable" border="2%"  width = "208%" cellpadding="auto">
+								  
+								   <tr>
+									<th>DELIVERY TO</th> 
+									<th>DELIVERY NOTE</th> 
+									<th>PAYMENT INFORMATION</th>
+								   </tr>
+								   <tr>
+									<td>							
+									    <ul>
+									        <li id="customer">Madibeng Manucipility</li>
+										    <li id="streetNumberAndName">12 Ivin Khoza</li>
+											<li id="city_town">Johannesburg</li>
+											<li id="zipcode">2080</li>
 										</ul>
-										<ul class="address_list" style="display: block;">
-										    <li id="streetNumber">Contact Person : ${contactPerson.firstName} ${contactPerson.lastName}</li>
-											<li id="streetName">Contact No: ${contactPerson.contactCellNumber}</li>
-											<li id="city_town">E-Mail: ${contactPerson.contactEmail}</li>
+										<ul>
+										    <li id="person">Contact Person : LEONARD TLADI</li>
+											<li id="contact">Contact No: 073 6048 769</li>
+											<li id="email">E-Mail: leonardtladi@madibeng.gov.co.za</li>
 										</ul>
-									</div>
-									<div id="logo_container"
-										style="width: auto; display: table;">
-										<p class="customerAddress_title" align="center"><b>DELIVERY NOTE</b></p>
-										<ul class="address_list" style="display: block;">
-										    <lia id="streetNumber" ></lia>
+									
+									
+									</td>
+									<td>
+							
+										<ul>
+										    <li id="streetNumber" ><img src="resources/bootstrap-3.3.6/images/mainlogoo.jpg" width="70" height="70"></li>
 											<li id="streetName">VELAPHANDA TRADING & PROJECTS</li>
 											<li id="city_town">REG NO: 2008/164490/23</li>
 											<li id="zipcode">POSTNET SUITE 357, PRIVATE BAG X1028</li>
@@ -78,12 +100,10 @@ li{
 											<li id="zipcode">TEL: 012 765 0200 FAX: 086 430 7955</li>
 											<li id="zipcode">E-MAIL: sales@velaphanda.co.za</li>
 										</ul>
-									</div>
-								</div>
-								<div class="col-sm-6">
-									<div id="payment_container"
-										style="width: auto; display: table;">
-										<p class="payment_title">PAYMENT INFORMATION</p>
+									
+									</td> 
+									<td>
+														
 										<ul class="list" style="display: block;">
 											<li id="firstName">Delivery Date: </li>
 											<li id="lastName">Delivery Note No: </li>
@@ -92,17 +112,25 @@ li{
 											<li id="telephoneNumber">WAYBILL No: </li>
 											<li id="telephoneNumber">Please Remit To: </li>
 										</ul>
-									</div>
+									
+									</table>
 								</div>
+									</td>
+								   </tr>
+								   
+		
+								</div>
+								
+							 </table><br>	
 							</fieldset><br>
 							<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable" border="2%">
 							<thead>
 								<tr>
-									<th><b>Model No</b></th>
+									<th><b>Part No</b></th>
 									<th><b>Description</b></th>
-									<th><b>Qty Ordered</b></th>
-									<th><b>Qty Delv</b></th>
+									<th><b>QtyOrdered</b></th>
+									<th><b>QtyDelv</b></th>
 										<!-- <th>Stock Type</th> -->
 								</tr>
 							</thead>
@@ -110,7 +138,7 @@ li{
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach var="list" items="${pendingOrderList}">
 									<tr>
-										<td>${list.model}</td>
+										<td>${list.partNumber}</td>
 										<td>${list.itemDescription}</td>
 										<td>${list.quantity}</td> 
 										<td>${list.quantity}</td>  
@@ -175,20 +203,6 @@ li{
 	<!-- / velaphanda_containter -->
 	 <script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.8.3/jquery.min.js" />"></script>
-   <script type="text/javascript">
-        $("#btnPrint").live("click", function () {
-            var divContents = $("#deliveryNote").html();
-            var printWindow = window.open('', '', 'height=400,width=800');
-            printWindow.document.write('<html><head><title>Delivery Note</title>');
-            printWindow.document.write('</head><body >');
-            printWindow.document.write(divContents);
-            printWindow.document.write('</body></html>');
-            printWindow.document.close();
-            printWindow.print();
-        });
-    </script>
-    
-
 </body>
 
 <script type="text/javascript"
@@ -218,3 +232,4 @@ li{
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
 </html>
+

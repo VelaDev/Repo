@@ -47,9 +47,8 @@
 									<tr>
 										<td><c:out value="${ticket.ticketNumber}" /></td>
 										<td><c:out value="${ticket.status} " /></td>
-										<td><c:out value="${ticket.device.customer.customerName}" /></td>
-										<td><c:out
-												value="${ticket.device.customer.getTellphoneNumber()} " /></td>
+										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
+										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
 										<td><a
 											href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-info">Details</button></a></td>
 									</tr>

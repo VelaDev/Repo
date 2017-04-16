@@ -149,7 +149,7 @@
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="customerName" placeholder="Customer Name"
 													class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getCustomerName()}"
+													value="${ticketObject.getDevice().getCustomerDevice().getCustomerName()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -178,7 +178,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <input
 													name="province" class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getProvince()}"
+													value="${ticketObject.getDevice().getCustomerDevice().getProvince()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -193,7 +193,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="city_town" placeholder="City / Town"
 													class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getCity_town()}" type="text" disabled="disabled">
+													value="${ticketObject.getDevice().getCustomerDevice().getCity_town()}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div> 
@@ -207,7 +207,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="streetName" placeholder="Street Name"
 													class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getStreetName()}"
+													value="${ticketObject.getDevice().getCustomerDevice().getStreetName()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -220,7 +220,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input name="zipcode"
 													placeholder="Area Code" class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getZipcode()}" type="text" disabled="disabled">
+													value="${ticketObject.getDevice().getCustomerDevice().getZipcode()}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div> 
@@ -241,7 +241,7 @@
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="floorNumber" placeholder="Street Number"
 													class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getStreetNumber()}"
+													value="${ticketObject.getDevice().getCustomerDevice().getStreetNumber()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -256,7 +256,7 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="tellphoneNumber" placeholder="Tellphone Number"
 													class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getTellphoneNumber()}"
+													value="${ticketObject.getDevice().getCustomerDevice().getTelephoneNumber()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -271,7 +271,7 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="faxNumber" placeholder="Fax Number"
 													class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getFaxNumber()}" type="text" disabled="disabled">
+													value="${ticketObject.getDevice().getCustomerDevice().getFaxNumber()}" type="text" disabled="disabled">
 											</div>
 										</div>
 									</div>
@@ -285,7 +285,7 @@
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													name="cellNumber" placeholder="Mobile Number"
 													class="form-control"
-													 value="${contactPerson.cellNumber}"
+													 value="${contactPerson.contactCellNumber}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -299,7 +299,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-envelope"></i></span> <input
 													class="form-control"
-													value="${ticketObject.getDevice().getCustomer().getEmail()}"
+													value="${ticketObject.getDevice().getCustomerDevice().getEmail()}"
 													type="text" disabled="disabled">
 											</div>
 										</div>
@@ -432,7 +432,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span> <input
 												name="colour" id="colour" placeholder="Colour"
-												value="${ticketObject.getDevice().getColour() }"
+												value="${ticketObject.getDevice().getColourReading() }"
 												class="form-control" type="text" disabled="disabled" >
 										</div>
 									</div>

@@ -148,7 +148,7 @@ public class DeviceDao implements DeviceDaoInt {
 					.getCustomerName());
 
 			if (customer != null) {
-				
+				device.setCustomerDevice(customer);
 
 				list = new ArrayList<Accessories>();
 				Accessories accessory = new Accessories();
@@ -235,15 +235,12 @@ public class DeviceDao implements DeviceDaoInt {
 				List<String> accessorySerial = new ArrayList<String>(Arrays.asList(deviceBean.getSerialNumberOtherAccessory().split(",")));
 				for(int i =0;i<accessoryType.size();i++){
 					for(int x=0;x<accessorySerial.size();x++){
-						
-						if(accessorySerial.toString().length()>3){
-							if(i==x){
-								Accessories otherAccessorry = new Accessories();
-								otherAccessorry.setAccessotyType(accessoryType.get(i));
-								otherAccessorry.setSerial(accessorySerial.get(x));
-								otherAccessorry.setDevice(device);
-								list.add(otherAccessorry);
-							}
+						if(i==x){
+							Accessories otherAccessorry = new Accessories();
+							otherAccessorry.setAccessotyType(accessoryType.get(i));
+							otherAccessorry.setSerial(accessorySerial.get(x));
+							otherAccessorry.setDevice(device);
+							list.add(otherAccessorry);
 						}
 					}
 				}
@@ -253,9 +250,8 @@ public class DeviceDao implements DeviceDaoInt {
 				retMessage = contactPersonDaoInt
 						.saveContactPerson(contactPerson);
 				if (retMessage.equalsIgnoreCase("OK")) {
-					device.setCustomerDevice(customer);
+
 					device.setContactPerson(contactPerson);
-					
 					if(deviceBean.getUpdateFlag()== "YES")
 					{
 						retMessage= updateDevice(device);
@@ -267,8 +263,6 @@ public class DeviceDao implements DeviceDaoInt {
 					if (retAccessory.equalsIgnoreCase("Error")) {
 						retMessage = "Device not inserted into the table "
 								+ retAccessory;
-					}else{
-						
 					}
 
 				} else {

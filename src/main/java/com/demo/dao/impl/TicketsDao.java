@@ -60,7 +60,6 @@ public class TicketsDao implements TicketsDaoInt {
 	
 
 	private Employee technician = null;
-	private Customer customer = null;
 	private OrderHeader order = null;
 	private Device device = null;
 	 private Tickets ticket = null;
@@ -107,7 +106,7 @@ public class TicketsDao implements TicketsDaoInt {
 					
 					historyDaoInt.insertTicketHistory(ticket);
 					
-					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".\nAn email has been sent to customer "+ ticket.getDevice().getCustomerDevice().getCustomerName();
+					retMessage = "Ticket "+ticket.getTicketNumber()+ " is assigned to technician "+ ticket.getEmployee().getFirstName()+".";
 					JavaMail.sendFromGMail(ticket);
 				}
 				else{
@@ -222,7 +221,6 @@ public class TicketsDao implements TicketsDaoInt {
 			   for(Tickets openTicket:openTickets){
 				   dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 				   date = new Date();
-				   @SuppressWarnings("deprecation")
 				   String tempDate = openTicket.getDateTime();
 				  date = dateFormat.parse(tempDate);
 				  

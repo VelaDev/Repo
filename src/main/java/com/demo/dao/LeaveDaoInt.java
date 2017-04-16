@@ -11,5 +11,8 @@ public interface LeaveDaoInt {
 	List<Leave> leaveRequests(String email);
 	List<Leave> leaveRequests();
 	Leave getLeave(int leaveID);
+	Boolean isTechnicianOnLeave(String technicianEmail);
+	String onLeaveTechnician(String technicianEmail);
+	String [] techniciansOnLeave();
 
 }

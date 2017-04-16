@@ -21,6 +21,7 @@ import com.demo.model.Tickets;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
+import com.demo.service.LeaveInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.DeviceServiceInt;
@@ -45,6 +46,8 @@ public class TicketController {
 	private OrdersServiceInt ordersServiceInt;
 	@Autowired
 	private TicketsServiceInt ticketsServiceInt;
+	@Autowired
+	private LeaveInt leaveInt;
 	private List<PieChart> beanList = null;
 	Integer count = 1;
 	public String[] getSerialNumbers = null;
@@ -204,6 +207,7 @@ public class TicketController {
 			getSerialNumbers = deviceServiceInt.getSerials();
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("serialNumbers",getSerialNumbers);
+			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("logTicket");
 		}
@@ -272,9 +276,16 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			retMessage = logTicketService.logTicket(logTickets);
-		   model.addObject("retMessage", retMessage);
-		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			
+			/*if(message==null){*/
+				 model.addObject("retMessage", logTicketService.logTicket(logTickets));
+				 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			/*}
+			else{*/
+				 /*model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("message",message);*/
+			//}
+		  
 		   model.setViewName("logTicket");
 		}
 		else{

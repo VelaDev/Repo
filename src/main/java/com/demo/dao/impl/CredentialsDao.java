@@ -111,7 +111,7 @@ public class CredentialsDao implements CredentialsDaoInt{
 		return (Credentials) sessionFactory.getCurrentSession().get(Credentials.class, userName);
 	}
 	
-	private Credentials getCurrentPasswordDate(String userName){
+	public Credentials getCurrentPasswordDate(String userName){
 		Credentials credentials = null;
 		try{
 			
@@ -123,7 +123,7 @@ public class CredentialsDao implements CredentialsDaoInt{
 					break;
 				}
 			}
-			if(credentials !=null){
+			/*if(credentials ==null){
 				
 				for(Credentials credObj:currentPasswords){
 					if(credObj.getStatus().equalsIgnoreCase(credentials.getStatus())&& credentials.getEmail().equalsIgnoreCase(userName)){
@@ -133,7 +133,7 @@ public class CredentialsDao implements CredentialsDaoInt{
 					}
 				}
 				
-			}
+			}*/
 		}catch(Exception e){
 			e.getMessage();
 		}

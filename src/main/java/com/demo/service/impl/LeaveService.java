@@ -50,4 +50,19 @@ public class LeaveService implements LeaveInt{
 		return leaveDaoInt.getLeave(leaveID);
 	}
 
+	@Override
+	public Boolean isTechnicianOnLeave(String technicianEmail) {
+		return leaveDaoInt.isTechnicianOnLeave(technicianEmail);
+	}
+
+	@Override
+	public String onLeaveTechnician(String technicianEmail) {
+		return leaveDaoInt.onLeaveTechnician(technicianEmail);
+	}
+
+	@Override
+	public String[] techniciansOnLeave() {
+		return leaveDaoInt.techniciansOnLeave();
+	}
+
 }

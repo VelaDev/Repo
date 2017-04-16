@@ -3,7 +3,7 @@ package com.demo.dao.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -20,10 +20,8 @@ import com.demo.dao.CredentialsDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LoginAttemptDaoInt;
 import com.demo.model.Credentials;
-import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.LoginAttempt;
-import com.demo.model.Tickets;
 
 
 @Repository("employeeDAO")
@@ -46,7 +44,6 @@ public class EmployeeDao implements EmployeeDaoInt{
 	private Credentials credential = null;
 	private LoginAttempt loginAttempt;
 	
-	private Calendar cal = Calendar.getInstance();
 	private DateFormat dateFormat = null;
 	private Date date = null;
 	
@@ -189,6 +186,12 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 emp.setPassword(passworChange);
 				 emp.setFirstTimeLogin(false);
 				 emp.setStatus("ACTIVE");
+				 
+				 credential = credentialsDaoInt.getCurrentPasswordDate(emp.getEmail());
+					if(credential != null){
+						credential.setStatus("Old");
+						sessionFactory.getCurrentSession().update(credential);
+					}
 				 credential = getUserCredentials(emp);
 				 retFlag= credentialsDaoInt.saveNewPassword(credential);
 				 if(retFlag ==true){
@@ -221,6 +224,12 @@ public class EmployeeDao implements EmployeeDaoInt{
 				emp.setStatus("ACTIVE");
 			/*	passworChange = updateEmployee(emp);*/
 				sessionFactory.getCurrentSession().update(emp);
+				
+				credential = credentialsDaoInt.getCurrentPasswordDate(emp.getEmail());
+				if(credential != null){
+					credential.setStatus("Old");
+					sessionFactory.getCurrentSession().update(credential);
+				}
 				
 				loginAttempt.setUserName(emp.getEmail());
 				loginAttempt.setAttemptCount(0);

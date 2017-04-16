@@ -11,6 +11,7 @@ public interface CredentialsDaoInt {
 	List<Credentials> getCredentialsForUser();
 	long passwordDateDifference(String userName);
 	Credentials getEmployeePasswordInfo(String userName);
+	Credentials getCurrentPasswordDate(String userName);
 	
 
 }

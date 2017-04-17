@@ -16,12 +16,15 @@
 li {
 	list-style: none;
 }
-.machinetype{
-		margin-left:3%;
-	}
-	.serial{
-		margin-left:41%;
-	}
+
+.machinetype {
+	margin-left: 3%;
+}
+
+.serial {
+	margin-left: 41%;
+}
+
 .customerDeviceContainer {
 	padding: 25px;
 	margin-bottom: -1em;
@@ -33,19 +36,21 @@ p.customerAddressTitle {
 	font-size: 1.1em;
 	font-weight: bolder;
 	margin-left: 23%;
-    margin-right: -25%;
+	margin-right: -25%;
 }
 
 ul.addressDeviceList {
 	margin-left: -7%;
 }
+
 input.currency {
-    text-align: right;
-    padding-right: 15px;
+	text-align: right;
+	padding-right: 15px;
 }
-.resize{
+
+.resize {
 	margin-left: 12%;
-    margin-right: 12%;
+	margin-right: 12%;
 }
 </style>
 
@@ -75,7 +80,8 @@ input.currency {
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<form:form class="well form-horizontal" method="POST" action="saveProduct" modelAttribute="saveProduct" id="addDevice">
+						<form:form class="well form-horizontal" method="POST"
+							action="saveProduct" modelAttribute="saveProduct" id="addDevice">
 
 							<!--Customer Details-->
 							<fieldset>
@@ -117,7 +123,8 @@ input.currency {
 
 									<div id="customerDeviceContainer"
 										style="width: auto; display: table;">
-										<div class="customerDeviceAddress"><p class="customerAddressTitle">Customer Address</p>
+										<div class="customerDeviceAddress">
+											<p class="customerAddressTitle">Customer Address</p>
 											<ul class="addressDeviceList" style="display: block;">
 												<li id="streetName">${customer.streetNumber}
 													${customer.streetName}</li>
@@ -250,7 +257,7 @@ input.currency {
 											</div>
 										</div>
 									</div>
-																		
+
 									<!-- Select type Brand-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Brand</label>
@@ -263,7 +270,7 @@ input.currency {
 													<option value="Samsung">Samsung</option>
 													<option value="Canon">Canon</option>
 													<option value="Oce">Oce</option>
-													<option value="HP">HP</option>													
+													<option value="HP">HP</option>
 													<option value="Kyocera">Kyocera</option>
 													<option value="Nasua">Nasua</option>
 													<option value="Rico">Rico</option>
@@ -273,7 +280,7 @@ input.currency {
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Text input Contract Start Date-->
 									<div class="form-group ">
 										<label class="col-xs-3 control-label">Contract Start
@@ -339,7 +346,7 @@ input.currency {
 
 									<!-- Both mono and colour reading  -->
 									<div class="colour" id="colour" style="display: none;">
-									
+
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
@@ -351,23 +358,27 @@ input.currency {
 											</div>
 											<br>
 										</div>
-										
+
 										<!-- Text checkbox Colour Copy Cost-->
 										<div class="form-group">
-											<label class="col-md-3 control-label">Colour Copy Cost</label>
+											<label class="col-md-3 control-label">Colour Copy
+												Cost</label>
 											<div class="col-md-6">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon">$</i></span>
-													<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency" placeholder="Enter Colour Copy Cost" id="colour" name="colourCopyCost" />
+														class="glyphicon glyphicon">$</i></span> <input type="number"
+														min="0" step="0.01" data-number-to-fixed="2"
+														data-number-stepfactor="100" class="form-control currency"
+														placeholder="Enter Colour Copy Cost" id="colour"
+														name="colourCopyCost" />
 												</div>
 											</div>
 											<br>
 										</div>
-										
+
 									</div>
 									<!-- Both mono and colour reading  -->
-									
+
 									<!-- Only mono Reading -->
 									<!-- Text checkbox Mono Reading-->
 									<div class="mono" id="mono" style="display: none;">
@@ -379,22 +390,23 @@ input.currency {
 													name="monoReading" placeholder="Enter Mono Reading">
 											</div>
 										</div>
-										
+
 										<!-- Text checkbox Mono Copy Cost-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Copy Cost</label>
 											<div class="col-md-6">
 												<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon">$</i></span>
-												<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"												
-													placeholder="Enter Mono Copy Cost" id="colour"
-													name="monoCopyCost">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon">$</i></span> <input type="number"
+														min="0" step="0.01" data-number-to-fixed="2"
+														data-number-stepfactor="100" class="form-control currency"
+														placeholder="Enter Mono Copy Cost" id="colour"
+														name="monoCopyCost">
 												</div>
 											</div>
 											<br>
 										</div>
-										
+
 									</div>
 									<!-- //Only mono Reading -->
 
@@ -404,7 +416,7 @@ input.currency {
 								<!--Second column-->
 								<div class="col-sm-6">
 
-										<!-- Text input Building Name-->
+									<!-- Text input Building Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Building Name</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -413,7 +425,7 @@ input.currency {
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="buildingName" id="buildingName"
 													placeholder="Building Name" class="form-control"
-													type="text" >
+													type="text">
 											</div>
 										</div>
 									</div>
@@ -425,12 +437,12 @@ input.currency {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="floorNumber" id="floorNumber"
-													placeholder="Floor Number" maxlength="4" class="form-control"
-													type="text" >
+													placeholder="Floor Number" maxlength="4"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Text input Street Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street No</label>
@@ -457,7 +469,7 @@ input.currency {
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Text input City or Town-->
 									<div class="form-group ">
 										<label class="col-md-3 control-label">City/Town</label>
@@ -470,7 +482,7 @@ input.currency {
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Select type Province-->
 									<div class="form-group ">
 										<label class="col-md-3 control-label">Province</label>
@@ -507,7 +519,7 @@ input.currency {
 											</div>
 										</div>
 									</div>
-									
+
 								</div>
 
 							</fieldset>
@@ -517,157 +529,188 @@ input.currency {
 							<!--Machine Accessories-->
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
-								
+
 								<!-- Select type Machine Accessories-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Machine Accessories Type</label>
-										<div class="col-md-6 selectContainer">
+								<div class="form-group">
+									<label class="col-md-3 control-label">Machine
+										Accessories Type</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												id="machineAccessories" name="machineAccessories"
+												class="form-control"
+												onchange="CheckMachineAccessories(this.value);">
+												<option value="">Please select Machine Accessories</option>
+												<option value="Bridge Unit">Bridge Unit</option>
+												<option value="Finisher">Finisher</option>
+												<option value="Fax Unit">Fax Unit</option>
+												<option value="One Bin Tray">One Bin Tray</option>
+												<option value="LCT">LCT</option>
+												<option value="Credenza">Credenza</option>
+												<option value="Additional Paper Trays">Additional
+													Paper Trays</option>
+												<option value="Other Machine Accessories">Other
+													Machine Accessories</option>
+											</select>
+										</div>
+									</div>
+								</div>
+
+								<div class="bridgeAndFinisher" id="bridgeFinisher"
+									style="display: none;">
+									<!-- Text input Bridge unit-->
+									<div class="form-group ">
+										<label class="col-md-3 control-label">Bridge Unit</label>
+										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select id="machineAccessories"
-													name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value);">
-													<option value="">Please select Machine Accessories</option>
-													<option value="Bridge Unit">Bridge Unit</option>
-													<option value="Finisher">Finisher</option>
-													<option value="Fax Unit">Fax Unit</option>
-													<option value="One Bin Tray">One Bin Tray</option>													
-													<option value="LCT">LCT</option>
-													<option value="Credenza">Credenza</option>
-													<option value="Additional Paper Trays">Additional Paper Trays</option>
-													<option value="Other Machine Accessories">Other Machine Accessories</option>
-												</select>
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="bridgeUnitSerialTypeSerialNo"
+													onkeydown="upperCaseF(this)" id="bridgeFinisher"
+													placeholder="Enter Bridge Unit Serial Number"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-									
-									<div class="bridgeAndFinisher" id="bridgeFinisher" style="display:none;">
-										<!-- Text input Bridge unit-->
-										<div class="form-group ">
-											<label class="col-md-3 control-label">Bridge Unit</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinisher" placeholder="Enter Bridge Unit Serial Number"
-														class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-										<!-- Text input Finisher-->
-										<div class="form-group ">
-											<label class="col-md-3 control-label">Finisher</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinisher" placeholder="Enter Finisher Serial Number"
-														class="form-control" type="text">
-												</div>
-											</div>
-										</div>
-										
-									</div>
-									
-									<!-- Text input Fax Unit-->
-									<div class="faxUnitSerial" id="faxUnitSerial" style="display:none;">									
-										<div class="form-group ">
-											<label class="col-md-3 control-label">Fax Unit</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="faxUnitSerial" placeholder="Enter Fax Unit Serial Number"
-														class="form-control" type="text">
-												</div>
+									<!-- Text input Finisher-->
+									<div class="form-group ">
+										<label class="col-md-3 control-label">Finisher</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="finisherTypeSerialNo" onkeydown="upperCaseF(this)"
+													id="bridgeFinisher"
+													placeholder="Enter Finisher Serial Number"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-									
-									<!-- Text input One bin tray-->
-									<div class="oneBinTraySerial" id="oneBinTraySerial" style="display:none;">
-										<div class="form-group ">
-											<label class="col-md-3 control-label">One bin tray</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" id="oneBinTraySerial" placeholder="Enter One bin tray Serial Number"
-														class="form-control" type="text">
-												</div>
+								</div>
+								<!-- Text input Fax Unit-->
+								<div class="faxUnitSerial" id="faxUnitSerial"
+									style="display: none;">
+									<div class="form-group ">
+										<label class="col-md-3 control-label">Fax Unit</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="faxUnitSerialTypeSerialNo"
+													onkeydown="upperCaseF(this)" id="faxUnitSerial"
+													placeholder="Enter Fax Unit Serial Number"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-									
-									<!-- Text input LCT-->
-									<div class="lctSerial" id="lctSerial" style="display:none;">
-										<div class="form-group ">
-											<label class="col-md-3 control-label">LCT</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="ltcTypeSerial" onkeydown="upperCaseF(this)" id="lctSerial" placeholder="Enter LCT Serial Number"
-														class="form-control" type="text">
-												</div>
+								</div>
+								<!-- Text input One bin tray-->
+								<div class="oneBinTraySerial" id="oneBinTraySerial"
+									style="display: none;">
+									<div class="form-group ">
+										<label class="col-md-3 control-label">One bin tray</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)"
+													id="oneBinTraySerial"
+													placeholder="Enter One bin tray Serial Number"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-									
-									<!-- Text input Credenza-->
-									<div class="credenzaSerial" id="credenzaSerial" style="display:none;">									
-										<div class="form-group ">
-											<label class="col-md-3 control-label">Credenza</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="creTypeserial" onkeydown="upperCaseF(this)" id="credenzaSerial" placeholder="Enter Credenza Serial Number"
-														class="form-control" type="text">
-												</div>
+								</div>
+								<!-- Text input LCT-->
+								<div class="lctSerial" id="lctSerial" style="display: none;">
+									<div class="form-group ">
+										<label class="col-md-3 control-label">LCT</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="ltcTypeSerial" onkeydown="upperCaseF(this)"
+													id="lctSerial" placeholder="Enter LCT Serial Number"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-									
-									<!-- Text input Additional paper trays-->
-									<div class="additionalPaperTraysSerial" id="additionalPaperTraysSerial" style="display:none;">	
-										<div class="form-group ">
-											<label class="col-md-3 control-label">Additional paper trays</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input
-														name="addTypeserial" onkeydown="upperCaseF(this)" id="additionalPaperTraysSerial" placeholder="Enter Additional paper trays Serial Number"
-														class="form-control" type="text">
-												</div>
+								</div>
+								<!-- Text input Credenza-->
+								<div class="credenzaSerial" id="credenzaSerial"
+									style="display: none;">
+									<div class="form-group ">
+										<label class="col-md-3 control-label">Credenza</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="creTypeserial" onkeydown="upperCaseF(this)"
+													id="credenzaSerial"
+													placeholder="Enter Credenza Serial Number"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-								
-									<!-- Other Machine Accessories -->
-									<div class="col-sm-offset-2 col-sm-8" id="others" style="display: none;" >									
+								</div>
+								<!-- Text input Additional paper trays-->
+								<div class="additionalPaperTraysSerial"
+									id="additionalPaperTraysSerial" style="display: none;">
+									<div class="form-group ">
+										<label class="col-md-3 control-label">Additional paper
+											trays</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="addTypeserial" onkeydown="upperCaseF(this)"
+													id="additionalPaperTraysSerial"
+													placeholder="Enter Additional paper trays Serial Number"
+													class="form-control" type="text">
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<!-- Other Machine Accessories -->
+								<div class="others" id="others" style="display: none";>
+									<div class="col-sm-offset-2 col-sm-8">
 										<div class="resize">
-										<h5>Other Machine Accessories</h5>									
-											<p><input type="button" class="btn btn-success"  value="Add More"></p>
-											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">
-													<thead>
-														<tr>
-															<th>Machine Type</th>
-															<th>Serial Number</th>
-															<th>Delete</th>
-														</tr>
-													</thead>
+											<h5>Other Machine Accessories</h5>
+											<p>
+												<input type="button" class="btn btn-success"
+													value="Add More">
+											</p>
+											<table id="otherMachineAccessories"
+												class="table table-striped table-bordered table-hover table-condensed">
+												<thead>
+													<tr>
+														<th>Machine Type</th>
+														<th>Serial Number</th>
+														<th>Delete</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td><input type="text" class="form-control"
+															id="machineType" name="machineType"
+															placeholder="Machine Accessory Type" /></td>
+														<td><input type="text" class="form-control"
+															id="serialNumberOtherAccessory"
+															name="serialNumberOtherAccessory"
+															onkeydown="upperCaseF(this)" placeholder="Serial Number" />
+														</td>
+														<td><input type="button" class="btn btn-danger"
+															value="Remove"></td>
+													</tr>
 													<tbody>
-														<tr>
-															<td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type"></td>
-															<td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"></td>
-															<td><input type="button" class="btn btn-danger" value="Remove" ></td>
-														</tr>
-													<tbody>
+											
 											</table>					
 										</div>
-									</div><!-- //Other Machine Accessories -->
-								
+									</div>
+									<!-- //Other Machine Accessories -->
+									</div>
 							</fieldset>
 							<!--//Machine Accessories-->
 
@@ -1165,9 +1208,10 @@ $('p input[type="button"]').click(function () {
     $('#otherMachineAccessories').append('<tr><td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" /></td><td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
+
 </script>
 
-<!--Mono and Colour Selection-->
+													<!--Mono and Colour Selection-->
 <script type="text/javascript">
 	
 	function CheckColors(val){
@@ -1345,5 +1389,6 @@ $("#installationDate").change(function () {
 
 
 
-</body>
+
+												</body>
 </html>

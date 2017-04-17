@@ -90,7 +90,7 @@
 
 								<!-- Text input Machine Model-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Machine Model</label>
+									<label class="col-md-3 control-label">Model No</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
@@ -114,18 +114,7 @@
 									</div>
 								</div>
 
-								<!-- Text area Subject-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Subject</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="subject"
-												required="required"></textarea>
-										</div>
-									</div>
-								</div>
+								
 								<!-- Assign Technician -->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Assign Technician</label>
@@ -143,38 +132,25 @@
 										</div>
 									</div>
 								</div>
+								<!-- Text area Subject-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Title</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="subject"
+												required="required"></textarea>
+										</div>
+									</div>
+								</div>
 
 							</div>
 							<!--/F Column-->
 
 							<!--Second column-->
 							<div class="col-sm-6">
-								<!-- Text input Contract Start Date-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contract Start
-										Date</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="startDate" value="${product.startDate}"
-												class="form-control" type="text" readonly="readonly">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Contract End Date-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contract End Date</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="endDate" id="endDate" value="${product.endDate }"
-												class="form-control" type="text" readonly="readonly">
-										</div>
-									</div>
-								</div>
+								
 								<!-- Select type Priority-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Priority</label>
@@ -192,7 +168,7 @@
 									</div>
 								</div>
 
-
+                                 <br>
 								<!-- Text area -->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Description</label>
@@ -202,7 +178,7 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
 												placeholder="Description"
-												style="margin: 0px; height: 91px; width: 242px;"></textarea>
+												style="margin: 0px; height: 130px; width: 270px;"></textarea>
 										</div>
 									</div>
 								</div>

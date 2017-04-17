@@ -63,16 +63,15 @@
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
 				
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Tickets<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href='<c:url value="technicianHome.html"/>'>Open
-									Tickets</a></li>
-							<li><a href='<c:url value="#"/>'>Escalated Tickets</a></li>
-							<li><a href='<c:url value="#"/>'>Closed Tickets</a></li>
-						</ul>
+					<li>
+					    <a href='<c:url value="technicianHome.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Open Tickets<span class="ourbadge" class="btn-btn-danger">${ticketCount}</span></a>
 					</li>
+					<li>
+					    <a href='<c:url value="viewApprovedOrders.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Shipped Orders<span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
+					</li>
+				
 					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -100,10 +99,6 @@
 							<%-- <li><a href='<c:url value="updateLeave.html"/>'>Update Leave</a></li> --%>
 							<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
 						</ul>
-					</li>
-					<li>
-					    <a href='<c:url value="viewApprovedOrders.html"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Ship Orders<span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
 					</li>
 					
 				</ul>

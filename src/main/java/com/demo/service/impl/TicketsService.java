@@ -75,16 +75,13 @@ public class TicketsService implements TicketsServiceInt{
 	}
 
 	@Override
-	public List<Tickets> getAllLoggedTickets(Integer offset, Integer maxResults) {
-		return logTicketsDAO.getAllLoggedTickets(offset, maxResults);
+	public int ticketCountForTechnician(String technicianEmail) {
+		return logTicketsDAO.ticketCountForTechnician(technicianEmail);
 	}
 
 	@Override
-	public Integer count() {
+	public List<Tickets> getOpenTicketsForTechnician(String technicianEmail) {
 		
-		return logTicketsDAO.count();
+		return logTicketsDAO.getOpenTicketsForTechnician(technicianEmail);
 	}
-
-	
-
 }

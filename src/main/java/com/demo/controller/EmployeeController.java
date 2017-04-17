@@ -22,7 +22,6 @@ import com.demo.bean.PieChart;
 import com.demo.dao.impl.PasswordEncrypt;
 import com.demo.model.Employee;
 import com.demo.model.LoginAttempt;
-import com.demo.model.SpareMaster;
 import com.demo.model.UserLogDetails;
 import com.demo.service.CredentialsServiceInt;
 import com.demo.service.EmployeeServiceInt;
@@ -142,6 +141,7 @@ public class EmployeeController {
 						
 						serviceInt.userLoggeIn(employee);
 						model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(employee.getEmail()));
+						model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(employee.getEmail()));
 						model.setViewName("technicianHome");
 						
 					}
@@ -202,9 +202,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			
-			count = ticketsServiceInt.count();
 			beanList = ticketsServiceInt.ticketsResults();
-			model.addObject("home", ticketsServiceInt.getAllLoggedTickets(offset, maxResults));
 			model.addObject("ticketResults",beanList);
 			model.addObject("count",count);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
@@ -282,7 +280,8 @@ public class EmployeeController {
 		 model = new ModelAndView();
 		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("technicianTickets", ticketsServiceInt.getAssignedCallsToTechnician(userName.getEmail()));
+			model.addObject("technicianTickets", ticketsServiceInt.getOpenTicketsForTechnician(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 			model.setViewName("technicianHome");
 			}

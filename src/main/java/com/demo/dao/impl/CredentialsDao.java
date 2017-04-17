@@ -123,17 +123,6 @@ public class CredentialsDao implements CredentialsDaoInt{
 					break;
 				}
 			}
-			/*if(credentials ==null){
-				
-				for(Credentials credObj:currentPasswords){
-					if(credObj.getStatus().equalsIgnoreCase(credentials.getStatus())&& credentials.getEmail().equalsIgnoreCase(userName)){
-						credentials.setStatus("Old");
-						
-						sessionFactory.getCurrentSession().update(credentials);
-					}
-				}
-				
-			}*/
 		}catch(Exception e){
 			e.getMessage();
 		}

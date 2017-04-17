@@ -33,4 +33,5 @@ public class TicketsBean {
 	private int closedTickets;
 	private int loggedTickets;
 	private String orderNumber;
+	private String subject;
 }

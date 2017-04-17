@@ -130,6 +130,7 @@ public class TicketController {
 			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
 			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticketDetails");
 		}
@@ -270,21 +271,22 @@ public class TicketController {
 		return model;
 	}
 	
-	@RequestMapping(value="/logTicketAdmin",method=RequestMethod.POST)
+	@RequestMapping(value="logTicketAdmin",method=RequestMethod.POST)
 	public ModelAndView logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
 	
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
+			retMessage = logTicketService.logTicket(logTickets);
 			
-			/*if(message==null){*/
-				 model.addObject("retMessage", logTicketService.logTicket(logTickets));
-				 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			/*}
-			else{*/
-				 /*model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-				model.addObject("message",message);*/
-			//}
+			if(retMessage.startsWith("C")){
+			 String	message =retMessage;
+			 model.addObject("message",message );
+			}else{
+				model.addObject("retMessage",retMessage );
+				
+			}
+			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
 		  
 		   model.setViewName("logTicket");
 		}
@@ -301,9 +303,7 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			count = ticketsServiceInt.count();
 			beanList = ticketsServiceInt.ticketsResults();
-			model.addObject("home", ticketsServiceInt.getAllLoggedTickets(offset, maxResults));
 			model.addObject("ticketResults",beanList);
 			model.addObject("count",count);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));

@@ -14,6 +14,7 @@ import com.demo.model.Employee;
 import com.demo.model.Leave;
 import com.demo.service.LeaveInt;
 import com.demo.service.OrdersServiceInt;
+import com.demo.service.TicketsServiceInt;
 
 @Controller
 public class LeaveController {
@@ -24,6 +25,8 @@ public class LeaveController {
 	private HttpSession session;
 	@Autowired
 	private LeaveInt leaveInt;
+	@Autowired
+	private TicketsServiceInt ticketsServiceInt;
 	private ModelAndView model = null;
 	private String retMessage = null;
 	private Employee userName = null;
@@ -43,7 +46,7 @@ public class LeaveController {
 				model.setViewName("requestLeave");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
-
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 				model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 				model.setViewName("leave");
 			}
@@ -72,6 +75,7 @@ public class LeaveController {
 				model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
 				model.addObject("leaveList",
 						leaveInt.leaveRequests(userName.getEmail()));
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 				model.setViewName("viewLeaveRequests");
 			}
 
@@ -99,6 +103,7 @@ public class LeaveController {
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 				model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 				model.addObject("leave", leaveInt.getLeave(leaveID));
 				model.setViewName("updateLeave");
 			}

@@ -29,6 +29,7 @@ import com.demo.service.OrderDetailsInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.HOStockServeceInt;
 import com.demo.service.SiteStockInt;
+import com.demo.service.TicketsServiceInt;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.zugferd.exceptions.DataIncompleteException;
 import com.itextpdf.text.zugferd.exceptions.InvalidCodeException;
@@ -58,6 +59,8 @@ public class OrdersController {
 	private HttpSession session;
 	@Autowired
 	private OrderDeliveryServiceInt deliveryServiceInt;
+	@Autowired
+	private TicketsServiceInt ticketsServiceInt;
 	private ModelAndView model = null;
 	private String retMessage = null;
 	private Employee userName = null;
@@ -73,6 +76,7 @@ public class OrdersController {
 			model.addObject("makeOrder", new OrdersBean());
 			model.addObject("compatibility", spareParts.getAllSpareParts());
 			model.addObject("managersList", employeeServiceInt.getAllManagers());
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("customerList", customerServiceInt.getClientList());
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
@@ -318,6 +322,7 @@ public class OrdersController {
 					+ userName.getLastName();
 			model.addObject("availableOrders",
 					siteStock.getAllOrders());
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableStock");
@@ -338,6 +343,7 @@ public class OrdersController {
 					+ userName.getLastName();
 			model.addObject("availableOrders",
 					bootStock.getAllOrders(technician));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableBootStock");
@@ -359,6 +365,7 @@ public class OrdersController {
 					ordersServiceInt.shippedOrders(userName.getEmail()));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.setViewName("viewApprovedOrders");
 		} else {
 			model.setViewName("login");
@@ -375,6 +382,8 @@ public class OrdersController {
 		if (userName != null) {
 			model.addObject("orderList",
 					ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("orderHistory");

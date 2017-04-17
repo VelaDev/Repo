@@ -266,7 +266,7 @@ public class DeviceController {
 			model.addObject("product", device);
 		}
 		else{
-			model.addObject("product", null);
+			model.addObject("message", "Device does not exist.");
 		}
 		
 		model.setViewName("logTicket");

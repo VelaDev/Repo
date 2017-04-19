@@ -310,6 +310,117 @@ header, #content, #middle, #sidebar {
 								
 								</fieldset>
 								
+								
+								<fieldset>
+								
+								<legend align="left">Device Details</legend>
+								 <!--First Column-->
+						       <div class="col-md-6">
+								<!-- Text input Serial No-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Serial No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="serialNumber" placeholder="Serial Number" value="${ticketObject.getDevice().getSerialNumber() }"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								<!-- Text input Machine Model-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Model No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="productModel" placeholder="Product Model"
+												value="${ticketObject.device.modelNumber }"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								
+									<!-- Text input Machine Brand-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Model Brand</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												name="modelBrand" placeholder="Model Brand"
+												value="${ticketObject.device.modelBrand }"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								
+								
+								
+								<!-- Text input Device Location-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Device Location</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span>
+												<textarea class="form-control" disabled>${ ticketObject.getDevice().getStreetNumber()} ${ ticketObject.getDevice().getStreetName()}  ${ ticketObject.getDevice().getCity_town()} ${ ticketObject.getDevice().getAreaCode()}
+												</textarea>
+										</div>
+									</div>
+								</div>
+							
+						</div><!--/F Column-->
+												
+						<!--Second column-->
+							<div class="col-sm-6">
+								<!-- Text input Contract Start Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract Start Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="startDate" id="startDate" placeholder="YYYY-MM-DD"
+												value="${ticketObject.getDevice().getStartDate()}"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+
+								<!-- Text input Contract End Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Contract End Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="endDate" id="endDate" placeholder="YYYY-MM-DD"
+												value="${ticketObject.getDevice().getEndDate() }"
+												class="form-control" type="text" disabled="disabled">
+										</div>
+									</div>
+								</div>
+								<!-- Text input Installation Date-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Installation Date</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-calendar"></i></span> <input
+												name="installationDate" id="installationDate" placeholder="YYYY-MM-DD"
+												value="${ticketObject.getDevice().getInstallationDate() }"
+												class="form-control" type="text" disabled="disabled" >
+										</div>
+									</div>
+								</div>
+						     </div>
+								
+								
+							</fieldset>
+								
+								
 								<fieldset>
 									<legend align="left">Customer Details</legend>
 
@@ -466,102 +577,7 @@ header, #content, #middle, #sidebar {
 									
 								</fieldset>
 								
-								<fieldset>
 								
-								<legend align="left">Device Details</legend>
-								 <!--First Column-->
-						       <div class="col-md-6">
-								<!-- Text input Serial No-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Serial No</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												name="serialNumber" placeholder="Serial Number" value="${ticketObject.getDevice().getSerialNumber() }"
-												class="form-control" type="text" disabled="disabled">
-										</div>
-									</div>
-								</div>
-								<!-- Text input Machine Model-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Model No</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												name="productModel" placeholder="Product Model"
-												value="${ticketObject.device.modelNumber }"
-												class="form-control" type="text" disabled="disabled">
-										</div>
-									</div>
-								</div>
-								
-								
-								
-								<!-- Text input Device Location-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Device Location</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-home"></i></span>
-												<textarea rows="3" cols="30" disabled>${ ticketObject.getDevice().getStreetNumber()} ${ ticketObject.getDevice().getStreetName()}  ${ ticketObject.getDevice().getCity_town()} ${ ticketObject.getDevice().getAreaCode()}
-												</textarea>
-										</div>
-									</div>
-								</div>
-							
-						</div><!--/F Column-->
-												
-						<!--Second column-->
-							<div class="col-sm-6">
-								<!-- Text input Contract Start Date-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contract Start Date</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="startDate" id="startDate" placeholder="YYYY-MM-DD"
-												value="${ticketObject.getDevice().getStartDate()}"
-												class="form-control" type="text" disabled="disabled">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Contract End Date-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contract End Date</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="endDate" id="endDate" placeholder="YYYY-MM-DD"
-												value="${ticketObject.getDevice().getEndDate() }"
-												class="form-control" type="text" disabled="disabled">
-										</div>
-									</div>
-								</div>
-								<!-- Text input Installation Date-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Installation Date</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="installationDate" id="installationDate" placeholder="YYYY-MM-DD"
-												value="${ticketObject.getDevice().getInstallationDate() }"
-												class="form-control" type="text" disabled="disabled" >
-										</div>
-									</div>
-								</div>
-								
-								
-						     </div>
-								
-								
-							</fieldset>
 								
 								
 								<br>

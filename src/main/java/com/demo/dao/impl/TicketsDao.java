@@ -252,15 +252,15 @@ public class TicketsDao implements TicketsDaoInt {
 					openTicket.setComments("System update");
 					openTicket.setOneHourFlag(true);
 					updateSLA(openTicket);
-					JavaMail.oneHourReminder(openTicket,
-							"cassino.happies@gmail.com", "mohapi27@outlook.com");
+					/*JavaMail.oneHourReminder(openTicket,
+							"cassino.happies@gmail.com", "mohapi27@outlook.com");*/
 				} else if (diffHours >= 4) {
 					openTicket.setStatus("SLA Bridged");
 					openTicket.setFourHourFlag(true);
 					openTicket.setComments("System update");
 					updateSLA(openTicket);
-					JavaMail.fourHourReminder(openTicket,
-							"cassino.happies@gmail.com", "mohapi27@outlook.com");
+					/*JavaMail.fourHourReminder(openTicket,
+							"cassino.happies@gmail.com", "mohapi27@outlook.com");*/
 				}
 			}
 		} catch (Exception e) {

@@ -1129,7 +1129,7 @@ $('p input[type="button"]').click(function () {
 
 </script>
 
-													<!--Mono and Colour Selection-->
+<!--Mono and Colour Selection-->
 <script type="text/javascript">
 	
 	function CheckColors(val){

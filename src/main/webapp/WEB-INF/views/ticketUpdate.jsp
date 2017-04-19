@@ -15,7 +15,7 @@
 	<div class="velaphanda_containter">	
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		<br/>
+		
 			<div class="panel panel-success">    
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -38,7 +38,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span> <input
-												class="form-control" name="ticketNumber" value="${ticketupdate.ticketNumber }" type="text">
+												class="form-control" readonly="readonly" name="ticketNumber" value="${ticketupdate.ticketNumber }" type="text">
 										</div>
 									</div>
 								</div>
@@ -50,7 +50,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="startDate" id="startDate" class="form-control" value="${ticketupdate.device.startDate}" type="text">
+												name="startDate" id="startDate" readonly="readonly" class="form-control" value="${ticketupdate.device.startDate}" type="text">
 										</div>
 									</div>
 								</div>	
@@ -63,7 +63,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input
 													name="clientName" placeholder="Client Name"
-													class="form-control" value="${ticketupdate.device.customer.customerName }"
+													class="form-control" readonly="readonly" value="${ticketupdate.device.customerDevice.customerName }"
 													type="text">
 											</div>
 										</div>
@@ -101,7 +101,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span> <input
-												class="form-control" name="serialNumber" value="${ticketupdate.device.serialNumber}" type="text">
+												class="form-control" readonly="readonly" name="serialNumber" value="${ticketupdate.device.serialNumber}" type="text">
 										</div>
 									</div>
 								</div>
@@ -114,7 +114,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="endDate" id="endDate" value="${ticketupdate.device.endDate}"
+												name="endDate" id="endDate" readonly="readonly" value="${ticketupdate.device.endDate}"
 												class="form-control" type="text">
 										</div>
 									</div>
@@ -126,7 +126,7 @@
 									<div class="col-md-6 selectContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select name="priority"
+												class="glyphicon glyphicon-list"></i></span> <select readonly="readonly" name="priority"
 												class="form-control selectpicker">
 												<option>${ticketupdate. priority}</option>
 												<option value="High">High</option>
@@ -143,7 +143,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="description"
+											<textarea class="form-control" readonly="readonly" name="description"
 												>${ticketupdate.description}</textarea>
 										</div>
 									</div>
@@ -158,8 +158,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="subject"
-												required="required"></textarea>
+											<textarea class="form-control" readonly="readonly" name="subject"
+												required="required">${ticketupdate.subject} </textarea>
 										</div>
 									</div>
 							</div>

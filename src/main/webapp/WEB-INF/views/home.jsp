@@ -169,7 +169,7 @@
 
       	['Tickts', 'Percent'],
 
-      	<c:forEach items="${ticketResults}" var="pie">
+      	 <c:forEach items="${ticketResults}" var="pie">
 			[ '${pie.status}', ${pie.numberTicket}],
 	 	 </c:forEach>
      

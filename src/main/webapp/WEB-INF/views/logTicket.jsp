@@ -121,11 +121,11 @@
 									<div class="col-md-6 selectContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="technicianUserName" class="form-control selectpicker" >
+												class="glyphicon glyphicon-list"></i></span> <select id="selectedTechnician" 
+												name="technicianUserName"id="selectedTechnician" class="form-control selectpicker">
 												<option>Select Technician</option>
 												<c:forEach items="${technicians}" var="technician">
-													<option value="${technician.email}" onclick="myFunction()" id="selectedTechnician" class="popup">${technician.firstName}
+													<option value="${technician.email}" id="selectedTechnician" onclick="checkTech(this.value);" class="popup">${technician.firstName}
 														${technician.lastName}</option>
 												</c:forEach>
 											</select>
@@ -357,16 +357,34 @@
 		request.send();
 	</script>
 <script type="text/javascript">
+
 function myFunction(){
+	
 	var index =0;
-	var onLeaveTechnicians =  ${onLeaveTechnicians}
-	for (index = 0; index < onLeaveTechnicians.length; ++index) {
-	    if(onLeaveTechnicians[index]==selectedTechnician){
-	    	alert("Technician on leave");
-	    	
+	var onLeaveTechnician =  ${onLeaveTechnicians}
+	for (index = 0; index < onLeaveTechnician.length; ++index) {
+	    if(onLeaveTechnician[index]==selectedTechnician){
+	    	console.log(index);
+	    	alert("Technician on leave");	    	
 	    }
 	}
+	//document.getElementById('selectedTechnician').html;
 }
+function checkTech(val){
+	
+	var element=document.getElementById('selectedTechnician');
+	var index =0;
+	var onLeaveTechnician =  ${onLeaveTechnicians};
+	for (index = 0; index < onLeaveTechnician.length; ++index) {
+	    if(onLeaveTechnician[index]==selectedTechnician){
+	    	console.log(index);
+	    	alert("Technician on leave");	    	
+	    }
+	}
+	if(val==selectedTechnician); 
+	  alert("Technician on leave");
+	  console.log(selectedTechnician);
+	}
 
 </script>
 </body>

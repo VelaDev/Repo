@@ -14,6 +14,13 @@
 li {
 	list-style: none;
 }
+.tick {
+		display: none;
+}
+input:checked + div,
+input:checked + input {
+		display: block;
+}	
 .machinedetailsfloatright {
     float: left;
     /* margin-right: 40%; */
@@ -42,7 +49,7 @@ ul.address_list {
 /* STRUCTURE */
 
 #content {
-	width: 40%;
+	width: 55%;
 	float: left;
 	padding: 5px 15px;
 }
@@ -55,7 +62,7 @@ ul.address_list {
 }
 
 #sidebar {
-	width: 35%;
+	width: 19%;
 	padding: 5px 15px;
 	float: left;
 }
@@ -140,7 +147,6 @@ header, #content, #middle, #sidebar {
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			<br />
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<div align="center">
@@ -163,17 +169,15 @@ header, #content, #middle, #sidebar {
 						<div class="tab-pane active" id="generalDetails">
 							<h4 align="center">General Info</h4>
 							
-							
-							
-							<div class="tab-content">
-						<div class="groupdetails-row-padding">
+						 <div class="tab-content">
+						
+							<div class="groupdetails-row-padding">
 
-							<div id="pagewrap">
-								<section id="content">
-									<div class="groupclientdetails">
-										<legend>General Infomation</legend>
-											
-											
+								<div id="pagewrap">
+							
+									<section id="content">
+										<div class="groupclientdetails">
+											<legend>General Infomation</legend>
 												<div class="machinedetailsdetailsfloatleft">
 													<label id="customerName" name="customerName">Ticket Number </label> <br> 
 													<label id="serialNumber" name="serialNumber">Status </label> <br> 
@@ -190,70 +194,119 @@ header, #content, #middle, #sidebar {
 												   <label id="startDate" name="startDate">: ${ticketObject.dateTime}</label><br>
 												   <label id="technician" name="technician">: ${ticketObject.employee.firstName} ${ticketObject.employee.lastName}</label><br> 
 												</div>
-									</div>
-								</section>
-
-								<section id="middle">
-
-									<div class="groupclientaddress">
-										<legend>Customer Details</legend>
-	
-										<div id="customerr_container" style="width: auto; display: table;">
-													<label id="customerName" name="customerName">Customer Name : ${ticketObject.getDevice().getCustomerDevice().getCustomerName()}</label> <br> 
-													<label id="serialNumber" name="serialNumber">Street Address :${ticketObject.getDevice().getCustomerDevice().getStreetNumber()} ${ticketObject.getDevice().getCustomerDevice().getStreetName()} </label> <br> 
-													<label id="modelNumber" name="modelNumber">City/Town : ${ticketObject.getDevice().getCustomerDevice().getCity_town()} </label> <br> 
-													<label id="modelBrand" name="modelBrand">Area Code :  ${ticketObject.getDevice().getCustomerDevice().getZipcode()}</label> <br><br> 
-													</div>								
-									</div>
 										</div>
+									</section>
 	
-									</div>
-								</section>
+									<section id="middle">
+											<div class="groupclientaddress">
+												<legend>Customer Details</legend>	
+													<div class="machinedetailsdetailsfloatleft">
+													<label id="customerName" name="customerName">Customer Name : ${ticketObject.getDevice().getCustomerDevice().getCustomerName()}</label> <br> 
+														<label id="serialNumber" name="serialNumber">Street Address : ${ticketObject.getDevice().getCustomerDevice().getStreetNumber()} ${ticketObject.getDevice().getCustomerDevice().getStreetName()} </label> <br> 
+														<label id="modelNumber" name="modelNumber">City/Town : ${ticketObject.getDevice().getCustomerDevice().getCity_town()} </label> <br> 
+														<label id="modelBrand" name="modelBrand">Area Code :  ${ticketObject.getDevice().getCustomerDevice().getZipcode()}</label> <br><br> 
+													</div>								
+											</div>
+									</section>
+	
+									<aside id="sidebar">
+										<div class="groupclientaddress">										
+											<legend>Device Details</legend>
+												<div class="machinedetailsdetailsfloatleft">
+														<label id="customerName" name="customerName">Serial Number : ${ticketObject.getDevice().getSerialNumber()}</label> <br> 
+														<label id="serialNumber" name="serialNumber">Model Number : ${ticketObject.device.modelNumber }</label> <br> 
+														<label id="modelNumber" name="modelNumber">Brand Name : ${ticketObject.device.modelBrand } </label> <br> <br>
+														<label id="startDate" name="startDate">Contact Person :  ${ticketObject.device.contactPerson.firstName} ${ticketObject.device.contactPerson.lastName}</label> <br> 
+														<label id="technician" name="technician">Email :  ${ticketObject.device.contactPerson.email }</label> <br>
+														<label id="technician" name="technician">Cell Number :  ${ticketObject.device.contactPerson.cellphone }</label> <br>
+														<label id="technician" name="technician">Telephone Number :  ${ticketObject.device.contactPerson.telephone }</label> <br>
+											   </div>
+										 </div>
+									</aside>
+									
+								</div><!-- /pagewarp -->
 
-								<aside id="sidebar">
-								
-									<div class="groupproductdetails">
-									<legend>Device Details</legend>
-											<!-- Below table will be displayed as Data table -->
-											<div id="customerr_container" style="width: auto; display: table;">
-													<label id="customerName" name="customerName">Serial Number : ${ticketObject.getDevice().getSerialNumber()}</label> <br> 
-													<label id="serialNumber" name="serialNumber">Model Number : ${ticketObject.device.modelNumber }</label> <br> 
-													<label id="modelNumber" name="modelNumber">Brand Name : ${ticketObject.device.modelBrand } </label> <br> <br>
-													<label id="startDate" name="startDate">Contact Person:  ${ticketObject.device.contactPerson.firstName} ${ticketObject.device.contactPerson.lastName}</label> <br> 
-													<label id="technician" name="technician">Email:  ${ticketObject.device.contactPerson.email }</label> <br>
-													<label id="technician" name="technician">Cell Number:  ${ticketObject.device.contactPerson.cellphone }</label> <br>
-												 <label id="technician" name="technician">Telephone Number:  ${ticketObject.device.contactPerson.telephone }</label> <br>
-												 
-													</div>
-										
-									</div>
-								</aside>
-								
-							</div>
-
-						</div><!--  -->
-						<!--/general tab-->
+							</div><!-- /groupdetails-row-padding -->
+													
+						</div><!--/ tab content-->
+						
+					 </div><!--/general tab-->
+						
 						<!--escalationDetails tab-->
 						<div class="tab-pane" id="escalationDetails">
 							<h4 align="center">Escalate Ticket</h4>
-							<form:form class="well form-horizontal" action="updateTicket"
-								modelAttribute="updateTicket" method="post">
+							<form:form class="well form-horizontal" action="updateTicket" modelattribute="updateTicket" method="post">
 								
 								<!-- Text input Ticket Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Ticket Number</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="ticketNumber" id="ticketNumber" class="form-control"
-													type="text" value="${ticketObject.ticketNumber}" readonly="readonly">
+												<span class="input-group-addon"><i class="glyphicon glyphicon-barcode"></i></span> 
+												<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly="readonly">
 											</div>
 										</div>
 									</div>
-									
 								
-								<!-- Text area Escalate-->
+								 <!-- Text area Escalate-->										
+										 <div class="form-group">
+											<label class="col-md-3 control-label">Escalate</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<input type="radio" name="group1" class="trigger" data-rel="orderNumber">
+												</div>
+											</div>
+										 </div>
+										 
+											<!-- Select type Order No-->						
+											<div class="form-group">
+												<div class="orderNumber tick">														
+												 <label class="col-md-3 control-label"> Order No</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span> 
+															<select name="orderNumber" class="form-control selectpicker">
+																<option>Select Order No</option> 
+																<c:forEach items="${OrderNumber}" var="orders">
+																<option value="${orders.orderNum}">${orders.orderNum}
+																</option>
+																</c:forEach>
+																								
+															</select>
+														</div>
+													</div>
+												</div>
+											</div>
+										 
+										  <!-- Text  Awaiting Spares-->
+										  <div class="form-group">
+											<label class="col-md-3 control-label">Awaiting Spares </label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<input type="radio" name="group1" class="trigger" data-rel="manger">
+												</div>
+											</div>
+										 </div>
+											<!-- Text input Manager-->
+												<div class="form-group">
+													 <div class="manger tick" >
+													 <label class="col-md-3 control-label"> Manager</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+																<select id="manger" name="manger" class="form-control selectpicker">
+																	<option value="">Select Manager</option>
+																		<c:forEach items="${managersList}" var="manager">
+																			<option value="${manager.email}">${manager.firstName} ${manager.lastName}</option>
+																		</c:forEach>
+																</select>
+															</div>
+														</div>
+													 </div>
+												</div>
+										 
+								
+								<!-- Text area Escalate
 								<div class="form-group">
 									<label class="col-md-3 control-label">Escalate </label>
 									<div class="col-md-6 inputGroupContainer">
@@ -272,41 +325,21 @@ header, #content, #middle, #sidebar {
 										</div>
 									</div>
 								</div>
-								<!-- Select type Assign Technician-->						
-									<div class="form-group">
-										<label class="col-md-3 control-label">Order No</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select name="orderNumber"
-													class="form-control selectpicker">
-													<option>Select Order No</option> 
-													<c:forEach items="${OrderNumber}" var="orders">
-														<option value="${orders.orderNum}">${orders.orderNum}
-															</option>
-													</c:forEach>								
-												</select>
-											</div>
-										</div>
-									</div>
+								-->
 								<!-- Text area Escalate Reason-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Reason</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="escalateReason"
-												required="required"></textarea>
+											<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="escalateReason" required="required"></textarea>
 										</div>
 									</div>
 								</div>
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-md-8">
-										<input type="submit" value="Submit"
-											class="btn btn-primary btn-block btn-lg"
-											id="escalateTickt">
+										<input type="submit" value="Submit" class="btn btn-primary btn-block btn-lg" id="escalateTickt">
 									</div>
 								</div>
 							</form:form>
@@ -435,6 +468,12 @@ header, #content, #middle, #sidebar {
 		/* few more options are available to use */
 		});
 	});
+</script>
+<script>
+	$('.trigger').change(function () {
+		$('.tick').hide();
+		$('.' + $('.trigger:checked').data('rel')).show();
+	}).change(); //Show tick on page load
 </script>
 
 </html>

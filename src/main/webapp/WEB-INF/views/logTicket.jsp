@@ -69,9 +69,7 @@
 						<form:form method="post" class="well form-horizontal"
 							action="logTicketAdmin" modelAttribute="logTicketAdmin"
 							id="logTicket">
-
-							<%-- <form:form method="post" action="logTicketAdmin" role="form" modelAttribute="logTicketAdmin" id="form">
-						 --%>
+							
 							<!--First Column-->
 							<div class="col-md-6">
 								<!-- Text input Serial No-->

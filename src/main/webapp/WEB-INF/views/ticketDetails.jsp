@@ -14,6 +14,18 @@
 li {
 	list-style: none;
 }
+.groupsparedetails, .groupsearchdetails {
+	padding: 20px;
+}
+
+.groupsparedetails {
+	float: left;
+	width: 50%;
+}
+
+.groupsearchdetails {
+	overflow: hidden;
+}
 .tick {
 		display: none;
 }
@@ -306,26 +318,6 @@ header, #content, #middle, #sidebar {
 												</div>
 										 
 								
-								<!-- Text area Escalate
-								<div class="form-group">
-									<label class="col-md-3 control-label">Escalate </label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<input type="checkbox" name="escalate" value="true"
-												required="required">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Awaiting Spares </label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<input type="checkbox" name="AwaitingSpares" value="true"
-												required="required">
-										</div>
-									</div>
-								</div>
-								-->
 								<!-- Text area Escalate Reason-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Reason</label>
@@ -351,7 +343,12 @@ header, #content, #middle, #sidebar {
 							<h4 align="center">Solution Details</h4>
 							<form:form class="well form-horizontal">
 								
-								<!-- Text input Ticket Number-->
+								<div class="groupsparedetails">
+								<legend>Ticket and Action</legend>
+								
+								<!--First Column-->
+								<div class="col-md-12">
+									<!-- Text input Ticket Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Ticket Number</label>
 										<div class="col-md-6 inputGroupContainer">
@@ -363,33 +360,50 @@ header, #content, #middle, #sidebar {
 											</div>
 										</div>
 									</div>
-									
-									<!-- Text input Part Number Used-->
+																
+									<!-- Text area Action Taken-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Part Number Used</label>
+										<label class="col-md-3 control-label"> Action Taken </label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input
-													name="ticketNumber" id="partNumberUsed" class="form-control"
-													type="text" value="">
+													class="glyphicon glyphicon-pencil"></i></span>
+												<textarea class="form-control" id="actionTaken" name="actionTaken"
+													required="required"></textarea>
 											</div>
 										</div>
-									</div>
+									</div>	
 									
-																
-								<!-- Text area Action Taken-->
-								<div class="form-group">
-									<label class="col-md-3 control-label"> Action Taken </label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" id="actionTaken" name="actionTaken"
-												required="required"></textarea>
-										</div>
-									</div>
 								</div>
+							</div>
+							<!-- //group details -->
+
+							<!-- group Used Part Numbers -->
+							<div class="groupsearchdetails">
+								<legend>Used Part Numbers </legend>
+
+								<div class="tableContect">
+									<p><input type="button" class="btn btn-success"  value="Add More"></p>
+						
+									<table id="usedPartNumbersdataTable" width="300px" style="width: 300px"
+										class="table table-striped table-bordered table-hover table-condensed">
+										<label class="model">Part Number</label>
+										<c:forEach var="usedPartNumbers" items="${partNumbers}">
+											<tr>
+
+												<td><input type="text" readOnly class="form-control"
+													id="usedPartNumbers" name="usedPartNumbers"
+													value="${usedPartNumbers}"></td>
+												<td><input type="button" class="btn btn-danger" value="Remove" ></td>
+													
+											</tr>
+										</c:forEach>
+
+									</table>
+								</div>
+							</div>
+							<!-- //group Used Part Numbers -->
+								
 								<br />
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-md-8">
@@ -474,6 +488,16 @@ header, #content, #middle, #sidebar {
 		$('.tick').hide();
 		$('.' + $('.trigger:checked').data('rel')).show();
 	}).change(); //Show tick on page load
+</script>
+<script>
+
+$('#usedPartNumbersdataTable').on('click', 'input[type="button"]', function () {
+    $(this).closest('tr').remove();
+	})
+$('p input[type="button"]').click(function () {
+    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+});
+
 </script>
 
 </html>

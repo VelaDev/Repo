@@ -6,22 +6,41 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+<!-- Little Dash-board -->
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/ticketoverview.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/common-9a01e5a5a5a2f97d04552fa65cc3846b.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/sprites-b23bb97cb281c684a70d957ed91664df.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/app-310c175202e0f34694cea021357db448.css" />" />
+<!-- //Little Dash-board -->
 
+<!-- Data table -->
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+<!-- //Data table -->
 </head>
 
 <body>
 	<div class="velaphanda_containter" id="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-			
+
 			<div class="panel panel-success">
+
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="left">
@@ -29,18 +48,87 @@
 						</div>
 					</h3>
 				</div>
+
+				<div class="ticket-summary row-fluid">
+
+					<ul class="db-summary clearfix pb20 pt20 clear" id="ticket-summary">
+						<li><a href="#" data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-pjax="#body-container">
+								<div class="summary-count pull-left">
+									<h4>1</h4>
+									<p>Escalated Tickets</p>
+								</div>
+						</a></li>
+
+						<li><a href="#" data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="ficon-db-calendar dbicon-red"></i>
+								</div>
+								<div class="summary-count pull-left ml20">
+									<h4>0</h4>
+									<p>Open Tickets</p>
+								</div>
+						</a></li>
+
+						<li><a href="#" class="summery-filter clearfix"
+							data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="ficon-db-sand-clock dbicon-orange"></i>
+								</div>
+								<div class="summary-count pull-left ml20">
+									<h4>0</h4>
+									<p>Logged Tickets</p>
+								</div>
+						</a></li>
+
+						<li><a href="#" data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="ficon-ticket dbicon-green"></i>
+								</div>
+								<div class="summary-count pull-left ml20">
+									<h4>1</h4>
+									<p>SLA Brigged</p>
+								</div>
+
+						</a></li>
+
+						<li><a href="/helpdesk/tickets/filter/new"
+							data-parallel-url="/helpdesk/tickets/filter_options?filter_name=new"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-orig-name="new"
+							data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="ficon-db-unassigned dbicon-brown"></i>
+								</div>
+								<div class="summary-count pull-left ml20">
+									<h4>1</h4>
+									<p>Closed Tickets</p>
+								</div>
+						</a></li>
+					</ul>
+				</div>
+
 				<div class="panel-body">
-					<ul class="nav nav-tabs">
+				
+					<%-- <ul class="nav nav-tabs">
 						<li class="active"><a href="#home" data-toggle="tab">Ticket
 								Overall</a></li>
 						<li><a href="#ticketDetails" data-toggle="tab">Ticket
 								Details</a></li>
-						<%-- <li ><a href='<c:url value="pendingOrders.html"/>'> Order Inbox <span class="badge"> ${inboxCount}</span></a></li>
-						 --%>	
-					</ul>
+						<li ><a href='<c:url value="pendingOrders.html"/>'> Order Inbox <span class="badge"> ${inboxCount}</span></a></li>
+						
+					</ul> --%>
+					
 					<div class="tab-content">
 
-						<!--home tab-->
+						<%-- <!--home tab-->
 						<div class="tab-pane active" id="home">
 							<div class="panel panel-success">
 								<div class="panel-heading">
@@ -84,7 +172,7 @@
 												<tr>
 													<th>Ticket No</th>
 													<th>Subject</th>
-													<th>Description</th>														
+													<th>Description</th>
 													<th>Date</th>
 													<th>Status</th>
 													<th>Technician</th>
@@ -100,13 +188,14 @@
 														<!-- Subject must be included from ticket model -->
 														<td><c:out value="${ticket.subject}" /></td>
 														<!-- /Subject must be included from ticket model -->
-														<td><c:out value="${ticket.description}" /></td>														
+														<td><c:out value="${ticket.description}" /></td>
 														<td><c:out value="${ticket.dateTime}" /></td>
 														<td><c:out value="${ticket.status}" /></td>
 														<td><c:out
 																value="${ticket.employee.firstName} ${ticket.employee.lastName}" /></td>
 														<td><a
-															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>"><button class="btn btn-info">Edit</button></a></td>
+															href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${ticket.ticketNumber}'/>"><button
+																	class="btn btn-info">Edit</button></a></td>
 
 													</tr>
 												</c:forEach>
@@ -120,8 +209,9 @@
 
 						</div>
 						<!-- Ticket Detials -->
-						<input type="button" id="btnPrint" class="btn btn-info" value="Export to pdf and Print"  />
-								
+						<input type="button" id="btnPrint" class="btn btn-info"
+							value="Export to pdf and Print" /> --%>
+
 					</div>
 					<!-- /tab-content -->
 
@@ -136,9 +226,9 @@
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-   <script type="text/javascript"
+	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.8.3/jquery.min.js" />"></script>
-   <script type="text/javascript">
+	<script type="text/javascript">
         $("#btnPrint").live("click", function () {
             var divContents = $("#ticketDetails").html();
             var printWindow = window.open('', '', 'height=400,width=800');
@@ -150,12 +240,12 @@
             printWindow.print();
         });
     </script>
-    
-    
- 	<!-- google chart api  -->
+
+
+	<!-- google chart api  -->
 	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 	<!-- Google API Script -->
-   	<script>
+	<script>
 
    		google.load("visualization", "1", {packages:["corechart"]});
 
@@ -195,11 +285,11 @@
 
 	</script>
 	<!-- /google chart api  -->
-	
+
 	<!-- Data tables search -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		
+
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
@@ -214,6 +304,6 @@
 		});
 	</script>
 	<!-- / Data tables search -->
-	
+
 </body>
 </html>

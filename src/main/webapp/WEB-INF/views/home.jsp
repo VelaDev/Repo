@@ -104,8 +104,7 @@
 									<h4>${escalatedTickets}</h4>
 									<p>Escalated Tickets</p>
 								</div>
-						</a>
-						</li>
+						</a></li>
 						<li><a href='<c:url value="closedTickets.html"/>'
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"

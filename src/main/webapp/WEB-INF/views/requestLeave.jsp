@@ -62,6 +62,23 @@
 								</div>
 							</div>
 						</div>
+						
+						<div class="form-group">
+									<label class="col-md-3 control-label">Technician</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="technicianUserName" id="technicianUserName" class="form-control selectpicker">
+												<option value="">Select Technician</option>
+												<c:forEach items="${technicianList}" var="technician">
+													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+						</div>
+						
 
 						<!-- Text input First Date Leave-->
 						<div class="form-group">

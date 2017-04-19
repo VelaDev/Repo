@@ -52,15 +52,8 @@
 				<div class="ticket-summary row-fluid">
 
 					<ul class="db-summary clearfix pb20 pt20 clear" id="ticket-summary">
-						<li><a href="#" data-parallel-url="#"
-							data-parallel-placeholder="#ticket-leftFilter"
-							class="summery-filter clearfix" data-pjax="#body-container">
-								<div class="summary-count pull-left">
-									<h4>1</h4>
-									<p>Escalated Tickets</p>
-								</div>
-						</a></li>
-
+					
+						
 						<li><a href="#" data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
@@ -82,7 +75,7 @@
 								</div>
 								<div class="summary-count pull-left ml20">
 									<h4>0</h4>
-									<p>Logged Tickets</p>
+									<p>Awaiting Spare</p>
 								</div>
 						</a></li>
 
@@ -99,8 +92,8 @@
 
 						</a></li>
 
-						<li><a href="/helpdesk/tickets/filter/new"
-							data-parallel-url="/helpdesk/tickets/filter_options?filter_name=new"
+						<li><a href="#"
+							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-orig-name="new"
 							data-pjax="#body-container">
@@ -112,6 +105,20 @@
 									<p>Closed Tickets</p>
 								</div>
 						</a></li>
+						
+						<li><a href="#" data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="ficon-db-unassigned dbicon-brown"></i>
+								</div>
+								<div class="summary-count pull-left">
+									<h4>1</h4>
+									<p>Escalated Tickets</p>
+								</div>
+						</a>
+						</li>
+						
 					</ul>
 				</div>
 

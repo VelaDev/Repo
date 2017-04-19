@@ -23,6 +23,12 @@ public interface TicketsDaoInt {
 	List<PieChart> ticketsResults();
     int ticketCountForTechnician(String technicianEmail);
     List<Tickets> getOpenTicketsForTechnician(String technicianEmail);
+    int countEscalatedTickets();
+    int countClosedTickets();
+    int countBridgedTickets();
+    int countOpenTickets();
+    int countAwaitingSparesTickets();
+    
 	
 
 }

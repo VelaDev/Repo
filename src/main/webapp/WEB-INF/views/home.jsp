@@ -43,7 +43,7 @@
 
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<div align="left">
+						<div align="center">
 							<b>Tickets</b>
 						</div>
 					</h3>
@@ -54,19 +54,19 @@
 					<ul class="db-summary clearfix pb20 pt20 clear" id="ticket-summary">
 					
 						
-						<li><a href="#" data-parallel-url="#"
+						<li><a href='<c:url value="openTickets.html"/>' data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
 								<div class="db-icon-wrap center pull-left">
 									<i class="ficon-db-calendar dbicon-red"></i>
 								</div>
 								<div class="summary-count pull-left ml20">
-									<h4>0</h4>
+									<h4>${openTickets}</h4>
 									<p>Open Tickets</p>
 								</div>
 						</a></li>
 
-						<li><a href="#" class="summery-filter clearfix"
+						<li><a href='<c:url value="awaitingSpares.html"/>' class="summery-filter clearfix"
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							data-pjax="#body-container">
@@ -74,25 +74,39 @@
 									<i class="ficon-db-sand-clock dbicon-orange"></i>
 								</div>
 								<div class="summary-count pull-left ml20">
-									<h4>0</h4>
+									<h4>${awaitingSparesTickets}</h4>
 									<p>Awaiting Spare</p>
 								</div>
 						</a></li>
 
-						<li><a href="#" data-parallel-url="#"
+						<li><a href='<c:url value="bridgedTickets.html"/>' data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
 								<div class="db-icon-wrap center pull-left">
-									<i class="ficon-ticket dbicon-green"></i>
+									<i class="ficon-ticket dbicon-red"></i>
 								</div>
 								<div class="summary-count pull-left ml20">
-									<h4>1</h4>
-									<p>SLA Brigged</p>
+									<h4>${bridgedTickets}</h4>
+									<p>SLA Bridged</p>
 								</div>
 
 						</a></li>
 
-						<li><a href="#"
+						
+						
+						<li><a href='<c:url value="escalatedTickes.html"/>' data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="ficon-db-unassigned dbicon-brown"></i>
+								</div>
+								<div class="summary-count pull-left">
+									<h4>${escalatedTickets}</h4>
+									<p>Escalated Tickets</p>
+								</div>
+						</a>
+						</li>
+						<li><a href='<c:url value="closedTickets.html"/>'
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-orig-name="new"
@@ -101,23 +115,10 @@
 									<i class="ficon-db-unassigned dbicon-brown"></i>
 								</div>
 								<div class="summary-count pull-left ml20">
-									<h4>1</h4>
+									<h4>${closedTickets}</h4>
 									<p>Closed Tickets</p>
 								</div>
 						</a></li>
-						
-						<li><a href="#" data-parallel-url="#"
-							data-parallel-placeholder="#ticket-leftFilter"
-							class="summery-filter clearfix" data-pjax="#body-container">
-								<div class="db-icon-wrap center pull-left">
-									<i class="ficon-db-unassigned dbicon-brown"></i>
-								</div>
-								<div class="summary-count pull-left">
-									<h4>1</h4>
-									<p>Escalated Tickets</p>
-								</div>
-						</a>
-						</li>
 						
 					</ul>
 				</div>

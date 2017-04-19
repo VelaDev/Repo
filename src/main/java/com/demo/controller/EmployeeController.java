@@ -126,9 +126,13 @@ public class EmployeeController {
 						String userSessionID =session.getId();
 						
 						session.setAttribute("sessionID", userSessionID);
-						System.out.println(userSessionID);
 						userLogDetailsServiceInt.saveUserLogDetails(details);
-						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));	
+						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));
+						model.addObject("openTickets", ticketsServiceInt.countOpenTickets());
+						model.addObject("closedTickets", ticketsServiceInt.countClosedTickets());
+						model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+						model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+						model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets());
 						serviceInt.userLoggeIn(employee);
 						model.setViewName("home");
 					}
@@ -196,7 +200,7 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value="home",method=RequestMethod.GET)
-	public ModelAndView loadAdminPage(Integer offset, Integer maxResults ) {
+	public ModelAndView loadAdminPage() {
 		
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -204,7 +208,11 @@ public class EmployeeController {
 			
 			beanList = ticketsServiceInt.ticketsResults();
 			model.addObject("ticketResults",beanList);
-			model.addObject("count",count);
+			model.addObject("openTickets", ticketsServiceInt.countOpenTickets());
+			model.addObject("closedTickets", ticketsServiceInt.countClosedTickets());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("home");
 		}

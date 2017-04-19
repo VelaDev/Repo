@@ -76,6 +76,9 @@ public class TicketsDao implements TicketsDaoInt {
 	
 	private Date currentDate,contractEndDate = null;
 	private SimpleDateFormat myFormat = null;
+	
+	ArrayList<Tickets> aList = null;
+
 
 	@Override
 	public String logTicket(TicketsBean tickets) {
@@ -157,9 +160,9 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public List<Tickets> getAllOpenTickets() {
-		ArrayList<Tickets> aList = new ArrayList<Tickets>();
+	    aList = new ArrayList<Tickets>();
 		try{
-			List<Tickets> ticketList = getAllLoggedTickets();
+			ticketList = getAllLoggedTickets();
 			for(Tickets ticket:ticketList){
 				if(ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==false){
 					aList.add(ticket);
@@ -519,6 +522,96 @@ public class TicketsDao implements TicketsDaoInt {
 			exception.getMessage();
 		}
 		return isValid;
+	}
+
+	@Override
+	public int countEscalatedTickets() {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Escalated")){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countClosedTickets() {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Closed")){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countBridgedTickets() {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("SLA Bridged")){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countOpenTickets() {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Open")){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countAwaitingSparesTickets() {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
 	}
 
 }

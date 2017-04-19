@@ -315,5 +315,89 @@ public class TicketController {
 		return model;  
 		
 	}
-
+	@RequestMapping("openTickets")
+	public ModelAndView openTickets(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("openTickets");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("closedTickets")
+	public ModelAndView closedTickets(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("closedTickets");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("bridgedTickets")
+	public ModelAndView bridgedTickets(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("bridgedTickets");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("escalatedTickes")
+	public ModelAndView escalatedTickes(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("escalatedTickes");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("awaitingSpares")
+	public ModelAndView awaitingSparesTickes(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("awaitingSpares");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 }

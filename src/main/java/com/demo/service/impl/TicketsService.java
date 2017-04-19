@@ -84,4 +84,32 @@ public class TicketsService implements TicketsServiceInt{
 		
 		return logTicketsDAO.getOpenTicketsForTechnician(technicianEmail);
 	}
+
+	@Override
+	public int countEscalatedTickets() {
+		return logTicketsDAO.countEscalatedTickets();
+	}
+
+	@Override
+	public int countClosedTickets() {
+		return logTicketsDAO.countClosedTickets();
+	}
+
+	@Override
+	public int countBridgedTickets() {
+
+		return logTicketsDAO.countBridgedTickets();
+	}
+
+	@Override
+	public int countOpenTickets() {
+	
+		return logTicketsDAO.countOpenTickets();
+	}
+
+	@Override
+	public int countAwaitingSparesTickets() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

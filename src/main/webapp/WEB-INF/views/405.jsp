@@ -7,14 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Error Login | Velaphanda Trading & Projects</title>
-
-<script src="/resources/bootstrap-3.3.6/js/jquery-3.0.0.min.js"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap.min.js" />"></script>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.6/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/custom/css/login.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/login.css" />" />
+<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
+<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
+</head>
 <body>
 
 	<div class="velaphanda_containter">

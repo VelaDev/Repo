@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/css/common-9a01e5a5a5a2f97d04552fa65cc3846b.css" />" />
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/sprites-b23bb97cb281c684a70d957ed91664df.css" />" />
+	href="<c:url value="/resources/bootstrap-3.3.7/fonts/sprites-b23bb97cb281c684a70d957ed91664df.css" />" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/css/app-310c175202e0f34694cea021357db448.css" />" />
 <!-- //Little Dash-board -->

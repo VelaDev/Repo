@@ -181,17 +181,17 @@
 	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>	
 	<!-- /Scripts -->
 	
-	<!-- Paging the table -->
-	<script>
+<!-- Paging the table -->
+<script type="text/javascript">
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
 				"jQueryUI" : true,
 				"pagingType" : "full_numbers",
-				"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
 			/* few more options are available to use */
 			});
 		});
-	</script>
+</script>
 
 
 	

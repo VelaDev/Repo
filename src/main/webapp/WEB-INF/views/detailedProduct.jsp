@@ -282,15 +282,15 @@ header, #content, #middle, #sidebar {
 		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
 
-	<script>
-	$(document).ready(function() {
-		$('#myDatatable').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-		/* few more options are available to use */
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myDatatable').DataTable({
+				"jQueryUI" : true,
+				"pagingType" : "full_numbers",
+				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+			/* few more options are available to use */
+			});
 		});
-	});
 </script>
 </html>
 

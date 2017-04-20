@@ -80,18 +80,19 @@
 	
 
 	
-<script>
-	$(document).ready(function() {
-		$('#myDatatable').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
-		/* few more options are available to use */
+<!-- Paging the table -->
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myDatatable').DataTable({
+				"jQueryUI" : true,
+				"pagingType" : "full_numbers",
+				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+			/* few more options are available to use */
+			});
 		});
-	});
 </script>
 
-<!-- Deactive script -->
+<!-- Deactivate script -->
 <script>
 $(document).on('click', ':not(form)[data-confirm]', function(e){
     if(!confirm($(this).data('confirm'))){

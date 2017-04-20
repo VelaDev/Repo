@@ -26,7 +26,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-								<!-- Below table will be displayed as Data table -->
+									<!-- Below table will be displayed as Data table -->
 									<table id="myDatatable" class="display datatable">
 										<thead>
 											<tr>
@@ -72,16 +72,14 @@
 
 <script type="text/javascript"	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<%-- <script type="text/javascript"src="<c:url value="/resources/datatables/1.10.13/js/datatable.js" />"></script> --%>
-
-<script>
-	$(document).ready(function() {
-		$('#myDatatable').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
-		/* few more options are available to use */
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myDatatable').DataTable({
+				"jQueryUI" : true,
+				"pagingType" : "full_numbers",
+				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+			/* few more options are available to use */
+			});
 		});
-	});
 </script>
 </html>

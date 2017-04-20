@@ -75,18 +75,18 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-<script>
-	$(document).ready(function() {
-		$('#myDatatable').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
-		/* few more options are available to use */
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#myDatatable').DataTable({
+				"jQueryUI" : true,
+				"pagingType" : "full_numbers",
+				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+			/* few more options are available to use */
+			});
 		});
-	});
 </script>
 
-<!-- Deactive script -->
+<!-- Deactivate script -->
 <script>
 $(document).on('click', ':not(form)[data-confirm]', function(e){
     if(!confirm($(this).data('confirm'))){

@@ -30,31 +30,38 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<!-- Below table will be displayed as Data table -->
-						<table id="myDatatable" class="display datatable">
-							<thead>
-								<tr>
-									<th>Ticket No</th>
-									<th>Ticket Status</th>
-									<th>Customer Name</th>
-									<th>Telephone No</th>
-									<th>Ticket Details</th>
-								</tr>
-							</thead>
-							<tbody>
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach items="${technicianTickets}" var="ticket">
+
+						<c:if test="${empty ticketList}">
+							There are no awaiting spares at the moment
+						</c:if>
+						<c:if test="${not empty ticketList}">
+
+							<table id="myDatatable" class="display datatable">
+								<thead>
 									<tr>
-										<td><c:out value="${ticket.ticketNumber}" /></td>
-										<td><c:out value="${ticket.status} " /></td>
-										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
-										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
-										<td><a
-											href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>">Ticket Details</a></td>
+										<th>Ticket No</th>
+										<th>Assigned Technician</th>
+										<th>Description</th>
+										<th>Date</th>
+										<!--  <th>Action</th> -->
 									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
+								</thead>
+								<tbody>
+									<c:forEach items="${ticketList}" var="tickets">
+										<tr>
+											<td><c:out value="${tickets.ticketNumber}" /></td>
+											<td><c:out
+													value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
+											<td><c:out value="${tickets.description}" /></td>
+											<td><c:out value="${tickets.dateTime}" /></td>
+											<%-- <td><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>">Update</a></td>
+ --%>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</c:if>
+
 					</div>
 					<!-- /tab-content -->
 

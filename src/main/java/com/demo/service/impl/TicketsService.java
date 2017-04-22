@@ -109,7 +109,31 @@ public class TicketsService implements TicketsServiceInt{
 
 	@Override
 	public int countAwaitingSparesTickets() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return logTicketsDAO.countAwaitingSparesTickets();
+	}
+	
+	@Override
+	public List<Tickets> getAllEscalatedTickets() {
+		
+		return logTicketsDAO.getAllEscalatedTickets();
+	}
+
+	@Override
+	public List<Tickets> getAllAwaitingSpares() {
+		
+		return logTicketsDAO.getAllAwaitingSpares();
+	}
+
+	@Override
+	public List<Tickets> getAllClosedTickets() {
+		
+		return logTicketsDAO.getAllClosedTickets();
+	}
+
+	@Override
+	public List<Tickets> getAllBridgedTickets() {
+		
+		return logTicketsDAO.getAllBridgedTickets();
 	}
 }

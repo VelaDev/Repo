@@ -14,6 +14,10 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllLoggedTickets(String startDate);
 	List<Tickets> getAllLoggedTickets(String startDate, String endDate);
 	List<Tickets> getAllOpenTickets();
+	List<Tickets> getAllEscalatedTickets();
+	List<Tickets> getAllAwaitingSpares();
+	List<Tickets> getAllClosedTickets();
+	List<Tickets> getAllBridgedTickets();
 	List<Tickets> getAssignedCallsToTechnician();
 	List<Tickets> getAssignedCallsToTechnician(String username);
 	void calculateSLAHours();

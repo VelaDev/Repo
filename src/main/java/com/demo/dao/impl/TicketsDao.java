@@ -598,6 +598,85 @@ public class TicketsDao implements TicketsDaoInt {
 		  }
 		
 		return tempCount;
+	}@Override
+	public List<Tickets> getAllEscalatedTickets() {
+		// TODO Auto-generated method stub
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Escalated")){
+					aList.add(ticket);
+				}else if(ticket.getStatus().equalsIgnoreCase("Escalated")&& ticket.isFourHourFlag()==true){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+			
+		return aList;
 	}
+
+	@Override
+	public List<Tickets> getAllAwaitingSpares() {
+		// TODO Auto-generated method stub
+				aList = new ArrayList<Tickets>();
+				try{
+					ticketList = getAllLoggedTickets();
+					for(Tickets ticket:ticketList){
+						if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")){
+							aList.add(ticket);
+						}else if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")&& ticket.isFourHourFlag()==true){
+							aList.add(ticket);
+						}
+					}
+				}catch(Exception exception){
+					exception.getMessage();
+				}
+					
+				return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllClosedTickets() {
+		// TODO Auto-generated method stub
+				aList = new ArrayList<Tickets>();
+				try{
+					ticketList = getAllLoggedTickets();
+					for(Tickets ticket:ticketList){
+						if(ticket.getStatus().equalsIgnoreCase("Closed")){
+							aList.add(ticket);
+						}else if(ticket.getStatus().equalsIgnoreCase("Closed")&& ticket.isFourHourFlag()==true){
+							aList.add(ticket);
+						}
+					}
+				}catch(Exception exception){
+					exception.getMessage();
+				}
+					
+				return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllBridgedTickets() {
+		// TODO Auto-generated method stub
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("SLA Bridged")){
+					aList.add(ticket);
+				}else if(ticket.getStatus().equalsIgnoreCase("SLA Bridged")&& ticket.isFourHourFlag()==true){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+		
+		return aList;
+	}
+	
 
 }

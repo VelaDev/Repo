@@ -13,9 +13,17 @@ public interface TicketsServiceInt {
 	Tickets getLoggedTicketByTicketNumber(String ticketNumber);
 
 	List<Tickets> getAllLoggedTickets();
-
+	
 	List<Tickets> getAllOpenTickets();
 
+	List<Tickets> getAllEscalatedTickets();
+	
+	List<Tickets> getAllAwaitingSpares();
+	
+	List<Tickets> getAllClosedTickets();
+	
+	List<Tickets> getAllBridgedTickets();
+	
 	List<Tickets> getAssignedCallsToTechnician();
 
 	List<Tickets> getAssignedCallsToTechnician(String username);

@@ -324,6 +324,7 @@ public class TicketController {
 		if(userName !=null){
 		     
 		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllOpenTickets());			
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("openTickets");
 		}
@@ -333,6 +334,7 @@ public class TicketController {
 		
 		return model;
 	}
+		
 	@RequestMapping("closedTickets")
 	public ModelAndView closedTickets(){
 		
@@ -341,6 +343,7 @@ public class TicketController {
 		if(userName !=null){
 		     
 		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllClosedTickets());			   
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("closedTickets");
 		}
@@ -358,6 +361,7 @@ public class TicketController {
 		if(userName !=null){
 		     
 		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllBridgedTickets());
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("bridgedTickets");
 		}
@@ -374,7 +378,8 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		     
-		    model.addObject("retMessage", retMessage);
+		    model.addObject("retMessage", retMessage);		    
+		    model.addObject("ticketList", logTicketService.getAllEscalatedTickets());
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("escalatedTickes");
 		}
@@ -392,6 +397,7 @@ public class TicketController {
 		if(userName !=null){
 		     
 		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllAwaitingSpares());			   
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("awaitingSpares");
 		}

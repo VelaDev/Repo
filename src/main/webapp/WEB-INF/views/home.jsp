@@ -6,6 +6,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link rel="shortcut icon" href="<c:url value="/images/favicon.ico" />" type="image/x-icon"/>
+  
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -89,7 +91,7 @@
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
 								<div class="db-icon-wrap center pull-left">
-									<i class="ficon-db-unassigned dbicon-brown"></i>
+									<i class="fa fa-line-chart dbicon-red"></i>
 								</div>
 								<div class="summary-count pull-left">
 									<h4>${escalatedTickets}</h4>
@@ -103,7 +105,7 @@
 							class="summery-filter clearfix" data-orig-name="new"
 							data-pjax="#body-container">
 								<div class="db-icon-wrap center pull-left">
-									<i class="ficon-db-unassigned dbicon-brown"></i>
+									<i class="fa fa-gavel dbicon-green"></i>
 								</div>
 								<div class="summary-count pull-left ml20">
 									<h4>${closedTickets}</h4>

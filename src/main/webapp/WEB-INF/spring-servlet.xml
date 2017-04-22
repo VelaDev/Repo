@@ -95,6 +95,8 @@
 	</bean> 
 	<!-- <bean class="org.springframework.web.servlet.view.XmlViewResolver">
         <property name="location" value="/WEB-INF/jasper.xml"></property>
-</bean> -->
+	</bean> -->
 	
+	
+		
 </beans>

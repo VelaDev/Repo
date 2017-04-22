@@ -160,6 +160,13 @@ header, #content, #middle, #sidebar {
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
+		<c:if test="${not empty retMessage }">
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ retMessage}">
+					</c:out>
+
+				</div>
+			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<div align="center">
@@ -217,11 +224,11 @@ header, #content, #middle, #sidebar {
 														class="glyphicon glyphicon-list"></i></span> <select
 														onchange="CheckStatus(this.value);" name="status"
 														id="status" class="form-control selectpicker">
-														<option value="">Select Status</option>
+														<option value="${ticketObject.status}">${ticketObject.status}</option>
 														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated Tickets">Escalated
-															Tickets</option>
-														<option value="Closed Tickets">Closed Tickets</option>
+														<option value="Escalated">Escalate
+															Ticket</option>
+														<option value="Resolved">Resolved</option>
 													</select>
 												</div>
 											</div>
@@ -236,10 +243,10 @@ header, #content, #middle, #sidebar {
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-list"></i></span> <select id="order"
-															name="orderNumber" class="form-control selectpicker">
-															<option>Select Order No</option>
+															name="orderNum" class="form-control selectpicker">
+															<option value=0>Select Order No</option>
 															<c:forEach items="${OrderNumber}" var="orders">
-																<option value="${orders.orderNum}">${orders.orderNum}
+																<option value="${orders.recordID}">${orders.orderNum}
 																</option>
 															</c:forEach>
 
@@ -257,7 +264,7 @@ header, #content, #middle, #sidebar {
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-user"></i></span> <select
-															id="manager" name="manger"
+															id="escalatedTo" name="escalatedTo"
 															class="form-control selectpicker">
 															<option value="">Select Manager</option>
 															<c:forEach items="${managersList}" var="manager">
@@ -291,7 +298,7 @@ header, #content, #middle, #sidebar {
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" name="subject"
-														required="required" readonly></textarea>
+														required="required" readonly >${ticketObject.subject}</textarea>
 												</div>
 											</div>
 										</div>
@@ -324,7 +331,7 @@ header, #content, #middle, #sidebar {
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="comment"
+													<textarea class="form-control" name="comments"
 														required="required" placeholder="Please enter comments" id="comment"></textarea>
 												</div>
 											</div>
@@ -877,7 +884,7 @@ $('p input[type="button"]').click(function () {
 	   element.style.display='none';
 	   
 	 var element=document.getElementById('manager');
-	 if(val=='pick a status'|| val=='Escalated Tickets')
+	 if(val=='pick a status'|| val=='Escalated')
 	   element.style.display='block';
 	 else  
 	   element.style.display='none';

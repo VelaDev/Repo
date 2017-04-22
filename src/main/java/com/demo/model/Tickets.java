@@ -56,8 +56,6 @@ public class Tickets implements Serializable{
 	private boolean technicianAcknowledged;
 	@Column(name="SLA")
 	private String slaStart;
-	@Column(name="Escalate")
-	private boolean escalate;
 	@Column(name="Escalate_Reason")
 	private String escalateReason;
 	@Column(name="SLA_Acknowledge_DateTime")

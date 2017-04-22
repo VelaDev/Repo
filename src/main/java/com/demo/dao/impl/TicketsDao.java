@@ -111,7 +111,6 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setDateTime(dateFormat.format(date));
 
 						ticket.setDevice(device);
-						ticket.setEscalate(false);
 						sessionFactory.getCurrentSession().save(ticket);
 
 						historyDaoInt.insertTicketHistory(ticket);
@@ -164,9 +163,9 @@ public class TicketsDao implements TicketsDaoInt {
 		try{
 			ticketList = getAllLoggedTickets();
 			for(Tickets ticket:ticketList){
-				if(ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==false){
+				if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==false)||ticket.getStatus().equalsIgnoreCase("Awaiting Spares")||ticket.getStatus().equalsIgnoreCase("Escalated")){
 					aList.add(ticket);
-				}else if(ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==true && ticket.isFourHourFlag()==false){
+				}else if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==true && ticket.isFourHourFlag()==false)||ticket.getStatus().equalsIgnoreCase("Awaiting Spares")||ticket.getStatus().equalsIgnoreCase("Escalated")){
 					aList.add(ticket);
 				}
 			}
@@ -276,46 +275,33 @@ public class TicketsDao implements TicketsDaoInt {
 		ticket = new Tickets();
 		order = new OrderHeader();
 		try {
-
+           String status = tickets.getStatus();
 			ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
-
-			if (ticket.getStatus().equalsIgnoreCase("Open")
-					&& tickets.getEscalateReason() != null) {
+			if(ticket !=null){
 				ticket.setComments(tickets.getComments());
-				ticket.setEscalateReason(tickets.getEscalateReason());
-				ticket.setEscalate(true);
-				ticket.setStatus("Awaiting HOStock");
-				// order = ordersDaoInt.getOrder(tickets.getOrderNumber());
-				ticket.setOrderHeader(order);
-				sessionFactory.getCurrentSession().saveOrUpdate(ticket);
-				historyDaoInt.insertTicketHistory(ticket);
-				retMessage = "SLA for ticket " + ticket.getTicketNumber()
-						+ " started";
-			} else if (ticket.getSlaStart().equalsIgnoreCase("Started")) {
-
-				technician = employeeDaoInt.getEmployeeByEmpNum(tickets
-						.getTechnicianUserName());
-				ticket.setEmployee(technician);
-				ticket.setComments("Assigned to next available technician");
-				ticket.setSlaStart("Not Started");
-				// ticket.setSlaAcknowledgeDateTime(cal);
-				// ticket.setTechnicianAcknowledged(true);
-				sessionFactory.getCurrentSession().update(ticket);
-				historyDaoInt.insertTicketHistory(ticket);
-				retMessage = "Ticket " + ticket.getTicketNumber()
-						+ " is now assigned to "
-						+ ticket.getEmployee().getFirstName();
-			} else {
-				ticket.setSlaStart("Started");
-				ticket.setSlaAcknowledgeDateTime(cal);
-				ticket.setTechnicianAcknowledged(true);
-				sessionFactory.getCurrentSession().update(ticket);
-				historyDaoInt.insertTicketHistory(ticket);
-				retMessage = "SLA for ticket " + ticket.getTicketNumber()
-						+ " started";
-
+				
+				
+				if(status.equalsIgnoreCase("Awaiting Spares")){
+					order = ordersDaoInt.getOrder(tickets.getOrderNum());
+					
+					if(order !=null){
+						ticket.setOrderHeader(order);
+					}
+				}
+				else if(status.equalsIgnoreCase("Escalated")){
+					ticket.setEscalatedTo(tickets.getEscalatedTo());
+				}
+					
+					
+			  ticket.setStatus(tickets.getStatus());		
+			}else{
+				
 			}
-
+ 
+			sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+			historyDaoInt.insertTicketHistory(ticket);
+			retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+			
 		} catch (Exception e) {
 			retMessage = "SLA did not start because of " + e.getMessage();
 		}
@@ -492,7 +478,7 @@ public class TicketsDao implements TicketsDaoInt {
 
 			for (Tickets ticket : technicianCount) {
 				if (ticket.getEmployee().getEmail()
-						.equalsIgnoreCase(technicianEmail)&& ticket.getStatus().equalsIgnoreCase("Open")) {
+						.equalsIgnoreCase(technicianEmail)&&( ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Awaiting Spares")|| ticket.getStatus().equalsIgnoreCase("Escalated"))) {
 
 					ticketList.add(ticket);
 				}

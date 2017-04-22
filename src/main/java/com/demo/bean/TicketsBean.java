@@ -24,7 +24,7 @@ public class TicketsBean {
 	private String client;
 	private String technicianUserName;
 	private boolean technicianAcknowledged;
-	private boolean escalate;
+	private String escalatedTo;
 	private String escalateReason;
 	private Calendar slaAcknowledgeDateTime;
 	private String solution;
@@ -34,4 +34,5 @@ public class TicketsBean {
 	private int loggedTickets;
 	private String orderNumber;
 	private String subject;
+	private Integer orderNum;
 }

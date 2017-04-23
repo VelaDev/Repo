@@ -61,7 +61,7 @@ li{
 				</div>
 				<div class="panel-body" id="deliveryNote" style="background-color:white;"> 
 					<div class="tab-content">
-					<a href="printdeliveryNote?recordID=<c:out value='${recordID}'/>"><button>Print Delivery</button></a>
+					<%-- <a href="printdeliveryNote?recordID=<c:out value='${recordID}'/>"><button>Print Delivery</button></a> --%>
 					  <form:form>
 							
 							<fieldset>

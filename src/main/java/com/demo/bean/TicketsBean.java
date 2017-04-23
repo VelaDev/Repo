@@ -35,4 +35,5 @@ public class TicketsBean {
 	private String orderNumber;
 	private String subject;
 	private Integer orderNum;
+	private String usedPartNumbers;
 }

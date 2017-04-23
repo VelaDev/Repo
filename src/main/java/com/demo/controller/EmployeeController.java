@@ -126,7 +126,9 @@ public class EmployeeController {
 						String userSessionID =session.getId();
 						
 						session.setAttribute("sessionID", userSessionID);
-						userLogDetailsServiceInt.saveUserLogDetails(details);
+						if(details !=null){
+							userLogDetailsServiceInt.saveUserLogDetails(details);
+						}
 						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));
 						model.addObject("openTickets", ticketsServiceInt.countOpenTickets());
 						model.addObject("closedTickets", ticketsServiceInt.countClosedTickets());
@@ -141,10 +143,10 @@ public class EmployeeController {
 						String userSessionID =session.getId();
 						session.setAttribute("sessionID", userSessionID);
 						System.out.println(userSessionID);
-						userLogDetailsServiceInt.saveUserLogDetails(details);
-						
+						if(details !=null){
+							userLogDetailsServiceInt.saveUserLogDetails(details);
+						}
 						serviceInt.userLoggeIn(employee);
-						model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(employee.getEmail()));
 						model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(employee.getEmail()));
 						model.setViewName("technicianHome");
 						
@@ -154,7 +156,10 @@ public class EmployeeController {
 						String userSessionID =session.getId();
 						session.setAttribute("sessionID", userSessionID);
 						System.out.println(userSessionID);
-						userLogDetailsServiceInt.saveUserLogDetails(details);
+						if(details!=null){
+							userLogDetailsServiceInt.saveUserLogDetails(details);
+						}
+						
 						serviceInt.userLoggeIn(employee);
 						model.setViewName("ticket");
 					}else{

@@ -707,7 +707,8 @@ header, #content, #middle, #sidebar {
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
 							<h4 align="center">Solution Details</h4>
-							<form:form class="well form-horizontal">
+							<form:form class="well form-horizontal" action="updateTicket"
+								modelAttribute="updateTicket" method="post" id="updataTckt">
 
 								<div class="groupsparedetails">
 									<legend align="left">Ticket Info</legend>
@@ -721,7 +722,7 @@ header, #content, #middle, #sidebar {
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-barcode"></i></span> <input
 														name="ticketNumber" id="ticketNumber" class="form-control"
-														type="text" value="${ticketObject.ticketNumber}">
+														type="text" value="${ticketObject.ticketNumber}" readonly="readonly">
 												</div>
 											</div>
 										</div>
@@ -734,7 +735,7 @@ header, #content, #middle, #sidebar {
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" id="actionTaken"
-														name="actionTaken" required="required"></textarea>
+														name="comments" required="required"></textarea>
 												</div>
 											</div>
 										</div>

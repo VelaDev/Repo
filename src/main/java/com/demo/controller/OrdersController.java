@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.xml.sax.SAXException;
 
 import com.demo.bean.OrdersBean;
+import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
@@ -61,6 +62,8 @@ public class OrdersController {
 	private OrderDeliveryServiceInt deliveryServiceInt;
 	@Autowired
 	private TicketsServiceInt ticketsServiceInt;
+	@Autowired
+	private OrderDetailsDaoInt detailsDaoInt;
 	private ModelAndView model = null;
 	private String retMessage = null;
 	private Employee userName = null;
@@ -294,17 +297,14 @@ public class OrdersController {
 	@RequestMapping(value = "printdeliveryNote", method = RequestMethod.GET)
 	public ModelAndView deliveriesNote(
 			@RequestParam("recordID") Integer recordID)
-			throws ParserConfigurationException, SAXException,
-			TransformerException, IOException, DocumentException, XMPException,
-			ParseException, DataIncompleteException, InvalidCodeException, java.text.ParseException {
+			 {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			deliveryServiceInt.createPdf(recordID);
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("deliveryNote");
+			
+			/*List<OrderDetails> listItems = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
+			return new ModelAndView("pdfView", "listItems", listItems);*/
 		} else {
 			model.setViewName("login");
 		}
@@ -457,6 +457,7 @@ public class OrdersController {
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.setViewName("orderItemHistory");
 		} else {
 			model.setViewName("login");

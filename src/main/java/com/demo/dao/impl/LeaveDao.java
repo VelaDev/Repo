@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.LeaveBean;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LeaveDaoInt;
 import com.demo.model.Employee;
@@ -36,6 +37,7 @@ public class LeaveDao implements LeaveDaoInt{
 	private EmployeeDaoInt employeeDaoInt;
 	private List<Leave> tempLeave = null;
 	private List<Leave> leaveList = null;
+	private Leave globalLeave;
 	
 	
 	private String retMessage = null;
@@ -44,17 +46,28 @@ public class LeaveDao implements LeaveDaoInt{
    private int recordID =0;
   
 	@Override
-	public String leaveRequest(Leave leave) {
+	public String leaveRequest(LeaveBean leave) {
 	Employee employee = (Employee) session.getAttribute("loggedInUser");
+	globalLeave = new Leave();
 		try{
 			int newrecordID = 0;
-			leave.setEmployee(employee);
+			if(leave.getTechnicianUserName()!= null){
+				employee = employeeDaoInt.getEmployeeByEmpNum(leave.getTechnicianUserName());
+				globalLeave.setEmployee(employee);
+			}else{
+				globalLeave.setEmployee(employee);
+			}
+			globalLeave.setAddress(leave.getAddress());
+			globalLeave.setContactNumber(leave.getContactNumber());
+			globalLeave.setEndDate(leave.getEndDate());
+			globalLeave.setLeaveType(leave.getLeaveType());
+			globalLeave.setStartDate(leave.getStartDate());
 			recordID =  newRecordID();
 			newrecordID =  recordID;
 			
-			leave.setLeaveID(newrecordID);
-			sessionFactory.getCurrentSession().save(leave);
-			retMessage = "Leave "+leave.getLeaveID()+" successfully submited";
+			globalLeave.setLeaveID(newrecordID);
+			sessionFactory.getCurrentSession().save(globalLeave);
+			retMessage = "Leave successfully submited";
 		}
 		catch(Exception e){
 			retMessage = "Leave not submitted " + e.getMessage();
@@ -63,12 +76,24 @@ public class LeaveDao implements LeaveDaoInt{
 	}
 		
 	@Override
-	public String updateLeaveRequest(Leave leave) {
-		
+	public String updateLeaveRequest(LeaveBean leave) {
+		globalLeave = new Leave();
 		Employee employee = (Employee) session.getAttribute("loggedInUser");
 		try{
-			leave.setEmployee(employee);
-			sessionFactory.getCurrentSession().update(leave);
+			globalLeave.setAddress(leave.getAddress());
+			globalLeave.setContactNumber(leave.getContactNumber());
+			globalLeave.setEndDate(leave.getEndDate());
+			globalLeave.setLeaveID(leave.getLeaveID());
+			globalLeave.setLeaveType(leave.getLeaveType());
+			globalLeave.setStartDate(leave.getStartDate());
+			
+			if(leave.getTechnicianUserName() !=null){
+				employee = employeeDaoInt.getEmployeeByEmpNum(leave.getTechnicianUserName());
+				globalLeave.setEmployee(employee);
+			}else{
+				globalLeave.setEmployee(employee);
+			}
+			sessionFactory.getCurrentSession().update(globalLeave);
 			retMessage = "Leave sucessfully updated";
 		}
 		catch(Exception e){

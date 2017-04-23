@@ -407,4 +407,23 @@ public class TicketController {
 		
 		return model;
 	}
+	
+	@RequestMapping("slaBridged")
+	public ModelAndView slaBridged(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
+		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.setViewName("slaBridged");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 }

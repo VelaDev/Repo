@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.demo.bean.CustomerBean;
+import com.demo.bean.LeaveBean;
 import com.demo.model.Employee;
 import com.demo.model.Leave;
+import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LeaveInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.TicketsServiceInt;
@@ -27,6 +30,8 @@ public class LeaveController {
 	private LeaveInt leaveInt;
 	@Autowired
 	private TicketsServiceInt ticketsServiceInt;
+	@Autowired
+	private EmployeeServiceInt employeeServiceInt;
 	private ModelAndView model = null;
 	private String retMessage = null;
 	private Employee userName = null;
@@ -40,9 +45,12 @@ public class LeaveController {
 		if (userName != null) {
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("makeLeave", new LeaveBean());
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
 				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				
 				model.setViewName("requestLeave");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
@@ -95,6 +103,7 @@ public class LeaveController {
 		if (userName != null) {
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("updateLeave", new LeaveBean());
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
 
@@ -116,7 +125,7 @@ public class LeaveController {
 	}
 
 	@RequestMapping(value = "makeLeave", method = RequestMethod.POST)
-	public ModelAndView submitLeave(@ModelAttribute("makeLeave") Leave leave) {
+	public ModelAndView submitLeave(@ModelAttribute("makeLeave") LeaveBean leave) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -141,7 +150,7 @@ public class LeaveController {
 	}
 
 	@RequestMapping(value = { "updateLeave", "updateMakeLeave" }, method = RequestMethod.POST)
-	public ModelAndView updateLeave(@ModelAttribute("updateLeave") Leave leave) {
+	public ModelAndView updateLeave(@ModelAttribute("updateLeave") LeaveBean leave) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");

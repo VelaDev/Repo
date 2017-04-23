@@ -163,9 +163,9 @@ public class TicketsDao implements TicketsDaoInt {
 		try{
 			ticketList = getAllLoggedTickets();
 			for(Tickets ticket:ticketList){
-				if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==false)||ticket.getStatus().equalsIgnoreCase("Awaiting Spares")||ticket.getStatus().equalsIgnoreCase("Escalated")){
+				if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==false)){
 					aList.add(ticket);
-				}else if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==true && ticket.isFourHourFlag()==false)||ticket.getStatus().equalsIgnoreCase("Awaiting Spares")||ticket.getStatus().equalsIgnoreCase("Escalated")){
+				}else if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==true && ticket.isFourHourFlag()==false)){
 					aList.add(ticket);
 				}
 			}
@@ -291,6 +291,10 @@ public class TicketsDao implements TicketsDaoInt {
 				else if(status.equalsIgnoreCase("Escalated")){
 					ticket.setEscalatedTo(tickets.getEscalatedTo());
 				}
+				else{
+					ticket.setComments(tickets.getComments());
+					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
+				}
 					
 					
 			  ticket.setStatus(tickets.getStatus());		
@@ -311,15 +315,8 @@ public class TicketsDao implements TicketsDaoInt {
 	@Override
 	public void updateSLA(Tickets tickets) {
 		try {
-
-			System.out.println(tickets.getStatus() + " and "
-					+ tickets.getComments() + " " + tickets.getTicketNumber()
-					+ " " + tickets.getDevice().getModelNumber());
-			System.out.println("About to insert");
 			sessionFactory.getCurrentSession().saveOrUpdate(tickets);
 			sessionFactory.getCurrentSession().beginTransaction().commit();
-			System.out.println("Updated Now now" + " "
-					+ tickets.getTicketNumber());
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}

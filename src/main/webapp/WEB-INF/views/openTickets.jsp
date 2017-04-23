@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Opent Tickets</b>
+							<b>Open Tickets</b>
 						</div>
 					</h3>
 				</div>
@@ -43,7 +43,7 @@
 								<th>Assigned Technician</th>
 								<th>Description</th>
 								<th>Date</th>
-                               <!--  <th>Action</th> -->
+                                <th>Details</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -53,8 +53,8 @@
 									<td><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
 									<td><c:out value="${tickets.description}" /></td>
 									<td><c:out value="${tickets.dateTime}" /></td>
-									<%-- <td><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>">Update</a></td>
- --%>
+								    <td><a href="openTicketsDetails?id=<c:out value='${tickets.ticketNumber}'/>">Tickets Details</a></td>
+ 
 								</tr>
 							</c:forEach>
 						</tbody>

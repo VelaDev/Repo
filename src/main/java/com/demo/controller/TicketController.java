@@ -333,7 +333,30 @@ public class TicketController {
 		
 		return model;
 	}
+	
+	@RequestMapping("openTicketsDetails")
+    public ModelAndView loadOpenTicketsDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
 		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("openTicketsDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+	
 	@RequestMapping("closedTickets")
 	public ModelAndView closedTickets(){
 		
@@ -352,6 +375,29 @@ public class TicketController {
 		
 		return model;
 	}
+	@RequestMapping("closedTicketsDetails")
+    public ModelAndView loadClosedTicketsDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("closedTicketsDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+	
 	@RequestMapping("bridgedTickets")
 	public ModelAndView bridgedTickets(){
 		
@@ -370,6 +416,29 @@ public class TicketController {
 		
 		return model;
 	}
+	@RequestMapping("bridgedTicketsDetails")
+    public ModelAndView loadBridgedTicketsDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("bridgedTicketsDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+	
 	@RequestMapping("escalatedTickes")
 	public ModelAndView escalatedTickes(){
 		
@@ -388,6 +457,29 @@ public class TicketController {
 		
 		return model;
 	}
+	@RequestMapping("escalatedTickesDetails")
+    public ModelAndView loadEscalatedTickesDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("escalatedTickesDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+	
 	@RequestMapping("awaitingSpares")
 	public ModelAndView awaitingSparesTickes(){
 		
@@ -406,6 +498,28 @@ public class TicketController {
 		
 		return model;
 	}
+	@RequestMapping("awaitingSparesDetails")
+    public ModelAndView loadAwaitingSparesTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("awaitingSparesDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
 	
 	@RequestMapping("slaBridged")
 	public ModelAndView slaBridged(){

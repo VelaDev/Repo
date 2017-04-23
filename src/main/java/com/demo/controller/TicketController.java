@@ -157,7 +157,6 @@ public class TicketController {
 		}
 		
 		return model;
-		
 	}
 	@RequestMapping("updateTicketUser")
 	public ModelAndView userUpdateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){

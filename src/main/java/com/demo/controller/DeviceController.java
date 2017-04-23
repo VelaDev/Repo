@@ -259,6 +259,10 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		
+		if (userName.getRole().equalsIgnoreCase("User")){
+			model.setViewName("ticket");
+		}
 		if(device != null){
 			
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());

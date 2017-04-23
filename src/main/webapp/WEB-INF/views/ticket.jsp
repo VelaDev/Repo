@@ -39,13 +39,22 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="serialNumber" id="serialNumber" class="form-control"
-												type="text" placeholder='Search By Serial Number'>
+												name="serialNumber" list="serialNumbers"
+												class="form-control" type="text"
+												onkeydown="upperCaseF(this)"
+												placeholder='Search By Serial Number'>
 										</div>
 									</div>
+									<!-- Iterating over the list sent from Controller -->
+									<datalist id="serialNumbers"> <c:forEach var="list"
+										items="${serialNumbers}">
+										<option value="${list}">
+									</c:forEach> </datalist>
+
 									<div class="col-md-2">
 										<input class="btn btn-success" type='submit' value='Search' />
 									</div>
+
 								</div>
 							</div>
 							<hr>
@@ -62,26 +71,76 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-barcode"></i></span> <input
-												name="device" value="${product.serialNumber }"
-												class="form-control" type="text">
+												name="device" readonly="readonly"
+												value="${product.serialNumber }" class="form-control"
+												type="text">
 										</div>
 									</div>
 								</div>
 
-								<!-- Text input Contract Start Date-->
+								<!-- Text input Machine Model-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Contract Start
-										Date</label>
+									<label class="col-md-3 control-label">Model No</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="startDate" value="${product.startDate}"
-												class="form-control" type="text">
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												value="${product.modelNumber }" class="form-control"
+												type="text" readonly="readonly">
 										</div>
 									</div>
 								</div>
 
+								<!-- Text input Customer Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Customer Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												value="${product.customerDevice.customerName }"
+												class="form-control" type="text" readonly="readonly">
+										</div>
+									</div>
+								</div>
+
+								
+								<!-- Assign Technician -->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Assign Technician</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select id="selectedTechnician" 
+												name="technicianUserName"id="selectedTechnician" class="form-control selectpicker">
+												<option>Select Technician</option>
+												<c:forEach items="${technicians}" var="technician">
+													<option value="${technician.email}" id="selectedTechnician" onclick="checkTech(this.value);" class="popup">${technician.firstName}
+														${technician.lastName}</option>
+												</c:forEach>
+											</select>
+										</div>
+									</div>
+								</div>
+								<!-- Text area Subject-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Title</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-pencil"></i></span>
+											<textarea class="form-control" name="subject"
+												required="required"></textarea>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<!--/F Column-->
+
+							<!--Second column-->
+							<div class="col-sm-6">
+								
 								<!-- Select type Priority-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Priority</label>
@@ -99,68 +158,7 @@
 									</div>
 								</div>
 
-								<div class="form-group">
-									<label class="col-md-3 control-label">Assign Technician</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="technicianUserName" class="form-control selectpicker">
-												<option value="">Select Technician</option>
-												<c:forEach items="${technicians}" var="technician">
-													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-								</div>
-
-							</div>
-							<!--/F Column-->
-
-							<!--Second column-->
-							<div class="col-sm-6">
-
-								<!-- Text input Machine Model-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Machine Model</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												value="${product.productModel }"
-												class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Contract End Date-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Contract End Date</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-calendar"></i></span> <input
-												name="endDate" id="endDate" value="${product.endDate }"
-												class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-
-								<!-- Text input Customer Name-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Customer Name</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												 value="${product.client.clientName }"
-												class="form-control" type="text">
-										</div>
-									</div>
-								</div>
-
-
+                                 <br>
 								<!-- Text area -->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Description</label>
@@ -169,23 +167,23 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
-												placeholder="Description"></textarea>
+												placeholder="Description"
+												style="margin: 0px; height: 130px; width: 270px;"></textarea>
 										</div>
 									</div>
 								</div>
 
-
 							</div>
 							<!--/S Column-->
+
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<br>
-									<br> <input type="submit" value="Log Ticket"
+									<br> <br> <input type="submit" value="Log Ticket"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="logTicket">
 								</div>
 							</div>
-
+							
 						</form:form>
 
 
@@ -291,6 +289,52 @@
 						});
 	</script>
 
+	<!-- Create datalist to populate search -->
+	<script type="text/javascript">
+		// Get the <datalist> and <input> elements.
+		var dataList = document.getElementById('json-datalist');
+		var input = document.getElementById('ajax');
+
+		// Create a new XMLHttpRequest.
+		var request = new XMLHttpRequest();
+
+		// Handle state changes for the request.
+		request.onreadystatechange = function(response) {
+			if (request.readyState === 4) {
+				if (request.status === 200) {
+					// Parse the JSON
+					var jsonOptions = JSON.parse(request.responseText);
+
+					// Loop over the JSON array.
+					jsonOptions.forEach(function(item) {
+						// Create a new <option> element.
+						var option = document.createElement('option');
+						// Set the value using the item in the JSON array.
+						option.value = item;
+						// Add the <option> element to the <datalist>.
+						dataList.appendChild(option);
+					});
+
+					// Update the placeholder text.
+					input.placeholder = "e.g. datalist";
+				} else {
+					// An error occured :(
+					input.placeholder = "Couldn't load datalist options :(";
+				}
+			}
+		};
+
+		// Update the placeholder text.
+		input.placeholder = "Loading options...";
+
+		// Set up and make the request.
+		request
+				.open(
+						'GET',
+						'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json',
+						true);
+		request.send();
+	</script>
 
 
 </body>

@@ -10,5 +10,6 @@ public interface BootStockDaoInt {
 	void saveBootStock(List<OrderDetails> detailsDaos);
 	List<BootStock> getAllOrders();
 	List<BootStock> getAllOrders(String technician);
+	void updateBootStock(BootStock bootStock);
 
 }

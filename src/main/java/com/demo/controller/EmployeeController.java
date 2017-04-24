@@ -276,7 +276,13 @@ public class EmployeeController {
 		if(userName != null){
 		
 			retMessage = employeeService.saveEmployee(employee);
-			model.addObject("retMessage", retMessage);
+			if(retMessage.startsWith("Email")){
+				String retErrorMessage = retMessage;
+				model.addObject("retErrorMessage", retErrorMessage);
+			}else{
+				model.addObject("retMessage", retMessage);
+			}
+			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("registerEmployee");
 		}

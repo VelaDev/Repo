@@ -3,6 +3,7 @@ package com.demo.dao.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -23,15 +24,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
+import com.demo.dao.BootStockDaoInt;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.EmployeeDaoInt;
+import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrdersDaoInt;
+import com.demo.dao.SiteStocDaoInt;
 import com.demo.dao.TicketsDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.TicketHistoryDaoInt;
+import com.demo.model.Accessories;
+import com.demo.model.BootStock;
 import com.demo.model.Employee;
 import com.demo.model.Device;
+import com.demo.model.OrderDetails;
 import com.demo.model.OrderHeader;
+import com.demo.model.SiteStock;
 import com.demo.model.Tickets;
 
 @Repository("LogTicketsDAO")
@@ -53,11 +61,18 @@ public class TicketsDao implements TicketsDaoInt {
 	@Autowired
 	private OrdersDaoInt ordersDaoInt;
 	@Autowired
+	private SiteStocDaoInt siteStockDaoInt;
+	@Autowired
+	private BootStockDaoInt bootStockDaoIn;
+	@Autowired
 	private HttpSession session = null;
 	private Session session2;
 
 	private Employee technician = null;
+	private OrderDetails orderDetails=null;
 	private OrderHeader order = null;
+	private BootStock bootStock =null;
+	private SiteStock siteStock =null;
 	private Device device = null;
 	private Tickets ticket = null;
 	Calendar cal = Calendar.getInstance();
@@ -281,8 +296,10 @@ public class TicketsDao implements TicketsDaoInt {
 			if(ticket !=null){
 				ticket.setComments(tickets.getComments());
 				
-				
-				if(status.equalsIgnoreCase("Awaiting Spares")){
+				if(tickets.getStatus()==null){
+					//ticket.setStatus(tickets.getStatus());
+				}
+				else if(status.equalsIgnoreCase("Awaiting Spares")){
 					order = ordersDaoInt.getOrder(tickets.getOrderNum());
 					
 					if(order !=null){
@@ -297,14 +314,17 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
 				}
 					
-					
-			  ticket.setStatus(tickets.getStatus());		
 			}else{
 				
 			}
 			device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
 			device.setMonoReading(tickets.getMonoReading());
 			device.setColourReading(tickets.getColourReading());
+			
+			if(tickets.getUsedPartNumbers().length()>3)
+			{
+				subractUsedSpares(tickets.getUsedPartNumbers(),null);
+			}
 			sessionFactory.getCurrentSession().update(device);
 			
 			sessionFactory.getCurrentSession().saveOrUpdate(ticket);
@@ -602,7 +622,6 @@ public class TicketsDao implements TicketsDaoInt {
 		return tempCount;
 	}@Override
 	public List<Tickets> getAllEscalatedTickets() {
-		// TODO Auto-generated method stub
 		aList = new ArrayList<Tickets>();
 		try{
 			ticketList = getAllLoggedTickets();
@@ -642,7 +661,6 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public List<Tickets> getAllClosedTickets() {
-		// TODO Auto-generated method stub
 				aList = new ArrayList<Tickets>();
 				try{
 					ticketList = getAllLoggedTickets();
@@ -679,6 +697,30 @@ public class TicketsDao implements TicketsDaoInt {
 		
 		return aList;
 	}
-	
-
+	private void subractUsedSpares(String usedSpares, String customerName){
+		technician = (Employee) session.getAttribute("loggedInUser");
+		int tempCount = 0;
+		try{
+			List<String> spare = new ArrayList<String>(Arrays.asList(usedSpares.split(",")));
+			
+			if(customerName != null){
+				/*List<SiteStock> tempBootList =*/
+			}else{
+				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName());
+				for(BootStock btStock:tempSiteList){
+					for(int i=0;i<spare.size();i++){
+						if(btStock.getPartNumber().equalsIgnoreCase(spare.get(i))){
+							
+							tempCount = btStock.getQuantity() -1;
+							btStock.setQuantity(tempCount);
+							bootStockDaoIn.updateBootStock(btStock);
+						}
+					}
+				}
+				
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+	}
 }

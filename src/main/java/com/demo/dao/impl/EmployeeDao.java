@@ -51,20 +51,28 @@ public class EmployeeDao implements EmployeeDaoInt{
 		String password = "";
 		
 		try{
-			  employee.setFirstTimeLogin(true);
-			  employee.setStatus("ACTIVE");
-			  password = generatePassword();
-			  encryptPassword = PasswordEncrypt.encryptPassword(password);
-			  employee.setPassword(encryptPassword);
-			  
-		      sessionFactory.getCurrentSession().save(employee);
-		      credential = getUserCredentials(employee);
-		      credentialsDaoInt.saveNewPassword(credential);
-		      
-		      
-		      JavaMail.sendPasswordToEmployee(employee,password);
-		      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
-		}
+			emp = getEmployeeByEmpNum(employee.getEmail());
+			if(emp ==null){
+				employee.setFirstTimeLogin(true);
+				  employee.setStatus("ACTIVE");
+				  password = generatePassword();
+				  encryptPassword = PasswordEncrypt.encryptPassword(password);
+				  employee.setPassword(encryptPassword);
+				  
+			      sessionFactory.getCurrentSession().save(employee);
+			      credential = getUserCredentials(employee);
+			      credentialsDaoInt.saveNewPassword(credential);
+			      
+			      
+			      JavaMail.sendPasswordToEmployee(employee,password);
+			      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
+			
+			}
+			else{
+				retMessage ="Email " +employee.getEmail()+" is already in use. Please use different email";
+			}
+			
+			  }
 		catch(Exception e)
 		{
 			retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is not added\n" + e.getMessage();

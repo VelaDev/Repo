@@ -72,5 +72,14 @@ public class BootSiteDao implements BootStockDaoInt{
 		}
 		return bootStockList;
 	}
+	@Override
+	public void updateBootStock(BootStock bootStock) {
+		try{
+			sessionFactory.getCurrentSession().update(bootStock);
+		}catch(Exception e){
+			e.getMessage();
+		}
+		
+	}
 
 }

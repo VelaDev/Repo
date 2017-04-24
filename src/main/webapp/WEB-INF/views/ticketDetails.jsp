@@ -652,91 +652,7 @@ header, #content, #middle, #sidebar {
 
 						</div>
 						<!--/general tab-->
-
-
-						<!--escalationDetails tab-->
-						<div class="tab-pane" id="escalationDetails">
-
-							<h4 align="center">Escalate Ticket</h4>
-
-							<form:form class="well form-horizontal" action="updateTicket"
-								modelAttribute="updateTicket" method="post">
-
-								<!-- Text input Ticket Number-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Ticket Number</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												name="ticketNumber" id="ticketNumber" class="form-control"
-												type="text" value="${ticketObject.ticketNumber}">
-										</div>
-									</div>
-								</div>
-
-
-								<!-- Text area Escalate-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Escalate </label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<input type="checkbox" name="escalate" value="true"
-												required="required">
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label">Awaiting Spares </label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<input type="checkbox" name="AwaitingSpares" value="true"
-												required="required">
-										</div>
-									</div>
-								</div>
-								<!-- Select type Assign Technician-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Order No</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="orderNumber" class="form-control selectpicker">
-												<option>Select Order No</option>
-												<c:forEach items="${OrderNumber}" var="orders">
-													<option value="${orders.orderNum}">${orders.orderNum}
-													</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-								</div>
-								<!-- Text area Escalate Reason-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Reason</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="escalateReason"
-												required="required"></textarea>
-										</div>
-									</div>
-								</div>
-								<br>
-								<div class="form-group row">
-									<div class="col-sm-offset-2 col-md-8">
-										<input type="submit" value="Submit"
-											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="escalateTickt">
-									</div>
-								</div>
-							</form:form>
-						</div>
-						<!--/escalationDetails tab-->
-
-
+						
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
 							<h4 align="center">Solution Details</h4>
@@ -781,12 +697,14 @@ header, #content, #middle, #sidebar {
 								<!-- group Used Part Numbers -->
 								<div class="groupsearchdetails">
 									<legend>Used Part Numbers </legend>
-
+									
+									<div class="">
+									
+									</div>
+									
 									<div class="tableContect">
-										<p>
-											<input type="button" class="btn btn-success"
-												value="Add Part Number">
-										</p>
+									
+										<p>	<input type="button" class="btn btn-success" value="Add Part Number"></p>
 
 										<table id="usedPartNumbersdataTable" width="300px"
 											style="width: 300px"
@@ -891,12 +809,14 @@ header, #content, #middle, #sidebar {
 		});
 	});
 </script>
+
 <script>
 	$('.trigger').change(function () {
 		$('.tick').hide();
 		$('.' + $('.trigger:checked').data('rel')).show();
 	}).change(); //Show tick on page load
 </script>
+
 <script>
 
 $('#usedPartNumbersdataTable').on('click', 'input[type="button"]', function () {

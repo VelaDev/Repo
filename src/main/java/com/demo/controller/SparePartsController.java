@@ -77,13 +77,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
-			retMessage = hOStockServeceInt.saveSpareparts(spareParts);
-			if(retMessage.startsWith("Part number already exist")){
-				String errorRetMessage = retMessage;
-				model.addObject("errorRetMessage", errorRetMessage);
-			}else{
-				model.addObject("retMessage", retMessage);
-			}
+			retMessage = hOStockServeceInt.saveSpareparts(spareParts);			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addSpares");
 		}
@@ -231,7 +225,15 @@ public class SparePartsController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("retMessage", spareMasterServiceInt.saveSpareMasterData(spareMaster));
+
+			retMessage = spareMasterServiceInt.saveSpareMasterData(spareMaster);
+			
+			if(retMessage.startsWith("Part number already exist")){
+				String errorRetMessage = retMessage;
+				model.addObject("errorRetMessage", errorRetMessage);
+			}else{
+				model.addObject("retMessage", retMessage);
+			}
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addSpares");
 		}

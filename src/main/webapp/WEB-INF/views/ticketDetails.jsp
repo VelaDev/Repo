@@ -653,6 +653,7 @@ header, #content, #middle, #sidebar {
 						</div>
 						<!--/general tab-->
 						
+						
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
 							<h4 align="center">Solution Details</h4>
@@ -675,8 +676,7 @@ header, #content, #middle, #sidebar {
 														readonly="readonly">
 												</div>
 											</div>
-										</div>
-
+										</div>										
 										<!-- Text area Action Taken-->
 										<div class="form-group">
 											<label class="col-md-3 control-label"> Action Taken </label>
@@ -698,35 +698,88 @@ header, #content, #middle, #sidebar {
 								<div class="groupsearchdetails">
 									<legend>Used Part Numbers </legend>
 									
-									<div class="">
-									
-									</div>
-									
-									<div class="tableContect">
-									
-										<p>	<input type="button" class="btn btn-success" value="Add Part Number"></p>
+									 <!-- Radio for Boot Stock-->										
+										 <div class="form-group">
+											<label class="col-md-2 control-label">Boot Stock</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<input type="radio" name="groupstock" class="trigger" data-rel="boot-stock">
+												</div>
+											</div>
+										 </div>
+										 <div class="form-group">
+											<div class="boot-stock tick">
+												<div class="tableContect">
+													<p><input type="button" class="btn btn-success" value="Add Part Number"></p>
+													<table id="usedPartNumbersdataTable" width="300px"	style="width: 300px"
+															class="table table-striped table-bordered table-hover table-condensed">
+															<label class="model">Part Number</label>
+														<c:forEach var="usedPartNumbers" items="${partNumbers}">
+															<tr>
 
-										<table id="usedPartNumbersdataTable" width="300px"
-											style="width: 300px"
-											class="table table-striped table-bordered table-hover table-condensed">
-											<label class="model">Part Number</label>
-											<c:forEach var="usedPartNumbers" items="${partNumbers}">
-												<tr>
+																<td><input type="text" readOnly class="form-control"
+																	id="usedPartNumbers" name="usedPartNumbers"
+																		value="${usedPartNumbers}"></td>
+																<td><input type="button" class="btn btn-danger"
+																		value="Remove"></td>
+															</tr>
+														</c:forEach>
+													</table>
+												</div>													
+											</div>
+										 </div>
+										<!-- Radio for Site Stock-->
+										<div class="form-group">
+										  <label class="col-md-2 control-label">Site Stock </label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<input type="radio" name="groupstock" class="trigger" data-rel="site-stock">
+												</div>
+											</div>
+										</div>
+										 <div class="form-group">
+											<div class="site-stock tick" >
+												
+												<!-- Text input Customer Name-->
+												<div class="form-group">
+													
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-user"></i></span><select id="Site" name="customer"
+																class="form-control selectpicker">
+																<option value="">Select Customer Name</option>
+																<c:forEach items="${customerList}" var="customer">
+																	<option value="${customer.customerName}">${customer.customerName}</option>
+																</c:forEach>
+															</select>
+														</div>
+													</div>
+												</div>
+											 
+												<div class="tableContect">									
+														<p>	<input type="button" class="btn btn-success" value="Add Part Number"></p>
+														<table id="usedPartNumbersdataTableSiteStock" width="300px"
+															style="width: 300px"
+															class="table table-striped table-bordered table-hover table-condensed">
+															<label class="model">Part Number</label>
+															<c:forEach var="usedPartNumbers" items="${partNumbers}">
+																<tr>
 
-													<td><input type="text" readOnly class="form-control"
-														id="usedPartNumbers" name="usedPartNumbers"
-														value="${usedPartNumbers}"></td>
-													<td><input type="button" class="btn btn-danger"
-														value="Remove"></td>
+																	<td><input type="text" readOnly class="form-control"
+																		id="usedPartNumbers" name="usedPartNumbers"
+																		value="${usedPartNumbers}"></td>
+																	<td><input type="button" class="btn btn-danger"
+																		value="Remove"></td>
 
-												</tr>
-											</c:forEach>
-
-										</table>
-									</div>
+																</tr>
+															</c:forEach>
+														</table>
+												</div>		 
+											</div>
+										</div>
 								</div>
 								<!-- //group Used Part Numbers -->
-
 								<br />
 								<div class="form-group">
 									<div class="col-sm-offset-2 col-md-8">
@@ -738,7 +791,7 @@ header, #content, #middle, #sidebar {
 							</form:form>
 						</div>
 						<!--/solution tab-->
-
+						
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
@@ -810,11 +863,12 @@ header, #content, #middle, #sidebar {
 	});
 </script>
 
+
 <script>
 	$('.trigger').change(function () {
 		$('.tick').hide();
 		$('.' + $('.trigger:checked').data('rel')).show();
-	}).change(); //Show tick on page load
+	}).change(); //Show content on page load
 </script>
 
 <script>
@@ -824,6 +878,16 @@ $('#usedPartNumbersdataTable').on('click', 'input[type="button"]', function () {
 	})
 $('p input[type="button"]').click(function () {
     $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+});
+
+</script>
+<script>
+
+$('#usedPartNumbersdataTableSiteStock').on('click', 'input[type="button"]', function () {
+    $(this).closest('tr').remove();
+	})
+$('p input[type="button"]').click(function () {
+    $('#usedPartNumbersdataTableSiteStock').append('<tr><td><input type="text" class="form-control" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
 </script>

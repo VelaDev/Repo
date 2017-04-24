@@ -357,11 +357,11 @@ header, #content, #middle, #sidebar {
 														class="glyphicon glyphicon-barcode"></i></span> <input
 														name="serialNumber" placeholder="Serial Number"
 														value="${ticketObject.getDevice().getSerialNumber() }"
-														class="form-control" type="text" readonly >
+														class="form-control" type="text" readonly>
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Text input Machine Model-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Model No</label>
@@ -410,19 +410,21 @@ header, #content, #middle, #sidebar {
 
 									<!--Second column-->
 									<div class="col-sm-6">
-									
-									
+
+
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-													class="form-control" onkeypress="return isNumber(event)"
-													placeholder="Enter Colour Reading" id="colour" name="colourReading" value="${ticketObject.getDevice().getColourReading() }"
-														
-													name="colourReading">
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														type="text" class="form-control"
+														onkeypress="return isNumber(event)"
+														placeholder="Enter Colour Reading" id="colour"
+														name="colourReading"
+														value="${ticketObject.getDevice().getColourReading() }"
+														name="colourReading">
 												</div>
 											</div>
 										</div>
@@ -431,14 +433,16 @@ header, #content, #middle, #sidebar {
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-													class="form-control" onkeypress="return isNumber(event)"
-													id="mono" name="monoReading"
-													placeholder="Enter Mono Reading" name ="monoReading"value="${ticketObject.getDevice().getMonoReading() }">
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														type="text" class="form-control"
+														onkeypress="return isNumber(event)" id="mono"
+														name="monoReading" placeholder="Enter Mono Reading"
+														name="monoReading"
+														value="${ticketObject.getDevice().getMonoReading() }">
 												</div>
 											</div>
 										</div>
-									
+
 										<!-- Text input Contract Start Date-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Contract Start
@@ -652,8 +656,8 @@ header, #content, #middle, #sidebar {
 
 						</div>
 						<!--/general tab-->
-						
-						
+
+
 						<!--solution tab-->
 						<div class="tab-pane" id="solutionsDetails">
 							<h4 align="center">Solution Details</h4>
@@ -676,7 +680,7 @@ header, #content, #middle, #sidebar {
 														readonly="readonly">
 												</div>
 											</div>
-										</div>										
+										</div>
 										<!-- Text area Action Taken-->
 										<div class="form-group">
 											<label class="col-md-3 control-label"> Action Taken </label>
@@ -697,87 +701,96 @@ header, #content, #middle, #sidebar {
 								<!-- group Used Part Numbers -->
 								<div class="groupsearchdetails">
 									<legend>Used Part Numbers </legend>
-									
-									 <!-- Radio for Boot Stock-->										
-										 <div class="form-group">
-											<label class="col-md-2 control-label">Boot Stock</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<input type="radio" name="groupstock" class="trigger" data-rel="boot-stock">
-												</div>
-											</div>
-										 </div>
-										 <div class="form-group">
-											<div class="boot-stock tick">
-												<div class="tableContect">
-													<p><input type="button" class="btn btn-success" value="Add Part Number"></p>
-													<table id="usedPartNumbersdataTable" width="300px"	style="width: 300px"
-															class="table table-striped table-bordered table-hover table-condensed">
-															<label class="model">Part Number</label>
-														<c:forEach var="usedPartNumbers" items="${partNumbers}">
-															<tr>
 
-																<td><input type="text" readOnly class="form-control"
-																	id="usedPartNumbers" name="usedPartNumbers"
-																		value="${usedPartNumbers}"></td>
-																<td><input type="button" class="btn btn-danger"
-																		value="Remove"></td>
-															</tr>
-														</c:forEach>
-													</table>
-												</div>													
-											</div>
-										 </div>
-										<!-- Radio for Site Stock-->
-										<div class="form-group">
-										  <label class="col-md-2 control-label">Site Stock </label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<input type="radio" name="groupstock" class="trigger" data-rel="site-stock">
-												</div>
+									<!-- Radio for Boot Stock-->
+									<div class="form-group">
+										<label class="col-md-2 control-label">Boot Stock</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<input type="radio" name="groupstock" class="trigger"
+													data-rel="boot-stock">
 											</div>
 										</div>
-										 <div class="form-group">
-											<div class="site-stock tick" >
-												
-												<!-- Text input Customer Name-->
-												<div class="form-group">
-													
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-user"></i></span><select id="Site" name="customer"
-																class="form-control selectpicker">
-																<option value="">Select Customer Name</option>
-																<c:forEach items="${customerList}" var="customer">
-																	<option value="${customer.customerName}">${customer.customerName}</option>
-																</c:forEach>
-															</select>
-														</div>
+									</div>
+									<div class="form-group">
+										<div class="boot-stock tick">
+											<div class="tableContect">
+												<p>
+													<input type="button" class="btn btn-success"
+														value="Add Part Number">
+												</p>
+												<table id="usedPartNumbersdataTable" width="300px"
+													style="width: 300px"
+													class="table table-striped table-bordered table-hover table-condensed">
+													<label class="model">Part Number</label>
+													<c:forEach var="usedPartNumbers" items="${partNumbers}">
+														<tr>
+
+															<td><input type="text" readOnly class="form-control"
+																id="usedPartNumbers" name="usedPartNumbers"
+																value="${usedPartNumbers}"></td>
+															<td><input type="button" class="btn btn-danger"
+																value="Remove"></td>
+														</tr>
+													</c:forEach>
+												</table>
+											</div>
+										</div>
+									</div>
+									<!-- Radio for Site Stock-->
+									<div class="form-group">
+										<label class="col-md-2 control-label">Site Stock </label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<input type="radio" name="groupstock" class="trigger"
+													data-rel="site-stock">
+											</div>
+										</div>
+									</div>
+									<div class="form-group">
+										<div class="site-stock tick">
+
+											<!-- Text input Customer Name-->
+											<div class="form-group">
+
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-user"></i></span><select id="Site"
+															name="customer" class="form-control selectpicker">
+															<option value="">Select Customer Name</option>
+															<c:forEach items="${customerList}" var="customer">
+																<option value="${customer.customerName}">${customer.customerName}</option>
+															</c:forEach>
+														</select>
 													</div>
 												</div>
-											 
-												<div class="tableContect">									
-														<p>	<input type="button" class="btn btn-success" value="Add Part Number"></p>
-														<table id="usedPartNumbersdataTableSiteStock" width="300px"
-															style="width: 300px"
-															class="table table-striped table-bordered table-hover table-condensed">
-															<label class="model">Part Number</label>
-															<c:forEach var="usedPartNumbers" items="${partNumbers}">
-																<tr>
+											</div>
 
-																	<td><input type="text" readOnly class="form-control"
-																		id="usedPartNumbers" name="usedPartNumbers"
-																		value="${usedPartNumbers}"></td>
-																	<td><input type="button" class="btn btn-danger"
-																		value="Remove"></td>
+											<div class="tableContect">
+												<p>
+													<input type="button" class="btn btn-success"
+														value="Add Part Number">
+												</p>
+												<table id="usedPartNumbersdataTableSiteStock" width="300px"
+													style="width: 300px"
+													class="table table-striped table-bordered table-hover table-condensed">
+													<label class="model">Part Number</label>
+													<c:forEach var="usedPartNumbers" items="${partNumbers}">
+														<tr>
 
-																</tr>
-															</c:forEach>
-														</table>
-												</div>		 
+															<td><input type="text" readOnly class="form-control"
+																id="usedPartNumbers" name="usedPartNumbers"
+																value="${usedPartNumbers}"></td>
+															<td><input type="button" class="btn btn-danger"
+																value="Remove"></td>
+
+														</tr>
+													</c:forEach>
+												</table>
 											</div>
 										</div>
+									</div>
 								</div>
 								<!-- //group Used Part Numbers -->
 								<br />
@@ -791,7 +804,7 @@ header, #content, #middle, #sidebar {
 							</form:form>
 						</div>
 						<!--/solution tab-->
-						
+
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>

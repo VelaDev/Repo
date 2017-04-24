@@ -66,6 +66,7 @@
 							<hr>
 						</form>
 						<!--Search-->
+						
 						<form:form method="post" class="well form-horizontal"
 							action="logTicketAdmin" modelAttribute="logTicketAdmin"
 							id="logTicket">
@@ -132,13 +133,13 @@
 								</div>
 								<!-- Text area Subject-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Title</label>
+									<label class="col-md-3 control-label">Subject</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="subject"
-												required="required"></textarea>
+											<textarea class="form-control" id="subject" name="subject"
+												required="required" placeholder="Technical Service Call"></textarea>
 										</div>
 									</div>
 								</div>
@@ -148,6 +149,20 @@
 
 							<!--Second column-->
 							<div class="col-sm-6">
+								
+								<!-- <!-- Text input Suject
+								<div class="form-group">
+									<label class="col-md-3 control-label">Subject</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												value="" placeholder="Technical Service Call"
+												class="form-control" required="required" id="technicalServiceCall" name="technicalServiceCall" type="text" >
+										</div>
+									</div>
+								</div> -->
+								
 								
 								<!-- Select type Priority-->
 								<div class="form-group">
@@ -165,8 +180,7 @@
 										</div>
 									</div>
 								</div>
-
-                                 <br>
+								
 								<!-- Text area -->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Description</label>
@@ -176,7 +190,7 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
 												placeholder="Description"
-												style="margin: 0px; height: 130px; width: 270px;"></textarea>
+												style="margin: 0px; height: 170px; width: 240px;"></textarea>
 										</div>
 									</div>
 								</div>

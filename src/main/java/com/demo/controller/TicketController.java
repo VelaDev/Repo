@@ -217,6 +217,7 @@ public class TicketController {
 		}
 		return model;
 	}
+	
 	@RequestMapping("AssignTicketToOtherTechnician")
     public ModelAndView assignTicketToAnotherTechnicia(@RequestParam String ticketNumber, @ModelAttribute Tickets ticket) {
 		

@@ -60,9 +60,13 @@
 							<hr>
 						</form>
 						<!--Search-->
-						<form:form class="well form-horizontal" method="post" action="logTicket" modelAttribute="logTicket" id="logUserTicket">
-
-						<!--First Column-->
+						
+						
+						<form:form method="post" class="well form-horizontal"
+							action="logTicketAdmin" modelAttribute="logTicketAdmin"
+							id="logTicket">
+							
+							<!--First Column-->
 							<div class="col-md-6">
 								<!-- Text input Serial No-->
 								<div class="form-group">
@@ -124,12 +128,12 @@
 								</div>
 								<!-- Text area Subject-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Title</label>
+									<label class="col-md-3 control-label">Subject</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="subject"
+											<textarea class="form-control" id="subject" name="subject"
 												required="required"></textarea>
 										</div>
 									</div>
@@ -140,6 +144,20 @@
 
 							<!--Second column-->
 							<div class="col-sm-6">
+								
+								<!-- <!-- Text input Suject
+								<div class="form-group">
+									<label class="col-md-3 control-label">Subject</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-barcode"></i></span> <input
+												value="" placeholder="Technical Service Call"
+												class="form-control" required="required" id="technicalServiceCall" name="technicalServiceCall" type="text" >
+										</div>
+									</div>
+								</div> -->
+								
 								
 								<!-- Select type Priority-->
 								<div class="form-group">
@@ -157,8 +175,7 @@
 										</div>
 									</div>
 								</div>
-
-                                 <br>
+								
 								<!-- Text area -->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Description</label>
@@ -168,7 +185,7 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
 												placeholder="Description"
-												style="margin: 0px; height: 130px; width: 270px;"></textarea>
+												style="margin: 0px; height: 170px; width: 240px;"></textarea>
 										</div>
 									</div>
 								</div>
@@ -183,7 +200,7 @@
 										id="logTicket">
 								</div>
 							</div>
-							
+
 						</form:form>
 
 
@@ -212,12 +229,12 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
 	<!-- /Script -->
-	<!-- Validate By User LogTicket -->
+	<!-- Validate LogTicket -->
 	<script>
 		$(document)
 				.ready(
 						function() {
-							$('#logUserTicket')
+							$('#logTicket')
 									.bootstrapValidator(
 											{
 												feedbackIcons : {
@@ -289,6 +306,17 @@
 						});
 	</script>
 
+
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
+		function upperCaseF(a) {
+			setTimeout(function() {
+				a.value = a.value.toUpperCase();
+			}, 1);
+		}
+	</script>
+
+
 	<!-- Create datalist to populate search -->
 	<script type="text/javascript">
 		// Get the <datalist> and <input> elements.
@@ -335,7 +363,36 @@
 						true);
 		request.send();
 	</script>
+<script type="text/javascript">
 
+function myFunction(){
+	
+	var index =0;
+	var onLeaveTechnician =  ${onLeaveTechnicians}
+	for (index = 0; index < onLeaveTechnician.length; ++index) {
+	    if(onLeaveTechnician[index]==selectedTechnician){
+	    	console.log(index);
+	    	alert("Technician on leave");	    	
+	    }
+	}
+	//document.getElementById('selectedTechnician').html;
+}
+function checkTech(val){
+	
+	var element=document.getElementById('selectedTechnician');
+	var index =0;
+	var onLeaveTechnician =  ${onLeaveTechnicians};
+	for (index = 0; index < onLeaveTechnician.length; ++index) {
+	    if(onLeaveTechnician[index]==selectedTechnician){
+	    	console.log(index);
+	    	alert("Technician on leave");	    	
+	    }
+	}
+	if(val==selectedTechnician); 
+	  alert("Technician on leave");
+	  console.log(selectedTechnician);
+	}
 
+</script>
 </body>
 </html>

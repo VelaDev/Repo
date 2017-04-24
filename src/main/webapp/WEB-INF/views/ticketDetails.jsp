@@ -160,7 +160,7 @@ header, #content, #middle, #sidebar {
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-		<c:if test="${not empty retMessage }">
+			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
 					<c:out value="${ retMessage}">
 					</c:out>
@@ -226,8 +226,7 @@ header, #content, #middle, #sidebar {
 														id="status" class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
 														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate
-															Ticket</option>
+														<option value="Escalated">Escalate Ticket</option>
 														<option value="Resolved">Resolved</option>
 													</select>
 												</div>
@@ -277,7 +276,7 @@ header, #content, #middle, #sidebar {
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Text input Ticket Priority-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Priority</label>
@@ -298,20 +297,20 @@ header, #content, #middle, #sidebar {
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" name="subject"
-														required="required" readonly >${ticketObject.subject}</textarea>
+														required="required" readonly>${ticketObject.subject}</textarea>
 												</div>
 											</div>
 										</div>
-										
-										
-										
+
+
+
 									</div>
 									<!--/ First Column-->
 
 									<!--Second Column-->
 									<div class="col-md-6">
 
-										
+
 										<!-- Text area Description-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Description</label>
@@ -332,7 +331,8 @@ header, #content, #middle, #sidebar {
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" name="comments"
-														required="required" placeholder="Please enter comments" id="comment"></textarea>
+														required="required" placeholder="Please enter comments"
+														id="comment"></textarea>
 												</div>
 											</div>
 										</div>
@@ -453,6 +453,35 @@ header, #content, #middle, #sidebar {
 												</div>
 											</div>
 										</div>
+
+										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" onkeypress="return isNumber(event)"
+													placeholder="Enter Colour Reading" id="colour"
+													name="colourReading">
+												</div>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" onkeypress="return isNumber(event)"
+													id="mono" name="monoReading"
+													placeholder="Enter Mono Reading">
+												</div>
+											</div>
+										</div>
+
+
 									</div>
 
 
@@ -722,7 +751,8 @@ header, #content, #middle, #sidebar {
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-barcode"></i></span> <input
 														name="ticketNumber" id="ticketNumber" class="form-control"
-														type="text" value="${ticketObject.ticketNumber}" readonly="readonly">
+														type="text" value="${ticketObject.ticketNumber}"
+														readonly="readonly">
 												</div>
 											</div>
 										</div>
@@ -894,5 +924,16 @@ $('p input[type="button"]').click(function () {
 
 </script>
 
+<!-- Accept alphanumeric characters only -->
+<script type="text/javascript">
+function isNumber(evt) {
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+        return false;
+    }
+    return true;
+}
+</script>
 
 </html>

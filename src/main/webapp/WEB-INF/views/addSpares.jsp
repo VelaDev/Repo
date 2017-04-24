@@ -33,15 +33,13 @@
 				<div class="panel-body">
 				
 					<c:if test="${not empty retMessage }">
-
-					<div class="alert alert-info" role="alert">
-						<c:out value="${ retMessage}">
-						</c:out>
-					</div>
+						<div class="alert alert-info" role="alert">
+							<c:out value="${ retMessage}">
+							</c:out>
+						</div>
 					</c:if>
 					
-					<c:if test="${not empty errorRetMessage }">
-		
+					<c:if test="${not empty errorRetMessage }">		
 						<div class="alert alert-danger" role="alert">
 							<c:out value="${ errorRetMessage}">
 							</c:out>

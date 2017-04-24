@@ -361,6 +361,7 @@ header, #content, #middle, #sidebar {
 												</div>
 											</div>
 										</div>
+										
 										<!-- Text input Machine Model-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Model No</label>

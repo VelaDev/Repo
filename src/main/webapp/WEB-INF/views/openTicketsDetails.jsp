@@ -237,6 +237,9 @@
 												</div>
 											</div>
 										</div>
+
+
+
 										<!-- Text input Device Location-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Device Location</label>
@@ -255,6 +258,35 @@
 
 									<!--Second column-->
 									<div class="col-sm-6">
+									
+									
+										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" onkeypress="return isNumber(event)"
+													placeholder="Enter Colour Reading" id="colour" value="${ticketObject.getDevice().getColourReading() }"
+														
+													name="colourReading">
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" onkeypress="return isNumber(event)"
+													id="mono" name="monoReading"
+													placeholder="Enter Mono Reading" value="${ticketObject.getDevice().getMonoReading() }">
+												</div>
+											</div>
+										</div>
+									
 										<!-- Text input Contract Start Date-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Contract Start

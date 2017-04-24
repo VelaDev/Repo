@@ -28,6 +28,7 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 	private SpareMaster spareMaster = null;
 	@SuppressWarnings("unchecked")
 	private String retMessage = null;
+	private String errorRetMessage = null;
 	@Override
 	public List<SpareMaster> getSparesFromMastaData() {
 		
@@ -89,8 +90,16 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 	@Override
 	public String saveSpareMasterData(SpareMaster spareMaster) {
 		try{
-			sessionFactory.getCurrentSession().save(spareMaster);
-			retMessage = "Part "+ spareMaster.getPartNumber()+" is successfully added";
+			SpareMaster spareMasters = getSpareMaster(spareMaster.getPartNumber());
+			if(spareMasters != null){
+				
+				retMessage = "Part number already exist";
+				
+			}else{
+				sessionFactory.getCurrentSession().save(spareMaster);
+			
+				retMessage = "Part "+ spareMaster.getPartNumber()+" is successfully added";
+			}
 		}catch(Exception e){
 			retMessage = e.getMessage();
 		}

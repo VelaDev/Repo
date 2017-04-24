@@ -139,7 +139,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" id="subject" name="subject"
-												required="required" placeholder="Technical Service Call"></textarea>
+												required="required" readonly="readonly">Technical Service Call</textarea>
 										</div>
 									</div>
 								</div>
@@ -150,18 +150,6 @@
 							<!--Second column-->
 							<div class="col-sm-6">
 								
-								<!-- <!-- Text input Suject
-								<div class="form-group">
-									<label class="col-md-3 control-label">Subject</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												value="" placeholder="Technical Service Call"
-												class="form-control" required="required" id="technicalServiceCall" name="technicalServiceCall" type="text" >
-										</div>
-									</div>
-								</div> -->
 								
 								
 								<!-- Select type Priority-->
@@ -190,7 +178,7 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
 												placeholder="Description"
-												style="margin: 0px; height: 170px; width: 240px;"></textarea>
+												style="margin: 0px; height: 170px; width: 270px;"></textarea>
 										</div>
 									</div>
 								</div>

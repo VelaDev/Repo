@@ -274,6 +274,7 @@ public class TicketsDao implements TicketsDaoInt {
 	public String updateTicket(TicketsBean tickets) {
 		ticket = new Tickets();
 		order = new OrderHeader();
+		
 		try {
            String status = tickets.getStatus();
 			ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
@@ -301,7 +302,11 @@ public class TicketsDao implements TicketsDaoInt {
 			}else{
 				
 			}
- 
+			device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
+			device.setMonoReading(tickets.getMonoReading());
+			device.setColourReading(tickets.getColourReading());
+			sessionFactory.getCurrentSession().update(device);
+			
 			sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 			historyDaoInt.insertTicketHistory(ticket);
 			retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";

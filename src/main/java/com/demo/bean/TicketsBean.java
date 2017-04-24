@@ -36,4 +36,6 @@ public class TicketsBean {
 	private String subject;
 	private Integer orderNum;
 	private String usedPartNumbers;
+	private String colourReading;
+	private String monoReading;
 }

@@ -357,7 +357,7 @@ header, #content, #middle, #sidebar {
 														class="glyphicon glyphicon-barcode"></i></span> <input
 														name="serialNumber" placeholder="Serial Number"
 														value="${ticketObject.getDevice().getSerialNumber() }"
-														class="form-control" type="text" readonly>
+														class="form-control" type="text" readonly >
 												</div>
 											</div>
 										</div>
@@ -419,7 +419,7 @@ header, #content, #middle, #sidebar {
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
 													class="form-control" onkeypress="return isNumber(event)"
-													placeholder="Enter Colour Reading" id="colour" value="${ticketObject.getDevice().getColourReading() }"
+													placeholder="Enter Colour Reading" id="colour" name="colourReading" value="${ticketObject.getDevice().getColourReading() }"
 														
 													name="colourReading">
 												</div>
@@ -433,7 +433,7 @@ header, #content, #middle, #sidebar {
 														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
 													class="form-control" onkeypress="return isNumber(event)"
 													id="mono" name="monoReading"
-													placeholder="Enter Mono Reading" value="${ticketObject.getDevice().getMonoReading() }">
+													placeholder="Enter Mono Reading" name ="monoReading"value="${ticketObject.getDevice().getMonoReading() }">
 												</div>
 											</div>
 										</div>

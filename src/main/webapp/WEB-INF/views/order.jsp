@@ -30,7 +30,7 @@
 				</div>
 			</c:if>
 			<c:if test="${not empty retErrorMessage }">
-				<div class="alert alert-danger" role="alert">
+				<div class="alert alert-info" role="alert">
 
 					<c:out value="${ retErrorMessage}">
 					</c:out>
@@ -259,23 +259,26 @@
 
 
 <script type="text/javascript">
-		/*Compare available quantity with entered quantity*/
-		function compareQuantity(element, availableQuantity) {					
-		
-			if (availableQuantity > element.value){		
-				//alert("Your quantity is less than available quantity order.\n You can now place your order"); 
-				console.log("True,",element.value + " is less than " + availableQuantity);
-				console.log("Place an Order");
-			}
-			else if(availableQuantity < element.value) {
+/*Compare available quantity with entered quantity*/
+function compareQuantity(element, availableQuantity) {					
+	
+		if (availableQuantity > element.value){		
+		console.log("True,",element.value + " is less than " + availableQuantity);
+		console.log("Place an Order");
+		}
+		if (element.value == ''){
+			alert("Quantity can not be empty. \n Please enter quantity which is less than available quantity");
+			console.log(element.value);
+		}
+		else if(availableQuantity < element.value) {
 				alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
 				element.value = null;
 				console.log("False,",availableQuantity + " is small than " + element.value);
 				console.log("You can not place an order, enter less quantity");
 				console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
-				}
-			   
 		}
+}
+
 </script>
 
 

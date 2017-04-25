@@ -708,7 +708,6 @@ header, #content, #middle, #sidebar {
 								<!-- group Used Part Numbers -->
 								<div class="groupsearchdetails">
 									<legend>Used Part Numbers </legend>
-
 									<!-- Radio for Boot Stock-->
 									<div class="form-group">
 										<label class="col-md-2 control-label">Boot Stock</label>
@@ -734,7 +733,7 @@ header, #content, #middle, #sidebar {
 														<tr>
 
 															<td><input type="text" readOnly class="form-control"
-																id="usedPartNumbers" name="usedPartNumbers"
+																id="usedPartNumbers" onkeydown="upperCaseF(this)" name="usedPartNumbers"
 																value="${usedPartNumbers}"></td>
 															<td><input type="button" class="btn btn-danger"
 																value="Remove"></td>
@@ -787,7 +786,7 @@ header, #content, #middle, #sidebar {
 														<tr>
 
 															<td><input type="text" readOnly class="form-control"
-																id="usedPartNumbers" name="usedPartNumbers"
+																id="usedPartNumbers" onkeydown="upperCaseF(this)" name="usedPartNumbers"
 																value="${usedPartNumbers}"></td>
 															<td><input type="button" class="btn btn-danger"
 																value="Remove"></td>
@@ -897,7 +896,7 @@ $('#usedPartNumbersdataTable').on('click', 'input[type="button"]', function () {
     $(this).closest('tr').remove();
 	})
 $('p input[type="button"]').click(function () {
-    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
 </script>
@@ -907,7 +906,7 @@ $('#usedPartNumbersdataTableSiteStock').on('click', 'input[type="button"]', func
     $(this).closest('tr').remove();
 	})
 $('p input[type="button"]').click(function () {
-    $('#usedPartNumbersdataTableSiteStock').append('<tr><td><input type="text" class="form-control" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+    $('#usedPartNumbersdataTableSiteStock').append('<tr><td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
 </script>
@@ -942,6 +941,15 @@ function isNumber(evt) {
     }
     return true;
 }
+</script>
+
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+	function upperCaseF(a){
+	    setTimeout(function(){
+	        a.value = a.value.toUpperCase();
+	    }, 1);
+	}
 </script>
 
 </html>

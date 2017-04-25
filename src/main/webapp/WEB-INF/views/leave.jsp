@@ -106,7 +106,7 @@
 										id="contactNumber" name="contactNumber"
 										placeholder="Contact Number during absence"
 										class="form-control" type="text"
-										onkeypress="return isNumber(event)">
+										onkeypress="return isNumber(event)" maxlength="10">
 								</div>
 							</div>
 						</div>

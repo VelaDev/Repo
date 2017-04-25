@@ -81,7 +81,7 @@
 											<td>${list.partNumber}</td>
 											<td>${list.model}</td>
 											<td>${list.itemDescription}</td>
-											<td><input type="text" id="quantity" name="quantity" value="${list.quantity}"></td>
+											<td>${list.quantity}<!-- <input type="text" id="quantity" name="quantity" value=""> --></td>
 											<td>${list.dateTime}</td>
 											<td>${list.orderHeader.status}</td>
 											

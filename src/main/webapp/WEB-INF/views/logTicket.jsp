@@ -8,6 +8,9 @@
 <title>Log a ticket | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style type="text/css">
+    .onleave{background:red; color:white;}
+</style>
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -126,7 +129,7 @@
 												<c:forEach items="${technicians}" var="technician">
 												   <c:choose>
 												     <c:when test="${technician.leaveStatus =='On Leave'}">
-												         <option value="${technician.email}">${technician.firstName}
+												         <option class="onleave" value="${technician.email}">${technician.firstName}
 														${technician.lastName} (On Leave)</option>
 												     </c:when>
 											          <c:when test="${technician.leaveStatus =='Available'}">
@@ -369,14 +372,14 @@
 
 function myFunction(){
 	
-	var index =0;
+	/* var index =0;
 	var onLeaveTechnician =  ${onLeaveTechnicians}
 	for (index = 0; index < onLeaveTechnician.length; ++index) {
 	    if(onLeaveTechnician[index]==selectedTechnician){
 	    	console.log(index);
 	    	alert("Technician on leave");	    	
 	    }
-	}
+	} */
 	//document.getElementById('selectedTechnician').html;
 }
 function checkTech(val){

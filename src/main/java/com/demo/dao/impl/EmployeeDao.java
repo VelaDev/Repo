@@ -3,7 +3,6 @@ package com.demo.dao.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -364,6 +363,16 @@ public class EmployeeDao implements EmployeeDaoInt{
 			e.getMessage();
 		}
 		return managerEmail;
+	}
+
+	@Override
+	public String[] managersEmails() {
+		String[] managers =null;
+		List<Employee> list = getAllManagers();
+		for(Employee emp:list){
+			
+		}
+		return managers;
 	}
 	
 }

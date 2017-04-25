@@ -119,9 +119,8 @@ public class JavaMail {
 		}
 	}
 
-	public static void oneHourReminder(Tickets ticket, String userEmail,
-			String managerMail) {
-		String[] to = { ticket.getEmployee().getEmail(), userEmail, managerMail };
+	public static void oneHourReminder(Tickets ticket, String managerEmails) {
+		String[] to = { ticket.getEmployee().getEmail(), managerEmails };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi "
@@ -218,9 +217,8 @@ public class JavaMail {
 		}
 	}
 
-	public static void fourHourReminder(Tickets ticket, String userEmail,
-			String managerMail) {
-		String[] to = { ticket.getEmployee().getEmail(), userEmail, managerMail };
+	public static void fourHourReminder(Tickets ticket, String managerEmails) {
+		String[] to = { ticket.getEmployee().getEmail(), managerEmails };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + ticket.getEmployee().getFirstName() + ","

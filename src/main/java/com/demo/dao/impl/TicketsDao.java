@@ -178,9 +178,9 @@ public class TicketsDao implements TicketsDaoInt {
 		try{
 			ticketList = getAllLoggedTickets();
 			for(Tickets ticket:ticketList){
-				if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==false)){
+				if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isOneHourFlag()==false)){
 					aList.add(ticket);
-				}else if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isFourHourFlag()==true && ticket.isFourHourFlag()==false)){
+				}else if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isOneHourFlag()==true && ticket.isFourHourFlag()==false)){
 					aList.add(ticket);
 				}
 			}
@@ -261,23 +261,23 @@ public class TicketsDao implements TicketsDaoInt {
 
 				int slaStartedHour = date.getHours();
 				long diffHours = slaStartedHour - currentHour;
-				System.out.println("SLA started at: " + " " + slaStartedHour);
-				System.out.println(diffHours);
+				String [] managerEmails = managersEmails();
+				String mails = managerEmails.toString();
 
 				if (diffHours >= 1 && diffHours < 4) {
 
-					openTicket.setComments("System update");
+					/*openTicket.setComments("System update");*/
 					openTicket.setOneHourFlag(true);
 					updateSLA(openTicket);
-					/*JavaMail.oneHourReminder(openTicket,
-							"cassino.happies@gmail.com", "mohapi27@outlook.com");*/
+					JavaMail.oneHourReminder(openTicket,
+							mails);
 				} else if (diffHours >= 4) {
 					openTicket.setStatus("SLA Bridged");
 					openTicket.setFourHourFlag(true);
 					openTicket.setComments("System update");
 					updateSLA(openTicket);
-					/*JavaMail.fourHourReminder(openTicket,
-							"cassino.happies@gmail.com", "mohapi27@outlook.com");*/
+					JavaMail.fourHourReminder(openTicket,mails
+							);
 				}
 			}
 		} catch (Exception e) {
@@ -301,6 +301,7 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 				else if(status.equalsIgnoreCase("Awaiting Spares")){
 					order = ordersDaoInt.getOrder(tickets.getOrderNum());
+					ticket.setStatus("Awaiting Spares");
 					
 					if(order !=null){
 						ticket.setOrderHeader(order);
@@ -308,28 +309,41 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 				else if(status.equalsIgnoreCase("Escalated")){
 					ticket.setEscalatedTo(tickets.getEscalatedTo());
+					ticket.setStatus("Escalated");
 				}
 				else{
 					ticket.setComments(tickets.getComments());
 					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
+					ticket.setStatus(status);
 				}
 					
 			}else{
-				
+				ticket.setStatus("Resolved");
 			}
 			device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
 			device.setMonoReading(tickets.getMonoReading());
 			device.setColourReading(tickets.getColourReading());
 			
-			if(tickets.getUsedPartNumbers().length()>3)
-			{
-				subractUsedSpares(tickets.getUsedPartNumbers(),null);
+			if(tickets.getUsedPartNumbers()!=null){
+				if(tickets.getUsedPartNumbers().length()>3)
+				{
+					retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),null);
+					if(retMessage.equalsIgnoreCase("OK")){
+						sessionFactory.getCurrentSession().update(device);
+						
+						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+						historyDaoInt.insertTicketHistory(ticket);
+						retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+					}
+				}
+			}else{
+				sessionFactory.getCurrentSession().update(device);
+				
+				sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+				historyDaoInt.insertTicketHistory(ticket);
+				retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
 			}
-			sessionFactory.getCurrentSession().update(device);
 			
-			sessionFactory.getCurrentSession().saveOrUpdate(ticket);
-			historyDaoInt.insertTicketHistory(ticket);
-			retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
 			
 		} catch (Exception e) {
 			retMessage = "SLA did not start because of " + e.getMessage();
@@ -388,76 +402,7 @@ public class TicketsDao implements TicketsDaoInt {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PieChart> ticketsResults() {
-		int openTickets = 0;
-		int closedTickets = 0;
-		int escalatedTickets = 0;
-		int loggedTickets = 0;
-		int totalTickets = 0;
-		int slaBrigged = 0;
-		int awaitingSpare = 0;
-		pieChart = new PieChart();
-		pieChart1 = new PieChart();
-		pieChart2 = new PieChart();
-		pieChart3 = new PieChart();
-		pieChart4 = new PieChart();
-		pieChart5 = new PieChart();
-		beanList = new ArrayList<PieChart>();
-		try {
-
-			Criteria criteria = sessionFactory.getCurrentSession()
-					.createCriteria(Tickets.class);
-
-			ticketList = (List<Tickets>) criteria.list();
-
-			for (Tickets ticket : ticketList) {
-				if (ticket.getStatus().equalsIgnoreCase("Open")) {
-					openTickets++;
-				} else if (ticket.getStatus().equalsIgnoreCase("Escalated")) {
-					escalatedTickets++;
-				} else if (ticket.getStatus().equalsIgnoreCase("Closed")) {
-					closedTickets++;
-
-				} else if (ticket.getStatus().equalsIgnoreCase("SLA Bridged")) {
-					slaBrigged++;
-
-				} else if (ticket.getStatus().equalsIgnoreCase(
-						"Awaiting HOStock")) {
-					awaitingSpare++;
-
-				} else {
-					loggedTickets++;
-
-				}
-				totalTickets++;
-
-			}
-
-			pieChart.setNumberTicket(openTickets);
-			pieChart.setStatus("Open Tickets");
-			beanList.add(pieChart);
-
-			pieChart1.setNumberTicket(escalatedTickets);
-			pieChart1.setStatus("Escalated Tickets");
-			beanList.add(pieChart1);
-
-			pieChart2.setNumberTicket(closedTickets);
-			pieChart2.setStatus("Closed Tickets");
-			beanList.add(pieChart2);
-
-			pieChart3.setNumberTicket(loggedTickets);
-			pieChart3.setStatus("Logged Tickets");
-			beanList.add(pieChart3);
-
-			pieChart4.setNumberTicket(slaBrigged);
-			pieChart4.setStatus("SLA Bridged");
-			beanList.add(pieChart4);
-
-			pieChart5.setNumberTicket(awaitingSpare);
-			pieChart5.setStatus("Awaiting HOStock");
-			beanList.add(pieChart5);
-		} catch (Exception ex) {
-
-		}
+		
 		return beanList;
 	}
 
@@ -500,7 +445,7 @@ public class TicketsDao implements TicketsDaoInt {
 
 			for (Tickets ticket : technicianCount) {
 				if (ticket.getEmployee().getEmail()
-						.equalsIgnoreCase(technicianEmail)&&( ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Awaiting Spares")|| ticket.getStatus().equalsIgnoreCase("Escalated"))) {
+						.equalsIgnoreCase(technicianEmail)&&( ticket.getStatus().equalsIgnoreCase("Open"))) {
 
 					ticketList.add(ticket);
 				}
@@ -697,23 +642,56 @@ public class TicketsDao implements TicketsDaoInt {
 		
 		return aList;
 	}
-	private void subractUsedSpares(String usedSpares, String customerName){
+	private String subractUsedSpares(String usedSpares, String customerName){
 		technician = (Employee) session.getAttribute("loggedInUser");
 		int tempCount = 0;
 		try{
 			List<String> spare = new ArrayList<String>(Arrays.asList(usedSpares.split(",")));
 			
 			if(customerName != null){
-				/*List<SiteStock> tempBootList =*/
+				List<SiteStock> tempSiteList = siteStockDaoInt.getOrdersForCustomer(customerName);
+				for(SiteStock siteStock:tempSiteList){
+					for(int i=0;i<spare.size();i++){
+                        if(siteStock.getPartNumber().equalsIgnoreCase(spare.get(i))){
+							
+							tempCount = siteStock.getQuantity() -1;
+							if(tempCount<0){
+								retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+								siteStock.setQuantity(0);
+								break;
+							}
+							else{
+								siteStock.setQuantity(tempCount);
+								sessionFactory.getCurrentSession().update(siteStock);
+								retMessage = "OK";
+							}
+                        }
+                        else{
+                        	retMessage = "The part number "+spare.get(i)+ " does not exist in site stock";
+                        }
+					}
+				}
 			}else{
 				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName());
 				for(BootStock btStock:tempSiteList){
+					
 					for(int i=0;i<spare.size();i++){
 						if(btStock.getPartNumber().equalsIgnoreCase(spare.get(i))){
 							
 							tempCount = btStock.getQuantity() -1;
-							btStock.setQuantity(tempCount);
-							bootStockDaoIn.updateBootStock(btStock);
+							if(tempCount<0){
+								retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+								btStock.setQuantity(0);
+								break;
+							}
+							else{
+								btStock.setQuantity(tempCount);
+								bootStockDaoIn.updateBootStock(btStock);
+								retMessage = "OK";
+							}
+							
+						}else{
+							retMessage ="The part number "+spare.get(i)+" does not exist in boot stock";
 						}
 					}
 				}
@@ -722,5 +700,16 @@ public class TicketsDao implements TicketsDaoInt {
 		}catch(Exception e){
 			e.getMessage();
 		}
+		return retMessage;
+	}
+	private String[] managersEmails(){
+		String [] empEmails = new String[100];
+		int i = 0;
+		List<Employee> getTempList = employeeDaoInt.getAllManagers();
+		for(Employee emp:getTempList){
+			empEmails[i] = emp.getEmail();
+			i++;
+		}
+		return empEmails;
 	}
 }

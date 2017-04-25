@@ -20,5 +20,6 @@ public interface EmployeeDaoInt {
 	Integer count();
 	List<Employee> getAllManagers();
 	String returnManagerEmail();
+	String[] managersEmails();
 
 }

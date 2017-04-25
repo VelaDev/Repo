@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -133,6 +135,7 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.addObject("customerList",customerServiceInt.getClientList());
 			model.setViewName("ticketDetails");
 		}
 		else{
@@ -148,7 +151,13 @@ public class TicketController {
 		if(userName !=null){
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
-		    model.addObject("retMessage", retMessage);
+			if(retMessage.startsWith("The part number")){
+				String retErrorMessage = retMessage;
+				model.addObject("retErrorMessage", retErrorMessage);
+			}else{
+				model.addObject("retMessage", retMessage);
+			}
+		    
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticketDetails");
 		}
@@ -540,4 +549,12 @@ public class TicketController {
 		
 		return model;
 	}
+	@ExceptionHandler({DataIntegrityViolationException.class})
+    public ModelAndView dataIntegrity(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception", ex.getMessage());
+         
+        return model;
+    }
 }

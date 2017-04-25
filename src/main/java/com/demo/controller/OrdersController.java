@@ -97,7 +97,13 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			retMessage = ordersServiceInt.prepareOrderMaking(order);
-			model.addObject("retMessage", retMessage);
+			if(retMessage.startsWith("Order cannot be")){
+				String retErrorMessage = retMessage;
+				model.addObject("retErrorMessage", retErrorMessage);
+			}else{
+				model.addObject("retMessage", retMessage);
+				
+			}
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager")
@@ -108,6 +114,7 @@ public class OrdersController {
 
 				model.setViewName("order");
 			}
+		
 
 		} else {
 			model.setViewName("login");

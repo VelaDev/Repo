@@ -29,6 +29,13 @@
 					</c:out>
 				</div>
 			</c:if>
+			<c:if test="${not empty retErrorMessage }">
+				<div class="alert alert-danger" role="alert">
+
+					<c:out value="${ retErrorMessage}">
+					</c:out>
+				</div>
+			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">

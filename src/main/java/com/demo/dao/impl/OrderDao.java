@@ -314,7 +314,7 @@ public class OrderDao implements OrdersDaoInt {
 			retMessage = makeOrder(cusOrder);
 			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
 		} catch (Exception ex) {
-			retMessage = " Order cannot be proccessed " + ex.getMessage();
+			retMessage = "Order cannot be proccessed";
 		}
 		return retMessage;
 	}

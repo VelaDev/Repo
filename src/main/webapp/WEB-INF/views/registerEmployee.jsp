@@ -76,9 +76,9 @@
 							<div class="col-md-6 selectContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span> <select name="title"
-										class="form-control selectpicker">
-										<option value=" ">Select Title</option>
+										class="glyphicon glyphicon-list"></i></span> <select name="title" id="title"
+										class="form-control selectpicker" onchange="CheckGender(this.value);">
+										<option value="">Select Title</option>
 										<option value="Mr">Mr</option>
 										<option value="Miss">Miss</option>
 										<option value="Mrs">Mrs</option>
@@ -88,34 +88,15 @@
 							</div>
 						</div>
 						
-							
-						<!-- Text input Cellphone Number-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Cellphone No</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-earphone"></i></span> <input
-													id="cellphoneNumber" name="cellNumber" maxlength="10" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
-											</div>
-										</div>
-									</div>
-								
-					</div><!-- / F column -->	
-					
-					<!--Second column-->		
-					<div class="col-sm-6">
-					
-					
-					<!-- Select type Gender-->
+						<!-- Select type Gender-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Gender</label>
 							<div class="col-md-6 selectContainer">
 								<div class="input-group">
 									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span> <select name="gender"
+										class="glyphicon glyphicon-list"></i></span> <select onchange="CheckGender(this.value);" id="gender" name="gender"
 										class="form-control selectpicker">
-										<option value=" ">Select Gender</option>
+										<option value="">Select Gender</option>
 										<option value="Male">Male</option>
 										<option value="Female">Female</option>
 										
@@ -123,7 +104,24 @@
 								</div>
 							</div>
 						</div>
-						
+								
+					</div><!-- / F column -->	
+					
+					<!--Second column-->		
+					<div class="col-sm-6">
+					
+						 <!-- Text input Cellphone Number-->
+						 <div class="form-group">
+						 	<label class="col-md-3 control-label">Cellphone No</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-earphone"></i></span> <input
+											id="cellphoneNumber" name="cellNumber" maxlength="10" placeholder="Cellphone No" class="form-control" type="text" onkeypress="return isNumber(event)">
+									</div>
+								</div>
+						</div>
+							
 					   <!-- Text input email-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Email Address</label>
@@ -154,8 +152,6 @@
 								</div>
 							</div>
 						</div>
-					
-						
 								
 						</div><!-- S .Column -->
 										
@@ -317,6 +313,53 @@
 	    return true;
 	}
 	</script>
+	
+	
+<script type="text/javascript">
+		/*Compare available quantity with entered quantity*/
+		function checkGender(element, title) {					
+		
+			if (title > element.value){		
+				console.log("True,",element.value + " we have male " + title);
+				console.log("See what we have here");
+			}
+			else if(gender < element.value) {
+				alert("");
+				element.value = null;
+				console.log("False,",title + " is small than " + element.value);
+				console.log("");
+				console.log("Enter value between 1 till " +element.value+ " not more than " +title);
+				}
+			   
+		}
+</script>
+
+<script type="text/javascript">
+	
+	function CheckGender(val){
+		
+	 var element=document.getElementById('title');
+	  
+	 if (val=='pick title' || val=='Mr')
+	 {
+		 document.getElementById('gender').value = 'Male';
+	 }
+	 else if (val=='pick title' || val=="Miss")
+	{
+		 document.getElementById('gender').value = 'Female'; 
+	}
+	 else if (val=='pick title' || val=="Mrs")
+		{
+			 document.getElementById('gender').value = 'Female'; 
+		}
+	 else
+	{
+		 document.getElementById('gender').value = '';  
+	}
+	 
+	}
+
+</script>
 	
 	</body>
 </html>

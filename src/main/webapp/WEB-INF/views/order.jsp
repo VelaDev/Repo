@@ -137,9 +137,9 @@
 												<td>${list.partNumber}</td>
 												<td>${list.itemDescription}</td>
 												<td>${list.compitableDevice}</td>
-											 	<td><input type="text" id="${list.partNumber}_avaliableQuantity"    name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
-								                <td><input type="checkbox" class="form-group"    id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
-								                <td><input type="text" id="${list.partNumber}_quantity"  onkeypress="return isNumber(event)" name="quantity"   class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td></tr>
+											 	<td><input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
+								                <td><input type="checkbox" id="checkedOrder" name="selectedItem" class="form-group" value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+								                <td><input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td></tr>
 
 										</c:forEach>
 									</tbody>
@@ -307,15 +307,19 @@ function checkChecked(searchForm) {
 	
 </script>
 
-	<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
+
+<script type="text/javascript">
+$(function(){
+
+	  $('.form-control').keypress(function(e) {
+		if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
+	  })
+	  .on("quantity",function(e){
+		e.preventDefault();
+	  });
+
+	});
+	
 </script>
 
 

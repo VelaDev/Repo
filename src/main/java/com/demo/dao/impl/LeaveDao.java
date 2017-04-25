@@ -1,6 +1,5 @@
 package com.demo.dao.impl;
 
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,12 +21,11 @@ import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LeaveDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.Leave;
-import com.demo.model.SpareMaster;
 
 @Repository("leaveDAO")
 @Transactional(propagation = Propagation.REQUIRED)
-public class LeaveDao implements LeaveDaoInt{
-	
+public class LeaveDao implements LeaveDaoInt {
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Session session2;
@@ -38,82 +36,113 @@ public class LeaveDao implements LeaveDaoInt{
 	private List<Leave> tempLeave = null;
 	private List<Leave> leaveList = null;
 	private Leave globalLeave;
-	
-	
+
 	private String retMessage = null;
-	private Date currentDate,secondDate = null;
+	private Date currentDate, secondDate = null;
 	private SimpleDateFormat myFormat = null;
-   private int recordID =0;
-  
+	private int recordID = 0;
+	private Employee emp = null;
+
 	@Override
 	public String leaveRequest(LeaveBean leave) {
-	Employee employee = (Employee) session.getAttribute("loggedInUser");
-	globalLeave = new Leave();
-		try{
+		Employee employee = (Employee) session.getAttribute("loggedInUser");
+		globalLeave = new Leave();
+		String userName = null;
+		try {
 			int newrecordID = 0;
-			if(leave.getTechnicianUserName()!= null){
-				employee = employeeDaoInt.getEmployeeByEmpNum(leave.getTechnicianUserName());
+			if (leave.getTechnicianUserName() != null) {
+				employee = employeeDaoInt.getEmployeeByEmpNum(leave
+						.getTechnicianUserName());
 				globalLeave.setEmployee(employee);
-			}else{
+				userName = employee.getEmail();
+			} else {
 				globalLeave.setEmployee(employee);
+				userName = employee.getEmail();
 			}
-			globalLeave.setAddress(leave.getAddress());
-			globalLeave.setContactNumber(leave.getContactNumber());
-			globalLeave.setEndDate(leave.getEndDate());
-			globalLeave.setLeaveType(leave.getLeaveType());
-			globalLeave.setStartDate(leave.getStartDate());
-			recordID =  newRecordID();
-			newrecordID =  recordID;
-			
-			globalLeave.setLeaveID(newrecordID);
-			sessionFactory.getCurrentSession().save(globalLeave);
-			retMessage = "Leave successfully submited";
-		}
-		catch(Exception e){
+
+			emp = employeeDaoInt.getEmployeeByEmpNum(userName);
+			if (emp.getLeaveStatus().equalsIgnoreCase("On Leave")) {
+				retMessage = "Kindly note that technician is on leave";
+			} else  {
+				emp.setLeaveStatus("On Leave");
+
+				globalLeave.setAddress(leave.getAddress());
+				globalLeave.setContactNumber(leave.getContactNumber());
+				globalLeave.setEndDate(leave.getEndDate());
+				globalLeave.setLeaveType(leave.getLeaveType());
+				globalLeave.setStartDate(leave.getStartDate());
+				recordID = newRecordID();
+				newrecordID = recordID;
+
+				globalLeave.setLeaveID(newrecordID);
+				sessionFactory.getCurrentSession().save(globalLeave);
+
+				sessionFactory.getCurrentSession().update(emp);
+
+				retMessage = "Leave successfully submited";
+			}/*else{
+				emp.setLeaveStatus("On Leave");
+
+				globalLeave.setAddress(leave.getAddress());
+				globalLeave.setContactNumber(leave.getContactNumber());
+				globalLeave.setEndDate(leave.getEndDate());
+				globalLeave.setLeaveType(leave.getLeaveType());
+				globalLeave.setStartDate(leave.getStartDate());
+				recordID = newRecordID();
+				newrecordID = recordID;
+
+				globalLeave.setLeaveID(newrecordID);
+				sessionFactory.getCurrentSession().save(globalLeave);
+
+				sessionFactory.getCurrentSession().update(emp);
+
+				retMessage = "Leave successfully submited";
+			}*/
+
+		} catch (Exception e) {
 			retMessage = "Leave not submitted " + e.getMessage();
 		}
 		return retMessage;
 	}
-		
+
 	@Override
 	public String updateLeaveRequest(LeaveBean leave) {
 		globalLeave = new Leave();
 		Employee employee = (Employee) session.getAttribute("loggedInUser");
-		try{
+		try {
 			globalLeave.setAddress(leave.getAddress());
 			globalLeave.setContactNumber(leave.getContactNumber());
 			globalLeave.setEndDate(leave.getEndDate());
 			globalLeave.setLeaveID(leave.getLeaveID());
 			globalLeave.setLeaveType(leave.getLeaveType());
 			globalLeave.setStartDate(leave.getStartDate());
-			
-			if(leave.getTechnicianUserName() !=null){
-				employee = employeeDaoInt.getEmployeeByEmpNum(leave.getTechnicianUserName());
+
+			if (leave.getTechnicianUserName() != null) {
+				employee = employeeDaoInt.getEmployeeByEmpNum(leave
+						.getTechnicianUserName());
 				globalLeave.setEmployee(employee);
-			}else{
+			} else {
 				globalLeave.setEmployee(employee);
 			}
 			sessionFactory.getCurrentSession().update(globalLeave);
 			retMessage = "Leave sucessfully updated";
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 			retMessage = "Leave was not updated" + e.getMessage();
 		}
 		return retMessage;
 	}
-	
-	
+
 	@Override
 	public List<Leave> leaveRequests(String email) {
 		tempLeave = new ArrayList<Leave>();
-		try{
+		try {
 			leaveList = leaveRequests();
-			for(Leave leave:leaveList){
-				if(leave.getEmployee().getEmail().equalsIgnoreCase(email)){
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail().equalsIgnoreCase(email)) {
 					tempLeave.add(leave);
 				}
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.getMessage();
 		}
 		return tempLeave;
@@ -134,7 +163,7 @@ public class LeaveDao implements LeaveDaoInt{
 	}
 
 	private Integer newRecordID() {
-		
+
 		int tempOrderNum = 0;
 		Integer newOrderNum = getRecordID();
 
@@ -151,8 +180,7 @@ public class LeaveDao implements LeaveDaoInt{
 
 		session2 = sessionFactory.openSession();
 		Integer result = 0;
-		Query query = session2
-				.createQuery("from Leave order by leaveID DESC");
+		Query query = session2.createQuery("from Leave order by leaveID DESC");
 		query.setMaxResults(1);
 		Leave leaveNumber = (Leave) query.uniqueResult();
 
@@ -167,40 +195,48 @@ public class LeaveDao implements LeaveDaoInt{
 	@Override
 	public Boolean isTechnicianOnLeave(String technicianEmail) {
 		myFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    currentDate  = new Date();
-	    secondDate = new Date();
-	    String tempCurrentDate = null;
+		currentDate = new Date();
+		secondDate = new Date();
+		String tempCurrentDate = null;
 		Boolean isOnLeave = false;
-		try{
+		try {
 			tempLeave = technicianOnLeave(technicianEmail);
 			tempCurrentDate = myFormat.format(currentDate);
 			currentDate = myFormat.parse(tempCurrentDate);
-			
-			for(Leave leave:tempLeave){
-				secondDate = myFormat.parse(leave.getEndDate());
-				if(secondDate.compareTo(currentDate)>0){
-					isOnLeave = true;
-					break;
+
+			if (tempLeave.size() > 0) {
+				for (Leave leave : tempLeave) {
+					if (leave != null) {
+						secondDate = myFormat.parse(leave.getEndDate());
+						if (secondDate.compareTo(currentDate) < 0) {
+							isOnLeave = true;
+							break;
+						}
+					}
+
 				}
 			}
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.getMessage();
 		}
-		
+
 		return isOnLeave;
 	}
+
 	private List<Leave> technicianOnLeave(String technicianEmail) {
-		
-		try{
+
+		try {
 			leaveList = leaveRequests();
 			tempLeave = new ArrayList<Leave>();
-			for(Leave leave:leaveList){
-				if(leave.getEmployee().getEmail().equalsIgnoreCase(technicianEmail));
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail))
+					;
 				tempLeave.add(leave);
 			}
-			
-		}catch(Exception e){
+
+		} catch (Exception e) {
 			e.getMessage();
 		}
 		return tempLeave;
@@ -208,17 +244,17 @@ public class LeaveDao implements LeaveDaoInt{
 
 	@Override
 	public String onLeaveTechnician(String technicianEmail) {
-		String retMessage = null;
+		String retMessage = "";
 		Boolean isOnleave = false;
-		try{
-			isOnleave =isTechnicianOnLeave(technicianEmail);
-			if(isOnleave ==true)
-			{
-				Employee emp = employeeDaoInt.getEmployeeByEmpNum(technicianEmail);
-				
-				retMessage ="Kindly note that "+ emp.getFirstName()+" "+emp.getLastName()+" is on leave until";
+		try {
+			isOnleave = isTechnicianOnLeave(technicianEmail);
+			if (isOnleave == true) {
+				// Employee emp =
+				// employeeDaoInt.getEmployeeByEmpNum(technicianEmail);
+
+				retMessage = "Kindly note that technician is on leave";
 			}
-		}catch(Exception exception){
+		} catch (Exception exception) {
 			exception.getMessage();
 		}
 		return retMessage;
@@ -226,36 +262,64 @@ public class LeaveDao implements LeaveDaoInt{
 
 	@Override
 	public String[] techniciansOnLeave() {
-		
+
 		myFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    currentDate  = new Date();
-	    secondDate = new Date();
-	    String tempCurrentDate = null;	    
+		currentDate = new Date();
+		secondDate = new Date();
+		String tempCurrentDate = null;
 		ArrayList<String> newList = null;
 		String techniciansOnLeave[] = null;
-		try{
-			
+		try {
+
 			newList = new ArrayList<String>();
-			
+
 			tempLeave = leaveRequests();
 			tempCurrentDate = myFormat.format(currentDate);
 			currentDate = myFormat.parse(tempCurrentDate);
-			
-			for(Leave leave:tempLeave){
+
+			for (Leave leave : tempLeave) {
 				secondDate = myFormat.parse(leave.getEndDate());
-				if(secondDate.compareTo(currentDate)>0){
-                     newList.add(leave.getEmployee().getEmail());
+				if (secondDate.compareTo(currentDate) < 0) {
+					newList.add(leave.getEmployee().getEmail());
 				}
 			}
 			techniciansOnLeave = new String[newList.size()];
-			
-			for(int i =0;i<newList.size();i++){
+
+			for (int i = 0; i < newList.size(); i++) {
 				techniciansOnLeave[i] = newList.get(i);
-				}
-		}
-		catch(Exception e){
+			}
+		} catch (Exception e) {
 			e.getMessage();
 		}
 		return techniciansOnLeave;
+	}
+
+	private Boolean isTechnicianOnLeaveDate(String technicianEmail,
+			String StartDate, String endDate) {
+		myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		currentDate = new Date();
+		secondDate = new Date();
+		Date tempStartDate = new Date();
+		Date tempSecondDate = new Date();
+		Boolean isOnLeave = false;
+		try {
+			tempLeave = technicianOnLeave(technicianEmail);
+			tempStartDate = myFormat.parse(StartDate);
+			tempSecondDate = myFormat.parse(endDate);
+			for (Leave leave : tempLeave) {
+				secondDate = myFormat.parse(leave.getEndDate());
+				currentDate = myFormat.parse(leave.getStartDate());
+				if (tempStartDate.before(tempStartDate)) {
+					System.out.println(tempStartDate.after(tempStartDate));
+					isOnLeave = true;
+					break;
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		return isOnLeave;
 	}
 }

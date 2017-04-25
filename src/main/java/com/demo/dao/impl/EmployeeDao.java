@@ -55,6 +55,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 			if(emp ==null){
 				employee.setFirstTimeLogin(true);
 				  employee.setStatus("ACTIVE");
+				  employee.setLeaveStatus("Available");
 				  password = generatePassword();
 				  encryptPassword = PasswordEncrypt.encryptPassword(password);
 				  employee.setPassword(encryptPassword);

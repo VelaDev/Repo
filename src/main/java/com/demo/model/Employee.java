@@ -61,6 +61,8 @@ public class Employee implements Serializable{
 	private boolean isFirstTimeLogin;
 	@Column(name="STATUS")
 	private String status;
+	@Column(name="LEAVE_STATUS")
+	private String leaveStatus;
 	@Column(name="DateTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;

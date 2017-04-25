@@ -124,8 +124,17 @@
 												name="technicianUserName"id="selectedTechnician" class="form-control selectpicker">
 												<option>Select Technician</option>
 												<c:forEach items="${technicians}" var="technician">
-													<option value="${technician.email}" id="selectedTechnician" onclick="checkTech(this.value);" class="popup">${technician.firstName}
+												   <c:choose>
+												     <c:when test="${technician.leaveStatus =='On Leave'}">
+												         <option value="${technician.email}">${technician.firstName}
+														${technician.lastName} (On Leave)</option>
+												     </c:when>
+											          <c:when test="${technician.leaveStatus =='Available'}">
+												         <option value="${technician.email}">${technician.firstName}
 														${technician.lastName}</option>
+												     </c:when>
+												   </c:choose>
+													
 												</c:forEach>
 											</select>
 										</div>

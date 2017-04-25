@@ -131,7 +131,15 @@ public class LeaveController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("retMessage", leaveInt.leaveRequest(leave));
+			retMessage = leaveInt.leaveRequest(leave);
+			if(retMessage.startsWith("K")){
+				String retErrorMessage = retMessage;
+				model.addObject("retErrorMessage",retErrorMessage);
+			}else{
+				model.addObject("retMessage", retMessage);
+			}
+			
+			
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager")

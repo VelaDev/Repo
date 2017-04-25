@@ -558,7 +558,6 @@ public class EmployeeController {
 		else{
 			model.setViewName("login");
 		}
-		
 		return model;
 	}
 	@ExceptionHandler({DataIntegrityViolationException.class})

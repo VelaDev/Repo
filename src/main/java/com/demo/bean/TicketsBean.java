@@ -21,7 +21,7 @@ public class TicketsBean {
     private String employee;
 	private String device;
 	private String comments;
-	private String client;
+	private String customer;
 	private String technicianUserName;
 	private boolean technicianAcknowledged;
 	private String escalatedTo;

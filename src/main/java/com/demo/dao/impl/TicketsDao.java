@@ -327,7 +327,7 @@ public class TicketsDao implements TicketsDaoInt {
 			if(tickets.getUsedPartNumbers()!=null){
 				if(tickets.getUsedPartNumbers().length()>3)
 				{
-					retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),null);
+					retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),tickets.getCustomer());
 					if(retMessage.equalsIgnoreCase("OK")){
 						sessionFactory.getCurrentSession().update(device);
 						

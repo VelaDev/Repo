@@ -162,8 +162,6 @@
 							<!--Second column-->
 							<div class="col-sm-6">
 								
-								
-								
 								<!-- Select type Priority-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Priority</label>

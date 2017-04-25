@@ -30,7 +30,7 @@
 				</div>
 			</c:if>
 			<c:if test="${not empty retErrorMessage }">
-				<div class="alert alert-danger" role="alert">
+				<div class="alert alert-info" role="alert">
 
 					<c:out value="${ retErrorMessage}">
 					</c:out>
@@ -278,13 +278,7 @@ function compareQuantity(element, availableQuantity) {
 				console.log("False,",availableQuantity + " is small than " + element.value);
 				console.log("You can not place an order, enter less quantity");
 				console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
-		}else if(availableQuantity <= element.value) {
-			alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
-			element.value = null;
-			console.log("False,",availableQuantity + " is small than " + element.value);
-			console.log("You can not place an order, enter less quantity");
-			console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
-	}
+		}
 }
 
 </script>

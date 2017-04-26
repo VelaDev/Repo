@@ -240,7 +240,7 @@ public class TicketsDao implements TicketsDaoInt {
 	}
 
 	@Transactional
-	@Scheduled(fixedRate = 100000)
+	@Scheduled(fixedRate = 600000)
 	// /cron="*/5 * * * * MON-FRI*" this method will be invoked after every 10
 	// min to perform calculations and update relevant fields
 	@Override

@@ -306,20 +306,23 @@ public class OrdersController {
 	@RequestMapping(value = "printdeliveryNote", method = RequestMethod.GET)
 	public ModelAndView deliveriesNote(
 			@RequestParam("recordID") Integer recordID)
-			 {
+			throws ParserConfigurationException, SAXException,
+			TransformerException, IOException, DocumentException, XMPException,
+			ParseException, DataIncompleteException, InvalidCodeException, java.text.ParseException {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			
-			/*List<OrderDetails> listItems = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
-			return new ModelAndView("pdfView", "listItems", listItems);*/
+			deliveryServiceInt.createPdf(recordID);
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("deliveryNote");
 		} else {
 			model.setViewName("login");
 		}
 
 		return model;
-	}
+}
 
 	@RequestMapping(value = "availableStock", method = RequestMethod.GET)
 	public ModelAndView availableStock() {

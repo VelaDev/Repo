@@ -27,25 +27,12 @@ public class App
 {
     public static void main( String[] args ) throws ParseException{
    
-    	 String daysAsTime = "";
-         String datePrev = "2017:04:26 01:22:01";
-        long day = 0, diff = 0;
-        String outputPattern = "yyyy:MM:dd HH:mm:ss";
-        SimpleDateFormat outputFormat = new SimpleDateFormat(outputPattern);
-        Calendar c = Calendar.getInstance();
-        String dateCurrent = outputFormat.format(c.getTime());
-        try {
-           Date  date1 = outputFormat.parse(datePrev);
-            Date date2 = outputFormat.parse(dateCurrent);
-            diff = date2.getTime() - date1.getTime();
-            day = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-           
-              long hour = TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
-              System.out.println("Hour" + hour);
-             
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    	SimpleDateFormat dateFormat = null;
+    	Calendar cal = Calendar.getInstance();
+		dateFormat = new SimpleDateFormat("yyyyMMdd HHmmss");
+		String currentDate =  dateFormat.format(cal.getTime());
+		
+		System.out.println(currentDate);
     }
 
 }

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,6 +19,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.xml.sax.SAXException;
+
+
 
 
 import com.demo.dao.CustomerContactDetailsDaoInt;
@@ -47,7 +50,14 @@ import com.itextpdf.xmp.XMPException;
 @Transactional(propagation = Propagation.REQUIRED)
 public class OrderReportsDao implements OrderReportsDaoInt {
 	
-	public static final String DEST = "C:/Users/Mohapi/git/Repo/src/main/java/resources/DeliveryNote.pdf";
+	private Date currentDate;
+	private SimpleDateFormat dateFormat;
+	static Calendar cal = Calendar.getInstance();
+	
+	String dateTimeStamp =  dateFormat.format(cal.getTime());
+	String reportName = "DeliveryNote"+dateTimeStamp+".pdf";
+	
+	public static final String DEST = "C:/Users/earle/Documents/reports/reportName";
 	public static final String ICC = "C:/Users/Mohapi/git/Repo/src/main/java/resources/sRGB_CS_profile.icm";
 	public static final String FONT = "/resources/OpenSans-Regular.ttf";
 	public static final String FONTB = "/resources//OpenSans-Bold.ttf";
@@ -72,8 +82,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	
 	private OrderHeader orderHeader;
 	private CustomerContactDetails customerContact;
-	private Date currentDate;
-	private SimpleDateFormat dateFormat;
+	
 
 	@Override
 	public void createPdf(Integer recordID)throws ParserConfigurationException, SAXException,

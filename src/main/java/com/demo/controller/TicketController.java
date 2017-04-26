@@ -151,8 +151,10 @@ public class TicketController {
 		if(userName !=null){
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
+			  
 			if(retMessage.startsWith("The part number")){
 				String retErrorMessage = retMessage;
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));				
 				model.addObject("retErrorMessage", retErrorMessage);
 			}else{
 				model.addObject("retMessage", retMessage);

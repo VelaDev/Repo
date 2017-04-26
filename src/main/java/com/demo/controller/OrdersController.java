@@ -368,10 +368,8 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("shipment",
-					ordersServiceInt.shippedOrders(userName.getEmail()));
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.setViewName("viewApprovedOrders");
 		} else {

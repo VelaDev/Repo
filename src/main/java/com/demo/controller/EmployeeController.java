@@ -147,6 +147,8 @@ public class EmployeeController {
 							userLogDetailsServiceInt.saveUserLogDetails(details);
 						}
 						serviceInt.userLoggeIn(employee);
+						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));
+						
 						model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(employee.getEmail()));
 						model.setViewName("technicianHome");
 						

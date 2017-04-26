@@ -54,10 +54,10 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	private SimpleDateFormat dateFormat;
 	static Calendar cal = Calendar.getInstance();
 	
-	String dateTimeStamp =  dateFormat.format(cal.getTime());
-	String reportName = "DeliveryNote"+dateTimeStamp+".pdf";
+	/*String dateTimeStamp =  dateFormat.format(cal.getTime());
+	String reportName = "DeliveryNote"+dateTimeStamp+".pdf";*/
 	
-	public static final String DEST = "C:/Users/earle/Documents/reports/reportName";
+	public static final String DEST = "C:/Users/Mohapi/git/Repo/src/main/java/resources/DeliveryNote";
 	public static final String ICC = "C:/Users/Mohapi/git/Repo/src/main/java/resources/sRGB_CS_profile.icm";
 	public static final String FONT = "/resources/OpenSans-Regular.ttf";
 	public static final String FONTB = "/resources//OpenSans-Bold.ttf";

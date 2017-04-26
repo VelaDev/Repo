@@ -49,12 +49,17 @@
 				          </ul>
 				        </li> --%>
 				        
-				        <li class="dropdown">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Technicians<span class="caret"></span></a>
-				          <ul class="dropdown-menu">
-				            <li><a href='<c:url value=""/>'></a></li>
-				          </ul>
-				        </li>
+				        <li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Orders<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="userPlaceOrder.html"/>'>Place
+									Order</a></li>
+							<li><a href='<c:url value="viewAllOrders.html"/>'>View
+									Orders</a></li>
+							
+						</ul>
+					</li>
 				      </ul>
       		
 			</div>

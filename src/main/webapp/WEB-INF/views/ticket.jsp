@@ -12,11 +12,16 @@
 <body>
 	<div class="velaphanda_containter">
 		<c:import url="templates/usernavbar.jsp"></c:import>
-		<br/>
 		<div class="container">
 			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
 					<c:out value="${ retMessage}">
+					</c:out>
+				</div>
+			</c:if>
+			<c:if test="${not empty message }">
+				<div class="alert alert-danger" role="alert">
+					<c:out value="${ message}">
 					</c:out>
 				</div>
 			</c:if>
@@ -30,7 +35,8 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<form action="searchSerialNumber" method="post"	id="searchBylogTicket">
+						<form action="searchSerialNumberLogtickr" method="post"
+							id="searchBylogTicket">
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
@@ -60,7 +66,6 @@
 							<hr>
 						</form>
 						<!--Search-->
-						
 						
 						<form:form method="post" class="well form-horizontal"
 							action="logTicketAdmin" modelAttribute="logTicketAdmin"
@@ -119,8 +124,17 @@
 												name="technicianUserName"id="selectedTechnician" class="form-control selectpicker">
 												<option>Select Technician</option>
 												<c:forEach items="${technicians}" var="technician">
-													<option value="${technician.email}" id="selectedTechnician" onclick="checkTech(this.value);" class="popup">${technician.firstName}
+												   <c:choose>
+												     <c:when test="${technician.leaveStatus =='On Leave'}">
+												         <option class="onleave" value="${technician.email}">${technician.firstName}
+														${technician.lastName} (On Leave)</option>
+												     </c:when>
+											          <c:when test="${technician.leaveStatus =='Available'}">
+												         <option value="${technician.email}">${technician.firstName}
 														${technician.lastName}</option>
+												     </c:when>
+												   </c:choose>
+													
 												</c:forEach>
 											</select>
 										</div>
@@ -134,7 +148,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" id="subject" name="subject"
-												required="required"></textarea>
+												required="required" readonly="readonly">Technical Service Call</textarea>
 										</div>
 									</div>
 								</div>
@@ -144,20 +158,6 @@
 
 							<!--Second column-->
 							<div class="col-sm-6">
-								
-								<!-- <!-- Text input Suject
-								<div class="form-group">
-									<label class="col-md-3 control-label">Subject</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-												value="" placeholder="Technical Service Call"
-												class="form-control" required="required" id="technicalServiceCall" name="technicalServiceCall" type="text" >
-										</div>
-									</div>
-								</div> -->
-								
 								
 								<!-- Select type Priority-->
 								<div class="form-group">
@@ -185,7 +185,7 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
 												placeholder="Description"
-												style="margin: 0px; height: 170px; width: 240px;"></textarea>
+												style="margin: 0px; height: 170px; width: 270px;"></textarea>
 										</div>
 									</div>
 								</div>
@@ -367,14 +367,14 @@
 
 function myFunction(){
 	
-	var index =0;
+	/* var index =0;
 	var onLeaveTechnician =  ${onLeaveTechnicians}
 	for (index = 0; index < onLeaveTechnician.length; ++index) {
 	    if(onLeaveTechnician[index]==selectedTechnician){
 	    	console.log(index);
 	    	alert("Technician on leave");	    	
 	    }
-	}
+	} */
 	//document.getElementById('selectedTechnician').html;
 }
 function checkTech(val){

@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 
@@ -106,7 +107,7 @@ public class TicketsDao implements TicketsDaoInt {
 
 			technician = employeeDaoInt.getEmployeeByEmpNum(tickets
 					.getTechnicianUserName());
-			if (technician != null) {
+			if (technician != null && technician.getLeaveStatus().equalsIgnoreCase("On Leave")) {
 				device = deviceDaoInt.getDeviceBySerialNumbuer(tickets
 						.getDevice());
 				if (device != null) {
@@ -146,8 +147,7 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 
 			} else {
-				retMessage = "Ticket " + ticket.getTicketNumber()
-						+ " is assigned to non-existant technician ";
+				retMessage = "Kindly note that technician in on leave";
 			}
 
 		} catch (Exception e) {
@@ -240,44 +240,46 @@ public class TicketsDao implements TicketsDaoInt {
 	}
 
 	@Transactional
-	@Scheduled(fixedRate = 600000)
+	@Scheduled(fixedRate = 100000)
 	// /cron="*/5 * * * * MON-FRI*" this method will be invoked after every 10
 	// min to perform calculations and update relevant fields
 	@Override
 	public void calculateSLAHours() {
 
+		long day =0,diff=0;
 		try {
 			Calendar cal = Calendar.getInstance();
-
-			@SuppressWarnings("deprecation")
-			int currentHour = cal.getTime().getHours();
-
+			dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			String currentDate =  dateFormat.format(cal.getTime());
+			
+			Date systemDate = dateFormat.parse(currentDate);
 			List<Tickets> openTickets = getAllOpenTickets();
+			
 			for (Tickets openTicket : openTickets) {
-				dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-				date = new Date();
-				String tempDate = openTicket.getDateTime();
-				date = dateFormat.parse(tempDate);
+				
+				String loggedTimeTicket = openTicket.getDateTime();
+				Date loggedTicketDate = dateFormat.parse(loggedTimeTicket);
+				
+				diff =systemDate.getTime()- loggedTicketDate.getTime();
+	            day = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+	           
+	              long hour = TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
 
-				int slaStartedHour = date.getHours();
-				long diffHours = slaStartedHour - currentHour;
-				String [] managerEmails = managersEmails();
-				String mails = managerEmails.toString();
-
-				if (diffHours >= 1 && diffHours < 4) {
-
-					/*openTicket.setComments("System update");*/
+				if(hour >=1 && hour< 4){
+					
+					openTicket.setComments("System update");
 					openTicket.setOneHourFlag(true);
 					updateSLA(openTicket);
-					JavaMail.oneHourReminder(openTicket,
-							mails);
-				} else if (diffHours >= 4) {
+					/*JavaMail.oneHourReminder(openTicket,
+							mails);*/
+					
+				} else if (hour>=4) {
 					openTicket.setStatus("SLA Bridged");
 					openTicket.setFourHourFlag(true);
 					openTicket.setComments("System update");
 					updateSLA(openTicket);
-					JavaMail.fourHourReminder(openTicket,mails
-							);
+					/*JavaMail.fourHourReminder(openTicket,mails
+							);*/
 				}
 			}
 		} catch (Exception e) {

@@ -113,6 +113,8 @@ public class OrdersController {
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 
 				model.setViewName("order");
+			}else{
+				model.setViewName("userPlaceOrder");
 			}
 		
 
@@ -539,6 +541,27 @@ public class OrdersController {
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("placeOrderForTechnician");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "userPlaceOrder", method = RequestMethod.GET)
+	public ModelAndView loaduserMakeOrder() {
+
+		model = new ModelAndView("userPlaceOrder");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.addObject("placeOrderForTechnician", new OrdersBean());
+			model.addObject("compatibility", spareParts.getAllSpareParts());
+			model.addObject("technicianList",
+					employeeServiceInt.getAllTechnicians());
+			model.addObject("customerList", customerServiceInt.getClientList());
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("userPlaceOrder");
 		} else {
 			model.setViewName("login");
 		}

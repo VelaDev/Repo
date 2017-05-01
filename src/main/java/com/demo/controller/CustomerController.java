@@ -214,7 +214,23 @@ public class CustomerController {
 		
 		return model;
 	}
-	
+	/*@RequestMapping(value="viewCustomerDetails")
+	public ModelAndView viewCustomerDetails(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("customer", customerServiceInt.contactDetails(customerName));
+			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("viewCustomerDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	*/
 	
 	@RequestMapping(value="displayCustomers",method=RequestMethod.GET)
 	public ModelAndView displayCustomers(Integer offset,Integer maxResults){

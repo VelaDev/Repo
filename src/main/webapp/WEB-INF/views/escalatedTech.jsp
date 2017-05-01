@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Awaiting Spares | Velaphanda Trading & Projects</title>
+<title>Escalated Tickets | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -24,7 +24,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Awaiting Spares</b>
+							<b>Escalated Tickets</b>
 						</div>
 					</h3>
 				</div>
@@ -32,7 +32,7 @@
 					<div class="tab-content">
 
 						<c:if test="${empty ticketList}">
-							There are no awaiting spares at the moment
+							There are no escalated tickets at the moment
 						</c:if>
 						<c:if test="${not empty ticketList}">
 
@@ -56,7 +56,7 @@
 											<td><c:out value="${tickets.dateTime}" /></td>
 											<%-- <td><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>">Update</a></td>
  											 --%>
- 											<td><a href="awaitingSparesDetails?id=<c:out value='${tickets.ticketNumber}'/>">Ticket Details</a></td>
+ 											<td><a href="escalatedTechDetails?id=<c:out value='${tickets.ticketNumber}'/>">Ticket Details</a></td>
 									
 										</tr>
 									</c:forEach>

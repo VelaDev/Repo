@@ -143,6 +143,23 @@ public class TicketController {
 		}
 		return model;
     }
+	@RequestMapping(value="viewCustomerDetails")
+	public ModelAndView viewCustomerDetails(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("customer", customerServiceInt.contactDetails(customerName));
+			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("viewCustomerDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	
 	@RequestMapping("updateTicket")
 	public ModelAndView updateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
 		
@@ -450,6 +467,46 @@ public class TicketController {
 		}
 		return model;
     }
+	@RequestMapping("technicianDashboard")
+	public ModelAndView bridgedTicketsForTech(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllBridgedTickets());
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("technicianDashboard");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("bridgedTicketsDetails")
+    public ModelAndView loadBridgedTicketsDetailsForTech(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("bridgedTicketsDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
 	
 	@RequestMapping("escalatedTickes")
 	public ModelAndView escalatedTickes(){
@@ -544,6 +601,42 @@ public class TicketController {
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
 		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.setViewName("slaBridged");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("escalatedTech")
+	public ModelAndView escalatedTech(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
+		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.setViewName("escalatedTech");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping("awaitSpares")
+	public ModelAndView awaitSpares(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
+		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.setViewName("awaitSpares");
 		}
 		else{
 			model.setViewName("login");

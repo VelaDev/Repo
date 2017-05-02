@@ -77,7 +77,7 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			System.out.println("We here");
-			model.addObject("logTicket", new TicketsBean());
+			model.addObject("ticket", new TicketsBean());
 			getSerialNumbers = deviceServiceInt.getSerials();
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("serialNumbers",getSerialNumbers);
@@ -330,6 +330,30 @@ public class TicketController {
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
 		  
 		   model.setViewName("logTicket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+		
+	}
+
+	@RequestMapping(value="UserlogTicket",method=RequestMethod.POST)
+	public ModelAndView userLogTicket(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
+	
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			retMessage = logTicketService.logTicket(logTickets);
+			
+			if(retMessage.startsWith("C")){
+			 String	message =retMessage;
+			 model.addObject("message",message );
+			}else{
+				model.addObject("retMessage",retMessage );
+				
+			}
+		   model.setViewName("ticket");
 		}
 		else{
 			model.setViewName("login");

@@ -35,8 +35,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<form action="searchSerialNumberLogtickr" method="post"
-							id="searchBylogTicket">
+						<form action="searchSerialNumberUserLogticket" method="post" id="searchBylogTicket">
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
@@ -68,7 +67,7 @@
 						<!--Search-->
 						
 						<form:form method="post" class="well form-horizontal"
-							action="logTicketAdmin" modelAttribute="logTicketAdmin"
+							action="UserlogTicket" modelAttribute="UserlogTicket"
 							id="logTicket">
 							
 							<!--First Column-->

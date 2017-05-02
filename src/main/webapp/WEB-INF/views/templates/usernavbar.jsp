@@ -14,7 +14,7 @@
 </div>
 <div class="velatp_logo">
 	<a href="ticket.html"><img
-		src="resources/bootstrap-3.3.6/images/mainlogoo.jpg"></a>
+		src="resources/images/mainlogoo.jpg"></a>
 	<div class="userloggedin">
 	 <ul class="nav navbar-nav navbar-right">        
         <li class="dropdown">
@@ -55,7 +55,7 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="userPlaceOrder.html"/>'>Place
 									Order</a></li>
-							<li><a href='<c:url value="viewAllOrders.html"/>'>View
+							<li><a href='<c:url value="viewAllUserOrders.html"/>'>View
 									Orders</a></li>
 							
 						</ul>

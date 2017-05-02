@@ -528,6 +528,19 @@ public class OrdersController {
 
 		return model;
 	}
+	@RequestMapping(value = "viewAllUserOrders", method = RequestMethod.GET)
+	public ModelAndView viewUserOrders() {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("orders", ordersServiceInt.getAllOrders());
+			model.setViewName("viewAllUserOrders");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
 
 	@RequestMapping(value = "placeOrderForTechnician", method = RequestMethod.GET)
 	public ModelAndView loadMakeOrder() {
@@ -586,6 +599,25 @@ public class OrdersController {
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("viewAllOrderDetails");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
+	@RequestMapping(value = "viewAllUserOrderDetails", method = RequestMethod.GET)
+	public ModelAndView displayUserOrderDeails(
+			@RequestParam("recordID") Integer recordID,
+			@ModelAttribute OrderDetails orderDetails) {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",
+					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("RecordID", ordersServiceInt.getOrder(recordID));			
+			model.setViewName("viewAllUserOrderDetails");
 		} else {
 			model.setViewName("login");
 		}

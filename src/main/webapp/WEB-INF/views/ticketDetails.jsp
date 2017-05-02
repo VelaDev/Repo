@@ -382,8 +382,13 @@ header, #content, #middle, #sidebar {
 
 																						<td><input type="text" readOnly
 																							class="form-control" id="usedPartNumbers"
-																							onkeydown="upperCaseF(this)"
-																							name="usedPartNumbers" value="${usedPartNumbers}"></td>
+																							list="spareParts" onkeydown="upperCaseF(this)"
+																							name="usedPartNumbers" value="${usedPartNumbers}"/><datalist id="spareParts"> 
+																								<c:forEach var="list"
+																									items="${spareParts}">
+																									<option value="${list}">
+																								</c:forEach> 
+																							</datalist></td>
 																						<td><input type="button"
 																							class="btn btn-danger" value="Remove"></td>
 																					</tr>
@@ -438,9 +443,14 @@ header, #content, #middle, #sidebar {
 																					<tr>
 
 																						<td><input type="text" readOnly
-																							class="form-control" id="usedPartNumbers"
-																							onkeydown="upperCaseF(this)"
-																							name="usedPartNumbers" value="${usedPartNumbers}"></td>
+																							class="form-control" list="spareParts" onkeydown="upperCaseF(this)" id="usedPartNumbers"
+																							onkeydown="upperCaseF(this)" name="usedPartNumbers" value="${usedPartNumbers}"/><!-- Iterating over the list sent from Controller -->
+																							<datalist id="spareParts"> 
+																								<c:forEach var="list"
+																									items="${spareParts}">
+																									<option value="${list}">
+																								</c:forEach> 
+																							</datalist></td>
 																						<td><input type="button"
 																							class="btn btn-danger" value="Remove"></td>
 
@@ -452,7 +462,9 @@ header, #content, #middle, #sidebar {
 																</div>
 															</div>
 															<!-- //group Used Part Numbers -->
-
+														
+														
+														
 														</div>
 														<!--/solution tab-->
 
@@ -556,7 +568,7 @@ header, #content, #middle, #sidebar {
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="description"
+													<textarea class="form-control" onkeydown="upperCaseF(this)" name="description"
 														required="required" readonly>${ticketObject.description}</textarea>
 												</div>
 											</div>
@@ -697,8 +709,6 @@ header, #content, #middle, #sidebar {
 											</div>
 										</div>
 
-
-
 									</div>
 
 
@@ -708,9 +718,7 @@ header, #content, #middle, #sidebar {
 								<!-- Customer Details -->
 								<fieldset>
 									<legend align="left">Customer Details</legend>
-									<a
-										href="viewCustomerDetails?customerName=<c:out value='${customerName}'/>">${customerName}</a>
-
+									<a href="viewCustomerDetails?customerName=<c:out value='${ticketObject.device.customerDevice.customerName}'/>">${ticketObject.device.customerDevice.customerName}</a>
 								</fieldset>
 								<!-- //Customer Details -->
 
@@ -818,6 +826,50 @@ $('#status').change(function() {
 		$('.' + $('.trigger:checked').data('rel')).show();
 	}).change(); //Show content on page load
 </script>
+	<!-- Create datalist to populate search -->
+	<script type="text/javascript">
+
+// Get the <datalist> and <input> elements.
+var dataList = document.getElementById('json-datalist');
+var input = document.getElementById('ajax');
+
+// Create a new XMLHttpRequest.
+var request = new XMLHttpRequest();
+
+// Handle state changes for the request.
+request.onreadystatechange = function(response) {
+  if (request.readyState === 4) {
+    if (request.status === 200) {
+      // Parse the JSON
+      var jsonOptions = JSON.parse(request.responseText);
+  
+      // Loop over the JSON array.
+      jsonOptions.forEach(function(item) {
+        // Create a new <option> element.
+        var option = document.createElement('option');
+        // Set the value using the item in the JSON array.
+        option.value = item;
+        // Add the <option> element to the <datalist>.
+        dataList.appendChild(option);
+      });
+      
+      // Update the placeholder text.
+      input.placeholder = "e.g. datalist";
+    } else {
+      // An error occured :(
+      input.placeholder = "Couldn't load datalist options :(";
+    }
+  }
+};
+
+// Update the placeholder text.
+input.placeholder = "Loading options...";
+
+// Set up and make the request.
+request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
+request.send();
+
+</script>
 
 <script>
 
@@ -825,7 +877,7 @@ $('#usedPartNumbersdataTable').on('click', 'input[type="button"]', function () {
     $(this).closest('tr').remove();
 	})
 $('p input[type="button"]').click(function () {
-    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" list="spareParts" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /><datalist id="spareParts"><c:forEach var="list"	items="${spareParts}"><option value="${list}"></c:forEach></datalist></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
 </script>
@@ -835,7 +887,7 @@ $('#usedPartNumbersdataTableSiteStock').on('click', 'input[type="button"]', func
     $(this).closest('tr').remove();
 	})
 $('p input[type="button"]').click(function () {
-    $('#usedPartNumbersdataTableSiteStock').append('<tr><td><input type="text" class="form-control" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+    $('#usedPartNumbersdataTableSiteStock').append('<tr><td><input type="text" class="form-control" list="spareParts" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /><datalist id="spareParts"><c:forEach var="list"	items="${spareParts}"><option value="${list}"></c:forEach></datalist></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
 </script>

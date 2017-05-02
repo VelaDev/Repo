@@ -184,7 +184,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
-												placeholder="Description"
+												placeholder="Description" onkeydown="upperCaseF(this)"
 												style="margin: 0px; height: 170px; width: 270px;"></textarea>
 										</div>
 									</div>

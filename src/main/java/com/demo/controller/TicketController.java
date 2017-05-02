@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.PieChart;
+import com.demo.bean.SparePartsBean;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
@@ -25,6 +26,7 @@ import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LeaveInt;
 import com.demo.service.OrdersServiceInt;
+import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.DeviceServiceInt;
 import com.demo.service.TicketHistoryInt;
@@ -49,6 +51,8 @@ public class TicketController {
 	@Autowired
 	private TicketsServiceInt ticketsServiceInt;
 	@Autowired
+	private SpareMasterServiceInt spareMasterServiceInt;
+	@Autowired
 	private LeaveInt leaveInt;
 	private List<PieChart> beanList = null;
 	Integer count = 1;
@@ -64,6 +68,7 @@ public class TicketController {
 	private ModelAndView model = null;
 	private Employee userName= null;
 	private String retMessage ="";
+	public String[] getSerials = null;
 	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
 	public ModelAndView loadTicket() {
@@ -71,8 +76,12 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			System.out.println("We here");
 			model.addObject("logTicket", new TicketsBean());
+			getSerialNumbers = deviceServiceInt.getSerials();
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("serialNumbers",getSerialNumbers);
+			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticket");
 		}
@@ -129,6 +138,9 @@ public class TicketController {
 		
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
+			model.addObject("saveSpareParts", new SparePartsBean());
+			getSerials = spareMasterServiceInt.getSerials();
+			model.addObject("spareParts",getSerials);
 			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
 			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));

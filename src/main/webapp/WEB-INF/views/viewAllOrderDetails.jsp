@@ -24,7 +24,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/usernavbar.jsp"></c:import>
+		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
 			<div class="panel panel-success">
 				<div class="panel-heading">
@@ -75,7 +75,7 @@
 											<td>${list.partNumber}</td>
 											<td>${list.model}</td>
 											<td>${list.itemDescription}</td>
-											<td><input type="text" id="quantity" name="quantity" value="${list.quantity}"></td>
+											<td>${list.quantity}</td>
 											<td>${list.dateTime}</td>
 											<td>${list.orderHeader.status}</td>
 											

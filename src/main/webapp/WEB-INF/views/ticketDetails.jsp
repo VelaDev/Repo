@@ -10,6 +10,7 @@
 	type="image/ico" />
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+	
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
@@ -17,7 +18,14 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
-<style>
+<style id="velas-css">
+@media ( min-width : 768px) {
+	.modal-xl {
+		width: 90%;
+		max-width: 1200px;
+	}
+}
+
 li {
 	list-style: none;
 }
@@ -221,6 +229,7 @@ header, #content, #middle, #sidebar {
 											</div>
 										</div>
 
+
 										<!-- Select type status-->
 										<div class="form-group ">
 											<label class="col-md-3 control-label">Status</label>
@@ -239,18 +248,15 @@ header, #content, #middle, #sidebar {
 											</div>
 										</div>
 
-										<!-- Modal -->
-										<div class="modal fade" id="solutionDetails" tabindex="-1"
-											role="dialog" aria-labelledby="myModalLabel">
-											<div class="modal-dialog modal-lg" role="document">
+
+										<div class="modal fade" id="solutionDetails"
+											aria-hidden="true" style="display: none;">
+											<div class="modal-dialog modal-lg">
 												<div class="modal-content">
 													<div class="modal-header">
 														<button type="button" class="close" data-dismiss="modal"
-															aria-label="Close">
-															<span aria-hidden="true">&times;</span>
-														</button>
-														<h4 class="modal-title" id="myModalLabel">Solution
-															Details</h4>
+															aria-hidden="true">×</button>
+														<h3 class="modal-title">Solution Details</h3>
 													</div>
 													<div class="modal-body">
 
@@ -265,7 +271,7 @@ header, #content, #middle, #sidebar {
 																	<div class="form-group">
 																		<label class="col-md-3 control-label">Ticket
 																			Number</label>
-																		<div class="col-md-6 inputGroupContainer">
+																		<div class="col-md-8 inputGroupContainer">
 																			<div class="input-group">
 																				<span class="input-group-addon"><i
 																					class="glyphicon glyphicon-barcode"></i></span> <input
@@ -277,15 +283,33 @@ header, #content, #middle, #sidebar {
 																		</div>
 																	</div>
 																	<!-- Text area Action Taken-->
-																	<div class="form-group">
-																		<label class="col-md-3 control-label"> Action
-																			Taken </label>
-																		<div class="col-md-6 inputGroupContainer">
+																	<div class="form-group ">
+																		<label class="col-md-3 control-label">Action
+																			Taken</label>
+																		<div class="col-md-8 selectContainer">
 																			<div class="input-group">
 																				<span class="input-group-addon"><i
-																					class="glyphicon glyphicon-pencil"></i></span>
-																				<textarea class="form-control" id="actionTaken"
-																					name="comments" required="required"></textarea>
+																					class="glyphicon glyphicon-list"></i></span> <select
+																					name="actionTaken" id="actionTaken"
+																					class="form-control selectpicker">
+																					<option value="">Please select Action
+																						Taken</option>
+																					<option value="Replaced Part">Replaced
+																						Part</option>
+																					<option value="Replaced Part">Replaced
+																						toner</option>
+																					<option value="Cleared Paper Jam">Cleared
+																						Paper Jam</option>
+																					<option value="Installed Drivers">Installed
+																						Drivers</option>
+																					<option value="Configured Drivers">Configured
+																						Drivers</option>
+																					<option value="Configured Printer">Configured
+																						Printer</option>
+																					<option value="User Error">User Error</option>
+																					<option value="No fault Found">No fault
+																						Found</option>
+																				</select>
 																			</div>
 																		</div>
 																	</div>
@@ -294,7 +318,7 @@ header, #content, #middle, #sidebar {
 																	<div class="form-group">
 																		<label class="col-md-3 control-label">Colour
 																			Reading</label>
-																		<div class="col-md-6 inputGroupContainer">
+																		<div class="col-md-8 inputGroupContainer">
 																			<div class="input-group">
 																				<span class="input-group-addon"><i
 																					class="glyphicon glyphicon-barcode"></i></span> <input
@@ -310,7 +334,7 @@ header, #content, #middle, #sidebar {
 																	<div class="form-group">
 																		<label class="col-md-3 control-label">Mono
 																			Reading</label>
-																		<div class="col-md-6 inputGroupContainer">
+																		<div class="col-md-8 inputGroupContainer">
 																			<div class="input-group">
 																				<span class="input-group-addon"><i
 																					class="glyphicon glyphicon-barcode"></i></span> <input
@@ -431,6 +455,7 @@ header, #content, #middle, #sidebar {
 
 														</div>
 														<!--/solution tab-->
+
 													</div>
 													<div class="modal-footer">
 														<button type="button" class="btn btn-default"
@@ -438,9 +463,13 @@ header, #content, #middle, #sidebar {
 														<button id="save" type="button" class="btn btn-primary"
 															data-dismiss="modal">Save</button>
 													</div>
+
 												</div>
+												<!-- /.modal-content -->
 											</div>
+											<!-- /.modal-dialog -->
 										</div>
+										<!-- /.modal -->
 
 
 										<!-- Select type Order No-->
@@ -679,23 +708,8 @@ header, #content, #middle, #sidebar {
 								<!-- Customer Details -->
 								<fieldset>
 									<legend align="left">Customer Details</legend>
-									<table id="myDatatable" class="display datatable">
-										<thead>
-											<tr>
-												<th>Customer Name</th>
-
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${displayCustomers}">
-												<tr>
-													<td><a
-														href="viewCustomer?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
+									<a
+										href="viewCustomerDetails?customerName=<c:out value='${customerName}'/>">${customerName}</a>
 
 								</fieldset>
 								<!-- //Customer Details -->
@@ -773,8 +787,8 @@ header, #content, #middle, #sidebar {
 
 <script type="text/javascript"
 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 

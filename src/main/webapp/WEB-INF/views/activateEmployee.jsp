@@ -198,17 +198,6 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 
-	<script type="text/javascript"
-		src="<c:url value="/resources/comfirm_alerts/js/anchor.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/comfirm_alerts/js/bootbox.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/comfirm_alerts/js/example.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/comfirm_alerts/js/demos.js"/>"></script>
-
-	<script type="text/javascript"
-		src="<c:url value="/resources/comfirm_alerts/js/confirmStyle.js"/>"></script>
 	<!-- Deactive script -->
 	<script>
 		$(document).on('click', ':not(form)[data-confirm]', function(e) {

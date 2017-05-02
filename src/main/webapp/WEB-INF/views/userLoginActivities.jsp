@@ -19,7 +19,7 @@
 	
 
 </head>
-<body class="bb-js" onload="load()" data-gr-c-s-loaded="true">
+<body class="bb-js">
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">

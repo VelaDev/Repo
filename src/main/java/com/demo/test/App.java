@@ -27,14 +27,28 @@ public class App
 {
     public static void main( String[] args ) throws ParseException{
    
-    	SimpleDateFormat dateFormat = null;
-    	Calendar cal = Calendar.getInstance();
-		dateFormat = new SimpleDateFormat("yyyyMMdd HHmmss");
-		String currentDate =  dateFormat.format(cal.getTime());
-		
-		System.out.println(currentDate);
+    	String date1 = null;
+    	String date2 = "2017-05-03";
+    	SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+	    Date currentDate  = new Date();
+	    Date secondDate = new Date();
+	    Calendar cal = Calendar.getInstance();
+	    date1 =  myFormat.format(cal.getTime());
+	   
+		try{
+			
+			currentDate = myFormat.parse(date1);
+			secondDate = myFormat.parse(date2);
+			/*if(currentDate.after(secondDate)){
+				System.out.println("Second date cones before first date");
+			}else*/ if(currentDate.compareTo(secondDate)>=0) {
+				System.out.println("Otherwise");
+			}else{
+				System.out.println("Otherwise got it");
+			}
+		}
+		catch(Exception e){
+			
+		}
     }
-
 }
-		    
-

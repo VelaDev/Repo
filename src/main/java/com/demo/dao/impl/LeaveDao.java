@@ -2,6 +2,7 @@ package com.demo.dao.impl;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -63,9 +64,9 @@ public class LeaveDao implements LeaveDaoInt {
 
 			emp = employeeDaoInt.getEmployeeByEmpNum(userName);
 			if (emp.getLeaveStatus().equalsIgnoreCase("On Leave")) {
-				retMessage = "Kindly note that technician is on leave";
+				retMessage = "Kindly note that "+emp.getFirstName() +" "+emp.getLastName()+" is on leave";
 			} else  {
-				emp.setLeaveStatus("On Leave");
+				globalLeave.setStatus("On Leave");
 
 				globalLeave.setAddress(leave.getAddress());
 				globalLeave.setContactNumber(leave.getContactNumber());
@@ -77,7 +78,7 @@ public class LeaveDao implements LeaveDaoInt {
 
 				globalLeave.setLeaveID(newrecordID);
 				sessionFactory.getCurrentSession().save(globalLeave);
-
+				emp.setLeaveStatus("On Leave");
 				sessionFactory.getCurrentSession().update(emp);
 
 				retMessage = "Leave successfully submited";
@@ -155,6 +156,21 @@ public class LeaveDao implements LeaveDaoInt {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Leave.class);
 		return (List<Leave>) criteria.list();
+	}
+	private List<Leave> getCurrentLeaves(){
+		List<Leave> currentList = new ArrayList<Leave>();
+		try{
+			leaveList = leaveRequests();
+			
+			for(Leave leave:leaveList){
+				if(leave.getStatus().equalsIgnoreCase("On Leave")){
+					currentList.add(leave);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return currentList;
 	}
 
 	@Override
@@ -295,55 +311,30 @@ public class LeaveDao implements LeaveDaoInt {
 		return techniciansOnLeave;
 	}
 
-	private Boolean isTechnicianOnLeaveDate(String technicianEmail,
-			String StartDate, String endDate) {
-		myFormat = new SimpleDateFormat("yyyy-MM-dd");
-		currentDate = new Date();
-		secondDate = new Date();
-		Date tempStartDate = new Date();
-		Date tempSecondDate = new Date();
-		Boolean isOnLeave = false;
-		try {
-			tempLeave = technicianOnLeave(technicianEmail);
-			tempStartDate = myFormat.parse(StartDate);
-			tempSecondDate = myFormat.parse(endDate);
-			for (Leave leave : tempLeave) {
-				secondDate = myFormat.parse(leave.getEndDate());
-				currentDate = myFormat.parse(leave.getStartDate());
-				if (tempStartDate.before(tempStartDate)) {
-					System.out.println(tempStartDate.after(tempStartDate));
-					isOnLeave = true;
-					break;
-				}
-			}
-
-		} catch (Exception e) {
-			e.getMessage();
-		}
-
-		return isOnLeave;
-	}
+	
 	@Transactional
-	@Scheduled(fixedRate = 100000)
+	@Scheduled(fixedRate = 600000)
 	@Override
 	public void isTechnicianOnLeaveDate() {
 			myFormat = new SimpleDateFormat("yyyy-MM-dd");
 			currentDate = new Date();
 			secondDate = new Date();
-			Date tempStartDate = new Date();
-			Date tempSecondDate = new Date();
-			Boolean isOnLeave = false;
+			Calendar cal = Calendar.getInstance();
+		    String date1 =  myFormat.format(cal.getTime());
 			try {
-				tempLeave = leaveRequests();
+				tempLeave = getCurrentLeaves();
 				
-				for (Leave leave : tempLeave) {
-					secondDate = myFormat.parse(leave.getEndDate());
-					currentDate = myFormat.parse(leave.getStartDate());
-					System.out.println(currentDate.before(secondDate));
-					if (secondDate.before(currentDate)) {
-						System.out.println(tempStartDate.after(tempStartDate));
-						isOnLeave = true;
-						break;
+				if(tempLeave.size()>0){
+					for (Leave leave : tempLeave) {
+						secondDate = myFormat.parse(leave.getEndDate());
+						currentDate = myFormat.parse(date1);
+						if (currentDate.compareTo(secondDate)>=0) {
+							emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
+							emp.setLeaveStatus("Available");
+							sessionFactory.getCurrentSession().update(emp);
+							leave.setStatus("Available");
+							sessionFactory.getCurrentSession().update(leave);
+						}
 					}
 				}
 

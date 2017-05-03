@@ -41,6 +41,8 @@ public class Leave implements Serializable{
 	private String contactNumber;
 	@Column(name="Address")
 	private String address;
+	@Column(name="Status")
+	private String status;
 	
 	@ManyToOne
 	@JoinColumn(name="Requested_By")

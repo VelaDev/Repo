@@ -18,7 +18,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
 			<div class="panel panel-success">
 				<div class="panel-heading">
@@ -52,7 +52,7 @@
 										<td>${list.dateOrdered}</td>
 										<td>${list.stockType}</td>
 										<td>${list.customer.customerName}</td>
-										<td><a href="viewAllOrderDetails?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+										<td><a href="viewAllUserOrderDetails?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

@@ -51,7 +51,7 @@
 												name="serialNumber" list="serialNumbers"
 												class="form-control" type="text"
 												onkeydown="upperCaseF(this)"
-												placeholder='Search By Serial Number'>
+												placeholder='Search By Serial Number'/>
 										</div>
 									</div>
 									<!-- Iterating over the list sent from Controller -->
@@ -187,7 +187,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
-												placeholder="Description"
+												placeholder="Description" onkeydown="upperCaseF(this)"
 												style="margin: 0px; height: 170px; width: 270px;"></textarea>
 										</div>
 									</div>

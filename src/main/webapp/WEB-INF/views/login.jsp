@@ -37,7 +37,7 @@
 						<!--First column-->
 						<div class="col-sm-15">										
 							<div class="mainlogo">
-								<img src="resources/bootstrap-3.3.6/images/mainlogo.jpg"
+								<img src="resources/images/mainlogo.jpg"
 									class="img-responsive" alt="" />
 							</div>
 								<br>

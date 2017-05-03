@@ -5,47 +5,20 @@
 <head>
 <title> Delivery Note | Velaphanda Trading & Projects</title>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
-<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
- <script type="text/javascript" src="jspdf.debug.js"></script>
- 
-<script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
-<script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script>
- 
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-<link
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
-	rel="stylesheet" type="text/css" />
-<link
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
-	rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link type="text/stylesheet"
-	src="<c:url value="/resources/custom/css/vela_custom.css" />">
+
 <style>
-
-
 li{
 	list-style: none;
 }
 </style>
+
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -61,7 +34,7 @@ li{
 				</div>
 				<div class="panel-body" id="deliveryNote" style="background-color:white;"> 
 					<div class="tab-content">
-					<a href="printdeliveryNote?recordID=<c:out value='${recordID}'/>"><button>Print Delivery</button></a>
+					  <a href="printdeliveryNote?recordID=<c:out value='${recordID}'/>"><button >Print Delivery</button></a>
 					  <form:form>
 							
 							<fieldset>
@@ -92,7 +65,7 @@ li{
 									<td>
 							
 										<ul>
-										    <li id="streetNumber" ><img src="resources/bootstrap-3.3.6/images/mainlogoo.jpg" width="70" height="70"></li>
+										    <li id="streetNumber" ><img src="resources/images/mainlogoo.jpg" width="70" height="70"></li>
 											<li id="streetName">VELAPHANDA TRADING & PROJECTS</li>
 											<li id="city_town">REG NO: 2008/164490/23</li>
 											<li id="zipcode">POSTNET SUITE 357, PRIVATE BAG X1028</li>
@@ -201,33 +174,20 @@ li{
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-	 <script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.8.3/jquery.min.js" />"></script>
+	
 </body>
 
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('#myDatatable').DataTable({
-				"jQueryUI" : true,
-				"pagingType" : "full_numbers",
-				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-			/* few more options are available to use */
-			});
-		});
-</script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script>
+		
 
  
-<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+
 </html>
 

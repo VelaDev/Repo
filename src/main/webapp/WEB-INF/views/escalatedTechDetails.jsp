@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Closed Tickets Details | Velaphanda Trading & Projects</title>
+<title>Escalated Tickets | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-	
+
 <style id="velas-css">
 @media ( min-width : 768px) {
 	.modal-xl {
@@ -163,18 +163,18 @@ header, #content, #middle, #sidebar {
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Closed Tickets Details</b>
+							<b>Escalated Tickets Details</b>
 						</div>
 					</h3>
 				</div>
-			<div class="panel-body">
+				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
 						<li class="active"><a href="#generalDetails"

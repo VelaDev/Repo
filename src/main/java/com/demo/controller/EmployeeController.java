@@ -148,7 +148,7 @@ public class EmployeeController {
 						}
 						serviceInt.userLoggeIn(employee);
 						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));
-						
+						model.addObject("shipment",	ordersServiceInt.shippedOrders(employee.getEmail()));						   
 						model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(employee.getEmail()));
 						model.setViewName("technicianHome");
 						

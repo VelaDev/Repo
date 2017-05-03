@@ -281,6 +281,36 @@ public class DeviceController {
 		
 		return model;
 	}
+	
+	@RequestMapping(value="searchSerialNumberUserLogticket")
+	public ModelAndView searchProductForLogTicketForUser(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			
+			device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+		
+		if (userName.getRole().equalsIgnoreCase("User")){
+			model.setViewName("ticket");
+		}
+		if(device != null){
+			
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("product", device);
+		}
+		else{
+			model.addObject("message", "Device does not exist.");
+		}
+		
+		model.setViewName("ticket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	
 	@RequestMapping(value="removeAccessory")
 	public ModelAndView removeAccessory(@RequestParam("serial")String serial)
 	{

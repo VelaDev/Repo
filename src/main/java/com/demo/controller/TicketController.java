@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.demo.bean.PieChart;
+import com.demo.bean.SparePartsBean;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
@@ -25,6 +26,7 @@ import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LeaveInt;
 import com.demo.service.OrdersServiceInt;
+import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.DeviceServiceInt;
 import com.demo.service.TicketHistoryInt;
@@ -49,6 +51,8 @@ public class TicketController {
 	@Autowired
 	private TicketsServiceInt ticketsServiceInt;
 	@Autowired
+	private SpareMasterServiceInt spareMasterServiceInt;
+	@Autowired
 	private LeaveInt leaveInt;
 	private List<PieChart> beanList = null;
 	Integer count = 1;
@@ -64,6 +68,7 @@ public class TicketController {
 	private ModelAndView model = null;
 	private Employee userName= null;
 	private String retMessage ="";
+	public String[] getSerials = null;
 	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
 	public ModelAndView loadTicket() {
@@ -71,8 +76,12 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
+			System.out.println("We here");
+			model.addObject("ticket", new TicketsBean());
+			getSerialNumbers = deviceServiceInt.getSerials();
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-			model.addObject("logTicket", new TicketsBean());
+			model.addObject("serialNumbers",getSerialNumbers);
+			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticket");
 		}
@@ -129,6 +138,9 @@ public class TicketController {
 		
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
+			model.addObject("saveSpareParts", new SparePartsBean());
+			getSerials = spareMasterServiceInt.getSerials();
+			model.addObject("spareParts",getSerials);
 			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
 			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
@@ -326,6 +338,30 @@ public class TicketController {
 		
 	}
 
+	@RequestMapping(value="UserlogTicket",method=RequestMethod.POST)
+	public ModelAndView userLogTicket(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
+	
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			retMessage = logTicketService.logTicket(logTickets);
+			
+			if(retMessage.startsWith("C")){
+			 String	message =retMessage;
+			 model.addObject("message",message );
+			}else{
+				model.addObject("retMessage",retMessage );
+				
+			}
+		   model.setViewName("ticket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+		
+	}
+
 	@RequestMapping(value="userTicket",method=RequestMethod.GET)
 	public ModelAndView loadUserTicket(Integer offset, Integer maxResults ) {
        
@@ -475,10 +511,15 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		     
-		    model.addObject("retMessage", retMessage);
+		    
+			model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));
 		    model.addObject("ticketList", logTicketService.getAllBridgedTickets());
-		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		    model.addObject("inboxCount",	ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
+		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+		    model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets());
+						
 			model.setViewName("technicianDashboard");
 		}
 		else{
@@ -578,8 +619,7 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		     
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
+			model.addObject("inboxCount",	ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
 		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.setViewName("slaBridged");
 		}
@@ -589,6 +629,29 @@ public class TicketController {
 		
 		return model;
 	}
+	@RequestMapping("bridgedTechDetails")
+    public ModelAndView loadBridgedTechDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("bridgedTechDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+
 	@RequestMapping("escalatedTech")
 	public ModelAndView escalatedTech(){
 		
@@ -607,6 +670,28 @@ public class TicketController {
 		
 		return model;
 	}
+	@RequestMapping("escalatedTechDetails")
+    public ModelAndView loadEscalatedTechDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("escalatedTechDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
 	@RequestMapping("awaitSpares")
 	public ModelAndView awaitSpares(){
 		
@@ -625,6 +710,29 @@ public class TicketController {
 		
 		return model;
 	}
+	@RequestMapping("awaitingSparesTechDetails")
+    public ModelAndView loadAwaitingSparesTechdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("awaitingSparesTechDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+	
 	@ExceptionHandler({DataIntegrityViolationException.class})
     public ModelAndView dataIntegrity(Exception ex) {
         ModelAndView model = new ModelAndView("405");

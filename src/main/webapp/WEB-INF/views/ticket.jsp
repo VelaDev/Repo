@@ -35,8 +35,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<form action="searchSerialNumberLogtickr" method="post"
-							id="searchBylogTicket">
+						<form action="searchSerialNumberUserLogticket" method="post" id="searchBylogTicket">
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
@@ -68,7 +67,7 @@
 						<!--Search-->
 						
 						<form:form method="post" class="well form-horizontal"
-							action="logTicketAdmin" modelAttribute="logTicketAdmin"
+							action="UserlogTicket" modelAttribute="UserlogTicket"
 							id="logTicket">
 							
 							<!--First Column-->
@@ -184,7 +183,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description"
-												placeholder="Description"
+												placeholder="Description" onkeydown="upperCaseF(this)"
 												style="margin: 0px; height: 170px; width: 270px;"></textarea>
 										</div>
 									</div>

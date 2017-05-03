@@ -69,7 +69,8 @@ public class Tickets implements Serializable{
 	private boolean fourHourFlag;
 	@Column(name="Used_Part_Numbers")
 	private String usedPartNumbers;
-	
+	@Column(name="Action_Taken")
+	private String actionTaken;
 	
 	
 	

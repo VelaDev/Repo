@@ -38,4 +38,5 @@ public class TicketsBean {
 	private String usedPartNumbers;
 	private String colourReading;
 	private String monoReading;
+	private String actionToken;
 }

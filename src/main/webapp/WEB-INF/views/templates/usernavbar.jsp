@@ -49,19 +49,28 @@
 				          </ul>
 				        </li> --%>
 				        
-				        <li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Orders<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href='<c:url value="userPlaceOrder.html"/>'>Place
-									Order</a></li>
-							<li><a href='<c:url value="viewAllUserOrders.html"/>'>View
-									Orders</a></li>
-							
-						</ul>
-					</li>
-				      </ul>
-      		
+				        <li class="dropdown">
+				        	<a href="#" class="dropdown-toggle"
+							 	data-toggle="dropdown" role="button" aria-haspopup="true"
+								aria-expanded="false">Orders<span class="caret"></span>
+							 </a>
+							<ul class="dropdown-menu">
+								<li><a href='<c:url value="userPlaceOrder.html"/>'>Place Order</a></li>
+								<li><a href='<c:url value="viewAllUserOrders.html"/>'>View Orders</a></li>
+							</ul>
+						</li>
+						
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle"
+							 	data-toggle="dropdown" role="button" aria-haspopup="true"
+							 	aria-expanded="false">Leave<span class="caret"></span>
+							 </a>
+							 <ul class="dropdown-menu">
+								<li><a href='<c:url value="userMakeLeave.html"/>'>Make Leave</a></li>
+								<li><a href='<c:url value="viewRequestedUserLeave.html"/>'>View Requested Leave</a></li>
+				      		 </ul>
+				    	</li>  
+					</ul>
 			</div>
 		</div>
 	</nav>

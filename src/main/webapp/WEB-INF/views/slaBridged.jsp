@@ -50,7 +50,7 @@
 										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
 										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
 										<td><a
-											href="ticketDetails?id=<c:out value='${ticket.ticketNumber}'/>">Ticket Details</a></td>
+											href="bridgedTechDetails?id=<c:out value='${ticket.ticketNumber}'/>">Ticket Details</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

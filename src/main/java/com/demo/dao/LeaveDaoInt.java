@@ -15,5 +15,7 @@ public interface LeaveDaoInt {
 	Boolean isTechnicianOnLeave(String technicianEmail);
 	String onLeaveTechnician(String technicianEmail);
 	String [] techniciansOnLeave();
+	void isTechnicianOnLeaveDate();
+	
 
 }

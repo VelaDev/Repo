@@ -12,6 +12,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -321,5 +322,34 @@ public class LeaveDao implements LeaveDaoInt {
 		}
 
 		return isOnLeave;
+	}
+	@Transactional
+	@Scheduled(fixedRate = 100000)
+	@Override
+	public void isTechnicianOnLeaveDate() {
+			myFormat = new SimpleDateFormat("yyyy-MM-dd");
+			currentDate = new Date();
+			secondDate = new Date();
+			Date tempStartDate = new Date();
+			Date tempSecondDate = new Date();
+			Boolean isOnLeave = false;
+			try {
+				tempLeave = leaveRequests();
+				
+				for (Leave leave : tempLeave) {
+					secondDate = myFormat.parse(leave.getEndDate());
+					currentDate = myFormat.parse(leave.getStartDate());
+					System.out.println(currentDate.before(secondDate));
+					if (secondDate.before(currentDate)) {
+						System.out.println(tempStartDate.after(tempStartDate));
+						isOnLeave = true;
+						break;
+					}
+				}
+
+			} catch (Exception e) {
+				e.getMessage();
+			}
+		
 	}
 }

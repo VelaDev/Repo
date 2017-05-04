@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Leave | Velaphanda Trading & Projects</title>
+<title>Update Leave | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -16,42 +16,58 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-
+	
 </head>
 <body>
 	<div class="velaphanda_containter" id="velaphanda_containter">
-			
-		<c:import url="templates/usernavbar.jsp"></c:import>	
-	
+		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
-			
-			<c:if test="${not empty retMessage }">
-
+		<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
 					<c:out value="${ retMessage}">
 					</c:out>
 				</div>
 			</c:if>
-			<c:if test="${not empty retErrorMessage }">
-
-						<div class="alert alert-danger" role="alert">
-							<c:out value="${ retErrorMessage}">
-							</c:out>
-						</div>
-					</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<div align="left">
-							<b>Make Leave</b>
+						<div align="center">
+							<b>Update Leave</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
-					
-					<form:form class="well form-horizontal" method="POST"
-						action="userMakeLeave" modelAttribute="userMakeLeave" id="userMakeLeave">
 
+					<form:form class="well form-horizontal" method="POST"
+						action="updateUserMakeLeave" modelAttribute="updateUserMakeLeave" id="updateUserMakeLeave">
+						
+						<!-- Text input Leave ID-->
+						<div class="form-group">
+							<label class="col-xs-3 control-label">Leave ID</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+								  <span
+										class="input-group-addon"> <span
+										class="glyphicon glyphicon-barcode"></span></span>
+									<input type='text' class="form-control" name="leaveID"
+										id="leaveID"  value="${leave.leaveID}" readonly="readonly"/>
+								</div>
+							</div>
+						</div>
+						
+						<!-- Text input Leave ID-->
+						<div class="form-group">
+							<label class="col-xs-3 control-label">Email</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+								  <span
+										class="input-group-addon"> <span
+										class="glyphicon glyphicon-barcode"></span></span>
+									<input type='text' class="form-control" name="technicianUserName"
+										id="leaveID"  value="${leave.employee.email}" readonly="readonly"/>
+								</div>
+							</div>
+						</div>
 						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>
@@ -60,9 +76,8 @@
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="leaveType"
 										id="leaveID" class="form-control selectpicker">
-										<option value="">Select Leave</option>
-										<option value="Annual Vacation Leave">Annual Vacation
-											Leave</option>
+										<option value="${leave.leaveType}">${leave.leaveType}</option>
+										<option value="Annual Vacation Leave">Annual Vacation Leave</option>
 										<option value="Sick Leave">Sick Leave</option>
 										<option value="Emergency Leave">Emergency Leave</option>
 									</select>
@@ -76,7 +91,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="startDatePicker">
 									<input type='text' class="form-control" name="startDate"
-										id="startDate" placeholder="YYYY-MM-DD" /> <span
+										id="startDate" placeholder="YYYY-MM-DD" value="${leave.startDate}" /> <span
 										class="input-group-addon"> <span
 										class="glyphicon glyphicon-calendar"></span>
 									</span>
@@ -89,7 +104,7 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="endDatePicker">
 									<input type='text' class="form-control" name="endDate"
-										id="endDate" placeholder="YYYY-MM-DD" /> <span
+										id="endDate" placeholder="YYYY-MM-DD" value="${leave.endDate}"/> <span
 										class="input-group-addon"> <span
 										class="glyphicon glyphicon-calendar"></span>
 									</span>
@@ -105,8 +120,7 @@
 										class="glyphicon glyphicon-earphone"></i></span> <input
 										id="contactNumber" name="contactNumber"
 										placeholder="Contact Number during absence"
-										class="form-control" type="text"
-										onkeypress="return isNumber(event)" maxlength="10">
+										class="form-control" type="text" onkeypress="return isNumber(event)" value="${leave.contactNumber}">
 								</div>
 							</div>
 						</div>
@@ -118,16 +132,16 @@
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-home"></i></span> <input id="address"
 										name="address" placeholder="Address during absence"
-										class="form-control" type="text">
+										class="form-control" type="text" value="${leave.address}">
 								</div>
 							</div>
 						</div>
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-3 col-sm-6">
-								<input type="submit" value="Make Leave"
+								<input type="submit" value="Update Leave"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
-									id="addLeave">
+									id="updateLeave">
 							</div>
 						</div>
 
@@ -201,7 +215,7 @@ if ((Date.parse(endDate) <= Date.parse(startDate))) {
 
 <script>
 $(document).ready(function() {
-	$('#userMakeLeave').bootstrapValidator({
+	$('#updateUserMakeLeave').bootstrapValidator({
 	   //framework: 'bootstrap',
     icon: {
         valid: 'glyphicon glyphicon-ok',
@@ -255,8 +269,7 @@ $(document).ready(function() {
 						message :'Tellphone number must start with 0 (Zero)'
 					}
 				}
-			},
-			
+			},			
 			address: {
                 validators: {
 				stringLength : {
@@ -273,7 +286,7 @@ $(document).ready(function() {
 
 </script>
 
-	<script type="text/javascript">
+<script type="text/javascript">
 
 	function isNumber(evt) {
 	    evt = (evt) ? evt : window.event;

@@ -753,6 +753,7 @@ header, #content, #middle, #sidebar {
 												<th>Colour Reading</th>
 												<th>Mono Reading</th>
 
+
 											</tr>
 										</thead>
 										<tbody>
@@ -761,7 +762,7 @@ header, #content, #middle, #sidebar {
 												<tr>
 													<td><c:out value="${history.ticketNumber}" /></td>
 													<td><c:out value="${history.status}" /></td>
-													<td><c:out value="${history.actionToken}" /></td>
+													<td><c:out value="${history.actionTaken}" /></td>
 													<td><c:out value="${history.escalatedDate}" /></td>
 													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 													<td><c:out value="${history.ticketObject.getDevice().getColourReading() }" /></td>

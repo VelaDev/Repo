@@ -7,6 +7,6 @@ import com.demo.model.Tickets;
 
 public interface TicketHistoryDaoInt {
 	void insertTicketHistory(Tickets ticket);
-	List<TicketHistory> getHistoryByTicketNumber(String ticketNumber);
+	List<TicketHistory> getHistoryByTicketNumber(int ticketNumber);
 
 }

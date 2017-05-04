@@ -130,7 +130,7 @@ public class TicketController {
        
     }
 	@RequestMapping("ticketDetails")
-    public ModelAndView loadTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadTicketdetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -259,7 +259,7 @@ public class TicketController {
 	}
 	
 	@RequestMapping("AssignTicketToOtherTechnician")
-    public ModelAndView assignTicketToAnotherTechnicia(@RequestParam String ticketNumber, @ModelAttribute Tickets ticket) {
+    public ModelAndView assignTicketToAnotherTechnicia(@RequestParam int ticketNumber, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -276,7 +276,7 @@ public class TicketController {
 		return model;
     }
 	@RequestMapping("userAssignTicketToOtherTechnician")
-    public ModelAndView userAssignTicketToAnotherTechnicia(@RequestParam String ticketNumber, @ModelAttribute Tickets ticket) {
+    public ModelAndView userAssignTicketToAnotherTechnicia(@RequestParam int ticketNumber, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -400,7 +400,7 @@ public class TicketController {
 	}
 	
 	@RequestMapping("openTicketsDetails")
-    public ModelAndView loadOpenTicketsDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadOpenTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -441,7 +441,7 @@ public class TicketController {
 		return model;
 	}
 	@RequestMapping("closedTicketsDetails")
-    public ModelAndView loadClosedTicketsDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadClosedTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -482,7 +482,7 @@ public class TicketController {
 		return model;
 	}
 	@RequestMapping("awaitingSparesDetails")
-    public ModelAndView loadAwaitingSparesTicketdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadAwaitingSparesTicketdetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -523,7 +523,7 @@ public class TicketController {
 		return model;
 	}
 	@RequestMapping("awaitingSparesTechDetails")
-    public ModelAndView loadAwaitingSparesTechdetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadAwaitingSparesTechdetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -563,7 +563,7 @@ public class TicketController {
 		return model;
 	}
 	@RequestMapping("bridgedTicketsDetails")
-    public ModelAndView loadBridgedTicketsDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadBridgedTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -604,7 +604,7 @@ public class TicketController {
 		return model;
 	}
 	@RequestMapping("bridgedTechDetails")
-    public ModelAndView loadBridgedTechDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadBridgedTechDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -644,7 +644,7 @@ public class TicketController {
 		return model;
 	}
 	@RequestMapping("escalatedTickesDetails")
-    public ModelAndView loadEscalatedTickesDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadEscalatedTickesDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -685,7 +685,7 @@ public class TicketController {
 		return model;
 	}
 	@RequestMapping("escalatedTechDetails")
-    public ModelAndView loadEscalatedTechDetails(@RequestParam String id, @ModelAttribute Tickets ticket) {
+    public ModelAndView loadEscalatedTechDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");

@@ -5,6 +5,6 @@ import java.util.List;
 import com.demo.model.TicketHistory;
 
 public interface TicketHistoryInt {
-	List<TicketHistory> getHistoryByTicketNumber(String ticketNumber);
+	List<TicketHistory> getHistoryByTicketNumber(int ticketNumber);
 
 }

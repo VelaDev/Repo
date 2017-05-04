@@ -9,7 +9,7 @@ import com.demo.model.Tickets;
 public interface TicketsDaoInt {
 	
 	String logTicket(TicketsBean tickets);
-	Tickets getLoggedTicketsByTicketNumber(String ticketNumber);
+	Tickets getLoggedTicketsByTicketNumber(int ticketNumber);
 	List<Tickets> getAllLoggedTickets();
 	List<Tickets> getAllLoggedTickets(String startDate);
 	List<Tickets> getAllLoggedTickets(String startDate, String endDate);

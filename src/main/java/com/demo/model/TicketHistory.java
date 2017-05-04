@@ -38,6 +38,8 @@ public class TicketHistory implements Serializable{
 	private int historyId;
 	@Column(name="TicketNumber")
 	private String ticketNumber;
+	@Column(name="TicketNo")
+	private int ticketNo;
 	@Column(name="EscalatedResoan")
 	private String escalatedReason;
 	@Column(name="EscalatedDate")

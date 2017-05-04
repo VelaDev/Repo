@@ -163,7 +163,7 @@ public class TicketsDao implements TicketsDaoInt {
 	}
 
 	@Override
-	public Tickets getLoggedTicketsByTicketNumber(String ticketNumber) {
+	public Tickets getLoggedTicketsByTicketNumber(int ticketNumber) {
 
 		return (Tickets) sessionFactory.getCurrentSession().get(Tickets.class,
 				ticketNumber);
@@ -282,8 +282,10 @@ public class TicketsDao implements TicketsDaoInt {
 		order = new OrderHeader();
 		
 		try {
+			String tempTicketNum = tickets.getTicketNumber().substring(6);
+			int temp = Integer.parseInt(tempTicketNum);
               String status = tickets.getStatus();
-			ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
+			ticket = getLoggedTicketsByTicketNumber(temp);
 			if(ticket !=null){
 				ticket.setComments(tickets.getComments());
 				

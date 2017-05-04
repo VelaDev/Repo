@@ -17,7 +17,7 @@ public class TicketHistoryService implements TicketHistoryInt{
 	private TicketHistoryDaoInt historyDaoInt;
 
 	@Override
-	public List<TicketHistory> getHistoryByTicketNumber(String ticketNumber) {
+	public List<TicketHistory> getHistoryByTicketNumber(int ticketNumber) {
 		
 		return historyDaoInt.getHistoryByTicketNumber(ticketNumber);
 	}

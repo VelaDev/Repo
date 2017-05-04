@@ -29,7 +29,7 @@ public class TicketsService implements TicketsServiceInt{
 	}
 
 	@Override
-	public Tickets getLoggedTicketByTicketNumber(String ticketNumber) {
+	public Tickets getLoggedTicketByTicketNumber(int ticketNumber) {
 		
 		return logTicketsDAO.getLoggedTicketsByTicketNumber(ticketNumber);
 	}

@@ -10,7 +10,7 @@ public interface TicketsServiceInt {
 
 	String logTicket(TicketsBean tickets);
 
-	Tickets getLoggedTicketByTicketNumber(String ticketNumber);
+	Tickets getLoggedTicketByTicketNumber(int ticketNumber);
 
 	List<Tickets> getAllLoggedTickets();
 	

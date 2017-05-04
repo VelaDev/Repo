@@ -43,6 +43,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 		date = new Date();
 		try{
 			
+			 ticketHistory.setTicketNo(ticket.getRecordID());
 			  ticketHistory.setTicketNumber(ticket.getTicketNumber());
 			  ticketHistory.setComment(ticket.getComments());
 			  ticketHistory.setEscalatedDate(dateFormat.format(date));
@@ -51,6 +52,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 			  ticketHistory.setSolution(ticket.getSolution());
 			  ticketHistory.setActionTaken(ticket.getActionTaken());
 			  ticketHistory.setStatus(ticket.getStatus());
+			  
 			  ticketHistory.setMonoReading(ticket.getDevice().getMonoReading());
 			  ticketHistory.setColourReading(ticket.getDevice().getColourReading());
 			  sessionFactory.getCurrentSession().save(ticketHistory);
@@ -63,7 +65,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 	}
 
 	@Override
-	public List<TicketHistory> getHistoryByTicketNumber(String ticketNumber) {
+	public List<TicketHistory> getHistoryByTicketNumber(int ticketNumber) {
 		
 try{
 			
@@ -73,7 +75,7 @@ try{
 			aList.addAll(criteria.list());
 			for (Object ticket : aList) {
 				if (ticket instanceof TicketHistory) {
-					if (((TicketHistory)ticket).getTicketNumber().equalsIgnoreCase(ticketNumber)) {
+					if (((TicketHistory)ticket).getTicketNo()==ticketNumber) {
 						ticketHistoryList.add((TicketHistory) ticket);
 						
 					}

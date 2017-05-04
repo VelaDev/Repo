@@ -745,9 +745,13 @@ header, #content, #middle, #sidebar {
 										<thead>
 											<tr>
 												<th>Ticket No</th>
+												<th>Ticket Status</th>
+												<th>Action Token</th>
 												<th>Date</th>
 												<th>Assigned To</th>
 												<th>Comment</th>
+												<th>Colour Reading</th>
+												<th>Mono Reading</th>
 
 											</tr>
 										</thead>
@@ -756,10 +760,12 @@ header, #content, #middle, #sidebar {
 											<c:forEach items="${ticketHistoryList}" var="history">
 												<tr>
 													<td><c:out value="${history.ticketNumber}" /></td>
+													<td><c:out value="${history.status}" /></td>
+													<td><c:out value="${history.actionToken}" /></td>
 													<td><c:out value="${history.escalatedDate}" /></td>
-													<td><c:out
-															value="${history.employee.firstName} ${history.employee.lastName}" /></td>
-													<%-- <th><c:out value="${history.part.modelNumber}" /></td> --%>
+													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+													<td><c:out value="${history.ticketObject.getDevice().getColourReading() }" /></td>
+													<td><c:out value="${history.ticketObject.getDevice().getMonoReading() }" /></td>
 													<td><c:out value="${history.escalatedReason}" /></td>
 
 

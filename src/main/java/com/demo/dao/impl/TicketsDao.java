@@ -115,7 +115,6 @@ public class TicketsDao implements TicketsDaoInt {
 						.getDevice());
 				if (device != null) {
 					
-					
 					isValied = isDeviceInContract(device.getSerialNumber());
 					if(isValied ==false){
 						recordID = newRecordID();

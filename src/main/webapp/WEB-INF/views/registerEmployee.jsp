@@ -314,50 +314,31 @@
 	}
 	</script>
 	
-	
-<script type="text/javascript">
-		/*Compare available quantity with entered quantity*/
-		function checkGender(element, title) {					
-		
-			if (title > element.value){		
-				console.log("True,",element.value + " we have male " + title);
-				console.log("See what we have here");
-			}
-			else if(gender < element.value) {
-				alert("");
-				element.value = null;
-				console.log("False,",title + " is small than " + element.value);
-				console.log("");
-				console.log("Enter value between 1 till " +element.value+ " not more than " +title);
-				}
-			   
-		}
-</script>
-
+<!-- Check gender selection -->	
 <script type="text/javascript">
 	
-	function CheckGender(val){
-		
+function CheckGender(val){
+	
 	 var element=document.getElementById('title');
 	  
 	 if (val=='pick title' || val=='Mr')
 	 {
-		 document.getElementById('gender').value = 'Male';
+		document.getElementById('gender').value = 'Male';
 	 }
 	 else if (val=='pick title' || val=="Miss")
-	{
-		 document.getElementById('gender').value = 'Female'; 
-	}
+	 {
+		document.getElementById('gender').value = 'Female'; 
+	 }
 	 else if (val=='pick title' || val=="Mrs")
-		{
-			 document.getElementById('gender').value = 'Female'; 
-		}
+	 {
+	    document.getElementById('gender').value = 'Female'; 
+	 }
 	 else
-	{
+	 {
 		 document.getElementById('gender').value = '';  
-	}
+	 }
 	 
-	}
+}
 
 </script>
 	

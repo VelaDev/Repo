@@ -74,8 +74,8 @@
 									<div class="col-md-6 selectContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select name="title"
-												class="form-control selectpicker">
+												class="glyphicon glyphicon-list"></i></span> <select name="title" id="title"
+												class="form-control selectpicker" onchange="CheckGender(this.value);">
 												<option value="${ employeeObject.title}">${ employeeObject.title}</option>
 												<option value="Mr">Mr</option>
 												<option value="Miss">Miss</option>
@@ -85,7 +85,30 @@
 										</div>
 									</div>
 								</div>
+								
+								<!-- Select type Gender-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Gender</label>
+									<div class="col-md-6 selectContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-list"></i></span> <select name="gender" id="gender"
+												class="form-control selectpicker" onchange="CheckGender(this.value);">
+												<option value="${ employeeObject.gender}">${ employeeObject.gender}</option>
+												<option value="Male">Male</option>
+												<option value="Female">Female</option>
 
+											</select>
+										</div>
+									</div>
+								</div>
+
+							</div>
+							<!-- / F column -->
+							
+							<!--Second column-->
+							<div class="col-sm-6"> 
+ 								
 								<!-- Text input Cellphone Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Cellphone No</label>
@@ -96,28 +119,6 @@
 												id="cellphoneNumber" name="cellNumber"
 												placeholder="Cellphone No" onkeypress="return isNumber(event)" class="form-control" type="text"  
 												value='${employeeObject.cellNumber }'>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- / F column -->
-
-							<!--Second column-->
-							<div class="col-sm-6">
-
-								<!-- Select type Gender-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Gender</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select name="gender"
-												class="form-control selectpicker">
-												<option value="${ employeeObject.gender}">${ employeeObject.gender}</option>
-												<option value="Male">Male</option>
-												<option value="Female">Female</option>
-
-											</select>
 										</div>
 									</div>
 								</div>
@@ -336,7 +337,7 @@
 											});
 						});
 	</script>
-	<script type="text/javascript">
+<script type="text/javascript">
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
     var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -345,6 +346,35 @@ function isNumber(evt) {
     }
     return true;
 }
+</script>
+
+	
+<!-- Check gender selection -->	
+<script type="text/javascript">
+	
+function CheckGender(val){
+		
+	 var element=document.getElementById('title');
+	  
+	 if (val=='pick title' || val=='Mr')
+	 {
+		document.getElementById('gender').value = 'Male';
+	 }
+	 else if (val=='pick title' || val=="Miss")
+	 {
+		document.getElementById('gender').value = 'Female'; 
+	 }
+	 else if (val=='pick title' || val=="Mrs")
+	 {
+	    document.getElementById('gender').value = 'Female'; 
+	 }
+	 else
+	 {
+		 document.getElementById('gender').value = '';  
+	 }
+	 
+}
+
 </script>
 
 </body>

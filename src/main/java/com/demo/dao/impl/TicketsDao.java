@@ -38,6 +38,7 @@ import com.demo.model.Accessories;
 import com.demo.model.BootStock;
 import com.demo.model.Employee;
 import com.demo.model.Device;
+import com.demo.model.Leave;
 import com.demo.model.OrderDetails;
 import com.demo.model.OrderHeader;
 import com.demo.model.SiteStock;
@@ -94,7 +95,9 @@ public class TicketsDao implements TicketsDaoInt {
 	private SimpleDateFormat myFormat = null;
 	
 	ArrayList<Tickets> aList = null;
-
+	
+	String ticketNumber = null;
+	Integer recordID = 1;
 
 	@Override
 	public String logTicket(TicketsBean tickets) {
@@ -114,7 +117,9 @@ public class TicketsDao implements TicketsDaoInt {
 					
 					isValied = isDeviceInContract(device.getSerialNumber());
 					if(isValied ==false){
-						ticketNumber = newTicketNumber();
+						recordID = newRecordID();
+						ticketNumber = "VTC000" + recordID;
+						ticket.setRecordID(recordID);
 						ticket.setTicketNumber(ticketNumber);
 						ticket.setEmployee(technician);
 						ticket.setStatus("Open");
@@ -277,7 +282,7 @@ public class TicketsDao implements TicketsDaoInt {
 		order = new OrderHeader();
 		
 		try {
-           String status = tickets.getStatus();
+              String status = tickets.getStatus();
 			ticket = getLoggedTicketsByTicketNumber(tickets.getTicketNumber());
 			if(ticket !=null){
 				ticket.setComments(tickets.getComments());
@@ -370,21 +375,6 @@ public class TicketsDao implements TicketsDaoInt {
 		return result;
 	}
 
-	private String newTicketNumber() {
-		String tempTicket = "";
-		int tempTicketNum = 0;
-		String newTicketNum = generateTicketNumber();
-
-		if (newTicketNum != null) {
-			tempTicket = newTicketNum.substring(6);
-			tempTicketNum = Integer.parseInt(tempTicket) + 1;
-			newTicketNum = ticketNum + tempTicketNum;
-		} else {
-			newTicketNum = "VTC0001";
-		}
-
-		return newTicketNum;
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -696,5 +686,34 @@ public class TicketsDao implements TicketsDaoInt {
 			i++;
 		}
 		return empEmails;
+	}
+	private Integer newRecordID() {
+
+		int tempTicketNum = 0;
+		Integer newTicketNum = getRecordID();
+
+		if (newTicketNum != null) {
+			tempTicketNum = newTicketNum + 1;
+		} else {
+			tempTicketNum = 1;
+		}
+
+		return tempTicketNum;
+	}
+
+	private Integer getRecordID() {
+
+		session2 = sessionFactory.openSession();
+		Integer result = 0;
+		Query query = session2.createQuery("from Tickets order by recordID DESC");
+		query.setMaxResults(1);
+		Tickets ticketNumber = (Tickets) query.uniqueResult();
+
+		if (ticketNumber != null) {
+			result = ticketNumber.getRecordID();
+		} else {
+			result = null;
+		}
+		return result;
 	}
 }

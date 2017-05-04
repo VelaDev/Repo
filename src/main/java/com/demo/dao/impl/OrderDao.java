@@ -244,7 +244,7 @@ public class OrderDao implements OrdersDaoInt {
 		String orderNumber = null;
 		Integer recordID = 1;
 		String[] split;
-		String partNumber, modelNumber, description, splitString = null;
+		String partNumber,splitString = null;
 		int quatity = 0;
 
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -275,7 +275,6 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setStockType(orderBean.getStockType());
 			cusOrder.setStatus("Pending");
 			
-
 			recordID = newRecordID();
 			orderNumber = "ORD00" + recordID;
 			cusOrder.setRecordID(recordID);

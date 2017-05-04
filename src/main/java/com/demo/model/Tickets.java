@@ -36,6 +36,8 @@ public class Tickets implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
+	@Column(name="RecordID")
+	private int recordID;
 	@Column(name="Ticket_Number")
 	private String ticketNumber;
 	@Column(name="Comments")

@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,12 +42,19 @@ public class TicketHistory implements Serializable{
 	private String escalatedReason;
 	@Column(name="EscalatedDate")
 	private String escalatedDate;
-	@Column(name="Resolution")
-	private String resolution;
 	@Column(name="Solution")
 	private String solution;
 	@Column(name="Comment")
 	private String comment;
+	@Column(name="Action_Taken")
+	private String actionTaken;
+	@Column(name="Mono_Reading")
+	private String monoReading;
+	@Column(name="Colour_Reading")
+	private String colourReading;
+	@Column(name="Status")
+	private String status;
+	
 	
 	
 	@ManyToOne

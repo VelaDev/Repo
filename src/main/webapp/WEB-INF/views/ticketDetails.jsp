@@ -746,14 +746,12 @@ header, #content, #middle, #sidebar {
 											<tr>
 												<th>Ticket No</th>
 												<th>Ticket Status</th>
-												<th>Action Token</th>
+												<th>Action Taken</th>
 												<th>Date</th>
 												<th>Assigned To</th>
-												<th>Comment</th>
 												<th>Colour Reading</th>
 												<th>Mono Reading</th>
-
-
+												<th>Comment</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -765,11 +763,9 @@ header, #content, #middle, #sidebar {
 													<td><c:out value="${history.actionTaken}" /></td>
 													<td><c:out value="${history.escalatedDate}" /></td>
 													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
-													<td><c:out value="${history.ticketObject.getDevice().getColourReading() }" /></td>
-													<td><c:out value="${history.ticketObject.getDevice().getMonoReading() }" /></td>
+													<td><c:out value="${history.colourReading }" /></td>
+													<td><c:out value="${history.monoReading }" /></td>
 													<td><c:out value="${history.escalatedReason}" /></td>
-
-
 												</tr>
 											</c:forEach>
 										</tbody>

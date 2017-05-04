@@ -275,7 +275,7 @@ header, #content, #middle, #sidebar {
 																			<div class="input-group">
 																				<span class="input-group-addon"><i
 																					class="glyphicon glyphicon-barcode"></i></span> <input
-																					name="ticketNumber" id="ticketNumber"
+																					id="ticketNumber"
 																					class="form-control" type="text"
 																					value="${ticketObject.ticketNumber}"
 																					readonly="readonly">
@@ -462,9 +462,6 @@ header, #content, #middle, #sidebar {
 																</div>
 															</div>
 															<!-- //group Used Part Numbers -->
-														
-														
-														
 														</div>
 														<!--/solution tab-->
 

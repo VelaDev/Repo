@@ -222,22 +222,6 @@ public class TicketsDao implements TicketsDaoInt {
 		return ticketList;
 	}
 
-	@SuppressWarnings("unused")
-	private Employee assingACallToTechnician() {
-
-		List<Employee> getTechnician = employeeDaoInt.getAllTechnicians();
-
-		technician = technician(getTechnician);
-		return technician;
-
-	}
-
-	private Employee technician(List<Employee> emp) {
-
-		Random random = new Random();
-		int index = random.nextInt(emp.size());
-		return emp.get(index);
-	}
 
 	@Transactional
 	@Scheduled(fixedRate = 600000)
@@ -312,15 +296,16 @@ public class TicketsDao implements TicketsDaoInt {
 				else if(status.equalsIgnoreCase("Escalated")){
 					ticket.setEscalatedTo(tickets.getEscalatedTo());
 					ticket.setStatus("Escalated");
+				}else if(status.equalsIgnoreCase("Resolved")) {
+					ticket.setStatus("Resolved");
+					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
 				}
 				else{
 					ticket.setComments(tickets.getComments());
-					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
+					
 					ticket.setStatus(status);
 				}
 					
-			}else{
-				ticket.setStatus("Resolved");
 			}
 			device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
 			device.setMonoReading(tickets.getMonoReading());
@@ -588,7 +573,6 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public List<Tickets> getAllAwaitingSpares() {
-		// TODO Auto-generated method stub
 				aList = new ArrayList<Tickets>();
 				try{
 					ticketList = getAllLoggedTickets();
@@ -627,7 +611,6 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public List<Tickets> getAllBridgedTickets() {
-		// TODO Auto-generated method stub
 		aList = new ArrayList<Tickets>();
 		try{
 			ticketList = getAllLoggedTickets();

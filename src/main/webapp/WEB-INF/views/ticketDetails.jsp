@@ -765,7 +765,7 @@ header, #content, #middle, #sidebar {
 													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 													<td><c:out value="${history.colourReading }" /></td>
 													<td><c:out value="${history.monoReading }" /></td>
-													<td><c:out value="${history.escalatedReason}" /></td>
+													<td><c:out value="${history.comment}" /></td>
 												</tr>
 											</c:forEach>
 										</tbody>

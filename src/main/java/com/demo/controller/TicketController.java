@@ -161,6 +161,7 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("customer", customerServiceInt.contactDetails(customerName));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("viewCustomerDetails");
@@ -180,9 +181,10 @@ public class TicketController {
 		if(userName !=null){
 		     
 			retMessage = logTicketService.updateTicket(updateTicket);
-			  
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			if(retMessage.startsWith("The part number")){
 				String retErrorMessage = retMessage;
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));				
 				model.addObject("retErrorMessage", retErrorMessage);
 			}else{
@@ -249,6 +251,8 @@ public class TicketController {
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("serialNumbers",getSerialNumbers);
 			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("logTicket");
 		}
@@ -303,6 +307,8 @@ public class TicketController {
 			retMessage = logTicketService.updateTicket(updateTicket);
 		    model.addObject("retMessage", retMessage);
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+			
 			model.setViewName("ticketUpdate");
 		}
 		else{
@@ -328,7 +334,8 @@ public class TicketController {
 				
 			}
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
-		  
+			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+				
 		   model.setViewName("logTicket");
 		}
 		else{
@@ -345,12 +352,14 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			retMessage = logTicketService.logTicket(logTickets);
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			
 			if(retMessage.startsWith("C")){
 			 String	message =retMessage;
 			 model.addObject("message",message );
 			}else{
 				model.addObject("retMessage",retMessage );
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 				
 			}
 		   model.setViewName("ticket");
@@ -371,6 +380,7 @@ public class TicketController {
 			beanList = ticketsServiceInt.ticketsResults();
 			model.addObject("ticketResults",beanList);
 			model.addObject("count",count);
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));	
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("userTicket");
 		}

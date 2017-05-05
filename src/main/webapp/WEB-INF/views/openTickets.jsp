@@ -53,7 +53,7 @@
 									<td><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
 									<td><c:out value="${tickets.description}" /></td>
 									<td><c:out value="${tickets.dateTime}" /></td>
-								    <td><a href="openTicketsDetails?id=<c:out value='${tickets.ticketNumber}'/>">Tickets Details</a></td>
+								    <td><a href="openTicketsDetails?id=<c:out value='${tickets.recordID}'/>">Tickets Details</a></td>
  
 								</tr>
 							</c:forEach>

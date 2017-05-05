@@ -306,6 +306,7 @@ public class TicketsDao implements TicketsDaoInt {
 				}else if(status.equalsIgnoreCase("Resolved")) {
 					ticket.setStatus("Resolved");
 					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
+					ticket.setActionTaken(tickets.getActionTaken());
 				}
 				else{
 					ticket.setComments(tickets.getComments());
@@ -314,6 +315,7 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 					
 			}
+			ticket.setComments(tickets.getComments());
 			device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
 			device.setMonoReading(tickets.getMonoReading());
 			device.setColourReading(tickets.getColourReading());

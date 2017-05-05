@@ -717,6 +717,88 @@ public class TicketController {
 		return model;
     }
 	
+	@RequestMapping("resolvedTickets")
+	public ModelAndView resolvedTicket(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+			 model.addObject("retMessage", retMessage);		    
+			 /*model.addObject("ticketList", logTicketService.getAllResolevedTickets());*/
+			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));				
+			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			 model.setViewName("resolvedTicket");
+		}
+		else{
+			model.setViewName("login");
+		}		
+		return model;
+	}
+	@RequestMapping("resolvedTicketDetails")
+    public ModelAndView loadResolvedTicketDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("resolvedTicketDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+	
+	@RequestMapping("resolvedTechTickets")
+	public ModelAndView resolvedTechTicket(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+			 model.addObject("retMessage", retMessage);		    
+			 /*model.addObject("ticketList", logTicketService.getAllResolevedTickets());*/
+			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));				
+			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			 model.setViewName("resolvedTechTickets");
+		}
+		else{
+			model.setViewName("login");
+		}		
+		return model;
+	}
+	@RequestMapping("resolvedTechTicketDetails")
+    public ModelAndView loadResolvedTechTicketDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		
+			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			model.addObject("ticketObject", ticket);
+			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.setViewName("resolvedTechTicketDetails");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
+	
 	@RequestMapping("technicianDashboard")
 	public ModelAndView bridgedTicketsForTech(){
 		

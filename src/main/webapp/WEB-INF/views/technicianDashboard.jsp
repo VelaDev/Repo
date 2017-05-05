@@ -88,6 +88,19 @@
 									<p>Awaiting Spare</p>
 								</div>
 						</a></li>
+						<li><a href='<c:url value="resolvedTechTickets.html"/>'
+							data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-orig-name="new"
+							data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="fa fa-gavel dbicon-green"></i>
+								</div>
+								<div class="summary-count pull-left ml20">
+									<h4><%-- ${resolvedTickets} --%></h4>
+									<p>Resolved Tickets</p>
+								</div>
+						</a></li>
 						
 						
 					</ul>

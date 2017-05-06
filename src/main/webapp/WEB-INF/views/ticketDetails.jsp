@@ -26,9 +26,20 @@
 	}
 }
 
-li {
-	list-style: none;
+li {list-style: none;}
+
+.wellform {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    padding-bottom: 10%;
 }
+
 
 .groupsparedetails, .groupsearchdetails {
 	padding: 20px;
@@ -206,7 +217,7 @@ header, #content, #middle, #sidebar {
 
 							<h4 align="center">General Info</h4>
 
-							<form:form class="well form-horizontal" action="updateTicket"
+							<form:form class="wellform form-horizontal" action="updateTicket"
 								modelAttribute="updateTicket" method="post" id="updataTckt">
 
 								<!-- //Ticket Details -->

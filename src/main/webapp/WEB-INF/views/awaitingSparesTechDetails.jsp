@@ -23,7 +23,17 @@
 		max-width: 1200px;
 	}
 }
-
+.wellform {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
+    padding-bottom: 10%;
+}
 li {
 	list-style: none;
 }
@@ -246,7 +256,7 @@ header, #content, #middle, #sidebar {
 													<div class="modal-body">
 
 														<!--solution tab-->
-														<div class="well form-horizontal">
+														<div class="wellform form-horizontal">
 
 															<div class="groupsparedetails">
 																<legend align="left">Ticket Info</legend>

@@ -217,7 +217,7 @@ header, #content, #middle, #sidebar {
 
 							<h4 align="center">General Info</h4>
 
-							<form:form class="wellform form-horizontal" action="updateTicket"
+							<form:form class="well form-horizontal" action="updateTicket"
 								modelAttribute="updateTicket" method="post" id="updataTckt">
 
 								<!-- //Ticket Details -->
@@ -272,7 +272,7 @@ header, #content, #middle, #sidebar {
 													<div class="modal-body">
 
 														<!--solution tab-->
-														<div class="well form-horizontal">
+														<div class="wellform form-horizontal">
 
 															<div class="groupsparedetails">
 																<legend align="left">Ticket Info</legend>

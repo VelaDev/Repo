@@ -947,7 +947,6 @@ public class TicketsDao implements TicketsDaoInt {
 	public void resolveToClosedUpdate() {
 		myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		currentDate = new Date();
-		Date secondDate = new Date();
 		Calendar cal = Calendar.getInstance();
 	    String date1 =  myFormat.format(cal.getTime());
 	    try{

@@ -252,6 +252,7 @@ public class TicketsDao implements TicketsDaoInt {
 					openTicket.setFourHourFlag(true);
 					openTicket.setComments("System update");
 					updateSLA(openTicket);
+					historyDaoInt.insertTicketHistory(openTicket);
 					/*JavaMail.fourHourReminder(openTicket,mails
 							);*/
 				}

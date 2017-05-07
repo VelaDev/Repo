@@ -49,6 +49,8 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllClosedTickets(String technicianEmail);
 	List<Tickets> getAllBridgedTickets(String technicianEmail);
 	List<Tickets> getAllResolvedTickets(String technicianEmail);
+	
+	void resolveToClosedUpdate();
     
 	
 

@@ -201,7 +201,12 @@ public class TicketsService implements TicketsServiceInt{
 
 	@Override
 	public List<Tickets> getAllResolvedTickets(String technicianEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return logTicketsDAO.getAllResolvedTickets(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllResolvedTickets() {
+		return logTicketsDAO.getAllResolvedTickets();
 	}
 }

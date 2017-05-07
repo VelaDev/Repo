@@ -265,6 +265,9 @@ public class TicketsDao implements TicketsDaoInt {
 	public String updateTicket(TicketsBean tickets) {
 		ticket = new Tickets();
 		order = new OrderHeader();
+		myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+	    String date1 =  myFormat.format(cal.getTime());
 		
 		try {
 			String tempTicketNum = tickets.getTicketNumber().substring(6);
@@ -292,6 +295,7 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setStatus("Resolved");
 					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
 					ticket.setActionTaken(tickets.getActionTaken());
+					ticket.setDateResolved(date1);
 				}
 				else{
 					ticket.setComments(tickets.getComments());
@@ -935,5 +939,22 @@ public class TicketsDao implements TicketsDaoInt {
 		}
 			
 		return aList;
+	}
+
+	@Transactional
+	@Scheduled(fixedRate = 1800000)
+	@Override
+	public void resolveToClosedUpdate() {
+		myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		currentDate = new Date();
+		Date secondDate = new Date();
+		Calendar cal = Calendar.getInstance();
+	    String date1 =  myFormat.format(cal.getTime());
+	    try{
+	    	
+	    	
+	    }catch(Exception e){
+	    	e.getMessage();
+	    }
 	}
 }

@@ -21,6 +21,7 @@ public interface TicketsServiceInt {
 	List<Tickets> getAllAwaitingSpares();
 
 	List<Tickets> getAllClosedTickets();
+	List<Tickets> getAllResolvedTickets();
 
 	List<Tickets> getAllBridgedTickets();
 

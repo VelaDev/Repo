@@ -76,7 +76,7 @@
 									<td><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
 									<td><c:out value="${tickets.description}" /></td>
 									<td><c:out value="${tickets.dateTime}" /></td>
-									<td><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>">Update</a></td>
+									<td><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.recordID}'/>">Update</a></td>
 
 								</tr>
 							</c:forEach>

@@ -136,4 +136,72 @@ public class TicketsService implements TicketsServiceInt{
 		
 		return logTicketsDAO.getAllBridgedTickets();
 	}
+
+	@Override
+	public int countResolvedTickets() {
+		return logTicketsDAO.countResolvedTickets();
+	}
+
+	@Override
+	public int countEscalatedTickets(String technicianEmail) {
+		return logTicketsDAO.countEscalatedTickets(technicianEmail);
+	}
+
+	@Override
+	public int countClosedTickets(String technicianEmail) {
+		return logTicketsDAO.countClosedTickets(technicianEmail);
+	}
+
+	@Override
+	public int countBridgedTickets(String technicianEmail) {
+		
+		return logTicketsDAO.countBridgedTickets(technicianEmail);
+	}
+
+	@Override
+	public int countOpenTickets(String technicianEmail) {
+		return logTicketsDAO.countOpenTickets(technicianEmail);
+	}
+
+	@Override
+	public int countAwaitingSparesTickets(String technicianEmail) {
+		return logTicketsDAO.countAwaitingSparesTickets(technicianEmail);
+	}
+
+	@Override
+	public int countResolvedTickets(String technicianEmail) {
+		return logTicketsDAO.countResolvedTickets(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllOpenTickets(String technicianEmail) {
+		return logTicketsDAO.getAllOpenTickets(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllEscalatedTickets(String technicianEmail) {
+		return logTicketsDAO.getAllEscalatedTickets(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllAwaitingSpares(String technicianEmail) {
+		return logTicketsDAO.getAllAwaitingSpares(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllClosedTickets(String technicianEmail) {
+		return logTicketsDAO.getAllClosedTickets(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllBridgedTickets(String technicianEmail) {
+		
+		return logTicketsDAO.getAllBridgedTickets(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllResolvedTickets(String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

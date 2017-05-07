@@ -108,7 +108,7 @@
 									<i class="fa fa-gavel dbicon-green"></i>
 								</div>
 								<div class="summary-count pull-left ml20">
-									<h4><%-- ${resolvedTickets} --%></h4>
+									<h4>${resolvedTickets}</h4>
 									<p>Resolved Tickets</p>
 								</div>
 						</a></li>

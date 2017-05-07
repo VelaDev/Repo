@@ -766,7 +766,7 @@ public class TicketController {
 		if(userName !=null){
 		     
 			 model.addObject("retMessage", retMessage);		    
-			 /*model.addObject("ticketList", logTicketService.getAllResolevedTickets());*/
+			/* model.addObject("ticketList", logTicketService.getAllResolevedTickets());*/
 			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));				
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			 model.setViewName("resolvedTechTickets");
@@ -810,10 +810,10 @@ public class TicketController {
 		    model.addObject("ticketList", logTicketService.getAllBridgedTickets());
 		    model.addObject("inboxCount",	ordersServiceInt.pendingOrdersCount(userName.getEmail()));		   
 		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-		    model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets());
-						
+		    model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets(userName.getEmail()));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets(userName.getEmail()));
+			model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets(userName.getEmail()));
+			model.addObject("resolvedTickets", ticketsServiceInt.countResolvedTickets(userName.getEmail()));			
 			model.setViewName("technicianDashboard");
 		}
 		else{

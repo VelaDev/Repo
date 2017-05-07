@@ -134,6 +134,7 @@ public class EmployeeController {
 						model.addObject("closedTickets", ticketsServiceInt.countClosedTickets());
 						model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 						model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+						model.addObject("resolvedTickets",ticketsServiceInt.countResolvedTickets());
 						model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets());
 						serviceInt.userLoggeIn(employee);
 						model.setViewName("home");
@@ -220,6 +221,7 @@ public class EmployeeController {
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets());
+			model.addObject("resolvedTickets",ticketsServiceInt.countResolvedTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("home");
 		}

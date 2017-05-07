@@ -73,6 +73,8 @@ public class Tickets implements Serializable{
 	private String usedPartNumbers;
 	@Column(name="Action_Taken")
 	private String actionTaken;
+	@Column(name="Date_Resolved")
+	private String dateResolved;
 	
 	
 	

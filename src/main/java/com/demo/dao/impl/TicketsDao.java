@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
@@ -28,18 +27,14 @@ import com.demo.bean.TicketsBean;
 import com.demo.dao.BootStockDaoInt;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.EmployeeDaoInt;
-import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.SiteStocDaoInt;
 import com.demo.dao.TicketsDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.TicketHistoryDaoInt;
-import com.demo.model.Accessories;
 import com.demo.model.BootStock;
 import com.demo.model.Employee;
 import com.demo.model.Device;
-import com.demo.model.Leave;
-import com.demo.model.OrderDetails;
 import com.demo.model.OrderHeader;
 import com.demo.model.SiteStock;
 import com.demo.model.Tickets;
@@ -71,24 +66,14 @@ public class TicketsDao implements TicketsDaoInt {
 	private Session session2;
 
 	private Employee technician = null;
-	private OrderDetails orderDetails=null;
 	private OrderHeader order = null;
-	private BootStock bootStock =null;
-	private SiteStock siteStock =null;
 	private Device device = null;
 	private Tickets ticket = null;
 	Calendar cal = Calendar.getInstance();
 	DateFormat dateFormat = null;
 	Date date = null;
 	private String retMessage = "";
-	private String ticketNum = "VTC000";
 	private List<Tickets> ticketList = null;
-	private PieChart pieChart = null;
-	private PieChart pieChart1 = null;
-	private PieChart pieChart2 = null;
-	private PieChart pieChart3 = null;
-	private PieChart pieChart4 = null;
-	private PieChart pieChart5 = null;
 	private List<PieChart> beanList = null;
 	
 	private Date currentDate,contractEndDate = null;
@@ -378,9 +363,6 @@ public class TicketsDao implements TicketsDaoInt {
 		}
 		return result;
 	}
-
-
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<PieChart> ticketsResults() {
 		
@@ -719,5 +701,239 @@ public class TicketsDao implements TicketsDaoInt {
 			result = null;
 		}
 		return result;
+	}
+
+	@Override
+	public int countResolvedTickets() {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Resolved")){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countEscalatedTickets(String technicianEmail) {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Escalated")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countClosedTickets(String technicianEmail) {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Closed") && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countBridgedTickets(String technicianEmail) {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("SLA Bridged")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countOpenTickets(String technicianEmail) {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Open")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countAwaitingSparesTickets(String technicianEmail) {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public int countResolvedTickets(String technicianEmail) {
+		int tempCount =0;
+		  aList = new ArrayList<Tickets>();
+		  try{
+			  ticketList = getAllLoggedTickets();
+			  for(Tickets ticket: ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Resolved") && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					tempCount ++;
+				}
+			  }
+		  }catch(Exception exception){
+			  exception.getMessage();
+		  }
+		
+		return tempCount;
+	}
+
+	@Override
+	public List<Tickets> getAllResolvedTickets() {
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Resolved")){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+			
+		return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllOpenTickets(String technicianEmail) {
+
+		return null;
+	}
+
+	@Override
+	public List<Tickets> getAllEscalatedTickets(String technicianEmail) {
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Escalated")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+			
+		return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllAwaitingSpares(String technicianEmail) {
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+			
+		return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllClosedTickets(String technicianEmail) {
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Closed")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+			
+		return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllBridgedTickets(String technicianEmail) {
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("SLA Bridged")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+		
+		return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllResolvedTickets(String technicianEmail) {
+		aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if(ticket.getStatus().equalsIgnoreCase("Resolved")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+			
+		return aList;
 	}
 }

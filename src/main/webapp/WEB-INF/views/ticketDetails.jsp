@@ -743,9 +743,6 @@ header, #content, #middle, #sidebar {
 						</div>
 						<!--/general tab-->
 
-
-
-
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>

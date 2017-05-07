@@ -723,9 +723,6 @@ header, #content, #middle, #sidebar {
 						</div>
 						<!--/general tab-->
 
-
-
-
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
@@ -736,10 +733,13 @@ header, #content, #middle, #sidebar {
 										<thead>
 											<tr>
 												<th>Ticket No</th>
+												<th>Ticket Status</th>
+												<th>Action Taken</th>
 												<th>Date</th>
 												<th>Assigned To</th>
+												<th>Colour Reading</th>
+												<th>Mono Reading</th>
 												<th>Comment</th>
-
 											</tr>
 										</thead>
 										<tbody>
@@ -747,13 +747,13 @@ header, #content, #middle, #sidebar {
 											<c:forEach items="${ticketHistoryList}" var="history">
 												<tr>
 													<td><c:out value="${history.ticketNumber}" /></td>
+													<td><c:out value="${history.status}" /></td>
+													<td><c:out value="${history.actionTaken}" /></td>
 													<td><c:out value="${history.escalatedDate}" /></td>
-													<td><c:out
-															value="${history.employee.firstName} ${history.employee.lastName}" /></td>
-													<%-- <th><c:out value="${history.part.modelNumber}" /></td> --%>
-													<td><c:out value="${history.escalatedReason}" /></td>
-
-
+													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+													<td><c:out value="${history.colourReading }" /></td>
+													<td><c:out value="${history.monoReading }" /></td>
+													<td><c:out value="${history.comment}" /></td>
 												</tr>
 											</c:forEach>
 										</tbody>

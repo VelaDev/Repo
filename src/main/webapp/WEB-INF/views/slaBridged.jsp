@@ -43,14 +43,14 @@
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
-								<c:forEach items="${technicianTickets}" var="ticket">
+								<c:forEach items="${ticketList}" var="ticket">
 									<tr>
 										<td><c:out value="${ticket.ticketNumber}" /></td>
 										<td><c:out value="${ticket.status} " /></td>
 										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
 										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
 										<td><a
-											href="bridgedTechDetails?id=<c:out value='${tickets.recordID}'/>">Ticket Details</a></td>
+											href="bridgedTechDetails?id=<c:out value='${ticket.recordID}'/>">Ticket Details</a></td>
 									</tr>
 								</c:forEach>
 							</tbody>

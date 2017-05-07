@@ -603,7 +603,7 @@ public class TicketController {
 		if(userName !=null){		    
 			
 			model.addObject("retMessage", retMessage);
-			model.addObject("ticketList", logTicketService.getAllBridgedTickets());
+			model.addObject("ticketList", logTicketService.getAllBridgedTickets(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("slaBridged");
@@ -725,17 +725,17 @@ public class TicketController {
 		if(userName !=null){
 		     
 			 model.addObject("retMessage", retMessage);		    
-			 /*model.addObject("ticketList", logTicketService.getAllResolevedTickets());*/
+			 model.addObject("ticketList", logTicketService.getAllResolvedTickets());
 			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));				
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			 model.setViewName("resolvedTicket");
+			 model.setViewName("resolvedTickets");
 		}
 		else{
 			model.setViewName("login");
 		}		
 		return model;
 	}
-	@RequestMapping("resolvedTicketDetails")
+	@RequestMapping("resolvedTickectDetails")
     public ModelAndView loadResolvedTicketDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
@@ -750,7 +750,7 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
-			model.setViewName("resolvedTicketDetails");
+			model.setViewName("resolvedTickectDetails");
 		}
 		else{
 			model.setViewName("login");
@@ -765,8 +765,9 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		     
-			 model.addObject("retMessage", retMessage);		    
-			/* model.addObject("ticketList", logTicketService.getAllResolevedTickets());*/
+			 model.addObject("retMessage", retMessage);	
+			 
+			 model.addObject("ticketList", logTicketService.getAllResolvedTickets(userName.getEmail()));
 			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));				
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			 model.setViewName("resolvedTechTickets");
@@ -776,8 +777,8 @@ public class TicketController {
 		}		
 		return model;
 	}
-	@RequestMapping("resolvedTechTicketDetails")
-    public ModelAndView loadResolvedTechTicketDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
+	@RequestMapping("resolvedTechTicketsDetails")
+    public ModelAndView loadResolvedTechTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -791,7 +792,7 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
-			model.setViewName("resolvedTechTicketDetails");
+			model.setViewName("resolvedTechTicketsDetails");
 		}
 		else{
 			model.setViewName("login");

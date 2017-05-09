@@ -112,8 +112,14 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span><input readOnly id="approver"
-											name="approver" class="form-control" type="text" value="${loggedInUser.firstName} ${loggedInUser.lastName}"/> 
+											class="glyphicon glyphicon-user"></i></span><select
+												name="approver" id="approver" class="form-control selectpicker">
+												<option value="">Select Manager</option>
+												<c:forEach items="${managersList}" var="approver">
+													<option value="${approver.email}">${approver.firstName} ${approver.lastName}</option>
+												</c:forEach>
+												</select>
+													
 									</div>
 								</div>
 							</div>

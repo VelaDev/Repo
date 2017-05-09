@@ -43,7 +43,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 		date = new Date();
 		try{
 			
-			 ticketHistory.setTicketNo(ticket.getRecordID());
+			  ticketHistory.setTicketNo(ticket.getRecordID());
 			  ticketHistory.setTicketNumber(ticket.getTicketNumber());
 			  ticketHistory.setComment(ticket.getComments());
 			  ticketHistory.setEscalatedDate(dateFormat.format(date));
@@ -67,7 +67,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 	@Override
 	public List<TicketHistory> getHistoryByTicketNumber(int ticketNumber) {
 		
-try{
+	try{
 			
 		    aList = new ArrayList<Object>();
 		     ticketHistoryList = new ArrayList<TicketHistory>();

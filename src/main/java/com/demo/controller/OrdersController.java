@@ -104,10 +104,9 @@ public class OrdersController {
 				model.addObject("retMessage", retMessage);
 				
 			}
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if (userName.getRole().equalsIgnoreCase("Manager")	|| userName.getRole().equalsIgnoreCase("Admin")) {
 
 				model.setViewName("placeOrderForTechnician");
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
@@ -551,8 +550,8 @@ public class OrdersController {
 
 			model.addObject("placeOrderForTechnician", new OrdersBean());
 			model.addObject("compatibility", spareParts.getAllSpareParts());
-			model.addObject("technicianList",
-					employeeServiceInt.getAllTechnicians());
+			model.addObject("technicianList",employeeServiceInt.getAllTechnicians());
+			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList", customerServiceInt.getClientList());
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));

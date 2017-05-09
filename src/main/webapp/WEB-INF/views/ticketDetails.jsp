@@ -203,8 +203,8 @@ header, #content, #middle, #sidebar {
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails"
-							data-toggle="tab">General</a></li>
+						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
+						<li><a href="#resolvedDetails" data-toggle="tab">Resolved Details</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -393,10 +393,11 @@ header, #content, #middle, #sidebar {
 
 																						<td><input type="text" readOnly
 																							class="form-control" id="usedPartNumbers"
-																							list="spareParts" onkeydown="upperCaseF(this)"
-																							name="usedPartNumbers" value="${usedPartNumbers}"/><datalist id="spareParts"> 
+																							list="sparePartsBoot" onkeydown="upperCaseF(this)"
+																							name="usedPartNumbers" value="${usedPartNumbers}"/>
+																							<datalist id=sparePartsBoot> 
 																								<c:forEach var="list"
-																									items="${spareParts}">
+																									items="${sparePartsBoot}">
 																									<option value="${list}">
 																								</c:forEach> 
 																							</datalist></td>
@@ -742,7 +743,41 @@ header, #content, #middle, #sidebar {
 
 						</div>
 						<!--/general tab-->
-
+						
+						<!-- resolved details -->
+						<div class="tab-pane active" id="resolvedDetails">
+							<h4 align="center">Resolved Details</h4>
+							<form:form class="well form-horizontal">
+								<div class="panel-body">
+									<!-- Below table will be displayed as Data table -->
+									<table id="myDatatable" class="display datatable">
+										<thead>
+											<tr>
+												<th>Ticket No</th>
+												<th>Ticket Status</th>
+												<th>Action Taken</th>
+												<th>Assigned To</th>
+												<th>Comment</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach items="" var="resolved">
+												<tr>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</form:form>
+						</div>
+						<!-- /resolved details -->
+						
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
@@ -885,7 +920,7 @@ $('#usedPartNumbersdataTable').on('click', 'input[type="button"]', function () {
     $(this).closest('tr').remove();
 	})
 $('p input[type="button"]').click(function () {
-    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" list="spareParts" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /><datalist id="spareParts"><c:forEach var="list"	items="${spareParts}"><option value="${list}"></c:forEach></datalist></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" list="sparePartsBoot" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /><datalist id="sparePartsBoot"><c:forEach var="list"	items="${sparePartsBoot}"><option value="${list}"></c:forEach></datalist></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
 </script>

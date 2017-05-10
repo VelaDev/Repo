@@ -7,9 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Error Login | Velaphanda Trading & Projects</title>
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/login.css" />" />
-<link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" />
-<link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/login.css" />" />
+<link
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />"
+	rel="stylesheet" type="text/css" />
+<link
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"
+	rel="stylesheet" type="text/css" />
 
 </head>
 <body>

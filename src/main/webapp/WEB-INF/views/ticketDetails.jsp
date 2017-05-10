@@ -10,6 +10,8 @@
 	type="image/ico" />
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+	
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
@@ -26,20 +28,21 @@
 	}
 }
 
-li {list-style: none;}
-
-.wellform {
-    min-height: 20px;
-    padding: 19px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.05);
-    padding-bottom: 10%;
+li {
+	list-style: none;
 }
 
+.wellform {
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+	padding-bottom: 10%;
+}
 
 .groupsparedetails, .groupsearchdetails {
 	padding: 20px;
@@ -203,8 +206,10 @@ header, #content, #middle, #sidebar {
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
-						<li><a href="#resolvedDetails" data-toggle="tab">Resolved Details</a></li>
+						<li class="active"><a href="#generalDetails"
+							data-toggle="tab">General</a></li>
+						<li><a href="#resolvedDetails" data-toggle="tab">Resolved
+								Details</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -259,238 +264,317 @@ header, #content, #middle, #sidebar {
 											</div>
 										</div>
 
+										<!-- Solution Details -->
+										<form:form id="check_site_stock_customer" lass="wellform form-horizontal" action="this"
+											method="post"
+											 data-bv-message="This value is not valid"
+								            data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+								            data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+								            data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
+											>
+											<div id="solutionDetails" class="modal fade" role="dialog" aria-labelledby="solutionDetailsLabel" aria-hidden="true">
+												<div class="modal-dialog modal-lg">
+													<div class="modal-content">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-hidden="true">×</button>
+															<h3 class="modal-title">Solution Details</h3>
+														</div>
+														<div class="modal-body">
 
-										<div class="modal fade" id="solutionDetails"
-											aria-hidden="true" style="display: none;">
-											<div class="modal-dialog modal-lg">
-												<div class="modal-content">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">×</button>
-														<h3 class="modal-title">Solution Details</h3>
-													</div>
-													<div class="modal-body">
+															<!--wellform form-horizontal-->
+															<div class="wellform form-horizontal">
 
-														<!--solution tab-->
-														<div class="wellform form-horizontal">
-
-															<div class="groupsparedetails">
-																<legend align="left">Ticket Info</legend>
-																<!--First Column-->
-																<div class="col-md-12">
-																	<!-- Text input Ticket Number-->
-																	<div class="form-group">
-																		<label class="col-md-3 control-label">Ticket
-																			Number</label>
-																		<div class="col-md-8 inputGroupContainer">
-																			<div class="input-group">
-																				<span class="input-group-addon"><i
-																					class="glyphicon glyphicon-barcode"></i></span> <input
-																					id="ticketNumber"
-																					class="form-control" type="text"
-																					value="${ticketObject.ticketNumber}"
-																					readonly="readonly">
-																			</div>
-																		</div>
-																	</div>
-																	<!-- Text area Action Taken-->
-																	<div class="form-group ">
-																		<label class="col-md-3 control-label">Action
-																			Taken</label>
-																		<div class="col-md-8 selectContainer">
-																			<div class="input-group">
-																				<span class="input-group-addon"><i
-																					class="glyphicon glyphicon-list"></i></span> <select
-																					name="actionTaken" id="actionTaken"
-																					class="form-control selectpicker">
-																					<option value="">Please select Action
-																						Taken</option>
-																					<option value="Replaced Part">Replaced
-																						Part</option>
-																					<option value="Replaced Part">Replaced
-																						toner</option>
-																					<option value="Cleared Paper Jam">Cleared
-																						Paper Jam</option>
-																					<option value="Installed Drivers">Installed
-																						Drivers</option>
-																					<option value="Configured Drivers">Configured
-																						Drivers</option>
-																					<option value="Configured Printer">Configured
-																						Printer</option>
-																					<option value="User Error">User Error</option>
-																					<option value="No fault Found">No fault
-																						Found</option>
-																				</select>
-																			</div>
-																		</div>
-																	</div>
-
-																	<!-- Text checkbox Colour Reading-->
-																	<div class="form-group">
-																		<label class="col-md-3 control-label">Colour
-																			Reading</label>
-																		<div class="col-md-8 inputGroupContainer">
-																			<div class="input-group">
-																				<span class="input-group-addon"><i
-																					class="glyphicon glyphicon-barcode"></i></span> <input
-																					type="text" class="form-control"
-																					onkeypress="return isNumber(event)"
-																					placeholder="Enter Colour Reading" id="colour"
-																					name="colourReading"
-																					value="${ticketObject.getDevice().getColourReading() }"
-																					name="colourReading">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<label class="col-md-3 control-label">Mono
-																			Reading</label>
-																		<div class="col-md-8 inputGroupContainer">
-																			<div class="input-group">
-																				<span class="input-group-addon"><i
-																					class="glyphicon glyphicon-barcode"></i></span> <input
-																					type="text" class="form-control"
-																					onkeypress="return isNumber(event)" id="mono"
-																					name="monoReading" placeholder="Enter Mono Reading"
-																					name="monoReading"
-																					value="${ticketObject.getDevice().getMonoReading() }">
-																			</div>
-																		</div>
-																	</div>
-
-																</div>
-															</div>
-															<!-- //group details -->
-
-															<!-- group Used Part Numbers -->
-															<div class="groupsearchdetails">
-																<legend>Used Part Numbers </legend>
-																<!-- Radio for Boot Stock-->
-																<div class="form-group">
-																	<label class="col-md-2 control-label">Boot
-																		Stock</label>
-																	<div class="col-md-6 inputGroupContainer">
-																		<div class="input-group">
-																			<input type="radio" name="groupstock" class="trigger"
-																				data-rel="boot-stock">
-																		</div>
-																	</div>
-																</div>
-																<div class="form-group">
-																	<div class="boot-stock tick">
-																		<div class="tableContect">
-																			<p>
-																				<input type="button" class="btn btn-success"
-																					value="Add Part Number">
-																			</p>
-																			<table id="usedPartNumbersdataTable" width="300px"
-																				style="width: 300px"
-																				class="table table-striped table-bordered table-hover table-condensed">
-																				<label class="model">Part Number</label>
-																				<c:forEach var="usedPartNumbers"
-																					items="${partNumbers}">
-																					<tr>
-
-																						<td><input type="text" readOnly
-																							class="form-control" id="usedPartNumbers"
-																							list="sparePartsBoot" onkeydown="upperCaseF(this)"
-																							name="usedPartNumbers" value="${usedPartNumbers}"/>
-																							<datalist id=sparePartsBoot> 
-																								<c:forEach var="list"
-																									items="${sparePartsBoot}">
-																									<option value="${list}">
-																								</c:forEach> 
-																							</datalist></td>
-																						<td><input type="button"
-																							class="btn btn-danger" value="Remove"></td>
-																					</tr>
-																				</c:forEach>
-																			</table>
-																		</div>
-																	</div>
-																</div>
-																<!-- Radio for Site Stock-->
-																<div class="form-group">
-																	<label class="col-md-2 control-label">Site
-																		Stock </label>
-																	<div class="col-md-6 inputGroupContainer">
-																		<div class="input-group">
-																			<input type="radio" name="groupstock" class="trigger"
-																				data-rel="site-stock">
-																		</div>
-																	</div>
-																</div>
-																<div class="form-group">
-																	<div class="site-stock tick">
-
-																		<!-- Text input Customer Name-->
+																<div class="groupsparedetails">
+																	<legend align="left">Ticket Info</legend>
+																	<!--First Column-->
+																	<div class="col-md-12">
+																		<!-- Text input Ticket Number-->
 																		<div class="form-group">
-
-																			<div class="col-md-6 inputGroupContainer">
+																			<label class="col-md-3 control-label">Ticket
+																				Number</label>
+																			<div class="col-md-8 inputGroupContainer">
 																				<div class="input-group">
 																					<span class="input-group-addon"><i
-																						class="glyphicon glyphicon-user"></i></span><select
-																						id="Site" name="customer"
-																						class="form-control selectpicker">
-																						<option value="">Select Customer Name</option>
-																						<c:forEach items="${customerList}" var="customer">
-																							<option value="${customer.customerName}">${customer.customerName}</option>
-																						</c:forEach>
+																						class="glyphicon glyphicon-barcode"></i></span> <input
+																						id="ticketNumber" class="form-control" type="text"
+																						value="${ticketObject.ticketNumber}"
+																						readonly="readonly">
+																				</div>
+																			</div>
+																		</div>
+																		<!-- Text area Action Taken-->
+																		<div class="form-group ">
+																			<label class="col-md-3 control-label">Action
+																				Taken</label>
+																			<div class="col-md-8 selectContainer">
+																				<div class="input-group">
+																					<span class="input-group-addon"><i
+																						class="glyphicon glyphicon-list"></i></span> <select
+																						name="actionTaken" id="actionTaken"
+																						class="form-control selectpicker"   data-bv-notempty data-bv-notempty-message="Action taken is required!">
+																						<option value="">Please select Action
+																							Taken</option>
+																						<option value="Replaced Part">Replaced
+																							Part</option>
+																						<option value="Replaced Part">Replaced
+																							toner</option>
+																						<option value="Cleared Paper Jam">Cleared
+																							Paper Jam</option>
+																						<option value="Installed Drivers">Installed
+																							Drivers</option>
+																						<option value="Configured Drivers">Configured
+																							Drivers</option>
+																						<option value="Configured Printer">Configured
+																							Printer</option>
+																						<option value="User Error">User Error</option>
+																						<option value="No fault Found">No fault
+																							Found</option>
 																					</select>
 																				</div>
 																			</div>
 																		</div>
 
-																		<div class="tableContect">
-																			<p>
-																				<input type="button" class="btn btn-success"
-																					value="Add Part Number">
-																			</p>
-																			<table id="usedPartNumbersdataTableSiteStock"
-																				width="300px" style="width: 300px"
-																				class="table table-striped table-bordered table-hover table-condensed">
-																				<label class="model">Part Number</label>
-																				<c:forEach var="usedPartNumbers"
-																					items="${partNumbers}">
-																					<tr>
+																		<!-- Text checkbox Colour Reading-->
+																		<div class="form-group">
+																			<label class="col-md-3 control-label">Colour
+																				Reading</label>
+																			<div class="col-md-8 inputGroupContainer">
+																				<div class="input-group">
+																					<span class="input-group-addon"><i
+																						class="glyphicon glyphicon-barcode"></i></span> <input
+																						type="text" class="form-control"
+																						onkeypress="return isNumber(event)"
+																						placeholder="Enter Colour Reading" id="colour"
+																						name="colourReading"
+																						value="${ticketObject.getDevice().getColourReading() }"
+																						name="colourReading">
+																				</div>
+																			</div>
+																		</div>
+																		<div class="form-group">
+																			<label class="col-md-3 control-label">Mono
+																				Reading</label>
+																			<div class="col-md-8 inputGroupContainer">
+																				<div class="input-group">
+																					<span class="input-group-addon"><i
+																						class="glyphicon glyphicon-barcode"></i></span> <input
+																						type="text" class="form-control"
+																						onkeypress="return isNumber(event)" id="mono"
+																						name="monoReading"
+																						placeholder="Enter Mono Reading"
+																						name="monoReading"
+																						value="${ticketObject.getDevice().getMonoReading() }">
+																				</div>
+																			</div>
+																		</div>
 
-																						<td><input type="text" readOnly
-																							class="form-control" list="spareParts" onkeydown="upperCaseF(this)" id="usedPartNumbers"
-																							onkeydown="upperCaseF(this)" name="usedPartNumbers" value="${usedPartNumbers}"/><!-- Iterating over the list sent from Controller -->
-																							<datalist id="spareParts"> 
-																								<c:forEach var="list"
-																									items="${spareParts}">
-																									<option value="${list}">
-																								</c:forEach> 
-																							</datalist></td>
-																						<td><input type="button"
-																							class="btn btn-danger" value="Remove"></td>
+																	</div>
+																</div>
+																<!-- //group details -->
 
-																					</tr>
-																				</c:forEach>
-																			</table>
+																<!-- group Used Part Numbers -->
+																<div class="groupsearchdetails">
+																	<legend>Used Part Numbers </legend>
+																	<!-- Radio for Boot Stock-->
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Boot
+																			Stock</label>
+																		<div class="col-md-6 inputGroupContainer">
+																			<div class="input-group">
+																				<input type="radio" name="groupstock"
+																					class="trigger" data-rel="boot-stock">
+																			</div>
+																		</div>
+																	</div>
+																	<div class="form-group">
+																		<div class="boot-stock tick">
+																			<div class="tableContect">
+																				<p>
+																					<!--<input type="button" class="btn btn-success" value="Add">-->
+																					<button type="button" class="btn btn-success"
+																						data-toggle="modal" data-target="#bootStock">Add</button>
+																				</p>
+
+																			</div>
+																		</div>
+																	</div>
+																	<!-- Radio for Site Stock-->
+																	<div class="form-group">
+																		<label class="col-md-2 control-label">Site
+																			Stock </label>
+																		<div class="col-md-6 inputGroupContainer">
+																			<div class="input-group">
+																				<input type="radio" name="groupstock"
+																					class="trigger" data-rel="site-stock">
+																			</div>
+																		</div>
+																	</div>
+
+																	<div class="form-group">
+																		<div class="site-stock tick">
+																			<form id="site_stock" action="" method="">
+																				
+																			<!-- Text input Customer Name-->
+																			<div class="form-group">
+																					<div class="col-md-6 inputGroupContainer">
+																						<div class="input-group">
+																							<span class="input-group-addon"><i
+																								class="glyphicon glyphicon-user"></i></span><select
+																								id="Site" name="customer"
+																								class="form-control selectpicker"
+																								onchange="ShowCustomer(this.value);"   data-bv-notempty data-bv-notempty-message="Customer name is required!">
+																								<option value="">Select Customer Name</option>
+																								<c:forEach items="${customerList}"
+																									var="customer">
+																									<option value="customer">${customer.customerName}</option>
+																								</c:forEach>
+																							</select>
+																						</div>
+																					</div>
+																			</div>
+
+																			<div class="tableContect">
+																				<p>
+																					<!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#test2">Add</button>-->
+																					<input type="submit" id="siteAdd" name="siteAdd"
+																						class="btn btn-success" data-toggle="modal"
+																						data-target="#siteStock" value="Add"
+																						style="display: none;" />
+																				</p>
+
+																			</div>
+
+																			</form>
+
+
 																		</div>
 																	</div>
 																</div>
+																<!-- //group Used Part Numbers -->
 															</div>
-															<!-- //group Used Part Numbers -->
+															<!--/wellform form-horizontal-->
+
 														</div>
-														<!--/solution tab-->
+														<div class="modal-footer">
+																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																<button type="submit" value="Submit" class="btn btn-primary" id="send_btn">Submit Solution</button>
+									
+														</div>
 
 													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">Close</button>
-														<button id="save" type="button" class="btn btn-primary"
-															data-dismiss="modal">Save</button>
-													</div>
-
+													<!-- /.modal-content -->
 												</div>
-												<!-- /.modal-content -->
+												<!-- /.modal-dialog -->
 											</div>
-											<!-- /.modal-dialog -->
-										</div>
-										<!-- /.modal -->
+											<!-- /.modal solutionDetails-->
+
+											<!--Boot Stock-->
+											<div id="bootStock" class="modal fade" role="dialog"
+												style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+												<div class="modal-dialog">
+													<!-- Modal content-->
+													<div class="modal-content" id="botStock">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-hidden="true">×</button>
+															<h3 class="modal-title">Boot Stock</h3>
+														</div>
+														<div class="modal-body">
+															<table id="bStock" class="display datatable">
+																<thead>
+																	<tr>
+																		<th>Part No</th>
+																		<th>Description</th>
+																		<th>Model No</th>
+																		<th>Quantity</th>
+																		<th>Tick</th>
+
+																	</tr>
+																</thead>
+																<tbody>
+																	<!-- Iterating over the list sent from Controller -->
+																	<c:forEach var="list" items="${compatibility}">
+
+																		<tr>
+																			<td>${list.partNumber}</td>
+																			<td>${list.itemDescription}</td>
+																			<td>${list.compitableDevice}</td>
+																			<td>${quantity}</td>
+																			<td><input type="checkbox" id="checkedOrder"
+																				name="selectedItem" class="form-group"
+																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+																		</tr>
+
+																	</c:forEach>
+																</tbody>
+															</table>
+
+														</div>
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+															<button id="save" type="button" class="btn btn-primary"
+																data-dismiss="modal">Save</button>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--/site stock-->
+
+
+											<!--Site Stock-->
+											<div id="siteStock" class="modal fade" role="dialog"
+												style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+												<div class="modal-dialog">
+													<!-- Modal content-->
+													<div class="modal-content" id="siStock">
+														<div class="modal-header">
+															<button type="button" class="close" data-dismiss="modal"
+																aria-hidden="true">×</button>
+															<h3 class="modal-title">Site Stock</h3>
+														</div>
+														<div class="modal-body">
+															<table id="sStock" class="display datatable">
+																<thead>
+																	<tr>
+																		<th>Part No</th>
+																		<th>Description</th>
+																		<th>Model No</th>
+																		<th>Quantity</th>
+																		<th>Tick</th>
+
+																	</tr>
+																</thead>
+																<tbody>
+																	<!-- Iterating over the list sent from Controller -->
+																	<c:forEach var="list" items="${compatibility}">
+
+																		<tr>
+																			<td>${list.partNumber}</td>
+																			<td>${list.itemDescription}</td>
+																			<td>${list.compitableDevice}</td>
+																			<td>${quantity}</td>
+																			<td><input type="checkbox" id="checkedOrder"
+																				name="selectedItem" class="form-group"
+																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+															<div class="modal-footer">
+																
+																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+																<button id="save" type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+														
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--/site stock-->
+
+										</form:form><!-- /Solution Details -->
 
 
 										<!-- Select type Order No-->
@@ -560,9 +644,6 @@ header, #content, #middle, #sidebar {
 												</div>
 											</div>
 										</div>
-
-
-
 									</div>
 									<!--/ First Column-->
 
@@ -577,8 +658,8 @@ header, #content, #middle, #sidebar {
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly>${ticketObject.description}</textarea>
+													<textarea class="form-control" onkeydown="upperCaseF(this)"
+														name="description" required="required" readonly>${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
@@ -602,10 +683,13 @@ header, #content, #middle, #sidebar {
 
 
 								<!-- //Device Details -->
+								<div class="well form-horizontal">
+									
 								<fieldset>
 
 									<legend align="left">Device Details</legend>
 									<!--First Column-->
+									
 									<div class="col-md-6">
 										<!-- Text input Serial No-->
 										<div class="form-group">
@@ -669,10 +753,6 @@ header, #content, #middle, #sidebar {
 
 									<!--Second column-->
 									<div class="col-sm-6">
-
-
-
-
 										<!-- Text input Contract Start Date-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Contract Start
@@ -719,15 +799,16 @@ header, #content, #middle, #sidebar {
 										</div>
 
 									</div>
-
-
-								</fieldset>
+									</fieldset>
+									
+									</div>							
 								<!-- //Device Details -->
 
 								<!-- Customer Details -->
 								<fieldset>
 									<legend align="left">Customer Details</legend>
-									<a href="viewCustomerDetails?customerName=<c:out value='${ticketObject.device.customerDevice.customerName}'/>">${ticketObject.device.customerDevice.customerName}</a>
+									<a
+										href="viewCustomerDetails?customerName=<c:out value='${ticketObject.device.customerDevice.customerName}'/>">${ticketObject.device.customerDevice.customerName}</a>
 								</fieldset>
 								<!-- //Customer Details -->
 
@@ -743,14 +824,14 @@ header, #content, #middle, #sidebar {
 
 						</div>
 						<!--/general tab-->
-						
+
 						<!-- resolved details -->
-						<div class="tab-pane active" id="resolvedDetails">
+						<div class="tab-pane" id="resolvedDetails">
 							<h4 align="center">Resolved Details</h4>
 							<form:form class="well form-horizontal">
 								<div class="panel-body">
 									<!-- Below table will be displayed as Data table -->
-									<table id="myDatatable" class="display datatable">
+									<table id="resolvededDetails" class="display datatable">
 										<thead>
 											<tr>
 												<th>Ticket No</th>
@@ -777,7 +858,7 @@ header, #content, #middle, #sidebar {
 							</form:form>
 						</div>
 						<!-- /resolved details -->
-						
+
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
@@ -805,7 +886,8 @@ header, #content, #middle, #sidebar {
 													<td><c:out value="${history.status}" /></td>
 													<td><c:out value="${history.actionTaken}" /></td>
 													<td><c:out value="${history.escalatedDate}" /></td>
-													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+													<td><c:out
+															value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 													<td><c:out value="${history.colourReading }" /></td>
 													<td><c:out value="${history.monoReading }" /></td>
 													<td><c:out value="${history.comment}" /></td>
@@ -836,16 +918,46 @@ header, #content, #middle, #sidebar {
 	<!-- / velaphanda_containter -->
 </body>
 
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	
 
 <script>
 	$(document).ready(function() {
 		$('#myDatatable').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#resolvededDetails').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#bStock').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#sStock').DataTable({
 			"jQueryUI" : true,
 			"pagingType" : "full_numbers",
 			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
@@ -869,8 +981,9 @@ $('#status').change(function() {
 		$('.' + $('.trigger:checked').data('rel')).show();
 	}).change(); //Show content on page load
 </script>
-	<!-- Create datalist to populate search -->
-	<script type="text/javascript">
+
+<!-- Create datalist to populate search -->
+<script type="text/javascript">
 
 // Get the <datalist> and <input> elements.
 var dataList = document.getElementById('json-datalist');
@@ -914,26 +1027,7 @@ request.send();
 
 </script>
 
-<script>
 
-$('#usedPartNumbersdataTable').on('click', 'input[type="button"]', function () {
-    $(this).closest('tr').remove();
-	})
-$('p input[type="button"]').click(function () {
-    $('#usedPartNumbersdataTable').append('<tr><td><input type="text" class="form-control" list="sparePartsBoot" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /><datalist id="sparePartsBoot"><c:forEach var="list"	items="${sparePartsBoot}"><option value="${list}"></c:forEach></datalist></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
-});
-
-</script>
-<script>
-
-$('#usedPartNumbersdataTableSiteStock').on('click', 'input[type="button"]', function () {
-    $(this).closest('tr').remove();
-	})
-$('p input[type="button"]').click(function () {
-    $('#usedPartNumbersdataTableSiteStock').append('<tr><td><input type="text" class="form-control" list="spareParts" onkeydown="upperCaseF(this)" id="usedPartNumbers" name="usedPartNumbers" placeholder="Used Part Numbers" /><datalist id="spareParts"><c:forEach var="list"	items="${spareParts}"><option value="${list}"></c:forEach></datalist></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
-});
-
-</script>
 
 <!--Status Selection-->
 <script type="text/javascript">
@@ -955,6 +1049,50 @@ $('p input[type="button"]').click(function () {
 
 </script>
 
+
+<!--Select customer before showing add button-->
+<script type="text/javascript">
+	
+	function ShowCustomer(val){
+	 var element=document.getElementById('siteAdd');
+	 if(val=='pick a customer' ||val=='customer')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	}
+
+</script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$('#site_stock')
+								.bootstrapValidator(
+										{
+											feedbackIcons : {
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											fields : {
+												customer : {
+													validators : {
+														stringLength : {
+															min : 3,
+														},
+														notEmpty : {
+															message : 'Customer is required and cannot be empty'
+														}
+													}
+												}
+											}
+										});
+					});
+</script>
+
+<script>
+$('#check_site_stock_customer').bootstrapValidator();
+</script>
 <!-- Accept alphanumeric characters only -->
 <script type="text/javascript">
 function isNumber(evt) {

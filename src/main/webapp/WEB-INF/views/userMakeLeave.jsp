@@ -161,19 +161,19 @@
 <!--Compare start, end and installation date between each other-->
 <script type="text/javascript">
 
-/* $("#startDate, #endDate").datepicker();
+$("#startDate, #endDate").datepicker();
 
 $("#endDate").change(function () {
 
 var startDate = document.getElementById("startDate").value;
 var endDate = document.getElementById("endDate").value;
 
-if ((Date.parse(endDate) <= Date.parse(startDate))) {
-    alert("Leave End Date should be greater than Leave Start Date");
+if ((Date.parse(endDate) < Date.parse(startDate))) {
+    alert("Leave End Date should not be a past day");
     document.getElementById("endDate").value = "";
-}
+} 
 
-}); */
+});
 
 
 </script>

@@ -161,7 +161,7 @@
 <!--Compare start, end and installation date between each other-->
 <script type="text/javascript">
 
-$("#startDate, #endDate").datepicker();
+/* $("#startDate, #endDate").datepicker();
 
 $("#endDate").change(function () {
 
@@ -173,7 +173,7 @@ if ((Date.parse(endDate) <= Date.parse(startDate))) {
     document.getElementById("endDate").value = "";
 }
 
-});
+}); */
 
 
 </script>

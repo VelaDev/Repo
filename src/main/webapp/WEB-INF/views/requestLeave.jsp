@@ -186,7 +186,7 @@ var startDate = document.getElementById("startDate").value;
 var endDate = document.getElementById("endDate").value;
 
 if ((Date.parse(endDate) < Date.parse(startDate))) {
-    alert("Leave End Date should not be a past day");
+    alert("Leave End Date should not be a past date");
     document.getElementById("endDate").value = "";
 } 
 

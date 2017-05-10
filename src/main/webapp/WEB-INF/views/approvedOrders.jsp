@@ -34,6 +34,12 @@
 					</h3>
 				</div>
 				<div class="panel-body">
+				<c:if test="${not empty retMessage }">
+						<div class="alert alert-info" role="alert">
+							<c:out value="${ retMessage}">
+							</c:out>
+						</div>
+					</c:if>
 					<div class="tab-content">
 						<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">

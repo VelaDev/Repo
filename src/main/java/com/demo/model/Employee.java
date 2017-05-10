@@ -84,4 +84,7 @@ public class Employee implements Serializable{
 	
 	@OneToMany(mappedBy="employee")
 	private Set<Leave> leave;
+	
+	@OneToMany(mappedBy="employee")
+	private Set<TechnicianSite> technicianSites;
 }

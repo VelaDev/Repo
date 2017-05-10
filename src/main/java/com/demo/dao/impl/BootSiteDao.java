@@ -49,6 +49,7 @@ public class BootSiteDao implements BootStockDaoInt{
 		}
 		
 	}
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<BootStock> getAllOrders() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(

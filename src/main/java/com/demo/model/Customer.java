@@ -63,5 +63,8 @@ public class Customer implements Serializable{
 	
 	@OneToMany(mappedBy ="customerDevice", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Device> customerDevice;
+	
+	@OneToMany(mappedBy="customer")
+	private Set<TechnicianSite> technicianSites;
 
 }

@@ -404,19 +404,21 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = "shipment")
-	public String shipment(@RequestParam("recordID") int recordID) {
+	public ModelAndView shipment(@RequestParam("recordID") int recordID) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			ordersServiceInt.approveShipment(recordID);
+			
+			
+			model.addObject("retMessage",ordersServiceInt.approveShipment(recordID));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			retPage = "redirect:approvedOrders";
+			model.setViewName("approvedOrders");
 		} else {
 			retPage = "redirect:login";
 		}
 
-		return retPage;
+		return model;
 	}
 
 	@RequestMapping("shippedOrders")
@@ -438,20 +440,22 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = "shipmentReceived")
-	public String shipmentReceived(@RequestParam("recordID") int recordID) {
+	public ModelAndView shipmentReceived(@RequestParam("recordID") int recordID) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			ordersServiceInt.approveShipment(recordID);
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("retMessage",
+					ordersServiceInt.approveShipment(recordID));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 
-			retPage = "redirect:viewApprovedOrders";
+			model.setViewName("viewApprovedOrders");
 		} else {
-			retPage = "redirect:login";
+			model.setViewName("login");
 		}
 
-		return retPage;
+		return model;
 	}
 
 	@RequestMapping(value = "orderitemHistory", method = RequestMethod.GET)

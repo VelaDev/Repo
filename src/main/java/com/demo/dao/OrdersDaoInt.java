@@ -19,7 +19,7 @@ public interface OrdersDaoInt {
 	public String approveOrder(Integer recordID);
 	public List<OrderHeader>pendingOrders(String approveName);
 	public int pendingOrdersCount(String approveName);
-	public void approveShipment(Integer recordID);
+	public String approveShipment(Integer recordID);
 	public List<OrderHeader> shippedOrders();
 	public List<OrderHeader> shippedOrders(String technicianEmail);
 	public String declineOrder(String orderNum,String reasonForeclined);

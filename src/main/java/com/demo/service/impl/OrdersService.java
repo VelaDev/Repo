@@ -82,8 +82,8 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public void approveShipment(Integer recordID) {
-		ordersDAO.approveShipment(recordID);
+	public String approveShipment(Integer recordID) {
+		return ordersDAO.approveShipment(recordID);
 		
 	}
 

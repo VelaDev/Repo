@@ -427,7 +427,7 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public void approveShipment(Integer recordID) {
+	public String approveShipment(Integer recordID) {
 		orderHeader = getOrder(recordID);
 		date = new Date();
 		if(orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Approved")){
@@ -436,20 +436,25 @@ public class OrderDao implements OrdersDaoInt {
 			orderHeader.setShippingDate(date);
 			sessionFactory.getCurrentSession().update(orderHeader);
 			JavaMail.sendEmailForShipment(orderHeader.getApprover(),orderHeader);
+			retMessage = "Order Number "+ orderHeader.getOrderNum()+" is shipped to "+ orderHeader.getEmployee().getFirstName()+ " "+orderHeader.getEmployee().getLastName();
 		}
 		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
 			orderHeader.setStatus("Received");
 			sessionFactory.getCurrentSession().update(orderHeader);
 			
+			
 			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				siteStocDaoInt.saveSiteStock(orderDetailList);
+				retMessage = "Order Number "+ orderHeader.getOrderNum()+" is now available in site "+ orderHeader.getCustomer().getCustomerName();
 			}
 			else{
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				 bootStockDaoInt.saveBootStock(orderDetailList);;
+				 retMessage = "Order Number "+ orderHeader.getOrderNum()+" is now available in boot stock for "+ orderHeader.getEmployee().getFirstName() +" "+ orderHeader.getEmployee().getLastName();
 			}
 		}
+		return retMessage;
 	}
 
 	@Override

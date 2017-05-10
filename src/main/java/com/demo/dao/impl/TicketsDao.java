@@ -297,6 +297,32 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
 					ticket.setActionTaken(tickets.getActionTaken());
 					ticket.setDateResolved(date1);
+					ticket.setComments(tickets.getComments());
+					device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
+					device.setMonoReading(tickets.getMonoReading());
+					device.setColourReading(tickets.getColourReading());
+					
+					if(tickets.getUsedPartNumbers()!=null){
+						if(tickets.getUsedPartNumbers().length()>3)
+						{
+							retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),tickets.getCustomer());
+							
+							if(retMessage.equalsIgnoreCase("OK")){
+								sessionFactory.getCurrentSession().update(device);
+								sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+								historyDaoInt.insertTicketHistory(ticket);
+								
+								retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+							}
+						}
+					}else{
+						
+						sessionFactory.getCurrentSession().update(device);
+						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+						
+						historyDaoInt.insertTicketHistory(ticket);
+						retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+					}
 				}
 				else{
 					ticket.setComments(tickets.getComments());
@@ -305,32 +331,8 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 					
 			}
-			ticket.setComments(tickets.getComments());
-			device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
-			device.setMonoReading(tickets.getMonoReading());
-			device.setColourReading(tickets.getColourReading());
 			
-			if(tickets.getUsedPartNumbers()!=null){
-				if(tickets.getUsedPartNumbers().length()>3)
-				{
-					retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),tickets.getCustomer());
-					if(retMessage.equalsIgnoreCase("OK")){
-						sessionFactory.getCurrentSession().update(device);
-						
-						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
-						historyDaoInt.insertTicketHistory(ticket);
-						retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
-					}
-				}
-			}else{
-				sessionFactory.getCurrentSession().update(device);
-				
-				sessionFactory.getCurrentSession().saveOrUpdate(ticket);
-				historyDaoInt.insertTicketHistory(ticket);
-				retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
-			}
-			
-			
+
 		} catch (Exception e) {
 			retMessage = "SLA did not start because of " + e.getMessage();
 		}
@@ -945,7 +947,7 @@ public class TicketsDao implements TicketsDaoInt {
 	@Transactional
 	@Scheduled(fixedRate = 1800000)
 	@Override
-	public void resolveToClosedUpdate() {
+	public void resolveToClosedTicketUpdate() {
 		myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		currentDate = new Date();
 		Calendar cal = Calendar.getInstance();

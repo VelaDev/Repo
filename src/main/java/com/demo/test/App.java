@@ -26,8 +26,17 @@ import com.demo.model.Tickets;
 public class App 
 {
     public static void main( String[] args ) throws ParseException{
+    	
+    	StringBuffer b = new StringBuffer();
+    	b.append("Mohapi");
+    	b.append("Mokoena");
+    	System.out.println(b);
+    	/*StringBuilder b = new StringBuilder();
+    	b.append("Mohapi");
+    	b.append("Mokoena");
+    	System.out.println(b);*/
    
-    	String date1 = null;
+    	/*String date1 = null;
     	String date2 = "2017-05-03";
     	SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 	    Date currentDate  = new Date();
@@ -39,9 +48,9 @@ public class App
 			
 			currentDate = myFormat.parse(date1);
 			secondDate = myFormat.parse(date2);
-			/*if(currentDate.after(secondDate)){
+			if(currentDate.after(secondDate)){
 				System.out.println("Second date cones before first date");
-			}else*/ if(currentDate.compareTo(secondDate)>=0) {
+			}else if(currentDate.compareTo(secondDate)>=0) {
 				System.out.println("Otherwise");
 			}else{
 				System.out.println("Otherwise got it");
@@ -49,6 +58,6 @@ public class App
 		}
 		catch(Exception e){
 			
-		}
+		}*/
     }
 }

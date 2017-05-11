@@ -6,11 +6,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="shortcut icon" href="<c:url value="images/favicon.ico" />"
-	type="image/ico" />
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom.css" />">
-	
+<link rel="shortcut icon" href="<c:url value="images/favicon.ico" />" type="image/ico" />
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_custom.css" />">	
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
 <link type="text/css" rel="stylesheet"
@@ -26,6 +23,10 @@
 		width: 90%;
 		max-width: 1200px;
 	}
+}
+.shitToRight{
+   padding-left:16%;
+   margin-left:3%;
 }
 
 li {
@@ -208,9 +209,9 @@ header, #content, #middle, #sidebar {
 
 						<li class="active"><a href="#generalDetails"
 							data-toggle="tab">General</a></li>
-						<li><a href="#resolvedDetails" data-toggle="tab">Resolved
+						<!-- <li><a href="#resolvedDetails" data-toggle="tab">Resolved
 								Details</a></li>
-						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
+						 --><li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
 
@@ -390,12 +391,14 @@ header, #content, #middle, #sidebar {
 																	<div class="form-group">
 																		<div class="boot-stock tick">
 																			<div class="tableContect">
+																			<div class="shitToRight">
 																				<p>
 																					<!--<input type="button" class="btn btn-success" value="Add">-->
 																					<button type="button" class="btn btn-success"
 																						data-toggle="modal" data-target="#bootStock">Add</button>
 																				</p>
-
+																				
+																			</div>
 																			</div>
 																		</div>
 																	</div>
@@ -410,14 +413,14 @@ header, #content, #middle, #sidebar {
 																			</div>
 																		</div>
 																	</div>
-
+																	
 																	<div class="form-group">
 																		<div class="site-stock tick">
 																			<form id="site_stock" action="" method="">
-																				
+																			<div class="shitToRight">	
 																			<!-- Text input Customer Name-->
 																			<div class="form-group">
-																					<div class="col-md-6 inputGroupContainer">
+																					<div class="col-md-9 inputGroupContainer">
 																						<div class="input-group">
 																							<span class="input-group-addon"><i
 																								class="glyphicon glyphicon-user"></i></span><select
@@ -435,13 +438,17 @@ header, #content, #middle, #sidebar {
 																			</div>
 
 																			<div class="tableContect">
-																				<p>
+																				
+																				
+																					<p>
 																					<!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#test2">Add</button>-->
 																					<input type="submit" id="siteAdd" name="siteAdd"
 																						class="btn btn-success" data-toggle="modal"
 																						data-target="#siteStock" value="Add"
 																						style="display: none;" />
-																				</p>
+																					</p>
+																				</div>
+																				
 
 																			</div>
 
@@ -458,7 +465,7 @@ header, #content, #middle, #sidebar {
 														</div>
 														<div class="modal-footer">
 																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-																<button type="submit" value="Submit" class="btn btn-primary" id="send_btn">Submit Solution</button>
+																<button type="submit" value="Submit" class="btn btn-primary" id="send_btn">Submit</button>
 									
 														</div>
 
@@ -503,7 +510,7 @@ header, #content, #middle, #sidebar {
 																			<td>${quantity}</td>
 																			<td><input type="checkbox" id="checkedOrder"
 																				name="selectedItem" class="form-group"
-																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" value="true"></td>
 																		</tr>
 
 																	</c:forEach>
@@ -557,7 +564,7 @@ header, #content, #middle, #sidebar {
 																			<td>${quantity}</td>
 																			<td><input type="checkbox" id="checkedOrder"
 																				name="selectedItem" class="form-group"
-																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" value="true"></td>
 																		</tr>
 																	</c:forEach>
 																</tbody>
@@ -825,40 +832,7 @@ header, #content, #middle, #sidebar {
 						</div>
 						<!--/general tab-->
 
-						<!-- resolved details -->
-						<div class="tab-pane" id="resolvedDetails">
-							<h4 align="center">Resolved Details</h4>
-							<form:form class="well form-horizontal">
-								<div class="panel-body">
-									<!-- Below table will be displayed as Data table -->
-									<table id="resolvededDetails" class="display datatable">
-										<thead>
-											<tr>
-												<th>Ticket No</th>
-												<th>Ticket Status</th>
-												<th>Action Taken</th>
-												<th>Assigned To</th>
-												<th>Comment</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach items="" var="resolved">
-												<tr>
-													<td><c:out value="" /></td>
-													<td><c:out value="" /></td>
-													<td><c:out value="" /></td>
-													<td><c:out value="" /></td>
-													<td><c:out value="" /></td>
-												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</form:form>
-						</div>
-						<!-- /resolved details -->
-
+						
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>

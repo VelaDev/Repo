@@ -189,6 +189,8 @@ header, #content, #middle, #sidebar {
 
 						<li class="active"><a href="#generalDetails"
 							data-toggle="tab">General</a></li>
+							<li><a href="#resolvedDetails" data-toggle="tab">Resolved
+								Details</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -724,6 +726,42 @@ header, #content, #middle, #sidebar {
 						</div>
 						<!--/general tab-->
 
+						<!-- resolved details -->
+						<div class="tab-pane" id="resolvedDetails">
+							<h4 align="center">Resolved Details</h4>
+							<form:form class="well form-horizontal">
+								<div class="panel-body">
+									<!-- Below table will be displayed as Data table -->
+									<table id="resolvededDetails" class="display datatable">
+										<thead>
+											<tr>
+												<th>Ticket No</th>
+												<th>Ticket Status</th>
+												<th>Action Taken</th>
+												<th>Assigned To</th>
+												<th>Comment</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach items="" var="resolved">
+												<tr>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+													<td><c:out value="" /></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+							</form:form>
+						</div>
+						<!-- /resolved details -->
+						
+
+
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
@@ -799,6 +837,37 @@ header, #content, #middle, #sidebar {
 		});
 	});
 </script>
+<script>
+	$(document).ready(function() {
+		$('#resolvededDetails').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#bStock').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+<script>
+	$(document).ready(function() {
+		$('#sStock').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+
 
 <script>
 $('#status').change(function() {

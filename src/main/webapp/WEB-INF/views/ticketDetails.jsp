@@ -266,13 +266,13 @@ header, #content, #middle, #sidebar {
 										</div>
 
 										<!-- Solution Details -->
-										<form:form id="check_site_stock_customer" class="wellform form-horizontal" action="this"
-											method="post"
-											 data-bv-message="This value is not valid"
+										<form:form id="check_site_stock_customer" 
+										    class="wellform form-horizontal" action="this" method="post"
+											data-bv-message="This value is not valid"
 								            data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
 								            data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-								            data-bv-feedbackicons-validating="glyphicon glyphicon-refresh"
-											>
+								            data-bv-feedbackicons-validating="glyphicon glyphicon-refresh" >
+								            
 											<div id="solutionDetails" class="modal fade" role="dialog" aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 												<div class="modal-dialog modal-lg">
 													<div class="modal-content">
@@ -393,11 +393,8 @@ header, #content, #middle, #sidebar {
 																			<div class="tableContect">
 																			<div class="shitToRight">
 																				<p>
-																					<!--<input type="button" class="btn btn-success" value="Add">-->
-																					<button type="button" class="btn btn-success"
-																						data-toggle="modal" data-target="#bootStock">Add</button>
-																				</p>
-																				
+																					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#bootStock">Add</button>
+																				</p>																				
 																			</div>
 																			</div>
 																		</div>
@@ -416,45 +413,16 @@ header, #content, #middle, #sidebar {
 																	
 																	<div class="form-group">
 																		<div class="site-stock tick">
-																			<form id="site_stock" action="" method="">
-																			<div class="shitToRight">	
-																			<!-- Text input Customer Name-->
-																			<div class="form-group">
-																					<div class="col-md-9 inputGroupContainer">
-																						<div class="input-group">
-																							<span class="input-group-addon"><i
-																								class="glyphicon glyphicon-user"></i></span><select
-																								id="Site" name="customer"
-																								class="form-control selectpicker"
-																								onchange="ShowCustomer(this.value);"   data-bv-notempty data-bv-notempty-message="Customer name is required!">
-																								<option value="">Select Customer Name</option>
-																								<c:forEach items="${customerList}"
-																									var="customer">
-																									<option value="customer">${customer.customerName}</option>
-																								</c:forEach>
-																							</select>
-																						</div>
-																					</div>
-																			</div>
-
-																			<div class="tableContect">
-																				
-																				
+																			<div class="shitToRight">
+																				<div class="tableContect">
 																					<p>
 																					<!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#test2">Add</button>-->
 																					<input type="submit" id="siteAdd" name="siteAdd"
 																						class="btn btn-success" data-toggle="modal"
-																						data-target="#siteStock" value="Add"
-																						style="display: none;" />
+																						data-target="#siteStock" value="Add"/>
 																					</p>
 																				</div>
-																				
-
 																			</div>
-
-																			</form>
-
-
 																		</div>
 																	</div>
 																</div>
@@ -466,7 +434,6 @@ header, #content, #middle, #sidebar {
 														<div class="modal-footer">
 																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																<button type="submit" value="Submit" class="btn btn-primary" id="send_btn">Submit</button>
-									
 														</div>
 
 													</div>

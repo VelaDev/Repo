@@ -266,7 +266,7 @@ header, #content, #middle, #sidebar {
 										</div>
 
 										<!-- Solution Details -->
-										<form:form id="check_site_stock_customer" lass="wellform form-horizontal" action="this"
+										<form:form id="check_site_stock_customer" class="wellform form-horizontal" action="this"
 											method="post"
 											 data-bv-message="This value is not valid"
 								            data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
@@ -493,7 +493,7 @@ header, #content, #middle, #sidebar {
 																	<tr>
 																		<th>Part No</th>
 																		<th>Description</th>
-																		<th>Model No</th>
+																		<!-- <th>Model No</th> -->
 																		<th>Quantity</th>
 																		<th>Tick</th>
 
@@ -501,16 +501,16 @@ header, #content, #middle, #sidebar {
 																</thead>
 																<tbody>
 																	<!-- Iterating over the list sent from Controller -->
-																	<c:forEach var="list" items="${compatibility}">
+																	<c:forEach var="list" items="${bootStock}">
 
 																		<tr>
 																			<td>${list.partNumber}</td>
 																			<td>${list.itemDescription}</td>
-																			<td>${list.compitableDevice}</td>
-																			<td>${quantity}</td>
+																			<%-- <td>${list.compatibleDevice}</td> --%>
+																			<td>${list.quantity}</td>
 																			<td><input type="checkbox" id="checkedOrder"
 																				name="selectedItem" class="form-group"
-																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" value="true"></td>
+																				value="${list.partNumber},${list.itemDescription}" value="true"></td>
 																		</tr>
 
 																	</c:forEach>

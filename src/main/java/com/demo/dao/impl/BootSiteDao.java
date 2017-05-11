@@ -64,7 +64,7 @@ public class BootSiteDao implements BootStockDaoInt{
 			bootStocks = getAllOrders();
 			 for(BootStock boot:bootStocks){
 				 String name = boot.getTechnicianName();
-				 if(name.equalsIgnoreCase(technician)){
+				 if(name.equalsIgnoreCase(technician)&& boot.getQuantity()>0){
 					 bootStockList.add(boot);
 				 }
 			 }

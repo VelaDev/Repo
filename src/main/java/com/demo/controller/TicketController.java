@@ -21,6 +21,7 @@ import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.Tickets;
+import com.demo.service.BootStockInt;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
@@ -52,6 +53,8 @@ public class TicketController {
 	private TicketsServiceInt ticketsServiceInt;
 	@Autowired
 	private SpareMasterServiceInt spareMasterServiceInt;
+	@Autowired
+	private BootStockInt bootStockint;
 	@Autowired
 	private LeaveInt leaveInt;
 	private List<PieChart> beanList = null;
@@ -135,7 +138,7 @@ public class TicketController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		
+		    String technician = userName.getFirstName()+ " "+userName.getLastName();
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
 			model.addObject("saveSpareParts", new SparePartsBean());
@@ -148,6 +151,7 @@ public class TicketController {
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
+			model.addObject("bootStock", bootStockint.getAllOrders(technician));
 			model.setViewName("ticketDetails");
 		}
 		else{

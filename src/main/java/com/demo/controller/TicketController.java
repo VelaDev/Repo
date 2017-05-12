@@ -27,6 +27,7 @@ import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LeaveInt;
 import com.demo.service.OrdersServiceInt;
+import com.demo.service.SiteStockInt;
 import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.DeviceServiceInt;
@@ -55,6 +56,8 @@ public class TicketController {
 	private SpareMasterServiceInt spareMasterServiceInt;
 	@Autowired
 	private BootStockInt bootStockint;
+	@Autowired
+	private SiteStockInt siteStock;
 	@Autowired
 	private LeaveInt leaveInt;
 	private List<PieChart> beanList = null;
@@ -152,6 +155,7 @@ public class TicketController {
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
 			model.addObject("bootStock", bootStockint.getAllOrders(technician));
+			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			model.setViewName("ticketDetails");
 		}
 		else{

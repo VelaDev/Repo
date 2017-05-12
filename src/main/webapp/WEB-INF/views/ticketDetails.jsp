@@ -514,7 +514,7 @@ header, #content, #middle, #sidebar {
 																	<tr>
 																		<th>Part No</th>
 																		<th>Description</th>
-																		<th>Model No</th>
+																		<!-- <th>Model No</th> -->
 																		<th>Quantity</th>
 																		<th>Tick</th>
 
@@ -522,16 +522,16 @@ header, #content, #middle, #sidebar {
 																</thead>
 																<tbody>
 																	<!-- Iterating over the list sent from Controller -->
-																	<c:forEach var="list" items="${compatibility}">
+																	<c:forEach var="list" items="${siteStock}">
 
 																		<tr>
 																			<td>${list.partNumber}</td>
 																			<td>${list.itemDescription}</td>
-																			<td>${list.compitableDevice}</td>
-																			<td>${quantity}</td>
+																			<%-- <td>${list.compitableDevice}</td> --%>
+																			<td>${list.quantity}</td>
 																			<td><input type="checkbox" id="checkedOrder"
 																				name="selectedItem" class="form-group"
-																				value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" value="true"></td>
+																				value="${list.partNumber},${list.itemDescription}" value="true"></td>
 																		</tr>
 																	</c:forEach>
 																</tbody>

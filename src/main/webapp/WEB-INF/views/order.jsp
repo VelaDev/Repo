@@ -7,21 +7,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!--style-->
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 <!--/style-->
 </head>
 <body>
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			
+
 			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
 
@@ -46,9 +53,10 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-					
+
 						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="putInOrder" onsubmit="return checkChecked('putInOrder');">
+							method="post" action="makeOrder" id="putInOrder"
+							onsubmit="return checkChecked('putInOrder');">
 
 
 							<!-- Select type Stock Type-->
@@ -69,34 +77,34 @@
 								</div>
 							</div>
 
-							<div id="Site" style='display: none;'>								
+							<div id="Site" style='display: none;'>
 
-							<!-- Text input Customer Name-->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Customer Name</label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span><select id="Site" name="customer"
-											class="form-control selectpicker">
-											<option value="">Customer Name</option>
-											<c:forEach items="${customerList}" var="customer">
-												<option value="${customer.customerName}">${customer.customerName}</option>
-											</c:forEach>
-										</select>
+								<!-- Text input Customer Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Customer Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span><select id="Site"
+												name="customer" class="form-control selectpicker">
+												<option value="">Customer Name</option>
+												<c:forEach items="${customerList}" var="customer">
+													<option value="${customer.customerName}">${customer.customerName}</option>
+												</c:forEach>
+											</select>
+										</div>
 									</div>
 								</div>
 							</div>
-							</div>							
-							
+
 							<!-- Text input Technician name-->
 							<div class="form-group">
 								<label class="col-md-3 control-label">Technician</label>
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <input readOnly id="technician"
-											name="technician" placeholder="Technicain"
+											class="glyphicon glyphicon-user"></i></span> <input readOnly
+											id="technician" name="technician" placeholder="Technicain"
 											class="form-control" type="text"
 											value="${loggedInUser.firstName} ${loggedInUser.lastName}">
 									</div>
@@ -110,8 +118,8 @@
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <select id="approver" name="approver"
-											class="form-control selectpicker">
+											class="glyphicon glyphicon-user"></i></span> <select id="approver"
+											name="approver" class="form-control selectpicker">
 											<option value="">Select Approver</option>
 											<c:forEach items="${managersList}" var="manager">
 												<option value="${manager.email}">${manager.firstName}
@@ -129,7 +137,7 @@
 										<tr>
 											<th>Part No</th>
 											<th>Description</th>
-											<th>Model No </th>
+											<th>Model No</th>
 											<th>Available QTY</th>
 											<th>Tick To Order</th>
 											<th>Quantity</th>
@@ -144,9 +152,17 @@
 												<td>${list.partNumber}</td>
 												<td>${list.itemDescription}</td>
 												<td>${list.compitableDevice}</td>
-											 	<td><input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
-								                <td><input type="checkbox" id="checkedOrder" name="selectedItem" class="form-group" value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
-								                <td><input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td></tr>
+												<td><input type="text"
+													id="${list.partNumber}_avaliableQuantity"
+													name="avaliableQuantity" class="form-control"
+													readonly="readonly" value="${list.quantity}"></td>
+												<td><input type="checkbox" id="checkedOrder"
+													name="selectedItem" class="form-group"
+													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+												<td><input type="text" id="${list.partNumber}_quantity"
+													name="quantity" class="form-control"
+													onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
+											</tr>
 
 										</c:forEach>
 									</tbody>
@@ -161,7 +177,7 @@
 										id="putorder" name="putorder">
 								</div>
 							</div>
-							
+
 						</form:form>
 
 
@@ -180,16 +196,21 @@
 	<!-- / velaphanda_containter -->
 
 	<!-- Scripts -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- Datatables -->
-	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>	
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 	<!-- /Scripts -->
-	
-<!-- Paging the table -->
-<script type="text/javascript">
+
+	<!-- Paging the table -->
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
 				"jQueryUI" : true,
@@ -201,9 +222,9 @@
 </script>
 
 
-	
-<!-- Validate Make Order -->
-<script>
+
+	<!-- Validate Make Order -->
+	<script>
  $(document).ready(function() {
     $('#putInOrder').bootstrapValidator({
          feedbackIcons: {
@@ -258,7 +279,7 @@
 </script>
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 /*Compare available quantity with entered quantity*/
 function compareQuantity(element, availableQuantity) {					
 	
@@ -282,7 +303,7 @@ function compareQuantity(element, availableQuantity) {
 </script>
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 /*Check if checkbox is checked*/
 function checkChecked(searchForm) {
 	    var anyBoxesChecked = false;
@@ -303,8 +324,8 @@ function checkChecked(searchForm) {
  
 </script>
 
-<!--Stock type Selection-->
-<script type="text/javascript">
+	<!--Stock type Selection-->
+	<script type="text/javascript">
 	
 		function CheckStockType(val){
 		 var element=document.getElementById('Site');
@@ -318,7 +339,7 @@ function checkChecked(searchForm) {
 </script>
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 $(function(){
 
 	  $('.form-control').keypress(function(e) {

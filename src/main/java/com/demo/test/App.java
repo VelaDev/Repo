@@ -27,37 +27,34 @@ public class App
 {
     public static void main( String[] args ) throws ParseException{
     	
-    	StringBuffer b = new StringBuffer();
-    	b.append("Mohapi");
-    	b.append("Mokoena");
-    	System.out.println(b);
-    	/*StringBuilder b = new StringBuilder();
-    	b.append("Mohapi");
-    	b.append("Mokoena");
-    	System.out.println(b);*/
-   
-    	/*String date1 = null;
-    	String date2 = "2017-05-03";
-    	SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
-	    Date currentDate  = new Date();
-	    Date secondDate = new Date();
-	    Calendar cal = Calendar.getInstance();
-	    date1 =  myFormat.format(cal.getTime());
-	   
-		try{
-			
-			currentDate = myFormat.parse(date1);
-			secondDate = myFormat.parse(date2);
-			if(currentDate.after(secondDate)){
-				System.out.println("Second date cones before first date");
-			}else if(currentDate.compareTo(secondDate)>=0) {
-				System.out.println("Otherwise");
-			}else{
-				System.out.println("Otherwise got it");
-			}
+    	String dateStart = "2017/08/08";
+		String dateStop = "2017/08/13";
+
+		//HH converts hour in 24 hours format (0-23), day calculation
+		SimpleDateFormat format = new SimpleDateFormat("yyyy/mm/dd");
+
+		Date d1 = null;
+		Date d2 = null;
+
+		try {
+			d1 = format.parse(dateStart);
+			d2 = format.parse(dateStop);
+
+			//in milliseconds
+			long diff = d2.getTime() - d1.getTime();
+			System.out.println(diff);
+			/*long diffSeconds = diff / 1000 % 60;
+			long diffMinutes = diff / (60 * 1000) % 60;*/
+			long diffHours = diff / (60 * 60 * 1000) % 24;
+			long diffDays = diff / (24 * 60 * 60 * 1000);
+
+			System.out.print(diffDays + " days, ");
+			System.out.print(diffHours + " hours, ");
+		/*	System.out.print(diffMinutes + " minutes, ");
+			System.out.print(diffSeconds + " seconds.");*/
+
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		catch(Exception e){
-			
-		}*/
     }
 }

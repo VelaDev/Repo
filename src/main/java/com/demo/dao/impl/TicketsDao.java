@@ -945,18 +945,51 @@ public class TicketsDao implements TicketsDaoInt {
 	}
 
 	@Transactional
-	@Scheduled(fixedRate = 1800000)
+	@Scheduled(fixedRate = 60000)
 	@Override
 	public void resolveToClosedTicketUpdate() {
 		myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		currentDate = new Date();
 		Calendar cal = Calendar.getInstance();
 	    String date1 =  myFormat.format(cal.getTime());
+	    String date2= null;
+	    Date secondDate =null;
 	    try{
+	    	List<Tickets> ticketList = getResolvedTickets();
+	    	currentDate = myFormat.parse(date1);
 	    	
+	    	for(Tickets ticket:ticketList){
+	    		date2 = ticket.getDateResolved();
+	    		currentDate= myFormat.parse(date1);
+	    		secondDate= myFormat.parse(date2);
+	    		long difference = currentDate.getTime()- secondDate.getTime();
+	    		// 86400 is equal to 24 hrs
+	    		if(difference > 86400){
+	    			
+	    			ticket.setStatus("Closed");
+	    			sessionFactory.getCurrentSession().update(ticket);
+	    		}
+	    		
+	    	}
 	    	
 	    }catch(Exception e){
 	    	e.getMessage();
 	    }
+	}
+	
+	private List<Tickets> getResolvedTickets() {
+	    aList = new ArrayList<Tickets>();
+		try{
+			ticketList = getAllLoggedTickets();
+			for(Tickets ticket:ticketList){
+				if((ticket.getStatus().equalsIgnoreCase("Resolved"))){
+					aList.add(ticket);
+				}
+			}
+		}catch(Exception exception){
+			exception.getMessage();
+		}
+		
+		return aList;
 	}
 }

@@ -82,24 +82,7 @@ public class LeaveDao implements LeaveDaoInt {
 				sessionFactory.getCurrentSession().update(emp);
 
 				retMessage = "Leave successfully submited";
-			}/*else{
-				emp.setLeaveStatus("On Leave");
-
-				globalLeave.setAddress(leave.getAddress());
-				globalLeave.setContactNumber(leave.getContactNumber());
-				globalLeave.setEndDate(leave.getEndDate());
-				globalLeave.setLeaveType(leave.getLeaveType());
-				globalLeave.setStartDate(leave.getStartDate());
-				recordID = newRecordID();
-				newrecordID = recordID;
-
-				globalLeave.setLeaveID(newrecordID);
-				sessionFactory.getCurrentSession().save(globalLeave);
-
-				sessionFactory.getCurrentSession().update(emp);
-
-				retMessage = "Leave successfully submited";
-			}*/
+			}
 
 		} catch (Exception e) {
 			retMessage = "Leave not submitted " + e.getMessage();
@@ -313,7 +296,7 @@ public class LeaveDao implements LeaveDaoInt {
 
 	
 	@Transactional
-	@Scheduled(fixedRate = 600000)
+	@Scheduled(fixedRate=1440000)
 	@Override
 	public void isTechnicianOnLeaveDate() {
 			myFormat = new SimpleDateFormat("yyyy-MM-dd");

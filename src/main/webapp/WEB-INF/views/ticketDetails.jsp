@@ -42,7 +42,7 @@ li {
 	border-radius: 4px;
 	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-	padding-bottom: 10%;
+	padding-bottom: 17%;
 }
 
 .groupsparedetails, .groupsearchdetails {
@@ -292,7 +292,7 @@ header, #content, #middle, #sidebar {
 																	<div class="col-md-12">
 																		<!-- Text input Ticket Number-->
 																		<div class="form-group">
-																			<label class="col-md-3 control-label">Ticket
+																			<label class="col-md-4 control-label">Ticket
 																				Number</label>
 																			<div class="col-md-8 inputGroupContainer">
 																				<div class="input-group">
@@ -306,19 +306,19 @@ header, #content, #middle, #sidebar {
 																		</div>
 																		<!-- Text area Action Taken-->
 																		<div class="form-group ">
-																			<label class="col-md-3 control-label">Action
+																			<label class="col-md-4 control-label">Action
 																				Taken</label>
 																			<div class="col-md-8 selectContainer">
 																				<div class="input-group">
 																					<span class="input-group-addon"><i
 																						class="glyphicon glyphicon-list"></i></span> <select
 																						name="actionTaken" id="actionTaken"
-																						class="form-control selectpicker"   data-bv-notempty data-bv-notempty-message="Action taken is required!">
+																						class="form-control selectpicker" onchange="CheckPartToner(this.value);"  data-bv-notempty data-bv-notempty-message="Action taken is required!">
 																						<option value="">Please select Action
 																							Taken</option>
 																						<option value="Replaced Part">Replaced
 																							Part</option>
-																						<option value="Replaced Part">Replaced
+																						<option value="Replaced toner">Replaced
 																							toner</option>
 																						<option value="Cleared Paper Jam">Cleared
 																							Paper Jam</option>
@@ -338,7 +338,7 @@ header, #content, #middle, #sidebar {
 
 																		<!-- Text checkbox Colour Reading-->
 																		<div class="form-group">
-																			<label class="col-md-3 control-label">Colour
+																			<label class="col-md-4 control-label">Colour
 																				Reading</label>
 																			<div class="col-md-8 inputGroupContainer">
 																				<div class="input-group">
@@ -354,7 +354,7 @@ header, #content, #middle, #sidebar {
 																			</div>
 																		</div>
 																		<div class="form-group">
-																			<label class="col-md-3 control-label">Mono
+																			<label class="col-md-4 control-label">Mono
 																				Reading</label>
 																			<div class="col-md-8 inputGroupContainer">
 																				<div class="input-group">
@@ -377,60 +377,85 @@ header, #content, #middle, #sidebar {
 																<!-- group Used Part Numbers -->
 																<div class="groupsearchdetails">
 																	<legend>Used Part Numbers </legend>
-																	<!-- Radio for Boot Stock-->
-																	<div class="form-group">
-																		<label class="col-md-2 control-label">Boot
-																			Stock</label>
-																		<div class="col-md-6 inputGroupContainer">
-																			<div class="input-group">
-																				<input type="radio" name="groupstock"
-																					class="trigger" data-rel="boot-stock">
-																			</div>
-																		</div>
-																	</div>
-																	<div class="form-group">
-																		<div class="boot-stock tick">
-																			<div class="tableContect">
-																			<div class="shitToRight">
-																				<p>
-																					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#bootStock">Add</button>
-																				</p>																				
-																			</div>
-																			</div>
-																		</div>
-																	</div>
-																	<!-- Radio for Site Stock-->
-																	<div class="form-group">
-																		<label class="col-md-2 control-label">Site
-																			Stock </label>
-																		<div class="col-md-6 inputGroupContainer">
-																			<div class="input-group">
-																				<input type="radio" name="groupstock"
-																					class="trigger" data-rel="site-stock">
-																			</div>
-																		</div>
-																	</div>
 																	
-																	<div class="form-group">
-																		<div class="site-stock tick">
-																			<div class="shitToRight">
-																				<div class="tableContect">
-																					<p>
-																					<!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#test2">Add</button>-->
-																					<input type="submit" id="siteAdd" name="siteAdd"
-																						class="btn btn-success" data-toggle="modal"
-																						data-target="#siteStock" value="Add"/>
-																					</p>
+																	<div class="diplayNone" id="getPartToner" style="display:none;">
+																		<!-- Radio for Boot Stock-->
+																		<div class="form-group">
+																			<label class="col-md-3 control-label">Boot
+																				Stock</label>
+																			<div class="col-md-6 inputGroupContainer">
+																				<div class="input-group">
+																					<input type="radio" data-toggle="modal" data-target="#bootStock" name="groupstock"
+																						class="trigger" data-rel="boot-stock">
 																				</div>
 																			</div>
 																		</div>
+																		<!-- <div class="form-group">
+																			<div class="boot-stock tick">
+																				<div class="tableContect">
+																				<div class="shitToRight">
+																					<p>
+																						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#bootStock">Add</button>
+																					</p>																				
+																				</div>
+																				</div>
+																			</div>
+																		</div> -->
+																		<!-- Radio for Site Stock-->
+																		<div class="form-group">
+																			<label class="col-md-3 control-label">Site
+																				Stock </label>
+																			<div class="col-md-6 inputGroupContainer">
+																				<div class="input-group">
+																					<input type="radio" name="groupstock"
+																						class="trigger" data-rel="site-stock" data-toggle="modal"
+																							data-target="#siteStock">
+																				</div>
+																			</div>
+																		</div>
+																		
+																		<!-- <div class="form-group">
+																			<div class="site-stock tick">
+																				<div class="shitToRight">
+																					<div class="tableContect">
+																						<p>
+																						<button type="button" class="btn btn-success" data-toggle="modal" data-target="#test2">Add</button>
+																						<input type="submit" id="siteAdd" name="siteAdd"
+																							class="btn btn-success" data-toggle="modal"
+																							data-target="#siteStock" value="Add"/>
+																						</p>
+																					</div>
+																				</div>
+																			</div>
+																		</div> -->
+																		
+																		<!-- display ticked Used Part Numbers-->
+																		<div class="shitRight">	
+																			<div class="form-group">
+																				<label class="col-md-5 control-label">Ticked Part Numbers</label>
+																				<div class="col-md-8 inputGroupContainer">
+																					<div class="input-group">
+																						<span class="input-group-addon"><i
+																							class="glyphicon glyphicon-barcode"></i></span> 
+																						<textarea id="tickedUsedPartNumbers" class="form-control" style="width:200px;height:90px;font-size:11px;" rows="3" readonly></textarea>
+						 															</div>
+																				</div>
+																			</div>
+																		</div>
+																		<!--// display ticked Used Part Numbers-->
+																		
 																	</div>
+																	<!-- displayNone for getPartToner -->
+																	
 																</div>
-																<!-- //group Used Part Numbers -->
+																<!-- //group Used Part Numbers -->							
+																
 															</div>
 															<!--/wellform form-horizontal-->
 
 														</div>
+															<!-- modal-body -->
+															
 														<div class="modal-footer">
 																<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 																<button type="submit" value="Submit" class="btn btn-primary" id="send_btn">Submit</button>
@@ -475,9 +500,9 @@ header, #content, #middle, #sidebar {
 																			<td>${list.itemDescription}</td>
 																			<%-- <td>${list.compatibleDevice}</td> --%>
 																			<td>${list.quantity}</td>
-																			<td><input type="checkbox" id="checkedOrder"
-																				name="selectedItem" class="form-group"
-																				value="${list.partNumber},${list.itemDescription}" value="true"></td>
+																			<td><input type="checkbox" id="${list.partNumber}_selectedItem"
+																				name="selectedItem" class="form-group" onClick="checkUsedPartNumbers();" 
+																				value="${list.partNumber}"></td>
 																		</tr>
 
 																	</c:forEach>
@@ -526,12 +551,11 @@ header, #content, #middle, #sidebar {
 
 																		<tr>
 																			<td>${list.partNumber}</td>
-																			<td>${list.itemDescription}</td>
-																			<%-- <td>${list.compitableDevice}</td> --%>
+																			<td>${list.itemDescription}</td>																			
 																			<td>${list.quantity}</td>
-																			<td><input type="checkbox" id="checkedOrder"
-																				name="selectedItem" class="form-group"
-																				value="${list.partNumber},${list.itemDescription}" value="true"></td>
+																			<td><input type="checkbox" id="${list.partNumber}_selectedItem"
+																				name="selectedItem" class="form-group" onClick="checkUsedPartNumbers();" 
+																				value="${list.partNumber}"></td>
 																		</tr>
 																	</c:forEach>
 																</tbody>
@@ -916,6 +940,24 @@ $('#status').change(function() {
 });
 </script>
 
+
+<script>
+		function checkUsedPartNumbers(){
+  
+			  var checkboxes = document.getElementsByName('selectedItem');
+			  var checkboxesChecked = [];
+			  // loop over them all
+			  for (var i=0; i<checkboxes.length; i++) {
+				 // And stick the checked ones onto an array...
+				 if (checkboxes[i].checked) {
+					checkboxesChecked.push(checkboxes[i].value);
+				 }
+			  }
+			  document.getElementById("tickedUsedPartNumbers").value = checkboxesChecked;
+
+			}
+	</script>
+
 <script>
 	$('.trigger').change(function () {
 		$('.tick').hide();
@@ -975,7 +1017,7 @@ request.send();
 	
 	function CheckStatus(val){
 	 var element=document.getElementById('order');
-	 if(val=='pick a status' || val== 'Awaiting Spares')
+	 if(val=='pick a status' || val== 'Replaced Part')
 	   element.style.display='block';
 	 else  
 	   element.style.display='none';
@@ -986,6 +1028,22 @@ request.send();
 	 else  
 	   element.style.display='none';
 	   
+	}
+
+</script>
+
+
+
+<!--Status Selection-->
+<script type="text/javascript">
+	
+	function CheckPartToner(val){
+	 var element=document.getElementById('getPartToner');
+	 if(val=='pick a action taken' || val== 'Replaced Part' || val=='Replaced toner')
+	   element.style.display='block';
+	 else  
+	   element.style.display='none';
+	 	   
 	}
 
 </script>

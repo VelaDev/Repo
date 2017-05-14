@@ -553,12 +553,27 @@ header, #content, #middle, #sidebar {
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		id="ticketNumber" class="form-control" type="text"
+																		id="ticketNumber" class="form-control" type="text" name="ticketNumber"
 																		value="${ticketObject.ticketNumber}"
 																		readonly="readonly">
 																</div>
 															</div>
 														</div>
+														
+														<!-- Text input status-->
+														<div class="form-group">
+															<label class="col-md-4 control-label">Status</label>
+															<div class="col-md-8 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		id="status" class="form-control" type="text" name="status"
+																		value="Resolved"
+																		readonly="readonly">
+																</div>
+															</div>
+														</div>
+														
 														<!-- Text area Action Taken-->
 														<div class="form-group ">
 															<label class="col-md-4 control-label">Action
@@ -572,7 +587,7 @@ header, #content, #middle, #sidebar {
 																		onchange="CheckPartToner(this.value);" >
 																		<option value="">Please select Action Taken</option>
 																		<option value="Replaced Part">Replaced Part</option>
-																		<option value="Replaced toner">Replaced toner</option>
+																		<option value="Replaced toner">Replaced Toner</option>
 																		<option value="Cleared Paper Jam">Cleared
 																			Paper Jam</option>
 																		<option value="Installed Drivers">Installed
@@ -660,16 +675,16 @@ header, #content, #middle, #sidebar {
 														<!-- display ticked Used Part Numbers-->
 														<div class="shitRight">
 															<div class="form-group">
-																<label class="col-md-5 control-label">Ticked
+																<label class="col-md-5 control-label">Used
 																	Part Numbers</label>
 																<div class="col-md-8 inputGroupContainer">
 																	<div class="input-group">
 																		<span class="input-group-addon"><i
 																			class="glyphicon glyphicon-barcode"></i></span>
 																		<textarea id="tickedUsedPartNumbers"
-																			class="form-control"
+																			 class="form-control" readonly="readonly"
 																			style="width: 200px; height: 90px; font-size: 11px;"
-																			rows="3" readonly></textarea>
+																			rows="3" name="usedPartNumbers"></textarea>
 																	</div>
 																</div>
 															</div>

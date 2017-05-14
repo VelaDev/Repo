@@ -736,7 +736,6 @@ header, #content, #middle, #sidebar {
 										<thead>
 											<tr>
 												<th>Ticket No</th>
-												<th>Ticket Status</th>
 												<th>Action Taken</th>
 												<th>Assigned To</th>
 												<th>Comment</th>

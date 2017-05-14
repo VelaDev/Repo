@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.hibernate.exception.JDBCConnectionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
@@ -634,4 +635,12 @@ public class EmployeeController {
 			model.setViewName("lastAttemptLogin");
 		return model;
 	}
+	@ExceptionHandler({JDBCConnectionException.class})
+    public ModelAndView jdbConnectionException(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception", ex.getMessage());
+         
+        return model;
+    }
 }

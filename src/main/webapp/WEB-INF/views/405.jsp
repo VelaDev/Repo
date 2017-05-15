@@ -41,8 +41,8 @@
 							<div class="form">
 
 								<div class="mainlogo">
-									<img src="resources/images/mainlogo.jpg"
-										class="img-responsive" alt="" />
+									<img src="resources/images/mainlogo.jpg" class="img-responsive"
+										alt="" />
 								</div>
 								<div class="errorLogin">
 									<h2>Something went wrong!!</h2>

@@ -10,6 +10,8 @@
 	type="image/ico" />
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">	
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
@@ -20,169 +22,7 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
-<style id="velas-css">
-@media ( min-width : 768px) {
-	.modal-xl {
-		width: 90%;
-		max-width: 1200px;
-	}
-}
 
-.shitToRight {
-	padding-left: 16%;
-	margin-left: 3%;
-}
-
-li {
-	list-style: none;
-}
-
-.wellform {
-	min-height: 20px;
-	padding: 19px;
-	margin-bottom: 20px;
-	background-color: #f5f5f5;
-	border: 1px solid #e3e3e3;
-	border-radius: 4px;
-	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-	padding-bottom:17%;
-	
-}
-
-.groupsparedetails, .groupsearchdetails {
-	padding: 20px;
-}
-
-.groupsparedetails {
-	float: left;
-	width: 50%;
-}
-
-.groupsearchdetails {
-	overflow: hidden;
-}
-
-.tick {
-	display: none;
-}
-
-input:checked+div, input:checked+input {
-	display: block;
-}
-
-.machinedetailsfloatright {
-	float: left;
-	/* margin-right: 40%; */
-	padding-left: 23px;
-}
-
-.machinedetailsdetailsfloatleft {
-	float: left;
-	margin-left: 10px;
-}
-
-#customerr_container {
-	/* padding: 25px; */
-	/* margin-bottom: -7em; */
-	width: auto;
-	display: table;
-	font-size: 100%;
-	margin-left: -15%;
-}
-
-p.contactPerson_title, p.customerAddress_title {
-	font-size: 1.1em;
-	font-weight: bolder;
-	margin-left: -11%;
-}
-
-ul.address_list {
-	margin-left: -31%;
-}
-/* STRUCTURE */
-#content {
-	width: 55%;
-	float: left;
-	padding: 5px 15px;
-}
-
-#middle {
-	width: 22%; /* Account for margins + border values */
-	float: left;
-	padding: 5px 15px;
-	margin: 0px 5px 5px 5px;
-}
-
-#sidebar {
-	width: 19%;
-	padding: 5px 15px;
-	float: left;
-}
-
-/************************************************************************************
-MEDIA QUERIES
-*************************************************************************************/
-@media only screen and (max-width: 760px) , ( max-device-width : 1024px)
-	and (min-device-width: 768px) {
-	.machinedetailsfloatright {
-		float: left;
-		margin-right: -31%;
-		padding-left: 9%;
-		margin-top: 0%;
-	}
-}
-/* for 980px or less */
-@media screen and (max-width: 980px) {
-	#pagewrap {
-		width: 94%;
-	}
-	#content {
-		width: 40%;
-		padding: 1% 4%;
-	}
-	#middle {
-		width: 41%;
-		padding: 1% 4%;
-		margin: 0px 0px 5px 5px;
-		float: right;
-	}
-	#sidebar {
-		clear: both;
-		padding: 1% 4%;
-		width: auto;
-		float: none;
-	}
-}
-
-/* for 700px or less */
-@media screen and (max-width: 600px) {
-	#content {
-		width: auto;
-		float: none;
-	}
-	#middle {
-		width: auto;
-		float: none;
-		margin-left: 0px;
-	}
-	#sidebar {
-		width: auto;
-		float: none;
-	}
-}
-
-/* for 480px or less */
-@media screen and (max-width: 480px) {
-	#sidebar {
-		display: none;
-	}
-}
-
-header, #content, #middle, #sidebar {
-	margin-bottom: 5px;
-}
-</style>
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -553,13 +393,14 @@ header, #content, #middle, #sidebar {
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		id="ticketNumber" class="form-control" type="text" name="ticketNumber"
+																		id="ticketNumber" class="form-control" type="text"
+																		name="ticketNumber"
 																		value="${ticketObject.ticketNumber}"
 																		readonly="readonly">
 																</div>
 															</div>
 														</div>
-														
+
 														<!-- Text input status-->
 														<div class="form-group">
 															<label class="col-md-4 control-label">Status</label>
@@ -567,13 +408,12 @@ header, #content, #middle, #sidebar {
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		id="status" class="form-control" type="text" name="status"
-																		value="Resolved"
-																		readonly="readonly">
+																		id="status" class="form-control" type="text"
+																		name="status" value="Resolved" readonly="readonly">
 																</div>
 															</div>
 														</div>
-														
+
 														<!-- Text area Action Taken-->
 														<div class="form-group ">
 															<label class="col-md-4 control-label">Action
@@ -584,7 +424,7 @@ header, #content, #middle, #sidebar {
 																		class="glyphicon glyphicon-list"></i></span> <select
 																		name="actionTaken" id="actionTaken"
 																		class="form-control selectpicker"
-																		onchange="CheckPartToner(this.value);" >
+																		onchange="CheckPartToner(this.value);">
 																		<option value="">Please select Action Taken</option>
 																		<option value="Replaced Part">Replaced Part</option>
 																		<option value="Replaced toner">Replaced Toner</option>
@@ -644,6 +484,8 @@ header, #content, #middle, #sidebar {
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
+
+
 													<div class="diplayNone" id="getPartToner"
 														style="display: none;">
 														<!-- Radio for Boot Stock-->
@@ -657,7 +499,7 @@ header, #content, #middle, #sidebar {
 																</div>
 															</div>
 														</div>
-														
+
 														<!-- Radio for Site Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Site Stock
@@ -675,14 +517,14 @@ header, #content, #middle, #sidebar {
 														<!-- display ticked Used Part Numbers-->
 														<div class="shitRight">
 															<div class="form-group">
-																<label class="col-md-5 control-label">Used
-																	Part Numbers</label>
+																<label class="col-md-5 control-label">Used Part
+																	Numbers</label>
 																<div class="col-md-8 inputGroupContainer">
 																	<div class="input-group">
 																		<span class="input-group-addon"><i
 																			class="glyphicon glyphicon-barcode"></i></span>
 																		<textarea id="tickedUsedPartNumbers"
-																			 class="form-control" readonly="readonly"
+																			class="form-control" readonly="readonly"
 																			style="width: 200px; height: 90px; font-size: 11px;"
 																			rows="3" name="usedPartNumbers"></textarea>
 																	</div>
@@ -697,18 +539,20 @@ header, #content, #middle, #sidebar {
 												</div>
 												<!-- //group Used Part Numbers -->
 
+												<div class="modal-footer">
+
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">Close</button>
+													<button type="submit" value="Submit"
+														class="btn btn-primary" id="send_btn">Submit</button>
+
+												</div>
+
 											</div>
 											<!--/wellform form-horizontal-->
 
 										</div>
 										<!-- modal-body -->
-
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">Close</button>
-											<button type="submit" value="Submit" class="btn btn-primary"
-												id="send_btn">Submit</button>
-										</div>
 
 									</div>
 									<!-- /.modal-content -->

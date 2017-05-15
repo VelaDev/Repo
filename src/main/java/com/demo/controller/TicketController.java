@@ -156,6 +156,7 @@ public class TicketController {
 			model.addObject("customerList",customerServiceInt.getClientList());
 			model.addObject("bootStock", bootStockint.getAllOrders(technician));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			
 			model.setViewName("ticketDetails");
 		}
 		else{
@@ -505,15 +506,22 @@ public class TicketController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		
+			String technician = userName.getFirstName()+ " "+userName.getLastName();
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
+			model.addObject("saveSpareParts", new SparePartsBean());
+			getSerials = spareMasterServiceInt.getSerials();
+			model.addObject("spareParts",getSerials);
 			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
 			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.addObject("customerList",customerServiceInt.getClientList());
+			model.addObject("bootStock", bootStockint.getAllOrders(technician));
+			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			
 			model.setViewName("awaitingSparesDetails");
 		}
 		else{
@@ -547,6 +555,7 @@ public class TicketController {
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		
+			
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
 			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));

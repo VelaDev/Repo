@@ -188,7 +188,8 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		     
+		    
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 			retMessage = logTicketService.updateTicket(updateTicket);
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			if(retMessage.startsWith("The part number")){
@@ -202,6 +203,7 @@ public class TicketController {
 		    
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("ticketDetails");
+		  }
 		}
 		else{
 			model.setViewName("login");
@@ -424,16 +426,18 @@ public class TicketController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		
-			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
-			model.addObject("ticketObject", ticket);
-			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
-			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
-			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
-			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("managersList",employeeServiceInt.getAllManagers());
-			model.setViewName("openTicketsDetails");
+			
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
+				ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+				model.addObject("ticketObject", ticket);
+				model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+				model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+				model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("managersList",employeeServiceInt.getAllManagers());
+				model.setViewName("openTicketsDetails");
+			}
 		}
 		else{
 			model.setViewName("login");

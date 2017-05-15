@@ -189,7 +189,6 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		    
-			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 			retMessage = logTicketService.updateTicket(updateTicket);
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			if(retMessage.startsWith("The part number")){
@@ -202,8 +201,21 @@ public class TicketController {
 			}
 		    
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("ticketDetails");
-		  }
+		    
+		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
+		    	
+		    	model.setViewName("openTicketsDetails");
+		    	/*model.setViewName("openTicketsDetails");
+		    	model.setViewName("openTicketsDetails");
+		    	model.setViewName("openTicketsDetails");
+		    	model.setViewName("openTicketsDetails");
+		    	model.setViewName("openTicketsDetails");*/
+		    }
+		    
+		    else if (userName.getRole().equalsIgnoreCase("Technician")){
+		    	model.setViewName("ticketsDetails");
+		    }
+		
 		}
 		else{
 			model.setViewName("login");

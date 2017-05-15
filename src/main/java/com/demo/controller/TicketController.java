@@ -344,7 +344,7 @@ public class TicketController {
 		if(userName !=null){
 			retMessage = logTicketService.logTicket(logTickets);
 			
-			if(retMessage.startsWith("C")){
+			if(retMessage.startsWith("K")){
 			 String	message =retMessage;
 			 model.addObject("message",message );
 			}else{

@@ -276,8 +276,8 @@ public class TicketsDao implements TicketsDaoInt {
               String status = tickets.getStatus();
 			ticket = getLoggedTicketsByTicketNumber(temp);
 			if(ticket !=null){
-				ticket.setComments(tickets.getComments());
-				retMessage = "Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+				/*ticket.setComments(tickets.getComments());
+				retMessage = "Ticket "+ ticket.getTicketNumber()+ " is successfully updated";*/
 				
 				if(tickets.getStatus()==null){
 					//ticket.setStatus(tickets.getStatus());
@@ -304,7 +304,7 @@ public class TicketsDao implements TicketsDaoInt {
 					device.setColourReading(tickets.getColourReading());
 					
 					if(tickets.getUsedPartNumbers().length()>4){
-						retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),tickets.getCustomer());
+						retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),ticket.getDevice().getCustomerDevice().getCustomerName());
 						
 						if(retMessage.equalsIgnoreCase("OK")){
 							sessionFactory.getCurrentSession().update(device);
@@ -327,6 +327,11 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setComments(tickets.getComments());
 					
 					ticket.setStatus(status);
+					sessionFactory.getCurrentSession().update(device);
+					sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+					
+					historyDaoInt.insertTicketHistory(ticket);
+					retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
 				}
 					
 			}

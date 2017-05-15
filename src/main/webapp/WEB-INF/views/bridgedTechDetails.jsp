@@ -9,7 +9,7 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">	
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
@@ -22,7 +22,18 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-
+			<c:if test="${not empty retMessage }">
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ retMessage}">
+					</c:out>
+				</div>
+			</c:if>
+			<c:if test="${not empty retErrorMessage }">
+				<div class="alert alert-danger" role="alert">
+					<c:out value="${ retErrorMessage}">
+					</c:out>
+				</div>
+			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -31,7 +42,7 @@
 						</div>
 					</h3>
 				</div>
-				
+
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
@@ -346,19 +357,20 @@
 						<!--/general tab-->
 
 						<!-- Solution Details -->
-						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataTckt" >
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="updataTckt">
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
-									
+
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">×</button>
 											<h3 class="modal-title">Solution Details</h3>
 										</div>
-										
+
 										<div class="modal-body">
 
 											<!--wellform form-horizontal-->
@@ -469,8 +481,7 @@
 
 
 
-													<div class="diplayNone" id="getPartToner"
-														>
+													<div class="diplayNone" id="getPartToner">
 														<!-- Radio for Boot Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Boot Stock</label>

@@ -204,16 +204,11 @@ public class TicketController {
 		    
 		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
 		    	
-		    	model.setViewName("openTicketsDetails");
-		    	/*model.setViewName("openTicketsDetails");
-		    	model.setViewName("openTicketsDetails");
-		    	model.setViewName("openTicketsDetails");
-		    	model.setViewName("openTicketsDetails");
-		    	model.setViewName("openTicketsDetails");*/
+		    	model.setViewName("bridgedTicketsDetails");
 		    }
 		    
 		    else if (userName.getRole().equalsIgnoreCase("Technician")){
-		    	model.setViewName("ticketsDetails");
+		    	model.setViewName("ticketDetails");
 		    }
 		
 		}

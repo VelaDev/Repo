@@ -957,28 +957,6 @@ $("#actionTaken").on('change', function() {
 </script>
 
 
-<!--Status Selection-->
-<script type="text/javascript">
-	
-	function CheckPartToner(val){
-		
-	 var element=document.getElementById('getPartToner');
-	 if(val=='pick a action taken' || val== 'Replaced Part' || val=='Replaced toner')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	 
-	 
-	 var element=document.getElementById('getPartTonerResolved');
-	 if(val=='pick a action taken' || val== 'Replaced Part' || val=='Replaced toner')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	 	   
-	}
-
-</script>
-
 
 <!--Select customer before showing add button-->
 <script type="text/javascript">

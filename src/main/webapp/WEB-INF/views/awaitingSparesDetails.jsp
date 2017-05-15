@@ -335,7 +335,7 @@
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Update General"
+										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
@@ -376,14 +376,13 @@
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		id="ticketNumber" class="form-control" type="text"
-																		name="ticketNumber"
+																		id="ticketNumber" class="form-control" type="text" name="ticketNumber"
 																		value="${ticketObject.ticketNumber}"
 																		readonly="readonly">
 																</div>
 															</div>
 														</div>
-
+														
 														<!-- Text input status-->
 														<div class="form-group">
 															<label class="col-md-4 control-label">Status</label>
@@ -391,12 +390,13 @@
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		id="status" class="form-control" type="text"
-																		name="status" value="Resolved" readonly="readonly">
+																		id="status" class="form-control" type="text" name="status"
+																		value="Resolved"
+																		readonly="readonly">
 																</div>
 															</div>
 														</div>
-
+														
 														<!-- Text area Action Taken-->
 														<div class="form-group ">
 															<label class="col-md-4 control-label">Action
@@ -407,7 +407,7 @@
 																		class="glyphicon glyphicon-list"></i></span> <select
 																		name="actionTaken" id="actionTaken"
 																		class="form-control selectpicker"
-																		onchange="CheckPartToner(this.value);">
+																		onchange="CheckPartToner(this.value);" >
 																		<option value="">Please select Action Taken</option>
 																		<option value="Replaced Part">Replaced Part</option>
 																		<option value="Replaced toner">Replaced Toner</option>
@@ -467,10 +467,7 @@
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
-
-
-													<div class="diplayNone" id="getPartToner"
-														style="display: none;">
+													<div class="diplayNone" id="getPartToner">
 														<!-- Radio for Boot Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Boot Stock</label>
@@ -478,11 +475,11 @@
 																<div class="input-group">
 																	<input type="radio" data-toggle="modal"
 																		data-target="#bootStock" name="groupstock"
-																		class="trigger" data-rel="boot-stock">
+																		class="trigger" data-rel="boot-stock" id="BootStocked">
 																</div>
 															</div>
 														</div>
-
+														
 														<!-- Radio for Site Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Site Stock
@@ -491,7 +488,7 @@
 																<div class="input-group">
 																	<input type="radio" name="groupstock" class="trigger"
 																		data-rel="site-stock" data-toggle="modal"
-																		data-target="#siteStock">
+																		data-target="#siteStock" id="SiteStocked">
 																</div>
 															</div>
 														</div>
@@ -500,14 +497,14 @@
 														<!-- display ticked Used Part Numbers-->
 														<div class="shitRight">
 															<div class="form-group">
-																<label class="col-md-5 control-label">Used Part
-																	Numbers</label>
+																<label class="col-md-5 control-label">Used
+																	Part Numbers</label>
 																<div class="col-md-8 inputGroupContainer">
 																	<div class="input-group">
 																		<span class="input-group-addon"><i
 																			class="glyphicon glyphicon-barcode"></i></span>
 																		<textarea id="tickedUsedPartNumbers"
-																			class="form-control" readonly="readonly"
+																			 class="form-control" readonly="readonly"
 																			style="width: 200px; height: 90px; font-size: 11px;"
 																			rows="3" name="usedPartNumbers"></textarea>
 																	</div>
@@ -522,20 +519,18 @@
 												</div>
 												<!-- //group Used Part Numbers -->
 
-												<div class="modal-footer">
-
-													<button type="button" class="btn btn-default"
-														data-dismiss="modal">Close</button>
-													<button type="submit" value="Submit"
-														class="btn btn-primary" id="send_btn">Submit</button>
-
-												</div>
-
 											</div>
 											<!--/wellform form-horizontal-->
 
 										</div>
 										<!-- modal-body -->
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+											<button type="submit" value="Submit" class="btn btn-primary"
+												id="send_btn">Submit</button>
+										</div>
 
 									</div>
 									<!-- /.modal-content -->
@@ -801,53 +796,6 @@ $('#status').change(function() {
 	}).change(); //Show content on page load
 </script>
 
-<!-- Create datalist to populate search -->
-<script type="text/javascript">
-
-// Get the <datalist> and <input> elements.
-var dataList = document.getElementById('json-datalist');
-var input = document.getElementById('ajax');
-
-// Create a new XMLHttpRequest.
-var request = new XMLHttpRequest();
-
-// Handle state changes for the request.
-request.onreadystatechange = function(response) {
-  if (request.readyState === 4) {
-    if (request.status === 200) {
-      // Parse the JSON
-      var jsonOptions = JSON.parse(request.responseText);
-  
-      // Loop over the JSON array.
-      jsonOptions.forEach(function(item) {
-        // Create a new <option> element.
-        var option = document.createElement('option');
-        // Set the value using the item in the JSON array.
-        option.value = item;
-        // Add the <option> element to the <datalist>.
-        dataList.appendChild(option);
-      });
-      
-      // Update the placeholder text.
-      input.placeholder = "e.g. datalist";
-    } else {
-      // An error occured :(
-      input.placeholder = "Couldn't load datalist options :(";
-    }
-  }
-};
-
-// Update the placeholder text.
-input.placeholder = "Loading options...";
-
-// Set up and make the request.
-request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
-request.send();
-
-</script>
-
-
-
 <!--Status Selection-->
 <script type="text/javascript">
 	
@@ -868,22 +816,18 @@ request.send();
 
 </script>
 
-
-
-<!--Status Selection-->
-<script type="text/javascript">
-	
-	function CheckPartToner(val){
-	 var element=document.getElementById('getPartToner');
-	 if(val=='pick a action taken' || val== 'Replaced Part' || val=='Replaced toner')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	 	   
-	}
+<script>
+$("#actionTaken").on('change', function() {
+    if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', false);       
+    } else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', true);
+    }
+});
 
 </script>
-
 
 <!--Select customer before showing add button-->
 <script type="text/javascript">

@@ -470,10 +470,8 @@
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
-
-
 													<div class="diplayNone" id="getPartToner"
-														style="display: none;">
+														>
 														<!-- Radio for Boot Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Boot Stock</label>
@@ -481,7 +479,7 @@
 																<div class="input-group">
 																	<input type="radio" data-toggle="modal"
 																		data-target="#bootStock" name="groupstock"
-																		class="trigger" data-rel="boot-stock">
+																		class="trigger" data-rel="boot-stock" id="BootStocked">
 																</div>
 															</div>
 														</div>
@@ -494,7 +492,7 @@
 																<div class="input-group">
 																	<input type="radio" name="groupstock" class="trigger"
 																		data-rel="site-stock" data-toggle="modal"
-																		data-target="#siteStock">
+																		data-target="#siteStock" id="SiteStocked">
 																</div>
 															</div>
 														</div>
@@ -943,6 +941,18 @@ $('#status').change(function() {
 </script>
 
 
+<script>
+$("#actionTaken").on('change', function() {
+    if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', false);       
+    } else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', true);
+    }
+});
+
+</script>
 
 
 <!--Status Selection-->

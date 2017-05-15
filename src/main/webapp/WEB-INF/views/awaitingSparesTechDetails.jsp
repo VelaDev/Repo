@@ -335,7 +335,7 @@
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Update General"
+										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
@@ -470,7 +470,7 @@
 
 
 													<div class="diplayNone" id="getPartToner"
-														style="display: none;">
+														>
 														<!-- Radio for Boot Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Boot Stock</label>
@@ -478,7 +478,7 @@
 																<div class="input-group">
 																	<input type="radio" data-toggle="modal"
 																		data-target="#bootStock" name="groupstock"
-																		class="trigger" data-rel="boot-stock">
+																		class="trigger" data-rel="boot-stock" id="BootStocked">
 																</div>
 															</div>
 														</div>
@@ -491,7 +491,7 @@
 																<div class="input-group">
 																	<input type="radio" name="groupstock" class="trigger"
 																		data-rel="site-stock" data-toggle="modal"
-																		data-target="#siteStock">
+																		data-target="#siteStock" id="SiteStocked">
 																</div>
 															</div>
 														</div>
@@ -801,53 +801,6 @@ $('#status').change(function() {
 	}).change(); //Show content on page load
 </script>
 
-<!-- Create datalist to populate search -->
-<script type="text/javascript">
-
-// Get the <datalist> and <input> elements.
-var dataList = document.getElementById('json-datalist');
-var input = document.getElementById('ajax');
-
-// Create a new XMLHttpRequest.
-var request = new XMLHttpRequest();
-
-// Handle state changes for the request.
-request.onreadystatechange = function(response) {
-  if (request.readyState === 4) {
-    if (request.status === 200) {
-      // Parse the JSON
-      var jsonOptions = JSON.parse(request.responseText);
-  
-      // Loop over the JSON array.
-      jsonOptions.forEach(function(item) {
-        // Create a new <option> element.
-        var option = document.createElement('option');
-        // Set the value using the item in the JSON array.
-        option.value = item;
-        // Add the <option> element to the <datalist>.
-        dataList.appendChild(option);
-      });
-      
-      // Update the placeholder text.
-      input.placeholder = "e.g. datalist";
-    } else {
-      // An error occured :(
-      input.placeholder = "Couldn't load datalist options :(";
-    }
-  }
-};
-
-// Update the placeholder text.
-input.placeholder = "Loading options...";
-
-// Set up and make the request.
-request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
-request.send();
-
-</script>
-
-
-
 <!--Status Selection-->
 <script type="text/javascript">
 	
@@ -869,21 +822,18 @@ request.send();
 </script>
 
 
-
-<!--Status Selection-->
-<script type="text/javascript">
-	
-	function CheckPartToner(val){
-	 var element=document.getElementById('getPartToner');
-	 if(val=='pick a action taken' || val== 'Replaced Part' || val=='Replaced toner')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	 	   
-	}
+<script>
+$("#actionTaken").on('change', function() {
+    if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', false);       
+    } else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', true);
+    }
+});
 
 </script>
-
 
 <!--Select customer before showing add button-->
 <script type="text/javascript">

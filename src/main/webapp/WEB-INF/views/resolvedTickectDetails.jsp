@@ -711,29 +711,26 @@
 									</div>
 
 									<!-- Text area Action Taken-->
-									<div class="form-group ">
+									<div class="form-group">
 										<label class="col-md-3 control-label">Action Taken</label>
-										<div class="col-md-6 selectContainer">
+										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select
-													name="actionTaken" readonly="readonly" id="actionTaken"
-													class="form-control selectpicker"
-													onchange="CheckPartToner(this.value);">
-													<option value="">Please select Action Taken</option>
-													<option value="Replaced Part">Replaced Part</option>
-													<option value="Replaced toner">Replaced Toner</option>
-													<option value="Cleared Paper Jam">Cleared Paper
-														Jam</option>
-													<option value="Installed Drivers">Installed
-														Drivers</option>
-													<option value="Configured Drivers">Configured
-														Drivers</option>
-													<option value="Configured Printer">Configured
-														Printer</option>
-													<option value="User Error">User Error</option>
-													<option value="No fault Found">No fault Found</option>
-												</select>
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="${ticketObject.actionTaken }" readonly="readonly">
+											</div>
+										</div>
+									</div>
+									<!-- Text area Used Spare Part-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Used Spare/Part</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="${ticketObject.usedPartNumbers }" readonly="readonly">
 											</div>
 										</div>
 									</div>

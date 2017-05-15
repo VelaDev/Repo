@@ -636,7 +636,7 @@ public class TicketController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		
+			String technician = userName.getFirstName()+ " "+userName.getLastName();
 			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
 			model.addObject("ticketObject", ticket);
 			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
@@ -644,6 +644,8 @@ public class TicketController {
 			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("bootStock", bootStockint.getAllOrders(technician));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.setViewName("bridgedTechDetails");
 		}

@@ -158,7 +158,7 @@ public class SparePartsController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("orders",bootStock.getAllOrders(technician));
+			model.addObject("orders",bootStock.getAllOrders(technician,0));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("bootSiteOrders");
 		}

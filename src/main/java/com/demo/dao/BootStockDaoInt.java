@@ -9,7 +9,7 @@ public interface BootStockDaoInt {
 	
 	void saveBootStock(List<OrderDetails> detailsDaos);
 	List<BootStock> getAllOrders();
-	List<BootStock> getAllOrders(String technician);
+	List<BootStock> getAllOrders(String technician, int ticketRecordID);
 	void updateBootStock(BootStock bootStock);
 
 }

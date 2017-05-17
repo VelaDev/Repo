@@ -353,7 +353,7 @@ public class OrdersController {
 			String technician = userName.getFirstName() + " "
 					+ userName.getLastName();
 			model.addObject("availableOrders",
-					bootStock.getAllOrders(technician));
+					bootStock.getAllOrders(technician,1));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));

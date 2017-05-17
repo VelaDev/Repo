@@ -644,7 +644,7 @@ public class TicketsDao implements TicketsDaoInt {
 					}
 				}
 			}else{
-				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName());
+				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName(),0);
 				for(BootStock btStock:tempSiteList){
 					
 					for(int i=0;i<spare.size();i++){

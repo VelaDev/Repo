@@ -22,9 +22,9 @@ public class BootStockService implements BootStockInt{
 	}
 
 	@Override
-	public List<BootStock> getAllOrders(String technician) {
+	public List<BootStock> getAllOrders(String technician,int ticketRecordID) {
 		
-		return bootStockDaoInt.getAllOrders(technician);
+		return bootStockDaoInt.getAllOrders(technician,ticketRecordID);
 	}
 
 }

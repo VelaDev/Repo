@@ -154,7 +154,7 @@ public class TicketController {
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
-			model.addObject("bootStock", bootStockint.getAllOrders(technician));
+			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			
 			model.setViewName("ticketDetails");
@@ -553,7 +553,7 @@ public class TicketController {
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
-			model.addObject("bootStock", bootStockint.getAllOrders(technician));
+			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			
 			model.setViewName("awaitingSparesDetails");
@@ -679,7 +679,7 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
-			model.addObject("bootStock", bootStockint.getAllOrders(technician));
+			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.setViewName("bridgedTechDetails");
 		}

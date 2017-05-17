@@ -1,6 +1,7 @@
 package com.demo.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -11,8 +12,10 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.BootStockDaoInt;
+import com.demo.dao.TicketsDaoInt;
 import com.demo.model.BootStock;
 import com.demo.model.OrderDetails;
+import com.demo.model.Tickets;
 
 
 @Repository("bootStockDao")
@@ -21,6 +24,8 @@ public class BootSiteDao implements BootStockDaoInt{
 
 	@Autowired
 	private SessionFactory sessionFactory;
+	@Autowired
+	private TicketsDaoInt ticketsDaoInt;
 	
 	private BootStock bootStock;
 	List<BootStock> bootStockList = null;
@@ -57,15 +62,23 @@ public class BootSiteDao implements BootStockDaoInt{
 		return (List<BootStock>) criteria.list();
 	}
 	@Override
-	public List<BootStock> getAllOrders(String technician) {
+	public List<BootStock> getAllOrders(String technician,int ticketRecordID) {
 		
+		Tickets ticket = ticketsDaoInt.getLoggedTicketsByTicketNumber(ticketRecordID);
+		String tempDeviceModelNumber = ticket.getDevice().getModelNumber();
+		List<String> spare = null;
 		bootStockList = new ArrayList<BootStock>();
 		try{
 			bootStocks = getAllOrders();
 			 for(BootStock boot:bootStocks){
 				 String name = boot.getTechnicianName();
 				 if(name.equalsIgnoreCase(technician)&& boot.getQuantity()>0){
-					 bootStockList.add(boot);
+					 spare = new ArrayList<String>(Arrays.asList(boot.getCompatibleDevice().split(",")));
+					 for(int i=0;i<spare.size();i++){
+						 if(spare.get(i).contains(tempDeviceModelNumber)){
+							 bootStockList.add(boot);
+						 }
+					 }
 				 }
 			 }
 		}catch(Exception e){

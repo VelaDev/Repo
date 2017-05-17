@@ -50,7 +50,7 @@
 									<th>Approved Date</th>
 									<th>Stock Type </th>
 									<th>Order Details</th>
-									<th>Shipment</th>
+									<th>Ship Order</th>
 									<th>Delivery Note</th>
 
 								</tr>
@@ -65,7 +65,7 @@
 										<td>${list.stockType}</td>
 										<td><a
 											href="detailedOrders?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-										<td><a href="shipment?recordID=<c:out value='${list.recordID}'/>">Shipment</a></td>
+										<td><a href="shipment?recordID=<c:out value='${list.recordID}'/>">Ship Order</a></td>
 										<td><a
 											href="deliveryNote?recordID=<c:out value='${list.recordID}'/>">
 

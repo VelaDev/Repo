@@ -102,6 +102,20 @@
 								</div>
 						</a></li>
 						
+						<li><a href='<c:url value="closedTechTickets.html"/>'
+							data-parallel-url="#"
+							data-parallel-placeholder="#ticket-leftFilter"
+							class="summery-filter clearfix" data-orig-name="new"
+							data-pjax="#body-container">
+								<div class="db-icon-wrap center pull-left">
+									<i class="fa fa-gavel dbicon-green"></i>
+								</div>
+								<div class="summary-count pull-left ml20">
+									<h4>${closedTickets}</h4>
+									<p>Closed Tickets</p>
+								</div>
+						</a></li>
+						
 						
 					</ul>
 				</div>

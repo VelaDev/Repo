@@ -152,6 +152,7 @@ public class EmployeeController {
 						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));
 						model.addObject("shipment",	ordersServiceInt.shippedOrders(employee.getEmail()));						   
 						model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(employee.getEmail()));
+						model.addObject("technicianTickets", ticketsServiceInt.getOpenTicketsForTechnician(employee.getEmail()));
 						model.setViewName("technicianHome");
 						
 					}

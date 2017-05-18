@@ -17,25 +17,24 @@ import com.demo.model.BootStock;
 import com.demo.model.OrderDetails;
 import com.demo.model.Tickets;
 
-
 @Repository("bootStockDao")
-@Transactional(propagation=Propagation.REQUIRED)
-public class BootSiteDao implements BootStockDaoInt{
+@Transactional(propagation = Propagation.REQUIRED)
+public class BootSiteDao implements BootStockDaoInt {
 
 	@Autowired
 	private SessionFactory sessionFactory;
 	@Autowired
 	private TicketsDaoInt ticketsDaoInt;
-	
+
 	private BootStock bootStock;
 	List<BootStock> bootStockList = null;
 	List<BootStock> bootStocks = null;
-	
+
 	@Override
 	public void saveBootStock(List<OrderDetails> detailsDaos) {
-		try{
-			
-			for(OrderDetails stock:detailsDaos){
+		try {
+
+			for (OrderDetails stock : detailsDaos) {
 				bootStock = new BootStock();
 				bootStock.setItemDescription(stock.getItemDescription());
 				bootStock.setItemType(stock.getItemType());
@@ -45,15 +44,16 @@ public class BootSiteDao implements BootStockDaoInt{
 				bootStock.setTechnicianEmail(stock.getTechnician());
 				bootStock.setTechnicianName(stock.getTechnician());
 				bootStock.setCompatibleDevice(stock.getCompatibleDevice());
-				
+
 				sessionFactory.getCurrentSession().saveOrUpdate(bootStock);
 			}
-			
-		}catch(Exception exception){
+
+		} catch (Exception exception) {
 			exception.getMessage();
 		}
-		
+
 	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<BootStock> getAllOrders() {
@@ -61,39 +61,63 @@ public class BootSiteDao implements BootStockDaoInt{
 				BootStock.class);
 		return (List<BootStock>) criteria.list();
 	}
+
 	@Override
-	public List<BootStock> getAllOrders(String technician,int ticketRecordID) {
-		
-		Tickets ticket = ticketsDaoInt.getLoggedTicketsByTicketNumber(ticketRecordID);
+	public List<BootStock> getAllOrders(String technician, int ticketRecordID) {
+
+		Tickets ticket = ticketsDaoInt
+				.getLoggedTicketsByTicketNumber(ticketRecordID);
 		String tempDeviceModelNumber = ticket.getDevice().getModelNumber();
 		List<String> spare = null;
 		bootStockList = new ArrayList<BootStock>();
-		try{
+		try {
 			bootStocks = getAllOrders();
-			 for(BootStock boot:bootStocks){
-				 String name = boot.getTechnicianName();
-				 if(name.equalsIgnoreCase(technician)&& boot.getQuantity()>0){
-					 spare = new ArrayList<String>(Arrays.asList(boot.getCompatibleDevice().split(",")));
-					 for(int i=0;i<spare.size();i++){
-						 if(spare.get(i).contains(tempDeviceModelNumber)){
-							 bootStockList.add(boot);
-						 }
-					 }
-				 }
-			 }
-		}catch(Exception e){
-			
+			for (BootStock boot : bootStocks) {
+				String name = boot.getTechnicianName();
+				if (name.equalsIgnoreCase(technician) && boot.getQuantity() > 0) {
+					spare = new ArrayList<String>(Arrays.asList(boot
+							.getCompatibleDevice().split(",")));
+					for (int i = 0; i < spare.size(); i++) {
+						if (spare.get(i)
+								.equalsIgnoreCase(tempDeviceModelNumber)) {
+							bootStockList.add(boot);
+						}
+					}
+				}
+			}
+		} catch (Exception e) {
+
 		}
 		return bootStockList;
 	}
+
 	@Override
 	public void updateBootStock(BootStock bootStock) {
-		try{
+		try {
 			sessionFactory.getCurrentSession().update(bootStock);
-		}catch(Exception e){
+		} catch (Exception e) {
 			e.getMessage();
 		}
+
+	}
+
+	@Override
+	public List<BootStock> getAllOrders(String technician) {
 		
+		bootStockList = new ArrayList<BootStock>();
+		try {
+			bootStocks = getAllOrders();
+			for (BootStock boot : bootStocks) {
+				String name = boot.getTechnicianName();
+				if (name.equalsIgnoreCase(technician) && boot.getQuantity() > 0) {
+					bootStockList.add(boot);
+
+				}
+			}
+		} catch (Exception e) {
+
+		}
+		return bootStockList;
 	}
 
 }

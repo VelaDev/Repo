@@ -76,7 +76,6 @@
 											<c:choose>
 											  <c:when test="${list.status=='INACTIVE'}">  </c:when>											  	
 											</c:choose>
-											
 											</a>
 										</td>
 										<td>

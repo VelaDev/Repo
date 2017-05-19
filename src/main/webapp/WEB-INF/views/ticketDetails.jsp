@@ -11,7 +11,7 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">	
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
@@ -100,7 +100,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);"  name="status"
+														onchange="CheckStatus(this.value);" name="status"
 														id="status" class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
 														<option value="Awaiting Spares">Awaiting Spares</option>
@@ -121,7 +121,7 @@
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-list"></i></span> <select id="order"
-															name="orderNum"  class="form-control selectpicker">
+															name="orderNum" class="form-control selectpicker">
 															<option value=0>Select Order No</option>
 															<c:forEach items="${OrderNumber}" var="orders">
 																<option value="${orders.recordID}">${orders.orderNum}
@@ -194,8 +194,9 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" readonly onkeydown="upperCaseF(this)"
-														name="description" required="required" readonly>${ticketObject.description}</textarea>
+													<textarea class="form-control" readonly
+														onkeydown="upperCaseF(this)" name="description"
+														required="required" readonly>${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
@@ -357,26 +358,27 @@
 											id="updateGen">
 									</div>
 								</div>
-								
+
 							</form:form>
 
 						</div>
 						<!--/general tab-->
 
 						<!-- Solution Details -->
-						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataTckt" >
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="updataTckt">
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
-									
+
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">×</button>
 											<h3 class="modal-title">Solution Details</h3>
 										</div>
-										
+
 										<div class="modal-body">
 
 											<!--wellform form-horizontal-->
@@ -424,8 +426,7 @@
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-list"></i></span> <select
 																		name="actionTaken" id="actionTaken"
-																		class="form-control selectpicker"
-																		onchange="CheckPartToner(this.value);">
+																		class="form-control selectpicker">
 																		<option value="">Please select Action Taken</option>
 																		<option value="Replaced Part">Replaced Part</option>
 																		<option value="Replaced toner">Replaced Toner</option>
@@ -476,6 +477,25 @@
 																</div>
 															</div>
 														</div>
+														<div class="form-group">
+															
+															<div class="col-md-8 inputGroupContainer">
+																<div class="input-group">
+																	<input type="hidden" class="form-control"
+																		 id="partTest" 	name="partTest"  value="">
+																</div>
+															</div>
+														</div>
+														<div class="form-group">
+															
+															<div class="col-md-8 inputGroupContainer">
+																<div class="input-group">
+																	 <input type="hidden" class="form-control"
+																		 id="tonerTest" name="tonerTest"  value="">
+																</div>
+															</div>
+														</div>
+
 
 													</div>
 												</div>
@@ -487,8 +507,7 @@
 
 
 
-													<div class="diplayNone" id="getPartToner"
-														>
+													<div class="diplayNone" id="getPartToner">
 														<!-- Radio for Boot Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Boot Stock</label>
@@ -589,14 +608,28 @@
 													<c:forEach var="list" items="${bootStock}">
 
 														<tr>
-															<td>${list.partNumber}</td>
-															<td>${list.itemDescription}</td>
-															<%-- <td>${list.compatibleDevice}</td> --%>
-															<td>${list.quantity}</td>
-															<td><input type="checkbox"
-																id="${list.partNumber}_selectedItem" name="selectedItem"
-																class="form-group" onClick="checkUsedPartNumbers();"
-																value="${list.partNumber}"></td>
+															<c:choose>
+																<c:when test="${list.itemType == '<script> document.getElementById('partTest').value = part; <script/>' }">
+																	<td>${list.partNumber}</td>
+																	<td>${list.itemDescription}</td>
+																	<td>${list.quantity}</td>
+																	<td><input type="checkbox"
+																		id="${list.partNumber}_selectedItem"
+																		name="selectedItem" class="form-group"
+																		onClick="checkUsedPartNumbers();"
+																		value="${list.partNumber}"></td>
+																</c:when>
+																<c:otherwise>
+																	<td>${list.partNumber}</td>
+																	<td>${list.itemDescription}</td>
+																	<td>${list.quantity}</td>
+																	<td><input type="checkbox"
+																		id="${list.partNumber}_selectedItem"
+																		name="selectedItem" class="form-group"
+																		onClick="checkUsedPartNumbers();"
+																		value="${list.partNumber}"></td>
+																</c:otherwise>
+															</c:choose>
 														</tr>
 
 													</c:forEach>
@@ -644,13 +677,28 @@
 													<c:forEach var="list" items="${siteStock}">
 
 														<tr>
-															<td>${list.partNumber}</td>
-															<td>${list.itemDescription}</td>
-															<td>${list.quantity}</td>
-															<td><input type="checkbox"
-																id="${list.partNumber}_selectedItem" name="selectedItem"
-																class="form-group" onClick="checkUsedPartNumbers();"
-																value="${list.partNumber}"></td>
+															<c:choose>
+																<c:when test="${list.itemType == 'toner' }">
+																	<td>${list.partNumber}</td>
+																	<td>${list.itemDescription}</td>
+																	<td>${list.quantity}</td>
+																	<td><input type="checkbox"
+																		id="${list.partNumber}_selectedItem"
+																		name="selectedItem" class="form-group"
+																		onClick="checkUsedPartNumbers();"
+																		value="${list.partNumber}"></td>
+																</c:when>
+																<c:otherwise>
+																	<td>${list.partNumber}</td>
+																	<td>${list.itemDescription}</td>
+																	<td>${list.quantity}</td>
+																	<td><input type="checkbox"
+																		id="${list.partNumber}_selectedItem"
+																		name="selectedItem" class="form-group"
+																		onClick="checkUsedPartNumbers();"
+																		value="${list.partNumber}"></td>
+																</c:otherwise>
+															</c:choose>
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -846,10 +894,34 @@ $('#status').change(function() {
 
 <script>
 $("#actionTaken").on('change', function() {
-    if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
-        $('input[type="radio"]:enabled').attr('disabled', true);
-        $('#BootStocked, #SiteStocked').attr('disabled', false);       
-    } else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+	//var tempPart ;
+	var part = "Part";
+	//var tempPart;
+	//var tempToner ;
+	var toner = "Toner";
+	
+    if( $(this).val() == "Replaced Part") {
+    	
+    	  $('input[type="radio"]:enabled').attr('disabled', true);
+          $('#BootStocked, #SiteStocked').attr('disabled', false);
+          
+	    	part ==  $(this).val();
+			//tempPart == part;
+			//alert(tempPart);
+			console.log(part);
+			document.getElementById("partTest").value = part;
+    }
+    else if($(this).val() == "Replaced toner" ){
+    	  $('input[type="radio"]:enabled').attr('disabled', true);
+          $('#BootStocked, #SiteStocked').attr('disabled', false); 
+           
+          	toner ==  $(this).val();
+			//tempToner == toner;
+			//alert(tempToner);
+			console.log(toner);
+			document.getElementById("tonerTest").value = toner;
+    }       
+    else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
         $('input[type="radio"]:enabled').attr('disabled', true);
         $('#BootStocked, #SiteStocked').attr('disabled', true);
     }
@@ -921,5 +993,6 @@ function isNumber(evt) {
 	    }, 1);
 	}
 </script>
+
 
 </html>

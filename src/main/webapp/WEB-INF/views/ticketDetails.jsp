@@ -609,7 +609,7 @@
 
 														<tr>
 															<c:choose>
-																<c:when test="${list.itemType == '<script> document.getElementById('partTest').value = part; <script/>' }">
+																<c:when test="${list.itemType == 'part'}">
 																	<td>${list.partNumber}</td>
 																	<td>${list.itemDescription}</td>
 																	<td>${list.quantity}</td>

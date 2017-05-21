@@ -44,7 +44,7 @@
 				<div class="panel-body">
 
 					<form:form action="bootStockUsedPartsNumbers" method="post"
-						modelAttribute="bootStockUsedPartsNumbers" class="well form-horizontal">
+						modelAttribute="bootStockUsedPartsNumbers" class="well form-horizontal" id="usedParts">
 
 					 <!-- Ticket Details -->
 					 <div class="groupsparedetails">
@@ -78,6 +78,32 @@
 									</div>
 								</div>
 							</div>
+							
+							<!-- Text area Action Taken-->
+							<div class="form-group ">
+								<label class="col-md-3 control-label">Action Taken</label>
+								<div class="col-md-6 selectContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-list"></i></span> <select
+											name="actionTaken" id="actionTaken"
+											class="form-control selectpicker">
+											<option value="">Please select Action Taken</option>
+											<option value="Replaced Part">Replaced Part</option>
+											<option value="Replaced toner">Replaced Toner</option>
+											<option value="Cleared Paper Jam">Cleared Paper Jam</option>
+											<option value="Installed Drivers">Installed Drivers</option>
+											<option value="Configured Drivers">Configured
+												Drivers</option>
+											<option value="Configured Printer">Configured
+												Printer</option>
+											<option value="User Error">User Error</option>
+											<option value="No fault Found">No fault Found</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							
 							<!-- Text checkbox Colour Reading-->
 							<div class="form-group">
 								<label class="col-md-3 control-label">Colour Reading</label>
@@ -205,7 +231,7 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-	<script>
+<script>
 	$(document).ready(function() {
 		$('#bStock').DataTable({
 			"jQueryUI" : true,
@@ -216,7 +242,47 @@
 	});
 </script>
 
-	<script>
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						$('#usedParts')
+								.bootstrapValidator(
+										{
+											feedbackIcons : {
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											fields : {
+												usedPartNumbers : {
+													validators : {
+														stringLength : {
+															min : 3,
+														},
+														notEmpty : {
+															message : 'Used Part Numbers is required and cannot be empty'
+														}
+													}
+												},
+												actionTaken : {
+													validators : {
+														stringLength : {
+															min : 3,
+														},
+														notEmpty : {
+															message : 'Action taken is required and cannot be empty'
+														}
+													}
+												}
+												
+											}
+										});
+					});
+</script>
+
+<script>
 		function checkUsedPartNumbers(){
   
 			  var checkboxes = document.getElementsByName('selectedItem');
@@ -232,6 +298,45 @@
 
 			}
 </script>
+
+
+<script>
+$("#actionTaken").on('change', function() {
+	//var tempPart ;
+	var part = "Part";
+	//var tempPart;
+	//var tempToner ;
+	var toner = "Toner";
+	
+    if( $(this).val() == "Replaced Part") {
+    	
+    	  $('input[type="radio"]:enabled').attr('disabled', true);
+          $('#BootStocked, #SiteStocked').attr('disabled', false);
+          
+	    	part ==  $(this).val();
+			//tempPart == part;
+			//alert(tempPart);
+			console.log(part);
+			document.getElementById("partTest").value = part;
+    }
+    else if($(this).val() == "Replaced toner" ){
+    	  $('input[type="radio"]:enabled').attr('disabled', true);
+          $('#BootStocked, #SiteStocked').attr('disabled', false); 
+           
+          	toner ==  $(this).val();
+			//tempToner == toner;
+			//alert(tempToner);
+			console.log(toner);
+			document.getElementById("tonerTest").value = toner;
+    }       
+    else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', true);
+    }
+});
+
+</script>
+
 
 </body>
 </html>

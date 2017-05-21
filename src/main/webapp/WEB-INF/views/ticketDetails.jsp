@@ -456,8 +456,6 @@
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)"
 																		placeholder="Enter Colour Reading" id="colour"
-																		name="colourReading"
-																		value="${ticketObject.getDevice().getColourReading() }"
 																		name="colourReading">
 																</div>
 															</div>
@@ -472,8 +470,7 @@
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)" id="mono"
 																		name="monoReading" placeholder="Enter Mono Reading"
-																		name="monoReading"
-																		value="${ticketObject.getDevice().getMonoReading() }">
+>
 																</div>
 															</div>
 														</div>
@@ -511,7 +508,7 @@
 																<label class="col-md-3 control-label">Boot Stock</label>
 																<div class="col-md-6 inputGroupContainer">
 																	<div class="input-group">
-																		<a href="bootStockUsedParts.html">
+																		<a href="bootStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
 																			<input type="button" name="bootStock" id="BootStocked" value="Boot Stock">
 																		</a>
 																	</div>

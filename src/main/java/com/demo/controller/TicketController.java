@@ -892,26 +892,20 @@ public class TicketController {
 	
 
 	
-	@RequestMapping(value="bootStockUsedParts", method=RequestMethod.GET)
-	public ModelAndView loadBootStockUsedParts(/*@RequestParam int id, @ModelAttribute Tickets ticket*/){
+	@RequestMapping(value="bootStockUsedParts", method = RequestMethod.GET)
+	public ModelAndView loadBootStockUsedParts(@RequestParam("ticketNumber") int ticketNumber){
 		System.out.println("We on Boot Stock Used Parts");
     	  model = new ModelAndView();
   	    userName = (Employee) session.getAttribute("loggedInUser");
   		if(userName !=null){
   			String technician = userName.getFirstName()+ " "+userName.getLastName();
-  			/*ticket = logTicketService.getLoggedTicketByTicketNumber(id);
-  			model.addObject("ticketObject", ticket);*/
-  			model.addObject("saveSpareParts", new SparePartsBean());
-  			getSerials = spareMasterServiceInt.getSerials();
-  			model.addObject("spareParts",getSerials);
-  			/*model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
-  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));*/
-  			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+  			model.addObject("ticket",ticketsServiceInt.getLoggedTicketByTicketNumber(ticketNumber));
+  			model.addObject("bootStock", bootStockint.getAllOrders(technician,ticketNumber));
   			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
   			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
   			model.addObject("managersList",employeeServiceInt.getAllManagers());
   			model.addObject("customerList",customerServiceInt.getClientList());
-  		/*	model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+  			/*model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
   			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
   			*/
   			model.setViewName("bootStockUsedParts");

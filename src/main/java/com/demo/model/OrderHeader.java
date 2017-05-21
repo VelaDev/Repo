@@ -62,7 +62,9 @@ public class OrderHeader implements Serializable{
 	@Column(name="Shipping_Date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date shippingDate;
-	
+	@Column(name="Order_Received_Date")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date orderReceivedDate;
 	
 	@ManyToOne
 	@JoinColumn(name="OrderBy")

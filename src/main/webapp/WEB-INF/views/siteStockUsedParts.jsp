@@ -53,55 +53,10 @@
 						modelAttribute="siteStockUsedPartsNumbers"
 						class="well form-horizontal">
 						
-					 <!-- group spare details -->
+					 <!-- Ticket Details -->
 					 <div class="groupsparedetails">
-					 	<legend>Site Stock Part Numbers </legend>
-						<table id="sStock" class="display datatable">
-							<thead>
-								<tr>
-									<th>Part No</th>
-									<th>Description</th>
-									<!-- <th>Model No</th> -->
-									<th>Quantity</th>
-									<th>Tick</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${siteStock}">
-
-									<tr>
-										<c:choose>
-											<c:when test="${list.itemType == 'toner' }">
-												<td>${list.partNumber}</td>
-												<td>${list.itemDescription}</td>
-												<td>${list.quantity}</td>
-												<td><input type="checkbox"
-													id="${list.partNumber}_selectedItem" name="selectedItem"
-													class="form-group" onClick="checkUsedPartNumbers();"
-													value="${list.partNumber}"></td>
-											</c:when>
-											<c:otherwise>
-												<td>${list.partNumber}</td>
-												<td>${list.itemDescription}</td>
-												<td>${list.quantity}</td>
-												<td><input type="checkbox"
-													id="${list.partNumber}_selectedItem" name="selectedItem"
-													class="form-group" onClick="checkUsedPartNumbers();"
-													value="${list.partNumber}"></td>
-											</c:otherwise>
-										</c:choose>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>						
-						</div> <!-- group spare details -->
-						
-						
-						<!-- group group search details -->
-						<div class="groupsearchdetails">
-							<legend>Used Part Numbers </legend>	
+					 	
+					 		<legend>Ticket Details</legend>	
 							
 							<!--// display ticked Used Part Numbers-->
 							<!-- Text input Ticket Number-->
@@ -173,6 +128,55 @@
 								</div>
 							</div>
 	
+					 						
+					 </div> <!-- Ticket Details -->
+						
+						
+						<!-- group group search details -->
+						<div class="groupsearchdetails">
+							
+							<legend>Site Stock Part Numbers </legend>
+						<table id="sStock" class="display datatable">
+							<thead>
+								<tr>
+									<th>Part No</th>
+									<th>Description</th>
+									<!-- <th>Model No</th> -->
+									<th>Quantity</th>
+									<th>Tick</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<!-- Iterating over the list sent from Controller -->
+								<c:forEach var="list" items="${siteStock}">
+
+									<tr>
+										<c:choose>
+											<c:when test="${list.itemType == 'toner' }">
+												<td>${list.partNumber}</td>
+												<td>${list.itemDescription}</td>
+												<td>${list.quantity}</td>
+												<td><input type="checkbox"
+													id="${list.partNumber}_selectedItem" name="selectedItem"
+													class="form-group" onClick="checkUsedPartNumbers();"
+													value="${list.partNumber}"></td>
+											</c:when>
+											<c:otherwise>
+												<td>${list.partNumber}</td>
+												<td>${list.itemDescription}</td>
+												<td>${list.quantity}</td>
+												<td><input type="checkbox"
+													id="${list.partNumber}_selectedItem" name="selectedItem"
+													class="form-group" onClick="checkUsedPartNumbers();"
+													value="${list.partNumber}"></td>
+											</c:otherwise>
+										</c:choose>
+									</tr>
+								</c:forEach>
+								</tbody>
+							</table>	
+							
 						
 						</div><!-- groupsearchdetails -->
 						

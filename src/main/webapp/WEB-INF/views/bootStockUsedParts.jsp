@@ -46,56 +46,10 @@
 					<form:form action="bootStockUsedPartsNumbers" method="post"
 						modelAttribute="bootStockUsedPartsNumbers" class="well form-horizontal">
 
-
-						 <!-- group spare details -->
+					 <!-- Ticket Details -->
 					 <div class="groupsparedetails">
-					 	<legend>Boot Stock Part Numbers </legend>
-						<table id="bStock" class="display datatable">
-							<thead>
-								<tr>
-									<th>Part No</th>
-									<th>Description</th>
-									<!-- <th>Model No</th> -->
-									<th>Quantity</th>
-									<th>Tick</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${bootStock}">
-
-									<tr>
-										<c:choose>
-											<c:when test="${list.itemType == 'toner' }">
-												<td>${list.partNumber}</td>
-												<td>${list.itemDescription}</td>
-												<td>${list.quantity}</td>
-												<td><input type="checkbox"
-													id="${list.partNumber}_selectedItem" name="selectedItem"
-													class="form-group" onClick="checkUsedPartNumbers();"
-													value="${list.partNumber}"></td>
-											</c:when>
-											<c:otherwise>
-												<td>${list.partNumber}</td>
-												<td>${list.itemDescription}</td>
-												<td>${list.quantity}</td>
-												<td><input type="checkbox"
-													id="${list.partNumber}_selectedItem" name="selectedItem"
-													class="form-group" onClick="checkUsedPartNumbers();"
-													value="${list.partNumber}"></td>
-											</c:otherwise>
-										</c:choose>
-									</tr>
-								</c:forEach>
-								</tbody>
-							</table>						
-						</div> <!-- group spare details -->
-						
-						
-						<!-- group group search details -->
-						<div class="groupsearchdetails">
-							<legend>Used Part Numbers </legend>	
+					 							
+							<legend>Ticket Details</legend>	
 							
 							<!--// display ticked Used Part Numbers-->
 							<!-- Text input Ticket Number-->
@@ -166,7 +120,56 @@
 									</div>
 								</div>
 							</div>
-	
+							
+												
+						</div> <!-- Ticket Details -->
+						
+						
+						<!--  group search details -->
+						<div class="groupsearchdetails">
+							
+								<legend>Boot Stock Part Numbers </legend>
+								<table id="bStock" class="display datatable">
+									<thead>
+										<tr>
+											<th>Part No</th>
+											<th>Description</th>
+											<!-- <th>Model No</th> -->
+											<th>Quantity</th>
+											<th>Tick</th>
+		
+										</tr>
+									</thead>
+									<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach var="list" items="${bootStock}">
+			
+												<tr>
+													<c:choose>
+														<c:when test="${list.itemType == 'toner' }">
+															<td>${list.partNumber}</td>
+															<td>${list.itemDescription}</td>
+															<td>${list.quantity}</td>
+															<td><input type="checkbox"
+																id="${list.partNumber}_selectedItem" name="selectedItem"
+																class="form-group" onClick="checkUsedPartNumbers();"
+																value="${list.partNumber}"></td>
+														</c:when>
+														<c:otherwise>
+															<td>${list.partNumber}</td>
+															<td>${list.itemDescription}</td>
+															<td>${list.quantity}</td>
+															<td><input type="checkbox"
+																id="${list.partNumber}_selectedItem" name="selectedItem"
+																class="form-group" onClick="checkUsedPartNumbers();"
+																value="${list.partNumber}"></td>
+														</c:otherwise>
+													</c:choose>
+												</tr>
+											</c:forEach>
+									</tbody>
+								</table>	
+								
 						
 						</div><!-- groupsearchdetails -->
 						

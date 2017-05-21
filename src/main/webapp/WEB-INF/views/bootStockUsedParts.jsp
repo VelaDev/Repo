@@ -44,7 +44,7 @@
 				<div class="panel-body">
 
 					<form:form action="bootStockUsedPartsNumbers" method="post"
-						modelAttribute="bootStockUsedPartsNumbers">
+						modelAttribute="bootStockUsedPartsNumbers" class="well form-horizontal">
 
 
 						<table id="bStock" class="display datatable">
@@ -88,32 +88,83 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<br/><br/>
 						<!-- display ticked Used Part Numbers-->
-						<div class="shitRight">
-							<div class="form-group">
-								<label class="col-md-5 control-label">Used Part Numbers</label>
-								<div class="col-md-8 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-barcode"></i></span>
-										<textarea id="tickedUsedPartNumbers" class="form-control"
-											readonly="readonly"
-											style="width: 200px; height: 90px; font-size: 11px;" rows="3"
-											name="usedPartNumbers"></textarea>
-									</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Used Part Numbers</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-barcode"></i></span>
+									<textarea id="tickedUsedPartNumbers" class="form-control"
+										readonly="readonly" rows="3"
+										name="usedPartNumbers"></textarea>
 								</div>
 							</div>
 						</div>
+
 						<!--// display ticked Used Part Numbers-->
-					
-					<div class="form-group row">
-						<div class="col-sm-offset-2 col-sm-8">
-						<br/><br/>
-							<input type="submit" value="Submit"
-								class="btn btn-primary btn-block btn-lg" tabindex="9"
-								id="sub">
+						<!-- Text input Ticket Number-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Ticket Number</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-barcode"></i></span> <input
+										id="ticketNumber" class="form-control" type="text"
+										name="ticketNumber" value="${ticketObject.ticketNumber}"
+										readonly="readonly">
+								</div>
+							</div>
 						</div>
-					</div>
+						<!-- Text input Machine Model-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Model No</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-barcode"></i></span> <input
+										name="productModel" placeholder="Product Model"
+										value="${ticketObject.device.modelNumber }"
+										class="form-control" type="text" readonly>
+								</div>
+							</div>
+						</div>
+						<!-- Text checkbox Colour Reading-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Colour Reading</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+										class="form-control" onkeypress="return isNumber(event)"
+										placeholder="Enter Colour Reading" id="colour"
+										name="colourReading"
+										value="${ticketObject.getDevice().getColourReading() }"
+										name="colourReading">
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="col-md-3 control-label">Mono Reading</label>
+							<div class="col-md-6 inputGroupContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+										class="form-control" onkeypress="return isNumber(event)"
+										id="mono" name="monoReading" placeholder="Enter Mono Reading"
+										name="monoReading"
+										value="${ticketObject.getDevice().getMonoReading() }">
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group row">
+							<div class="col-sm-offset-2 col-sm-8">
+								<br /> <br /> <input type="submit" value="Submit"
+									class="btn btn-primary btn-block btn-lg" tabindex="9" id="sub">
+							</div>
+						</div>
 
 		</form:form>
 

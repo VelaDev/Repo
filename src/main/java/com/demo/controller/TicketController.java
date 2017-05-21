@@ -889,8 +889,11 @@ public class TicketController {
          
         return model;
     }
-	@RequestMapping("getSparePartsTicketsDetails")
-	public ModelAndView getSparePartsTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket){
+	
+
+	
+	@RequestMapping("bootStockUsedParts")
+	public ModelAndView loadBootStockUsedParts(@RequestParam int id, @ModelAttribute Tickets ticket){
 		System.out.println("Boot or Site Stock, new feature");
     	  model = new ModelAndView();
   	    userName = (Employee) session.getAttribute("loggedInUser");
@@ -911,7 +914,7 @@ public class TicketController {
   			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
   			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
   			
-  			model.setViewName("ticketDetails");
+  			model.setViewName("bootStockUsedParts");
   		}
   		else{
   			model.setViewName("login");
@@ -919,32 +922,34 @@ public class TicketController {
   		return model;
 	}
 	
+	/*
 	
-
+	
 	@RequestMapping(value="bootStockUsedParts",method=RequestMethod.GET)
-	public ModelAndView loadBootStockUsedParts(/*@RequestParam int id, @ModelAttribute Tickets ticket*/) {
+	public ModelAndView loadBootStockUsedParts(@RequestParam int id, @ModelAttribute Tickets ticket) {
        
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			System.out.println("We bootStockUsedParts");
+				
+				System.out.println("We on Boot Stock UsedParts");
 			
 				String technician = userName.getFirstName()+ " "+userName.getLastName();
-	  			/*ticket = logTicketService.getLoggedTicketByTicketNumber(id);
-	  			model.addObject("ticketObject", ticket);*/
+	  			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+	  			model.addObject("ticketObject", ticket);
 	  			model.addObject("saveSpareParts", new SparePartsBean());
 	  			getSerials = spareMasterServiceInt.getSerials();
 	  			model.addObject("spareParts",getSerials);
-	  			/*model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
-	  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));*/
+	  			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+	  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
 	  			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
 	  			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 	  			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 	  			model.addObject("managersList",employeeServiceInt.getAllManagers());
 	  			model.addObject("customerList",customerServiceInt.getClientList());
-	  			/*model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+	  			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
 	  			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
-	  			*/
+	  			
 	  				
 			model.setViewName("bootStockUsedParts");
 		}
@@ -953,7 +958,7 @@ public class TicketController {
 		}
 		return model;     
 		
-	}
+	}*/
 	
 	@RequestMapping(value="bootStockUsedPartsNumbers",method=RequestMethod.POST)
 	public ModelAndView logBootStockUsedPartsNumbers(@ModelAttribute("siteStockUsedPartsNumbers")TicketsBean logTickets){
@@ -980,7 +985,7 @@ public class TicketController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			System.out.println("We siteStockUsedParts");
+			System.out.println("We on Site Stock Used Parts");
 			String technician = userName.getFirstName()+ " "+userName.getLastName();
   			/*ticket = logTicketService.getLoggedTicketByTicketNumber(id);
   			model.addObject("ticketObject", ticket);*/

@@ -47,6 +47,9 @@
 						modelAttribute="bootStockUsedPartsNumbers" class="well form-horizontal">
 
 
+						 <!-- group spare details -->
+					 <div class="groupsparedetails">
+					 	<legend>Boot Stock Part Numbers </legend>
 						<table id="bStock" class="display datatable">
 							<thead>
 								<tr>
@@ -64,7 +67,7 @@
 
 									<tr>
 										<c:choose>
-											<c:when test="${list.itemType == 'part'}">
+											<c:when test="${list.itemType == 'toner' }">
 												<td>${list.partNumber}</td>
 												<td>${list.itemDescription}</td>
 												<td>${list.quantity}</td>
@@ -84,80 +87,89 @@
 											</c:otherwise>
 										</c:choose>
 									</tr>
-
 								</c:forEach>
-							</tbody>
-						</table>
-						<br/><br/>
-						<!-- display ticked Used Part Numbers-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Used Part Numbers</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-barcode"></i></span>
-									<textarea id="tickedUsedPartNumbers" class="form-control"
-										readonly="readonly" rows="3"
-										name="usedPartNumbers"></textarea>
+								</tbody>
+							</table>						
+						</div> <!-- group spare details -->
+						
+						
+						<!-- group group search details -->
+						<div class="groupsearchdetails">
+							<legend>Used Part Numbers </legend>	
+							
+							<!--// display ticked Used Part Numbers-->
+							<!-- Text input Ticket Number-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Ticket Number</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-barcode"></i></span> <input
+											id="ticketNumber" class="form-control" type="text"
+											name="ticketNumber" value="${ticketObject.ticketNumber}"
+											readonly="readonly">
+									</div>
 								</div>
 							</div>
-						</div>
-
-						<!--// display ticked Used Part Numbers-->
-						<!-- Text input Ticket Number-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Ticket Number</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-barcode"></i></span> <input
-										id="ticketNumber" class="form-control" type="text"
-										name="ticketNumber" value="${ticketObject.ticketNumber}"
-										readonly="readonly">
+							<!-- Text input Machine Model-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Model No</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-barcode"></i></span> <input
+											name="productModel" placeholder="Product Model"
+											value="${ticketObject.device.modelNumber }"
+											class="form-control" type="text" readonly>
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Text input Machine Model-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Model No</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-barcode"></i></span> <input
-										name="productModel" placeholder="Product Model"
-										value="${ticketObject.device.modelNumber }"
-										class="form-control" type="text" readonly>
+							<!-- Text checkbox Colour Reading-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Colour Reading</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+											class="form-control" onkeypress="return isNumber(event)"
+											placeholder="Enter Colour Reading" id="colour"
+											name="colourReading"
+											value="${ticketObject.getDevice().getColourReading() }"
+											name="colourReading">
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Text checkbox Colour Reading-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Colour Reading</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-										class="form-control" onkeypress="return isNumber(event)"
-										placeholder="Enter Colour Reading" id="colour"
-										name="colourReading"
-										value="${ticketObject.getDevice().getColourReading() }"
-										name="colourReading">
+							<div class="form-group">
+								<label class="col-md-3 control-label">Mono Reading</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+											class="form-control" onkeypress="return isNumber(event)"
+											id="mono" name="monoReading" placeholder="Enter Mono Reading"
+											name="monoReading"
+											value="${ticketObject.getDevice().getMonoReading() }">
+									</div>
+								</div>
+							</div>							
+														
+							<!-- display ticked Used Part Numbers-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Used Part Numbers</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-barcode"></i></span>
+										<textarea id="tickedUsedPartNumbers" class="form-control"
+											readonly="readonly" rows="3"
+											name="usedPartNumbers"></textarea>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="form-group">
-							<label class="col-md-3 control-label">Mono Reading</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-										class="form-control" onkeypress="return isNumber(event)"
-										id="mono" name="monoReading" placeholder="Enter Mono Reading"
-										name="monoReading"
-										value="${ticketObject.getDevice().getMonoReading() }">
-								</div>
-							</div>
-						</div>
+	
+						
+						</div><!-- groupsearchdetails -->
+						
 
 						<div class="form-group row">
 							<div class="col-sm-offset-2 col-sm-8">

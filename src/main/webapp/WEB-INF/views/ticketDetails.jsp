@@ -365,7 +365,7 @@
 						<!--/general tab-->
 
 						<!-- Solution Details -->
-						<form:form action="updateTicket" modelAttribute="updateTicket"
+						<form:form action="getSparePartsTicketsDetails" modelAttribute="getSparePartsTicketsDetails"
 							method="post" id="updataTckt">
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
@@ -504,7 +504,6 @@
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
-
 
 
 													<div class="diplayNone" id="getPartToner">

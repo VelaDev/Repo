@@ -80,7 +80,7 @@ public class BootSiteDao implements BootStockDaoInt {
 					for (int i = 0; i < spare.size(); i++) {
 						if (spare.get(i)
 								.equalsIgnoreCase(tempDeviceModelNumber)) {
-							bootStockList.add(boot);
+							 bootStockList.add(boot);
 						}
 					}
 				}

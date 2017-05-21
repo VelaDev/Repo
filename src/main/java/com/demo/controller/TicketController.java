@@ -220,42 +220,7 @@ public class TicketController {
 	}
 	
 	
-	@RequestMapping("getSparePartsTicketsDetails")
-	public ModelAndView getSparePartsTicketsDetails(@ModelAttribute("getSparePartsTicketsDetails")TicketsBean updateTicket){
-		
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-		    
-			retMessage = logTicketService.updateTicket(updateTicket);
-			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			if(retMessage.startsWith("The part number")){
-				String retErrorMessage = retMessage;
-				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));				
-				model.addObject("retErrorMessage", retErrorMessage);
-			}else{
-				model.addObject("retMessage", retMessage);
-			}
-		    
-		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		    
-		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
-		    	
-		    	model.setViewName("bridgedTicketsDetails");
-		    }
-		    
-		    else if (userName.getRole().equalsIgnoreCase("Technician")){
-		    	model.setViewName("ticketDetails");
-		    }
-		
-		}
-		else{
-			model.setViewName("login");
-		}
-		
-		return model;
-	}
+	
 	
 	@RequestMapping("updateTicketUser")
 	public ModelAndView userUpdateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
@@ -923,5 +888,35 @@ public class TicketController {
         model.addObject("exception", ex.getMessage());
          
         return model;
-    }
+    }@RequestMapping("getSparePartsTicketsDetails")
+	public ModelAndView getSparePartsTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket){
+		
+    	  model = new ModelAndView();
+  	    userName = (Employee) session.getAttribute("loggedInUser");
+  		if(userName !=null){
+  		    String technician = userName.getFirstName()+ " "+userName.getLastName();
+  			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+  			model.addObject("ticketObject", ticket);
+  			model.addObject("saveSpareParts", new SparePartsBean());
+  			getSerials = spareMasterServiceInt.getSerials();
+  			model.addObject("spareParts",getSerials);
+  			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));
+  			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+  			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+  			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+  			model.addObject("managersList",employeeServiceInt.getAllManagers());
+  			model.addObject("customerList",customerServiceInt.getClientList());
+  			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+  			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
+  			
+  			model.setViewName("ticketDetails");
+  		}
+  		else{
+  			model.setViewName("login");
+  		}
+  		return model;
+	}
+	
+	
 }

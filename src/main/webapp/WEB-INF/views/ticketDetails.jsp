@@ -501,68 +501,62 @@
 												</div>
 												<!-- //group details -->
 												
-												<form:form action="getSparePartsTicketsDetails" id="validateSparePartsTicketsDetails" modelAttribute="getSparePartsTicketsDetails" method="post">											
 												
 													<!-- group Used Part Numbers -->
 													<div class="groupsearchdetails">
 														<legend>Used Part Numbers </legend>	
 															
-															<!-- Radio for Boot Stock-->
+															<!-- Boot Stock-->
 															<div class="form-group">
 																<label class="col-md-3 control-label">Boot Stock</label>
 																<div class="col-md-6 inputGroupContainer">
 																	<div class="input-group">
-																		<input type="submit" data-toggle="modal"
-																			data-target="#bootStock" name="bootStock"
-																			class="trigger" data-rel="boot-stock" id="BootStocked" value="Boot Stock">
+																		<a href="bootStockUsedParts.html">
+																			<input type="button" name="bootStock" id="BootStocked" value="Boot Stock">
+																		</a>
 																	</div>
 																</div>
 															</div>
 	
-															<!-- Radio for Site Stock-->
+															<!-- Site Stock-->
 															<div class="form-group">
 																<label class="col-md-3 control-label">Site Stock
 																</label>
 																<div class="col-md-6 inputGroupContainer">
 																	<div class="input-group">
-																		<input type="submit" name="siteStock" class="trigger"
-																			data-rel="site-stock" data-toggle="modal"
-																			data-target="#siteStock" id="SiteStocked" value="Site Stock">
+																		<a href="siteStockUsedParts.html">
+																			<input type="button" name="siteStock" id="SiteStocked" value="Site Stock">
+																		</a>
 																	</div>
 																</div>
 															</div>
 															
-													    
 															<!-- display ticked Used Part Numbers-->
 															<div class="shitRight">
 																<div class="form-group">
-																	<label class="col-md-5 control-label">Used Part
-																		Numbers</label>
+																	<label class="col-md-5 control-label">Used Part Numbers</label>
 																	<div class="col-md-8 inputGroupContainer">
 																		<div class="input-group">
 																			<span class="input-group-addon"><i
 																				class="glyphicon glyphicon-barcode"></i></span>
-																			<textarea id="tickedUsedPartNumbers"
-																				class="form-control" readonly="readonly"
-																				style="width: 200px; height: 90px; font-size: 11px;"
-																				rows="3" name="usedPartNumbers"></textarea>
+																			<textarea id="tickedUsedPartNumbers" class="form-control"
+																				readonly="readonly"
+																				style="width: 200px; height: 90px; font-size: 11px;" rows="3"
+																				name="usedPartNumbers"></textarea>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<!--// display ticked Used Part Numbers-->
+													    
 	
 														</div>
 														<!-- displayNone for getPartToner -->
 														
-												</form:form>
 														
 												</div>
 												<!-- //group Used Part Numbers -->
 												
-												
-												
-
 												<div class="modal-footer">
 
 													<button type="button" class="btn btn-default"
@@ -584,145 +578,16 @@
 							</div>
 							<!-- /.modal solutionDetails-->
 
-							<!--Boot Stock-->
-							<div id="bootStock" class="modal fade" role="dialog"
-								style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content" id="botStock">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">×</button>
-											<h3 class="modal-title">Boot Stock</h3>
-										</div>
-										<div class="modal-body">
-											<table id="bStock" class="display datatable">
-												<thead>
-													<tr>
-														<th>Part No</th>
-														<th>Description</th>
-														<!-- <th>Model No</th> -->
-														<th>Quantity</th>
-														<th>Tick</th>
-
-													</tr>
-												</thead>
-												<tbody>
-													<!-- Iterating over the list sent from Controller -->
-													<c:forEach var="list" items="${bootStock}">
-
-														<tr>
-															<c:choose>
-																<c:when test="${list.itemType == 'part'}">
-																	<td>${list.partNumber}</td>
-																	<td>${list.itemDescription}</td>
-																	<td>${list.quantity}</td>
-																	<td><input type="checkbox"
-																		id="${list.partNumber}_selectedItem"
-																		name="selectedItem" class="form-group"
-																		onClick="checkUsedPartNumbers();"
-																		value="${list.partNumber}"></td>
-																</c:when>
-																<c:otherwise>
-																	<td>${list.partNumber}</td>
-																	<td>${list.itemDescription}</td>
-																	<td>${list.quantity}</td>
-																	<td><input type="checkbox"
-																		id="${list.partNumber}_selectedItem"
-																		name="selectedItem" class="form-group"
-																		onClick="checkUsedPartNumbers();"
-																		value="${list.partNumber}"></td>
-																</c:otherwise>
-															</c:choose>
-														</tr>
-
-													</c:forEach>
-												</tbody>
-											</table>
-
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">Close</button>
-											<button id="save" type="button" class="btn btn-primary"
-												data-dismiss="modal">Save</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--/site stock-->
+							
 
 
-							<!--Site Stock-->
-							<div id="siteStock" class="modal fade" role="dialog"
-								style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content" id="siStock">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">×</button>
-											<h3 class="modal-title">Site Stock</h3>
-										</div>
-										<div class="modal-body">
-											<table id="sStock" class="display datatable">
-												<thead>
-													<tr>
-														<th>Part No</th>
-														<th>Description</th>
-														<!-- <th>Model No</th> -->
-														<th>Quantity</th>
-														<th>Tick</th>
-
-													</tr>
-												</thead>
-												<tbody>
-													<!-- Iterating over the list sent from Controller -->
-													<c:forEach var="list" items="${siteStock}">
-
-														<tr>
-															<c:choose>
-																<c:when test="${list.itemType == 'toner' }">
-																	<td>${list.partNumber}</td>
-																	<td>${list.itemDescription}</td>
-																	<td>${list.quantity}</td>
-																	<td><input type="checkbox"
-																		id="${list.partNumber}_selectedItem"
-																		name="selectedItem" class="form-group"
-																		onClick="checkUsedPartNumbers();"
-																		value="${list.partNumber}"></td>
-																</c:when>
-																<c:otherwise>
-																	<td>${list.partNumber}</td>
-																	<td>${list.itemDescription}</td>
-																	<td>${list.quantity}</td>
-																	<td><input type="checkbox"
-																		id="${list.partNumber}_selectedItem"
-																		name="selectedItem" class="form-group"
-																		onClick="checkUsedPartNumbers();"
-																		value="${list.partNumber}"></td>
-																</c:otherwise>
-															</c:choose>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
-											<div class="modal-footer">
-
-												<button type="button" class="btn btn-default"
-													data-dismiss="modal">Close</button>
-												<button id="save" type="button" class="btn btn-primary"
-													data-dismiss="modal">Save</button>
-
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--/site stock-->
+							
 
 						</form:form>
 						<!-- /Solution Details -->
+						
+						
+					
 
 
 						<!--history tab-->

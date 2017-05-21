@@ -888,7 +888,8 @@ public class TicketController {
         model.addObject("exception", ex.getMessage());
          
         return model;
-    }@RequestMapping("getSparePartsTicketsDetails")
+    }
+	@RequestMapping("getSparePartsTicketsDetails")
 	public ModelAndView getSparePartsTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket){
 		System.out.println("Boot or Site Stock, new feature");
     	  model = new ModelAndView();
@@ -917,6 +918,114 @@ public class TicketController {
   		}
   		return model;
 	}
+	
+	
+
+	@RequestMapping(value="bootStockUsedParts",method=RequestMethod.GET)
+	public ModelAndView loadBootStockUsedParts(/*@RequestParam int id, @ModelAttribute Tickets ticket*/) {
+       
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			System.out.println("We bootStockUsedParts");
+			
+				String technician = userName.getFirstName()+ " "+userName.getLastName();
+	  			/*ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+	  			model.addObject("ticketObject", ticket);*/
+	  			model.addObject("saveSpareParts", new SparePartsBean());
+	  			getSerials = spareMasterServiceInt.getSerials();
+	  			model.addObject("spareParts",getSerials);
+	  			/*model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+	  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));*/
+	  			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+	  			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+	  			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+	  			model.addObject("managersList",employeeServiceInt.getAllManagers());
+	  			model.addObject("customerList",customerServiceInt.getClientList());
+	  			/*model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+	  			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
+	  			*/
+	  				
+			model.setViewName("bootStockUsedParts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;     
+		
+	}
+	
+	@RequestMapping(value="bootStockUsedPartsNumbers",method=RequestMethod.POST)
+	public ModelAndView logBootStockUsedPartsNumbers(@ModelAttribute("siteStockUsedPartsNumbers")TicketsBean logTickets){
+	
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		   retMessage = logTicketService.logTicket(logTickets);
+		   model.addObject("retMessage", retMessage);
+		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		   model.setViewName("bootStockUsedParts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+		
+	}
+	
+	
+	@RequestMapping(value="siteStockUsedParts",method=RequestMethod.GET)
+	public ModelAndView loadSiteStockUsedParts(/*@RequestParam int id, @ModelAttribute Tickets ticket*/) {
+       
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			System.out.println("We siteStockUsedParts");
+			String technician = userName.getFirstName()+ " "+userName.getLastName();
+  			/*ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+  			model.addObject("ticketObject", ticket);*/
+  			model.addObject("saveSpareParts", new SparePartsBean());
+  			getSerials = spareMasterServiceInt.getSerials();
+  			model.addObject("spareParts",getSerials);
+  			/*model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));*/
+  			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+  			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+  			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+  			model.addObject("managersList",employeeServiceInt.getAllManagers());
+  			model.addObject("customerList",customerServiceInt.getClientList());
+  		/*	model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+  			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
+  			*/
+			model.setViewName("siteStockUsedParts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		
+		return model;     
+		
+	}
+	
+	@RequestMapping(value="siteStockUsedPartsNumbers",method=RequestMethod.POST)
+	public ModelAndView logSiteStockUsedPartsNumbers(@ModelAttribute("siteStockUsedPartsNumbers")TicketsBean logTickets){
+	
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		   retMessage = logTicketService.logTicket(logTickets);
+		   model.addObject("retMessage", retMessage);
+		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		   model.setViewName("siteStockUsedParts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+		
+	}
+	
 	
 	
 }

@@ -365,8 +365,8 @@
 						<!--/general tab-->
 
 						<!-- Solution Details -->
-						<form:form action="getSparePartsTicketsDetails" modelAttribute="getSparePartsTicketsDetails"
-							method="post" id="updataTckt">
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="validateSparePartsTicketsDetails">
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
@@ -500,63 +500,68 @@
 													</div>
 												</div>
 												<!-- //group details -->
-
-												<!-- group Used Part Numbers -->
-												<div class="groupsearchdetails">
-													<legend>Used Part Numbers </legend>
-
-
-													<div class="diplayNone" id="getPartToner">
-														<!-- Radio for Boot Stock-->
-														<div class="form-group">
-															<label class="col-md-3 control-label">Boot Stock</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" data-toggle="modal"
-																		data-target="#bootStock" name="groupstock"
-																		class="trigger" data-rel="boot-stock" id="BootStocked">
-																</div>
-															</div>
-														</div>
-
-														<!-- Radio for Site Stock-->
-														<div class="form-group">
-															<label class="col-md-3 control-label">Site Stock
-															</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" name="groupstock" class="trigger"
-																		data-rel="site-stock" data-toggle="modal"
-																		data-target="#siteStock" id="SiteStocked">
-																</div>
-															</div>
-														</div>
-
-
-														<!-- display ticked Used Part Numbers-->
-														<div class="shitRight">
+												
+												<form:form action="getSparePartsTicketsDetails" id="validateSparePartsTicketsDetails" modelAttribute="getSparePartsTicketsDetails" method="post">											
+												
+													<!-- group Used Part Numbers -->
+													<div class="groupsearchdetails">
+														<legend>Used Part Numbers </legend>	
+															
+															<!-- Radio for Boot Stock-->
 															<div class="form-group">
-																<label class="col-md-5 control-label">Used Part
-																	Numbers</label>
-																<div class="col-md-8 inputGroupContainer">
+																<label class="col-md-3 control-label">Boot Stock</label>
+																<div class="col-md-6 inputGroupContainer">
 																	<div class="input-group">
-																		<span class="input-group-addon"><i
-																			class="glyphicon glyphicon-barcode"></i></span>
-																		<textarea id="tickedUsedPartNumbers"
-																			class="form-control" readonly="readonly"
-																			style="width: 200px; height: 90px; font-size: 11px;"
-																			rows="3" name="usedPartNumbers"></textarea>
+																		<input type="submit" data-toggle="modal"
+																			data-target="#bootStock" name="bootStock"
+																			class="trigger" data-rel="boot-stock" id="BootStocked" value="Boot Stock">
 																	</div>
 																</div>
 															</div>
+	
+															<!-- Radio for Site Stock-->
+															<div class="form-group">
+																<label class="col-md-3 control-label">Site Stock
+																</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<input type="submit" name="siteStock" class="trigger"
+																			data-rel="site-stock" data-toggle="modal"
+																			data-target="#siteStock" id="SiteStocked" value="Site Stock">
+																	</div>
+																</div>
+															</div>
+															
+													    
+															<!-- display ticked Used Part Numbers-->
+															<div class="shitRight">
+																<div class="form-group">
+																	<label class="col-md-5 control-label">Used Part
+																		Numbers</label>
+																	<div class="col-md-8 inputGroupContainer">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i
+																				class="glyphicon glyphicon-barcode"></i></span>
+																			<textarea id="tickedUsedPartNumbers"
+																				class="form-control" readonly="readonly"
+																				style="width: 200px; height: 90px; font-size: 11px;"
+																				rows="3" name="usedPartNumbers"></textarea>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<!--// display ticked Used Part Numbers-->
+	
 														</div>
-														<!--// display ticked Used Part Numbers-->
-
-													</div>
-													<!-- displayNone for getPartToner -->
-
+														<!-- displayNone for getPartToner -->
+														
+												</form:form>
+														
 												</div>
 												<!-- //group Used Part Numbers -->
+												
+												
+												
 
 												<div class="modal-footer">
 
@@ -968,6 +973,54 @@ $("#actionTaken").on('change', function() {
 										});
 					});
 </script>
+<script>
+	$(document)
+			.ready(
+					function() {
+						$('#validateSparePartsTicketsDetails')
+								.bootstrapValidator(
+										{
+											feedbackIcons : {
+												valid : 'glyphicon glyphicon-ok',
+												invalid : 'glyphicon glyphicon-remove',
+												validating : 'glyphicon glyphicon-refresh'
+											},
+											fields : {
+												actionTaken : {
+													validators : {
+														stringLength : {
+															min : 3,
+														},
+														notEmpty : {
+															message : 'Action taken is required and cannot be empty'
+														}
+													}
+												},
+												actionTaken : {
+													validators : {
+														stringLength : {
+															min : 3,
+														},
+														notEmpty : {
+															message : 'Action taken is required and cannot be empty'
+														}
+													}
+												},
+												actionTaken : {
+													validators : {
+														stringLength : {
+															min : 3,
+														},
+														notEmpty : {
+															message : 'Action taken is required and cannot be empty'
+														}
+													}
+												}
+											}
+										});
+					});
+</script>
+
 
 <script>
 $('#check_site_stock_customer').bootstrapValidator();

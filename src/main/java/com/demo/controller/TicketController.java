@@ -890,7 +890,7 @@ public class TicketController {
         return model;
     }@RequestMapping("getSparePartsTicketsDetails")
 	public ModelAndView getSparePartsTicketsDetails(@RequestParam int id, @ModelAttribute Tickets ticket){
-		
+		System.out.println("Boot or Site Stock, new feature");
     	  model = new ModelAndView();
   	    userName = (Employee) session.getAttribute("loggedInUser");
   		if(userName !=null){

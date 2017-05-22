@@ -931,37 +931,6 @@ public class TicketController {
 		
 	}
 	
-	
-	/*@RequestMapping(value="siteStockUsedParts",method=RequestMethod.GET)
-	public ModelAndView loadSiteStockUsedParts(@RequestParam("ticketNumber") int ticketNumber, @ModelAttribute Tickets ticket) {
-       
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-			System.out.println("We on Site Stock Used Parts");
-			String technician = userName.getFirstName()+ " "+userName.getLastName();  			
-  			model.addObject("saveSpareParts", new SparePartsBean());
-  			getSerials = spareMasterServiceInt.getSerials();
-  			model.addObject("spareParts",getSerials);
-  			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
-  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(ticketNumber));
-  			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
-  			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-  			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-  			model.addObject("managersList",employeeServiceInt.getAllManagers());
-  			model.addObject("customerList",customerServiceInt.getClientList());
-  			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
-			model.setViewName("siteStockUsedParts");
-		}
-		else{
-			model.setViewName("login");
-		}
-		
-		
-		return model;     
-		
-	}*/
-	
 	@RequestMapping("siteStockUsedParts")
     public ModelAndView loadSiteStockUsedParts(@RequestParam("ticketNumber") int ticketNumber) {
 		
@@ -971,7 +940,7 @@ public class TicketController {
 			
 			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));		
 			//model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());  			
 			model.setViewName("siteStockUsedParts");

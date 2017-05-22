@@ -78,8 +78,30 @@
 									</div>
 								</div>
 							</div>
-							
-							
+							<!-- Text area Action Taken-->
+							<div class="form-group ">
+								<label class="col-md-3 control-label">Action Taken</label>
+								<div class="col-md-6 selectContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-list"></i></span> <select
+											name="actionTaken" id="actionTaken"
+											class="form-control selectpicker">
+											<option value="">Please select Action Taken</option>
+											<option value="Replaced Part">Replaced Part</option>
+											<option value="Replaced toner">Replaced Toner</option>
+											<option value="Cleared Paper Jam">Cleared Paper Jam</option>
+											<option value="Installed Drivers">Installed Drivers</option>
+											<option value="Configured Drivers">Configured
+												Drivers</option>
+											<option value="Configured Printer">Configured
+												Printer</option>
+											<option value="User Error">User Error</option>
+											<option value="No fault Found">No fault Found</option>
+										</select>
+									</div>
+								</div>
+							</div>
 							<!-- Text checkbox Colour Reading-->
 							<div class="form-group">
 								<label class="col-md-3 control-label">Colour Reading</label>

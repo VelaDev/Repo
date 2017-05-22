@@ -52,7 +52,8 @@
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
+						<li class="active"><a href="#generalDetails"
+							data-toggle="tab">General</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -411,61 +412,135 @@
 																		name="status" value="Resolved" readonly="readonly">
 																</div>
 															</div>
-														</div>															
+														</div>
 													</div>
-												</div>
-												<!-- //group details -->
-												
-												
-													<!-- group Used Part Numbers -->
-													<div class="groupsearchdetails">
-														<legend>Used Part Numbers </legend>	
-															
-															<!-- Boot Stock-->
-															<div class="form-group">
-																<label class="col-md-3 control-label">Boot Stock</label>
-																<div class="col-md-6 inputGroupContainer">
-																	<div class="input-group">
-																		<a href="bootStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
-																			<input type="button" name="bootStock" id="BootStocked" value="Boot Stock">
-																		</a>
-																	</div>
+													
+													<!-- Text area Action Taken-->
+													<div class="form-group ">
+														<label class="col-md-4 control-label">Action Taken</label>
+														<div class="col-md-8 selectContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span> <select
+																	name="actionTaken" id="actionTaken"
+																	class="form-control selectpicker">
+																	<option value="">Please select Action Taken</option>
+																	<option value="Replaced Part">Replaced Part</option>
+																	<option value="Replaced toner">Replaced Toner</option>
+																	<option value="Cleared Paper Jam">Cleared
+																		Paper Jam</option>
+																	<option value="Installed Drivers">Installed
+																		Drivers</option>
+																	<option value="Configured Drivers">Configured
+																		Drivers</option>
+																	<option value="Configured Printer">Configured
+																		Printer</option>
+																	<option value="User Error">User Error</option>
+																	<option value="No fault Found">No fault Found</option>
+																</select>
+															</div>
+														</div>
+													</div>
+													
+													<!-- Text checkbox Colour Reading-->
+														<div class="form-group">
+															<label class="col-md-4 control-label">Colour Reading</label>
+															<div class="col-md-8 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+																		class="form-control" onkeypress="return isNumber(event)"
+																		placeholder="Enter Colour Reading" id="colour"
+																		name="colourReading"
+																		value="${ticketObject.getDevice().getColourReading() }"
+																		name="colourReading">
 																</div>
 															</div>
-	
-															<!-- Site Stock-->
-															<div class="form-group">
-																<label class="col-md-3 control-label">Site Stock
-																</label>
-																<div class="col-md-6 inputGroupContainer">
-																	<div class="input-group">
-																		<a href="siteStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
-																			<input type="button" name="siteStock" id="SiteStocked" value="Site Stock">
-																		</a>
-																	</div>
-																</div>
-															</div>													    
-	
 														</div>
-														<!-- group Used Part Numbers -->														
-														
+																										
+													
 												</div>
-												<!-- //group Used Part Numbers -->												
+												
+												
+												
+												<!-- //group details -->
+
+
+												<!-- group Used Part Numbers -->
+												<div class="groupsearchdetails">
+													<legend>Used Part Numbers </legend>
+
+													<!-- Boot Stock-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Boot Stock</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<a
+																	href="bootStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
+																	<input type="button" name="bootStock" id="BootStocked"
+																	value="Boot Stock">
+																</a>
+															</div>
+														</div>
+													</div>
+
+													<!-- Site Stock-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Site Stock </label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<a
+																	href="siteStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
+																	<input type="button" name="siteStock" id="SiteStocked"
+																	value="Site Stock">
+																</a>
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group">
+															<label class="col-md-4 control-label">Mono Reading</label>
+															<div class="col-md-8 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+																		class="form-control" onkeypress="return isNumber(event)"
+																		id="mono" name="monoReading" placeholder="Enter Mono Reading"
+																		name="monoReading"
+																		value="${ticketObject.getDevice().getMonoReading() }">
+																</div>
+															</div>
+														</div>	
+
+												</div>
+												<!-- group Used Part Numbers -->
 
 											</div>
-											<!--/wellform form-horizontal-->
+											<!-- //group Used Part Numbers -->
 
 										</div>
-										<!-- modal-body -->
+										<!--/wellform form-horizontal-->
+										
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+											<button type="submit" value="Submit" class="btn btn-primary"
+												id="send_btn">Submit</button>
+										</div>
+										
 									</div>
-									<!-- /.modal-content -->
+									<!-- modal-body -->
+									
+						
 								</div>
-								<!-- /.modal-dialog -->							
-							
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+
 						</form:form>
 						<!-- /Solution Details -->
-						
-						
+
+
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
@@ -647,7 +722,7 @@ $("#actionTaken").on('change', function() {
 	
     if( $(this).val() == "Replaced Part") {
     	
-    	  $('input[type="radio"]:enabled').attr('disabled', true);
+    	  $('input[type="button"]:enabled').attr('disabled', true);
           $('#BootStocked, #SiteStocked').attr('disabled', false);
           
 	    	part ==  $(this).val();
@@ -657,7 +732,7 @@ $("#actionTaken").on('change', function() {
 			document.getElementById("partTest").value = part;
     }
     else if($(this).val() == "Replaced toner" ){
-    	  $('input[type="radio"]:enabled').attr('disabled', true);
+    	  $('input[type="button"]:enabled').attr('disabled', true);
           $('#BootStocked, #SiteStocked').attr('disabled', false); 
            
           	toner ==  $(this).val();
@@ -667,7 +742,7 @@ $("#actionTaken").on('change', function() {
 			document.getElementById("tonerTest").value = toner;
     }       
     else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
-        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('input[type="button"]:enabled').attr('disabled', true);
         $('#BootStocked, #SiteStocked').attr('disabled', true);
     }
 });

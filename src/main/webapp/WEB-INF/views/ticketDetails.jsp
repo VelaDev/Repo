@@ -413,7 +413,7 @@
 																</div>
 															</div>
 														</div>
-													</div>
+													
 													
 													<!-- Text area Action Taken-->
 													<div class="form-group ">
@@ -457,13 +457,25 @@
 																</div>
 															</div>
 														</div>
+														
+														<div class="form-group">
+															<label class="col-md-4 control-label">Mono Reading</label>
+															<div class="col-md-8 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+																		class="form-control" onkeypress="return isNumber(event)"
+																		id="mono" name="monoReading" placeholder="Enter Mono Reading"
+																		name="monoReading"
+																		value="${ticketObject.getDevice().getMonoReading() }">
+																</div>
+															</div>
+														</div>	
+													
+													</div><!-- col12 -->
 																										
 													
-												</div>
-												
-												
-												
-												<!-- //group details -->
+												</div><!-- //group details -->
 
 
 												<!-- group Used Part Numbers -->
@@ -498,19 +510,20 @@
 														</div>
 													</div>
 													
+													<!-- display ticked Used Part Numbers-->
 													<div class="form-group">
-															<label class="col-md-4 control-label">Mono Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-																		class="form-control" onkeypress="return isNumber(event)"
-																		id="mono" name="monoReading" placeholder="Enter Mono Reading"
-																		name="monoReading"
-																		value="${ticketObject.getDevice().getMonoReading() }">
-																</div>
+														<label class="col-md-3 control-label">Used Part Numbers</label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span>
+																<textarea id="tickedUsedPartNumbers" class="form-control"
+																	readonly="readonly" rows="3" name="usedPartNumbers"></textarea>
 															</div>
-														</div>	
+														</div>
+													</div>
+													
+													
 
 												</div>
 												<!-- group Used Part Numbers -->

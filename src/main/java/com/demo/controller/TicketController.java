@@ -890,8 +890,6 @@ public class TicketController {
         return model;
     }
 	
-
-	
 	@RequestMapping(value="bootStockUsedParts", method = RequestMethod.GET)
 	public ModelAndView loadBootStockUsedParts(@RequestParam("ticketNumber") int ticketNumber){
 		System.out.println("We on Boot Stock Used Parts");
@@ -905,9 +903,7 @@ public class TicketController {
   			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
   			model.addObject("managersList",employeeServiceInt.getAllManagers());
   			model.addObject("customerList",customerServiceInt.getClientList());
-  			/*model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
-  			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
-  			*/
+  			
   			model.setViewName("bootStockUsedParts");
   		}
   		else{
@@ -936,29 +932,25 @@ public class TicketController {
 	}
 	
 	
-	@RequestMapping(value="siteStockUsedParts",method=RequestMethod.GET)
-	public ModelAndView loadSiteStockUsedParts(/*@RequestParam int id, @ModelAttribute Tickets ticket*/) {
+	/*@RequestMapping(value="siteStockUsedParts",method=RequestMethod.GET)
+	public ModelAndView loadSiteStockUsedParts(@RequestParam("ticketNumber") int ticketNumber, @ModelAttribute Tickets ticket) {
        
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			System.out.println("We on Site Stock Used Parts");
-			String technician = userName.getFirstName()+ " "+userName.getLastName();
-  			/*ticket = logTicketService.getLoggedTicketByTicketNumber(id);
-  			model.addObject("ticketObject", ticket);*/
+			String technician = userName.getFirstName()+ " "+userName.getLastName();  			
   			model.addObject("saveSpareParts", new SparePartsBean());
   			getSerials = spareMasterServiceInt.getSerials();
   			model.addObject("spareParts",getSerials);
-  			/*model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
-  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(id));*/
+  			model.addObject("contactPerson",contactDetailsServiceInt.getContactPerson(ticket.getDevice().getCustomerDevice().getCustomerName()));
+  			model.addObject("ticketHistoryList", ticketHistoryInt.getHistoryByTicketNumber(ticketNumber));
   			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
   			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
   			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
   			model.addObject("managersList",employeeServiceInt.getAllManagers());
   			model.addObject("customerList",customerServiceInt.getClientList());
-  		/*	model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
   			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
-  			*/
 			model.setViewName("siteStockUsedParts");
 		}
 		else{
@@ -968,7 +960,27 @@ public class TicketController {
 		
 		return model;     
 		
-	}
+	}*/
+	
+	@RequestMapping("siteStockUsedParts")
+    public ModelAndView loadSiteStockUsedParts(@RequestParam("ticketNumber") int ticketNumber) {
+		
+	    model = new ModelAndView();
+	    userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+			
+			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			//model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
+			model.addObject("managersList",employeeServiceInt.getAllManagers());  			
+			model.setViewName("siteStockUsedParts");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+    }
 	
 	@RequestMapping(value="siteStockUsedPartsNumbers",method=RequestMethod.POST)
 	public ModelAndView logSiteStockUsedPartsNumbers(@ModelAttribute("siteStockUsedPartsNumbers")TicketsBean logTickets){

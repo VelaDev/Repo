@@ -411,57 +411,7 @@
 																		name="status" value="Resolved" readonly="readonly">
 																</div>
 															</div>
-														</div>														
-
-														<!-- Text checkbox Colour Reading-->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Colour
-																Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		type="text" class="form-control"
-																		onkeypress="return isNumber(event)"
-																		placeholder="Enter Colour Reading" id="colour"
-																		name="colourReading">
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label class="col-md-4 control-label">Mono
-																Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		type="text" class="form-control"
-																		onkeypress="return isNumber(event)" id="mono"
-																		name="monoReading" placeholder="Enter Mono Reading"
->
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<input type="hidden" class="form-control"
-																		 id="partTest" 	name="partTest"  value="">
-																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	 <input type="hidden" class="form-control"
-																		 id="tonerTest" name="tonerTest"  value="">
-																</div>
-															</div>
-														</div>
-
-
+														</div>															
 													</div>
 												</div>
 												<!-- //group details -->
@@ -489,47 +439,18 @@
 																</label>
 																<div class="col-md-6 inputGroupContainer">
 																	<div class="input-group">
-																		<a href="siteStockUsedParts.html">
+																		<a href="siteStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
 																			<input type="button" name="siteStock" id="SiteStocked" value="Site Stock">
 																		</a>
 																	</div>
 																</div>
-															</div>
-															
-															<!-- display ticked Used Part Numbers-->
-															<div class="shitRight">
-																<div class="form-group">
-																	<label class="col-md-5 control-label">Used Part Numbers</label>
-																	<div class="col-md-8 inputGroupContainer">
-																		<div class="input-group">
-																			<span class="input-group-addon"><i
-																				class="glyphicon glyphicon-barcode"></i></span>
-																			<textarea id="tickedUsedPartNumbers" class="form-control"
-																				readonly="readonly"
-																				style="width: 200px; height: 90px; font-size: 11px;" rows="3"
-																				name="usedPartNumbers"></textarea>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<!--// display ticked Used Part Numbers-->
-													    
+															</div>													    
 	
 														</div>
-														<!-- displayNone for getPartToner -->
-														
+														<!-- group Used Part Numbers -->														
 														
 												</div>
-												<!-- //group Used Part Numbers -->
-												
-												<div class="modal-footer">
-
-													<button type="button" class="btn btn-default"
-														data-dismiss="modal">Close</button>
-													<button type="submit" value="Submit"
-														class="btn btn-primary" id="send_btn">Submit</button>
-
-												</div>
+												<!-- //group Used Part Numbers -->												
 
 											</div>
 											<!--/wellform form-horizontal-->

@@ -10,7 +10,6 @@ public interface SiteStocDaoInt {
 	void saveSiteStock(List<OrderDetails> detailsDaos);
 	List<SiteStock> getAllOrders();
 	List<SiteStock> getOrdersForCustomer(String customerName);
-	List<SiteStock> getOrdersForCustomer(String customerName,int ticketID);
 	List<SiteStock> getOrdersByTechnician(String technician);
 
 }

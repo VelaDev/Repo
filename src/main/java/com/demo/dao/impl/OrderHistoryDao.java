@@ -38,9 +38,9 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 			else if(order.getShippingDate() != null){
 				orderHistory.setDateOrdered(""+order.getShippingDate());
 			}
-			else if(order.getOrderReceivedDate() != null){
-				orderHistory.setDateOrdered(""+order.getOrderReceivedDate());
-			}
+//			else if(order.getOrderReceivedDate() != null){
+//				orderHistory.setDateOrdered(""+order.getOrderReceivedDate());
+//			}
 			
 			sessionFactory.getCurrentSession().save(orderHistory);
 		}catch(Exception e){

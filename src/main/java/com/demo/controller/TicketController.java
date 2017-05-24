@@ -154,7 +154,7 @@ public class TicketController {
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
-			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+			model.addObject("bootStock", bootStockint.getAllOrders(technician));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			
 			model.setViewName("ticketDetails");
@@ -218,10 +218,6 @@ public class TicketController {
 		
 		return model;
 	}
-	
-	
-	
-	
 	@RequestMapping("updateTicketUser")
 	public ModelAndView userUpdateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
 		
@@ -557,7 +553,7 @@ public class TicketController {
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
-			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+			model.addObject("bootStock", bootStockint.getAllOrders(technician));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			
 			model.setViewName("awaitingSparesDetails");
@@ -683,7 +679,7 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
-			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
+			model.addObject("bootStock", bootStockint.getAllOrders(technician));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.setViewName("bridgedTechDetails");
 		}
@@ -889,86 +885,4 @@ public class TicketController {
          
         return model;
     }
-	
-	@RequestMapping(value="bootStockUsedParts", method = RequestMethod.GET)
-	public ModelAndView loadBootStockUsedParts(@RequestParam("ticketNumber") int ticketNumber){
-		System.out.println("We on Boot Stock Used Parts");
-    	  model = new ModelAndView();
-  	    userName = (Employee) session.getAttribute("loggedInUser");
-  		if(userName !=null){
-  			String technician = userName.getFirstName()+ " "+userName.getLastName();
-  			model.addObject("ticket",ticketsServiceInt.getLoggedTicketByTicketNumber(ticketNumber));
-  			model.addObject("bootStock", bootStockint.getAllOrders(technician,ticketNumber));
-  			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-  			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-  			model.addObject("managersList",employeeServiceInt.getAllManagers());
-  			model.addObject("customerList",customerServiceInt.getClientList());
-  			
-  			model.setViewName("bootStockUsedParts");
-  		}
-  		else{
-  			model.setViewName("login");
-  		}
-  		return model;
-	}
-	
-	
-	@RequestMapping(value="bootStockUsedPartsNumbers",method=RequestMethod.POST)
-	public ModelAndView logBootStockUsedPartsNumbers(@ModelAttribute("siteStockUsedPartsNumbers")TicketsBean logTickets){
-	
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-		   retMessage = logTicketService.logTicket(logTickets);
-		   model.addObject("retMessage", retMessage);
-		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		   model.setViewName("bootStockUsedParts");
-		}
-		else{
-			model.setViewName("login");
-		}
-		return model;
-		
-	}
-	
-	@RequestMapping("siteStockUsedParts")
-    public ModelAndView loadSiteStockUsedParts(@RequestParam("ticketNumber") int ticketNumber) {
-		
-	    model = new ModelAndView();
-	    userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-			
-			model.addObject("OrderNumber",ordersServiceInt.getAllOrders(userName.getEmail()));
-			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));		
-			//model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
-			model.addObject("managersList",employeeServiceInt.getAllManagers());  			
-			model.setViewName("siteStockUsedParts");
-		}
-		else{
-			model.setViewName("login");
-		}
-		return model;
-    }
-	
-	@RequestMapping(value="siteStockUsedPartsNumbers",method=RequestMethod.POST)
-	public ModelAndView logSiteStockUsedPartsNumbers(@ModelAttribute("siteStockUsedPartsNumbers")TicketsBean logTickets){
-	
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-		   retMessage = logTicketService.logTicket(logTickets);
-		   model.addObject("retMessage", retMessage);
-		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		   model.setViewName("siteStockUsedParts");
-		}
-		else{
-			model.setViewName("login");
-		}
-		return model;
-		
-	}
-	
-	
-	
 }

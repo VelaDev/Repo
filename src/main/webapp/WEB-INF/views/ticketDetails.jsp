@@ -11,7 +11,7 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">	
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
@@ -54,6 +54,9 @@
 
 						<li class="active"><a href="#generalDetails"
 							data-toggle="tab">General</a></li>
+						<!-- <li><a href="#resolvedDetails" data-toggle="tab">Resolved
+								Details</a></li>
+						 -->
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -97,7 +100,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);" name="status"
+														onchange="CheckStatus(this.value);"  name="status"
 														id="status" class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
 														<option value="Awaiting Spares">Awaiting Spares</option>
@@ -118,7 +121,7 @@
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-list"></i></span> <select id="order"
-															name="orderNum" class="form-control selectpicker">
+															name="orderNum"  class="form-control selectpicker">
 															<option value=0>Select Order No</option>
 															<c:forEach items="${OrderNumber}" var="orders">
 																<option value="${orders.recordID}">${orders.orderNum}
@@ -191,9 +194,8 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" readonly
-														onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly>${ticketObject.description}</textarea>
+													<textarea class="form-control" readonly onkeydown="upperCaseF(this)"
+														name="description" required="required" readonly>${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
@@ -355,27 +357,26 @@
 											id="updateGen">
 									</div>
 								</div>
-
+								
 							</form:form>
 
 						</div>
 						<!--/general tab-->
 
 						<!-- Solution Details -->
-						<form:form action="updateTicket" modelAttribute="updateTicket"
-							method="post" id="validateSparePartsTicketsDetails">
+						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataTckt" >
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
-
+									
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">×</button>
 											<h3 class="modal-title">Solution Details</h3>
 										</div>
-
+										
 										<div class="modal-body">
 
 											<!--wellform form-horizontal-->
@@ -413,43 +414,46 @@
 																</div>
 															</div>
 														</div>
-													
-													
-													<!-- Text area Action Taken-->
-													<div class="form-group ">
-														<label class="col-md-4 control-label">Action Taken</label>
-														<div class="col-md-8 selectContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-list"></i></span> <select
-																	name="actionTaken" id="actionTaken"
-																	class="form-control selectpicker">
-																	<option value="">Please select Action Taken</option>
-																	<option value="Replaced Part">Replaced Part</option>
-																	<option value="Replaced toner">Replaced Toner</option>
-																	<option value="Cleared Paper Jam">Cleared
-																		Paper Jam</option>
-																	<option value="Installed Drivers">Installed
-																		Drivers</option>
-																	<option value="Configured Drivers">Configured
-																		Drivers</option>
-																	<option value="Configured Printer">Configured
-																		Printer</option>
-																	<option value="User Error">User Error</option>
-																	<option value="No fault Found">No fault Found</option>
-																</select>
+
+														<!-- Text area Action Taken-->
+														<div class="form-group ">
+															<label class="col-md-4 control-label">Action
+																Taken</label>
+															<div class="col-md-8 selectContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-list"></i></span> <select
+																		name="actionTaken" id="actionTaken"
+																		class="form-control selectpicker"
+																		onchange="CheckPartToner(this.value);">
+																		<option value="">Please select Action Taken</option>
+																		<option value="Replaced Part">Replaced Part</option>
+																		<option value="Replaced toner">Replaced Toner</option>
+																		<option value="Cleared Paper Jam">Cleared
+																			Paper Jam</option>
+																		<option value="Installed Drivers">Installed
+																			Drivers</option>
+																		<option value="Configured Drivers">Configured
+																			Drivers</option>
+																		<option value="Configured Printer">Configured
+																			Printer</option>
+																		<option value="User Error">User Error</option>
+																		<option value="No fault Found">No fault Found</option>
+																	</select>
+																</div>
 															</div>
 														</div>
-													</div>
-													
-													<!-- Text checkbox Colour Reading-->
+
+														<!-- Text checkbox Colour Reading-->
 														<div class="form-group">
-															<label class="col-md-4 control-label">Colour Reading</label>
+															<label class="col-md-4 control-label">Colour
+																Reading</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-																		class="form-control" onkeypress="return isNumber(event)"
+																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		type="text" class="form-control"
+																		onkeypress="return isNumber(event)"
 																		placeholder="Enter Colour Reading" id="colour"
 																		name="colourReading"
 																		value="${ticketObject.getDevice().getColourReading() }"
@@ -457,98 +461,213 @@
 																</div>
 															</div>
 														</div>
-														
 														<div class="form-group">
-															<label class="col-md-4 control-label">Mono Reading</label>
+															<label class="col-md-4 control-label">Mono
+																Reading</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-																		class="form-control" onkeypress="return isNumber(event)"
-																		id="mono" name="monoReading" placeholder="Enter Mono Reading"
+																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		type="text" class="form-control"
+																		onkeypress="return isNumber(event)" id="mono"
+																		name="monoReading" placeholder="Enter Mono Reading"
 																		name="monoReading"
 																		value="${ticketObject.getDevice().getMonoReading() }">
 																</div>
 															</div>
-														</div>	
-													
-													</div><!-- col12 -->
-																										
-													
-												</div><!-- //group details -->
+														</div>
 
+													</div>
+												</div>
+												<!-- //group details -->
 
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
-													<!-- Boot Stock-->
-													<div class="form-group">
-														<label class="col-md-3 control-label">Boot Stock</label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<a
-																	href="bootStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
-																	<input type="button" name="bootStock" id="BootStocked"
-																	value="Boot Stock">
-																</a>
-															</div>
-														</div>
-													</div>
 
-													<!-- Site Stock-->
-													<div class="form-group">
-														<label class="col-md-3 control-label">Site Stock </label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<a
-																	href="siteStockUsedParts.html?ticketNumber=${ticketObject.recordID}">
-																	<input type="button" name="siteStock" id="SiteStocked"
-																	value="Site Stock">
-																</a>
+
+													<div class="diplayNone" id="getPartToner"
+														>
+														<!-- Radio for Boot Stock-->
+														<div class="form-group">
+															<label class="col-md-3 control-label">Boot Stock</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<input type="radio" data-toggle="modal"
+																		data-target="#bootStock" name="groupstock"
+																		class="trigger" data-rel="boot-stock" id="BootStocked">
+																</div>
 															</div>
 														</div>
-													</div>
-													
-													<!-- display ticked Used Part Numbers-->
-													<div class="form-group">
-														<label class="col-md-3 control-label">Used Part Numbers</label>
-														<div class="col-md-8 inputGroupContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-barcode"></i></span>
-																<textarea id="tickedUsedPartNumbers" class="form-control"
-																	readonly="readonly" rows="3" name="usedPartNumbers"></textarea>
+
+														<!-- Radio for Site Stock-->
+														<div class="form-group">
+															<label class="col-md-3 control-label">Site Stock
+															</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<input type="radio" name="groupstock" class="trigger"
+																		data-rel="site-stock" data-toggle="modal"
+																		data-target="#siteStock" id="SiteStocked">
+																</div>
 															</div>
 														</div>
+
+
+														<!-- display ticked Used Part Numbers-->
+														<div class="shitRight">
+															<div class="form-group">
+																<label class="col-md-5 control-label">Used Part
+																	Numbers</label>
+																<div class="col-md-8 inputGroupContainer">
+																	<div class="input-group">
+																		<span class="input-group-addon"><i
+																			class="glyphicon glyphicon-barcode"></i></span>
+																		<textarea id="tickedUsedPartNumbers"
+																			class="form-control" readonly="readonly"
+																			style="width: 200px; height: 90px; font-size: 11px;"
+																			rows="3" name="usedPartNumbers"></textarea>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--// display ticked Used Part Numbers-->
+
 													</div>
-													
-													
+													<!-- displayNone for getPartToner -->
 
 												</div>
-												<!-- group Used Part Numbers -->
+												<!-- //group Used Part Numbers -->
+
+												<div class="modal-footer">
+
+													<button type="button" class="btn btn-default"
+														data-dismiss="modal">Close</button>
+													<button type="submit" value="Submit"
+														class="btn btn-primary" id="send_btn">Submit</button>
+
+												</div>
 
 											</div>
-											<!-- //group Used Part Numbers -->
+											<!--/wellform form-horizontal-->
 
 										</div>
-										<!--/wellform form-horizontal-->
-										
+										<!-- modal-body -->
+									</div>
+									<!-- /.modal-content -->
+								</div>
+								<!-- /.modal-dialog -->
+							</div>
+							<!-- /.modal solutionDetails-->
+
+							<!--Boot Stock-->
+							<div id="bootStock" class="modal fade" role="dialog"
+								style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content" id="botStock">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">×</button>
+											<h3 class="modal-title">Boot Stock</h3>
+										</div>
+										<div class="modal-body">
+											<table id="bStock" class="display datatable">
+												<thead>
+													<tr>
+														<th>Part No</th>
+														<th>Description</th>
+														<!-- <th>Model No</th> -->
+														<th>Quantity</th>
+														<th>Tick</th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+													<c:forEach var="list" items="${bootStock}">
+
+														<tr>
+															<td>${list.partNumber}</td>
+															<td>${list.itemDescription}</td>
+															<%-- <td>${list.compatibleDevice}</td> --%>
+															<td>${list.quantity}</td>
+															<td><input type="checkbox"
+																id="${list.partNumber}_selectedItem" name="selectedItem"
+																class="form-group" onClick="checkUsedPartNumbers();"
+																value="${list.partNumber}"></td>
+														</tr>
+
+													</c:forEach>
+												</tbody>
+											</table>
+
+										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default"
 												data-dismiss="modal">Close</button>
-											<button type="submit" value="Submit" class="btn btn-primary"
-												id="send_btn">Submit</button>
+											<button id="save" type="button" class="btn btn-primary"
+												data-dismiss="modal">Save</button>
 										</div>
-										
 									</div>
-									<!-- modal-body -->
-									
-						
 								</div>
-								<!-- /.modal-content -->
 							</div>
-							<!-- /.modal-dialog -->
+							<!--/site stock-->
+
+
+							<!--Site Stock-->
+							<div id="siteStock" class="modal fade" role="dialog"
+								style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content" id="siStock">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">×</button>
+											<h3 class="modal-title">Site Stock</h3>
+										</div>
+										<div class="modal-body">
+											<table id="sStock" class="display datatable">
+												<thead>
+													<tr>
+														<th>Part No</th>
+														<th>Description</th>
+														<!-- <th>Model No</th> -->
+														<th>Quantity</th>
+														<th>Tick</th>
+
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+													<c:forEach var="list" items="${siteStock}">
+
+														<tr>
+															<td>${list.partNumber}</td>
+															<td>${list.itemDescription}</td>
+															<td>${list.quantity}</td>
+															<td><input type="checkbox"
+																id="${list.partNumber}_selectedItem" name="selectedItem"
+																class="form-group" onClick="checkUsedPartNumbers();"
+																value="${list.partNumber}"></td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+											<div class="modal-footer">
+
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Close</button>
+												<button id="save" type="button" class="btn btn-primary"
+													data-dismiss="modal">Save</button>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--/site stock-->
 
 						</form:form>
 						<!-- /Solution Details -->
@@ -727,35 +846,11 @@ $('#status').change(function() {
 
 <script>
 $("#actionTaken").on('change', function() {
-	//var tempPart ;
-	var part = "Part";
-	//var tempPart;
-	//var tempToner ;
-	var toner = "Toner";
-	
-    if( $(this).val() == "Replaced Part") {
-    	
-    	  $('input[type="button"]:enabled').attr('disabled', true);
-          $('#BootStocked, #SiteStocked').attr('disabled', false);
-          
-	    	part ==  $(this).val();
-			//tempPart == part;
-			//alert(tempPart);
-			console.log(part);
-			document.getElementById("partTest").value = part;
-    }
-    else if($(this).val() == "Replaced toner" ){
-    	  $('input[type="button"]:enabled').attr('disabled', true);
-          $('#BootStocked, #SiteStocked').attr('disabled', false); 
-           
-          	toner ==  $(this).val();
-			//tempToner == toner;
-			//alert(tempToner);
-			console.log(toner);
-			document.getElementById("tonerTest").value = toner;
-    }       
-    else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
-        $('input[type="button"]:enabled').attr('disabled', true);
+    if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', false);       
+    } else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+        $('input[type="radio"]:enabled').attr('disabled', true);
         $('#BootStocked, #SiteStocked').attr('disabled', true);
     }
 });
@@ -802,54 +897,6 @@ $("#actionTaken").on('change', function() {
 										});
 					});
 </script>
-<script>
-	$(document)
-			.ready(
-					function() {
-						$('#validateSparePartsTicketsDetails')
-								.bootstrapValidator(
-										{
-											feedbackIcons : {
-												valid : 'glyphicon glyphicon-ok',
-												invalid : 'glyphicon glyphicon-remove',
-												validating : 'glyphicon glyphicon-refresh'
-											},
-											fields : {
-												actionTaken : {
-													validators : {
-														stringLength : {
-															min : 3,
-														},
-														notEmpty : {
-															message : 'Action taken is required and cannot be empty'
-														}
-													}
-												},
-												actionTaken : {
-													validators : {
-														stringLength : {
-															min : 3,
-														},
-														notEmpty : {
-															message : 'Action taken is required and cannot be empty'
-														}
-													}
-												},
-												actionTaken : {
-													validators : {
-														stringLength : {
-															min : 3,
-														},
-														notEmpty : {
-															message : 'Action taken is required and cannot be empty'
-														}
-													}
-												}
-											}
-										});
-					});
-</script>
-
 
 <script>
 $('#check_site_stock_customer').bootstrapValidator();
@@ -874,6 +921,5 @@ function isNumber(evt) {
 	    }, 1);
 	}
 </script>
-
 
 </html>

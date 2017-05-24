@@ -139,6 +139,7 @@
 									Orders</a></li>
 							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped
 									Orders</a></li>
+							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
 						</ul>
 					</li>
 						

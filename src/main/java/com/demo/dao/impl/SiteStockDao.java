@@ -40,6 +40,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 					 siteStock.setQuantity(incrementQuantity);
 					 sessionFactory.getCurrentSession().update(stockSide);
 					 siteStockList.remove(stockSide);
+					 
 				 }else{
 					 siteStock = new SiteStock();
 						siteStock.setCustomerName(stock.getOrderHeader().getCustomer().getCustomerName());

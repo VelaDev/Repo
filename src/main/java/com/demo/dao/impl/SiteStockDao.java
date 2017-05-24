@@ -1,6 +1,7 @@
 package com.demo.dao.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -11,15 +12,19 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.SiteStocDaoInt;
+import com.demo.dao.TicketsDaoInt;
 import com.demo.model.BootStock;
 import com.demo.model.OrderDetails;
 import com.demo.model.SiteStock;
+import com.demo.model.Tickets;
 @Repository("siteStockDao")
 @Transactional(propagation=Propagation.REQUIRED)
 public class SiteStockDao implements SiteStocDaoInt {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+	@Autowired
+	private TicketsDaoInt ticketsDaoInt;
 	private SiteStock siteStock;
 	
 	List<SiteStock> sitetStockList = null;
@@ -85,6 +90,35 @@ public class SiteStockDao implements SiteStocDaoInt {
 			 }
 		}catch(Exception e){
 			e.getMessage();
+		}
+		return sitetStockList;
+	}
+
+	@Override
+	public List<SiteStock> getOrdersForCustomer(String customerName,
+			int ticketID) {
+		Tickets ticket = ticketsDaoInt
+				.getLoggedTicketsByTicketNumber(ticketID);
+		String tempDeviceModelNumber = ticket.getDevice().getModelNumber();
+		List<String> spare = null;
+		sitetStockList = new ArrayList<SiteStock>();
+		try{
+			siteStocks = getAllOrders();
+			 for(SiteStock stock:siteStocks){
+				 if(stock.getCustomerName().equalsIgnoreCase(customerName) && stock.getQuantity()>0){
+					 
+					 spare = new ArrayList<String>(Arrays.asList(stock
+								.getCompatibleDevice().split(",")));
+						for (int i = 0; i < spare.size(); i++) {
+							if (spare.get(i)
+									.equalsIgnoreCase(tempDeviceModelNumber)) {
+								sitetStockList.add(stock);
+							}
+						}
+				 }
+			 }
+		}catch(Exception e){
+			
 		}
 		return sitetStockList;
 	}

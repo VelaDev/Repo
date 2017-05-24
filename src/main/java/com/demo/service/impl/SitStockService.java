@@ -26,5 +26,11 @@ public class SitStockService implements SiteStockInt{
 	public List<SiteStock> getOrdersByTechnician(String technician) {
 		return siteStock.getOrdersByTechnician(technician);
 	}
+	@Override
+	public List<SiteStock> getOrdersForCustomer(String customerName,
+			int ticketID) {
+		
+		return siteStock.getOrdersForCustomer(customerName, ticketID);
+	}
 
 }

@@ -83,7 +83,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-barcode"></i></span> <input
-												name="device" readonly="readonly"
+												name="device" id="device" readonly="readonly"
 												value="${product.serialNumber }" class="form-control"
 												type="text">
 										</div>
@@ -96,7 +96,7 @@
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
+												class="glyphicon glyphicon-barcode"></i></span> <input name="modelNumber" id="modelNumber"
 												value="${product.modelNumber }" class="form-control"
 												type="text" readonly="readonly">
 										</div>
@@ -111,7 +111,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-barcode"></i></span> <input
 												value="${product.customerDevice.customerName }"
-												class="form-control" type="text" readonly="readonly">
+												class="form-control" id="customerName" name="customerName" type="text" required="required" readonly="readonly">
 										</div>
 									</div>
 								</div>
@@ -124,8 +124,8 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select id="selectedTechnician" 
-												name="technicianUserName"id="selectedTechnician" class="form-control selectpicker">
-												<option>Select Technician</option>
+												name="technicianUserName" id="selectedTechnician" class="form-control selectpicker">
+												<option value="">Select Technician</option>
 												<c:forEach items="${technicians}" var="technician">
 												   <c:choose>
 												     <c:when test="${technician.leaveStatus =='On Leave'}">
@@ -155,6 +155,47 @@
 										</div>
 									</div>
 								</div>
+																
+								
+								<!-- Text input Contact Person First Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label" style="color: red;">Contact Person</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											
+										</div>
+									</div>
+								</div>								
+								
+									
+								<!-- Text input Contact Person First Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">First Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input id="firstName"
+												name="firstName" placeholder="First Name"
+												class="form-control" type="text">
+										</div>
+									</div>
+								</div>
+								
+								
+								<!-- Text input Contact Person  Last Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Last Name</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-user"></i></span> <input id="lastName"
+												name="lastName" placeholder="Last Name" class="form-control"
+												type="text">
+										</div>
+									</div>
+								</div>
+								
+								
 
 							</div>
 							<!--/F Column-->
@@ -169,7 +210,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-list"></i></span> <select
-												name="priority" class="form-control selectpicker">
+												name="priority" id="priority" class="form-control selectpicker">
 												<option value="">Select Priority</option>
 												<option value="High">High</option>
 												<option value="Medium">Medium</option>
@@ -186,15 +227,55 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" name="description"
+											<textarea class="form-control" name="description" id="description"
 												placeholder="Description" onkeydown="upperCaseF(this)"
-												style="margin: 0px; height: 170px; width: 270px;"></textarea>
+												style="margin: 0px; height: 170px;"></textarea>
+										</div>
+									</div>
+								</div>
+								
+								
+								<div class="form-group">
+									<label class="col-md-3 control-label">Email</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-envelope"></i></span> <input id="contactEmail"
+												name="contactEmail" placeholder="Email Address"
+												class="form-control" type="email">
+										</div>
+									</div>
+								</div>
+								
+								<!-- Text input Contact Person Cellphone Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Cellphone No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												id="contactCellNumber" name="contactCellNumber"
+												placeholder="Cellphone No (Optional)" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
+										</div>
+									</div>
+								</div>
+								<!-- Text input Contact Person Tellphone Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Tellphone No </label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-earphone"></i></span> <input
+												id="contactTelephoneNumber" name="contactTelephoneNumber"
+												placeholder="Telephone No (Optional)" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
 										</div>
 									</div>
 								</div>
 
 							</div>
 							<!--/S Column-->
+							
+							
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
@@ -246,13 +327,30 @@
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													serialNumber : {
+													device : {
 														validators : {
 															stringLength : {
 																min : 3,
 															},
 															notEmpty : {
 																message : 'Serial number is required to search and cannot be empty'
+															}
+														}
+													},
+													modelNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Model number is required to search and cannot be empty'
+															}
+														}
+													},
+													technicianUserName : {
+														validators : {
+															notEmpty : {
+																message : 'Technician is required and cannot be empty'
 															}
 														}
 													},
@@ -272,6 +370,51 @@
 															},
 															notEmpty : {
 																message : 'Descritipn is required and cannot be empty'
+															}
+														}
+													},
+													customerName : {
+														validators : {
+															stringLength : {
+																min : 2,
+
+															},
+															notEmpty : {
+																message : 'Customer name is required and cannot be empty'
+															},
+															regexp: {
+											                    regexp: /^[-_ a-zA-Z0-9]+$/,
+											                    message: 'Customer name can consist of only alphabetical characters'
+											                }
+														}
+													},
+													firstName : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'First name is required to search and cannot be empty'
+															}
+														}
+													},
+													lastName : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Last name is required to search and cannot be empty'
+															}
+														}
+													},
+													contactEmail : {
+														validators : {
+															notEmpty : {
+																message : 'Email address is required and cannot be empty'
+															},
+															emailAddress : {
+																message : 'The email address is not valid'
 															}
 														}
 													},

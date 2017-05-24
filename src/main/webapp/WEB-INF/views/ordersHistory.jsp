@@ -85,9 +85,9 @@ ul.address_list {
 }
 
 #sidebar {
-	width: 35%;
-	padding: 5px 15px;
-	float: left;
+    width: 56%;
+    padding: 5px 15px;
+    float: left;
 }
 
 /************************************************************************************
@@ -173,40 +173,30 @@ header, #content, #middle, #sidebar {
 					</h3>
 				</div>
 				<div class="panel-body">
-					<div class="tab-content">						 
+					<div class="tab-content">
+											 
 						<div class="groupdetails-row-padding">
 
 							<div id="pagewrap">
 								<section id="content">
 								<div class="groupclientdetails">
-									<legend>Machine Details</legend>
+									<legend>Order Info</legend>
 
-									
 									<div class="machinedetailsdetailsfloatleft">
-										<label id="customerName" name="customerName">Customer
-											Name </label> <br> <label id="serialNumber" name="serialNumber">Serial
-											No </label> <br> <label id="modelNumber" name="modelNumber">Model
-											Number </label> <br> <label id="modelBrand" name="modelBrand">Model
-											Brand </label> <br> <label id="startDate" name="startDate">Start
-											Date </label> <br> <label id="installationDate"
-											name="installationDate">Installation Date </label> <br>
-										<label id="endDate" name="endDate">End Date </label> <br>
-										<label id="colourReading" name="colourReading">Colour
-											Reading </label> <br> <label id="monoReading" name="monoReading">Mono
-											Reading </label> <br>
-
+										<label id="status" name="status">Status</label> <br> 
+										<label id="Approved" name="Approved">Approved </label> <br>
+										<label id="Pending" name="Pending">Pending </label> <br> 										 
+										<label id="Ship Order" name="Ship Order">Ship Order </label> <br>
+										<label id="Order Received" name="Order Received">Order Received </label> <br> 
+										
 									</div>
 									<div class="machinedetailsfloatright ">
-										<label id="customerName" name="customerName">: </label><br>
-										<label id="serialNumber" name="serialNumber">: </label><br>
-										<label id="modelNumber" name="modelNumber">: </label><br>
-										<label id="modelBrand" name="modelBrand">: </label><br> <label
-											id="startDate" name="startDate">: </label><br> <label
-											id="installationDate" name="installationDate">: </label><br>
-										<label id="endDate" name="endDate">: </label><br> <label
-											id="colourReading" name="colourReading">: </label><br> <label
-											id="monoReading" name="monoReading">: </label><br>
-
+										<label id="status" name="status">: </label><br>
+										<label id="Approved" name="Approved">: </label><br>
+										<label id="Pending" name="Pending">: </label><br>
+										<label id="Ship Order" name="Ship Order">: </label><br> 
+										<label id="Order Received" name="Order Received">: </label><br>
+										
 									</div>
 									<div class="col-sm-6">
 
@@ -221,29 +211,6 @@ header, #content, #middle, #sidebar {
 							</div>
 						</div> 
 								</div>
-								</section>
-								
-								
-								<section id="middle">
-
-									<div class="groupclientaddress">
-										<legend>Address and Contact Person</legend>
-	
-										<div id="customerr_container" style="width: auto; display: table;">
-											<p class="customerAddress_title">Address
-											<ul class="address_list" style="display: block;">
-												
-											</ul>
-											</p>
-											<p class="customerAddress_title">Contact
-											<ul class="address_list" style="display: block;">
-												
-												
-											</ul>
-											</p>
-										</div>
-	
-									</div>
 								</section>
 
 								<aside id="sidebar">

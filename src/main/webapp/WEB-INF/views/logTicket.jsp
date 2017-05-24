@@ -143,15 +143,20 @@
 										</div>
 									</div>
 								</div>
-								<!-- Text area Subject-->
+								
+								<!-- Select type Priority-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Subject</label>
-									<div class="col-md-6 inputGroupContainer">
+									<label class="col-md-3 control-label">Priority</label>
+									<div class="col-md-6 selectContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-pencil"></i></span>
-											<textarea class="form-control" id="subject" name="subject"
-												required="required" readonly="readonly">Technical Service Call</textarea>
+												class="glyphicon glyphicon-list"></i></span> <select
+												name="priority" id="priority" class="form-control selectpicker">
+												<option value="">Select Priority</option>
+												<option value="High">High</option>
+												<option value="Medium">Medium</option>
+												<option value="Low">Low</option>
+											</select>
 										</div>
 									</div>
 								</div>
@@ -202,23 +207,7 @@
 
 							<!--Second column-->
 							<div class="col-sm-6">
-								
-								<!-- Select type Priority-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Priority</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="priority" id="priority" class="form-control selectpicker">
-												<option value="">Select Priority</option>
-												<option value="High">High</option>
-												<option value="Medium">Medium</option>
-												<option value="Low">Low</option>
-											</select>
-										</div>
-									</div>
-								</div>
+														
 								
 								<!-- Text area -->
 								<div class="form-group">
@@ -229,7 +218,7 @@
 												class="glyphicon glyphicon-pencil"></i></span>
 											<textarea class="form-control" name="description" id="description"
 												placeholder="Description" onkeydown="upperCaseF(this)"
-												style="margin: 0px; height: 170px;"></textarea>
+												style="margin: 0px; height: 194px;"></textarea>
 										</div>
 									</div>
 								</div>
@@ -310,8 +299,7 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.6/js/bootstrap-datepicker.js" />"></script>
+	
 	<!-- /Script -->
 	<!-- Validate LogTicket -->
 	<script>

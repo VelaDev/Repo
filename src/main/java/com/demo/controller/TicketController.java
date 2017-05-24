@@ -37,7 +37,6 @@ import com.demo.service.TicketHistoryInt;
 @Controller
 public class TicketController {
 	
-	
 	@Autowired
 	private TicketsServiceInt logTicketService;
 	@Autowired

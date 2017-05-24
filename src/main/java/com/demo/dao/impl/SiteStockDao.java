@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.SiteStocDaoInt;
 import com.demo.dao.TicketsDaoInt;
-import com.demo.model.BootStock;
 import com.demo.model.OrderDetails;
 import com.demo.model.SiteStock;
 import com.demo.model.Tickets;
@@ -34,18 +33,29 @@ public class SiteStockDao implements SiteStocDaoInt {
 	public void saveSiteStock(List<OrderDetails> detailsDaos) {
 		try {
 			for(OrderDetails stock:detailsDaos){
-				siteStock = new SiteStock();
-				siteStock.setCustomerName(stock.getOrderHeader().getCustomer().getCustomerName());
-				siteStock.setItemDescription(stock.getItemDescription());
-				siteStock.setItemType(stock.getStockType());
-				siteStock.setLocation(stock.getLocation());
-				siteStock.setPartNumber(stock.getPartNumber());
-				siteStock.setQuantity(stock.getQuantity());
-				siteStock.setRecordID(stock.getOrderDertailNumber());
-				siteStock.setTechnicianEmail(stock.getTechnician());
-				siteStock.setTechnicianName(stock.getTechnician());
-				
-				sessionFactory.getCurrentSession().saveOrUpdate(siteStock);
+			 List<SiteStock> siteStockList = getOrdersForCustomer(stock.getOrderHeader().getCustomer().getCustomerName());
+			 for(SiteStock stockSide:siteStockList){
+				 if(stock.getPartNumber().equalsIgnoreCase(stockSide.getPartNumber())){
+					 int incrementQuantity = stock.getQuantity() + stockSide.getQuantity();
+					 siteStock.setQuantity(incrementQuantity);
+					 sessionFactory.getCurrentSession().update(stockSide);
+					 siteStockList.remove(stockSide);
+				 }else{
+					 siteStock = new SiteStock();
+						siteStock.setCustomerName(stock.getOrderHeader().getCustomer().getCustomerName());
+						siteStock.setItemDescription(stock.getItemDescription());
+						siteStock.setItemType(stock.getStockType());
+						siteStock.setLocation(stock.getLocation());
+						siteStock.setPartNumber(stock.getPartNumber());
+						siteStock.setQuantity(stock.getQuantity());
+						siteStock.setRecordID(stock.getOrderDertailNumber());
+						siteStock.setTechnicianEmail(stock.getTechnician());
+						siteStock.setTechnicianName(stock.getTechnician());
+						
+						sessionFactory.getCurrentSession().saveOrUpdate(siteStock);
+						siteStockList.remove(stockSide);
+				 }
+			 }
 			}
 
 		} catch (Exception exception) {
@@ -54,6 +64,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<SiteStock> getAllOrders() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
@@ -121,5 +132,10 @@ public class SiteStockDao implements SiteStocDaoInt {
 			
 		}
 		return sitetStockList;
+	}
+
+	@Override
+	public SiteStock getSiteStock(int recordID) {
+		return (SiteStock) sessionFactory.getCurrentSession().get(SiteStock.class, recordID);
 	}
 }

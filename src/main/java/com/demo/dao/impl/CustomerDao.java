@@ -16,7 +16,7 @@ import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.CustomerContactDetailsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.CustomerContactDetails;
-import com.demo.model.Employee;
+
 
 @Repository("clientDAO")
 @Transactional(propagation = Propagation.REQUIRED)

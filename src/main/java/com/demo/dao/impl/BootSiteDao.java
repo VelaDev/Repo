@@ -37,17 +37,29 @@ public class BootSiteDao implements BootStockDaoInt{
 		try{
 			
 			for(OrderDetails stock:detailsDaos){
-				bootStock = new BootStock();
-				bootStock.setItemDescription(stock.getItemDescription());
-				bootStock.setItemType(stock.getItemType());
-				bootStock.setPartNumber(stock.getPartNumber());
-				bootStock.setQuantity(stock.getQuantity());
-				bootStock.setRecordID(stock.getOrderDertailNumber());
-				bootStock.setTechnicianEmail(stock.getTechnician());
-				bootStock.setTechnicianName(stock.getTechnician());
-				bootStock.setCompatibleDevice(stock.getCompatibleDevice());
+				List<BootStock> bootStockList = getAllOrders(stock.getTechnician());
+				for(BootStock bootStock:bootStockList){
+					if(stock.getPartNumber().equalsIgnoreCase(bootStock.getPartNumber())){
+						int incrementQuantity = stock.getQuantity()+ bootStock.getQuantity();
+						bootStock.setQuantity(incrementQuantity);
+						sessionFactory.getCurrentSession().update(bootStock);
+						bootStockList.remove(bootStock);
+					}else{
+						bootStock = new BootStock();
+						bootStock.setItemDescription(stock.getItemDescription());
+						bootStock.setItemType(stock.getItemType());
+						bootStock.setPartNumber(stock.getPartNumber());
+						bootStock.setQuantity(stock.getQuantity());
+						bootStock.setRecordID(stock.getOrderDertailNumber());
+						bootStock.setTechnicianEmail(stock.getTechnician());
+						bootStock.setTechnicianName(stock.getTechnician());
+						bootStock.setCompatibleDevice(stock.getCompatibleDevice());
+						
+						sessionFactory.getCurrentSession().saveOrUpdate(bootStock);
+						bootStockList.remove(bootStock);
+					}
+				}
 				
-				sessionFactory.getCurrentSession().saveOrUpdate(bootStock);
 			}
 			
 		}catch(Exception exception){
@@ -114,6 +126,10 @@ public class BootSiteDao implements BootStockDaoInt{
 
 		}
 		return bootStockList;
+	}
+	@Override
+	public BootStock getBootStock(int recordID) {
+		return (BootStock) sessionFactory.getCurrentSession().get(BootStock.class, recordID);
 	}
 
 }

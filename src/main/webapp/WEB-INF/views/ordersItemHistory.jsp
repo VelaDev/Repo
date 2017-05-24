@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 			<div class="panel panel-success">
 				<div class="panel-heading">
@@ -37,7 +37,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-							
+
 						<div class="groupdetails-row-padding">
 							
 								<!-- Text input Order Number-->
@@ -54,6 +54,7 @@
 											</div>
 										</div>
 								</div>
+							
 							
 							<div id="pagewrap">
 

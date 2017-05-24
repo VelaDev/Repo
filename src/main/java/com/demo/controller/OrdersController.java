@@ -466,20 +466,32 @@ public class OrdersController {
 		return model;
 	}
 
-	@RequestMapping(value = "orderitemHistory", method = RequestMethod.GET)
+	@RequestMapping(value = {"orderItemHistory","ordersItemHistory"}, method = RequestMethod.GET)
 	public ModelAndView orderHistory(@RequestParam("recordID") Integer recordID) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("pendingOrderList",
-					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.setViewName("orderItemHistory");
+			
+			if (userName.getRole().equalsIgnoreCase("Technician")) {				
+		    	
+			 	model.setViewName("orderItemHistory");
+		    }		    
+		    else if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
+		    	
+		    	model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+				model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+					
+		    	model.setViewName("ordersItemHistory");
+		    }	
+			
 		} else {
 			model.setViewName("login");
 		}

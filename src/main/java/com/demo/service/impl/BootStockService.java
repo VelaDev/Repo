@@ -27,4 +27,10 @@ public class BootStockService implements BootStockInt{
 		return bootStockDaoInt.getAllOrders(technician);
 	}
 
+	@Override
+	public List<BootStock> getAllOrders(String technician, int ticketRecordID) {
+		
+		return bootStockDaoInt.getAllOrders(technician, ticketRecordID);
+	}
+
 }

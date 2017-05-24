@@ -35,7 +35,6 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.zugferd.exceptions.DataIncompleteException;
 import com.itextpdf.text.zugferd.exceptions.InvalidCodeException;
 import com.itextpdf.xmp.XMPException;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Controller
 public class OrdersController {
@@ -306,8 +305,7 @@ public class OrdersController {
 	public ModelAndView deliveriesNote(
 			@RequestParam("recordID") Integer recordID)
 			throws ParserConfigurationException, SAXException,
-			TransformerException, IOException, DocumentException, XMPException,
-			ParseException, DataIncompleteException, InvalidCodeException, java.text.ParseException {
+			TransformerException, IOException, DocumentException, XMPException, DataIncompleteException, InvalidCodeException, java.text.ParseException {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -329,8 +327,6 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			String technician = userName.getFirstName() + " "
-					+ userName.getLastName();
 			model.addObject("availableOrders",
 					siteStock.getAllOrders());
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));

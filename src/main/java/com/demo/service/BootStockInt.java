@@ -8,5 +8,6 @@ public interface BootStockInt {
 	
 	List<BootStock> getAllOrders();
 	List<BootStock> getAllOrders(String technician);
+	List<BootStock> getAllOrders(String technician, int ticketRecordID);
 
 }

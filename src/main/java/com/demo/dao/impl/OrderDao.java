@@ -433,12 +433,15 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public String approveShipment(Integer recordID) {
+		
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
 		orderHeader = getOrder(recordID);
 		date = new Date();
 		if(orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Approved")){
 			
 			orderHeader.setStatus("Shipped");
-			orderHeader.setShippingDate(date);
+			orderHeader.setShippingDate(dateFormat.format(date));
 			sessionFactory.getCurrentSession().update(orderHeader);
 			JavaMail.sendEmailForShipment(orderHeader.getApprover(),orderHeader);
 			historyDaoInt.insetOrderHistory(orderHeader);
@@ -446,6 +449,7 @@ public class OrderDao implements OrdersDaoInt {
 		}
 		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
 			orderHeader.setStatus("Received");
+			orderHeader.setOrderReceivedDateTime(dateFormat.format(date));
 			sessionFactory.getCurrentSession().update(orderHeader);
 			historyDaoInt.insetOrderHistory(orderHeader);
 			

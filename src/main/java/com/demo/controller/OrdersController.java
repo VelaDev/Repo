@@ -478,7 +478,7 @@ public class OrdersController {
 
 			model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
-			model.addObject("orderStatus", historyInt.getAllOrderHistoryByOrderNumber(recordID));
+			model.addObject("status", historyInt.getAllOrderHistoryByOrderNumber(recordID));
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			
@@ -492,7 +492,7 @@ public class OrdersController {
 				model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-				model.addObject("orderStatus", historyInt.getAllOrderHistoryByOrderNumber(recordID));
+				model.addObject("status", historyInt.getAllOrderHistoryByOrderNumber(recordID));
 					
 		    	model.setViewName("ordersItemHistory");
 		    }	

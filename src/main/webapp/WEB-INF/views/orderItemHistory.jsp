@@ -25,7 +25,7 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 			<div class="panel panel-success">
 				<div class="panel-heading">
@@ -83,7 +83,7 @@
 
 								<aside id="sidebar">
 								<div class="groupproductdetails">
-									<legend>Order Statuses</legend>
+									<legend>Order Status</legend>
 									<form:form modelAttribute="orderHistory" method="post"
 										action="orderHistory" id="orderHistory" name="orderHistory">
 
@@ -98,7 +98,7 @@
 											</thead>
 											<tbody>
 												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="< ${orderStatus}>">
+												<c:forEach var="list" items="${status}">
 													<tr>
 
 														<td>${list.orderStatus}</td>

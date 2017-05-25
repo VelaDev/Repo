@@ -57,11 +57,9 @@ public class OrderHeader implements Serializable{
 	@Column(name="Stock_Type")
 	private String stockType;
 	@Column(name="Order_Received_Date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date orderReceivedDateTime;
+	private String orderReceivedDateTime;
 	@Column(name="Shipping_Date")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date shippingDate;
+	private String shippingDate;
 	
 	
 	@ManyToOne

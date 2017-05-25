@@ -131,8 +131,8 @@
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="placeOrderForTechnician.html"/>'>Place
 									Order</a></li>
-							<li><a href='<c:url value="viewAllOrders.html"/>'>View
-									Orders</a></li><%-- 
+							<%-- <li><a href='<c:url value="viewAllOrders.html"/>'>View
+									Orders</a></li> --%><%-- 
 							<li><a href='<c:url value="pendingOrders.html"/>'>Pending
 									Orders</a></li> --%>
 							<li><a href='<c:url value="approvedOrders.html"/>'>Approved

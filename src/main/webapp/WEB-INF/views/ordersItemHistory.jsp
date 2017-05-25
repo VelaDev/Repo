@@ -40,35 +40,23 @@
 
 						<div class="groupdetails-row-padding">
 							
-								<!-- Text input Order Number-->
-								<div class="form-group">
-									<label class="col-md-2 control-label">Order Number</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-												class="glyphicon glyphicon-barcode"></i></span> <input
-													id="orderNum" class="form-control" type="text"
-													name="orderNum"
-													value="${orderObject.orderNum}"
-													readonly="readonly">
-											</div>
-										</div>
-								</div>
-							
-							
 							<div id="pagewrap">
 
 								<section id="content">
 									<div class="groupclientdetails">
-										<legend>Order Info</legend>
+										<legend>Order Details</legend>
 										<table id="orderInfo" class="display datatable">
 											<thead>
 												<tr>
 													<th>Record ID </th>
-													<th>Part No</th>
+													<th>Order No</th>
+													<th>Part No</th>													
 													<th>Compatible Devices</th>
 													<th>Description</th>
 													<th>Quantity</th>
+													<th>Placed By</th>
+													<th>Approver</th>
+													
 												</tr>
 											</thead>
 											<tbody>
@@ -76,10 +64,13 @@
 												<c:forEach var="list" items="${pendingOrderList}">
 													<tr>
 														<td>${list.orderDertailNumber}</td>
+														<td></td>
 														<td>${list.partNumber}</td>
 														<td>${list.model}</td>
 														<td>${list.itemDescription}</td>
-														<td>${list.quantity}</td>													
+														<td>${list.quantity}</td>
+														<td></td>
+														<td></td>											
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -92,7 +83,7 @@
 
 								<aside id="sidebar">
 								<div class="groupproductdetails">
-									<legend>Order Details</legend>
+									<legend>Order Statuses</legend>
 									<form:form modelAttribute="orderHistory" method="post"
 										action="orderHistory" id="orderHistory" name="orderHistory">
 
@@ -100,13 +91,9 @@
 										<table id="orderDetails" class="display datatable">
 											<thead>
 												<tr>
-
 													<th>Order Status</th>
-													<th>Approved Date</th>
-													<th>Pending</th>
-													<th>Ship Order</th>
-													<th>Order Received</th>
-
+													<th>Date/Time</th>
+													
 												</tr>
 											</thead>
 											<tbody>
@@ -116,10 +103,7 @@
 
 														<td>Received</td>
 														<td>2017-05-15 13:14</td>
-														<td>2017-05-15 13:14</td>
-														<td>2017-05-15 13:14</td>
-														<td>2017-05-15 13:14</td>
-
+														
 													</tr>
 												</c:forEach>
 											</tbody>

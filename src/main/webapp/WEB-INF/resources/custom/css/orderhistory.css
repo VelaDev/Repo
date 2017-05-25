@@ -54,7 +54,7 @@ ul.address_list {
 }
 /* STRUCTURE */
 #content {
-	width: 48%;
+	width: 66%;
 	float: left;
 	padding: 5px 15px;
 }
@@ -67,7 +67,7 @@ ul.address_list {
 }
 
 #sidebar {
-    width: 52%;
+    width: 34%;
     padding: 5px 15px;
     float: left;
 }

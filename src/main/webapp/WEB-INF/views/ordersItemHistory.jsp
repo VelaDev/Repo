@@ -86,7 +86,7 @@
 										action="orderHistory" id="orderHistory" name="orderHistory">
 
 										<!-- Below table will be displayed as Data table -->
-										<table id="orderDetails" class="display datatable">
+										<table id="orderDetailss" class="table table-striped table-bordered table-hover table-condensed">
 											<thead>
 												<tr>
 													<th>Order Status</th>

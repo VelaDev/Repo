@@ -93,8 +93,6 @@ public class TicketController {
 		else{
 			model.setViewName("login");
 		}
-		
-		
 		return model;     
 		
 	}	

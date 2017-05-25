@@ -36,16 +36,16 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 			orderHistory.setOrderNum(order.getOrderNum());
 			orderHistory.setOrderStatus(order.getStatus());
 			
-			if(order.getDateApproved() != null){
+			if(order.getStatus().equalsIgnoreCase("Approved") ){
 				orderHistory.setStatusDateTime(order.getDateApproved());
-			}else if(order.getDateOrdered() != null){
+			}else if(order.getStatus().equalsIgnoreCase("Pending")){
 				orderHistory.setStatusDateTime(order.getDateOrdered());
 			}
-			else if(order.getShippingDate() != null){
-				orderHistory.setStatusDateTime(""+order.getShippingDate());
+			else if(order.getStatus().equalsIgnoreCase("Shipped")){
+				orderHistory.setStatusDateTime(order.getShippingDate());
 			}
-			else if(order.getOrderReceivedDateTime() != null){
-				orderHistory.setStatusDateTime(""+order.getOrderReceivedDateTime());
+			else if(order.getStatus().equalsIgnoreCase("Received")){
+				orderHistory.setStatusDateTime(order.getOrderReceivedDateTime());
 			}
 			
 			sessionFactory.getCurrentSession().save(orderHistory);

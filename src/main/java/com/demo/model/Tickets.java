@@ -75,6 +75,16 @@ public class Tickets implements Serializable{
 	private String actionTaken;
 	@Column(name="Date_Resolved")
 	private String dateResolved;
+	@Column(name="FirstName")
+	private String firstName;
+	@Column(name="LastName")
+	private String lastName;
+	@Column(name="ContactEmail")
+	private String contactEmail;
+	@Column(name="ContactCellNumber")
+	private String contactCellNumber;
+	@Column(name="ContactTelephoneNumber")
+	private String contactTelephoneNumber;
 	
 	
 	

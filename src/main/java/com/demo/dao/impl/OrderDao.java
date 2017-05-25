@@ -23,6 +23,7 @@ import com.demo.dao.BootStockDaoInt;
 import com.demo.dao.CustomerDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.OrderDetailsDaoInt;
+import com.demo.dao.OrderHistoryDaoInt;
 import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.HOStockDaoInt;
@@ -59,6 +60,8 @@ public class OrderDao implements OrdersDaoInt {
 	private SiteStocDaoInt siteStocDaoInt;
 	@Autowired
 	private BootStockDaoInt bootStockDaoInt;
+	@Autowired
+	private OrderHistoryDaoInt historyDaoInt;
 	private OrderHeader orderHeader = null;
 
 	private String retMessage = null;
@@ -81,7 +84,9 @@ public class OrderDao implements OrdersDaoInt {
 			sessionFactory.getCurrentSession().save(orderHeader);
 			JavaMail.sendEmail(orderHeader.getApprover(), orderHeader
 					.getEmployee().getEmail(), emp.getFirstName(), orderHeader);
-
+			
+			
+			historyDaoInt.insetOrderHistory(orderHeader);
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
 					+ "is placed";
 		} catch (Exception e) {
@@ -113,6 +118,7 @@ public class OrderDao implements OrdersDaoInt {
 				cusOrder.setDateOrdered(orders.getDateOrdered());
 
 				sessionFactory.getCurrentSession().update(cusOrder);
+				historyDaoInt.insetOrderHistory(cusOrder);
 				retMessage = "Order " + " " + cusOrder.getOrderNum() + " "
 						+ "is approved";
 			} else {
@@ -203,7 +209,6 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	private Integer newRecordID() {
-		String tempOrder = "";
 		int tempOrderNum = 0;
 		Integer newOrderNum = getRecordID();
 
@@ -266,7 +271,6 @@ public class OrderDao implements OrdersDaoInt {
 				
 				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
 				cusOrder.setEmployee(emp);
-				String tempTechnician = emp.getFirstName() + " " +emp.getLastName();
 			}
 			else{
 				cusOrder.setEmployee(emp);
@@ -359,6 +363,7 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setDateApproved(dateFormat.format(date));
 			sessionFactory.getCurrentSession().update(cusOrder);
 			
+			
 
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 			retMessage = subtractOrderItems(orderDetailList);
@@ -371,7 +376,7 @@ public class OrderDao implements OrdersDaoInt {
 				
 				emp = employeeDaoInt.getEmployeeByEmpNum(cusOrder.getApprover());
 				JavaMail.sendEmailForOrderApproved(cusOrder.getEmployee().getEmail(), cusOrder.getApprover(), emp.getFirstName(), cusOrder.getEmployee().getFirstName(), cusOrder);
-
+				historyDaoInt.insetOrderHistory(cusOrder);
 				retMessage = "Order " + cusOrder.getOrderNum() + " is approved";
 			} else {
 				retMessage = "Order cannot be approved because ordered items are more that available items";
@@ -436,11 +441,13 @@ public class OrderDao implements OrdersDaoInt {
 			orderHeader.setShippingDate(date);
 			sessionFactory.getCurrentSession().update(orderHeader);
 			JavaMail.sendEmailForShipment(orderHeader.getApprover(),orderHeader);
+			historyDaoInt.insetOrderHistory(orderHeader);
 			retMessage = "Order Number "+ orderHeader.getOrderNum()+" is shipped to "+ orderHeader.getEmployee().getFirstName()+ " "+orderHeader.getEmployee().getLastName();
 		}
 		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
 			orderHeader.setStatus("Received");
 			sessionFactory.getCurrentSession().update(orderHeader);
+			historyDaoInt.insetOrderHistory(orderHeader);
 			
 			
 			if(orderHeader.getStockType().equalsIgnoreCase("Site")){

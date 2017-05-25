@@ -115,6 +115,12 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setDescription(tickets.getDescription());
 						ticket.setPriority(tickets.getPriority());
 						ticket.setDateTime(dateFormat.format(date));
+						
+						ticket.setFirstName(tickets.getFirstName());
+						ticket.setLastName(tickets.getLastName());
+						ticket.setContactEmail(tickets.getContactEmail());
+						ticket.setContactCellNumber(tickets.getContactCellNumber());
+						ticket.setContactTelephoneNumber(tickets.getContactTelephoneNumber());
 
 						ticket.setDevice(device);
 						sessionFactory.getCurrentSession().save(ticket);

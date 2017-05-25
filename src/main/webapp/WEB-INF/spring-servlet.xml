@@ -79,6 +79,7 @@
 				 <value>com.demo.model.BootStock</value>
 				 <value>com.demo.model.ApprovedOrderStock</value>
 				 <value>com.demo.model.TechnicianSite</value>
+				 <value>com.demo.model.OrderHistory</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

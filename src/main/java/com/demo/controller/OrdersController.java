@@ -27,6 +27,7 @@ import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.OrderDeliveryServiceInt;
 import com.demo.service.OrderDetailsInt;
+import com.demo.service.OrderHistoryInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.HOStockServeceInt;
 import com.demo.service.SiteStockInt;
@@ -63,6 +64,8 @@ public class OrdersController {
 	private TicketsServiceInt ticketsServiceInt;
 	@Autowired
 	private OrderDetailsDaoInt detailsDaoInt;
+	@Autowired
+	private OrderHistoryInt historyInt;
 	private ModelAndView model = null;
 	private String retMessage = null;
 	private Employee userName = null;
@@ -475,6 +478,7 @@ public class OrdersController {
 
 			model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.addObject("orderStatus", historyInt.getAllOrderHistoryByOrderNumber(recordID));
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			
@@ -488,6 +492,7 @@ public class OrdersController {
 				model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("orderStatus", historyInt.getAllOrderHistoryByOrderNumber(recordID));
 					
 		    	model.setViewName("ordersItemHistory");
 		    }	

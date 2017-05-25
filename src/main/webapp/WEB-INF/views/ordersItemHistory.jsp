@@ -48,14 +48,13 @@
 										<table id="orderInfo" class="display datatable">
 											<thead>
 												<tr>
-													<th>Record ID </th>
 													<th>Order No</th>
 													<th>Part No</th>													
 													<th>Compatible Devices</th>
 													<th>Description</th>
 													<th>Quantity</th>
-													<th>Placed By</th>
-													<th>Approver</th>
+													<!-- <th>Placed By</th>
+													<th>Approver</th> -->
 													
 												</tr>
 											</thead>
@@ -63,14 +62,13 @@
 												<!-- Iterating over the list sent from Controller -->
 												<c:forEach var="list" items="${pendingOrderList}">
 													<tr>
-														<td>${list.orderDertailNumber}</td>
-														<td></td>
+														<td>${list.orderHeader.orderNum}</td>
 														<td>${list.partNumber}</td>
 														<td>${list.model}</td>
 														<td>${list.itemDescription}</td>
 														<td>${list.quantity}</td>
-														<td></td>
-														<td></td>											
+														<%-- <td>${list.technician}</td>
+														<td>${list.quantity}</td> --%>											
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -98,11 +96,11 @@
 											</thead>
 											<tbody>
 												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="<%-- ${orderStatus} --%>">
+												<c:forEach var="list" items="< ${orderStatus}>">
 													<tr>
 
-														<td>Received</td>
-														<td>2017-05-15 13:14</td>
+														<td>${list.orderStatus}</td>
+														<td>${list.statusDateTime}</td>
 														
 													</tr>
 												</c:forEach>

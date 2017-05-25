@@ -8,6 +8,7 @@ import com.demo.model.OrderHistory;
 public interface OrderHistoryDaoInt {
 	
 	void insetOrderHistory(OrderHeader order);
-	List<OrderHistory> getAllOrderHistoryByOrderNumber(String orderNumber);
+	List<OrderHistory> getAllOrderHistoryByOrderNumber(int recordID);
+	List<OrderHistory> getAllOrderHistoryByOrderNumber();
 
 }

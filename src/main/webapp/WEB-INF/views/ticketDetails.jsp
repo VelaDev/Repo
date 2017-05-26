@@ -894,6 +894,7 @@ $("#actionTaken").on('change', function() {
 			//alert(tempPart);
 			console.log(part);
 			document.getElementById("partTest").value = part;
+			document.getElementById("tonerTest").value = null;
     }
     else if($(this).val() == "Replaced toner" ){
     	  $('input[type="button"]:enabled').attr('disabled', true);
@@ -904,10 +905,13 @@ $("#actionTaken").on('change', function() {
 			//alert(tempToner);
 			console.log(toner);
 			document.getElementById("tonerTest").value = toner;
+			document.getElementById("partTest").value = null;
     }       
     else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
         $('input[type="button"]:enabled').attr('disabled', true);
         $('#BootStocked, #SiteStocked').attr('disabled', true);
+        document.getElementById("tonerTest").value = null;
+		document.getElementById("partTest").value = null;
     }
 });
 

@@ -37,30 +37,24 @@ public class BootSiteDao implements BootStockDaoInt{
 		try{
 			
 			for(OrderDetails stock:detailsDaos){
-				List<BootStock> bootStockList = getAllOrders(stock.getTechnician());
-				for(BootStock bootStock:bootStockList){
-					if(stock.getPartNumber().equalsIgnoreCase(bootStock.getPartNumber())){
+				bootStock = getBootStock(stock.getPartNumber());
+					if(bootStock !=null && stock.getPartNumber().equalsIgnoreCase(bootStock.getPartNumber())){
 						int incrementQuantity = stock.getQuantity()+ bootStock.getQuantity();
 						bootStock.setQuantity(incrementQuantity);
 						sessionFactory.getCurrentSession().update(bootStock);
-						bootStockList.remove(bootStock);
 					}else{
 						bootStock = new BootStock();
 						bootStock.setItemDescription(stock.getItemDescription());
 						bootStock.setItemType(stock.getItemType());
 						bootStock.setPartNumber(stock.getPartNumber());
 						bootStock.setQuantity(stock.getQuantity());
-						bootStock.setRecordID(stock.getOrderDertailNumber());
 						bootStock.setTechnicianEmail(stock.getTechnician());
 						bootStock.setTechnicianName(stock.getTechnician());
 						bootStock.setCompatibleDevice(stock.getCompatibleDevice());
 						
 						sessionFactory.getCurrentSession().saveOrUpdate(bootStock);
-						bootStockList.remove(bootStock);
 					}
 				}
-				
-			}
 			
 		}catch(Exception exception){
 			exception.getMessage();
@@ -113,7 +107,7 @@ public class BootSiteDao implements BootStockDaoInt{
 				String name = boot.getTechnicianName();
 				if (name.equalsIgnoreCase(technician) && boot.getQuantity() > 0) {
 					spare = new ArrayList<String>(Arrays.asList(boot
-							.getCompatibleDevice().split(",")));
+							.getCompatibleDevice().split("/")));
 					for (int i = 0; i < spare.size(); i++) {
 						if (spare.get(i)
 								.equalsIgnoreCase(tempDeviceModelNumber)) {
@@ -128,8 +122,8 @@ public class BootSiteDao implements BootStockDaoInt{
 		return bootStockList;
 	}
 	@Override
-	public BootStock getBootStock(int recordID) {
-		return (BootStock) sessionFactory.getCurrentSession().get(BootStock.class, recordID);
+	public BootStock getBootStock(String partNumber) {
+		return (BootStock) sessionFactory.getCurrentSession().get(BootStock.class, partNumber);
 	}
 
 }

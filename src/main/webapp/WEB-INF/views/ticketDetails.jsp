@@ -578,7 +578,7 @@
 													<tr>
 														<th>Part No</th>
 														<th>Description</th>
-														<!-- <th>Model No</th> -->
+														<th>Item Type</th>
 														<th>Quantity</th>
 														<th>Tick</th>
 
@@ -591,7 +591,7 @@
 														<tr>
 															<td>${list.partNumber}</td>
 															<td>${list.itemDescription}</td>
-															<%-- <td>${list.compatibleDevice}</td> --%>
+															<td>${list.itemType}</td>
 															<td>${list.quantity}</td>
 															<td><input type="checkbox"
 																id="${list.partNumber}_selectedItem" name="selectedItem"
@@ -633,7 +633,7 @@
 													<tr>
 														<th>Part No</th>
 														<th>Description</th>
-														<!-- <th>Model No</th> -->
+														<th>Model No</th>
 														<th>Quantity</th>
 														<th>Tick</th>
 
@@ -646,6 +646,7 @@
 														<tr>
 															<td>${list.partNumber}</td>
 															<td>${list.itemDescription}</td>
+															<td>${list.itemType}</td>
 															<td>${list.quantity}</td>
 															<td><input type="checkbox"
 																id="${list.partNumber}_selectedItem" name="selectedItem"

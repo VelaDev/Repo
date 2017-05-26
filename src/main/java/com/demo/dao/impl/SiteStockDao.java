@@ -33,13 +33,12 @@ public class SiteStockDao implements SiteStocDaoInt {
 	public void saveSiteStock(List<OrderDetails> detailsDaos) {
 		try {
 			for(OrderDetails stock:detailsDaos){
-			 List<SiteStock> siteStockList = getOrdersForCustomer(stock.getOrderHeader().getCustomer().getCustomerName());
-			 for(SiteStock stockSide:siteStockList){
-				 if(stock.getPartNumber().equalsIgnoreCase(stockSide.getPartNumber())){
-					 int incrementQuantity = stock.getQuantity() + stockSide.getQuantity();
+		      siteStock = getSiteStock(stock.getPartNumber());
+				 if(siteStock != null && stock.getPartNumber().equalsIgnoreCase(siteStock.getPartNumber())){
+					 int incrementQuantity = stock.getQuantity() + siteStock.getQuantity();
 					 siteStock.setQuantity(incrementQuantity);
-					 sessionFactory.getCurrentSession().update(stockSide);
-					 siteStockList.remove(stockSide);
+					 sessionFactory.getCurrentSession().update(siteStock);
+		
 					 
 				 }else{
 					 siteStock = new SiteStock();
@@ -49,16 +48,12 @@ public class SiteStockDao implements SiteStocDaoInt {
 						siteStock.setLocation(stock.getLocation());
 						siteStock.setPartNumber(stock.getPartNumber());
 						siteStock.setQuantity(stock.getQuantity());
-						siteStock.setRecordID(stock.getOrderDertailNumber());
 						siteStock.setTechnicianEmail(stock.getTechnician());
 						siteStock.setTechnicianName(stock.getTechnician());
 						
 						sessionFactory.getCurrentSession().saveOrUpdate(siteStock);
-						siteStockList.remove(stockSide);
 				 }
 			 }
-			}
-
 		} catch (Exception exception) {
 			exception.getMessage();
 
@@ -120,7 +115,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 				 if(stock.getCustomerName().equalsIgnoreCase(customerName) && stock.getQuantity()>0){
 					 
 					 spare = new ArrayList<String>(Arrays.asList(stock
-								.getCompatibleDevice().split(",")));
+								.getCompatibleDevice().split("/")));
 						for (int i = 0; i < spare.size(); i++) {
 							if (spare.get(i)
 									.equalsIgnoreCase(tempDeviceModelNumber)) {
@@ -136,7 +131,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 	}
 
 	@Override
-	public SiteStock getSiteStock(int recordID) {
-		return (SiteStock) sessionFactory.getCurrentSession().get(SiteStock.class, recordID);
+	public SiteStock getSiteStock(String partNumber) {
+		return (SiteStock) sessionFactory.getCurrentSession().get(SiteStock.class, partNumber);
 	}
 }

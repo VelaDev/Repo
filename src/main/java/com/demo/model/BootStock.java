@@ -27,8 +27,6 @@ public class BootStock implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="RecordID")
-	private Integer recordID;
 	@Column(name="Part_Number")
 	private String partNumber;
 	@Column(name="Item_Type")

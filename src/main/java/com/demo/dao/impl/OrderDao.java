@@ -313,8 +313,8 @@ public class OrderDao implements OrdersDaoInt {
 
 				orderDetailList.add(orderDetails);
 			}
-
-			retMessage = makeOrder(cusOrder);
+			
+            retMessage = makeOrder(cusOrder);
 			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
 		} catch (Exception ex) {
 			retMessage = "Order cannot be proccessed";
@@ -363,8 +363,6 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setDateApproved(dateFormat.format(date));
 			sessionFactory.getCurrentSession().update(cusOrder);
 			
-			
-
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 			retMessage = subtractOrderItems(orderDetailList);
 			if (retMessage.equalsIgnoreCase("Ok")) {
@@ -453,7 +451,6 @@ public class OrderDao implements OrdersDaoInt {
 			sessionFactory.getCurrentSession().update(orderHeader);
 			historyDaoInt.insetOrderHistory(orderHeader);
 			
-			
 			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				siteStocDaoInt.saveSiteStock(orderDetailList);
@@ -482,10 +479,8 @@ public class OrderDao implements OrdersDaoInt {
 			exception.getMessage();
 		}
 		return pendingOrder;
-	}
-
-	@Override
-	public List<OrderHeader> shippedOrders(String technicianEmail) {
+	}@Override
+	public List<OrderHeader> shippedOrders(String technicianEmail){
 		pendingOrders = getAllOrders();
 		List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
 		try{
@@ -502,8 +497,6 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public String declineOrder(String orderNum,String reasonForeclined) {
-		
-		
 		try{
 			cusOrder = declineOrder(orderNum);
 			cusOrder.setComments(reasonForeclined);
@@ -533,8 +526,7 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public int pendingOrdersCount(String approveName) {
-		
-		//List<OrderHeader> pendingOrder = new ArrayList<OrderHeader>();
+	
 		int tempCount = 0;
 		try {
 			List<OrderHeader> pendingForApprover = pendingOrders();
@@ -551,8 +543,7 @@ public class OrderDao implements OrdersDaoInt {
 		}
 		return tempCount;
 	}
-
-	@Override
+    @Override
 	public int technicianOrdersCount(String technicianName) {
 		int tempCount = 0;
 		try {

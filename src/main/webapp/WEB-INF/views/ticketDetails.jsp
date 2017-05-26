@@ -364,7 +364,7 @@
 						<!--/general tab-->
 
 						<!-- Solution Details -->
-						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataTckt" >
+						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataResolved" >
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
@@ -875,7 +875,7 @@ $("#actionTaken").on('change', function() {
 	$(document)
 			.ready(
 					function() {
-						$('#updataTckt')
+						$('#updataResolved')
 								.bootstrapValidator(
 										{
 											feedbackIcons : {
@@ -893,7 +893,20 @@ $("#actionTaken").on('change', function() {
 															message : 'Action taken is required and cannot be empty'
 														}
 													}
+												},
+												usedPartNumbers : {
+												validators : {
+													stringLength : {
+														min : 3,
+													},
+													notEmpty : {
+														message : 'Used Part Number is required and cannot be empty select boot or site stock to insert used parts'
+													}
 												}
+											},
+											
+											
+											
 											}
 										});
 					});

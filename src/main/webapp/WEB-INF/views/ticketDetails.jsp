@@ -476,6 +476,28 @@
 																</div>
 															</div>
 														</div>
+														
+														<div class="form-group">
+																<label class="col-md-4 control-label">Test Part</label>
+																<div class="col-md-8 inputGroupContainer">
+																	<div class="input-group">
+																		<span class="input-group-addon"><i
+																			class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+																			class="form-control"id="partTest" name="partTest" placeholder=""	value="">
+																	</div>
+																</div>
+														</div>
+															
+														<div class="form-group">
+																<label class="col-md-4 control-label">Test Toner</label>
+																<div class="col-md-8 inputGroupContainer">
+																	<div class="input-group">
+																		<span class="input-group-addon"><i
+																			class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+																			class="form-control"id="tonerTest" name="testToner" placeholder=""	value="">
+																	</div>
+																</div>
+														</div>
 
 													</div>
 												</div>
@@ -845,7 +867,7 @@ $('#status').change(function() {
 
 
 <script>
-$("#actionTaken").on('change', function() {
+/* $("#actionTaken").on('change', function() {
     if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
         $('input[type="radio"]:enabled').attr('disabled', true);
         $('#BootStocked, #SiteStocked').attr('disabled', false);       
@@ -853,7 +875,42 @@ $("#actionTaken").on('change', function() {
         $('input[type="radio"]:enabled').attr('disabled', true);
         $('#BootStocked, #SiteStocked').attr('disabled', true);
     }
+}); */
+
+$("#actionTaken").on('change', function() {
+	//var tempPart ;
+	var part = "Part";
+	//var tempPart;
+	//var tempToner ;
+	var toner = "Toner";
+	
+    if( $(this).val() == "Replaced Part") {
+    	
+    	  $('input[type="button"]:enabled').attr('disabled', true);
+          $('#BootStocked, #SiteStocked').attr('disabled', false);
+          
+	    	part ==  $(this).val();
+			//tempPart == part;
+			//alert(tempPart);
+			console.log(part);
+			document.getElementById("partTest").value = part;
+    }
+    else if($(this).val() == "Replaced toner" ){
+    	  $('input[type="button"]:enabled').attr('disabled', true);
+          $('#BootStocked, #SiteStocked').attr('disabled', false); 
+           
+          	toner ==  $(this).val();
+			//tempToner == toner;
+			//alert(tempToner);
+			console.log(toner);
+			document.getElementById("tonerTest").value = toner;
+    }       
+    else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+        $('input[type="button"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', true);
+    }
 });
+
 
 </script>
 

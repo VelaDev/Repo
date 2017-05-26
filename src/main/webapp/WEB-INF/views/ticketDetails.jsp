@@ -636,7 +636,6 @@
 														<th>Model No</th>
 														<th>Quantity</th>
 														<th>Tick</th>
-
 													</tr>
 												</thead>
 												<tbody>

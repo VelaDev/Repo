@@ -170,13 +170,13 @@
 										</div>
 										<!-- Text area Subject-->
 										<div class="form-group">
-											<label class="col-md-3 control-label">Subject</label>
+											<label class="col-md-3 control-label">Contatc Person</label>
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="subject"
-														required="required" readonly>${ticketObject.subject}</textarea>
+													<textarea class="form-control"
+														required="required" readonly>${ticketObject.firstName} ${ticketObject.lastName} ${ticketObject.contactEmail} ${ticketObject.contactCellNumber} ${ticketObject.contactTelephoneNumber}</textarea>
 												</div>
 											</div>
 										</div>

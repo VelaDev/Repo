@@ -76,7 +76,7 @@ public class TicketController {
 	public String[] getSerials = null;
 	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
-	public String loadTicket() {
+	public ModelAndView loadTicket() {
        
 		model = new ModelAndView();
 		String retPage = null;
@@ -89,19 +89,18 @@ public class TicketController {
 			model.addObject("serialNumbers",getSerialNumbers);
 			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			retPage = "redirect:ticket";
-			//model.setViewName("ticket");
+			/*retPage = "redirect:ticket";*/
+			model.setViewName("redirect:ticket");
 		}
 		else{
-			//model.setViewName("login");
-			retPage = "redirect:login";
+			model.setViewName("redirect:login");
 		}
-		return retPage;     
+		return model;     
 		
 	}	
 	
 	@RequestMapping(value="logTicket",method=RequestMethod.POST)
-	public String logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
+	public ModelAndView logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
 	  String retPage = null;
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -109,14 +108,13 @@ public class TicketController {
 		   retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);
 		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		  /* model.setViewName("ticket");*/
-		   retPage="redirect:ticket";
+		   model.setViewName("redirect:ticket");
 		}
 		else{
-			retPage="redirect:login";
-			/*model.setViewName("login");*/
+			
+			model.setViewName("redirect:login");
 		}
-		return retPage;
+		return model;
 		
 	}
 
@@ -129,10 +127,10 @@ public class TicketController {
 		
 			model.addObject("ticketList", logTicketService.getAllOpenTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("monitoringTickets");
+			model.setViewName("redirect:monitoringTickets");
 		}
 		else{
-			model.setViewName("login");
+			model.setViewName("redirect:login");
 		}
 		return model;
        
@@ -159,10 +157,10 @@ public class TicketController {
 			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
 			/*model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName(),id));*/
 			model.addObject("siteStock", siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName(), id));
-			model.setViewName("ticketDetails");
+			model.setViewName("redirect:ticketDetails");
 		}
 		else{
-			model.setViewName("login");
+			model.setViewName("redirect:login");
 		}
 		return model;
     }
@@ -175,10 +173,10 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("viewCustomerDetails");
+			model.setViewName("redirect:viewCustomerDetails");
 		}
 		else{
-			model.setViewName("login");
+			model.setViewName("redirect:login");
 		}
 		
 		return model;
@@ -339,7 +337,7 @@ public class TicketController {
 	}
 	
 	@RequestMapping(value="logTicketAdmin",method=RequestMethod.POST)
-	public String logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
+	public ModelAndView logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
 	String retPage = null;
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -355,14 +353,14 @@ public class TicketController {
 			}
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
 			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-			retPage = "redirect:logTicket";
-		  // model.setViewName("logTicket");
+			
+		    model.setViewName("redirect:logTicket");
 		}
 		else{
-			retPage = "redirect:login";
-			/*model.setViewName("login");*/
+			
+			model.setViewName("redirect:login");
 		}
-		return retPage;
+		return model;
 		
 	}
 

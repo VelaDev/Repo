@@ -144,17 +144,6 @@
 											</div>
 										</div>
 										<!-- Text area Subject-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Subject</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="subject"
-														required="required" readonly>${ticketObject.subject}</textarea>
-												</div>
-											</div>
-										</div>
 									</div>
 									<!--/ First Column-->
 
@@ -379,7 +368,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
 													class="form-control" type="text" name="status"
-													value="Resolved" readonly="readonly">
+													value="${ticketObject.status}" readonly="readonly">
 											</div>
 										</div>
 									</div>
@@ -417,8 +406,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input type="text"
 													class="form-control" readonly="readonly"
-													onkeypress="return isNumber(event)"
-													placeholder="Enter Colour Reading" id="colour"
+													onkeypress="return isNumber(event)" id="colour"
 													name="colourReading"
 													value="${ticketObject.getDevice().getColourReading() }"
 													name="colourReading">
@@ -434,7 +422,6 @@
 													class="glyphicon glyphicon-barcode"></i></span> <input type="text"
 													class="form-control" onkeypress="return isNumber(event)"
 													id="mono" readonly="readonly" name="monoReading"
-													placeholder="Enter Mono Reading" name="monoReading"
 													value="${ticketObject.getDevice().getMonoReading() }">
 											</div>
 										</div>
@@ -469,12 +456,6 @@
 
 						</div>
 						<!--/Resolved Details tab-->
-
-
-
-
-
-
 
 						<!-- Solution Details -->
 						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataTckt" >

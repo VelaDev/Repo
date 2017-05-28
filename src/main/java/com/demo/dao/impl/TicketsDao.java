@@ -154,6 +154,7 @@ public class TicketsDao implements TicketsDaoInt {
 				ticketNumber);
 	}
 
+	@Transactional
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Tickets> getAllLoggedTickets() {
@@ -212,11 +213,10 @@ public class TicketsDao implements TicketsDaoInt {
 		return ticketList;
 	}
 
-
-	@Transactional
-	@Scheduled(fixedRate = 600000)
 	// /cron="*/5 * * * * MON-FRI*" this method will be invoked after every 10
 	// min to perform calculations and update relevant fields
+	//@Transactional
+	//@Scheduled(fixedRate = 600000)
 	@Override
 	public void calculateSLAHours() {
 
@@ -327,9 +327,7 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setComments(tickets.getComments());
 					
 					ticket.setStatus(status);
-					if(device!=null){
-						sessionFactory.getCurrentSession().update(device);
-					}
+					sessionFactory.getCurrentSession().update(device);
 					sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 					
 					historyDaoInt.insertTicketHistory(ticket);
@@ -337,6 +335,7 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 					
 			}
+			
 
 		} catch (Exception e) {
 			retMessage = "SLA did not start because of " + e.getMessage();
@@ -949,8 +948,8 @@ public class TicketsDao implements TicketsDaoInt {
 		return aList;
 	}
 
-	@Transactional
-	@Scheduled(fixedRate = 60000)
+	/*@Transactional
+	@Scheduled(fixedRate = 60000)*/
 	@Override
 	public void resolveToClosedTicketUpdate() {
 		myFormat = new SimpleDateFormat("yyyy-MM-dd");

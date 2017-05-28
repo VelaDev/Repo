@@ -47,5 +47,7 @@ public class TicketsBean {
 	private String contactEmail;
 	private String contactCellNumber;
 	private String contactTelephoneNumber;
+	private String boot;
+	private String site;
 	
 }

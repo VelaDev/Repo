@@ -354,11 +354,11 @@ public class TicketController {
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
 			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			
-		    model.setViewName("redirect:logTicket");
+		    model.setViewName("logTicket");
 		}
 		else{
 			
-			model.setViewName("redirect:login");
+			model.setViewName("login");
 		}
 		return model;
 		

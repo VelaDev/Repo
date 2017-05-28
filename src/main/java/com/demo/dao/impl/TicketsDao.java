@@ -327,8 +327,11 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setComments(tickets.getComments());
 					
 					ticket.setStatus(status);
-					sessionFactory.getCurrentSession().update(device);
+					
 					sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+					if(tickets.getMonoReading() != null || tickets.getColourReading()!=null){
+						sessionFactory.getCurrentSession().update(device);
+					}
 					
 					historyDaoInt.insertTicketHistory(ticket);
 					retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";

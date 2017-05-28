@@ -76,9 +76,10 @@ public class TicketController {
 	public String[] getSerials = null;
 	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
-	public ModelAndView loadTicket() {
+	public String loadTicket() {
        
 		model = new ModelAndView();
+		String retPage = null;
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			System.out.println("We here");
@@ -88,12 +89,14 @@ public class TicketController {
 			model.addObject("serialNumbers",getSerialNumbers);
 			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("ticket");
+			retPage = "redirect:ticket";
+			//model.setViewName("ticket");
 		}
 		else{
-			model.setViewName("login");
+			//model.setViewName("login");
+			retPage = "redirect:login";
 		}
-		return model;     
+		return retPage;     
 		
 	}	
 	
@@ -336,8 +339,8 @@ public class TicketController {
 	}
 	
 	@RequestMapping(value="logTicketAdmin",method=RequestMethod.POST)
-	public ModelAndView logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
-	
+	public String logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
+	String retPage = null;
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
@@ -352,13 +355,14 @@ public class TicketController {
 			}
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
 			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-				
-		   model.setViewName("logTicket");
+			retPage = "redirect:logTicket";
+		  // model.setViewName("logTicket");
 		}
 		else{
-			model.setViewName("login");
+			retPage = "redirect:login";
+			/*model.setViewName("login");*/
 		}
-		return model;
+		return retPage;
 		
 	}
 

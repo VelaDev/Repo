@@ -57,7 +57,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	/*String dateTimeStamp =  dateFormat.format(cal.getTime());
 	String reportName = "DeliveryNote"+dateTimeStamp+".pdf";*/
 	
-	public static final String DEST = "C:/Users/Mohapi/git/Repo/src/main/java/resources/DeliveryNote";
+	public static final String DEST = "C:/VelapandaReports/DeliveryNote";
 	public static final String ICC = "C:/Users/Mohapi/git/Repo/src/main/java/resources/sRGB_CS_profile.icm";
 	public static final String FONT = "/resources/OpenSans-Regular.ttf";
 	public static final String FONTB = "/resources//OpenSans-Bold.ttf";
@@ -121,7 +121,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 		PdfPTable table = new PdfPTable(1);
 		table.setWidthPercentage(30);
 		Image img = Image
-				.getInstance("C:/Users/Mohapi/git/Repo/src/main/webapp/WEB-INF/resources/bootstrap-3.3.6/images/mainlogo.jpg");
+				.getInstance("C:/Users/Mohapi/git/Repo/src/main/webapp/WEB-INF/resources/images/mainlogo.jpg");
 		img.setWidthPercentage(1);
 		PdfPCell cell = new PdfPCell(img);
 		cell.setBorder(PdfPCell.NO_BORDER);

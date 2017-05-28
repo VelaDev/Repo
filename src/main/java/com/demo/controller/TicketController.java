@@ -90,10 +90,10 @@ public class TicketController {
 			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			/*retPage = "redirect:ticket";*/
-			model.setViewName("redirect:ticket");
+			model.setViewName("ticket");
 		}
 		else{
-			model.setViewName("redirect:login");
+			model.setViewName("login");
 		}
 		return model;     
 		
@@ -108,11 +108,11 @@ public class TicketController {
 		   retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);
 		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		   model.setViewName("redirect:ticket");
+		   model.setViewName("ticket");
 		}
 		else{
 			
-			model.setViewName("redirect:login");
+			model.setViewName("login");
 		}
 		return model;
 		
@@ -127,10 +127,10 @@ public class TicketController {
 		
 			model.addObject("ticketList", logTicketService.getAllOpenTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("redirect:monitoringTickets");
+			model.setViewName("monitoringTickets");
 		}
 		else{
-			model.setViewName("redirect:login");
+			model.setViewName("login");
 		}
 		return model;
        
@@ -157,10 +157,10 @@ public class TicketController {
 			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
 			/*model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName(),id));*/
 			model.addObject("siteStock", siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName(), id));
-			model.setViewName("redirect:ticketDetails");
+			model.setViewName("ticketDetails");
 		}
 		else{
-			model.setViewName("redirect:login");
+			model.setViewName("login");
 		}
 		return model;
     }
@@ -173,10 +173,10 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("redirect:viewCustomerDetails");
+			model.setViewName("viewCustomerDetails");
 		}
 		else{
-			model.setViewName("redirect:login");
+			model.setViewName("login");
 		}
 		
 		return model;

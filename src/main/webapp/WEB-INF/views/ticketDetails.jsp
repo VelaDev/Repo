@@ -463,15 +463,16 @@
 															</div>
 														</div>
 
-														<!-- Text input status-->
-														<div class="form-group">
+														<!-- Select type status-->
+														<div class="form-group ">
 															<label class="col-md-4 control-label">Status</label>
-															<div class="col-md-8 inputGroupContainer">
+															<div class="col-md-8 selectContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input
-																		id="status" class="form-control" type="text"
-																		name="status" value="Resolved" readonly="readonly">
+																		class="glyphicon glyphicon-list"></i></span> <select
+																		name="status"readonly="readonly" class="form-control selectpicker">
+																		<option value="${ticketObject.status}">${ticketObject.status}</option>																		
+																	</select>
 																</div>
 															</div>
 														</div>
@@ -533,25 +534,7 @@
 															</div>
 														</div>
 
-														<!-- <div class="form-group">
-																<label class="col-md-4 control-label">Test Part</label>
-																<div class="col-md-8 inputGroupContainer">
-																	<div class="input-group">
-																		<input type="hidden"
-																			class="form-control"id="partTest" name="partTest" placeholder=""	value="">
-																	</div>
-																</div>
-														</div>															
-														<div class="form-group">
-																<label class="col-md-4 control-label">Test Toner</label>
-																<div class="col-md-8 inputGroupContainer">
-																	<div class="input-group">
-																		<input type="hidden"
-																			class="form-control"id="tonerTest" name="testToner" placeholder=""	value="">
-																	</div>
-																</div>
-														</div> -->
-
+														
 													</div>
 												</div>
 												<!-- //group details -->
@@ -668,7 +651,8 @@
 													</c:forEach>
 												</tbody>
 											</table>
-
+											<input type="hidden" class="form-control"id="setStock" name="bootType" value="Boot">
+															
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default"
@@ -721,6 +705,8 @@
 													</c:forEach>
 												</tbody>
 											</table>
+											<input type="hidden" class="form-control"id="botStock" name="bootType" value="Site">
+										
 											<div class="modal-footer">
 
 												<button type="button" class="btn btn-default"

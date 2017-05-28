@@ -98,20 +98,22 @@ public class TicketController {
 	}	
 	
 	@RequestMapping(value="logTicket",method=RequestMethod.POST)
-	public ModelAndView logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
-	
+	public String logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
+	  String retPage = null;
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 		   retMessage = logTicketService.logTicket(logTickets);
 		   model.addObject("retMessage", retMessage);
 		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		   model.setViewName("ticket");
+		  /* model.setViewName("ticket");*/
+		   retPage="redirect:ticket";
 		}
 		else{
-			model.setViewName("login");
+			retPage="redirect:login";
+			/*model.setViewName("login");*/
 		}
-		return model;
+		return retPage;
 		
 	}
 

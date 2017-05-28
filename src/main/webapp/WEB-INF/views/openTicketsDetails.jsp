@@ -457,10 +457,8 @@
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <select
-																		name="status"readonly="readonly" class="form-control selectpicker">
-																		<option value="${ticketObject.status}">${ticketObject.status}</option>																		
-																	</select>
+																		class="glyphicon glyphicon-list"></i></span> 
+																		<input type="text" name="status"readonly="readonly" class="form-control" value="Resolved" />																		
 																</div>
 															</div>
 														</div>

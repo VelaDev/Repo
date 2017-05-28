@@ -314,6 +314,7 @@ public class TicketsDao implements TicketsDaoInt {
 							retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
 						}
 						
+						
 					}else{
 						
 						sessionFactory.getCurrentSession().update(device);

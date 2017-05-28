@@ -771,7 +771,7 @@ public class TicketController {
 		return model;
     }
 	
-	@RequestMapping("resolvedTickets")
+	@RequestMapping(value={"resolvedTickets", "userResolvedTickets"})
 	public ModelAndView resolvedTicket(){
 		
 		model = new ModelAndView();
@@ -782,14 +782,21 @@ public class TicketController {
 			 model.addObject("ticketList", logTicketService.getAllResolvedTickets());
 			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));				
 			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			 model.setViewName("resolvedTickets");
-		}
-		else{
+			 
+			 if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
+			    	
+				 	model.setViewName("resolvedTickets");
+				 	
+			  }else if (userName.getRole().equalsIgnoreCase("User")){
+			    	
+			    	model.setViewName("userResolvedTickets");
+			  }			
+			}else{
 			model.setViewName("login");
 		}		
 		return model;
 	}
-	@RequestMapping("resolvedTickectDetails")
+	@RequestMapping(value={"resolvedTickectDetails", "userResolvedTickectDetails"})
     public ModelAndView loadResolvedTicketDetails(@RequestParam int id, @ModelAttribute Tickets ticket) {
 		
 	    model = new ModelAndView();
@@ -804,13 +811,19 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			
+			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin") )
+				
 			model.setViewName("resolvedTickectDetails");
-		}
-		else{
-			model.setViewName("login");
-		}
+		  }else if (userName.getRole().equalsIgnoreCase("User")){
+		    	
+		    	model.setViewName("userResolvedTickets");
+		  }else{
+			   model.setViewName("login");
+		  }		
+		
 		return model;
-    }
+	}
 	
 	@RequestMapping("resolvedTechTickets")
 	public ModelAndView resolvedTechTicket(){

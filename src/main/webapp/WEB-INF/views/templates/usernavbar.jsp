@@ -69,7 +69,10 @@
 								<li><a href='<c:url value="userMakeLeave.html"/>'>Make Leave</a></li>
 								<li><a href='<c:url value="viewRequestedUserLeave.html"/>'>View Requested Leave</a></li>
 				      		 </ul>
-				    	</li>  
+				    	</li>
+				    	
+				    	<li><a href='<c:url value="userResolvedTickets.html"/>'>Resolved Tickets</a></li> 
+				    	
 					</ul>
 			</div>
 		</div>

@@ -186,7 +186,34 @@ label.usedPart.control-label {
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" required="required" readonly style="height:85px;">${ticketObject.firstName} ${ticketObject.lastName}&#13;&#10;${ticketObject.contactEmail}&#13;&#10;${ticketObject.contactCellNumber}&#13;&#10;${ticketObject.contactTelephoneNumber}</textarea>
+													<input
+														name="priority" id="priority" class="form-control"
+														type="text" value="${ticketObject.firstName} ${ticketObject.lastName}" readonly>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">Email</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-pencil"></i></span>
+													<input
+														name="priority" id="priority" class="form-control"
+														type="text" value="${ticketObject.contactEmail}" readonly>
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<label class="col-md-3 control-label">Contatc No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-pencil"></i></span>
+													<input
+														name="priority" id="priority" class="form-control"
+														type="text" value="${ticketObject.contactTelephoneNumber}" readonly>
+												
 												</div>
 											</div>
 										</div>
@@ -458,8 +485,6 @@ label.usedPart.control-label {
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)"
 																		placeholder="Enter Colour Reading" id="colour"
-																		name="colourReading"
-																		value="${ticketObject.getDevice().getColourReading() }"
 																		name="colourReading">
 																</div>
 															</div>
@@ -474,8 +499,7 @@ label.usedPart.control-label {
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)" id="mono"
 																		name="monoReading" placeholder="Enter Mono Reading"
-																		name="monoReading"
-																		value="${ticketObject.getDevice().getMonoReading() }">
+																		name="monoReading">
 																</div>
 															</div>
 														</div>

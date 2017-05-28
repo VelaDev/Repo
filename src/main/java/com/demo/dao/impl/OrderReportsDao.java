@@ -96,7 +96,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 		// PdfAWriter writer = PdfAWriter.getInstance(document, new
 		// FileOutputStream(DEST), PdfAConformanceLevel.ZUGFeRDBasic);
 		PdfWriter writer = PdfWriter.getInstance(document,
-				new FileOutputStream(DEST+"/"+orderHeader.getOrderNum()));
+				new FileOutputStream(DEST+"/"+orderHeader.getOrderNum()+".pdf"));
 		writer.setPdfVersion(PdfWriter.VERSION_1_7);
 
 		//Get payment information from order table

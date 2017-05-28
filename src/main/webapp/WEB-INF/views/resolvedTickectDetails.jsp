@@ -94,11 +94,10 @@
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
 														onchange="CheckStatus(this.value);" name="status"
-														id="status" readonly class="form-control selectpicker">
+														id="status" class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
-														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate Ticket</option>
-														<option value="Resolved">Resolved</option>
+														<option value="Open">Open</option>
+					
 													</select>
 												</div>
 											</div>
@@ -163,7 +162,7 @@
 											</div>
 										</div>
 										<!-- Text area Subject-->
-										<div class="form-group">
+										<%-- <div class="form-group">
 											<label class="col-md-3 control-label">Subject</label>
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
@@ -173,7 +172,7 @@
 														required="required" readonly>${ticketObject.subject}</textarea>
 												</div>
 											</div>
-										</div>
+										</div> --%>
 									</div>
 									<!--/ First Column-->
 
@@ -200,7 +199,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" readonly name="comments"
+													<textarea class="form-control" name="comments"
 														required="required" placeholder="Please enter comments"
 														id="comment"></textarea>
 												</div>
@@ -344,13 +343,13 @@
 								<!-- //Customer Details -->
 
 								<br>
-								<!-- <div class="form-group row">
+								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Update General"
+										<input type="submit" value="Re-Open Ticket"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
-								</div> -->
+								</div>
 							</form:form>
 
 						</div>

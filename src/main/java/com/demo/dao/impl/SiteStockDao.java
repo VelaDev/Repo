@@ -63,8 +63,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SiteStock> getAllOrders() {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				SiteStock.class);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(SiteStock.class);
 		return (List<SiteStock>) criteria.list();
 	}
 

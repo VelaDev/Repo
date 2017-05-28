@@ -38,9 +38,9 @@
 
 						<li class="active"><a href="#generalDetails"
 							data-toggle="tab">General</a></li>
-						<!-- <li><a href="#resolvedDetails" data-toggle="tab">Resolved
+					   <li><a href="#resolvedDetails" data-toggle="tab">Resolved
 								Details</a></li>
-						 -->
+						 
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -336,6 +336,145 @@
 
 						</div>
 						<!--/general tab-->
+
+<!-- Resolved Details tab-->
+						<div class="tab-pane" id="resolvedDetails">
+							<h4 align="center">Resolved Details</h4>
+							<form:form class="well form-horizontal">
+								<div class="panel-body">
+
+									<!-- Text input Serial No-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Serial No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="serialNumber" placeholder="Serial Number"
+													value="${ticketObject.getDevice().getSerialNumber() }"
+													class="form-control" type="text" readonly>
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Ticket Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Ticket Number</label>
+										<div class="col-md-6  inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													id="ticketNumber" class="form-control" type="text"
+													name="ticketNumber" value="${ticketObject.ticketNumber}"
+													readonly="readonly">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input status-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Status</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="Resolved" readonly="readonly">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text area Action Taken-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Action Taken</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="${ticketObject.actionTaken }" readonly="readonly">
+											</div>
+										</div>
+									</div>
+									<!-- Text area Used Spare Part-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Used Spare/Part</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="${ticketObject.usedPartNumbers }" readonly="readonly">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text checkbox Colour Reading-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Colour Reading</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" readonly="readonly"
+													onkeypress="return isNumber(event)"
+													placeholder="Enter Colour Reading" id="colour"
+													name="colourReading"
+													value="${ticketObject.getDevice().getColourReading() }"
+													name="colourReading">
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-3 control-label">Mono Reading</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" onkeypress="return isNumber(event)"
+													id="mono" readonly="readonly" name="monoReading"
+													placeholder="Enter Mono Reading" name="monoReading"
+													value="${ticketObject.getDevice().getMonoReading() }">
+											</div>
+										</div>
+									</div>
+
+									<div class="diplayNone" id="getPartTonerResolved"
+										style="display: none">
+
+										<!-- display ticked Used Part Numbers-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Used Part
+												Numbers</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span>
+													<textarea id="tickedUsedPartNumbers" class="form-control"
+														readonly="readonly" name="usedPartNumbers"></textarea>
+												</div>
+											</div>
+										</div>
+										<!--// display ticked Used Part Numbers-->
+
+									</div>
+									<!-- displayNone for getPartToner -->
+
+
+								</div>
+								<!-- pane body -->
+
+							</form:form>
+
+						</div>
+						<!--/Resolved Details tab-->
+
+
+
+
+
+
 
 						<!-- Solution Details -->
 						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataTckt" >

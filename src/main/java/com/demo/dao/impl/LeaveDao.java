@@ -140,6 +140,8 @@ public class LeaveDao implements LeaveDaoInt {
 				Leave.class);
 		return (List<Leave>) criteria.list();
 	}
+	
+	
 	private List<Leave> getCurrentLeaves(){
 		List<Leave> currentList = new ArrayList<Leave>();
 		try{

@@ -115,12 +115,6 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setDescription(tickets.getDescription());
 						ticket.setPriority(tickets.getPriority());
 						ticket.setDateTime(dateFormat.format(date));
-						
-						ticket.setFirstName(tickets.getFirstName());
-						ticket.setLastName(tickets.getLastName());
-						ticket.setContactEmail(tickets.getContactEmail());
-						ticket.setContactCellNumber(tickets.getContactCellNumber());
-						ticket.setContactTelephoneNumber(tickets.getContactTelephoneNumber());
 
 						ticket.setDevice(device);
 						sessionFactory.getCurrentSession().save(ticket);
@@ -333,7 +327,9 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setComments(tickets.getComments());
 					
 					ticket.setStatus(status);
-					sessionFactory.getCurrentSession().update(device);
+					if(device!=null){
+						sessionFactory.getCurrentSession().update(device);
+					}
 					sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 					
 					historyDaoInt.insertTicketHistory(ticket);
@@ -650,7 +646,7 @@ public class TicketsDao implements TicketsDaoInt {
 					}
 				}
 			}else{
-				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName());
+				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName(),0);
 				for(BootStock btStock:tempSiteList){
 					
 					for(int i=0;i<spare.size();i++){

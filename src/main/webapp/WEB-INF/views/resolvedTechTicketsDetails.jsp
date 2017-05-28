@@ -60,7 +60,7 @@
 									<!--First Column-->
 									<div class="col-md-6">
 
-										<!-- Text input Ticket Number-->
+									<!-- Text input Ticket Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Ticket Number</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -82,17 +82,13 @@
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
 														onchange="CheckStatus(this.value);" name="status"
-														id="status" readonly class="form-control selectpicker">
+														 class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
-														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate Ticket</option>
-														<option value="Resolved">Resolved</option>
+														<option value="Open">Open</option>
 													</select>
 												</div>
 											</div>
 										</div>
-
-
 
 										<!-- Select type Order No-->
 										<div class="order" id="order" style="display: none;">
@@ -102,8 +98,7 @@
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-list"></i></span> <select id="order"
-															name="orderNum" readonly
-															class="form-control selectpicker">
+															name="orderNum" class="form-control selectpicker">
 															<option value=0>Select Order No</option>
 															<c:forEach items="${OrderNumber}" var="orders">
 																<option value="${orders.recordID}">${orders.orderNum}
@@ -124,7 +119,7 @@
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-user"></i></span> <select
-															id="escalatedTo" readonly name="escalatedTo"
+															id="escalatedTo" name="escalatedTo"
 															class="form-control selectpicker">
 															<option value="">Select Manager</option>
 															<c:forEach items="${managersList}" var="manager">
@@ -150,24 +145,85 @@
 												</div>
 											</div>
 										</div>
-										<!-- Text area Subject-->
+
+										<!-- Text input Contact Person First Name-->
 										<div class="form-group">
-											<label class="col-md-3 control-label">Subject</label>
+											<label class="col-md-3 control-label">First Name</label>
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="subject"
-														required="required" readonly>${ticketObject.subject}</textarea>
+														class="glyphicon glyphicon-user"></i></span> <input
+														id="firstName" name="firstName" placeholder="First Name"
+														class="form-control" type="text" readonly
+														value="${ticketObject.firstName}">
 												</div>
 											</div>
 										</div>
+
+										<!-- Text input Contact Person  Last Name-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Last Name</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-user"></i></span> <input id="lastName"
+														name="lastName" placeholder="Last Name" readonly
+														class="form-control" type="text"
+														value="${ticketObject.lastName}">
+												</div>
+											</div>
+										</div>										
+										
+										<div class="form-group">
+											<label class="col-md-3 control-label">Email</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-envelope"></i></span> <input
+														id="contactEmail" name="contactEmail" readonly
+														placeholder="Email Address" class="form-control"
+														type="email" value="${ticketObject.contactEmail}">
+												</div>
+											</div>
+										</div>
+										
+										<!-- Text input Contact Person Cellphone Number-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Cellphone No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-earphone"></i></span> <input
+														id="contactCellNumber" name="contactCellNumber"
+														placeholder="Cellphone No (Optional)" class="form-control"
+														maxlength="10" type="text" readonly
+														onkeypress="return isNumber(event)"
+														value="${ticketObject.contactCellNumber}">
+												</div>
+											</div>
+										</div>										
+										
+										<!-- Text input Contact Person Tellphone Number-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Tellphone No </label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-earphone"></i></span> <input
+														id="contactTelephoneNumber" name="contactTelephoneNumber"
+														placeholder="Telephone No (Optional)" class="form-control"
+														maxlength="10" readonly type="text"
+														onkeypress="return isNumber(event)"
+														value="${ticketObject.contactTelephoneNumber}">
+												</div>
+											</div>
+										</div>
+										
 									</div>
 									<!--/ First Column-->
 
 									<!--Second Column-->
 									<div class="col-md-6">
-
 
 										<!-- Text area Description-->
 										<div class="form-group">
@@ -176,8 +232,9 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" onkeydown="upperCaseF(this)"
-														name="description" required="required" readonly>${ticketObject.description}</textarea>
+													<textarea class="form-control" readonly
+														onkeydown="upperCaseF(this)" name="description"
+														required="required" readonly style="height: 153px;">${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
@@ -188,12 +245,13 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" readonly name="comments"
+													<textarea class="form-control" name="comments"
 														required="required" placeholder="Please enter comments"
-														id="comment"></textarea>
+														id="comment" style="height: 153px;"></textarea>
 												</div>
 											</div>
 										</div>
+										
 									</div>
 									<!--//Second Column-->
 								</fieldset>

@@ -23,17 +23,8 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <style type="text/css">
-label.usedPart.control-label {
-	margin-left: 24px;
-}
 
-.error-class {
-	color: red;
-}
 
-.valid-class {
-	color: green;
-}
 </style>
 
 </head>
@@ -65,11 +56,7 @@ label.usedPart.control-label {
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails"
-							data-toggle="tab">General</a></li>
-						<!-- <li><a href="#resolvedDetails" data-toggle="tab">Resolved
-								Details</a></li>
-						 -->
+						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -104,8 +91,7 @@ label.usedPart.control-label {
 												</div>
 											</div>
 										</div>
-
-
+										
 										<!-- Select type status-->
 										<div class="form-group ">
 											<label class="col-md-3 control-label">Status</label>
@@ -189,7 +175,7 @@ label.usedPart.control-label {
 														class="glyphicon glyphicon-user"></i></span> <input
 														id="firstName" name="firstName" placeholder="First Name"
 														class="form-control" type="text" readonly
-														value="${ticketObject.lastName}">
+														value="${ticketObject.firstName}">
 												</div>
 											</div>
 										</div>
@@ -235,41 +221,7 @@ label.usedPart.control-label {
 														value="${ticketObject.contactCellNumber}">
 												</div>
 											</div>
-										</div>
-										
-									</div>
-									<!--/ First Column-->
-
-									<!--Second Column-->
-									<div class="col-md-6">
-
-
-										<!-- Text area Description-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Description</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" readonly
-														onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly style="height: 85px;">${ticketObject.description}</textarea>
-												</div>
-											</div>
-										</div>
-										<!-- Text area Comment-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Comments</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="comments"
-														required="required" placeholder="Please enter comments"
-														id="comment" style="height: 85px;"></textarea>
-												</div>
-											</div>
-										</div>
+										</div>										
 										
 										<!-- Text input Contact Person Tellphone Number-->
 										<div class="form-group">
@@ -286,6 +238,41 @@ label.usedPart.control-label {
 												</div>
 											</div>
 										</div>
+										
+									</div>
+									<!--/ First Column-->
+
+									<!--Second Column-->
+									<div class="col-md-6">
+
+										<!-- Text area Description-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Description</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-pencil"></i></span>
+													<textarea class="form-control" readonly
+														onkeydown="upperCaseF(this)" name="description"
+														required="required" readonly style="height: 153px;">${ticketObject.description}</textarea>
+												</div>
+											</div>
+										</div>
+										<!-- Text area Comment-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Comments</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-pencil"></i></span>
+													<textarea class="form-control" name="comments"
+														required="required" placeholder="Please enter comments"
+														id="comment" style="height: 153px;"></textarea>
+												</div>
+											</div>
+										</div>
+										
+										
 
 									</div>
 									<!--//Second Column-->

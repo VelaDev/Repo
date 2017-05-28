@@ -7,7 +7,17 @@
 		max-width: 1200px;
 	}
 }
+label.usedPart.control-label {
+	margin-left: 24px;
+}
 
+.error-class {
+	color: red;
+}
+
+.valid-class {
+	color: green;
+}
 .shitToRight {
 	padding-left: 16%;
 	margin-left: 3%;

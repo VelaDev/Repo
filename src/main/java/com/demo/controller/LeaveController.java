@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.demo.bean.CustomerBean;
 import com.demo.bean.LeaveBean;
 import com.demo.model.Employee;
 import com.demo.model.Leave;

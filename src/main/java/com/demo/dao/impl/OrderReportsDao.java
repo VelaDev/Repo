@@ -57,7 +57,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	/*String dateTimeStamp =  dateFormat.format(cal.getTime());
 	String reportName = "DeliveryNote"+dateTimeStamp+".pdf";*/
 	
-	public static final String DEST = "C:/VelapandaReports/DeliveryNote";
+	public static final String DEST = "C:/VelapandaReports/";
 	public static final String ICC = "C:/Users/Mohapi/git/Repo/src/main/java/resources/sRGB_CS_profile.icm";
 	public static final String FONT = "/resources/OpenSans-Regular.ttf";
 	public static final String FONTB = "/resources//OpenSans-Bold.ttf";
@@ -91,10 +91,12 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 
 		// String dest = String.format(DEST, invoice.getId());
 		Document document = new Document(PageSize.A4.rotate());
+		
+		orderHeader = ordersDaoInt.getOrder(recordID);
 		// PdfAWriter writer = PdfAWriter.getInstance(document, new
 		// FileOutputStream(DEST), PdfAConformanceLevel.ZUGFeRDBasic);
 		PdfWriter writer = PdfWriter.getInstance(document,
-				new FileOutputStream(DEST));
+				new FileOutputStream(DEST+"/"+orderHeader.getOrderNum()));
 		writer.setPdfVersion(PdfWriter.VERSION_1_7);
 
 		//Get payment information from order table

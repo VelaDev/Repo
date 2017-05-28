@@ -284,7 +284,7 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			// deliveryServiceInt.createPdf(recordID);
+			System.out.println("Re sa sheba fela "+ recordID);
 			OrderHeader order = ordersServiceInt.getOrder(recordID);
 			List<OrderDetails> list = orderDetailsInt
 					.getOrderDetailsByOrderNum("key", recordID);
@@ -296,7 +296,7 @@ public class OrdersController {
 					.getContactPerson(userName.getFirstName()));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("deliveryNote");
+			//model.setViewName("deliveryNote");
 		} else {
 			model.setViewName("login");
 		}
@@ -310,10 +310,18 @@ public class OrdersController {
 			throws ParserConfigurationException, SAXException,
 			TransformerException, IOException, DocumentException, XMPException, DataIncompleteException, InvalidCodeException, java.text.ParseException {
 		model = new ModelAndView();
-
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			deliveryServiceInt.createPdf(recordID);
+			OrderHeader order = ordersServiceInt.getOrder(recordID);
+			List<OrderDetails> list = orderDetailsInt
+					.getOrderDetailsByOrderNum("key", recordID);
+			model.addObject("pendingOrderList", list);
+			model.addObject("OrderNum", order);
+
+			model.addObject("recordID", recordID);
+			model.addObject("contactPerson", contactDetailsServiceInt
+					.getContactPerson(userName.getFirstName()));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("deliveryNote");

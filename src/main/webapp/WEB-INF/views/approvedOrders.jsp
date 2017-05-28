@@ -67,7 +67,7 @@
 											href="detailedOrders?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
 										<td><a href="shipment?recordID=<c:out value='${list.recordID}'/>">Ship Order</a></td>
 										<td><a
-											href="deliveryNote?recordID=<c:out value='${list.recordID}'/>">
+											href="printdeliveryNote?recordID=<c:out value='${list.recordID}'/>">
 
 												<c:choose>
 													<c:when test="${list.status =='Approved'}">

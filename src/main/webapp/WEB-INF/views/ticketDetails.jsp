@@ -11,7 +11,7 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">	
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
@@ -22,6 +22,19 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
+<style type="text/css">
+
+label.usedPart.control-label {
+    margin-left: 24px;	
+}
+.error-class {
+    color:red;
+}
+.valid-class {
+    color:green;	
+}
+
+</style>
 
 </head>
 <body>
@@ -100,7 +113,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);"  name="status"
+														onchange="CheckStatus(this.value);" name="status"
 														id="status" class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
 														<option value="Awaiting Spares">Awaiting Spares</option>
@@ -111,8 +124,6 @@
 											</div>
 										</div>
 
-
-
 										<!-- Select type Order No-->
 										<div class="order" id="order" style="display: none;">
 											<div class="form-group">
@@ -121,7 +132,7 @@
 													<div class="input-group">
 														<span class="input-group-addon"><i
 															class="glyphicon glyphicon-list"></i></span> <select id="order"
-															name="orderNum"  class="form-control selectpicker">
+															name="orderNum" class="form-control selectpicker">
 															<option value=0>Select Order No</option>
 															<c:forEach items="${OrderNumber}" var="orders">
 																<option value="${orders.recordID}">${orders.orderNum}
@@ -175,8 +186,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control"
-														required="required" readonly>${ticketObject.firstName} ${ticketObject.lastName} ${ticketObject.contactEmail} ${ticketObject.contactCellNumber} ${ticketObject.contactTelephoneNumber}</textarea>
+													<textarea class="form-control" required="required" readonly style="height:85px;">${ticketObject.firstName} ${ticketObject.lastName}&#13;&#10;${ticketObject.contactEmail}&#13;&#10;${ticketObject.contactCellNumber}&#13;&#10;${ticketObject.contactTelephoneNumber}</textarea>
 												</div>
 											</div>
 										</div>
@@ -194,8 +204,9 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" readonly onkeydown="upperCaseF(this)"
-														name="description" required="required" readonly>${ticketObject.description}</textarea>
+													<textarea class="form-control" readonly
+														onkeydown="upperCaseF(this)" name="description"
+														required="required" readonly style="height:85px;">${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
@@ -208,7 +219,7 @@
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" name="comments"
 														required="required" placeholder="Please enter comments"
-														id="comment"></textarea>
+														id="comment" style="height:85px;"></textarea>
 												</div>
 											</div>
 										</div>
@@ -268,8 +279,6 @@
 													</div>
 												</div>
 											</div>
-
-
 
 											<!-- Text input Device Location-->
 											<div class="form-group">
@@ -357,26 +366,27 @@
 											id="updateGen">
 									</div>
 								</div>
-								
+
 							</form:form>
 
 						</div>
 						<!--/general tab-->
 
 						<!-- Solution Details -->
-						<form:form action="updateTicket" modelAttribute="updateTicket" method="post" id="updataResolved" >
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="updateResolved">
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 								<div class="modal-dialog modal-lg">
 									<div class="modal-content">
-									
+
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal"
 												aria-hidden="true">×</button>
 											<h3 class="modal-title">Solution Details</h3>
 										</div>
-										
+
 										<div class="modal-body">
 
 											<!--wellform form-horizontal-->
@@ -421,22 +431,15 @@
 																Taken</label>
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <select
-																		name="actionTaken" id="actionTaken"
-																		class="form-control selectpicker"
-																		onchange="CheckPartToner(this.value);">
-																		<option value="">Please select Action Taken</option>
+																	<select	name="actionTaken" id="actionTaken"
+																		class="form-control selectpicker">
+																		<option value="">Please select Action Taken for Repair</option>
 																		<option value="Replaced Part">Replaced Part</option>
 																		<option value="Replaced toner">Replaced Toner</option>
-																		<option value="Cleared Paper Jam">Cleared
-																			Paper Jam</option>
-																		<option value="Installed Drivers">Installed
-																			Drivers</option>
-																		<option value="Configured Drivers">Configured
-																			Drivers</option>
-																		<option value="Configured Printer">Configured
-																			Printer</option>
+																		<option value="Cleared Paper Jam">Cleared Paper Jam</option>
+																		<option value="Installed Drivers">Installed	Drivers</option>
+																		<option value="Configured Drivers">Configured Drivers</option>
+																		<option value="Configured Printer">Configured Printer</option>
 																		<option value="User Error">User Error</option>
 																		<option value="No fault Found">No fault Found</option>
 																	</select>
@@ -476,28 +479,25 @@
 																</div>
 															</div>
 														</div>
-														
-														<div class="form-group">
+
+														<!-- <div class="form-group">
 																<label class="col-md-4 control-label">Test Part</label>
 																<div class="col-md-8 inputGroupContainer">
 																	<div class="input-group">
-																		<span class="input-group-addon"><i
-																			class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+																		<input type="hidden"
 																			class="form-control"id="partTest" name="partTest" placeholder=""	value="">
 																	</div>
 																</div>
-														</div>
-															
+														</div>															
 														<div class="form-group">
 																<label class="col-md-4 control-label">Test Toner</label>
 																<div class="col-md-8 inputGroupContainer">
 																	<div class="input-group">
-																		<span class="input-group-addon"><i
-																			class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+																		<input type="hidden"
 																			class="form-control"id="tonerTest" name="testToner" placeholder=""	value="">
 																	</div>
 																</div>
-														</div>
+														</div> -->
 
 													</div>
 												</div>
@@ -506,59 +506,45 @@
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
-
-
-
-													<div class="diplayNone" id="getPartToner"
-														>
-														<!-- Radio for Boot Stock-->
-														<div class="form-group">
-															<label class="col-md-3 control-label">Boot Stock</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" data-toggle="modal"
-																		data-target="#bootStock" name="groupstock"
-																		class="trigger" data-rel="boot-stock" id="BootStocked">
+													
+														<fieldset id="groupstock">
+															<!-- group Boot Stock -->
+															<div class="form-group">
+																<label class="col-md-4 control-label">Boot Stock</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<input type="radio" value="" name="groupboot" data-toggle="modal" data-target="#bootStock" disabled="disabled" id="BootStocked">
+																	</div>
 																</div>
 															</div>
-														</div>
-
-														<!-- Radio for Site Stock-->
-														<div class="form-group">
-															<label class="col-md-3 control-label">Site Stock
-															</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" name="groupstock" class="trigger"
-																		data-rel="site-stock" data-toggle="modal"
-																		data-target="#siteStock" id="SiteStocked">
+															<!-- group Site Stock -->
+															<div class="form-group">
+																<label class="col-md-4 control-label">Site Stock</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<input type="radio" value="" name="groupboot" data-toggle="modal" data-target="#siteStock" disabled="disabled" id="SiteStocked">
+																		`
+																	</div>
 																</div>
 															</div>
-														</div>
-
-
+														</fieldset>
+						
 														<!-- display ticked Used Part Numbers-->
 														<div class="shitRight">
 															<div class="form-group">
-																<label class="col-md-5 control-label">Used Part
+																<label class="usedPart control-label">Used Part
 																	Numbers</label>
 																<div class="col-md-8 inputGroupContainer">
 																	<div class="input-group">
-																		<span class="input-group-addon"><i
-																			class="glyphicon glyphicon-barcode"></i></span>
-																		<textarea id="tickedUsedPartNumbers"
-																			class="form-control" readonly="readonly"
-																			style="width: 200px; height: 90px; font-size: 11px;"
-																			rows="3" name="usedPartNumbers"></textarea>
+																		<textarea id="usedPartNumbers" name="usedPartNumbers" disabled="disabled"
+																			class="form-control" style="width: 200px; height: 90px; font-size: 11px;" rows="3">
+																		</textarea>
 																	</div>
 																</div>
 															</div>
 														</div>
 														<!--// display ticked Used Part Numbers-->
-
-													</div>
-													<!-- displayNone for getPartToner -->
-
+						
 												</div>
 												<!-- //group Used Part Numbers -->
 
@@ -757,15 +743,16 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+<script type="text/javascript"
 	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-
-<script>
+<!-- myDatatable table -->
+<script type="text/javascript">
 	$(document).ready(function() {
 		$('#myDatatable').DataTable({
 			"jQueryUI" : true,
@@ -775,7 +762,8 @@
 		});
 	});
 </script>
-<script>
+<!-- resolveded Details table -->
+<script type="text/javascript">
 	$(document).ready(function() {
 		$('#resolvededDetails').DataTable({
 			"jQueryUI" : true,
@@ -785,7 +773,8 @@
 		});
 	});
 </script>
-<script>
+<!-- Boot Stock Table -->
+<script type="text/javascript">
 	$(document).ready(function() {
 		$('#bStock').DataTable({
 			"jQueryUI" : true,
@@ -795,7 +784,8 @@
 		});
 	});
 </script>
-<script>
+<!-- Site Stock Table -->
+<script type="text/javascript">
 	$(document).ready(function() {
 		$('#sStock').DataTable({
 			"jQueryUI" : true,
@@ -806,7 +796,8 @@
 	});
 </script>
 
-<script>
+<script type="text/javascript">
+<!-- Show solution details when status change to resolved -->
 $('#status').change(function() {
     var opval = $(this).val();
     if(opval=="Resolved"){
@@ -815,8 +806,8 @@ $('#status').change(function() {
 });
 </script>
 
-
-<script>
+<!-- Take selected used part numbers only -->
+<script type="text/javascript">
 		function checkUsedPartNumbers(){
   
 			  var checkboxes = document.getElementsByName('selectedItem');
@@ -828,20 +819,10 @@ $('#status').change(function() {
 					checkboxesChecked.push(checkboxes[i].value);
 				 }
 			  }
-			  document.getElementById("tickedUsedPartNumbers").value = checkboxesChecked;
+			  document.getElementById("usedPartNumbers").value = checkboxesChecked;
 
 			}
-	</script>
-
-<script>
-	$('.trigger').change(function () {
-		$('.tick').hide();
-		$('.' + $('.trigger:checked').data('rel')).show();
-	}).change(); //Show content on page load
 </script>
-
-
-
 
 <!--Status Selection-->
 <script type="text/javascript">
@@ -863,61 +844,62 @@ $('#status').change(function() {
 
 </script>
 
+<!-- Validate action and used part numbers -->
+<script type="text/javascript">
 
+$(document).ready(function () {
 
-
-<script>
-/* $("#actionTaken").on('change', function() {
-    if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
-        $('input[type="radio"]:enabled').attr('disabled', true);
-        $('#BootStocked, #SiteStocked').attr('disabled', false);       
-    } else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
-        $('input[type="radio"]:enabled').attr('disabled', true);
-        $('#BootStocked, #SiteStocked').attr('disabled', true);
-    }
-}); */
-
-$("#actionTaken").on('change', function() {
-	//var tempPart ;
-	var part = "Part";
-	//var tempPart;
-	//var tempToner ;
-	var toner = "Toner";
-	
-    if( $(this).val() == "Replaced Part") {
-    	
-    	  $('input[type="button"]:enabled').attr('disabled', true);
-          $('#BootStocked, #SiteStocked').attr('disabled', false);
-          
-	    	part ==  $(this).val();
-			//tempPart == part;
-			//alert(tempPart);
-			console.log(part);
-			document.getElementById("partTest").value = part;
-			document.getElementById("tonerTest").value = null;
-    }
-    else if($(this).val() == "Replaced toner" ){
-    	  $('input[type="button"]:enabled').attr('disabled', true);
-          $('#BootStocked, #SiteStocked').attr('disabled', false); 
-           
-          	toner ==  $(this).val();
-			//tempToner == toner;
-			//alert(tempToner);
-			console.log(toner);
-			document.getElementById("tonerTest").value = toner;
-			document.getElementById("partTest").value = null;
-    }       
-    else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
-        $('input[type="button"]:enabled').attr('disabled', true);
-        $('#BootStocked, #SiteStocked').attr('disabled', true);
-        document.getElementById("tonerTest").value = null;
-		document.getElementById("partTest").value = null;
-    }
+    $('#updateResolved').validate({			
+      errorClass: "error-class",
+	  validClass: "valid-class",
+	    rules: {
+	  
+			actionTaken: {
+				required: true               
+			},
+			usedPartNumbers: {
+            required: {
+                depends: function(element){
+						if ($("#actionTaken").val() == "Replaced Part" || $("#actionTaken").val() == "Replaced toner") {
+							return true;
+						} else {
+							return false;
+						}
+					}
+				}
+			}
+		},
+        messages: {       
+            usedPartNumbers: 'Used part numbers is required check boot or site stock s for used part numbers',
+			actionTaken: 'Action taken is required and can not be empty'	
+		}
+    });
 });
 
 
 </script>
 
+<!-- Select Action Taken -->
+<script type="text/javascript">
+
+$("#actionTaken").on('change', function() {
+
+    if( $(this).val() == "Replaced Part" || $(this).val() == "Replaced toner" ) {
+        $('input[type="radio"]:enabled').attr('disabled', true);
+        $('#BootStocked, #SiteStocked').attr('disabled', false);
+		$('textarea[name="usedPartNumbers"]:enabled').attr('disabled', true);
+		$('#usedPartNumbers').attr('disabled', false);
+		console.log($(this).val());
+    } else if($(this).val() == "" || $(this).val() == "Cleared Paper Jam" || $(this).val() == "Installed Drivers" || $(this).val() == "Configured Drivers" || $(this).val() =="Configured Printer" || $(this).val() == "User Error" || $(this).val() ==  "No fault Found") {
+        $('input[type="radio"]:enabled').attr('disabled', true);		
+        $('#BootStocked, #SiteStocked').attr('disabled', true);
+		$('textarea[name="usedPartNumbers"]:enabled').attr('disabled', true);
+		$('#usedPartNumbers').attr('disabled', true);
+		 console.log($(this).val());
+    }
+}); 
+
+</script>
 
 <!--Select customer before showing add button-->
 <script type="text/javascript">
@@ -931,50 +913,7 @@ $("#actionTaken").on('change', function() {
 	}
 
 </script>
-<script>
-	$(document)
-			.ready(
-					function() {
-						$('#updataResolved')
-								.bootstrapValidator(
-										{
-											feedbackIcons : {
-												valid : 'glyphicon glyphicon-ok',
-												invalid : 'glyphicon glyphicon-remove',
-												validating : 'glyphicon glyphicon-refresh'
-											},
-											fields : {
-												actionTaken : {
-													validators : {
-														stringLength : {
-															min : 3,
-														},
-														notEmpty : {
-															message : 'Action taken is required and cannot be empty'
-														}
-													}
-												},
-												usedPartNumbers : {
-												validators : {
-													stringLength : {
-														min : 3,
-													},
-													notEmpty : {
-														message : 'Used Part Number is required and cannot be empty select boot or site stock to insert used parts'
-													}
-												}
-											},
-											
-											
-											
-											}
-										});
-					});
-</script>
 
-<script>
-$('#check_site_stock_customer').bootstrapValidator();
-</script>
 <!-- Accept alphanumeric characters only -->
 <script type="text/javascript">
 function isNumber(evt) {

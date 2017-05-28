@@ -549,7 +549,7 @@
 															<label class="col-md-4 control-label">Boot Stock</label>
 															<div class="col-md-6 inputGroupContainer">
 																<div class="input-group">
-																	<input type="radio" value="" name="groupboot"
+																	<input type="radio" value="bootType" name="groupboot"
 																		data-toggle="modal" data-target="#bootStock"
 																		disabled="disabled" id="BootStocked">
 																</div>
@@ -560,7 +560,7 @@
 															<label class="col-md-4 control-label">Site Stock</label>
 															<div class="col-md-6 inputGroupContainer">
 																<div class="input-group">
-																	<input type="radio" value="" name="groupboot"
+																	<input type="radio" value="siteType" name="groupboot"
 																		data-toggle="modal" data-target="#siteStock"
 																		disabled="disabled" id="SiteStocked"> `
 																</div>

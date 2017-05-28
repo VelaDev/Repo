@@ -337,7 +337,6 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 					
 			}
-			
 
 		} catch (Exception e) {
 			retMessage = "SLA did not start because of " + e.getMessage();

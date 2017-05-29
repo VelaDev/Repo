@@ -72,7 +72,7 @@ function checkUsedPartNumbers() {
 // Status Selection-->
 function CheckStatus(val) {
 	var element = document.getElementById('order');
-	if (val == 'pick a status' || val == 'Replaced Part')
+	if (val == 'pick a status' || val == 'Awaiting Spares')
 		element.style.display = 'block';
 	else
 		element.style.display = 'none';

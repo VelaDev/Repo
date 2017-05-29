@@ -304,7 +304,7 @@ public class TicketsDao implements TicketsDaoInt {
 					device.setColourReading(tickets.getColourReading());
 					
 					if(tickets.getUsedPartNumbers().length()>4){
-						retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),ticket.getDevice().getCustomerDevice().getCustomerName());
+						retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),ticket.getDevice().getCustomerDevice().getCustomerName(), tickets.getGroupboot());
 						
 						if(retMessage.equalsIgnoreCase("OK")){
 							sessionFactory.getCurrentSession().update(device);
@@ -618,23 +618,23 @@ public class TicketsDao implements TicketsDaoInt {
 		
 		return aList;
 	}
-	private String subractUsedSpares(String usedSpares, String customerName){
+	private String subractUsedSpares(String usedSpares, String customerName,String groupBoot){
 		technician = (Employee) session.getAttribute("loggedInUser");
 		int tempCount = 0;
 		try{
 			List<String> spare = new ArrayList<String>(Arrays.asList(usedSpares.split(",")));
 			
-			if(customerName != null){
+			if(groupBoot.equalsIgnoreCase("siteType")){
 				List<SiteStock> tempSiteList = siteStockDaoInt.getOrdersForCustomer(customerName);
 				for(SiteStock siteStock:tempSiteList){
 					for(int i=0;i<spare.size();i++){
                         if(siteStock.getPartNumber().equalsIgnoreCase(spare.get(i))){
 							
 							tempCount = siteStock.getQuantity() -1;
-							if(tempCount<0){
-								retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+							if(tempCount>0){
+								/*retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
 								siteStock.setQuantity(0);
-								break;
+								break;*/
 							}
 							else{
 								siteStock.setQuantity(tempCount);
@@ -642,13 +642,13 @@ public class TicketsDao implements TicketsDaoInt {
 								retMessage = "OK";
 							}
                         }
-                        else{
+                       /* else{
                         	retMessage = "The part number "+spare.get(i)+ " does not exist in site stock";
-                        }
+                        }*/
 					}
 				}
-			}else{
-				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName(),0);
+			}else if (groupBoot.equalsIgnoreCase("bootType")){
+				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName());
 				for(BootStock btStock:tempSiteList){
 					
 					for(int i=0;i<spare.size();i++){
@@ -656,9 +656,9 @@ public class TicketsDao implements TicketsDaoInt {
 							
 							tempCount = btStock.getQuantity() -1;
 							if(tempCount<0){
-								retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+								/*retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
 								btStock.setQuantity(0);
-								break;
+								break;*/
 							}
 							else{
 								btStock.setQuantity(tempCount);

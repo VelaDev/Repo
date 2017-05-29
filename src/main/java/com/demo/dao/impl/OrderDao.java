@@ -271,6 +271,7 @@ public class OrderDao implements OrdersDaoInt {
 				
 				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
 				cusOrder.setEmployee(emp);
+				String tempTechnician = emp.getFirstName() + " " +emp.getLastName();
 			}
 			else{
 				cusOrder.setEmployee(emp);
@@ -313,8 +314,8 @@ public class OrderDao implements OrdersDaoInt {
 
 				orderDetailList.add(orderDetails);
 			}
-			
-            retMessage = makeOrder(cusOrder);
+
+			retMessage = makeOrder(cusOrder);
 			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
 		} catch (Exception ex) {
 			retMessage = "Order cannot be proccessed";

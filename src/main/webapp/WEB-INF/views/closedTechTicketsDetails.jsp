@@ -876,10 +876,15 @@
 											<c:forEach items="${ticketHistoryList}" var="history">
 												<tr>
 													<td><c:out value="${history.ticketNumber}" /></td>													
-													<c:when test="${history.status =='Open'}">
-														<td><c:out value=""/>Log Ticket</td>
-													</c:when>
-													<td><c:out value="${history.actionTaken}" /></td>
+													<td><c:out value="${history.status}"/></td>													  
+													<c:choose>
+													    <c:when test="${history.status =='Open'}">
+													    	<td><c:out value="${history.actionTaken}" />Log Ticket</td>														
+														</c:when>  
+													    <c:otherwise>
+													    <td><c:out value="${history.actionTaken}" /></td>
+													    </c:otherwise>
+													</c:choose>													
 													<td><c:out value="${history.escalatedDate}" /></td>
 													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 													<td><c:out value="${history.colourReading }" /></td>

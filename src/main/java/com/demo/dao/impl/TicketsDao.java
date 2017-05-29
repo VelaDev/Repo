@@ -17,7 +17,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -115,6 +114,10 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setDescription(tickets.getDescription());
 						ticket.setPriority(tickets.getPriority());
 						ticket.setDateTime(dateFormat.format(date));
+						ticket.setFirstName(tickets.getFirstName());
+						ticket.setLastName(ticket.getLastName());
+						ticket.setContactCellNumber(tickets.getContactCellNumber());
+						ticket.setContactTelephoneNumber(tickets.getContactTelephoneNumber());
 
 						ticket.setDevice(device);
 						sessionFactory.getCurrentSession().save(ticket);
@@ -302,6 +305,7 @@ public class TicketsDao implements TicketsDaoInt {
 					device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
 					device.setMonoReading(tickets.getMonoReading());
 					device.setColourReading(tickets.getColourReading());
+					System.out.println("Device "+ device.getSerialNumber()+" Ticket "+ ticket.getTicketNumber()+ " and Order "+ order.getOrderNum());
 					
 					if(tickets.getUsedPartNumbers().length()>4){
 						retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),ticket.getDevice().getCustomerDevice().getCustomerName(), tickets.getGroupboot());

@@ -291,7 +291,8 @@ public class TicketsDao implements TicketsDaoInt {
 				else if(status.equalsIgnoreCase("Awaiting Spares")){
 					order = ordersDaoInt.getOrder(tickets.getOrderNum());
 					ticket.setStatus("Awaiting Spares");
-					
+					historyDaoInt.insertTicketHistory(ticket);
+					retMessage = "Ticket "+ ticket.getTicketNumber()+ "is awaiting for order no "+ order.getOrderNum();
 					if(order !=null){
 						ticket.setOrderHeader(order);
 					}
@@ -299,6 +300,9 @@ public class TicketsDao implements TicketsDaoInt {
 				else if(status.equalsIgnoreCase("Escalated")){
 					ticket.setEscalatedTo(tickets.getEscalatedTo());
 					ticket.setStatus("Escalated");
+					historyDaoInt.insertTicketHistory(ticket);
+					Employee employee = employeeDaoInt.getEmployeeByEmpNum(tickets.getEscalatedTo());
+					retMessage = "Ticket "+ ticket.getTicketNumber()+ " is esalated to "+ employee.getFirstName() +" "+employee.getLastName();
 				}else if(status.equalsIgnoreCase("Resolved")) {
 					ticket.setStatus("Resolved");
 					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());

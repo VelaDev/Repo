@@ -405,6 +405,32 @@
 															}
 														}
 													},
+													contactCellNumber : {
+														validators : {
+															phone : {
+																country : 'US',
+																message : 'Please enter 10 digits for cellphone number'
+															},
+															regexp: {
+																
+																regexp: /^0[0-9].*$/,
+																message :'Cellphone number must start with 0 (Zero)'
+															}
+														}
+													},													
+													contactTelephoneNumber : {
+														validators : {
+															phone : {
+																country : 'US',
+																message : 'Please enter 10 digits for telephone number'
+															},
+															regexp: {
+																
+																regexp: /^0[0-9].*$/,
+																message :'Tellphone number must start with 0 (Zero)'
+															}
+														}
+													}
 												}
 											});
 						});
@@ -467,36 +493,6 @@
 						true);
 		request.send();
 	</script>
-<script type="text/javascript">
 
-function myFunction(){
-	
-	/* var index =0;
-	var onLeaveTechnician =  ${onLeaveTechnicians}
-	for (index = 0; index < onLeaveTechnician.length; ++index) {
-	    if(onLeaveTechnician[index]==selectedTechnician){
-	    	console.log(index);
-	    	alert("Technician on leave");	    	
-	    }
-	} */
-	//document.getElementById('selectedTechnician').html;
-}
-function checkTech(val){
-	
-	var element=document.getElementById('selectedTechnician');
-	var index =0;
-	var onLeaveTechnician =  ${onLeaveTechnicians};
-	for (index = 0; index < onLeaveTechnician.length; ++index) {
-	    if(onLeaveTechnician[index]==selectedTechnician){
-	    	console.log(index);
-	    	alert("Technician on leave");	    	
-	    }
-	}
-	if(val==selectedTechnician); 
-	  alert("Technician on leave");
-	  console.log(selectedTechnician);
-	}
-
-</script>
 </body>
 </html>

@@ -512,7 +512,7 @@
 																		class="glyphicon glyphicon-barcode"></i></span> <input
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)"
-																		placeholder="Enter Colour Reading" id="colour"
+																		placeholder="Enter Colour Reading" id="colourReading"
 																		name="colourReading">
 																</div>
 															</div>
@@ -526,8 +526,7 @@
 																		class="glyphicon glyphicon-barcode"></i></span> <input
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)" id="mono"
-																		name="monoReading" placeholder="Enter Mono Reading"
-																		name="monoReading">
+																		name="monoReading" placeholder="Enter Mono Reading">
 																</div>
 															</div>
 														</div>

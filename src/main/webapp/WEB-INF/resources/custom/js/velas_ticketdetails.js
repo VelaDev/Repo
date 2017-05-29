@@ -100,6 +100,12 @@ $(document)
 											actionTaken : {
 												required : true
 											},
+											colourReading : {
+												required : true
+											},
+											monoReading : {
+												required : true
+											},
 											usedPartNumbers : {
 												required : {
 													depends : function(element) {
@@ -118,7 +124,11 @@ $(document)
 										},
 										messages : {
 											usedPartNumbers : 'Used part numbers is required check boot or site stock for used part numbers',
-											actionTaken : 'Action taken is required and can not be empty'
+											actionTaken : 'Action taken is required and can not be empty',
+											colourReading:'Colour reading is required and cannot be empty',
+											monoReading:'Mono reading is required and cannot be empty'
+											
+											
 										}
 									});
 				});

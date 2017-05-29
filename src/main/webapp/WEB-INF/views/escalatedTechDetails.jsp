@@ -162,7 +162,7 @@
 														class="glyphicon glyphicon-user"></i></span> <input
 														id="firstName" name="firstName" placeholder="First Name"
 														class="form-control" type="text" readonly
-														value="${ticketObject.escalatedTo}">
+														value="${manager.firstName} ${manager.lastName}">
 												</div>
 											</div>
 										</div>

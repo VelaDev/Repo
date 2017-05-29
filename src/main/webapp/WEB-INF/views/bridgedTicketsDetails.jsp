@@ -92,9 +92,8 @@
 														onchange="CheckStatus(this.value);" name="status"
 														id="status" class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
-														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate Ticket</option>
-														<option value="Resolved">Resolved</option>
+														<option value="Open">Open</option>
+														
 													</select>
 												</div>
 											</div>
@@ -402,7 +401,7 @@
 								<br>
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Submit"
+										<input type="submit" value="Re-Open Ticket"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>

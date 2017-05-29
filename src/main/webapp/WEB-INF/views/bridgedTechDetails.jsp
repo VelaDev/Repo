@@ -88,14 +88,10 @@
 											<div class="col-md-6 selectContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);" name="status"
-														id="status" class="form-control selectpicker">
-														<option value="${ticketObject.status}">${ticketObject.status}</option>
-														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate Ticket</option>
-														<option value="Resolved">Resolved</option>
-													</select>
+														class="glyphicon glyphicon-list"></i></span> 
+														<input
+														name="ticketNumber" id="ticketNumber" class="form-control"
+														type="text" value="${ticketObject.status}" readonly>
 												</div>
 											</div>
 										</div>
@@ -257,7 +253,7 @@
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" name="comments"
 														required="required" placeholder="Please enter comments"
-														id="comment" style="height: 153px;"></textarea>
+														id="comment" style="height: 153px;" readonly></textarea>
 												</div>
 											</div>
 										</div>
@@ -400,13 +396,13 @@
 								<!-- //Customer Details -->
 
 								<br>
-								<div class="form-group row">
+								<!-- <div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
-								</div>
+								</div> -->
 
 							</form:form>
 
@@ -601,7 +597,6 @@
 														data-dismiss="modal">Close</button>
 													<button type="submit" value="Submit"
 														class="btn btn-primary" id="send_btn">Submit</button>
-
 												</div>
 
 											</div>

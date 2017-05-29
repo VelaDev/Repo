@@ -125,5 +125,20 @@ public class BootSiteDao implements BootStockDaoInt{
 	public BootStock getBootStock(String partNumber) {
 		return (BootStock) sessionFactory.getCurrentSession().get(BootStock.class, partNumber);
 	}
+	@Override
+	public BootStock getBootStock(String partNumber, String technicianName) {
+		BootStock localStock = null;
+		try{
+			List<BootStock> boot = getAllOrders(technicianName);
+			for(BootStock tempStock:boot){
+				if(tempStock.getPartNumber().equalsIgnoreCase(partNumber)){
+					localStock= tempStock;
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return localStock;
+	}
 
 }

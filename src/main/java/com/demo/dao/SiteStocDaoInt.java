@@ -13,5 +13,6 @@ public interface SiteStocDaoInt {
 	List<SiteStock> getOrdersByTechnician(String technician);
 	List<SiteStock> getOrdersForCustomer(String customerName,int ticketID);
 	SiteStock getSiteStock(String partNumber);
+	SiteStock getSiteStock(String partNumber,String customerName);
 
 }

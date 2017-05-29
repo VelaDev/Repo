@@ -134,4 +134,16 @@ public class SiteStockDao implements SiteStocDaoInt {
 	public SiteStock getSiteStock(String partNumber) {
 		return (SiteStock) sessionFactory.getCurrentSession().get(SiteStock.class, partNumber);
 	}
+
+	@Override
+	public SiteStock getSiteStock(String partNumber, String customerName) {
+		SiteStock localtemp = null;
+		List<SiteStock> siteStock = getOrdersForCustomer(customerName);
+		for(SiteStock stock:siteStock){
+			if(stock.getPartNumber().equalsIgnoreCase(partNumber)){
+				localtemp=stock;
+			}
+		}
+		return localtemp;
+	}
 }

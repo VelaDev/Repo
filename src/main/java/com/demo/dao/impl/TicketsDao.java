@@ -625,52 +625,39 @@ public class TicketsDao implements TicketsDaoInt {
 			List<String> spare = new ArrayList<String>(Arrays.asList(usedSpares.split(",")));
 			
 			if(groupBoot.equalsIgnoreCase("siteType")){
-				List<SiteStock> tempSiteList = siteStockDaoInt.getOrdersForCustomer(customerName);
-				for(SiteStock siteStock:tempSiteList){
-					for(int i=0;i<spare.size();i++){
-                        if(siteStock.getPartNumber().equalsIgnoreCase(spare.get(i))){
-							
-							tempCount = siteStock.getQuantity() -1;
-							if(tempCount>0){
-								/*retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
-								siteStock.setQuantity(0);
-								break;*/
-							}
-							else{
-								siteStock.setQuantity(tempCount);
-								sessionFactory.getCurrentSession().update(siteStock);
-								retMessage = "OK";
-							}
-                        }
-                       /* else{
-                        	retMessage = "The part number "+spare.get(i)+ " does not exist in site stock";
-                        }*/
-					}
-				}
-			}else if (groupBoot.equalsIgnoreCase("bootType")){
-				List<BootStock> tempSiteList =bootStockDaoIn.getAllOrders(technician.getFirstName()+" "+technician.getLastName());
-				for(BootStock btStock:tempSiteList){
-					
-					for(int i=0;i<spare.size();i++){
-						if(btStock.getPartNumber().equalsIgnoreCase(spare.get(i))){
-							
-							tempCount = btStock.getQuantity() -1;
-							if(tempCount<0){
-								/*retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
-								btStock.setQuantity(0);
-								break;*/
-							}
-							else{
-								btStock.setQuantity(tempCount);
-								bootStockDaoIn.updateBootStock(btStock);
-								retMessage = "OK";
-							}
-							
+				for(int i=0;i<spare.size();i++){
+					SiteStock siteStock = siteStockDaoInt.getSiteStock(spare.get(i),customerName);
+					if(siteStock != null){
+						tempCount = siteStock.getQuantity() -1;
+						if(tempCount>0){
+							siteStock.setQuantity(tempCount);
+							sessionFactory.getCurrentSession().update(siteStock);
+							retMessage = "OK";
 						}else{
-							retMessage ="The part number "+spare.get(i)+" does not exist in boot stock";
+							retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+							siteStock.setQuantity(0);
+							break;
 						}
 					}
 				}
+			}else if (groupBoot.equalsIgnoreCase("bootType")){
+				for(int i=0;i<spare.size();i++){
+					BootStock boot = bootStockDaoIn.getBootStock(spare.get(i),technician.getFirstName()+" "+technician.getLastName());
+					if(boot !=null){
+						tempCount = boot.getQuantity()-1;
+						if(tempCount>0){
+							boot.setQuantity(tempCount);
+							bootStockDaoIn.updateBootStock(boot);
+							retMessage = "OK";
+						}else{
+							retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+							boot.setQuantity(0);
+							break;
+						}
+					}
+				}
+				
+				
 				
 			}
 		}catch(Exception e){

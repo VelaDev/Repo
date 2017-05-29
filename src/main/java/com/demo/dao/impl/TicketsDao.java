@@ -121,6 +121,7 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setContactTelephoneNumber(tickets.getContactTelephoneNumber());
 						ticket.setContactEmail(tickets.getContactEmail());
 
+						
 						ticket.setDevice(device);
 						sessionFactory.getCurrentSession().save(ticket);
 

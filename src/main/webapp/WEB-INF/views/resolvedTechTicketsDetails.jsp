@@ -773,15 +773,18 @@
 											</div>
 										</div>
 									</div>
-									<!-- Text area Action Taken-->
-								<div class="form-group">
-										<label class="col-md-3 control-label">Used Spare/Parts</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
-													class="form-control" type="text" name="status"
-													value="${ticketObject.usedPartNumbers }" readonly="readonly">
+									
+									<!-- Text area Used Spare Part-->
+									<div class="usedPartNumbersDetails">
+										<div class="form-group">
+											<label class="col-md-3 control-label">Used Spare/Part</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+														class="form-control" type="text" name="status"
+														value="${ticketObject.usedPartNumbers}" readonly="readonly">
+												</div>
 											</div>
 										</div>
 									</div>

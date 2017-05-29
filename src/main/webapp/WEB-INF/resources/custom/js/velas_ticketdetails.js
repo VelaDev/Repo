@@ -187,3 +187,14 @@ function upperCaseF(a) {
 		a.value = a.value.toUpperCase();
 	}, 1);
 }
+
+//hide the all of the element class usedPartNumbersDetails
+$(".usedPartNumbersDetails").each(function (i) {
+  if ($('input[name$=status][value=""]',this).length == 1) { 
+    $(this).hide();
+    console.log('hiding');
+  } else {
+    $(this).show();
+    console.log('showing');
+  }
+});

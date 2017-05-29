@@ -81,11 +81,10 @@
 											<div class="col-md-6 selectContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> 
-													<select onchange="CheckStatus(this.value);" readonly="readonly" name="status"
-														 class="form-control selectpicker">
-														<option value="${ticketObject.status}">${ticketObject.status}</option>
-													</select>
+														class="glyphicon glyphicon-list"></i></span>
+													<input
+														name="priority" id="priority" class="form-control"
+														type="text" value="${ticketObject.status}" readonly>
 												</div>
 											</div>
 										</div>
@@ -452,7 +451,7 @@
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-barcode"></i></span> <input
 																		id="status" class="form-control" type="text"
-																		name="status" value="Resolved" readonly="readonly">
+																		name="status" value="${ticketObject.status}" readonly="readonly">
 																</div>
 															</div>
 														</div>
@@ -759,7 +758,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
 													class="form-control" type="text" name="status"
-													value="Resolved" readonly="readonly">
+													value="${ticketObject.status }" readonly="readonly">
 											</div>
 										</div>
 									</div>

@@ -293,26 +293,30 @@ public class OrderDao implements OrdersDaoInt {
 				splitString = orderBean.getSelectedItem()[i];
 				split = splitString.split(",");
 				partNumber = split[0];
+				
 				part = hOStockDaoInt.getSparePartBySerial(partNumber);
-				quatity = Integer.parseInt(quantityArray[i]);
-				orderDetails.setPartNumber(partNumber);
-				orderDetails.setCompatibleDevice(part.getCompitableDevice());
-				orderDetails.setItemDescription(part.getItemDescription());
-				orderDetails.setModel(part.getCompitableDevice());
-				orderDetails.setQuantity(quatity);
-				orderDetails.setLocation(orderBean.getLocation());
-				orderDetails.setStockType(cusOrder.getStockType());
-				orderDetails.setItemType(part.getItemType());
-				if(orderBean.getTechnician()!= null){
-					orderDetails.setTechnician(orderBean.getTechnician());
-				}
-				else{
-					orderDetails.setTechnician(emp.getFirstName()+" " +emp.getLastName());
-				}
-				orderDetails.setOrderHeader(cusOrder);
-				orderDetails.setDateTime(dateFormat.format(date));
+				if(part != null){
+					quatity = Integer.parseInt(quantityArray[i]);
+					orderDetails.setPartNumber(partNumber);
+					orderDetails.setCompatibleDevice(part.getCompitableDevice());
+					orderDetails.setItemDescription(part.getItemDescription());
+					orderDetails.setModel(part.getCompitableDevice());
+					orderDetails.setQuantity(quatity);
+					orderDetails.setLocation(orderBean.getLocation());
+					orderDetails.setStockType(cusOrder.getStockType());
+					orderDetails.setItemType(part.getItemType());
+					if(orderBean.getTechnician()!= null){
+						orderDetails.setTechnician(orderBean.getTechnician());
+					}
+					else{
+						orderDetails.setTechnician(emp.getFirstName()+" " +emp.getLastName());
+					}
+					orderDetails.setOrderHeader(cusOrder);
+					orderDetails.setDateTime(dateFormat.format(date));
 
-				orderDetailList.add(orderDetails);
+					orderDetailList.add(orderDetails);
+				}
+				
 			}
 
 			retMessage = makeOrder(cusOrder);

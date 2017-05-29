@@ -34,7 +34,7 @@ li{
 				</div>
 				<div class="panel-body" id="deliveryNote" style="background-color:white;"> 
 					<div class="tab-content">
-					   <a href="#" onclick="window.open('C:/VelapandaReports/ORD004.pdf', '_blank', 'fullscreen=yes'); return false;">MyPDF</a><br>
+					  <!--  <a href="#" onclick="window.open('C:/VelapandaReports/ORD004.pdf', '_blank', 'fullscreen=yes'); return false;">MyPDF</a><br> -->
 					  <form:form>
 							
 							<fieldset>

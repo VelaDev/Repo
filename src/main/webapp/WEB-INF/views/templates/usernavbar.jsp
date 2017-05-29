@@ -36,19 +36,12 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				
+				<a class="navbar-brand" href='<c:url value="ticket.html"/>' ><span class="glyphicon glyphicon-home"></span></a>
+				      
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">
-					
-				      <a class="navbar-brand" href='<c:url value="ticket.html"/>' ><span class="glyphicon glyphicon-home"></span></a>
-				       <%--  <li class="dropdown">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Tickets<span class="caret"></span></a>
-				          <ul class="dropdown-menu">
-				          <li><a href='<c:url value="ticket.html"/>'>Log Tickets</a></li>
-				          </ul>
-				        </li> --%>
-				        
+				<ul class="nav navbar-nav">					
+				      			        
 				        <li class="dropdown">
 				        	<a href="#" class="dropdown-toggle"
 							 	data-toggle="dropdown" role="button" aria-haspopup="true"

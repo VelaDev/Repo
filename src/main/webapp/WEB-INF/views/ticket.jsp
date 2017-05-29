@@ -69,8 +69,7 @@
 						</form>
 						<!--Search-->
 						
-						<form:form method="post" class="well form-horizontal"
-							action="UserlogTicket" modelAttribute="UserlogTicket"
+						<form:form method="post" class="well form-horizontal" action="UserlogTicket" modelAttribute="UserlogTicket"
 							id="logTicket">
 							
 							<!--First Column-->
@@ -300,6 +299,37 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	
 	<!-- /Script -->
+	
+	
+		<!-- Search By Serial -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#searchBylogTicket')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													serialNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Serial number is required to search and cannot be empty'
+															}
+														}
+													},
+												}
+											});
+						});
+	</script>
+	
 	<!-- Validate LogTicket -->
 	<script>
 		$(document)

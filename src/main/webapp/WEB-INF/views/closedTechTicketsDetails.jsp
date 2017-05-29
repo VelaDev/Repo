@@ -33,10 +33,13 @@
 					</h3>
 				</div>
 				
-				<div class="panel-body">
+			<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
+						<li class="active"><a href="#generalDetails"
+							data-toggle="tab">General</a></li>
+						<li><a href="#resolvedDetails" data-toggle="tab">Resolved
+								Details</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -51,7 +54,7 @@
 
 							<form:form class="well form-horizontal" action="updateTicket"
 								modelAttribute="updateTicket" method="post" id="updataTckt">
-
+								
 								<!-- //Ticket Details -->
 								<fieldset>
 									<legend align="left">Ticket Info</legend>
@@ -59,7 +62,7 @@
 									<!--First Column-->
 									<div class="col-md-6">
 
-										<!-- Text input Ticket Number-->
+									<!-- Text input Ticket Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Ticket Number</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -71,7 +74,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Select type status-->
 										<div class="form-group ">
 											<label class="col-md-3 control-label">Status</label>
@@ -79,13 +82,10 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);" name="status"
-														id="status" class="form-control selectpicker">
+														onchange="CheckStatus(this.value);" readonly="readonly" name="status"
+														 class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
-														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate Ticket</option>
-														<option value="Resolved">Resolved</option>
-													</select>
+														</select>
 												</div>
 											</div>
 										</div>
@@ -251,8 +251,6 @@
 												</div>
 											</div>
 										</div>
-										
-										
 
 									</div>
 									<!--//Second Column-->
@@ -310,6 +308,8 @@
 													</div>
 												</div>
 											</div>
+
+
 
 											<!-- Text input Device Location-->
 											<div class="form-group">
@@ -390,22 +390,23 @@
 								<!-- //Customer Details -->
 
 								<br>
-								<div class="form-group row">
+							<!-- 	<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
-										<input type="submit" value="Submit"
+										<input type="submit" value="Re-Open Ticket"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
-								</div>
-
+								</div> -->
 							</form:form>
 
 						</div>
 						<!--/general tab-->
 
+
+
 						<!-- Solution Details -->
 						<form:form action="updateTicket" modelAttribute="updateTicket"
-							method="post" id="updateResolved">
+							method="post" id="updataTckt">
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
@@ -443,30 +444,31 @@
 															</div>
 														</div>
 
-														<!-- Select type status-->
-														<div class="form-group ">
+														<!-- Text input status-->
+														<div class="form-group">
 															<label class="col-md-4 control-label">Status</label>
-															<div class="col-md-8 selectContainer">
+															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <select
-																		name="status"readonly="readonly" class="form-control selectpicker">
-																		<option value="${ticketObject.status}">${ticketObject.status}</option>																		
-																	</select>
+																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		id="status" class="form-control" type="text"
+																		name="status" value="Resolved" readonly="readonly">
 																</div>
 															</div>
 														</div>
-														
+
 														<!-- Text area Action Taken-->
 														<div class="form-group ">
 															<label class="col-md-4 control-label">Action
 																Taken</label>
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
-																	<select name="actionTaken" id="actionTaken"
-																		class="form-control selectpicker">
-																		<option value="">Please select Action Taken
-																			for Repair</option>
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-list"></i></span> <select
+																		name="actionTaken" id="actionTaken"
+																		class="form-control selectpicker"
+																		onchange="CheckPartToner(this.value);">
+																		<option value="">Please select Action Taken</option>
 																		<option value="Replaced Part">Replaced Part</option>
 																		<option value="Replaced toner">Replaced Toner</option>
 																		<option value="Cleared Paper Jam">Cleared
@@ -495,6 +497,8 @@
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)"
 																		placeholder="Enter Colour Reading" id="colour"
+																		name="colourReading"
+																		value="${ticketObject.getDevice().getColourReading() }"
 																		name="colourReading">
 																</div>
 															</div>
@@ -509,29 +513,11 @@
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)" id="mono"
 																		name="monoReading" placeholder="Enter Mono Reading"
-																		name="monoReading">
+																		name="monoReading"
+																		value="${ticketObject.getDevice().getMonoReading() }">
 																</div>
 															</div>
 														</div>
-
-														<!-- <div class="form-group">
-																<label class="col-md-4 control-label">Test Part</label>
-																<div class="col-md-8 inputGroupContainer">
-																	<div class="input-group">
-																		<input type="hidden"
-																			class="form-control"id="partTest" name="partTest" placeholder=""	value="">
-																	</div>
-																</div>
-														</div>															
-														<div class="form-group">
-																<label class="col-md-4 control-label">Test Toner</label>
-																<div class="col-md-8 inputGroupContainer">
-																	<div class="input-group">
-																		<input type="hidden"
-																			class="form-control"id="tonerTest" name="testToner" placeholder=""	value="">
-																	</div>
-																</div>
-														</div> -->
 
 													</div>
 												</div>
@@ -541,48 +527,54 @@
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
-													<fieldset id="groupstock">
-														<!-- group Boot Stock -->
+													<div class="diplayNone" id="getPartToner"	>
+														<!-- Radio for Boot Stock-->
 														<div class="form-group">
-															<label class="col-md-4 control-label">Boot Stock</label>
+															<label class="col-md-3 control-label">Boot Stock</label>
 															<div class="col-md-6 inputGroupContainer">
 																<div class="input-group">
-																	<input type="radio" value="" name="groupboot"
-																		data-toggle="modal" data-target="#bootStock"
-																		disabled="disabled" id="BootStocked">
+																	<input type="radio" data-toggle="modal"
+																		data-target="#bootStock" name="groupstock"
+																		class="trigger" data-rel="boot-stock" id="BootStocked">
 																</div>
 															</div>
 														</div>
-														<!-- group Site Stock -->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Site Stock</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" value="" name="groupboot"
-																		data-toggle="modal" data-target="#siteStock"
-																		disabled="disabled" id="SiteStocked"> `
-																</div>
-															</div>
-														</div>
-													</fieldset>
 
-													<!-- display ticked Used Part Numbers-->
-													<div class="shitRight">
+														<!-- Radio for Site Stock-->
 														<div class="form-group">
-															<label class="usedPart control-label">Used Part
-																Numbers</label>
-															<div class="col-md-8 inputGroupContainer">
+															<label class="col-md-3 control-label">Site Stock
+															</label>
+															<div class="col-md-6 inputGroupContainer">
 																<div class="input-group">
-																	<textarea id="usedPartNumbers" name="usedPartNumbers"
-																		disabled="disabled" class="form-control"
-																		style="width: 200px; height: 90px; font-size: 11px;"
-																		rows="3">
-																		</textarea>
+																	<input type="radio" name="groupstock" class="trigger"
+																		data-rel="site-stock" data-toggle="modal"
+																		data-target="#siteStock" id="SiteStocked">
 																</div>
 															</div>
 														</div>
+
+
+														<!-- display ticked Used Part Numbers-->
+														<div class="shitRight">
+															<div class="form-group">
+																<label class="col-md-5 control-label">Used Part
+																	Numbers</label>
+																<div class="col-md-8 inputGroupContainer">
+																	<div class="input-group">
+																		<span class="input-group-addon"><i
+																			class="glyphicon glyphicon-barcode"></i></span>
+																		<textarea id="tickedUsedPartNumbers"
+																			class="form-control" readonly="readonly"
+																			style="width: 200px; height: 90px; font-size: 11px;"
+																			rows="3" name="usedPartNumbers"></textarea>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--// display ticked Used Part Numbers-->
+
 													</div>
-													<!--// display ticked Used Part Numbers-->
+													<!-- displayNone for getPartToner -->
 
 												</div>
 												<!-- //group Used Part Numbers -->
@@ -599,10 +591,13 @@
 											</div>
 											<!--/wellform form-horizontal-->
 
+
 										</div>
 										<!-- modal-body -->
+
 									</div>
 									<!-- /.modal-content -->
+
 								</div>
 								<!-- /.modal-dialog -->
 							</div>
@@ -625,7 +620,7 @@
 													<tr>
 														<th>Part No</th>
 														<th>Description</th>
-														<th>Item Type</th>
+														<!-- <th>Model No</th> -->
 														<th>Quantity</th>
 														<th>Tick</th>
 
@@ -638,7 +633,7 @@
 														<tr>
 															<td>${list.partNumber}</td>
 															<td>${list.itemDescription}</td>
-															<td>${list.itemType}</td>
+															<%-- <td>${list.compatibleDevice}</td> --%>
 															<td>${list.quantity}</td>
 															<td><input type="checkbox"
 																id="${list.partNumber}_selectedItem" name="selectedItem"
@@ -680,9 +675,10 @@
 													<tr>
 														<th>Part No</th>
 														<th>Description</th>
-														<th>Model No</th>
+														<!-- <th>Model No</th> -->
 														<th>Quantity</th>
 														<th>Tick</th>
+
 													</tr>
 												</thead>
 												<tbody>
@@ -692,7 +688,6 @@
 														<tr>
 															<td>${list.partNumber}</td>
 															<td>${list.itemDescription}</td>
-															<td>${list.itemType}</td>
 															<td>${list.quantity}</td>
 															<td><input type="checkbox"
 																id="${list.partNumber}_selectedItem" name="selectedItem"
@@ -718,6 +713,142 @@
 
 						</form:form>
 						<!-- /Solution Details -->
+
+
+
+
+						<!-- Resolved Details tab-->
+						<div class="tab-pane" id="resolvedDetails">
+							<h4 align="center">Resolved Details</h4>
+							<form:form class="well form-horizontal">
+								<div class="panel-body">
+
+									<!-- Text input Serial No-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Serial No</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="serialNumber" placeholder="Serial Number"
+													value="${ticketObject.getDevice().getSerialNumber() }"
+													class="form-control" type="text" readonly>
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input Ticket Number-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Ticket Number</label>
+										<div class="col-md-6  inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													id="ticketNumber" class="form-control" type="text"
+													name="ticketNumber" value="${ticketObject.ticketNumber}"
+													readonly="readonly">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text input status-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Status</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="Resolved" readonly="readonly">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text area Action Taken-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Action Taken</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="${ticketObject.actionTaken }" readonly="readonly">
+											</div>
+										</div>
+									</div>
+									<!-- Text area Used Spare Part-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Used Spare/Part</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+													class="form-control" type="text" name="status"
+													value="${ticketObject.usedPartNumbers }" readonly="readonly">
+											</div>
+										</div>
+									</div>
+
+									<!-- Text checkbox Colour Reading-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Colour Reading</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" readonly="readonly"
+													onkeypress="return isNumber(event)"
+													placeholder="Enter Colour Reading" id="colour"
+													name="colourReading"
+													value="${ticketObject.getDevice().getColourReading() }"
+													name="colourReading">
+											</div>
+										</div>
+									</div>
+
+									<div class="form-group">
+										<label class="col-md-3 control-label">Mono Reading</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+													class="form-control" onkeypress="return isNumber(event)"
+													id="mono" readonly="readonly" name="monoReading"
+													placeholder="Enter Mono Reading" name="monoReading"
+													value="${ticketObject.getDevice().getMonoReading() }">
+											</div>
+										</div>
+									</div>
+
+									<div class="diplayNone" id="getPartTonerResolved"
+										style="display: none">
+
+										<!-- display ticked Used Part Numbers-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Used Part
+												Numbers</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span>
+													<textarea id="tickedUsedPartNumbers" class="form-control"
+														readonly="readonly" name="usedPartNumbers"></textarea>
+												</div>
+											</div>
+										</div>
+										<!--// display ticked Used Part Numbers-->
+
+									</div>
+									<!-- displayNone for getPartToner -->
+
+
+								</div>
+								<!-- pane body -->
+
+							</form:form>
+
+						</div>
+						<!--/Resolved Details tab-->
 
 
 						<!--history tab-->
@@ -782,14 +913,13 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
-<script type="text/javascript"
 	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-	
+
 <script type="text/javascript" src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
 

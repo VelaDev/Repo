@@ -114,10 +114,12 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setDescription(tickets.getDescription());
 						ticket.setPriority(tickets.getPriority());
 						ticket.setDateTime(dateFormat.format(date));
+						
 						ticket.setFirstName(tickets.getFirstName());
-						ticket.setLastName(ticket.getLastName());
+						ticket.setLastName(tickets.getLastName());
 						ticket.setContactCellNumber(tickets.getContactCellNumber());
 						ticket.setContactTelephoneNumber(tickets.getContactTelephoneNumber());
+						ticket.setContactEmail(tickets.getContactEmail());
 
 						ticket.setDevice(device);
 						sessionFactory.getCurrentSession().save(ticket);
@@ -329,6 +331,8 @@ public class TicketsDao implements TicketsDaoInt {
 					}
 				}
 				else{
+					ticket.setFourHourFlag(false);
+					ticket.setOneHourFlag(false);
 					ticket.setComments(tickets.getComments());
 					
 					ticket.setStatus(status);

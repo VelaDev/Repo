@@ -256,8 +256,8 @@
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" name="comments"
-														required="required" placeholder="Please enter comments"
-														id="comment" style="height: 153px;"></textarea>
+														required="required" placeholder="Please enter comments" readonly="readonly"
+														id="comment" style="height: 153px;">${ticketObject.comments}</textarea>
 												</div>
 											</div>
 										</div>

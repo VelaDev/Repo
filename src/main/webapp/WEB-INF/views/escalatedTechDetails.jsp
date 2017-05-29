@@ -88,14 +88,12 @@
 											<div class="col-md-6 selectContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);" name="status"
-														id="status" class="form-control selectpicker">
-														<option value="${ticketObject.status}">${ticketObject.status}</option>
-														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate Ticket</option>
-														<option value="Resolved">Resolved</option>
-													</select>
+														class="glyphicon glyphicon-list"></i></span> 
+														
+														<input
+														name="ticketNumber" id="ticketNumber" class="form-control"
+														type="text" value="${ticketObject.status}" readonly>
+													
 												</div>
 											</div>
 										</div>
@@ -155,7 +153,19 @@
 												</div>
 											</div>
 										</div>
-
+                                        		<!-- Text input Contact Person First Name-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Escalated To</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-user"></i></span> <input
+														id="firstName" name="firstName" placeholder="First Name"
+														class="form-control" type="text" readonly
+														value="${ticketObject.escalatedTo}">
+												</div>
+											</div>
+										</div>
 										<!-- Text input Contact Person First Name-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">First Name</label>
@@ -256,8 +266,8 @@
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" name="comments"
-														required="required" placeholder="Please enter comments"
-														id="comment" style="height: 153px;"></textarea>
+														required="required" readonly="readonly"
+														id="comment" style="height: 153px;">${ticketObject.comments}</textarea>
 												</div>
 											</div>
 										</div>

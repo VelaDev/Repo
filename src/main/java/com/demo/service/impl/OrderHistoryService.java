@@ -24,4 +24,10 @@ public class OrderHistoryService implements OrderHistoryInt{
 		return orderHistory.getAllOrderHistoryByOrderNumber(orderNumber);
 	}
 
+	@Override
+	public List<OrderHistory> getAllOrderHistoryTicketNumber(int ticketNumber) {
+		
+		return orderHistory.getAllOrderHistoryTicketNumber(ticketNumber);
+	}
+
 }

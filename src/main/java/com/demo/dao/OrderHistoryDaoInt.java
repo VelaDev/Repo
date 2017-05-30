@@ -10,5 +10,6 @@ public interface OrderHistoryDaoInt {
 	void insetOrderHistory(OrderHeader order);
 	List<OrderHistory> getAllOrderHistoryByOrderNumber(int recordID);
 	List<OrderHistory> getAllOrderHistoryByOrderNumber();
+	List<OrderHistory> getAllOrderHistoryTicketNumber(int ticketNumber);
 
 }

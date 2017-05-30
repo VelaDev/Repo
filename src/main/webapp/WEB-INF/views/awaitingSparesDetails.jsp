@@ -811,11 +811,10 @@
 											</thead>
 											<tbody>
 												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="">
-
+												<c:forEach var="list" items="${orderStatus}">
 													<tr>
-														<td></td>
-														<td></td>
+														<td><c:out value="${list.orderStatus}" /></td>
+														<td><c:out value="${list.statusDateTime}" /></td>
 													</tr>
 
 												</c:forEach>

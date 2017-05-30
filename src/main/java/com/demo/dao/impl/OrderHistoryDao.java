@@ -12,8 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.OrderHistoryDaoInt;
 import com.demo.dao.OrdersDaoInt;
+import com.demo.dao.TicketsDaoInt;
 import com.demo.model.OrderHeader;
 import com.demo.model.OrderHistory;
+import com.demo.model.Tickets;
 
 
 @Repository("orderHistoryDAO")
@@ -24,6 +26,8 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 	private SessionFactory sessionFactory;
 	@Autowired
 	private OrdersDaoInt daoInt;
+	@Autowired
+	private TicketsDaoInt ticketsDaoInt;
 	
 	
 	private OrderHistory orderHistory = null;
@@ -81,6 +85,19 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				OrderHistory.class);
 		return (List<OrderHistory>) criteria.list();
+	}
+	@Override
+	public List<OrderHistory> getAllOrderHistoryTicketNumber(int ticketNumber) {
+		Tickets ticket = ticketsDaoInt.getLoggedTicketsByTicketNumber(ticketNumber);
+		
+		List<OrderHistory> list = new ArrayList<OrderHistory>();
+		List<OrderHistory> listOrders =getAllOrderHistoryByOrderNumber();
+		for(OrderHistory order:listOrders){
+			if(order.getOrderNum().equalsIgnoreCase(ticket.getOrderHeader().getOrderNum())){
+				list.add(order);
+			}
+		}
+		return list;
 	}
 
 }

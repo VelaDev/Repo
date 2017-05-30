@@ -20,12 +20,14 @@ import com.demo.bean.SparePartsBean;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
+import com.demo.model.OrderHistory;
 import com.demo.model.Tickets;
 import com.demo.service.BootStockInt;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.LeaveInt;
+import com.demo.service.OrderHistoryInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.SiteStockInt;
 import com.demo.service.SpareMasterServiceInt;
@@ -59,6 +61,8 @@ public class TicketController {
 	private SiteStockInt siteStock;
 	@Autowired
 	private LeaveInt leaveInt;
+	@Autowired
+	private OrderHistoryInt historyInt;
 	private List<PieChart> beanList = null;
 	Integer count = 1;
 	public String[] getSerialNumbers = null;
@@ -555,6 +559,7 @@ public class TicketController {
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
 			model.addObject("bootStock", bootStockint.getAllOrders(technician));
+			model.addObject("orderStatus", historyInt.getAllOrderHistoryTicketNumber(id));
 			model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName()));
 			
 			model.setViewName("awaitingSparesDetails");

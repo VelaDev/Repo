@@ -233,7 +233,7 @@ public class OrderDao implements OrdersDaoInt {
 		for (Object order : aList) {
 			if (order instanceof OrderHeader) {
 				if (((OrderHeader) order).getEmployee().getEmail()
-						.equalsIgnoreCase(orderedBy)) {
+						.equalsIgnoreCase(orderedBy)&& ((OrderHeader) order).getStatus()!="Approved") {
 					orderList.add((OrderHeader) order);
 				}
 			}

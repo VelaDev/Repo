@@ -350,7 +350,6 @@ public class TicketsDao implements TicketsDaoInt {
 					if(tickets.getMonoReading() != null || tickets.getColourReading()!=null){
 						sessionFactory.getCurrentSession().update(device);
 					}
-					
 					historyDaoInt.insertTicketHistory(ticket);
 					retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
 				}

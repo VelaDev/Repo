@@ -146,15 +146,19 @@
 										</div>
 										<!-- Text input Ticket Priority-->
 										<div class="form-group">
+											
 											<label class="col-md-3 control-label">Order No</label>
+											<a id="orderStatus">
 											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
+												<div class="input-group">												
+														<span class="input-group-addon"><i
 														class="glyphicon glyphicon-user"></i></span> <input
-														name="priority" id="priority" class="form-control"
+														name="order" id="order" class="form-control"
 														type="text" value="${ticketObject.orderHeader.orderNum}" readonly>
+													
 												</div>
 											</div>
+											</a>
 										</div>
 
 										<!-- Text input Contact Person First Name-->
@@ -724,6 +728,48 @@
 								</div>
 							</div>
 							<!--/site stock-->
+							
+							
+							
+							<!--Order Status-->
+							<div id="orderStatus" class="modal fade" role="dialog"
+								style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+								<div class="modal-dialog">
+									<!-- Modal content-->
+									<div class="modal-content" id="orderSts">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal"
+												aria-hidden="true">×</button>
+											<h3 class="modal-title">Order Status</h3>
+										</div>
+										<div class="modal-body">
+											<table id="orderSts" class="display datatable">
+												<thead>
+													<tr>
+														<th>Order Status</th>
+														<th>Date/Time</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+													<c:forEach var="list" items="">
+
+														<tr>
+															<td></td>
+															<td></td>															
+														</tr>
+
+													</c:forEach>
+												</tbody>
+											</table>
+
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<!--/site stock-->
+							
 
 						</form:form>
 						<!-- /Solution Details -->

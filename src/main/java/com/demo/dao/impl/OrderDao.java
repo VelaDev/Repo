@@ -224,18 +224,13 @@ public class OrderDao implements OrdersDaoInt {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderHeader> getAllOrders(String orderedBy) {
-		ArrayList<?> aList = new ArrayList<Object>();
+		List<OrderHeader> aList = getAllOrders();
 		ArrayList<OrderHeader> orderList = new ArrayList<OrderHeader>();
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				OrderHeader.class);
+		
 
-		aList.addAll(criteria.list());
-		for (Object order : aList) {
-			if (order instanceof OrderHeader) {
-				if (((OrderHeader) order).getEmployee().getEmail()
-						.equalsIgnoreCase(orderedBy)&& ((OrderHeader) order).getStatus()!="Approved") {
-					orderList.add((OrderHeader) order);
-				}
+		for (OrderHeader order : aList) {
+			if(order.getStatus()!="Received" && order.getEmployee().getEmail().equalsIgnoreCase(orderedBy)){
+				orderList.add(order);
 			}
 		}
 		return orderList;

@@ -255,14 +255,23 @@ public class DeviceDao implements DeviceDaoInt {
 					if(deviceBean.getUpdateFlag()== "YES")
 					{
 						retMessage= updateDevice(device);
+						if(retMessage.startsWith("Device " + device.getSerialNumber()
+								+ " is successfully updated")){
+							retAccessory = accessoriesDaoInt.saveAccessories(list);
+							if (retAccessory.equalsIgnoreCase("Error")) {
+								retMessage = "Device not inserted into the table "
+										+ retAccessory;
+							}
+						}
 					}else if(deviceBean.getUpdateFlag()==null){
 						retMessage = saveDevice(device);
-					}
-					
-					retAccessory = accessoriesDaoInt.saveAccessories(list);
-					if (retAccessory.equalsIgnoreCase("Error")) {
-						retMessage = "Device not inserted into the table "
-								+ retAccessory;
+						if(retMessage.startsWith("Device "+ device.getSerialNumber()+ " is succefully added.")){
+							retAccessory = accessoriesDaoInt.saveAccessories(list);
+							if (retAccessory.equalsIgnoreCase("Error")) {
+								retMessage = "Device not inserted into the table "
+										+ retAccessory;
+							}
+						}
 					}
 
 				} else {

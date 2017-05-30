@@ -604,6 +604,7 @@ public class TicketController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
+			model.addObject("orderStatus", historyInt.getAllOrderHistoryTicketNumber(id));
 			model.setViewName("awaitingSparesTechDetails");
 		}
 		else{

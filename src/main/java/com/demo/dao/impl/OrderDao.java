@@ -229,7 +229,7 @@ public class OrderDao implements OrdersDaoInt {
 		
 
 		for (OrderHeader order : aList) {
-			if(order.getStatus()!="Received" && order.getEmployee().getEmail().equalsIgnoreCase(orderedBy)){
+			if(order.getEmployee().getEmail().equalsIgnoreCase(orderedBy)&& ((order.getStatus().equalsIgnoreCase("Pending"))||(order.getStatus().equalsIgnoreCase("Approved"))||(order.getStatus().equalsIgnoreCase("Shipped")))){
 				orderList.add(order);
 			}
 		}
@@ -448,6 +448,8 @@ public class OrderDao implements OrdersDaoInt {
 		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
 			orderHeader.setStatus("Received");
 			orderHeader.setOrderReceivedDateTime(dateFormat.format(date));
+			
+			
 			sessionFactory.getCurrentSession().update(orderHeader);
 			historyDaoInt.insetOrderHistory(orderHeader);
 			

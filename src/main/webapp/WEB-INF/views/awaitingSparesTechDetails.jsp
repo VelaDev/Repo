@@ -78,14 +78,11 @@
 											<div class="col-md-6 selectContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);" name="status"
-														id="status" class="form-control selectpicker">
-														<option value="${ticketObject.status}">${ticketObject.status}</option>
-														<option value="Awaiting Spares">Awaiting Spares</option>
-														<option value="Escalated">Escalate Ticket</option>
-														<option value="Resolved">Resolved</option>
-													</select>
+														class="glyphicon glyphicon-list"></i></span>
+													<input
+														name="ticketNumber" id="ticketNumber" class="form-control"
+														type="text" value="${ticketObject.status}" readonly>
+													
 												</div>
 											</div>
 										</div>
@@ -261,15 +258,12 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="comments"
+													<textarea class="form-control" name="comments" readonly="readonly"
 														required="required" placeholder="Please enter comments"
-														id="comment" style="height: 153px;"></textarea>
+														id="comment" style="height: 153px;">${ticketObject.comments}</textarea>
 												</div>
 											</div>
 										</div>
-
-
-
 									</div>
 									<!--//Second Column-->
 								</fieldset>
@@ -810,11 +804,10 @@
 											</thead>
 											<tbody>
 												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="">
-
+												<c:forEach var="list" items="${orderStatus}">
 													<tr>
-														<td></td>
-														<td></td>
+														<td><c:out value="${list.orderStatus}" /></td>
+														<td><c:out value="${list.statusDateTime}" /></td>
 													</tr>
 
 												</c:forEach>

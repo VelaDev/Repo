@@ -465,6 +465,7 @@ public class OrderDao implements OrdersDaoInt {
 			for(Tickets tick:ticketList){
 				if(tick.getOrderHeader().getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
 					tick.setStatus("Open");
+					tick.setDateTime(dateFormat.format(date));
 					sessionFactory.getCurrentSession().update(tick);
 					ticketHistoryDaoInt.insertTicketHistory(tick);
 				}

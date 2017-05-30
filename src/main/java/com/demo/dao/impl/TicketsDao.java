@@ -342,6 +342,7 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setFourHourFlag(false);
 					ticket.setOneHourFlag(false);
 					ticket.setComments(tickets.getComments());
+					ticket.setDateTime(dateFormat.format(date));
 					
 					ticket.setStatus(status);
 					

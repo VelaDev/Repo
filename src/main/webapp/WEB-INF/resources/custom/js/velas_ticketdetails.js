@@ -53,6 +53,26 @@ $('#status').change(function() {
 	}
 });
 
+//"order Status" Table -->
+$(document).ready(function() {
+	$('#orderSts').DataTable({
+		"jQueryUI" : true,
+		"pagingType" : "full_numbers",
+		"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+	/* few more options are available to use */
+	});
+});
+
+// Show solution details when status change to resolved -->
+$(function(){
+
+	$('#orderNumber').click(function(){
+	  $('#orderNo').modal('show');
+	  return false;
+	})
+
+});
+
 // Take selected used part numbers only -->
 function checkUsedPartNumbers() {
 

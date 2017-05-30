@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Awaiting Spares Ticket Details | Velaphanda Trading & Projects</title>
+<title>Awaiting Spares Ticket Details | Velaphanda Trading &
+	Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -11,7 +12,7 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">	
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
@@ -24,7 +25,7 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		
+
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<div align="center">
@@ -32,10 +33,11 @@
 					</div>
 				</div>
 
-					<div class="panel-body">
+				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
+						<li class="active"><a href="#generalDetails"
+							data-toggle="tab">General</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -70,7 +72,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Select type status-->
 										<div class="form-group ">
 											<label class="col-md-3 control-label">Status</label>
@@ -144,22 +146,22 @@
 												</div>
 											</div>
 										</div>
-										<!-- Text input Ticket Priority-->
+
 										<div class="form-group">
-											
-											<label class="col-md-3 control-label">Order No</label>
-											<a id="orderStatus">
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">												
-														<span class="input-group-addon"><i
-														class="glyphicon glyphicon-user"></i></span> <input
-														name="order" id="order" class="form-control"
-														type="text" value="${ticketObject.orderHeader.orderNum}" readonly>
-													
-												</div>
+												<label class="col-md-3 control-label">Order No</label>
+												<a href="#" id="orderNumber">
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-user"></i></span> <input type="text"
+																name="order" id="order" class="form-control"
+																value="${ticketObject.orderHeader.orderNum}" readonly />
+
+														</div>
+													</div>
+												</a>
 											</div>
-											</a>
-										</div>
+
 
 										<!-- Text input Contact Person First Name-->
 										<div class="form-group">
@@ -187,8 +189,8 @@
 														value="${ticketObject.lastName}">
 												</div>
 											</div>
-										</div>										
-										
+										</div>
+
 										<div class="form-group">
 											<label class="col-md-3 control-label">Email</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -201,7 +203,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Text input Contact Person Cellphone Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Cellphone No</label>
@@ -216,8 +218,8 @@
 														value="${ticketObject.contactCellNumber}">
 												</div>
 											</div>
-										</div>										
-										
+										</div>
+
 										<!-- Text input Contact Person Tellphone Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Tellphone No </label>
@@ -233,7 +235,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
 									<!--/ First Column-->
 
@@ -266,8 +268,8 @@
 												</div>
 											</div>
 										</div>
-										
-										
+
+
 
 									</div>
 									<!--//Second Column-->
@@ -464,8 +466,9 @@
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> 
-																		<input type="text" name="status"readonly="readonly" class="form-control" value="Resolved" />																		
+																		class="glyphicon glyphicon-list"></i></span> <input
+																		type="text" name="status" readonly="readonly"
+																		class="form-control" value="Resolved" />
 																</div>
 															</div>
 														</div>
@@ -728,48 +731,6 @@
 								</div>
 							</div>
 							<!--/site stock-->
-							
-							
-							
-							<!--Order Status-->
-							<div id="orderStatus" class="modal fade" role="dialog"
-								style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-								<div class="modal-dialog">
-									<!-- Modal content-->
-									<div class="modal-content" id="orderSts">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal"
-												aria-hidden="true">×</button>
-											<h3 class="modal-title">Order Status</h3>
-										</div>
-										<div class="modal-body">
-											<table id="orderSts" class="display datatable">
-												<thead>
-													<tr>
-														<th>Order Status</th>
-														<th>Date/Time</th>
-													</tr>
-												</thead>
-												<tbody>
-													<!-- Iterating over the list sent from Controller -->
-													<c:forEach var="list" items="">
-
-														<tr>
-															<td></td>
-															<td></td>															
-														</tr>
-
-													</c:forEach>
-												</tbody>
-											</table>
-
-										</div>
-										
-									</div>
-								</div>
-							</div>
-							<!--/site stock-->
-							
 
 						</form:form>
 						<!-- /Solution Details -->
@@ -798,18 +759,20 @@
 											<!-- Iterating over the list sent from Controller -->
 											<c:forEach items="${ticketHistoryList}" var="history">
 												<tr>
-													<td><c:out value="${history.ticketNumber}" /></td>													
-													<td><c:out value="${history.status}"/></td>													  
+													<td><c:out value="${history.ticketNumber}" /></td>
+													<td><c:out value="${history.status}" /></td>
 													<c:choose>
-													    <c:when test="${history.status =='Open'}">
-													    	<td><c:out value="${history.actionTaken}" />Log Ticket</td>														
-														</c:when>  
-													    <c:otherwise>
-													    <td><c:out value="${history.actionTaken}" /></td>
-													    </c:otherwise>
-													</c:choose>													
+														<c:when test="${history.status =='Open'}">
+															<td><c:out value="${history.actionTaken}" />Log
+																Ticket</td>
+														</c:when>
+														<c:otherwise>
+															<td><c:out value="${history.actionTaken}" /></td>
+														</c:otherwise>
+													</c:choose>
 													<td><c:out value="${history.escalatedDate}" /></td>
-													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+													<td><c:out
+															value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 													<td><c:out value="${history.colourReading }" /></td>
 													<td><c:out value="${history.monoReading }" /></td>
 													<td><c:out value="${history.comment}" /></td>
@@ -823,6 +786,55 @@
 
 						</div>
 						<!--/history tab-->
+
+
+						<!-- Show order Status -->
+						<div id="orderNo" class="modal fade" role="dialog"
+							aria-labelledby="orderNoLabel" aria-hidden="true">
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">×</button>
+										<h3 class="modal-title">Order Status</h3>
+									</div>
+
+									<div class="modal-body">
+
+										<table id="orderSts" class="display datatable">
+											<thead>
+												<tr>
+													<th>Order Status</th>
+													<th>Date/Time</th>
+												</tr>
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach var="list" items="">
+
+													<tr>
+														<td></td>
+														<td></td>
+													</tr>
+
+												</c:forEach>
+											</tbody>
+										</table>
+
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+										</div>
+									</div>
+									<!-- modal-body -->
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal orderNo-->
 
 					</div>
 					<!-- /tab-content -->
@@ -851,7 +863,8 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
 
 </html>

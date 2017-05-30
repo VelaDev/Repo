@@ -21,6 +21,7 @@ import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
+import com.demo.model.OrderHistory;
 import com.demo.service.BootStockInt;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
@@ -483,7 +484,10 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-
+       List<OrderHistory> history = historyInt.getAllOrderHistoryByOrderNumber(recordID);
+       for(OrderHistory h:history){
+    	   System.err.println("Status : " + h);
+       }
 			model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.addObject("status", historyInt.getAllOrderHistoryByOrderNumber(recordID));

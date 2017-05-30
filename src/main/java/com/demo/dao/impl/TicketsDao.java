@@ -292,7 +292,7 @@ public class TicketsDao implements TicketsDaoInt {
 					order = ordersDaoInt.getOrder(tickets.getOrderNum());
 					ticket.setStatus("Awaiting Spares");
 					historyDaoInt.insertTicketHistory(ticket);
-					retMessage = "Ticket "+ ticket.getTicketNumber()+ "is awaiting for order no "+ order.getOrderNum();
+					retMessage = "Ticket "+ ticket.getTicketNumber()+ " awaiting for order no "+ order.getOrderNum();
 					if(order !=null){
 						ticket.setOrderHeader(order);
 					}
@@ -549,7 +549,7 @@ public class TicketsDao implements TicketsDaoInt {
 		  try{
 			  ticketList = getAllLoggedTickets();
 			  for(Tickets ticket: ticketList){
-				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")){
+				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spares")){
 					tempCount ++;
 				}
 			  }
@@ -583,9 +583,9 @@ public class TicketsDao implements TicketsDaoInt {
 				try{
 					ticketList = getAllLoggedTickets();
 					for(Tickets ticket:ticketList){
-						if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")){
+						if(ticket.getStatus().equalsIgnoreCase("Awaiting Spares")){
 							aList.add(ticket);
-						}else if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")&& ticket.isFourHourFlag()==true){
+						}else if(ticket.getStatus().equalsIgnoreCase("Awaiting Spares")&& ticket.isFourHourFlag()==true){
 							aList.add(ticket);
 						}
 					}
@@ -817,7 +817,7 @@ public class TicketsDao implements TicketsDaoInt {
 		  try{
 			  ticketList = getAllLoggedTickets();
 			  for(Tickets ticket: ticketList){
-				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spares")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
 					tempCount ++;
 				}
 			  }
@@ -892,7 +892,7 @@ public class TicketsDao implements TicketsDaoInt {
 		try{
 			ticketList = getAllLoggedTickets();
 			for(Tickets ticket:ticketList){
-				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spare")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+				if(ticket.getStatus().equalsIgnoreCase("Awaiting Spares")&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
 					aList.add(ticket);
 				}
 			}

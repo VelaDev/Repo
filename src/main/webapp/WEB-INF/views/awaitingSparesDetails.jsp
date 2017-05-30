@@ -144,6 +144,18 @@
 												</div>
 											</div>
 										</div>
+										<!-- Text input Ticket Priority-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Order No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-user"></i></span> <input
+														name="priority" id="priority" class="form-control"
+														type="text" value="${ticketObject.orderHeader.orderNum}" readonly>
+												</div>
+											</div>
+										</div>
 
 										<!-- Text input Contact Person First Name-->
 										<div class="form-group">

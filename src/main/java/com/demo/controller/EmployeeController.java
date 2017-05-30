@@ -130,6 +130,8 @@ public class EmployeeController {
 						if(details !=null){
 							userLogDetailsServiceInt.saveUserLogDetails(details);
 						}
+						int count = ticketsServiceInt.countAwaitingSparesTickets();
+						System.err.println(count);
 						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));
 						model.addObject("openTickets", ticketsServiceInt.countOpenTickets());
 						model.addObject("closedTickets", ticketsServiceInt.countClosedTickets());

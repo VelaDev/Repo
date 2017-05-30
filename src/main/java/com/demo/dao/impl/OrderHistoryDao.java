@@ -49,6 +49,7 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 			}
 			
 			sessionFactory.getCurrentSession().save(orderHistory);
+			
 		}catch(Exception e){
 			e.getMessage();
 		}

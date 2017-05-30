@@ -30,6 +30,7 @@ import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.HOStockDaoInt;
 import com.demo.dao.SiteStocDaoInt;
+import com.demo.dao.TicketHistoryDaoInt;
 import com.demo.dao.TicketsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
@@ -68,6 +69,8 @@ public class OrderDao implements OrdersDaoInt {
 	private OrderHistoryDaoInt historyDaoInt;
 	@Autowired
 	private TicketsDaoInt ticketsDaoInt;
+	@Autowired
+	private TicketHistoryDaoInt ticketHistoryDaoInt;
 	private OrderHeader orderHeader = null;
 	
 
@@ -463,6 +466,7 @@ public class OrderDao implements OrdersDaoInt {
 				if(tick.getOrderHeader().getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
 					tick.setStatus("Open");
 					sessionFactory.getCurrentSession().update(tick);
+					ticketHistoryDaoInt.insertTicketHistory(tick);
 				}
 				
 			}

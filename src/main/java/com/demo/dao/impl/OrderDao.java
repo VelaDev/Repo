@@ -438,7 +438,6 @@ public class OrderDao implements OrdersDaoInt {
 		date = new Date();
 		if(orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Approved")){
 			
-			
 			orderHeader.setStatus("Shipped");
 			orderHeader.setShippingDate(dateFormat.format(date));
 			sessionFactory.getCurrentSession().update(orderHeader);

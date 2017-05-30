@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
@@ -1001,5 +1002,23 @@ public class TicketsDao implements TicketsDaoInt {
 		}
 		
 		return aList;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tickets> getAwaitingSparesTickets() {
+		List<Tickets> tempTickets = null;
+		try{
+			List<Tickets> localTicket = getAllLoggedTickets();
+			tempTickets = new ArrayList<Tickets>();
+			for(Tickets tic:localTicket){
+				if(tic.getStatus().equalsIgnoreCase("Awaiting Spares")){
+					tempTickets.add(tic);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return tempTickets;
 	}
 }

@@ -1,6 +1,7 @@
 package com.demo.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
@@ -49,6 +50,7 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllClosedTickets(String technicianEmail);
 	List<Tickets> getAllBridgedTickets(String technicianEmail);
 	List<Tickets> getAllResolvedTickets(String technicianEmail);
+	List<Tickets> getAwaitingSparesTickets();
 	
 	void resolveToClosedTicketUpdate();
 	

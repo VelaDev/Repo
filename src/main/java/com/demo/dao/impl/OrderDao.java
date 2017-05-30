@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,6 +13,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.omg.CORBA.TCKind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -28,12 +30,14 @@ import com.demo.dao.OrdersDaoInt;
 import com.demo.dao.DeviceDaoInt;
 import com.demo.dao.HOStockDaoInt;
 import com.demo.dao.SiteStocDaoInt;
+import com.demo.dao.TicketsDaoInt;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
 import com.demo.model.HOStock;
 import com.demo.model.Device;
+import com.demo.model.Tickets;
 
 @Repository("orderDAO")
 @Transactional(propagation=Propagation.REQUIRED)
@@ -62,7 +66,10 @@ public class OrderDao implements OrdersDaoInt {
 	private BootStockDaoInt bootStockDaoInt;
 	@Autowired
 	private OrderHistoryDaoInt historyDaoInt;
+	@Autowired
+	private TicketsDaoInt ticketsDaoInt;
 	private OrderHeader orderHeader = null;
+	
 
 	private String retMessage = null;
 	private Customer cus;
@@ -451,6 +458,14 @@ public class OrderDao implements OrdersDaoInt {
 			
 			sessionFactory.getCurrentSession().update(orderHeader);
 			historyDaoInt.insetOrderHistory(orderHeader);
+			List<Tickets> ticketList = ticketsDaoInt.getAwaitingSparesTickets();
+			for(Tickets tick:ticketList){
+				if(tick.getOrderHeader().getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
+					tick.setStatus("Open");
+					sessionFactory.getCurrentSession().update(tick);
+				}
+				
+			}
 			
 			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);

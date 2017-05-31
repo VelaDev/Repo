@@ -667,7 +667,7 @@ public class OrdersController {
 	
 	//confirmationMessages 
 	@RequestMapping(value={"confirm","confirmation", "confirmations"})
-	public ModelAndView confirmationMessages(){
+	public ModelAndView confirmationOrderMessages(){
 		
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");

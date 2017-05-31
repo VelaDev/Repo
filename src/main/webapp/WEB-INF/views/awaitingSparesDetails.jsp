@@ -765,8 +765,8 @@
 														<c:when test="${history.status =='Escalated'}">
 															<td>Ticket Escalated to Manager</td>
 														</c:when>
-														<c:when test="${history.status =='Awaiting Spare'}">
-															<td>Waiting for Order</td>
+														<c:when test="${history.status =='Awaiting Spares'}">
+															<td>Waiting for Order: <c:out value="${orders.orderNum}" /></td>
 														</c:when>
 														<c:when test="${history.status =='Escalated'}">
 															<td>Ticket Escalated to Manager</td>

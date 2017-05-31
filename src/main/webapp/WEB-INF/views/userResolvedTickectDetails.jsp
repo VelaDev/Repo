@@ -898,7 +898,7 @@
 															<td>Ticket Escalated to Manager</td>
 														</c:when>
 														<c:when test="${history.status =='Awaiting Spare'}">
-															<td>Waiting for Order</td>
+															<td>Waiting for Order: ${orders.orderNum}</td>
 														</c:when>
 														<c:when test="${history.status == 'SLA Bridged'}">
 															<td> System Update</td>

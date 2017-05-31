@@ -277,6 +277,8 @@ public class EmployeeController {
 	@RequestMapping(value="addEmployee",method=RequestMethod.POST)
 	public ModelAndView addEmployee(@ModelAttribute("addEmployee")Employee employee)
 	{
+		
+		session.setAttribute("addEmployee", "addEmployee");
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -290,7 +292,7 @@ public class EmployeeController {
 			}
 			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("registerEmployee");
+			model.setViewName("confirmations");
 		}
 		else{
 			

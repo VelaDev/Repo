@@ -1,4 +1,6 @@
 <%@include file="templates/taglibs.jsp"%>
+<% String employee = (String)session.getAttribute("addEmployee"); %>
+<% String order = (String)session.getAttribute("placeOrder"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -23,19 +25,8 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
-					</c:out>
-				</div>
-			</c:if>
-			<c:if test="${not empty retErrorMessage }">
-				<div class="alert alert-danger" role="alert">
-					<c:out value="${ retErrorMessage}">
-					</c:out>
-				</div>
-			</c:if>
-			<div class="panel panel-success">
+
+			<div class="panel panel-success"  style="margin-left:25%; margin-right:25%;">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
@@ -44,7 +35,28 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<div class="tab-content"></div>
+				 	<div class="tab-content">
+				 	<c:choose>
+				 	 <c:when test="${ employee=='addEmployee'}">
+				 	    <c:if test="${not empty retMessage }">
+				 	    
+							<div class="alert alert-info" role="alert">
+								<c:out value="${ retMessage}">
+								</c:out>click here to go<a href="home.html"> Home</a> or add another <a
+									href="">Employee</a>
+							</div>
+						</c:if>
+						<c:if test="${not empty retErrorMessage }">
+							<div class="alert alert-danger" role="alert">
+								<c:out value="${ retErrorMessage}">
+								</c:out>
+								Click <a href="home.html"> Here</a> add employee with different email address
+							</div>
+						</c:if>
+				 	 </c:when>
+				 	</c:choose>
+						
+					</div>
 					<!-- /tab-content -->
 
 				</div>
@@ -75,9 +87,4 @@
 	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
 
-</html>
-
-
-
-</body>
 </html>

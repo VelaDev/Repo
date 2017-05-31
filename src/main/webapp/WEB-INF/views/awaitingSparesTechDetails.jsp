@@ -756,8 +756,13 @@
 													<td><c:out value="${history.status}" /></td>
 													<c:choose>
 														<c:when test="${history.status =='Open'}">
-															<td><c:out value="${history.actionTaken}" />Log
-																Ticket</td>
+															<td>Log Ticket</td>
+														</c:when>
+														<c:when test="${history.status =='Escalated'}">
+															<td>Ticket Escalated to Manager</td>
+														</c:when>
+														<c:when test="${history.status =='Awaiting Spare'}">
+															<td>Waiting for Order</td>
 														</c:when>
 														<c:otherwise>
 															<td><c:out value="${history.actionTaken}" /></td>

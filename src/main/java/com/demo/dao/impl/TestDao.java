@@ -37,12 +37,14 @@ public class TestDao implements TestDaoSs {
 	private List<Tickets> ticketList = null;
 	ArrayList<Tickets> aList = null;
 	
+	@SuppressWarnings("unchecked")
 	public List<Tickets> getAllLoggedTickets() {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tickets.class);
 		return (List<Tickets>)criteria.list(); 
 	}
 
+	@Transactional(propagation=Propagation.REQUIRED)
 	@Scheduled(fixedRate = 600000)
 	@Override
 	public void calculateSLAHours() {

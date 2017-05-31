@@ -276,6 +276,10 @@ public class TicketsDao implements TicketsDaoInt {
 		myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar cal = Calendar.getInstance();
 	    String date1 =  myFormat.format(cal.getTime());
+	    date = new Date();
+	    
+	    dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
 		
 		try {
 			String tempTicketNum = tickets.getTicketNumber().substring(6);
@@ -352,8 +356,7 @@ public class TicketsDao implements TicketsDaoInt {
 					}
 					historyDaoInt.insertTicketHistory(ticket);
 					retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
-				}
-					
+				}	
 			}
 		} catch (Exception e) {
 			retMessage = "SLA did not start because of " + e.getMessage();

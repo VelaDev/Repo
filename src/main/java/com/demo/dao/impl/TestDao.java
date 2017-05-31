@@ -43,7 +43,6 @@ public class TestDao implements TestDaoSs {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tickets.class);
 		return (List<Tickets>)criteria.list(); 
 	}
-
 	@Transactional(propagation=Propagation.REQUIRED)
 	@Scheduled(fixedRate = 600000)
 	@Override

@@ -895,7 +895,7 @@ public class TicketController {
 			model.setViewName("login");
 		}		
 		return model;
-	}	
+	}
 	
 	@ExceptionHandler({DataIntegrityViolationException.class})
     public ModelAndView dataIntegrity(Exception ex) {
@@ -905,4 +905,5 @@ public class TicketController {
          
         return model;
     }
+	
 }

@@ -746,18 +746,28 @@
 											<!-- Iterating over the list sent from Controller -->
 											<c:forEach items="${ticketHistoryList}" var="history">
 												<tr>
-													<td><c:out value="${history.ticketNumber}" /></td>													
-													<td><c:out value="${history.status}"/></td>													  
+													<td><c:out value="${history.ticketNumber}" /></td>
+													<td><c:out value="${history.status}" /></td>
 													<c:choose>
-													    <c:when test="${history.status =='Open'}">
-													    	<td><c:out value="${history.actionTaken}" />Log Ticket</td>														
-														</c:when>  
-													    <c:otherwise>
-													    <td><c:out value="${history.actionTaken}" /></td>
-													    </c:otherwise>
-													</c:choose>													
+														<c:when test="${history.status =='Open'}">
+															<td>Log Ticket</td>
+														</c:when>
+														<c:when test="${history.status =='Escalated'}">
+															<td>Ticket Escalated to Manager</td>
+														</c:when>
+														<c:when test="${history.status =='Awaiting Spare'}">
+															<td>Waiting for Order</td>
+														</c:when>
+														<c:when test="${history.status == 'SLA Bridged'}">
+															<td>System Update</td>
+														</c:when>
+														<c:otherwise>
+															<td><c:out value="${history.actionTaken}" /></td>
+														</c:otherwise>
+													</c:choose>
 													<td><c:out value="${history.escalatedDate}" /></td>
-													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+													<td><c:out
+															value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 													<td><c:out value="${history.colourReading }" /></td>
 													<td><c:out value="${history.monoReading }" /></td>
 													<td><c:out value="${history.comment}" /></td>

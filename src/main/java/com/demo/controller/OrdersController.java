@@ -664,5 +664,37 @@ public class OrdersController {
 
 		return model;
 	}
+	
+	//confirmationMessages 
+	@RequestMapping(value={"confirm","confirmation", "confirmations"})
+	public ModelAndView confirmationOrderMessages(){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		   
+		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
+		    	
+		    	model.setViewName("confirmations");
+		    }
+		    
+		    else if (userName.getRole().equalsIgnoreCase("Technician")){
+		    	
+		    	model.setViewName("confirmation");
+		   }
+		    
+		    else if (userName.getRole().equalsIgnoreCase("User")){
+		    	
+		    	model.setViewName("confirm");
+		  }			
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 
 }

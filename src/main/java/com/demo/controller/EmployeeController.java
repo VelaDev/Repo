@@ -530,7 +530,7 @@ public class EmployeeController {
 	}
 	@RequestMapping(value="deactivateEmp")
 	public ModelAndView deactivateEmployee(@RequestParam("email")String email){
-		
+		String deactivateEmployee ="deactivateEmployee";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -538,7 +538,8 @@ public class EmployeeController {
 			retMessage = employeeService.deactivateEmployee(email);
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("deactivateEmployee");
+			model.addObject("deactivateEmployee", deactivateEmployee);
+			model.setViewName("confirmantions");
 		}
 		else{
 			model.setViewName("login");

@@ -49,31 +49,43 @@ a.confirmtions {
 				 	       <c:out value="${retMessage}"></c:out> 
 				 	        Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view employee you have added, or 
                             Click <a href="registerEmployee.html" class="confirmtions"> <b> here</b></a> to add another new Employee.
-				 	    </c:when></c:choose>
+				 	    </c:when>
+				 	    </c:choose>
 				 	     <!-- Update employee -->
 				 	    <c:choose>
 				 	     <c:when test="${updateEmployee =='updateEmployee' }">
 				 	         <c:out value="${retMessage}"></c:out> 
 				 	          Click<a href="home.html" class="confirmtions"> <b> here</b></a> to go to Home, or 
-                              Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view employees list. 
+                              Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of employees 
 				 	    </c:when>
 				 	    </c:choose> 
 				 	     <!-- Change password -->
 				 	    <c:choose>
 				 	    <c:when test="${changePassword =='changePassword' }">
                            <c:out value="${retMessage}"></c:out>
-                                Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a>  to view employees list.        
+                                Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a>  to view list of employees       
                            </c:when>
 				 	    </c:choose>
 				 	   <!--  Reset Password -->
 				 	    <c:choose>
 				 	       <c:when test="${resetPassword =='resetPassword' }">             
                            <c:out value="${retMessage}"></c:out>
-                                  Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view employees list.    
+                                  Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of employees    
                            </c:when>
+				 	    </c:choose>
+				 	    <!-- Deactivate employee -->
+				 	  <c:choose>
+				 	    <c:when test="${deactivateEmployee =='deactivateEmployee' }">
+				 	       <c:out value="${retMessage}"></c:out> 
+				 	        Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of employees
+				 	    </c:when>
 				 	    </c:choose>
 				 	    </div>
 				 	</c:if>
+				 	
+				 	
+				 	
+				 	
 				 	
 				 	
 				 	<c:if test="${not empty retErrorMessage}">
@@ -104,6 +116,13 @@ a.confirmtions {
 				 	   <!--  Reset Password -->
 				 	    <c:choose>
 				 	       <c:when test="${resetPassword =='resetPassword' }">             
+                           <c:out value="${retErrorMessage}"></c:out>
+                                  Click <a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view employees list.    
+                           </c:when>
+				 	    </c:choose>
+				 	     <!--  Deactivate Employee -->
+				 	    <c:choose>
+				 	       <c:when test="${deactivateEmployee =='deactivateEmployee' }">             
                            <c:out value="${retErrorMessage}"></c:out>
                                   Click <a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view employees list.    
                            </c:when>

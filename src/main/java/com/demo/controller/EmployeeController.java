@@ -433,18 +433,21 @@ public class EmployeeController {
 	public ModelAndView changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
 		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
+		String changePassword ="changePassword";
 		
 		
 		if(retMessage.equalsIgnoreCase("OK")){
 			retMessage = "Password successfully changed";
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			   model.setViewName("passwordchanged");
+			model.addObject("changePassword", changePassword);
+			   model.setViewName("confirmations");
 		}
 		else{
 			retMessage = "Password already used, please use another password";
 			  model.addObject("retMessage", retMessage);
-			   model.setViewName("changePassword");
+			  model.addObject("changePassword", changePassword);
+			   model.setViewName("confirmations");
 		}
 		
 		return model;
@@ -452,6 +455,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value="searchEmployeeForPasswordReset")
 	public ModelAndView searchEmployeeForPasswordReset(@RequestParam("email") String empName,@ModelAttribute Employee employee) {
+		/*String resetPassword ="resetPassword";*/
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -464,7 +468,6 @@ public class EmployeeController {
 		else{
 			model.addObject("", null);
 		}
-		
 		model.setViewName("resetPassword");
 		}
 		else{
@@ -473,9 +476,9 @@ public class EmployeeController {
 		
 		return model;
 	}
-	@RequestMapping(value="resetPassword")
+	@RequestMapping(value="resetPassword",method=RequestMethod.POST)
 	public ModelAndView resetPassword(@RequestParam("email")String email){
-		
+		String resetPassword = "resetPassword";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -483,7 +486,8 @@ public class EmployeeController {
 			retMessage = employeeService.changePassword(email);
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("resetPassword");
+			model.addObject("resetPassword", resetPassword);
+			model.setViewName("confirmations");
 		}
 		else{
 			model.setViewName("login");

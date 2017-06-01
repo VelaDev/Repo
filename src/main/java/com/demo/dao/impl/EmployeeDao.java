@@ -243,7 +243,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				loginAttempt.setAttemptCount(0);
 				attemptDaoInt.upsertUserAttempt(loginAttempt);
 				JavaMail.sendPasswordToEmployee(emp,tempPassword);
-				retMessage = "Temp password for employee "+ emp.getFirstName() +" "+ emp.getLastName()+ " is "+ tempPassword+".\nTemp password is sent to employee through email.";
+				retMessage = "Temp password for employee "+ emp.getFirstName() +" "+ emp.getLastName()+ " is "+ tempPassword+".\nPassword is sent to employee through email.";
 			}
 			
 		}catch (Exception e) {

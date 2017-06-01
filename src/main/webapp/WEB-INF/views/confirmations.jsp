@@ -36,23 +36,75 @@
 				 	<div class="tab-content">
 				 	<!-- Successful message -->
 				 	<c:if test="${not empty retMessage }">
+				 	<div class="alert alert-info" role="alert">
 				 	 <!-- Add employee -->
 				 	  <c:choose>
-				 	 
 				 	    <c:when test="${addEmployee =='addEmployee' }">
-				 	       <c:out value="${retMessage}"></c:out> Click here 
+				 	       <c:out value="${retMessage}"></c:out> 
+				 	        Click<a href="displayEmployees.html"><b> here</b></a> to view employee you have added, or 
+                            Click <a href="registerEmployee.html"> <b> here</b></a> to add another new Employee.
 				 	    </c:when></c:choose>
 				 	     <!-- Update employee -->
 				 	    <c:choose>
 				 	     <c:when test="${updateEmployee =='updateEmployee' }">
-				 	         <c:out value="${retMessage}"></c:out> Click here 
+				 	         <c:out value="${retMessage}"></c:out> 
+				 	          Click<a href="home.html"> <b> here</b></a> to go to Home, or 
+                              Click <a href="displayEmployees.html"> <b> here</b></a> to view employees list. 
 				 	    </c:when>
 				 	    </c:choose> 
+				 	     <!-- Change password -->
+				 	    <c:choose>
+				 	    <c:when test="${changePassword =='changePassword' }">
+                           <c:out value="${retMessage}"></c:out>
+                                Click <a href="displayEmployees.html"> <b> here</b></a>  to view employees list.        
+                           </c:when>
+				 	    </c:choose>
+				 	   <!--  Reset Password -->
+				 	    <c:choose>
+				 	       <c:when test="${resetPassword =='resetPassword' }">             
+                           <c:out value="${retMessage}"></c:out>
+                                  Click <a href="displayEmployees.html"> <b> here</b></a> to view employees list.    
+                           </c:when>
+				 	    </c:choose>
+				 	    </div>
 				 	</c:if>
+				 	
+				 	
 				 	<c:if test="${not empty retErrorMessage}">
+				 	    <!-- Add employee -->
+				 	    <div class="alert alert-danger" role="alert">
+				 	  <c:choose>
+				 	    <c:when test="${addEmployee =='addEmployee' }">
+				 	       <c:out value="${retErrorMessage}"></c:out> 
+				 	        Click<a href="displayEmployees.html"> <b> here</b></a> to view employees list or 
+                            Click <a href="registerEmployee.html"> <b> here</b></a> to add another new Employee.
+				 	    </c:when>
+				 	    </c:choose>
+				 	     <!-- Update employee -->
+				 	    <c:choose>
+				 	     <c:when test="${updateEmployee =='updateEmployee' }">
+				 	         <c:out value="${retErrorMessage}"></c:out> 
+				 	          Click<a href="home.html"> <b> here</b></a> to go to Home, or 
+                              Click <a href="displayEmployees.html"> <b> here</b></a> to view employees list. 
+				 	    </c:when>
+				 	    </c:choose> 
+				 	     <!-- Change password -->
+				 	    <c:choose>
+				 	    <c:when test="${changePassword =='changePassword' }">
+                           <c:out value="${retErrorMessage}"></c:out>
+                                Click <a href="displayEmployees.html"> <b> here</b></a>  to view employees list.        
+                           </c:when>
+				 	    </c:choose>
+				 	   <!--  Reset Password -->
+				 	    <c:choose>
+				 	       <c:when test="${resetPassword =='resetPassword' }">             
+                           <c:out value="${retErrorMessage}"></c:out>
+                                  Click <a href="displayEmployees.html"><b> here</b></a> to view employees list.    
+                           </c:when>
+				 	    </c:choose>
+				 	    </div>
 				 	</c:if>
 					<!-- /tab-content -->
-
 				</div>
 				<!-- /panel body -->
 			</div>

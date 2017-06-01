@@ -69,14 +69,18 @@ public class DeviceController {
 	
 	@RequestMapping(value="saveProduct", method=RequestMethod.POST)
 	public ModelAndView saveProduct(@ModelAttribute("saveProduct")DeviceBean deviceBean){
-		
+		String addDevice ="addDevice";
+		String customerName = deviceBean.getCustomerName();
 		model = new ModelAndView();
 		 userName = (Employee) session.getAttribute("loggedInUser");
 			if(userName != null){
+				model.addObject("customer", customerServiceInt.getClientByClientName(customerName));
 				retMessage =deviceServiceInt.prepareDeviceData(deviceBean);
 		        model.addObject("retMessage", retMessage);
 		        model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		        model.setViewName("addProduct");
+		        model.addObject("customerName", customerName);
+		        model.addObject("addDevice", addDevice);
+		        model.setViewName("confirmations");
 			}
 			else{
 				model.setViewName("login");
@@ -239,6 +243,8 @@ public class DeviceController {
 	@RequestMapping(value="updateProduct")
 	public ModelAndView updateProduct(@ModelAttribute("updateProduct")DeviceBean deviceBean)
 	{
+		
+		String udateDevice ="udateDevice";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -246,7 +252,8 @@ public class DeviceController {
 			retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("updateDevice");
+			model.addObject("udateDevice", udateDevice);
+			 model.setViewName("confirmations");
 		}
 		else{
 			model.setViewName("login");

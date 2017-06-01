@@ -88,10 +88,24 @@ a.confirmtions {
 				 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- update Customer -->
+				 	   <c:choose>
+				 	    <c:when test="${updateCustomer =='updateCustomer' }">
+				 	       <c:out value="${retMessage}"></c:out> 
+				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers
+				 	    </c:when>
+				 	    </c:choose>
+				 	    <!-- add Device -->
+				 	  <c:choose>
+				 	    <c:when test="${addDevice =='addDevice' }">
+				 	       <c:out value="${retMessage}"></c:out> 
+				 	        Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of devices or click <a href="searchClientforProduct?customerName=<c:out value='${customerName}'/>" class="confirmtions"><b> here</b></a> to add another device for ${customerName}
+				 	    </c:when>
+				 	    </c:choose>
+				 	    <!-- update Device -->
 				 	  <c:choose>
 				 	    <c:when test="${updateCustomer =='updateCustomer' }">
 				 	       <c:out value="${retMessage}"></c:out> 
-				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a>
+				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers
 				 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -154,6 +168,20 @@ a.confirmtions {
 				 	    <c:when test="${updateCustomer =='updateCustomer' }">
 				 	       <c:out value="${retErrorMessage}"></c:out> 
 				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a>
+				 	    </c:when>
+				 	    </c:choose>
+				 	    <!-- add Device -->
+				 	  <c:choose>
+				 	    <c:when test="${addDevice =='addDevice' }">
+				 	       <c:out value="${retErrorMessage}"></c:out> 
+				 	        Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of devices
+				 	    </c:when>
+				 	    </c:choose>
+				 	    <!-- update Device -->
+				 	  <c:choose>
+				 	    <c:when test="${updateCustomer =='updateCustomer' }">
+				 	       <c:out value="${retErrorMessage}"></c:out> 
+				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers
 				 	    </c:when>
 				 	    </c:choose>
 				 	    </div>

@@ -36,14 +36,18 @@
 				 	<div class="tab-content">
 				 	<!-- Successful message -->
 				 	<c:if test="${not empty retMessage }">
+				 	 <!-- Add employee -->
 				 	  <c:choose>
+				 	 
 				 	    <c:when test="${addEmployee =='addEmployee' }">
 				 	       <c:out value="${retMessage}"></c:out> Click here 
-				 	    </c:when>
-				 	    <c:when test="${updateEmployee =='updateEmployee' }">
+				 	    </c:when></c:choose>
+				 	     <!-- Update employee -->
+				 	    <c:choose>
+				 	     <c:when test="${updateEmployee =='updateEmployee' }">
 				 	         <c:out value="${retMessage}"></c:out> Click here 
 				 	    </c:when>
-				 	  </c:choose>
+				 	    </c:choose> 
 				 	</c:if>
 				 	<c:if test="${not empty retErrorMessage}">
 				 	</c:if>

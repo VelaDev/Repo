@@ -277,8 +277,8 @@ public class EmployeeController {
 	@RequestMapping(value="addEmployee",method=RequestMethod.POST)
 	public ModelAndView addEmployee(@ModelAttribute("addEmployee")Employee employee)
 	{
-		String actionTakenAddEmployee = "addEmployee";
-		session.setAttribute("addEmployee", actionTakenAddEmployee);
+		String addEmployee = "addEmployee";
+		//session.setAttribute("addEmployee", actionTakenAddEmployee);
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -290,7 +290,7 @@ public class EmployeeController {
 			}else{
 				model.addObject("retMessage", retMessage);
 			}
-			model.addObject("actionTakenAddEmployee", actionTakenAddEmployee);
+			model.addObject("addEmployee", addEmployee);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("confirmations");
 		}
@@ -394,6 +394,7 @@ public class EmployeeController {
 	@RequestMapping(value="updateEmployee",method=RequestMethod.POST)
 	public ModelAndView updateEmployee(@ModelAttribute("updateEmployee")Employee employee)
 	{
+		String updateEmployee = "updateEmployee";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -401,7 +402,8 @@ public class EmployeeController {
 			retMessage = employeeService.updateEmployee(employee);
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("updateEmployee");
+			model.addObject("updateEmployee", updateEmployee);
+			model.setViewName("confirmations");
 		}
 		else{
 			model.setViewName("login");

@@ -1,6 +1,4 @@
 <%@include file="templates/taglibs.jsp"%>
-<% String employee = (String)session.getAttribute("addEmployee"); %>
-<% String order = (String)session.getAttribute("placeOrder"); %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
@@ -36,29 +34,19 @@
 				</div>
 				<div class="panel-body">
 				 	<div class="tab-content">
+				 	<!-- Successful message -->
 				 	<c:if test="${not empty retMessage }">
-				 	    
-							<div class="alert alert-info" role="alert">
-								<c:out value="${ retMessage}">
-								</c:out>
-								. Click here to go<a href="home.html">Home</a> or add another <a
-									href="registerEmployee.html">Employee</a>.
-							</div>
-						</c:if>
-						<c:if test="${not empty retErrorMessage }">
-							<div class="alert alert-danger" role="alert">
-								<c:out value="${ retErrorMessage}">
-								</c:out>
-								. Click <a href="registerEmployee.html">Here</a>to add employee with different email address.
-							</div>
-						</c:if>
-				 	<c:choose>
-					 	 <c:when test="${employee =='addEmployee'}">
-					 	    
-					 	 </c:when>
-				 	</c:choose>
-						
-					</div>
+				 	  <c:choose>
+				 	    <c:when test="${addEmployee =='addEmployee' }">
+				 	       <c:out value="${retMessage}"></c:out> Click here 
+				 	    </c:when>
+				 	    <c:when test="${updateEmployee =='updateEmployee' }">
+				 	         <c:out value="${retMessage}"></c:out> Click here 
+				 	    </c:when>
+				 	  </c:choose>
+				 	</c:if>
+				 	<c:if test="${not empty retErrorMessage}">
+				 	</c:if>
 					<!-- /tab-content -->
 
 				</div>

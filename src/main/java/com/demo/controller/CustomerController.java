@@ -70,12 +70,14 @@ public class CustomerController {
 	@RequestMapping(value="saveClient",method={RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView addClient(@ModelAttribute("saveClient")CustomerBean customerBean)
 	{
+		String addCustomer = "addCustomer";
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("retMessage",customerServiceInt.saveCustomer(customerBean));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("addClient");
+			model.addObject("addCustomer", addCustomer);
+			model.setViewName("confirmations");
 		}else{
 			model.setViewName("login");
 		}
@@ -164,6 +166,7 @@ public class CustomerController {
 	}
 	@RequestMapping(value="updateCustomerData",method=RequestMethod.POST)
 	public ModelAndView updateCustomer(@ModelAttribute("updateCustomerData")CustomerBean customerBean){
+		String updateCustomer = "updateCustomer";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -172,7 +175,8 @@ public class CustomerController {
 			retMessage =customerServiceInt.updateCustomer(customerBean);
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("updateCustomer");
+			model.addObject("updateCustomer", updateCustomer);
+			model.setViewName("confirmations");
 		}
 		else
 		{

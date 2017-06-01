@@ -114,7 +114,7 @@
 									Spares</a></li>
 							<li class="dropdown dropdown-submenu"><a href="#"
 								class="dropdown-toggle" data-toggle="dropdown">Available
-									Sapres</a>
+									Spares</a>
 								<ul class="dropdown-menu">
 									<li><a href='<c:url value="availableSpareParts.html"/>'>Head
 											Office</a></li>

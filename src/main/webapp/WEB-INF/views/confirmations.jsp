@@ -80,6 +80,21 @@ a.confirmtions {
 				 	        Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of employees
 				 	    </c:when>
 				 	    </c:choose>
+				 	    <!-- add Customer -->
+				 	  <c:choose>
+				 	    <c:when test="${addCustomer =='addCustomer' }">
+				 	       <c:out value="${retMessage}"></c:out> 
+				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers or click <a href="addClient.html" class="confirmtions"><b> here</b></a> to add another customer
+				 	    </c:when>
+				 	    </c:choose>
+				 	    <!-- update Customer -->
+				 	  <c:choose>
+				 	    <c:when test="${updateCustomer =='updateCustomer' }">
+				 	       <c:out value="${retMessage}"></c:out> 
+				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a>
+				 	    </c:when>
+				 	    </c:choose>
+				 	    
 				 	    </div>
 				 	</c:if>
 				 	
@@ -126,6 +141,20 @@ a.confirmtions {
                            <c:out value="${retErrorMessage}"></c:out>
                                   Click <a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view employees list.    
                            </c:when>
+				 	    </c:choose>
+				 	   <!--  Add Customer -->
+				 	    <c:choose>
+				 	    <c:when test="${addCustomer =='addCustomer' }">
+				 	       <c:out value="${retErrorMessage}"></c:out> 
+				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers or click <a href="addClient.html" class="confirmtions"><b> here</b></a> to add another customer
+				 	    </c:when>
+				 	    </c:choose>
+				 	     <!-- update Customer -->
+				 	  <c:choose>
+				 	    <c:when test="${updateCustomer =='updateCustomer' }">
+				 	       <c:out value="${retErrorMessage}"></c:out> 
+				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a>
+				 	    </c:when>
 				 	    </c:choose>
 				 	    </div>
 				 	</c:if>

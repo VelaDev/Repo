@@ -277,8 +277,8 @@ public class EmployeeController {
 	@RequestMapping(value="addEmployee",method=RequestMethod.POST)
 	public ModelAndView addEmployee(@ModelAttribute("addEmployee")Employee employee)
 	{
-		
-		session.setAttribute("addEmployee", "addEmployee");
+		String actionTakenAddEmployee = "addEmployee";
+		session.setAttribute("addEmployee", actionTakenAddEmployee);
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -290,7 +290,7 @@ public class EmployeeController {
 			}else{
 				model.addObject("retMessage", retMessage);
 			}
-			
+			model.addObject("actionTakenAddEmployee", actionTakenAddEmployee);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("confirmations");
 		}

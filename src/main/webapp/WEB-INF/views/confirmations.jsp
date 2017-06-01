@@ -43,14 +43,14 @@
 							<div class="alert alert-info" role="alert">
 								<c:out value="${ retMessage}">
 								</c:out>click here to go<a href="home.html"> Home</a> or add another <a
-									href="registerEmployee.html">Employee</a>
+									href="">Employee</a>
 							</div>
 						</c:if>
 						<c:if test="${not empty retErrorMessage }">
 							<div class="alert alert-danger" role="alert">
 								<c:out value="${ retErrorMessage}">
 								</c:out>
-								Click <a href="registerEmployee.html">Here</a> add employee with different email address
+								Click <a href="">Here</a> add employee with different email address
 							</div>
 						</c:if>
 				 	 </c:when>

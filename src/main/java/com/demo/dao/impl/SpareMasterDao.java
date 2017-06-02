@@ -98,10 +98,10 @@ public class SpareMasterDao implements SpareMasterDaoInt{
 			}else{
 				sessionFactory.getCurrentSession().save(spareMaster);
 			
-				retMessage = "Part "+ spareMaster.getPartNumber()+" successfully added";
+				retMessage = "Part "+ spareMaster.getPartNumber()+" successfully added.";
 			}
 		}catch(Exception e){
-			retMessage = e.getMessage();
+			retMessage = e.getMessage()+".";
 		}
 		return retMessage;
 	}

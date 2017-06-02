@@ -52,7 +52,7 @@ public class HOStockDao implements HOStockDaoInt {
 				hOStock.setQuantity(updateQuantity);
 				sessionFactory.getCurrentSession().update(hOStock);
 				retMessage = "Quantity for Part No " + hOStock.getPartNumber()
-						+ " updated";
+						+ " updated.";
 
 			} else {
 				spareMaster = spareMasterDaoInt.getSpareMaster(spareParts
@@ -67,7 +67,7 @@ public class HOStockDao implements HOStockDaoInt {
 					sessionFactory.getCurrentSession().save(spareParts);
 					retMessage = "Part Number : " + " "
 							+ spareParts.getPartNumber()
-							+ " successfully added";
+							+ " successfully added.";
 				} else {
 
 					spareMaster = new SpareMaster();
@@ -93,12 +93,12 @@ public class HOStockDao implements HOStockDaoInt {
 					retMessage = "Part Number : "
 							+ " "
 							+ spareParts.getPartNumber()
-							+ " successfully added";
+							+ " successfully added"+".";
 				}
 			}
 		} catch (Exception e) {
 			retMessage = " Part Number : " + " " + spareParts.getPartNumber()
-					+ " not added " + e.getMessage();
+					+ " not added " + e.getMessage()+".";
 		}
 		return retMessage;
 	}

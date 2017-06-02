@@ -64,7 +64,7 @@ public class LeaveDao implements LeaveDaoInt {
 
 			emp = employeeDaoInt.getEmployeeByEmpNum(userName);
 			if (emp.getLeaveStatus().equalsIgnoreCase("On Leave")) {
-				retMessage = "Kindly note that "+emp.getFirstName() +" "+emp.getLastName()+" on leave";
+				retMessage = "Kindly note that "+emp.getFirstName() +" "+emp.getLastName()+" on leave.";
 			} else  {
 				globalLeave.setStatus("On Leave");
 
@@ -81,11 +81,11 @@ public class LeaveDao implements LeaveDaoInt {
 				emp.setLeaveStatus("On Leave");
 				sessionFactory.getCurrentSession().update(emp);
 
-				retMessage = "Leave successfully submited";
+				retMessage = "Leave successfully submited.";
 			}
 
 		} catch (Exception e) {
-			retMessage = "Leave not submitted " + e.getMessage();
+			retMessage = "Leave not submitted " + e.getMessage()+".";
 		}
 		return retMessage;
 	}
@@ -112,7 +112,7 @@ public class LeaveDao implements LeaveDaoInt {
 			sessionFactory.getCurrentSession().update(globalLeave);
 			retMessage = "Leave sucessfully updated";
 		} catch (Exception e) {
-			retMessage = "Leave was not updated" + e.getMessage();
+			retMessage = "Leave not updated " + e.getMessage()+".";
 		}
 		return retMessage;
 	}
@@ -254,7 +254,7 @@ public class LeaveDao implements LeaveDaoInt {
 				// Employee emp =
 				// employeeDaoInt.getEmployeeByEmpNum(technicianEmail);
 
-				retMessage = "Kindly note that technician is on leave";
+				retMessage = "Kindly note that technician is on leave.";
 			}
 		} catch (Exception exception) {
 			exception.getMessage();

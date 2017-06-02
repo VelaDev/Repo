@@ -38,7 +38,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<form action="searchSerialNumberUserLogticket" method="post" id="searchBylogTicket">
+						<form action="searchSerialNumberLogtickr" method="post" id="searchBylogTicket">
 							<div class="row">
 								<!-- Text input Search-->
 								<div class="form-group">
@@ -50,7 +50,7 @@
 												name="serialNumber" list="serialNumbers"
 												class="form-control" type="text"
 												onkeydown="upperCaseF(this)"
-												placeholder='Search By Serial Number'>
+												placeholder='Search By Serial Number'/>
 										</div>
 									</div>
 									<!-- Iterating over the list sent from Controller -->
@@ -69,7 +69,7 @@
 						</form>
 						<!--Search-->
 						
-						<form:form method="post" class="well form-horizontal" action="UserlogTicket" modelAttribute="UserlogTicket"
+						<form:form method="post" class="well form-horizontal" action="logTicketAdmin" modelAttribute="logTicketAdmin"
 							id="logTicket">
 							
 							<!--First Column-->
@@ -157,7 +157,8 @@
 											</select>
 										</div>
 									</div>
-								</div>							
+								</div>
+																
 								
 								<!-- Text input Contact Person First Name-->
 								<div class="form-group">
@@ -204,8 +205,7 @@
 
 							<!--Second column-->
 							<div class="col-sm-6">
-								
-								
+														
 								
 								<!-- Text area -->
 								<div class="form-group">
@@ -248,7 +248,7 @@
 								</div>
 								<!-- Text input Contact Person Tellphone Number-->
 								<div class="form-group">
-									<label class="col-md-3 control-label">Tellphone No </label>
+									<label class="col-md-3 control-label">Telephone No </label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
@@ -299,37 +299,6 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	
 	<!-- /Script -->
-	
-	
-		<!-- Search By Serial -->
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchBylogTicket')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													serialNumber : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-															notEmpty : {
-																message : 'Serial number is required to search and cannot be empty'
-															}
-														}
-													},
-												}
-											});
-						});
-	</script>
-	
 	<!-- Validate LogTicket -->
 	<script>
 		$(document)
@@ -466,6 +435,35 @@
 						});
 	</script>
 
+	<!-- Search By Serial -->
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$('#searchBylogTicket')
+									.bootstrapValidator(
+											{
+												feedbackIcons : {
+													valid : 'glyphicon glyphicon-ok',
+													invalid : 'glyphicon glyphicon-remove',
+													validating : 'glyphicon glyphicon-refresh'
+												},
+												fields : {
+													serialNumber : {
+														validators : {
+															stringLength : {
+																min : 3,
+															},
+															notEmpty : {
+																message : 'Serial number is required to search and cannot be empty'
+															}
+														}
+													},
+												}
+											});
+						});
+	</script>
+
 
 	<!-- Make all Serials numbers UpperCase  -->
 	<script type="text/javascript">
@@ -523,6 +521,5 @@
 						true);
 		request.send();
 	</script>
-
 </body>
 </html>

@@ -51,6 +51,13 @@ a.confirmtions {
 					 	        Click<a href="order.html" class="confirmtions"><b> here</b></a> to place oder again.	                            
 					 	    </c:when>
 				 	    	</c:choose>
+				 	    	<!-- Receive Order -->
+				 	    		<c:choose>
+					 	    <c:when test="${receiveOrder =='receiveOrder' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home	                            
+					 	    </c:when>
+				 	    	</c:choose>
 				 	    </div>
 				 	</c:if><!-- Successful message -->
 				 	

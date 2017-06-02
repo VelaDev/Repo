@@ -472,6 +472,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "shipmentReceived")
 	public ModelAndView shipmentReceived(@RequestParam("recordID") int recordID) {
+		String receiveOrder = "receiveOrder";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -481,7 +482,8 @@ public class OrdersController {
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 
-			model.setViewName("viewApprovedOrders");
+			model.addObject("receiveOrder", receiveOrder);
+			model.setViewName("confirmation");
 		} else {
 			model.setViewName("login");
 		}

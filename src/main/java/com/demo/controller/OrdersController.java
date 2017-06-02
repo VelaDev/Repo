@@ -247,6 +247,7 @@ public class OrdersController {
 	public ModelAndView approveOrderItems(
 			@RequestParam("recordID") Integer recordID) {
 		model = new ModelAndView();
+		String approverOrders ="approverOrders";
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -255,7 +256,9 @@ public class OrdersController {
 					ordersServiceInt.approveOrder(recordID));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("approveOrder");
+			model.addObject("approverOrders", approverOrders);
+			model.setViewName("confirmations");
+			//model.setViewName("approveOrder");
 		} else {
 			model.setViewName("login");
 		}

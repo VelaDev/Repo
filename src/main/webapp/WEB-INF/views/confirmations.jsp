@@ -121,9 +121,18 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${orders =='orders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="placeOrderForTechnician.html" class="confirmtions"><b> here</b></a> to place oder again.	                            
+					 	        Click<a href="placeOrderForTechnician.html" class="confirmtions"><b> here</b></a> to place order again.	                            
 					 	    </c:when>
-				 	    </c:choose>	
+				 	    </c:choose>
+				 	    
+				 	     <!-- Approver Orders -->
+				 	  	<c:choose>
+					 	    <c:when test="${approverOrders =='approverOrders' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="approvedOrders.html" class="confirmtions"><b> here</b></a> view list of approved order.	                            
+					 	    </c:when>
+				 	    </c:choose>
+				 	    
 				 	    
 				 	    </div>
 				 	</c:if><!-- Successful message -->
@@ -197,11 +206,20 @@ a.confirmtions {
 				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers
 				 	    </c:when>
 				 	    </c:choose>
-				 	     <!-- Place an Orders -->
+				 	     	<!-- Place an Orders -->
 				 	  		<c:choose>
 				 	    		<c:when test="${orders =='orders' }">
 					 	       		<c:out value="${retErrorMessage}"></c:out> 
-					 	        	Click<a href="placeOrderForTechnician.html" class="confirmtions"> <b> here</b></a> to try place oder again. 
+					 	        	Click<a href="placeOrderForTechnician.html" class="confirmtions"> <b> here</b></a> to try place order again. 
+	                            	
+					 	    	</c:when>
+					 	    </c:choose>
+					 	    
+					 	    <!-- Approver Orders-->
+				 	  		<c:choose>
+				 	    		<c:when test="${approverOrders =='approverOrders' }">
+					 	       		<c:out value="${retErrorMessage}"></c:out> 
+					 	        	Click<a href="pendingOrders.html" class="confirmtions"> <b> here</b></a> to approve other orders. 
 	                            	
 					 	    	</c:when>
 					 	    </c:choose>

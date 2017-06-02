@@ -149,8 +149,7 @@ a.confirmtions {
 					 	    <c:when test="${addSpares =='addSpares' }">
 					 	       <c:out value="${retMessage}"></c:out> Click<a href="addSpares.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO.	                            
 					 	    </c:when>
-				 	    </c:choose>
-				 	    
+				 	    </c:choose>				 	    
 				 	    <!-- Receive Spares -->
 				 	  	<c:choose>
 					 	    <c:when test="${receiveSpareParts =='receiveSpareParts' }">

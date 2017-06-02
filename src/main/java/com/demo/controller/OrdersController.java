@@ -97,6 +97,7 @@ public class OrdersController {
 	@RequestMapping(value = "makeOrder", method = RequestMethod.POST)
 	public ModelAndView makeOrder(@ModelAttribute("makeOrder") OrdersBean order) {
 		model = new ModelAndView();
+		String orders ="orders";
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			retMessage = ordersServiceInt.prepareOrderMaking(order);
@@ -110,13 +111,17 @@ public class OrdersController {
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager")	|| userName.getRole().equalsIgnoreCase("Admin")) {
-
-				model.setViewName("placeOrderForTechnician");
+				model.addObject("orders", orders);
+				model.setViewName("confirmations");
+				//model.setViewName("placeOrderForTechnician");
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
-
-				model.setViewName("order");
+				model.addObject("orders", orders);
+				model.setViewName("confirmation");				
+				//model.setViewName("order");
 			}else{
-				model.setViewName("userPlaceOrder");
+				model.setViewName("confirm");
+				model.addObject("orders", orders);
+				//model.setViewName("userPlaceOrder");
 			}
 		
 

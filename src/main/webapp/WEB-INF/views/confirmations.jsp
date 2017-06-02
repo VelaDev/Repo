@@ -115,7 +115,15 @@ a.confirmtions {
 						 	       <c:out value="${retMessage}"></c:out> 
 						 	       . Click<a href="logTicket.html" class="confirmtions"><b> here</b></a> to log another ticket.
 							   </c:when>
-						 </c:choose>	
+						 </c:choose>
+						 
+						 <!-- Place an Orders -->
+				 	  	<c:choose>
+					 	    <c:when test="${orders =='orders' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="placeOrderForTechnician.html" class="confirmtions"><b> here</b></a> to place oder again.	                            
+					 	    </c:when>
+				 	    </c:choose>	
 				 	    
 				 	    </div>
 				 	</c:if>
@@ -189,8 +197,19 @@ a.confirmtions {
 				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers
 				 	    </c:when>
 				 	    </c:choose>
+				 	     <!-- Place an Orders -->
+				 	  		<c:choose>
+				 	    		<c:when test="${orders =='orders' }">
+					 	       		<c:out value="${retErrorMessage}"></c:out> 
+					 	        	Click<a href="placeOrderForTechnician.html" class="confirmtions"> <b> here</b></a> to try place oder again. 
+	                            	
+					 	    	</c:when>
+					 	    </c:choose>
+				 	    
 				 	    </div>
+				 	    
 				 	</c:if>
+				 	
 					<!-- /tab-content -->
 				</div>
 				<!-- /panel body -->

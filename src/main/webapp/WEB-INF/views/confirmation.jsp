@@ -17,14 +17,20 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
+<style type="text/css">
 
+a.confirmtions {
+    color: blue;
+}
+
+</style>
 </head>
 <body>
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 			
-			<div class="panel panel-success">
+			<div class="panel panel-success" style="margin-left:25%; margin-right:25%;">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
@@ -34,6 +40,36 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
+					
+					<!-- Successful message -->
+				 	<c:if test="${not empty retMessage }">
+				 		<div class="alert alert-info" role="alert">
+				 	 	<!-- Place an Orders -->
+				 	  	<c:choose>
+					 	    <c:when test="${orders =='orders' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="order.html" class="confirmtions"><b> here</b></a> to place oder again.	                            
+					 	    </c:when>
+				 	    	</c:choose>
+				 	    </div>
+				 	</c:if>
+				 	
+				 	<!-- On failure returned message -->
+				 	<c:if test="${not empty retErrorMessage}">
+				 	    
+				 	    <div class="alert alert-danger" role="alert">
+				 	   		 <!-- Place an Orders -->
+				 	  		<c:choose>
+				 	    		<c:when test="${orders =='orders' }">
+					 	       		<c:out value="${retErrorMessage}"></c:out> 
+					 	        	Click<a href="order.html" class="confirmtions"> <b> here</b></a> to try place oder again. 
+	                            	
+					 	    	</c:when>
+					 	    </c:choose>
+				 	  
+				 	    </div>
+				 	</c:if>
+					
 					
 					</div>
 					<!-- /tab-content -->

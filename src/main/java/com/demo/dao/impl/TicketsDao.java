@@ -311,9 +311,9 @@ public class TicketsDao implements TicketsDaoInt {
 					retMessage = "Ticket "+ ticket.getTicketNumber()+ " esalated to Manager "+ employee.getFirstName() +" "+employee.getLastName();
 					
 				}else if(status.equalsIgnoreCase("Resolved")) {
+					
 					ticket.setStatus("Resolved");
 					ticket.setUsedPartNumbers(tickets.getUsedPartNumbers());
-					ticket.setActionTaken(tickets.getActionTaken());
 					ticket.setDateResolved(date1);
 					ticket.setComments(tickets.getComments());
 					device = deviceDaoInt.getDeviceBySerialNumbuer(ticket.getDevice().getSerialNumber());
@@ -321,20 +321,23 @@ public class TicketsDao implements TicketsDaoInt {
 					device.setColourReading(tickets.getColourReading());
 					System.out.println("Device "+ device.getSerialNumber()+" Ticket "+ ticket.getTicketNumber()+ " and Order "+ order.getOrderNum());
 					
-					if(tickets.getUsedPartNumbers().length()>4){
-						retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),ticket.getDevice().getCustomerDevice().getCustomerName(), tickets.getGroupboot());
-						
-						if(retMessage.equalsIgnoreCase("OK")){
-							sessionFactory.getCurrentSession().update(device);
-							sessionFactory.getCurrentSession().saveOrUpdate(ticket);
-							historyDaoInt.insertTicketHistory(ticket);
+					if(tickets.getUsedPartNumbers()!=null){
+						if(ticket.getUsedPartNumbers().length()>4){
+							ticket.setActionTaken(tickets.getActionTaken());
+							retMessage = subractUsedSpares(tickets.getUsedPartNumbers(),ticket.getDevice().getCustomerDevice().getCustomerName(), tickets.getGroupboot());
 							
-							retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+							if(retMessage.equalsIgnoreCase("OK")){
+								sessionFactory.getCurrentSession().update(device);
+								sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+								historyDaoInt.insertTicketHistory(ticket);
+								
+								retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+							}
 						}
 						
+					}else {
 						
-					}else{
-						
+						ticket.setActionTaken(tickets.getActionTaken());
 						sessionFactory.getCurrentSession().update(device);
 						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 						

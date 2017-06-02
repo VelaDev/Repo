@@ -129,7 +129,14 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${approverOrders =='approverOrders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="approvedOrders.html" class="confirmtions"><b> here</b></a> view list of approved order.	                            
+					 	        Click<a href="approvedOrders.html" class="confirmtions"><b> here</b></a> to view list of approved order.	                            
+					 	    </c:when>
+				 	    </c:choose>
+				 	    <!-- Approver Orders -->
+				 	  	<c:choose>
+					 	    <c:when test="${shipOrder =='shipOrder' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="approvedOrders.html" class="confirmtions"><b> here</b></a> to view list of approved order.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    

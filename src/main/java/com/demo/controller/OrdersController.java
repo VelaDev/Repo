@@ -434,6 +434,8 @@ public class OrdersController {
 	@RequestMapping(value = "shipment")
 	public ModelAndView shipment(@RequestParam("recordID") int recordID) {
 		model = new ModelAndView();
+		String shipOrder ="shipOrder";
+		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			
@@ -441,7 +443,8 @@ public class OrdersController {
 			model.addObject("retMessage",ordersServiceInt.approveShipment(recordID));
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("approvedOrders");
+			model.addObject("shipOrder", shipOrder);
+			model.setViewName("confirmations");
 		} else {
 			retPage = "redirect:login";
 		}

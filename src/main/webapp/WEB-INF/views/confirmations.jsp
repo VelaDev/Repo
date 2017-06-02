@@ -126,7 +126,7 @@ a.confirmtions {
 				 	    </c:choose>	
 				 	    
 				 	    </div>
-				 	</c:if>
+				 	</c:if><!-- Successful message -->
 				 	
 				 					 	
 				 	<!-- On failure returned message -->
@@ -208,8 +208,9 @@ a.confirmtions {
 				 	    
 				 	    </div>
 				 	    
-				 	</c:if>
+				 	</c:if><!-- //On failure returned message -->
 				 	
+				 	</div>
 					<!-- /tab-content -->
 				</div>
 				<!-- /panel body -->

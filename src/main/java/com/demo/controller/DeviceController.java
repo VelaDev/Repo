@@ -260,63 +260,44 @@ public class DeviceController {
 		}
 		return model;
 	}
-	@RequestMapping(value="searchSerialNumberLogtickr")
-	public ModelAndView searchProductForLogTicket(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
-		
-		if (userName.getRole().equalsIgnoreCase("User")){
-			model.setViewName("ticket");
-		}
-		if(device != null){
+	// search Serial Number to log ticket as user and admin/manager
+	@RequestMapping(value = { "searchSerialNumberLogtickr","searchSerialNumberUserLogticket" })
+		public ModelAndView searchProductForLogTicket(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
 			
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("product", device);
+			model = new ModelAndView();
+			//String tickets ="tickets";		
+			userName = (Employee) session.getAttribute("loggedInUser");
+
+			if (userName != null) {
+
+				device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
+
+				if (device != null) {
+
+					model.addObject("technicians", employeeServiceInt.getAllTechnicians());
+					model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+					model.addObject("product", device);
+				}else {
+					
+					model.addObject("message", "Device does not exist.");				
+				}
+				if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+					model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+					//model.addObject("tickets", tickets);
+					//model.setViewName("confirmations");
+					model.setViewName("logTicket");
+					
+				} else if (userName.getRole().equalsIgnoreCase("User")) {
+					//model.addObject("tickets", tickets);
+					//model.setViewName("confirm");
+					model.setViewName("ticket");
+				}
+			}else{
+				model.setViewName("login");
+			}
+			return model;
 		}
-		else{
-			model.addObject("message", "Device does not exist.");
-		}
-		
-		model.setViewName("logTicket");
-		}
-		else{
-			model.setViewName("login");
-		}
-		
-		return model;
-	}
-	
-	@RequestMapping(value="searchSerialNumberUserLogticket")
-	public ModelAndView searchProductForLogTicketForUser(@RequestParam("serialNumber") String serialNumber,@ModelAttribute Device device) {
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-			
-			device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
-		
-		if (userName.getRole().equalsIgnoreCase("User")){
-			model.setViewName("ticket");
-		}
-		if(device != null){
-			
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-			model.addObject("product", device);
-		}
-		else{
-			model.addObject("message", "Device does not exist.");
-		}
-		
-		model.setViewName("ticket");
-		}
-		else{
-			model.setViewName("login");
-		}
-		
-		return model;
-	}
+
 	
 	@RequestMapping(value="removeAccessory")
 	public ModelAndView removeAccessory(@RequestParam("serial")String serial)

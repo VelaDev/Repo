@@ -23,19 +23,8 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
-					</c:out>
-				</div>
-			</c:if>
-			<c:if test="${not empty retErrorMessage }">
-				<div class="alert alert-danger" role="alert">
-					<c:out value="${ retErrorMessage}">
-					</c:out>
-				</div>
-			</c:if>
-			<div class="panel panel-success">
+			
+			<div class="panel panel-success" style="margin-left:25%; margin-right:25%;">
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
@@ -44,7 +33,26 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<div class="tab-content"></div>
+					<div class="tab-content">
+							
+						<!-- Successful message -->
+					 	<c:if test="${not empty retMessage }">
+					 	
+						 	<div class="alert alert-info" role="alert">
+						 	
+						 	 	<!-- Log a Ticket -->
+							 	<c:choose>
+							 	   <c:when test="${tickets =='tickets' }">
+							 	       <c:out value="${retMessage}"></c:out> 
+							 	       . Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another ticket.
+							 	   </c:when>
+							 	</c:choose>	
+						 					 	     
+					 	    </div>
+					 	    
+					 	</c:if>	
+					
+					</div>
 					<!-- /tab-content -->
 
 				</div>

@@ -103,16 +103,27 @@ public class TicketController {
 		
 	}	
 	
-	@RequestMapping(value="logTicket",method=RequestMethod.POST)
-	public ModelAndView logTicket(@ModelAttribute("logTicket")TicketsBean logTickets){
-	  String retPage = null;
+	@RequestMapping(value="logTicketAdmin",method=RequestMethod.POST)
+	public ModelAndView logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
+	
 		model = new ModelAndView();
+		String tickets = "tickets";
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-		   retMessage = logTicketService.logTicket(logTickets);
-		   model.addObject("retMessage", retMessage);
-		   model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		   model.setViewName("ticket");
+			retMessage = logTicketService.logTicket(logTickets);
+			
+			if(retMessage.startsWith("K")){
+			 String	message =retMessage;
+			 model.addObject("message",message );
+			}else{
+				model.addObject("retMessage",retMessage );
+				
+			}
+			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
+			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+			 model.addObject(tickets, "tickets");
+			 model.setViewName("confirmations");
+		    //model.setViewName("logTicket");
 		}
 		else{
 			
@@ -122,6 +133,35 @@ public class TicketController {
 		
 	}
 
+	@RequestMapping(value="UserlogTicket",method=RequestMethod.POST)
+	public ModelAndView userLogTicket(@ModelAttribute("UserlogTicket")TicketsBean logTickets){
+	
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		String tickets ="tickets";	
+		if(userName !=null){
+			retMessage = logTicketService.logTicket(logTickets);
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+			
+			if(retMessage.startsWith("C")){
+			 String	message =retMessage;
+			 model.addObject("message",message );
+			}else{
+				model.addObject("retMessage",retMessage );
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+				model.addObject("tickets",tickets);
+				 
+			}
+			model.setViewName("confirm");
+		   //model.setViewName("ticket");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+		
+	}
+			
 	@RequestMapping(value = {"monitoringTickets"})
     public ModelAndView displayLoggedTickets() {
 		
@@ -340,59 +380,7 @@ public class TicketController {
 		return model;
 	}
 	
-	@RequestMapping(value="logTicketAdmin",method=RequestMethod.POST)
-	public ModelAndView logTicketAdmin(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
-	String retPage = null;
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-			retMessage = logTicketService.logTicket(logTickets);
-			
-			if(retMessage.startsWith("K")){
-			 String	message =retMessage;
-			 model.addObject("message",message );
-			}else{
-				model.addObject("retMessage",retMessage );
-				
-			}
-			 model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));	 
-			 model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-			
-		    model.setViewName("logTicket");
-		}
-		else{
-			
-			model.setViewName("login");
-		}
-		return model;
-		
-	}
-
-	@RequestMapping(value="UserlogTicket",method=RequestMethod.POST)
-	public ModelAndView userLogTicket(@ModelAttribute("logTicketAdmin")TicketsBean logTickets){
 	
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-			retMessage = logTicketService.logTicket(logTickets);
-			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-			
-			if(retMessage.startsWith("C")){
-			 String	message =retMessage;
-			 model.addObject("message",message );
-			}else{
-				model.addObject("retMessage",retMessage );
-				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-				
-			}
-		   model.setViewName("ticket");
-		}
-		else{
-			model.setViewName("login");
-		}
-		return model;
-		
-	}
 
 	@RequestMapping(value="userTicket",method=RequestMethod.GET)
 	public ModelAndView loadUserTicket(Integer offset, Integer maxResults ) {

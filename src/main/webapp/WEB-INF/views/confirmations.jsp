@@ -109,14 +109,19 @@ a.confirmtions {
 				 	    </c:when>
 				 	    </c:choose>
 				 	    
+				 	    <!-- Log a Ticket -->
+						 <c:choose>
+						 	   <c:when test="${tickets =='tickets' }">
+						 	       <c:out value="${retMessage}"></c:out> 
+						 	       . Click<a href="logTicket.html" class="confirmtions"><b> here</b></a> to log another ticket.
+							   </c:when>
+						 </c:choose>	
+				 	    
 				 	    </div>
 				 	</c:if>
 				 	
-				 	
-				 	
-				 	
-				 	
-				 	
+				 					 	
+				 	<!-- On failure returned message -->
 				 	<c:if test="${not empty retErrorMessage}">
 				 	    <!-- Add employee -->
 				 	    <div class="alert alert-danger" role="alert">

@@ -52,7 +52,7 @@ a.confirmtions {
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    </div>
-				 	</c:if>
+				 	</c:if><!-- Successful message -->
 				 	
 				 	<!-- On failure returned message -->
 				 	<c:if test="${not empty retErrorMessage}">
@@ -68,7 +68,7 @@ a.confirmtions {
 					 	    </c:choose>
 				 	  
 				 	    </div>
-				 	</c:if>
+				 	</c:if><!-- //On failure returned message -->
 					
 					
 					</div>

@@ -550,6 +550,7 @@ public class OrdersController {
 	@RequestMapping(value = "declinedOrder", method = RequestMethod.POST)
 	public ModelAndView declineOrders(
 			@ModelAttribute("declinedOrder") OrdersBean order) {
+		String declineOrder = "declineOrder";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -558,7 +559,8 @@ public class OrdersController {
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("declineOrder");
+			model.addObject("declineOrder", declineOrder);
+			model.setViewName("conformations");
 		} else {
 			model.setViewName("login");
 		}

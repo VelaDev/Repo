@@ -65,17 +65,17 @@ public class EmployeeDao implements EmployeeDaoInt{
 			      
 			      
 			      JavaMail.sendPasswordToEmployee(employee,password);
-			      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "is successfully added";
+			      retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "successfully added.";
 			
 			}
 			else{
-				retMessage ="Email " +employee.getEmail()+" already in use. Please use different email";
+				retMessage ="Email " +employee.getEmail()+" already in use. Please use different email.";
 			}
 			
 			  }
 		catch(Exception e)
 		{
-			retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + " not added\n" + e.getMessage();
+			retMessage = "Employee"+ " "+ employee.getFirstName()+" "+ employee.getLastName()+ " " + "not added\n" + e.getMessage()+".";
 		}
 		return retMessage;
 	}
@@ -154,7 +154,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 			tempEmp.setRole(updateEmployee.getRole());
 			tempEmp.setTitle(updateEmployee.getTitle());
 			  sessionFactory.getCurrentSession().update(tempEmp);
-		      retMessage = "Employee"+ " "+ tempEmp.getFirstName()+" "+ tempEmp.getLastName()+ " " + " successfully updated";
+		      retMessage = "Employee"+ " "+ tempEmp.getFirstName()+" "+ tempEmp.getLastName()+ " " + " successfully updated.";
 		}
 		catch(Exception e){
 			retMessage = "Employee"+ " "+ tempEmp.getFirstName()+" "+ tempEmp.getLastName()+ " " + " not updated\n" + e.getMessage();
@@ -212,7 +212,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 				 
 			 }
 		}catch(Exception e){
-			retMessage = "Password not changed "+ e.getMessage();
+			retMessage = "Password not changed "+ e.getMessage()+".";
 		}
 		return retMessage;
 	}
@@ -247,7 +247,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 			}
 			
 		}catch (Exception e) {
-			retMessage = "Password not reseted "+ e.getMessage();
+			retMessage = "Password not reseted "+ e.getMessage()+".";
 		}
 		return retMessage;
 	}
@@ -268,15 +268,15 @@ public class EmployeeDao implements EmployeeDaoInt{
 			if(emp != null && emp.getStatus().equalsIgnoreCase("ACTIVE")){
 				emp.setStatus("INACTIVE");
 				localRetMessage = updateActivateDeactivate(emp);
-				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " deactivated" ;
+				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " deactivated." ;
 			}
 			else {
 				emp.setStatus("ACTIVE");
 				localRetMessage = updateActivateDeactivate(emp);
-				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " activated" ;
+				retMessage ="Employee "+ " "+ emp.getFirstName()+" "+ emp.getLastName()+ " activated." ;
 			}
 		}catch(Exception e){
-			retMessage = "Employee "+ emp.getFirstName()+" "+ emp.getLastName()+" "+ " not deactivated";
+			retMessage = "Employee "+ emp.getFirstName()+" "+ emp.getLastName()+" "+ " not deactivated.";
 		}
 		
 		return retMessage;

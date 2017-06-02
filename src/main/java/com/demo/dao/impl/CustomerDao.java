@@ -103,14 +103,14 @@ public class CustomerDao implements CustomerDaoInt {
 				sessionFactory.getCurrentSession().save(tempCustomer);
 				customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
 				retMessage = "Customer " + tempCustomer.getCustomerName() + " "
-						+ "successfully added";
+						+ "successfully added.";
 			} else {
 				retMessage = "Customer " + customer.getCustomerName() + " "
-						+ "already exist. Please add new customer with a different name";
+						+ "already exist. Please add new customer with a different name.";
 			}
 		} catch (Exception e) {
 			retMessage = "Customer " + customer.getCustomerName()
-					+ " not added\n" + e.getMessage();
+					+ " not added\n" + e.getMessage()+".";
 		}
 
 		return retMessage;
@@ -168,12 +168,12 @@ public class CustomerDao implements CustomerDaoInt {
 
 			sessionFactory.getCurrentSession().update(tempCustomer);
 			retMessage = "Customer " + tempCustomer.getCustomerName()
-					+ " successfully updated";
+					+ " successfully updated.";
 
 			customerContactDetailsDaoIntDaoInt.saveContactDetails(list);
 		} catch (Exception e) {
 			retMessage = "Customer " + customer.getCustomerName()
-					+ " not updated\n" + e.getMessage();
+					+ " not updated\n" + e.getMessage()+".";
 		}
 		return retMessage;
 	}

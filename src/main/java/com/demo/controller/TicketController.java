@@ -86,12 +86,13 @@ public class TicketController {
 		String retPage = null;
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			System.out.println("We here");
-			model.addObject("ticket", new TicketsBean());
+			model.addObject("logTicket", new TicketsBean());
 			getSerialNumbers = deviceServiceInt.getSerials();
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("serialNumbers",getSerialNumbers);
 			model.addObject("onLeaveTechnicians",leaveInt.techniciansOnLeave());
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			/*retPage = "redirect:ticket";*/
 			model.setViewName("ticket");
@@ -309,7 +310,6 @@ public class TicketController {
 		model = new ModelAndView("logTicket");
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			System.out.println("We here");
 			model.addObject("logTicket", new TicketsBean());
 			getSerialNumbers = deviceServiceInt.getSerials();
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());

@@ -98,10 +98,10 @@ public class OrderDao implements OrdersDaoInt {
 			
 			historyDaoInt.insetOrderHistory(orderHeader);
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
-					+ "placed";
+					+ "placed.";
 		} catch (Exception e) {
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
-					+ "not placed " + e.getMessage();
+					+ "not placed " + e.getMessage()+".";
 		}
 		return retMessage;
 	}
@@ -130,7 +130,7 @@ public class OrderDao implements OrdersDaoInt {
 				sessionFactory.getCurrentSession().update(cusOrder);
 				historyDaoInt.insetOrderHistory(cusOrder);
 				retMessage = "Order " + " " + cusOrder.getOrderNum() + " "
-						+ "is approved";
+						+ "is approved.";
 			} else {
 				retMessage = "Order " + " " + n + cusOrder.getOrderNum() + " "
 						+ "not approved because it"
@@ -139,7 +139,7 @@ public class OrderDao implements OrdersDaoInt {
 
 		} catch (Exception e) {
 			retMessage = "Order " + " " + orders.getOrderNum() + " "
-					+ "not updated " + e.getMessage();
+					+ "not updated " + e.getMessage()+".";
 		}
 		return retMessage;
 	}
@@ -327,7 +327,7 @@ public class OrderDao implements OrdersDaoInt {
 			retMessage = makeOrder(cusOrder);
 			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
 		} catch (Exception ex) {
-			retMessage = "Order cannot be proccessed";
+			retMessage = "Order cannot be proccessed.";
 		}
 		return retMessage;
 	}
@@ -385,13 +385,13 @@ public class OrderDao implements OrdersDaoInt {
 				emp = employeeDaoInt.getEmployeeByEmpNum(cusOrder.getApprover());
 				JavaMail.sendEmailForOrderApproved(cusOrder.getEmployee().getEmail(), cusOrder.getApprover(), emp.getFirstName(), cusOrder.getEmployee().getFirstName(), cusOrder);
 				historyDaoInt.insetOrderHistory(cusOrder);
-				retMessage = "Order " + cusOrder.getOrderNum() + " approved";
+				retMessage = "Order " + cusOrder.getOrderNum() + " approved.";
 			} else {
-				retMessage = "Order cannot be approved because ordered items are more that available items";
+				retMessage = "Order cannot be approved because ordered items are more that available items.";
 			}
 
 		} catch (Exception e) {
-			retMessage = "Order " + cusOrder.getOrderNum() + " not approved";
+			retMessage = "Order " + cusOrder.getOrderNum() + " not approved.";
 		}
 		return retMessage;
 	}
@@ -453,7 +453,7 @@ public class OrderDao implements OrdersDaoInt {
 			sessionFactory.getCurrentSession().update(orderHeader);
 			JavaMail.sendEmailForShipment(orderHeader.getApprover(),orderHeader);
 			historyDaoInt.insetOrderHistory(orderHeader);
-			retMessage = "Order Number "+ orderHeader.getOrderNum()+" is shipped to "+ orderHeader.getEmployee().getFirstName()+ " "+orderHeader.getEmployee().getLastName();
+			retMessage = "Order Number "+ orderHeader.getOrderNum()+" shipped to "+ orderHeader.getEmployee().getFirstName()+ " "+orderHeader.getEmployee().getLastName()+".";
 		}
 		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
 			orderHeader.setStatus("Received");
@@ -475,12 +475,12 @@ public class OrderDao implements OrdersDaoInt {
 			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				siteStocDaoInt.saveSiteStock(orderDetailList);
-				retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available for site "+ orderHeader.getCustomer().getCustomerName();
+				retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available for site "+ orderHeader.getCustomer().getCustomerName()+".";
 			}
 			else{
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				 bootStockDaoInt.saveBootStock(orderDetailList);;
-				 retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available in boot stock for "+ orderHeader.getEmployee().getFirstName() +" "+ orderHeader.getEmployee().getLastName();
+				 retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available in boot stock for "+ orderHeader.getEmployee().getFirstName() +" "+ orderHeader.getEmployee().getLastName()+".";
 			}
 		}
 		return retMessage;

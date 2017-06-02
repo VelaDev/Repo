@@ -74,12 +74,14 @@ public class SparePartsController {
 	@RequestMapping(value="addSparesParts", method=RequestMethod.POST)
 	public ModelAndView SaveSpareParts(@ModelAttribute("addSparesParts")HOStock spareParts){
 		model = new ModelAndView();
+		String addSpares = "addSpares";
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			
 			retMessage = hOStockServeceInt.saveSpareparts(spareParts);			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("addSpares");
+			model.addObject("addSpares", addSpares);
+			model.setViewName("confirmations");
 		}
 		else{
 			model.setViewName("login");
@@ -107,6 +109,7 @@ public class SparePartsController {
 	
 	@RequestMapping(value="saveSpareParts", method=RequestMethod.POST)
 	public ModelAndView saveSaveSpareParts(@ModelAttribute("saveSpareParts")HOStock spareParts){
+		String receiveSpareParts = "receiveSpareParts";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -115,7 +118,8 @@ public class SparePartsController {
 			
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("receiveParts");
+			model.addObject("receiveSpareParts", receiveSpareParts);
+			model.setViewName("confirmations");
 		}
 		else{
 			model.setViewName("login");

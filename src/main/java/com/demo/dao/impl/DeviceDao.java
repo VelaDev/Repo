@@ -57,14 +57,14 @@ public class DeviceDao implements DeviceDaoInt {
 				retMessage = "Device "
 						+ device.getSerialNumber()
 						+ " succefully added. The device belongs to customer : "
-						+ device.getCustomerDevice().getCustomerName();
+						+ device.getCustomerDevice().getCustomerName()+".";
 
 			}else{
-				retMessage = "Device "+ localdevice.getSerialNumber()+ " already assigned to customer " +localdevice.getCustomerDevice().getCustomerName()+". One device canot be assigned twice to a customer ";
+				retMessage = "Device "+ localdevice.getSerialNumber()+ " already assigned to customer " +localdevice.getCustomerDevice().getCustomerName()+". One device canot be assigned twice to a customer.";
 			}
 		} catch (Exception e) {
 			retMessage = "Device " + device.getSerialNumber()
-					+ " not added\n" + e.getMessage();
+					+ " not added\n" + e.getMessage()+".";
 		}
 
 		return retMessage;
@@ -100,7 +100,7 @@ public class DeviceDao implements DeviceDaoInt {
 			sessionFactory.getCurrentSession().update(device);
 			retMessage = "Device " + device.getSerialNumber()
 					+ " is successfully updated. Device belongs to customer : "
-					+ device.getCustomerDevice().getCustomerName();
+					+ device.getCustomerDevice().getCustomerName()+".";
 		} catch (Exception e) {
 			retMessage = "Device " + device.getSerialNumber()
 					+ " not updated\n" + e.getMessage();
@@ -256,11 +256,11 @@ public class DeviceDao implements DeviceDaoInt {
 					{
 						retMessage= updateDevice(device);
 						if(retMessage.startsWith("Device " + device.getSerialNumber()
-								+ " is successfully updated")){
+								+ " is successfully updated.")){
 							retAccessory = accessoriesDaoInt.saveAccessories(list);
 							if (retAccessory.equalsIgnoreCase("Error")) {
 								retMessage = "Device not inserted into the table "
-										+ retAccessory;
+										+ retAccessory+".";
 							}
 						}
 					}else if(deviceBean.getUpdateFlag()==null){
@@ -269,19 +269,19 @@ public class DeviceDao implements DeviceDaoInt {
 							retAccessory = accessoriesDaoInt.saveAccessories(list);
 							if (retAccessory.equalsIgnoreCase("Error")) {
 								retMessage = "Device not inserted into the table "
-										+ retAccessory;
+										+ retAccessory+".";
 							}
 						}
 					}
 
 				} else {
 					retMessage = "Contact person cannot be captured"
-							+ retMessage;
+							+ retMessage+".";
 				}
 			} else {
 				retMessage = "Customer "
 						+ customer.getCustomerName()
-						+ " does not exist on database. Please make sure that the customer exist before assigning a device";
+						+ " does not exist on database. Please make sure that the customer exist before assigning a device.";
 			}
 
 		} catch (Exception e) {

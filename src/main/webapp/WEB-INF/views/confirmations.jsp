@@ -140,6 +140,14 @@ a.confirmtions {
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
+				 	     <!-- update tickets -->
+				 	  	<c:choose>
+					 	    <c:when test="${managerUpdateTicket =='managerUpdateTicket' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="home.html" class="confirmtions"><b> here</b></a> to go home.	                            
+					 	    </c:when>
+				 	    </c:choose>
+				 	    
 				 	    
 				 	    </div>
 				 	</c:if><!-- Successful message -->

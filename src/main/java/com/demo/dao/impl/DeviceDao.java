@@ -56,15 +56,15 @@ public class DeviceDao implements DeviceDaoInt {
 				sessionFactory.getCurrentSession().saveOrUpdate(device);
 				retMessage = "Device "
 						+ device.getSerialNumber()
-						+ " is succefully added. The device belongs to customer : "
+						+ " succefully added. The device belongs to customer : "
 						+ device.getCustomerDevice().getCustomerName();
 
 			}else{
-				retMessage = "Device "+ localdevice.getSerialNumber()+ "is already assigned to customer " +localdevice.getCustomerDevice().getCustomerName()+". One device canot be assigned twice to a customer ";
+				retMessage = "Device "+ localdevice.getSerialNumber()+ " already assigned to customer " +localdevice.getCustomerDevice().getCustomerName()+". One device canot be assigned twice to a customer ";
 			}
 		} catch (Exception e) {
 			retMessage = "Device " + device.getSerialNumber()
-					+ " is not added\n" + e.getMessage();
+					+ " not added\n" + e.getMessage();
 		}
 
 		return retMessage;
@@ -103,7 +103,7 @@ public class DeviceDao implements DeviceDaoInt {
 					+ device.getCustomerDevice().getCustomerName();
 		} catch (Exception e) {
 			retMessage = "Device " + device.getSerialNumber()
-					+ " is not updated\n" + e.getMessage();
+					+ " not updated\n" + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -265,7 +265,7 @@ public class DeviceDao implements DeviceDaoInt {
 						}
 					}else if(deviceBean.getUpdateFlag()==null){
 						retMessage = saveDevice(device);
-						if(retMessage.startsWith("Device "+ device.getSerialNumber()+ " is succefully added.")){
+						if(retMessage.startsWith("Device "+ device.getSerialNumber()+ " succefully added.")){
 							retAccessory = accessoriesDaoInt.saveAccessories(list);
 							if (retAccessory.equalsIgnoreCase("Error")) {
 								retMessage = "Device not inserted into the table "

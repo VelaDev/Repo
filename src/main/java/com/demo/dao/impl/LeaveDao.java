@@ -64,7 +64,7 @@ public class LeaveDao implements LeaveDaoInt {
 
 			emp = employeeDaoInt.getEmployeeByEmpNum(userName);
 			if (emp.getLeaveStatus().equalsIgnoreCase("On Leave")) {
-				retMessage = "Kindly note that "+emp.getFirstName() +" "+emp.getLastName()+" is on leave";
+				retMessage = "Kindly note that "+emp.getFirstName() +" "+emp.getLastName()+" on leave";
 			} else  {
 				globalLeave.setStatus("On Leave");
 

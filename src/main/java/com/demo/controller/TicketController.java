@@ -228,7 +228,8 @@ public class TicketController {
 	
 	@RequestMapping("updateTicket")
 	public ModelAndView updateTicket(@ModelAttribute("updateTicket")TicketsBean updateTicket){
-		
+		String managerUpdateTicket = "managerUpdateTicket";
+		String techUpdateTicket = "techUpdateTicket";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
@@ -247,12 +248,13 @@ public class TicketController {
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		    
 		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
-		    	
-		    	model.setViewName("bridgedTicketsDetails");
+		    	model.addObject("managerUpdateTicket", managerUpdateTicket);
+		    	model.setViewName("confirmations");
 		    }
 		    
 		    else if (userName.getRole().equalsIgnoreCase("Technician")){
-		    	model.setViewName("ticketDetails");
+		    	model.addObject("techUpdateTicket", techUpdateTicket);
+		    	model.setViewName("confirmation");
 		    }
 		
 		}
@@ -361,7 +363,7 @@ public class TicketController {
 	
 	@RequestMapping("updateTicketAdmin")
 	public ModelAndView updateTicketAdmin(@ModelAttribute("updateTicket")TicketsBean updateTicket){
-		
+		String managerUpdateTicket = "managerUpdateTicket";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
@@ -370,8 +372,8 @@ public class TicketController {
 		    model.addObject("retMessage", retMessage);
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-			
-			model.setViewName("ticketUpdate");
+			model.addObject("managerUpdateTicket", managerUpdateTicket);
+			model.setViewName("confirmations");
 		}
 		else{
 			model.setViewName("login");

@@ -149,7 +149,7 @@ public class TicketsDao implements TicketsDaoInt {
 
 		} catch (Exception e) {
 			retMessage = "Ticket " + ticket.getTicketNumber()
-					+ " was not logged " + e.getMessage();
+					+ " not logged " + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -331,7 +331,7 @@ public class TicketsDao implements TicketsDaoInt {
 								sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 								historyDaoInt.insertTicketHistory(ticket);
 								
-								retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+								retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully updated";
 							}
 						}
 						
@@ -342,7 +342,7 @@ public class TicketsDao implements TicketsDaoInt {
 						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 						
 						historyDaoInt.insertTicketHistory(ticket);
-						retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+						retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully updated";
 					}
 				}
 				else{
@@ -358,7 +358,7 @@ public class TicketsDao implements TicketsDaoInt {
 						sessionFactory.getCurrentSession().update(device);
 					}
 					historyDaoInt.insertTicketHistory(ticket);
-					retMessage ="Ticket "+ ticket.getTicketNumber()+ " is successfully updated";
+					retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully updated";
 				}	
 			}
 		} catch (Exception e) {
@@ -654,7 +654,7 @@ public class TicketsDao implements TicketsDaoInt {
 							sessionFactory.getCurrentSession().update(siteStock);
 							retMessage = "OK";
 						}else{
-							retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+							retMessage = "The part number "+spare.get(i)+" not available. Please order part number";
 							siteStock.setQuantity(0);
 							break;
 						}
@@ -670,7 +670,7 @@ public class TicketsDao implements TicketsDaoInt {
 							bootStockDaoIn.updateBootStock(boot);
 							retMessage = "OK";
 						}else{
-							retMessage = "The part number "+spare.get(i)+" is not available. Please order part number";
+							retMessage = "The part number "+spare.get(i)+" not available. Please order part number";
 							boot.setQuantity(0);
 							break;
 						}

@@ -98,10 +98,10 @@ public class OrderDao implements OrdersDaoInt {
 			
 			historyDaoInt.insetOrderHistory(orderHeader);
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
-					+ "is placed";
+					+ "placed";
 		} catch (Exception e) {
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
-					+ "is not placed " + e.getMessage();
+					+ "not placed " + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -133,13 +133,13 @@ public class OrderDao implements OrdersDaoInt {
 						+ "is approved";
 			} else {
 				retMessage = "Order " + " " + n + cusOrder.getOrderNum() + " "
-						+ "is not approved because "
+						+ "not approved because it"
 						+ " is not available in store.";
 			}
 
 		} catch (Exception e) {
 			retMessage = "Order " + " " + orders.getOrderNum() + " "
-					+ "is not updated " + e.getMessage();
+					+ "not updated " + e.getMessage();
 		}
 		return retMessage;
 	}
@@ -385,13 +385,13 @@ public class OrderDao implements OrdersDaoInt {
 				emp = employeeDaoInt.getEmployeeByEmpNum(cusOrder.getApprover());
 				JavaMail.sendEmailForOrderApproved(cusOrder.getEmployee().getEmail(), cusOrder.getApprover(), emp.getFirstName(), cusOrder.getEmployee().getFirstName(), cusOrder);
 				historyDaoInt.insetOrderHistory(cusOrder);
-				retMessage = "Order " + cusOrder.getOrderNum() + " is approved";
+				retMessage = "Order " + cusOrder.getOrderNum() + " approved";
 			} else {
 				retMessage = "Order cannot be approved because ordered items are more that available items";
 			}
 
 		} catch (Exception e) {
-			retMessage = "Order " + cusOrder.getOrderNum() + " is not approved";
+			retMessage = "Order " + cusOrder.getOrderNum() + " not approved";
 		}
 		return retMessage;
 	}
@@ -475,12 +475,12 @@ public class OrderDao implements OrdersDaoInt {
 			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				siteStocDaoInt.saveSiteStock(orderDetailList);
-				retMessage = "Order Number "+ orderHeader.getOrderNum()+" is now available in site "+ orderHeader.getCustomer().getCustomerName();
+				retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available for site "+ orderHeader.getCustomer().getCustomerName();
 			}
 			else{
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				 bootStockDaoInt.saveBootStock(orderDetailList);;
-				 retMessage = "Order Number "+ orderHeader.getOrderNum()+" is now available in boot stock for "+ orderHeader.getEmployee().getFirstName() +" "+ orderHeader.getEmployee().getLastName();
+				 retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available in boot stock for "+ orderHeader.getEmployee().getFirstName() +" "+ orderHeader.getEmployee().getLastName();
 			}
 		}
 		return retMessage;
@@ -523,7 +523,7 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setComments(reasonForeclined);
 			cusOrder.setStatus("Declined");
 			sessionFactory.getCurrentSession().update(cusOrder);
-			retMessage = "Order " + cusOrder.getOrderNum()+ " is declined";
+			retMessage = "Order " + cusOrder.getOrderNum()+ " declined";
 		}catch(Exception e){
 			retMessage = e.getMessage();
 		}

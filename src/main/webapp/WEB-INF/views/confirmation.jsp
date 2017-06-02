@@ -58,6 +58,13 @@ a.confirmtions {
 					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home	                            
 					 	    </c:when>
 				 	    	</c:choose>
+				 	    	<!-- Update Ticket -->
+				 	    		<c:choose>
+					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home                    
+					 	    </c:when>
+				 	    	</c:choose>
 				 	    </div>
 				 	</c:if><!-- Successful message -->
 				 	

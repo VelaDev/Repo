@@ -1,6 +1,9 @@
 package com.demo.dao.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -29,11 +32,17 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 	@Autowired
 	private TicketsDaoInt ticketsDaoInt;
 	
-	
 	private OrderHistory orderHistory = null;
 	private OrderHeader orderHeader = null;
+	
+	private DateFormat dateFormat = null;
+	private Date date = null;
+	
+	
 	@Override
 	public void insetOrderHistory(OrderHeader order) {
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
 		orderHistory = new OrderHistory();
 		try{
 			
@@ -50,6 +59,8 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 			}
 			else if(order.getStatus().equalsIgnoreCase("Received")){
 				orderHistory.setStatusDateTime(order.getOrderReceivedDateTime());
+			}else{
+				orderHistory.setStatusDateTime(dateFormat.format(date));
 			}
 			
 			sessionFactory.getCurrentSession().save(orderHistory);

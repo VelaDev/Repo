@@ -433,21 +433,18 @@ public class EmployeeController {
 	public ModelAndView changePassword(@RequestParam("newpassword")String newpassword,@RequestParam("email")String email){
 		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
-		String changePassword ="changePassword";
 		
 		
 		if(retMessage.equalsIgnoreCase("OK")){
 			retMessage = "Password successfully changed";
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("changePassword", changePassword);
-			   model.setViewName("confirmations");
+			model.setViewName("passwordchanged");
 		}
 		else{
 			retMessage = "Password already used, please use another password";
 			  model.addObject("retMessage", retMessage);
-			  model.addObject("changePassword", changePassword);
-			   model.setViewName("confirmations");
+			   model.setViewName("changePassword");
 		}
 		
 		return model;
@@ -539,7 +536,7 @@ public class EmployeeController {
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("deactivateEmployee", deactivateEmployee);
-			model.setViewName("confirmantions");
+			model.setViewName("confirmations");
 		}
 		else{
 			model.setViewName("login");

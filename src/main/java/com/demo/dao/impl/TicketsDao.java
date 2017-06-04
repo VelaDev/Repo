@@ -287,13 +287,8 @@ public class TicketsDao implements TicketsDaoInt {
               String status = tickets.getStatus();
 			ticket = getLoggedTicketsByTicketNumber(temp);
 			if(ticket !=null){
-				/*ticket.setComments(tickets.getComments());
-				retMessage = "Ticket "+ ticket.getTicketNumber()+ " is successfully updated";*/
 				
-				if(tickets.getStatus()==null){
-					//ticket.setStatus(tickets.getStatus());
-				}
-				else if(status.equalsIgnoreCase("Awaiting Spares")){
+			  if(status.equalsIgnoreCase("Awaiting Spares")){
 					order = ordersDaoInt.getOrder(tickets.getOrderNum());
 					ticket.setStatus("Awaiting Spares");
 					historyDaoInt.insertTicketHistory(ticket);
@@ -330,7 +325,7 @@ public class TicketsDao implements TicketsDaoInt {
 								sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 								historyDaoInt.insertTicketHistory(ticket);
 								
-								retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully updated.";
+								retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully resolved.";
 							}
 						}
 						
@@ -341,7 +336,7 @@ public class TicketsDao implements TicketsDaoInt {
 						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 						
 						historyDaoInt.insertTicketHistory(ticket);
-						retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully updated.";
+						retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully resolved.";
 					}
 				}
 				else{
@@ -357,7 +352,7 @@ public class TicketsDao implements TicketsDaoInt {
 						sessionFactory.getCurrentSession().update(device);
 					}
 					historyDaoInt.insertTicketHistory(ticket);
-					retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully updated.";
+					retMessage ="Ticket "+ ticket.getTicketNumber()+ " successfully re-opened.";
 				}	
 			}
 		} catch (Exception e) {

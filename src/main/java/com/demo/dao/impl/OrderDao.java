@@ -98,7 +98,7 @@ public class OrderDao implements OrdersDaoInt {
 			
 			historyDaoInt.insetOrderHistory(orderHeader);
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
-					+ "placed.";
+					+ "successfuly placed.";
 		} catch (Exception e) {
 			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
 					+ "not placed " + e.getMessage()+".";
@@ -368,15 +368,16 @@ public class OrderDao implements OrdersDaoInt {
 		
 		try {
 			cusOrder = getOrder(recordID);
-			cusOrder.setStatus("Approved");
-			cusOrder.setApproved(true);
-			cusOrder.setDateApproved(dateFormat.format(date));
-			sessionFactory.getCurrentSession().update(cusOrder);
+			
 			
 			orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 			retMessage = subtractOrderItems(orderDetailList);
 			if (retMessage.equalsIgnoreCase("Ok")) {
 
+				cusOrder.setStatus("Approved");
+				cusOrder.setApproved(true);
+				cusOrder.setDateApproved(dateFormat.format(date));
+				sessionFactory.getCurrentSession().update(cusOrder);
 				listOrders = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 
 				String addStockToApprovedTable = approvedOrderStockDaoInt
@@ -405,13 +406,14 @@ public class OrderDao implements OrdersDaoInt {
 						.getPartNumber());
 				tempQuantity = part.getQuantity()
 						- subtractQuatity.getQuantity();
-				if (tempQuantity <= part.getQuantity()) {
+				if (tempQuantity >= 0) {
 
 					part.setQuantity(tempQuantity);
 					sessionFactory.getCurrentSession().update(part);
 					retMessage = "Ok";
 				} else {
 					retMessage = "Error";
+					break;
 				}
 			}
 
@@ -523,6 +525,7 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setComments(reasonForeclined);
 			cusOrder.setStatus("Declined");
 			sessionFactory.getCurrentSession().update(cusOrder);
+			historyDaoInt.insetOrderHistory(cusOrder);
 			retMessage = "Order " + cusOrder.getOrderNum()+ " declined";
 		}catch(Exception e){
 			retMessage = e.getMessage();

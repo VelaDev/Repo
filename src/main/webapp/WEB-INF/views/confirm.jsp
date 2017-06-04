@@ -49,8 +49,7 @@ a.confirmtions {
 						 	 	<!-- Log a Ticket -->
 							 	<c:choose>
 							 	   <c:when test="${tickets =='tickets' }">
-							 	       <c:out value="${retMessage}"></c:out> 
-							 	       . Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another ticket.
+							 	       <c:out value="${retMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket.
 							 	   </c:when>
 							 	</c:choose>
 							 	
@@ -58,14 +57,13 @@ a.confirmtions {
 				 	  			<c:choose>
 						 	    <c:when test="${orders =='orders' }">
 						 	       <c:out value="${retMessage}"></c:out> 
-						 	        Click<a href="userPlaceOrder.html" class="confirmtions"><b> here</b></a> to place oder again.	                            
+						 	        Click<a href="userPlaceOrder.html" class="confirmtions"><b> here</b></a> to place another Order.	                            
 						 	    </c:when>
 					 	    	</c:choose>
 						 					 	     
 					 	    </div>
 					 	    
 					 	</c:if><!-- Successful message -->
-					 	
 					 	
 					 	<!-- On failure returned message -->
 					 	<c:if test="${not empty retErrorMessage}">
@@ -75,15 +73,19 @@ a.confirmtions {
 					 	  		<c:choose>
 					 	    		<c:when test="${orders =='orders' }">
 						 	       		<c:out value="${retErrorMessage}"></c:out> 
-						 	        	Click<a href="userPlaceOrder.html" class="confirmtions"> <b> here</b></a> to try place oder again. 
+						 	        	Click<a href="userPlaceOrder.html" class="confirmtions"> <b> here</b></a> to place another Order. 
 		                            	
 						 	    	</c:when>
 						 	    </c:choose>
+						 	    <!-- Log a Ticket -->
+							 	<c:choose>
+							 	   <c:when test="${tickets =='tickets' }">
+							 	       <c:out value="${retMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket.
+							 	   </c:when>
+							 	</c:choose>
 					 	  
 					 	    </div>
 					 	</c:if><!-- On failure returned message -->
-					
-					
 					</div>
 					<!-- /tab-content -->
 

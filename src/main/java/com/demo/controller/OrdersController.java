@@ -80,7 +80,7 @@ public class OrdersController {
 		if (userName != null) {
 
 			model.addObject("makeOrder", new OrdersBean());
-			model.addObject("compatibility", spareParts.getAllSpareParts());
+			model.addObject("compatibility", spareParts.getAllSparePartsWithoutZero());
 			model.addObject("managersList", employeeServiceInt.getAllManagers());
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("customerList", customerServiceInt.getClientList());
@@ -560,7 +560,7 @@ public class OrdersController {
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("declineOrder", declineOrder);
-			model.setViewName("conformations");
+			model.setViewName("confirmations");
 		} else {
 			model.setViewName("login");
 		}
@@ -605,7 +605,7 @@ public class OrdersController {
 		if (userName != null) {
 
 			model.addObject("placeOrderForTechnician", new OrdersBean());
-			model.addObject("compatibility", spareParts.getAllSpareParts());
+			model.addObject("compatibility", spareParts.getAllSparePartsWithoutZero());
 			model.addObject("technicianList",employeeServiceInt.getAllTechnicians());
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList", customerServiceInt.getClientList());
@@ -626,7 +626,7 @@ public class OrdersController {
 		if (userName != null) {
 
 			model.addObject("placeOrderForTechnician", new OrdersBean());
-			model.addObject("compatibility", spareParts.getAllSpareParts());
+			model.addObject("compatibility", spareParts.getAllSparePartsWithoutZero());
 			model.addObject("technicianList",employeeServiceInt.getAllTechnicians());
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList", customerServiceInt.getClientList());

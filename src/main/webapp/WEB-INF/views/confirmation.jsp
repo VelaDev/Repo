@@ -48,21 +48,21 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${orders =='orders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="order.html" class="confirmtions"><b> here</b></a> to place oder again.	                            
+					 	        Click<a href="order.html" class="confirmtions"><b> here</b></a> to place another Order.	                            
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Receive Order -->
 				 	    		<c:choose>
 					 	    <c:when test="${receiveOrder =='receiveOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home	                            
+					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.	                            
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Update Ticket -->
 				 	    		<c:choose>
 					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home                    
+					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.                    
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    </div>
@@ -76,10 +76,24 @@ a.confirmtions {
 				 	  		<c:choose>
 				 	    		<c:when test="${orders =='orders' }">
 					 	       		<c:out value="${retErrorMessage}"></c:out> 
-					 	        	Click<a href="order.html" class="confirmtions"> <b> here</b></a> to try place oder again. 
+					 	        	Click<a href="order.html" class="confirmtions"> <b> here</b></a> to place another Order. 
 	                            	
 					 	    	</c:when>
 					 	    </c:choose>
+					 	    <!-- Receive Order -->
+				 	    		<c:choose>
+					 	    <c:when test="${receiveOrder =='receiveOrder' }">
+					 	       <c:out value="${retErrorMessage}"></c:out> 
+					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.	                            
+					 	    </c:when>
+				 	    	</c:choose>
+				 	    	<!-- Update Ticket -->
+				 	    		<c:choose>
+					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
+					 	       <c:out value="${retErrorMessage}"></c:out> 
+					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.                    
+					 	    </c:when>
+				 	    	</c:choose>
 				 	  
 				 	    </div>
 				 	</c:if><!-- //On failure returned message -->

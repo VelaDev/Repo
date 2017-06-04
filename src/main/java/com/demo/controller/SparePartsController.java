@@ -24,6 +24,7 @@ import com.demo.service.OrdersServiceInt;
 import com.demo.service.SiteStockInt;
 import com.demo.service.SpareMasterServiceInt;
 import com.demo.service.HOStockServeceInt;
+import com.demo.service.TicketsServiceInt;
 
 @Controller
 public class SparePartsController {
@@ -45,6 +46,8 @@ public class SparePartsController {
 	private SiteStockInt siteStock;
 	@Autowired
 	private HttpSession session = null;
+	@Autowired
+	private TicketsServiceInt ticketsServiceInt;
 	private String retMessage = null;
 	private ModelAndView model = null;
 	private Employee userName = null;
@@ -171,15 +174,17 @@ public class SparePartsController {
 		}
 		return model;
 	}
-	@RequestMapping(value="stockSite", method=RequestMethod.GET)
+	@RequestMapping(value="availableSites", method=RequestMethod.GET)
 	public ModelAndView getSparePartSite(){
 		model = new ModelAndView();
 				
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("customer",customerServiceInt.getClientList());			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("stockSite");
+			model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));						   
+			model.addObject("customer",customerServiceInt.getClientList());			
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.setViewName("availableSites");
 		}
 		else{
 			model.setViewName("login");
@@ -195,6 +200,22 @@ public class SparePartsController {
 			model.addObject("orders", siteStock.getOrdersForCustomer(customerName));		
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("stockSiteOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	@RequestMapping(value="loadStockSiteForTechnician")
+	public ModelAndView loadStockSiteforTechnician(@RequestParam("customerName") String customerName){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		
+		if(userName != null){
+			model.addObject("orders", siteStock.getOrdersForCustomer(customerName));
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("stockSiteOrdersForTechnician");
 		}
 		else{
 			model.setViewName("login");

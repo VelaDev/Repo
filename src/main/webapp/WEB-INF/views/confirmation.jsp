@@ -27,7 +27,7 @@ a.confirmtions {
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
+		<c:import url="templates/confirmationPopup.jsp"></c:import>
 		<div class="container">
 			
 			<div class="panel panel-success" style="margin-left:25%; margin-right:25%;">

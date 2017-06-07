@@ -162,8 +162,7 @@ $("#actionTaken").on(
 					|| $(this).val() == "Replaced toner") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', false);
-				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',
-						true);
+				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);
 				$('#usedPartNumbers').attr('disabled', false);
 				console.log($(this).val());
 			} else if ($(this).val() == ""
@@ -175,9 +174,9 @@ $("#actionTaken").on(
 					|| $(this).val() == "No fault Found") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', true);
-				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',
-						true);
+				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);
 				$('#usedPartNumbers').attr('disabled', true);
+				//$('hideCooment').attr('block',false);
 				console.log($(this).val());
 			}
 		});

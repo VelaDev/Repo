@@ -232,23 +232,23 @@
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" readonly
 														onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly style="height: 153px;">${ticketObject.description}</textarea>
+														required="required" readonly style="height: 318px; margin: 0px; width: 244px;">${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
-										<!-- Text area Comment-->
+										<!-- <!-- Text area Comment
 										<div class="form-group">
 											<label class="col-md-3 control-label">Comments</label>
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="comments" readonly="readonly"
+													<textarea class="form-control" name="comments"
 														required="required" placeholder="Please enter comments"
 														id="comment" style="height: 153px;"></textarea>
 												</div>
 											</div>
-										</div>
+										</div> -->
 										
 									</div>
 									<!--//Second Column-->

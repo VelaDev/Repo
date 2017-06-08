@@ -129,11 +129,26 @@ $(document)
 											usedPartNumbers : {
 												required : {
 													depends : function(element) {
-														if ($("#actionTaken")
-																.val() == "Replaced Part"
-																|| $(
-																		"#actionTaken")
-																		.val() == "Replaced toner") {
+														if ($("#actionTaken").val() == "Replaced Part"
+																|| $("#actionTaken").val() == "Replaced toner") {
+															return true;
+														} else {
+															return false;
+														}
+													}
+												}
+											},
+											comment : {
+												required : {
+													depends : function(element) {
+														if ($("#actionTaken").val() == "Cleared Paper Jam"
+																|| $("#actionTaken").val() == "Installed Drivers"
+																|| $("#actionTaken").val() == "Configured Drivers"
+																|| $("#actionTaken").val() == "Configured Printer"
+																|| $("#actionTaken").val() == "User Error"
+																|| $("#actionTaken").val() == "No fault Found") 
+															
+														{
 															return true;
 														} else {
 															return false;
@@ -141,12 +156,17 @@ $(document)
 													}
 												}
 											}
+											
+											
+											
 										},
+										
 										messages : {
 											usedPartNumbers : 'Used part numbers is required check boot or site stock for used part numbers',
 											actionTaken : 'Action taken is required and can not be empty',
 											colourReading:'Colour reading is required and cannot be empty',
-											monoReading:'Mono reading is required and cannot be empty'
+											monoReading:'Mono reading is required and cannot be empty',
+											comment: 'Please provide comments on what solution you provided'
 											
 											
 										}
@@ -176,10 +196,49 @@ $("#actionTaken").on(
 				$('#BootStocked, #SiteStocked').attr('disabled', true);
 				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);
 				$('#usedPartNumbers').attr('disabled', true);
-				//$('hideCooment').attr('block',false);
 				console.log($(this).val());
 			}
 		});
+
+
+//Select hideComent before -->
+function Faulty(val) {
+	
+	var element = document.getElementById('hideIfIsNotPartToner');
+	if (val == 'pick a Part or Toner options' || val == 'Replaced Part' || val == 'Replaced toner' )
+		element.style.display = 'block';	    
+	else
+		element.style.display = 'none';
+		console.log('Toner or Part:  Give me used part numbers only');
+	
+	var element = document.getElementById('hideComent');	
+	if (val == 'pick a fualty options' || 
+			val == 'Cleared Paper Jam' || 
+			val == 'Installed Drivers' || 
+			val == 'Configured Drivers'||
+			val == 'Configured Printer'||
+			val == 'User Error' 	   || 
+			val == 'No fault Found')
+		element.style.display = 'block';	    
+	else
+		element.style.display = 'none';
+		console.log('Faulty:  Add Comment on SolutionPop ticket is resolved remove comment');
+		
+	var element = document.getElementById('actionTakenSubmit');
+	if (val == 'pick a show submit' || 
+			val == 'Cleared Paper Jam' || 
+			val == 'Installed Drivers' || 
+			val == 'Configured Drivers'||
+			val == 'Configured Printer'||
+			val == 'User Error' 	   || 
+			val == 'No fault Found'    ||
+			val == 'Replaced Part' 	   ||
+			val == 'Replaced toner')
+		element.style.display = 'block';	    
+	else
+		element.style.display = 'none';
+
+}
 
 // Select customer before showing add button-->
 function ShowCustomer(val) {

@@ -1,5 +1,48 @@
 @CHARSET "ISO-8859-1";
 
+fieldset#groupstock {
+    margin-left: -21%;
+}
+.modal-dialog-solution, .modal-content-solution {
+   height: 85%;
+}
+
+.modal-body-solution {
+    max-height: calc(100% - 120px);
+    overflow-y: scroll;
+}
+
+.modal-dialog-solution {
+  position: relative;
+  width: auto;
+  margin: 10px;
+}
+.modal-content-solution {
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #999;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+  -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+  background-clip: padding-box;
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .modal-dialog-solution {
+    width: 900px;
+    margin: 30px auto;
+  }
+  .modal-content-solution {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .modal-sm {
+    width: 300px;
+  }
+}
+
 
 @media ( min-width : 768px) {
 	.modal-xl {
@@ -8,7 +51,7 @@
 	}
 }
 label.usedPart.control-label {
-	margin-left: 24px;
+	margin-left: 8.1%;
 }
 
 .error-class {
@@ -26,9 +69,8 @@ label.usedPart.control-label {
 li {
 	list-style: none;
 }
-
 .wellform {
-	min-height: 20px;
+	height: 75%;
 	padding: 19px;
 	margin-bottom: 20px;
 	background-color: #f5f5f5;
@@ -170,3 +212,5 @@ MEDIA QUERIES
 header, #content, #middle, #sidebar {
 	margin-bottom: 5px;
 }
+
+

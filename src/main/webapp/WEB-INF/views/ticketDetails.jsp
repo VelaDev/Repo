@@ -6,8 +6,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="shortcut icon" href="<c:url value="images/favicon.ico" />"
-	type="image/ico" />
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
@@ -22,10 +20,6 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
-<style type="text/css">
-
-
-</style>
 
 </head>
 <body>
@@ -56,7 +50,8 @@
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
+						<li class="active"><a href="#generalDetails"
+							data-toggle="tab">General</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>
@@ -91,7 +86,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Select type status-->
 										<div class="form-group ">
 											<label class="col-md-3 control-label">Status</label>
@@ -192,8 +187,8 @@
 														value="${ticketObject.lastName}">
 												</div>
 											</div>
-										</div>										
-										
+										</div>
+
 										<div class="form-group">
 											<label class="col-md-3 control-label">Email</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -206,7 +201,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Text input Contact Person Cellphone Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Cellphone No</label>
@@ -221,8 +216,8 @@
 														value="${ticketObject.contactCellNumber}">
 												</div>
 											</div>
-										</div>										
-										
+										</div>
+
 										<!-- Text input Contact Person Tellphone Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Tellphone No </label>
@@ -238,7 +233,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
 									<!--/ First Column-->
 
@@ -271,8 +266,8 @@
 												</div>
 											</div>
 										</div>
-										
-										
+
+
 
 									</div>
 									<!--//Second Column-->
@@ -423,14 +418,16 @@
 						</div>
 						<!--/general tab-->
 
+
 						<!-- Solution Details -->
 						<form:form action="updateTicket" modelAttribute="updateTicket"
 							method="post" id="updateResolved">
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
+								<div class="modal-dialog-solution modal-lg">
+
+									<div class="modal-content-solution">
 
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal"
@@ -438,10 +435,10 @@
 											<h3 class="modal-title">Solution Details</h3>
 										</div>
 
-										<div class="modal-body">
+										<div class="modal-body-solution">
 
 											<!--wellform form-horizontal-->
-											<div class="wellform form-horizontal">
+											<div class="form-horizontal">
 
 												<div class="groupsparedetails">
 													<legend align="left">Ticket Info</legend>
@@ -469,8 +466,9 @@
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> 
-																		<input type="text" name="status"readonly="readonly" class="form-control" value="Resolved" />																		
+																		class="glyphicon glyphicon-list"></i></span> <input
+																		type="text" name="status" readonly="readonly"
+																		class="form-control" value="Resolved" />
 																</div>
 															</div>
 														</div>
@@ -482,7 +480,8 @@
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
 																	<select name="actionTaken" id="actionTaken"
-																		class="form-control selectpicker">
+																		class="form-control selectpicker"
+																		onchange="Faulty(this.value);">
 																		<option value="">Please select Action Taken
 																			for Repair</option>
 																		<option value="Replaced Part">Replaced Part</option>
@@ -509,7 +508,7 @@
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		class="glyphicon glyphicon-list"></i></span> <input
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)"
 																		placeholder="Enter Colour Reading" id="colourReading"
@@ -523,31 +522,15 @@
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		class="glyphicon glyphicon-list"></i></span> <input
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)" id="mono"
 																		name="monoReading" placeholder="Enter Mono Reading">
 																</div>
 															</div>
 														</div>
-														
-														<div class="hideCooment" style="display:none">
-															<!-- Text area Comment-->
-															<div class="form-group">
-																<label class="col-md-4 control-label">Comments</label>
-																<div class="col-md-8 inputGroupContainer">
-																	<div class="input-group">
-																		<span class="input-group-addon"><i
-																			class="glyphicon glyphicon-pencil"></i></span>
-																		<textarea class="form-control" name="comments"
-																			required="required" placeholder="Please enter comments"
-																			id="comment" style="height: 153px;"></textarea>
-																	</div>
-																</div>
-															</div>
-														</div>
-														
-														
+
+
 													</div>
 												</div>
 												<!-- //group details -->
@@ -556,58 +539,72 @@
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
-													<fieldset id="groupstock">
-														<!-- group Boot Stock -->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Boot Stock</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" value="bootType" name="groupboot"
-																		data-toggle="modal" data-target="#bootStock"
-																		disabled="disabled" id="BootStocked">
-																</div>
-															</div>
-														</div>
-														<!-- group Site Stock -->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Site Stock</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" value="siteType" name="groupboot"
-																		data-toggle="modal" data-target="#siteStock"
-																		disabled="disabled" id="SiteStocked"> `
-																</div>
-															</div>
-														</div>
-													</fieldset>
 
-													<!-- display ticked Used Part Numbers-->
-													<div class="shitRight">
+													<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
+														style="display: none">
+
+														<fieldset id="groupstock">
+															<!-- group Boot Stock -->
+															<div class="form-group">
+																<label class="col-md-4 control-label">Boot Stock</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<input type="radio" value="bootType" name="groupboot"
+																			data-toggle="modal" data-target="#bootStock"
+																			disabled="disabled" id="BootStocked">
+																	</div>
+																</div>
+															</div>
+															<!-- group Site Stock -->
+															<div class="form-group">
+																<label class="col-md-4 control-label">Site Stock</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<input type="radio" value="siteType" name="groupboot"
+																			data-toggle="modal" data-target="#siteStock"
+																			disabled="disabled" id="SiteStocked"> `
+																	</div>
+																</div>
+															</div>
+														</fieldset>
+
+														<!-- display ticked Used Part Numbers-->
+														<div class="shitRight">
+															<div class="form-group">
+																<label class="usedPart control-label">Used Part
+																	Numbers</label>
+																<div class="col-md-8 inputGroupContainer">
+																	<div class="input-group">
+																		<textarea id="usedPartNumbers" name="usedPartNumbers"
+																			disabled="disabled" class="form-control"
+																			style="width: 272px; height: 147px; font-size: 11px; margin: 0px;"
+																			rows="3">
+																			</textarea>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--// display ticked Used Part Numbers-->
+													</div>
+													<!-- display Comments-->
+													<div class="hideComent" id="hideComent"
+														style="display: none">
+														<!-- Text area Comment-->
 														<div class="form-group">
-															<label class="usedPart control-label">Used Part
-																Numbers</label>
+															<label class="usedPart control-label">Comments on
+																Fautly</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
-																	<textarea id="usedPartNumbers" name="usedPartNumbers"
-																		disabled="disabled" class="form-control"
-																		style="width: 200px; height: 90px; font-size: 11px;"
-																		rows="3">
-																		</textarea>
+																	<textarea class="form-control" name="comments"
+																		required="required"
+																		placeholder="Please enter comments" id="comment"
+																		style="width: 279px; height: 233px; font-size: 11px; margin: 0px;"
+																		rows="3"></textarea>
 																</div>
 															</div>
 														</div>
 													</div>
-													<!--// display ticked Used Part Numbers-->
-
-												</div>
-												<!-- //group Used Part Numbers -->
-
-												<div class="modal-footer">
-
-													<button type="button" class="btn btn-default"
-														data-dismiss="modal">Close</button>
-													<button type="submit" value="Submit"
-														class="btn btn-primary" id="send_btn">Submit</button>
+													<!--// display Comments-->
 
 												</div>
 
@@ -616,12 +613,31 @@
 
 										</div>
 										<!-- modal-body -->
+
+										<!-- //group Used Part Numbers -->
+										<div class="actionTakenSubmit" id="actionTakenSubmit"
+											style="display: none;">
+
+											<div class="modal-footer">
+
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Close</button>
+												<button type="submit" value="Submit" class="btn btn-primary"
+													id="send_btn">Submit</button>
+
+											</div>
+
+										</div>
+
+
+
 									</div>
 									<!-- /.modal-content -->
 								</div>
 								<!-- /.modal-dialog -->
 							</div>
 							<!-- /.modal solutionDetails-->
+
 
 							<!--Boot Stock-->
 							<div id="bootStock" class="modal fade" role="dialog"
@@ -664,8 +680,9 @@
 													</c:forEach>
 												</tbody>
 											</table>
-											<input type="hidden" class="form-control"id="setStock" name="bootType" value="Boot">
-															
+											<input type="hidden" class="form-control" id="setStock"
+												name="bootType" value="Boot">
+
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-default"
@@ -718,10 +735,10 @@
 													</c:forEach>
 												</tbody>
 											</table>
-											<input type="hidden" class="form-control"id="botStock" name="bootType" value="Site">
-										
-											<div class="modal-footer">
+											<input type="hidden" class="form-control" id="botStock"
+												name="bootType" value="Site">
 
+											<div class="modal-footer">
 												<button type="button" class="btn btn-default"
 													data-dismiss="modal">Close</button>
 												<button id="save" type="button" class="btn btn-primary"
@@ -761,18 +778,20 @@
 											<!-- Iterating over the list sent from Controller -->
 											<c:forEach items="${ticketHistoryList}" var="history">
 												<tr>
-													<td><c:out value="${history.ticketNumber}" /></td>													
-													<td><c:out value="${history.status}"/></td>													  
+													<td><c:out value="${history.ticketNumber}" /></td>
+													<td><c:out value="${history.status}" /></td>
 													<c:choose>
-													    <c:when test="${history.status =='Open'}">
-													    	<td><c:out value="${history.actionTaken}" />Log Ticket</td>														
-														</c:when>  
-													    <c:otherwise>
-													    <td><c:out value="${history.actionTaken}" /></td>
-													    </c:otherwise>
-													</c:choose>													
+														<c:when test="${history.status =='Open'}">
+															<td><c:out value="${history.actionTaken}" />Log
+																Ticket</td>
+														</c:when>
+														<c:otherwise>
+															<td><c:out value="${history.actionTaken}" /></td>
+														</c:otherwise>
+													</c:choose>
 													<td><c:out value="${history.escalatedDate}" /></td>
-													<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+													<td><c:out
+															value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 													<td><c:out value="${history.colourReading }" /></td>
 													<td><c:out value="${history.monoReading }" /></td>
 													<td><c:out value="${history.comment}" /></td>
@@ -813,8 +832,9 @@
 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-	
-<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
+
+<script type="text/javascript"
+	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
 
 </html>

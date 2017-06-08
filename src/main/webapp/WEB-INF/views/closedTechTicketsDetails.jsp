@@ -233,11 +233,11 @@
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" readonly
 														onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly style="height: 153px;">${ticketObject.description}</textarea>
+														required="required" readonly style="height: 318px; margin: 0px; width: 244px;">${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
-										<!-- Text area Comment-->
+										<!-- <!-- Text area Comment
 										<div class="form-group">
 											<label class="col-md-3 control-label">Comments</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -249,7 +249,7 @@
 														id="comment" style="height: 153px;"></textarea>
 												</div>
 											</div>
-										</div>
+										</div> -->
 
 									</div>
 									<!--//Second Column-->

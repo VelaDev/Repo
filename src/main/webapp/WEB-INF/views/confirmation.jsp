@@ -55,14 +55,14 @@ a.confirmtions {
 				 	    		<c:choose>
 					 	    <c:when test="${receiveOrder =='receiveOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.	                            
+					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Update Ticket -->
 				 	    		<c:choose>
 					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.                    
+					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                    
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    </div>
@@ -84,14 +84,14 @@ a.confirmtions {
 				 	    		<c:choose>
 					 	    <c:when test="${receiveOrder =='receiveOrder' }">
 					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.	                            
+					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to home page.	                            
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Update Ticket -->
 				 	    		<c:choose>
 					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
 					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go home.                    
+					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                    
 					 	    </c:when>
 				 	    	</c:choose>
 				 	  

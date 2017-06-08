@@ -8,6 +8,10 @@
 
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
@@ -30,6 +34,44 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
+						
+						<form:form class="form-horizontal">
+								<div class="col-sm-4">
+									<!-- Text input First Date Leave-->
+									<div class="form-group">
+										<label class="col-xs-3 control-label">From Date</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group input-append date" id="startDatePicker">
+												<input type='text' class="form-control" name="startDate"
+													id="startDate" placeholder="YYYY-MM-DD" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+								<div class="col-sm-4">						
+									<!-- Text input Last Date Leave-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">To This Date</label>
+										<div class="col-md-6 inputGroupContainer">
+											<div class="input-group input-append date" id="endDatePicker">
+												<input type='text' class="form-control" name="endDate"
+													id="endDate" placeholder="YYYY-MM-DD" /> <span
+													class="input-group-addon"> <span
+													class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-2">
+									<input class="btn btn-success" type='submit' value='Submit' />
+								</div>
+							</form:form>
+					
 						<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">
 							<thead>
@@ -38,6 +80,7 @@
 									<th>Ticket Status</th>
 									<th>Customer Name</th>
 									<th>Telephone No</th>
+									<th>Date</th>
 									<th>Ticket Details</th>
 								</tr>
 							</thead>
@@ -49,6 +92,7 @@
 										<td><c:out value="${ticket.status} " /></td>
 										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
 										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
+										<td><c:out value="${ticket.dateTime}" /></td>
 										<td><a
 											href="ticketDetails?id=<c:out value='${ticket.recordID}'/>">Ticket Details</a></td>
 									</tr>
@@ -71,12 +115,21 @@
 	<!-- / velaphanda_containter -->
 
 </body>
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+
+<!-- Scripts -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<!-- /Scripts -->
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<!-- Paging the table -->
-<script type="text/javascript">
+
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
 				"jQueryUI" : true,
@@ -85,6 +138,27 @@
 			/* few more options are available to use */
 			});
 		});
+	</script>
+	
+	
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#startDatePicker').datepicker({
+				format : "yyyy-mm-dd",
+				//startDate: 'd0',
+		        autoclose: true
+			});
+		});
 </script>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#endDatePicker').datepicker({
+			format : "yyyy-mm-dd",
+			//startDate: 'd0',
+	        autoclose: true
+		});
+	});
+</script>
 </html>
+

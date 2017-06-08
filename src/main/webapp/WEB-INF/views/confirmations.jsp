@@ -53,7 +53,7 @@ a.confirmtions {
 				 	     <!-- Update employee -->
 				 	    <c:choose>
 				 	     <c:when test="${updateEmployee =='updateEmployee' }">
-				 	         <c:out value="${retMessage}"></c:out> Click<a href="home.html" class="confirmtions"> <b> here</b></a> to go to home or 
+				 	         <c:out value="${retMessage}"></c:out> Click<a href="home.html" class="confirmtions"> <b> here</b></a> to go to Home page or 
                               Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees. 
 				 	    </c:when>
 				 	    </c:choose> 
@@ -141,7 +141,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${managerUpdateTicket =='managerUpdateTicket' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="home.html" class="confirmtions"><b> here</b></a> to go Home.	                            
+					 	        Click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- Add Spares -->
@@ -176,7 +176,7 @@ a.confirmtions {
 				 	    <c:choose>
 				 	     <c:when test="${updateEmployee =='updateEmployee' }">
 				 	         <c:out value="${retErrorMessage}"></c:out> 
-				 	          Click<a href="home.html" class="confirmtions"> <b> here</b></a> to go to Home or 
+				 	          Click<a href="home.html" class="confirmtions"> <b> here</b></a> to go to Home page or 
                               Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees. 
 				 	    </c:when>
 				 	    </c:choose> 
@@ -266,7 +266,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${managerUpdateTicket =='managerUpdateTicket' }">
 					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	        Click<a href="home.html" class="confirmtions"><b> here</b></a> to go Home.	                            
+					 	        Click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- Add Spares -->

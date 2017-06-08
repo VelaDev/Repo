@@ -1,8 +1,8 @@
 /**
- * Purpose: Interact with the html pages and create communication between server side
+ * Purpose: Interact with the html pages and create communication between server and client side 
  * Author : Fenya Tlala
  * Company: Velaphanda 
- * Last Date Modified:29-05-2017
+ * Last Date Modified:09-06-2017
  */
 
 // myDatatable table -->
@@ -129,8 +129,7 @@ $(document)
 											usedPartNumbers : {
 												required : {
 													depends : function(element) {
-														if ($("#actionTaken").val() == "Replaced Part"
-																|| $("#actionTaken").val() == "Replaced toner") {
+														if ($("#actionTaken").val() == "Replaced Part/Toner"){
 															return true;
 														} else {
 															return false;
@@ -178,8 +177,7 @@ $("#actionTaken").on(
 		'change',
 		function() {
 
-			if ($(this).val() == "Replaced Part"
-					|| $(this).val() == "Replaced toner") {
+			if ($(this).val() == "Replaced Part/Toner") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', false);
 				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);
@@ -204,12 +202,14 @@ $("#actionTaken").on(
 //Select hideComent before -->
 function Faulty(val) {
 	
+	
+	
 	var element = document.getElementById('hideIfIsNotPartToner');
-	if (val == 'pick a Part or Toner options' || val == 'Replaced Part' || val == 'Replaced toner' )
+	if (val == 'pick a Part or Toner options' || val == 'Replaced Part/Toner' )
 		element.style.display = 'block';	    
 	else
 		element.style.display = 'none';
-		console.log('Toner or Part:  Give me used part numbers only');
+		console.log('Toner or Part:  For getting list of Parts or Toners');
 	
 	var element = document.getElementById('hideComent');	
 	if (val == 'pick a fualty options' || 
@@ -222,7 +222,7 @@ function Faulty(val) {
 		element.style.display = 'block';	    
 	else
 		element.style.display = 'none';
-		console.log('Faulty:  Add Comment on SolutionPop ticket is resolved remove comment');
+		console.log('Other Action Taken, beside Replace Part or Toner:  Add Comment on Solution Modal ticket, is resolved remove comment');
 		
 	var element = document.getElementById('actionTakenSubmit');
 	if (val == 'pick a show submit' || 
@@ -232,11 +232,12 @@ function Faulty(val) {
 			val == 'Configured Printer'||
 			val == 'User Error' 	   || 
 			val == 'No fault Found'    ||
-			val == 'Replaced Part' 	   ||
-			val == 'Replaced toner')
+			val == 'Replaced Part/Toner')
 		element.style.display = 'block';	    
 	else
 		element.style.display = 'none';
+	    console.log('Submit Hidden:  Hide submit buttons if nothing was selected from Acton Taken');
+	
 
 }
 

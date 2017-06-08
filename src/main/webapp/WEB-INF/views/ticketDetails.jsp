@@ -1,5 +1,5 @@
 <%@include file="templates/taglibs.jsp"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Ticket Details | Velaphanda Trading & Projects</title>
@@ -484,8 +484,7 @@
 																		onchange="Faulty(this.value);">
 																		<option value="">Please select Action Taken
 																			for Repair</option>
-																		<option value="Replaced Part">Replaced Part</option>
-																		<option value="Replaced toner">Replaced Toner</option>
+																		<option value="Replaced Part/Toner">Replaced Part/Toner</option>
 																		<option value="Cleared Paper Jam">Cleared
 																			Paper Jam</option>
 																		<option value="Installed Drivers">Installed
@@ -577,7 +576,7 @@
 																	<div class="input-group">
 																		<textarea id="usedPartNumbers" name="usedPartNumbers"
 																			disabled="disabled" class="form-control"
-																			style="width: 272px; height: 147px; font-size: 11px; margin: 0px;"
+																			style="width: 272px; height: 93px; font-size: 11px; margin: 0px;"
 																			rows="3">
 																			</textarea>
 																	</div>
@@ -598,7 +597,7 @@
 																	<textarea class="form-control" name="comments"
 																		required="required"
 																		placeholder="Please enter comments" id="comment"
-																		style="width: 279px; height: 233px; font-size: 11px; margin: 0px;"
+																		style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
 																		rows="3"></textarea>
 																</div>
 															</div>

@@ -71,12 +71,21 @@
 	<!-- / velaphanda_containter -->
 
 </body>
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+
+<!-- Scripts -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<!-- /Scripts -->
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<!-- Paging the table -->
-<script type="text/javascript">
+
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({
 				"jQueryUI" : true,
@@ -85,6 +94,26 @@
 			/* few more options are available to use */
 			});
 		});
+	</script>
+	
+	
+<script type="text/javascript">
+		$(document).ready(function() {
+			$('#startDatePicker').datepicker({
+				format : "yyyy-mm-dd",
+				//startDate: 'd0',
+		        autoclose: true
+			});
+		});
 </script>
 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#endDatePicker').datepicker({
+			format : "yyyy-mm-dd",
+			//startDate: 'd0',
+	        autoclose: true
+		});
+	});
+</script>
 </html>

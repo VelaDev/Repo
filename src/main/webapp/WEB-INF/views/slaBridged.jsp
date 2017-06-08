@@ -38,6 +38,7 @@
 									<th>Ticket Status</th>
 									<th>Customer Name</th>
 									<th>Telephone No</th>
+									<th>Date</th>
 									<th>Ticket Details</th>
 								</tr>
 							</thead>
@@ -49,6 +50,7 @@
 										<td><c:out value="${ticket.status} " /></td>
 										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
 										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
+										<td><c:out value="${ticket.dateTime}" /></td>
 										<td><a
 											href="bridgedTechDetails?id=<c:out value='${ticket.recordID}'/>">Ticket Details</a></td>
 									</tr>

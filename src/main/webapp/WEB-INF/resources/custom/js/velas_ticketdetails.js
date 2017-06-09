@@ -285,19 +285,17 @@ $(".actionTaken").each(function (i) {
 	  $("#status").val() == 'Configured Drivers'||
 	  $("#status").val() == 'Configured Printer'||
 	  $("#status").val() == 'User Error' 	    || 
-	  $("#status").val() == 'No fault Found'    ||
-	  $("#status").val() == 'Replaced Part/Toner') { 
+	  $("#status").val() == 'No fault Found') { 
     $('.showComment').hide();
     console.log('hiding comment');
-    var getCoome = documnet.getElementById('status').value;
-    if(getCoome = "Installed Drivers"){
-    	 console.log('hiding comment');
-    	 console.log(getCoome);
-    }
-    
   } else {
     $('.showComment').show();
     console.log('show comment');
+  }
+  var getComment = document.getElementById('status').value;
+  if(getComment = "Installed Drivers"){
+  	 console.log('show comment');
+  	 console.log(getComment);
   }
 });
 

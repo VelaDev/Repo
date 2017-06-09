@@ -269,11 +269,35 @@ function upperCaseF(a) {
 
 //hide the all of the element class usedPartNumbersDetails
 $(".usedPartNumbersDetails").each(function (i) {
-  if ($('input[name$=status][value=""]',this).length == 1) { 
+  if ($('input[name$=usedPartNumbers][value=""]',this).length == 1) { 
     $(this).hide();
-    console.log('hiding');
+    console.log('hiding toner or part');
   } else {
     $(this).show();
-    console.log('showing');
+    console.log('showing toner or part');
   }
 });
+
+//if action taken not Replace part or toner, show the all of the element class showComment
+$(".actionTaken").each(function (i) {
+  if ($("#status").val() == "Installed Drivers" || 
+	  $("#status").val() == 'Cleared Paper Jam' || 
+	  $("#status").val() == 'Configured Drivers'||
+	  $("#status").val() == 'Configured Printer'||
+	  $("#status").val() == 'User Error' 	    || 
+	  $("#status").val() == 'No fault Found'    ||
+	  $("#status").val() == 'Replaced Part/Toner') { 
+    $('.showComment').hide();
+    console.log('hiding comment');
+    var getCoome = documnet.getElementById('status').value;
+    if(getCoome = "Installed Drivers"){
+    	 console.log('hiding comment');
+    	 console.log(getCoome);
+    }
+    
+  } else {
+    $('.showComment').show();
+    console.log('show comment');
+  }
+});
+

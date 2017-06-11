@@ -37,7 +37,11 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-
+							<div class="orderDetails">
+								Stock type : ${orderHistory.orderHeader.stockType}<br/>
+								Placed By : ${orderHeader.employee.firstName} ${orderHeader.employee.lastName}<br/>								
+								Customer Name : ${orderHeader.customer.customerName}
+							</div>
 						<div class="groupdetails-row-padding">
 							
 							<div id="pagewrap">

@@ -278,7 +278,7 @@ $(".usedPartNumbersDetails").each(function (i) {
   }
 });
 
-//if action taken not Replace part or toner, show the all of the element class showComment
+//if action taken is not Replace part or toner, show the all of the element class showComment
 $(".actionTaken").each(function (i) {
   if ($("#status").val() == "Installed Drivers" || 
 	  $("#status").val() == 'Cleared Paper Jam' || 

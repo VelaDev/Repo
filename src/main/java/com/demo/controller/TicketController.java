@@ -895,5 +895,35 @@ public class TicketController {
          
         return model;
     }
+	@RequestMapping(value={"closedTicketsAdmin", "closedTechTickets"})
+	public ModelAndView closedTicketsAdmin(@RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllClosedTickets());
+		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		    model.addObject("ticketList", logTicketService.getAllClosedTickets(startDate, endDate));
+		    
+		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
+		    	
+		    	model.setViewName("closedTickets");
+		    }
+		    
+		    else if (userName.getRole().equalsIgnoreCase("Technician")){
+		    	model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+				model.addObject("ticketList", logTicketService.getAllClosedTickets(userName.getEmail()));				
+		    	model.setViewName("closedTechTickets");
+		    }			
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
 	
 }

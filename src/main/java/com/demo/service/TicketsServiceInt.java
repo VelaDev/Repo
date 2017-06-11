@@ -28,6 +28,7 @@ public interface TicketsServiceInt {
 	List<Tickets> getAssignedCallsToTechnician();
 
 	List<Tickets> getAssignedCallsToTechnician(String username);
+	List<Tickets> getAllClosedTickets(String startDate,String endDate);
 
 	String updateTicket(TicketsBean ticket);
 

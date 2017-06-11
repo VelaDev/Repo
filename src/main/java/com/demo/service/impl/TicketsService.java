@@ -209,4 +209,9 @@ public class TicketsService implements TicketsServiceInt{
 	public List<Tickets> getAllResolvedTickets() {
 		return logTicketsDAO.getAllResolvedTickets();
 	}
+
+	@Override
+	public List<Tickets> getAllClosedTickets(String startDate, String endDate) {
+		return logTicketsDAO.getAllClosedTickets(startDate, endDate);
+	}
 }

@@ -167,8 +167,8 @@
 					</li>
 					
 					<li>
-					    <a href='<c:url value="awaitingSparesDetails.html"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Awaiting Spares Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
+					    <a href='<c:url value="awaitingSpares.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Awaiting Spares Inbox <span class="ourbadge" class="btn-btn-danger">${awaitingSparesTickets}</span></a>
 					</li>
 					
 

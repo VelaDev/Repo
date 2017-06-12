@@ -22,6 +22,7 @@ import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.DeviceServiceInt;
 import com.demo.service.OrdersServiceInt;
+import com.demo.service.TicketsServiceInt;
 
 
 
@@ -35,7 +36,8 @@ public class CustomerController {
 	private DeviceServiceInt deviceServiceInt;
 	@Autowired
 	private CustomerContactDetailsServiceInt contactDetailsServiceInt;
-	
+	@Autowired
+	private TicketsServiceInt ticketsServiceInt;
 	/*Order inbox count on every page*/
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;	
@@ -57,6 +59,7 @@ public class CustomerController {
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("saveClient", new CustomerBean());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addClient");
 		
@@ -75,6 +78,7 @@ public class CustomerController {
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("retMessage",customerServiceInt.saveCustomer(customerBean));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("addCustomer", addCustomer);
 			model.setViewName("confirmations");
@@ -90,6 +94,7 @@ public class CustomerController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("clientInformation");
 		}else{
@@ -112,6 +117,7 @@ public class CustomerController {
 		
 		        model.addObject("clientInformation",deviceList );
 				model.addObject("customer", customer);
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.setViewName("clientInformation");
 		}
@@ -131,6 +137,7 @@ public class CustomerController {
 			customer = customerServiceInt.getClientByClientName(customerName);
 			if(customer != null){
 				model.addObject("customer", customer);
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.addObject("customerContact",contactDetailsServiceInt.contactDetails(customerName));
 			}
@@ -139,6 +146,7 @@ public class CustomerController {
 				model.addObject("retMessage", "Customer : " + customerName + " does not exist");
 				model.addObject("customer", null);
 			}
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addProduct");
 		}
@@ -156,6 +164,7 @@ public class CustomerController {
 		if(userName != null){
 		
 			model.addObject("updateCustomerData", new CustomerBean());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateCustomer");
 		}
@@ -174,6 +183,7 @@ public class CustomerController {
 			//retMessage =customerServiceInt.prepareCustomer(customerBean); 
 			retMessage =customerServiceInt.updateCustomer(customerBean);
 			model.addObject("retMessage", retMessage);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("updateCustomer", updateCustomer);
 			model.setViewName("confirmations");
@@ -192,6 +202,7 @@ public class CustomerController {
 		
 			model.addObject("customer", customerServiceInt.contactDetails(customerName));
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateCustomer");
 		}
@@ -209,6 +220,7 @@ public class CustomerController {
 		if(userName != null){
 			model.addObject("customer", customerServiceInt.contactDetails(customerName));
 			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("viewCustomer");
 		}
@@ -247,6 +259,7 @@ public class CustomerController {
 			model.addObject("count",count);
 			model.addObject("offset", offset);
 			model.addObject("displayCustomers", customerServiceInt.getClientList());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("displayCustomers");
 		}
@@ -263,6 +276,7 @@ public class CustomerController {
 		
 			
 			model.addObject("deviceList",deviceServiceInt.getDeviceListByClientName(customerName));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("customerListDevices");
 		}

@@ -238,7 +238,8 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());			
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(techName !=null){
 				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
@@ -263,6 +264,7 @@ public class EmployeeController {
 		if(userName !=null){
 			
 			model.addObject("addEmployee", new EmployeeBean());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("registerEmployee");
 		}
@@ -291,6 +293,7 @@ public class EmployeeController {
 				model.addObject("retMessage", retMessage);
 			}
 			model.addObject("addEmployee", addEmployee);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("confirmations");
 		}
@@ -307,6 +310,7 @@ public class EmployeeController {
 		 model = new ModelAndView();
 		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("technicianTickets", ticketsServiceInt.getOpenTicketsForTechnician(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
@@ -342,7 +346,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		
 		if(userName != null){
-			
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("displayEmployees", employeeService.getAllEmployees());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("displayEmployees");
@@ -358,7 +362,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model = new ModelAndView("registerEmployee");
 		if(userName !=null){
-			
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("updateEmployee", new EmployeeBean());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateEmployee");
@@ -377,6 +381,7 @@ public class EmployeeController {
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		}
 		else{
@@ -402,6 +407,7 @@ public class EmployeeController {
 			retMessage = employeeService.updateEmployee(employee);
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("updateEmployee", updateEmployee);
 			model.setViewName("confirmations");
 		}
@@ -425,6 +431,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
 		model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 		model.setViewName("changePassword");
 		
 		return model;
@@ -438,6 +445,7 @@ public class EmployeeController {
 		if(retMessage.equalsIgnoreCase("OK")){
 			retMessage = "Password successfully changed";
 			model.addObject("retMessage", retMessage);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("passwordchanged");
 		}
@@ -460,6 +468,7 @@ public class EmployeeController {
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		}
 		else{
@@ -482,6 +491,7 @@ public class EmployeeController {
 			
 			retMessage = employeeService.changePassword(email);
 			model.addObject("retMessage", retMessage);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("resetPassword", resetPassword);
 			model.setViewName("confirmations");
@@ -497,6 +507,7 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
+		model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 		model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		model.setViewName("deactivateEmployee");
 		
@@ -508,6 +519,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			employee = employeeService.getEmployeeByEmpNumber(empName);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		if(employee != null){
 			
@@ -534,6 +546,7 @@ public class EmployeeController {
 			
 			retMessage = employeeService.deactivateEmployee(email);
 			model.addObject("retMessage", retMessage);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("deactivateEmployee", deactivateEmployee);
 			model.setViewName("confirmations");
@@ -556,6 +569,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			employee = employeeService.getEmployeeByEmpNumber(email);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		if(employee != null){
 			

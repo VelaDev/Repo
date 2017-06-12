@@ -43,6 +43,7 @@ public class LeaveController {
 
 		if (userName != null) {
 			
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			
@@ -50,6 +51,7 @@ public class LeaveController {
 			
 			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 				model.setViewName("requestLeave");
@@ -80,6 +82,7 @@ public class LeaveController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 				model.addObject("leaveList", leaveInt.leaveRequests());
@@ -113,6 +116,7 @@ public class LeaveController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			model.addObject("updateLeave", new LeaveBean());
 			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
@@ -154,6 +158,7 @@ public class LeaveController {
 			}else{
 				model.addObject("retMessage", retMessage);
 			}
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));						
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
@@ -182,6 +187,7 @@ public class LeaveController {
 		if (userName != null) {
 
 			retMessage = leaveInt.updateLeaveRequest(leave);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
 			if (userName.getRole().equalsIgnoreCase("Manager")	|| userName.getRole().equalsIgnoreCase("Admin")) {

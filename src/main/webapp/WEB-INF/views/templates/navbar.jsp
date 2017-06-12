@@ -166,6 +166,11 @@
 								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
 					</li>
 					
+					<li>
+					    <a href='<c:url value="awaitingSparesDetails.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Awaiting Spares Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
+					</li>
+					
 
 				</ul>
 

@@ -39,14 +39,15 @@
 					<div class="tab-content">						
 							<!-- Iterating over the list sent from Controller -->
 							<div class="orderDetails">
-								<li id="approvedDate">Approved Date : ${OrderNum.dateOrdered}</li>
+								
 								<li id="placedBy ">Placed By : ${OrderNum.employee.firstName} ${OrderNum.employee.lastName}</li>
-								<c:if test="${empty OrderNum.customer.customerName}">
-								</c:if>
+								<li id="approvedDate">Approved By : ${approver}</li>
 								<c:if test="${not empty OrderNum.customer.customerName}">
 										<li id="siteStock">Customer Name : ${OrderNum.customer.customerName}</li>
-								</c:if>								
-							</div>					
+								</c:if>	
+									<li id="approvedDate">Order No : ${OrderNum.orderNum}</li>
+								<li id="approvedDate">Date Ordered : ${OrderNum.dateOrdered}</li>							
+							</div><br>					
 						<div class="groupdetails-row-padding">
 							
 							<div id="pagewrap">
@@ -57,7 +58,6 @@
 										<table id="orderInfo" class="display datatable">
 											<thead>
 												<tr>
-													<th>Order No</th>
 													<th>Part No</th>													
 													<th>Compatible Devices</th>
 													<th>Description</th>
@@ -71,7 +71,6 @@
 												<!-- Iterating over the list sent from Controller -->
 												<c:forEach var="list" items="${pendingOrderList}">
 													<tr>
-														<td>${list.orderHeader.orderNum}</td>
 														<td>${list.partNumber}</td>
 														<td>${list.model}</td>
 														<td>${list.itemDescription}</td>

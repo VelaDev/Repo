@@ -497,15 +497,15 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-       List<OrderHistory> history = historyInt.getAllOrderHistoryByOrderNumber(recordID);
-       for(OrderHistory h:history){
-    	   //System.err.println("Status : " + h);
-       }
+			OrderHeader ord =  ordersServiceInt.getOrder(recordID);
+			Employee appoer = employeeServiceInt.getEmployeeByEmpNumber(ord.getApprover());
+			String approverName=appoer.getFirstName() + " "+ appoer.getLastName();
 			model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.addObject("status", historyInt.getAllOrderHistoryByOrderNumber(recordID));
 			model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("approver", approverName);
 			
 			if (userName.getRole().equalsIgnoreCase("Technician")) {				
 		    	

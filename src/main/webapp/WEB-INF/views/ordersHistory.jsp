@@ -42,7 +42,6 @@
 							<table id="myDatatable" class="display datatable">
 								<thead>
 									<tr>
-										<th>Record ID</th>
 										<th>Order No</th>
 										<th>Order Status</th>
 										<th>Approved Date</th>
@@ -55,7 +54,6 @@
 									<!-- Iterating over the list sent from Controller -->
 									<c:forEach var="list" items="${orderList}">
 										<tr>
-											<td>${list.recordID}</td>
 											<td>${list.orderNum}</td>
 											<td>${list.status}</td>
 											<td>${list.dateOrdered}</td>

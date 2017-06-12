@@ -34,7 +34,7 @@
 				</div>
 			<div class="panel-body">
 					<div class="tab-content">
-						<form:form class="form-horizontal">
+						<%-- <form:form class="form-horizontal">
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
 									<div class="form-group">
@@ -69,7 +69,7 @@
 								<div class="col-md-2">
 									<input class="btn btn-success" type='submit' value='Submit' />
 								</div>
-							</form:form>
+							</form:form> --%>
 						
 						<table id="myDatatable" class="display datatable">
 							<thead>

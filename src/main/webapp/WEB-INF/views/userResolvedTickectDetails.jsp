@@ -762,32 +762,42 @@
 										</div>
 									</div>
 
-									<!-- Text input status-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Status</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
-													class="form-control" type="text" name="status"
-													value="Resolved" readonly="readonly">
-											</div>
-										</div>
-									</div>
-
 									<!-- Text area Action Taken-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Action Taken</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input id="status"
-													class="form-control" type="text" name="status"
-													value="${ticketObject.actionTaken }" readonly="readonly">
+									<div class="actionTaken">
+										<div class="form-group">
+											<label class="col-md-3 control-label">Action Taken</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input id="status"
+														class="form-control" type="text" name="status"
+														value="${ticketObject.actionTaken }" readonly="readonly">
+												</div>
 											</div>
 										</div>
 									</div>
 									
+								<c:if test="${empty ticketObject.comments}">
+								</c:if>
+								<c:if test="${not empty ticketObject.comments}">					
+										 <!-- Text area Comment-->
+										<div class="form-group">
+												<label class="col-md-3 control-label">Comments</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-pencil"></i></span>
+														<textarea class="form-control" name="comments" id="comment"readonly="readonly"
+														 style="height: 100px;">${ticketObject.comments}</textarea>
+													</div>
+												</div>
+										</div>
+								</c:if>
+								
+								<c:if test="${empty ticketObject.usedPartNumbers}">
+								</c:if>
+								<c:if test="${not empty ticketObject.usedPartNumbers}">
+															
 									<!-- Text area Used Spare Part-->
 									<div class="usedPartNumbersDetails">
 										<div class="form-group">
@@ -795,14 +805,14 @@
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input id="status"
-														class="form-control" type="text" name="status"
+														class="glyphicon glyphicon-barcode"></i></span> <input id="usedPartNumbers"
+														class="form-control" type="text" name="usedPartNumbers"
 														value="${ticketObject.usedPartNumbers}" readonly="readonly">
 												</div>
 											</div>
 										</div>
 									</div>
-
+								</c:if>	
 									<!-- Text checkbox Colour Reading-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Colour Reading</label>
@@ -854,7 +864,6 @@
 
 									</div>
 									<!-- displayNone for getPartToner -->
-
 
 								</div>
 								<!-- pane body -->

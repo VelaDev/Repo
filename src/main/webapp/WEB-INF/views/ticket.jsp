@@ -50,7 +50,7 @@
 												name="serialNumber" list="serialNumbers"
 												class="form-control" type="text"
 												onkeydown="upperCaseF(this)"
-												placeholder='Search By Serial Number'/>
+												placeholder='Enter Serial Number'/>
 										</div>
 									</div>
 									<!-- Iterating over the list sent from Controller -->

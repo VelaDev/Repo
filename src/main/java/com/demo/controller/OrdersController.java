@@ -499,7 +499,7 @@ public class OrdersController {
 		if (userName != null) {
        List<OrderHistory> history = historyInt.getAllOrderHistoryByOrderNumber(recordID);
        for(OrderHistory h:history){
-    	   System.err.println("Status : " + h);
+    	   //System.err.println("Status : " + h);
        }
 			model.addObject("pendingOrderList",	orderDetailsInt.getOrderDetailsByOrderNum(recordID));
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));

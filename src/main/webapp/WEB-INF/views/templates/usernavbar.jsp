@@ -64,7 +64,7 @@
 				      		 </ul>
 				    	</li>
 				    	
-				    	<li><a href='<c:url value="userResolvedTickets.html"/>'>Resolved Tickets</a></li> 
+				    	<%-- <li><a href='<c:url value="userResolvedTickets.html"/>'>Resolved Tickets</a></li> --%> 
 				    	
 					</ul>
 			</div>

@@ -780,8 +780,11 @@
 												</div>
 											</div>
 										</div>
-									</div>									
-									<div class="showComment" style="display:none;">
+									</div>
+									
+								<c:if test="${empty ticketObject.comments}">
+								</c:if>
+								<c:if test="${not empty ticketObject.comments}">					
 										 <!-- Text area Comment-->
 										<div class="form-group">
 												<label class="col-md-3 control-label">Comments</label>
@@ -794,8 +797,12 @@
 													</div>
 												</div>
 										</div>
-									</div>
-									
+								</c:if>
+								
+								<c:if test="${empty ticketObject.usedPartNumbers}">
+								</c:if>
+								<c:if test="${not empty ticketObject.usedPartNumbers}">
+															
 									<!-- Text area Used Spare Part-->
 									<div class="usedPartNumbersDetails">
 										<div class="form-group">
@@ -810,7 +817,7 @@
 											</div>
 										</div>
 									</div>
-
+								</c:if>	
 									<!-- Text checkbox Colour Reading-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Colour Reading</label>

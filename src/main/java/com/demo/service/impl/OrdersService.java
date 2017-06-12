@@ -115,5 +115,27 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.technicianOrdersCount(technicianName);
 	}
 
+	@Override
+	public List<OrderHeader> getAllOrders(String startDate, String endDate) {
+		return ordersDAO.getAllOrders(startDate, endDate);
+	}
+
+	@Override
+	public List<OrderHeader> getAllOrders(String startDate, String endDate,
+			String technicianEmail) {
+		return ordersDAO.getAllOrders(startDate, endDate, technicianEmail);
+	}
+
+	@Override
+	public List<OrderHeader> getAllOrdersByDate() {
+		return ordersDAO.getAllOrdersByDate();
+	}
+
+	@Override
+	public List<OrderHeader> getAllOrdersByDate(String technicianName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

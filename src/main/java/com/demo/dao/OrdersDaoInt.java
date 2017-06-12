@@ -24,5 +24,9 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> shippedOrders(String technicianEmail);
 	public String declineOrder(String orderNum,String reasonForeclined);
 	public int technicianOrdersCount(String technicianName);
+	public List<OrderHeader> getAllOrders(String startDate, String endDate);
+	public List<OrderHeader> getAllOrders(String startDate, String endDate, String technicianEmail);
+	public List<OrderHeader> getAllOrdersByDate();
+	public List<OrderHeader> getAllOrdersByDate(String technicianName);
 
 }

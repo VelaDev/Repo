@@ -3,6 +3,7 @@ package com.demo.dao.impl;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -599,5 +600,66 @@ public class OrderDao implements OrdersDaoInt {
 			e.getMessage();
 		}
 		return shippedOrders;
+	}
+
+	@Override
+	public List<OrderHeader> getAllOrders(String startDate, String endDate) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getAllOrders(String startDate, String endDate,
+			String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getAllOrdersByDate() {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) < 0) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getAllOrdersByDate(String technicianName) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

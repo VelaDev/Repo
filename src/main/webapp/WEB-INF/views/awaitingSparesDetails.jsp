@@ -187,7 +187,6 @@
 												</div>
 											</div>
 										</div>
-
 										<div class="form-group">
 											<label class="col-md-3 control-label">Email</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -200,7 +199,6 @@
 												</div>
 											</div>
 										</div>
-
 										<c:if test="${not empty ticketObject.contactCellNumber }">
 												<!-- Text input Contact Person Cellphone Number-->
 												<div class="form-group">

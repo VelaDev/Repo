@@ -766,6 +766,9 @@
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
+							
+							
+							
 							<form:form class="well form-horizontal">
 								<div class="panel-body">
 									<!-- Below table will be displayed as Data table -->

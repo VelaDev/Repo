@@ -35,43 +35,6 @@
 				<div class="panel-body">
 					<div class="tab-content">
 						
-						<form:form class="form-horizontal">
-								<div class="col-sm-4">
-									<!-- Text input First Date Leave-->
-									<div class="form-group">
-										<label class="col-xs-3 control-label">From Date</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group input-append date" id="startDatePicker">
-												<input type='text' class="form-control" name="startDate"
-													id="startDate" placeholder="YYYY-MM-DD" /> <span
-													class="input-group-addon"> <span
-													class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								
-								<div class="col-sm-4">						
-									<!-- Text input Last Date Leave-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">To This Date</label>
-										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group input-append date" id="endDatePicker">
-												<input type='text' class="form-control" name="endDate"
-													id="endDate" placeholder="YYYY-MM-DD" /> <span
-													class="input-group-addon"> <span
-													class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-md-2">
-									<input class="btn btn-success" type='submit' value='Submit' />
-								</div>
-							</form:form>
-					
 						<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable">
 							<thead>

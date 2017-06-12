@@ -892,7 +892,6 @@ public class TicketController {
         ModelAndView model = new ModelAndView("405");
  
         model.addObject("exception", ex.getMessage());
-         
         return model;
     }
 	@RequestMapping(value={"closedTicketsAdmin", "closedTechDetails"})

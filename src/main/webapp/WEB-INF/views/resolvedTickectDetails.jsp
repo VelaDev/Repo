@@ -198,23 +198,7 @@
 												</div>
 											</div>
 										</div>
-										
-										<!-- Text input Contact Person Cellphone Number-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Cellphone No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-earphone"></i></span> <input
-														id="contactCellNumber" name="contactCellNumber"
-														placeholder="Cellphone No (Optional)" class="form-control"
-														maxlength="10" type="text" readonly
-														onkeypress="return isNumber(event)"
-														value="${ticketObject.contactCellNumber}">
-												</div>
-											</div>
-										</div>
-										
+										<c:if test=" ${not empty ticketObject.contactTelephoneNumber}">
 										
 										<!-- Text input Contact Person Tellphone Number-->
 										<div class="form-group">
@@ -232,8 +216,24 @@
 											</div>
 										</div>
 										
-										
-										
+										</c:if>
+										<c:if test="${not empty ticketObject.contactCellNumber}">
+										     <!-- Text input Contact Person Cellphone Number-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Cellphone No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-earphone"></i></span> <input
+														id="contactCellNumber" name="contactCellNumber"
+														placeholder="Cellphone No (Optional)" class="form-control"
+														maxlength="10" type="text" readonly
+														onkeypress="return isNumber(event)"
+														value="${ticketObject.contactCellNumber}">
+												</div>
+											</div>
+										</div>
+										</c:if>
 									</div>
 									<!--/ First Column-->
 

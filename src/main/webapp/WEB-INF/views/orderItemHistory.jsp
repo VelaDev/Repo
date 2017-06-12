@@ -36,12 +36,17 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-					<div class="tab-content">
+					<div class="tab-content">					
+							<!-- Iterating over the list sent from Controller -->
 							<div class="orderDetails">
-								Stock type : ${orderHistory.orderHeader.stockType}<br/>
-								Placed By : ${orderHeader.employee.firstName} ${orderHeader.employee.lastName}<br/>								
-								Customer Name : ${orderHeader.customer.customerName}
-							</div>
+								<li id="approvedDate">Approved Date : ${OrderNum.dateOrdered}</li>
+								<li id="placedBy ">Placed By : ${OrderNum.employee.firstName} ${OrderNum.employee.lastName}</li>
+								<c:if test="${empty OrderNum.customer.customerName}">
+								</c:if>
+								<c:if test="${not empty OrderNum.customer.customerName}">
+										<li id="siteStock">Customer Name : ${OrderNum.customer.customerName}</li>
+								</c:if>								
+							</div>							
 						<div class="groupdetails-row-padding">
 								
 							<div id="pagewrap">

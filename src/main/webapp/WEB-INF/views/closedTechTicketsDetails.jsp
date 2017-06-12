@@ -9,21 +9,21 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">	
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-	
+
 
 </head>
 <body>
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			
+
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -32,8 +32,8 @@
 						</div>
 					</h3>
 				</div>
-				
-			<div class="panel-body">
+
+				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
 						<li class="active"><a href="#generalDetails"
@@ -54,7 +54,7 @@
 
 							<form:form class="well form-horizontal" action="updateTicket"
 								modelAttribute="updateTicket" method="post" id="updataTckt">
-								
+
 								<!-- //Ticket Details -->
 								<fieldset>
 									<legend align="left">Ticket Info</legend>
@@ -62,7 +62,7 @@
 									<!--First Column-->
 									<div class="col-md-6">
 
-									<!-- Text input Ticket Number-->
+										<!-- Text input Ticket Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Ticket Number</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -81,8 +81,7 @@
 											<div class="col-md-6 selectContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-list"></i></span>
-														<input
+														class="glyphicon glyphicon-list"></i></span> <input
 														name="ticketNumber" id="ticketNumber" class="form-control"
 														type="text" value="${ticketObject.status}" readonly>
 												</div>
@@ -171,8 +170,8 @@
 														value="${ticketObject.lastName}">
 												</div>
 											</div>
-										</div>										
-										
+										</div>
+
 										<div class="form-group">
 											<label class="col-md-3 control-label">Email</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -185,7 +184,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 										<!-- Text input Contact Person Cellphone Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Cellphone No</label>
@@ -200,8 +199,8 @@
 														value="${ticketObject.contactCellNumber}">
 												</div>
 											</div>
-										</div>										
-										
+										</div>
+
 										<!-- Text input Contact Person Tellphone Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Tellphone No </label>
@@ -217,7 +216,7 @@
 												</div>
 											</div>
 										</div>
-										
+
 									</div>
 									<!--/ First Column-->
 
@@ -233,7 +232,8 @@
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" readonly
 														onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly style="height: 318px; margin: 0px; width: 244px;">${ticketObject.description}</textarea>
+														required="required" readonly
+														style="height: 318px; margin: 0px; width: 244px;">${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>
@@ -389,7 +389,7 @@
 								<!-- //Customer Details -->
 
 								<br>
-							<!-- 	<div class="form-group row">
+								<!-- 	<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<input type="submit" value="Re-Open Ticket"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
@@ -462,14 +462,12 @@
 																Taken</label>
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <select
-																		name="actionTaken" id="actionTaken"
+																	<select name="actionTaken" id="actionTaken"
 																		class="form-control selectpicker"
-																		onchange="CheckPartToner(this.value);">
-																		<option value="">Please select Action Taken</option>
-																		<option value="Replaced Part">Replaced Part</option>
-																		<option value="Replaced toner">Replaced Toner</option>
+																		onchange="Faulty(this.value);">
+																		<option value="">Please select Action Taken
+																			for Repair</option>
+																		<option value="Replaced Part/Toner">Replaced Part/Toner</option>
 																		<option value="Cleared Paper Jam">Cleared
 																			Paper Jam</option>
 																		<option value="Installed Drivers">Installed
@@ -526,7 +524,7 @@
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
-													<div class="diplayNone" id="getPartToner"	>
+													<div class="diplayNone" id="getPartToner">
 														<!-- Radio for Boot Stock-->
 														<div class="form-group">
 															<label class="col-md-3 control-label">Boot Stock</label>
@@ -775,20 +773,45 @@
 											</div>
 										</div>
 									</div>
-								<!-- Text area Used Spare Part-->
-									<div class="usedPartNumbersDetails">
+									<c:if test="${empty ticketObject.comments}">
+									</c:if>
+									<c:if test="${not empty ticketObject.comments}">
+										<!-- Text area Comment-->
 										<div class="form-group">
-											<label class="col-md-3 control-label">Used Spare/Part</label>
+											<label class="col-md-3 control-label">Comments</label>
 											<div class="col-md-6 inputGroupContainer">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-barcode"></i></span> <input id="status"
-														class="form-control" type="text" name="status"
-														value="${ticketObject.usedPartNumbers}" readonly="readonly">
+														class="glyphicon glyphicon-pencil"></i></span>
+													<textarea class="form-control" name="comments" id="comment"
+														readonly="readonly" style="height: 100px;">${ticketObject.comments}</textarea>
 												</div>
 											</div>
 										</div>
-									</div>
+									</c:if>
+
+									<c:if test="${empty ticketObject.usedPartNumbers}">
+									</c:if>
+									<c:if test="${not empty ticketObject.usedPartNumbers}">
+
+										<!-- Text area Used Spare Part-->
+										<div class="usedPartNumbersDetails">
+											<div class="form-group">
+												<label class="col-md-3 control-label">Used
+													Spare/Part</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-barcode"></i></span> <input
+															id="usedPartNumbers" class="form-control" type="text"
+															name="usedPartNumbers"
+															value="${ticketObject.usedPartNumbers}"
+															readonly="readonly">
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:if>
 
 									<!-- Text checkbox Colour Reading-->
 									<div class="form-group">
@@ -888,7 +911,7 @@
 															<td>Waiting for Order: ${orders.orderNum}</td>
 														</c:when>
 														<c:when test="${history.status == 'SLA Bridged'}">
-															<td> System Update</td>
+															<td>System Update</td>
 														</c:when>
 														<c:otherwise>
 															<td><c:out value="${history.actionTaken}" /></td>
@@ -937,7 +960,8 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
 
 </html>

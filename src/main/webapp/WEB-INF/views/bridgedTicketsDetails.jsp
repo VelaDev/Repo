@@ -195,24 +195,29 @@
 												</div>
 											</div>
 										</div>
+										<c:if test="${not empty ticketObject.contactCellNumber }">
+												<!-- Text input Contact Person Cellphone Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Cellphone No</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-earphone"></i></span> <input
+																id="contactCellNumber" name="contactCellNumber"
+																placeholder="Cellphone No (Optional)" class="form-control"
+																maxlength="10" type="text" readonly
+																onkeypress="return isNumber(event)"
+																value="${ticketObject.contactCellNumber}">
+														</div>
+													</div>
+												</div>	
+										</c:if>
+										<c:if test="${empty ticketObject.contactCellNumber }">
+										</c:if>
+																			
 										
-										<!-- Text input Contact Person Cellphone Number-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Cellphone No</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-earphone"></i></span> <input
-														id="contactCellNumber" name="contactCellNumber"
-														placeholder="Cellphone No (Optional)" class="form-control"
-														maxlength="10" type="text" readonly
-														onkeypress="return isNumber(event)"
-														value="${ticketObject.contactCellNumber}">
-												</div>
-											</div>
-										</div>										
-										
-										<!-- Text input Contact Person Tellphone Number-->
+										<c:if test="${not empty ticketObject.contactTelephoneNumber }">
+											<!-- Text input Contact Person Tellphone Number-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Tellphone No </label>
 											<div class="col-md-6 inputGroupContainer">
@@ -227,6 +232,10 @@
 												</div>
 											</div>
 										</div>
+										</c:if>
+										<c:if test="${empty ticketObject.contactTelephoneNumber }">
+										</c:if>
+										
 										
 									</div>
 									<!--/ First Column-->
@@ -471,11 +480,11 @@
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
 																	<select name="actionTaken" id="actionTaken"
-																		class="form-control selectpicker">
+																		class="form-control selectpicker"
+																		onchange="Faulty(this.value);">
 																		<option value="">Please select Action Taken
 																			for Repair</option>
-																		<option value="Replaced Part">Replaced Part</option>
-																		<option value="Replaced toner">Replaced Toner</option>
+																		<option value="Replaced Part/Toner">Replaced Part/Toner</option>
 																		<option value="Cleared Paper Jam">Cleared
 																			Paper Jam</option>
 																		<option value="Installed Drivers">Installed

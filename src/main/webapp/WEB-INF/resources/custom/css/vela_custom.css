@@ -4,6 +4,9 @@
 	padding:0px;
 	box-sizing: border-box;
 }
+.orderDetails {
+    margin-left: 15px;
+}
 body{
 	
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;

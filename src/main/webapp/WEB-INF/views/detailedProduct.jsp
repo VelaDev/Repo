@@ -167,11 +167,33 @@ header, #content, #middle, #sidebar {
 													<label id="modelBrand" name="modelBrand">Model Brand </label> <br> 
 													<label id="startDate" name="startDate">Start Date </label> <br> 
 													<label id="installationDate" name="installationDate">Installation Date </label> <br> 
-													<label id="endDate" name="endDate">End Date </label> <br> 
-													<label id="colourReading" name="colourReading">Colour Reading </label> <br> 
-													<label id="colourCopyCost" name="colourCopyCost">Colour Copy Cost </label> <br> 
-													<label id="monoReading" name="monoReading">Mono Reading </label> <br> 
+													<label id="endDate" name="endDate">End Date </label> <br>
+																										
+													<c:if test="${not empty device.colourReading }">
+														<label id="colourReading" name="colourReading">Colour Reading </label> <br> 
+													</c:if>
+													<c:if test="${empty device.colourReading }">
+													</c:if>
+													
+													<c:if test="${not empty device.colourCopyCost }">
+														<label id="colourCopyCost" name="colourCopyCost">Colour Copy Cost </label> <br> 
+													</c:if>
+													<c:if test="${empty device.colourCopyCost }">
+													</c:if>
+																																						
+													<c:if test="${not empty device.monoReading }">
+														<label id="monoReading" name="monoReading">Mono Reading </label> <br>
+													</c:if>
+													<c:if test="${empty ddevice.monoReading }">
+													</c:if>
+															
+													<c:if test="${not empty device.monoCopyCost }">
 													<label id="monoCopyCost" name="monoCopyCost">Mono Copy Cost </label> <br> 
+													</c:if>
+													<c:if test="${empty device.monoCopyCost }">
+													</c:if>
+															
+													
 												</div>								
 												<div class="machinedetailsfloatright ">	
 												   <label id="customerName" name="customerName">: ${device.customerDevice.customerName}</label><br> 
@@ -180,11 +202,32 @@ header, #content, #middle, #sidebar {
 												   <label id="modelBrand" name="modelBrand">: ${device.modelBrand}</label><br> 
 												   <label id="startDate" name="startDate">: ${device.startDate}</label><br> 
 												   <label id="installationDate" name="installationDate">: ${device.installationDate}</label><br> 
-												   <label id="endDate" name="endDate">: ${device.endDate}</label><br> 
+												   <label id="endDate" name="endDate">: ${device.endDate}</label><br>
+												   
+												   <c:if test="${not empty device.colourReading }">
 												   <label id="colourReading" name="colourReading">: ${device.colourReading}</label><br>
+												   </c:if>
+												   <c:if test="${ empty device.colourReading }">
+												   </c:if>
+												   
+												   <c:if test="${not empty device.colourCopyCost }">
 												   <label id="colourCopyCost" name="colourCopyCost">: R${device.colourCopyCost}</label><br> 
+												   </c:if>
+												   <c:if test="${ empty device.colourCopyCost }">
+												   </c:if>
+												   
+												   <c:if test="${not empty device.monoReading }">
 												   <label id="monoReading" name="monoReading">: ${device.monoReading}</label><br>
-												   <label id="monoCopyCost" name="monoCopyCost">: R${device.monoCopyCost}</label><br>
+												   </c:if>
+												    <c:if test="${ empty device.monoReading }">
+												   </c:if>
+												   
+												   <c:if test="${not empty device.monoCopyCost }">
+												  	 <label id="monoCopyCost" name="monoCopyCost">: R${device.monoCopyCost}</label><br>
+												   </c:if>
+												    <c:if test="${ empty device.monoCopyCost}">
+												    </c:if>
+												   
 												</div>
 									</div>
 								</section>

@@ -863,6 +863,7 @@ public class TicketController {
 		return model;
     }
 	
+	
 	@RequestMapping("technicianDashboard")
 	public ModelAndView bridgedTicketsForTech(){
 		

@@ -525,7 +525,7 @@
 																		onkeypress="return isNumber(event)"
 																		placeholder="Enter Colour Reading" id="colourReading"
 																		name="colourReading">
-																</div>
+																</div> 
 															</div>
 														</div>
 														</c:if>

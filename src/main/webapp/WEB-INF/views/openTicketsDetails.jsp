@@ -499,8 +499,21 @@
 																</div>
 															</div>
 														</div>
-
-														<!-- Text checkbox Colour Reading-->
+                                                         <div class="form-group">
+															<label class="col-md-4 control-label">Mono
+																Reading</label>
+															<div class="col-md-8 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-list"></i></span> <input
+																		type="text" class="form-control"
+																		onkeypress="return isNumber(event)" id="mono"
+																		name="monoReading" placeholder="Enter Mono Reading">
+																</div>
+															</div>
+														</div>
+														<c:if test="${not empty  ticketObject.device.colourReading}">
+														     <!-- Text checkbox Colour Reading-->
 														<div class="form-group">
 															<label class="col-md-4 control-label">Colour
 																Reading</label>
@@ -515,19 +528,8 @@
 																</div>
 															</div>
 														</div>
-														<div class="form-group">
-															<label class="col-md-4 control-label">Mono
-																Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <input
-																		type="text" class="form-control"
-																		onkeypress="return isNumber(event)" id="mono"
-																		name="monoReading" placeholder="Enter Mono Reading">
-																</div>
-															</div>
-														</div>
+														</c:if>
+														
 
 
 													</div>

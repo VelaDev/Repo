@@ -895,7 +895,7 @@ public class TicketController {
          
         return model;
     }
-	@RequestMapping(value={"closedTicketsAdmin", "closedTechTickets"})
+	@RequestMapping(value={"closedTicketsAdmin", "closedTechDetails"})
 	public ModelAndView closedTicketsAdmin(@RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate){
 		
 		model = new ModelAndView();
@@ -915,8 +915,71 @@ public class TicketController {
 		    
 		    else if (userName.getRole().equalsIgnoreCase("Technician")){
 		    	model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-				model.addObject("ticketList", logTicketService.getAllClosedTickets(userName.getEmail()));				
+				model.addObject("ticketList", logTicketService.getAllClosedTickets(userName.getEmail()));
+				model.addObject("ticketList", logTicketService.getAllClosedTickets(startDate, endDate, userName.getEmail()));
 		    	model.setViewName("closedTechTickets");
+		    }			
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value={"escalateTechTicket", "adminEscalates"})
+	public ModelAndView TicketsAdmin(@RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllEscalatedTickets());
+		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		    model.addObject("ticketList", logTicketService.getAllEscalatedTickets(startDate, endDate));
+		    
+		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
+		    	
+		    	model.setViewName("escalatedTickes");
+		    }
+		    
+		    else if (userName.getRole().equalsIgnoreCase("Technician")){
+		    	model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+				model.addObject("ticketList", logTicketService.getAllEscalatedTickets(userName.getEmail()));
+				model.addObject("ticketList", logTicketService.getAllEscalatedTickets(startDate, endDate, userName.getEmail()));
+		    	model.setViewName("escalatedTech");
+		    }			
+		}
+		else{
+			model.setViewName("login");
+		}
+		
+		return model;
+	}
+	@RequestMapping(value={"bridgedTicketsAdmin", "adminEscalates"})
+	public ModelAndView slaTicketsAdmin(@RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate){
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName !=null){
+		     
+		    model.addObject("retMessage", retMessage);
+		    model.addObject("ticketList", logTicketService.getAllBridgedTickets());
+		    model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		    model.addObject("ticketList", logTicketService.getAllBridgedTickets(startDate, endDate));
+		    
+		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
+		    	
+		    	model.setViewName("bridgedTickes");
+		    }
+		    
+		    else if (userName.getRole().equalsIgnoreCase("Technician")){
+		    	model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
+				model.addObject("ticketList", logTicketService.getAllBridgedTickets(userName.getEmail()));
+				model.addObject("ticketList", logTicketService.getAllBridgedTickets(startDate, endDate, userName.getEmail()));
+		    	model.setViewName("slaBridged");
 		    }			
 		}
 		else{

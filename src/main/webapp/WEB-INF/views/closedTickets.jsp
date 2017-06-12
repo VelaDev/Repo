@@ -35,10 +35,6 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<c:if test="${empty ticketList}">
-							There are no closed tickets at the moment
-						</c:if>
-						<c:if test="${not empty ticketList}">
 						
 							<form:form class="form-horizontal" method="post"
 							action="closedTicketsAdmin" id="closedTicketsAdmin" modelAttribute="closedTicketsAdmin">
@@ -76,7 +72,7 @@
 								<div class="col-md-2">
 									<input class="btn btn-success" type='submit' value='Submit' />
 								</div>
-							</form:form>
+							 </form:form>
 						
 							<table id="myDatatable" class="display datatable">
 								<thead>
@@ -102,7 +98,6 @@
 									</c:forEach>
 								</tbody>
 							</table>
-						</c:if>
 
 					</div>
 					<!-- /tab-content -->

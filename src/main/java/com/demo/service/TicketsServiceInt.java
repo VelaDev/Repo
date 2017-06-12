@@ -29,6 +29,10 @@ public interface TicketsServiceInt {
 
 	List<Tickets> getAssignedCallsToTechnician(String username);
 	List<Tickets> getAllClosedTickets(String startDate,String endDate);
+	List<Tickets> getAllEscalatedTickets(String startDate,String endDate);
+	List<Tickets> getAllBridgedTickets(String startDate,String endDate);
+	List<Tickets> getAllAwaitingSparesTickets(String startDate,String endDate);
+	List<Tickets> getAllOpenTickets(String startDate,String endDate);
 
 	String updateTicket(TicketsBean ticket);
 
@@ -70,5 +74,11 @@ public interface TicketsServiceInt {
 	List<Tickets> getAllClosedTickets(String technicianEmail);
 	List<Tickets> getAllBridgedTickets(String technicianEmail);
 	List<Tickets> getAllResolvedTickets(String technicianEmail);
+	
+	List<Tickets> getAllClosedTickets(String startDate,String endDate, String technicianEmail);
+	List<Tickets> getAllEscalatedTickets(String startDate,String endDate,String technicianEmail);
+	List<Tickets> getAllBridgedTickets(String startDate,String endDate,String technicianEmail);
+	List<Tickets> getAllAwaitingSparesTickets(String startDate,String endDate,String technicianEmail);
+	List<Tickets> getAllOpenTickets(String startDate,String endDate,String technicianEmail);
 
 }

@@ -214,4 +214,56 @@ public class TicketsService implements TicketsServiceInt{
 	public List<Tickets> getAllClosedTickets(String startDate, String endDate) {
 		return logTicketsDAO.getAllClosedTickets(startDate, endDate);
 	}
+
+	@Override
+	public List<Tickets> getAllEscalatedTickets(String startDate, String endDate) {
+		return logTicketsDAO.getAllEscalatedTickets(startDate, endDate);
+	}
+
+	@Override
+	public List<Tickets> getAllBridgedTickets(String startDate, String endDate) {
+		return logTicketsDAO.getAllBridgedTickets( startDate,endDate);
+	}
+
+	@Override
+	public List<Tickets> getAllAwaitingSparesTickets(String startDate,
+			String endDate) {
+		
+		return logTicketsDAO.getAllAwaitingSparesTickets(startDate, endDate);
+	}
+
+	@Override
+	public List<Tickets> getAllOpenTickets(String startDate, String endDate) {
+		return logTicketsDAO.getAllOpenTickets(startDate,endDate);
+	}
+
+	@Override
+	public List<Tickets> getAllClosedTickets(String startDate, String endDate,
+			String technicianEmail) {
+		return logTicketsDAO.getAllClosedTickets(startDate, endDate, technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllEscalatedTickets(String startDate,
+			String endDate, String technicianEmail) {
+		return logTicketsDAO.getAllEscalatedTickets(startDate, endDate, technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllBridgedTickets(String startDate, String endDate,
+			String technicianEmail) {
+		return logTicketsDAO.getAllBridgedTickets(startDate, endDate, technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllAwaitingSparesTickets(String startDate,
+			String endDate, String technicianEmail) {
+		return logTicketsDAO.getAllAwaitingSparesTickets(startDate, endDate, technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllOpenTickets(String startDate, String endDate,
+			String technicianEmail) {
+		return logTicketsDAO.getAllOpenTickets(startDate, endDate, technicianEmail);
+	}
 }

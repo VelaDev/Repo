@@ -1703,7 +1703,7 @@ public class TicketsDao implements TicketsDaoInt {
 			currentDate = myFormat.parse(endDate);
 			previoueDay = myFormat.parse(startDate);
 
-			List<Tickets> tickets = getAllBridgedTickets();
+			List<Tickets> tickets = bridgedTickets();
 			for (Tickets tic : tickets) {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");

@@ -35,10 +35,6 @@
 			<div class="panel-body">
 					<div class="tab-content">
 					
-					<c:if test="${empty ticketList}">
-						There are no open tickets at the moment
-					</c:if>
-					<c:if test="${not empty ticketList}">
 						
 						<form:form class="form-horizontal">
 								<div class="col-sm-4">
@@ -100,7 +96,6 @@
 								</c:forEach>
 							</tbody>
 						</table>
-					</c:if>
 						
 					</div><!-- /tab-content -->
 									

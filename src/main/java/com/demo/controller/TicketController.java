@@ -972,7 +972,7 @@ public class TicketController {
 		    
 		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
 		    	
-		    	model.setViewName("bridgedTickes");
+		    	model.setViewName("bridgedTickets");
 		    }
 		    
 		    else if (userName.getRole().equalsIgnoreCase("Technician")){

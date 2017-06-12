@@ -40,7 +40,7 @@
 						</c:if>
 						<c:if test="${not empty ticketList}">
 								
-							<form:form class="form-horizontal">
+							<form:form class="form-horizontal" modelAttribute="awaitingTechDetails" action="awaitingTechDetails" method="post">
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
 									<div class="form-group">

@@ -893,6 +893,7 @@ public class TicketController {
  
         model.addObject("exception", ex.getMessage());
         return model;
+        
     }
 	@RequestMapping(value={"closedTicketsAdmin", "closedTechDetails"})
 	public ModelAndView closedTicketsAdmin(@RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate){

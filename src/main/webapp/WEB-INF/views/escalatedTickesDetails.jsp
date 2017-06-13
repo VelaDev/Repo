@@ -428,8 +428,9 @@
 
 							<div id="solutionDetails" class="modal fade" role="dialog"
 								aria-labelledby="solutionDetailsLabel" aria-hidden="true">
-								<div class="modal-dialog modal-lg">
-									<div class="modal-content">
+								<div class="modal-dialog-solution modal-lg">
+
+									<div class="modal-content-solution">
 
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal"
@@ -437,10 +438,10 @@
 											<h3 class="modal-title">Solution Details</h3>
 										</div>
 
-										<div class="modal-body">
+										<div class="modal-body-solution">
 
 											<!--wellform form-horizontal-->
-											<div class="wellform form-horizontal">
+											<div class="form-horizontal">
 
 												<div class="groupsparedetails">
 													<legend align="left">Ticket Info</legend>
@@ -468,8 +469,9 @@
 															<div class="col-md-8 selectContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> 
-																		<input type="text" name="status"readonly="readonly" class="form-control" value="Resolved" />																		
+																		class="glyphicon glyphicon-list"></i></span> <input
+																		type="text" name="status" readonly="readonly"
+																		class="form-control" value="Resolved" />
 																</div>
 															</div>
 														</div>
@@ -508,10 +510,10 @@
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		class="glyphicon glyphicon-list"></i></span> <input
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)"
-																		placeholder="Enter Colour Reading" id="colour"
+																		placeholder="Enter Colour Reading" id="colourReading"
 																		name="colourReading">
 																</div>
 															</div>
@@ -522,33 +524,14 @@
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-barcode"></i></span> <input
+																		class="glyphicon glyphicon-list"></i></span> <input
 																		type="text" class="form-control"
 																		onkeypress="return isNumber(event)" id="mono"
-																		name="monoReading" placeholder="Enter Mono Reading"
-																		name="monoReading">
+																		name="monoReading" placeholder="Enter Mono Reading">
 																</div>
 															</div>
 														</div>
 
-														<!-- <div class="form-group">
-																<label class="col-md-4 control-label">Test Part</label>
-																<div class="col-md-8 inputGroupContainer">
-																	<div class="input-group">
-																		<input type="hidden"
-																			class="form-control"id="partTest" name="partTest" placeholder=""	value="">
-																	</div>
-																</div>
-														</div>															
-														<div class="form-group">
-																<label class="col-md-4 control-label">Test Toner</label>
-																<div class="col-md-8 inputGroupContainer">
-																	<div class="input-group">
-																		<input type="hidden"
-																			class="form-control"id="tonerTest" name="testToner" placeholder=""	value="">
-																	</div>
-																</div>
-														</div> -->
 
 													</div>
 												</div>
@@ -558,59 +541,72 @@
 												<div class="groupsearchdetails">
 													<legend>Used Part Numbers </legend>
 
-													<fieldset id="groupstock">
-														<!-- group Boot Stock -->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Boot Stock</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" value="" name="groupboot"
-																		data-toggle="modal" data-target="#bootStock"
-																		disabled="disabled" id="BootStocked">
-																</div>
-															</div>
-														</div>
-														<!-- group Site Stock -->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Site Stock</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<input type="radio" value="" name="groupboot"
-																		data-toggle="modal" data-target="#siteStock"
-																		disabled="disabled" id="SiteStocked"> `
-																</div>
-															</div>
-														</div>
-													</fieldset>
 
-													<!-- display ticked Used Part Numbers-->
-													<div class="shitRight">
+													<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
+														style="display: none">
+
+														<fieldset id="groupstock">
+															<!-- group Boot Stock -->
+															<div class="form-group">
+																<label class="col-md-4 control-label">Boot Stock</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<input type="radio" value="bootType" name="groupboot"
+																			data-toggle="modal" data-target="#bootStock"
+																			disabled="disabled" id="BootStocked">
+																	</div>
+																</div>
+															</div>
+															<!-- group Site Stock -->
+															<div class="form-group">
+																<label class="col-md-4 control-label">Site Stock</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<input type="radio" value="siteType" name="groupboot"
+																			data-toggle="modal" data-target="#siteStock"
+																			disabled="disabled" id="SiteStocked"> `
+																	</div>
+																</div>
+															</div>
+														</fieldset>
+
+														<!-- display ticked Used Part Numbers-->
+														<div class="shitRight">
+															<div class="form-group">
+																<label class="usedPart control-label">Used Part
+																	Numbers</label>
+																<div class="col-md-8 inputGroupContainer">
+																	<div class="input-group">
+																		<textarea id="usedPartNumbers" name="usedPartNumbers"
+																			disabled="disabled" class="form-control"
+																			style="width: 272px; height: 93px; font-size: 11px; margin: 0px;"
+																			rows="3">
+																			</textarea>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<!--// display ticked Used Part Numbers-->
+													</div>
+													<!-- display Comments-->
+													<div class="hideComent" id="hideComent"
+														style="display: none">
+														<!-- Text area Comment-->
 														<div class="form-group">
-															<label class="usedPart control-label">Used Part
-																Numbers</label>
+															<label class="usedPart control-label">Comments on
+																Fautly</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
-																	<textarea id="usedPartNumbers" name="usedPartNumbers"
-																		disabled="disabled" class="form-control"
-																		style="width: 200px; height: 90px; font-size: 11px;"
-																		rows="3">
-																		</textarea>
+																	<textarea class="form-control" name="comments"
+																		required="required"
+																		placeholder="Please enter comments" id="comment"
+																		style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
+																		rows="3"></textarea>
 																</div>
 															</div>
 														</div>
 													</div>
-													<!--// display ticked Used Part Numbers-->
-
-												</div>
-												<!-- //group Used Part Numbers -->
-
-												<div class="modal-footer">
-
-													<button type="button" class="btn btn-default"
-														data-dismiss="modal">Close</button>
-													<button type="submit" value="Submit"
-														class="btn btn-primary" id="send_btn">Submit</button>
-
+													<!--// display Comments-->
 												</div>
 
 											</div>
@@ -618,12 +614,31 @@
 
 										</div>
 										<!-- modal-body -->
+
+										<!-- //group Used Part Numbers -->
+										<div class="actionTakenSubmit" id="actionTakenSubmit"
+											style="display: none;">
+
+											<div class="modal-footer">
+
+												<button type="button" class="btn btn-default"
+													data-dismiss="modal">Close</button>
+												<button type="submit" value="Submit" class="btn btn-primary"
+													id="send_btn">Submit</button>
+
+											</div>
+
+										</div>
+
+
+
 									</div>
 									<!-- /.modal-content -->
 								</div>
 								<!-- /.modal-dialog -->
 							</div>
 							<!-- /.modal solutionDetails-->
+
 
 							<!--Boot Stock-->
 							<div id="bootStock" class="modal fade" role="dialog"
@@ -666,6 +681,8 @@
 													</c:forEach>
 												</tbody>
 											</table>
+											<input type="hidden" class="form-control" id="setStock"
+												name="bootType" value="Boot">
 
 										</div>
 										<div class="modal-footer">
@@ -719,8 +736,10 @@
 													</c:forEach>
 												</tbody>
 											</table>
-											<div class="modal-footer">
+											<input type="hidden" class="form-control" id="botStock"
+												name="bootType" value="Site">
 
+											<div class="modal-footer">
 												<button type="button" class="btn btn-default"
 													data-dismiss="modal">Close</button>
 												<button id="save" type="button" class="btn btn-primary"

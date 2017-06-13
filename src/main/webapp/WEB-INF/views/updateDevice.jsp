@@ -334,29 +334,32 @@ input.currency {
 											</div>
 										</div>
 									</div>
-
-
-									<!-- Select type Mono/Colour-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Mono/Colour
-											Reading</label>
-										<div class="col-md-6 selectContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span><select name="colour"
-													class="form-control" onchange='CheckColors(this.value);'
-													class="form-control selectpicker">
-													<option>Select Mono/Colour</option>
-													<option value="mono">Mono</option>
-													<option value="colour">Colour</option>
-												</select>
+									<c:if test="${not empty productObject.monoReading }">
+									  <div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6">
+												<input type="text" class="form-control"
+													onkeypress="return isNumber(event)" id="mono"
+													name="monoReading" placeholder="Enter Mono Reading"
+													value="${productObject.monoReading}">
 											</div>
 										</div>
-									</div>
-
-									<!-- Both mono and colour reading  -->
-									<div class="colour" id="colour" style="display: none;">
-										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Copy Cost</label>
+											<div class="col-md-6">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon">$</i></span>
+													<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"
+													placeholder="Enter Mono Copy Cost" id="colour"
+													name="monoCopyCost" value="${productObject.monoCopyCost}">
+												</div>
+											</div>
+											<br>
+										</div>
+									</c:if>
+									<c:if test="${not empty productObject.colourReading}">
+									  <!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
@@ -367,7 +370,6 @@ input.currency {
 											</div>
 											<br>
 										</div>
-
 										<!-- Text checkbox Colour Copy Cost-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Copy
@@ -384,42 +386,7 @@ input.currency {
 											</div>
 											<br>
 										</div>
-
-									</div>
-									<!-- Both mono and colour reading  -->
-
-									<!-- Only mono Reading -->
-									<!-- Text checkbox Mono Reading-->
-									<div class="mono" id="mono" style="display: none;">
-										<div class="form-group">
-											<label class="col-md-3 control-label">Mono Reading</label>
-											<div class="col-md-6">
-												<input type="text" class="form-control"
-													onkeypress="return isNumber(event)" id="mono"
-													name="monoReading" placeholder="Enter Mono Reading"
-													value="${productObject.monoReading}">
-											</div>
-										</div>
-
-										<!-- Text checkbox Mono Copy Cost-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Mono Copy Cost</label>
-											<div class="col-md-6">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon">$</i></span>
-													<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"
-													placeholder="Enter Mono Copy Cost" id="colour"
-													name="monoCopyCost" value="${productObject.monoCopyCost}">
-												</div>
-											</div>
-											<br>
-										</div>
-
-									</div>
-									<!-- //Only mono Reading -->
-
-
+									</c:if>
 								</div>
 								<!--/F Column-->
 
@@ -537,7 +504,8 @@ input.currency {
 							</fieldset>
 
 
-							<!--Machine Accessories-->
+							<c:if test="${not empty accessories}">
+							    <!--Machine Accessories-->
 							<fieldset>
 								<legend align="left">Machine Accessories</legend>
 
@@ -562,11 +530,13 @@ input.currency {
 											</c:forEach>
 										</tbody>
 									</table>
+								</div>
+							</fieldset>
+							<!--Machine Accessories-->
+							</c:if>
+							<!-- Other Machine Accessories -->
 									
-									
-									<!-- Other Machine Accessories -->
-									
-										<h5>Other Machine Accessories</h5>									
+										<h5>Machine Accessories</h5>									
 											<p><input type="button" class="btn btn-success"  value="Add More"></p>
 											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">
 													<thead>
@@ -586,12 +556,6 @@ input.currency {
 											</table>					
 										
 									<!-- //Other Machine Accessories -->
-									
-
-								</div>
-							</fieldset>
-							<!--Machine Accessories-->
-							
 							
 
 							<div class="form-group row">

@@ -93,7 +93,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);" id="status" name="status"
+														onchange="CheckStatus(this.value);"  name="status"
 														 class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
 														<option value="Open">Open</option>

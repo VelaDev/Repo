@@ -481,8 +481,6 @@
 																</div>
 															</div>
 														</div>
-
-
 													</div>
 												</div>
 												<!-- //group details -->

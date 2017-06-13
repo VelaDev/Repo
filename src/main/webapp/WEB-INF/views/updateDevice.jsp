@@ -535,7 +535,6 @@ input.currency {
 							<!--Machine Accessories-->
 							</c:if>
 							<!-- Other Machine Accessories -->
-									
 										<h5>Machine Accessories</h5>									
 											<p><input type="button" class="btn btn-success"  value="Add More"></p>
 											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">

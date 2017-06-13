@@ -38,7 +38,7 @@
 	</p>
 </div>
 <div class="velatp_logo">
-	<a href="home.html"><img
+	<a href="#"><img
 		src="resources/images/mainlogoo.jpg"></a>
 	<div class="userloggedin">
 		<ul class="nav navbar-nav navbar-right">

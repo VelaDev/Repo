@@ -9,7 +9,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style type="text/css">
-    .onleave{background:red; color:white;}
+.onleave {
+	background: red;
+	color: white;
+}
 </style>
 </head>
 <body>
@@ -38,43 +41,47 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						<form action="searchSerialNumberLogtickr" method="post" id="searchBylogTicket">
-							<div class="row">
-								<!-- Text input Search-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Search Device </label>
-									<div class="col-md-4 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-hdd"></i></span> <input
-												name="serialNumber" list="serialNumbers"
-												class="form-control" type="text"
-												onkeydown="upperCaseF(this)"
-												placeholder='Enter Serial Number'/>
+
+							<c:if test="${empty product.modelNumber}">
+
+							<form action="searchSerialNumberUserLogticket" method="post"
+								id="searchBylogTicket">
+								<div class="row">
+									<!-- Text input Search-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Search Device </label>
+										<div class="col-md-4 inputGroupContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-hdd"></i></span> <input
+													name="serialNumber" list="serialNumbers"
+													class="form-control" type="text"
+													onkeydown="upperCaseF(this)"
+													placeholder='Enter Serial Number' />
+											</div>
 										</div>
-									</div>
-									<!-- Iterating over the list sent from Controller -->
-									<datalist id="serialNumbers"> <c:forEach var="list"
-										items="${serialNumbers}">
-										<option value="${list}">
-									</c:forEach> </datalist>
+										<!-- Iterating over the list sent from Controller -->
+										<datalist id="serialNumbers"> <c:forEach var="list"
+											items="${serialNumbers}">
+											<option value="${list}">
+										</c:forEach> </datalist>
 
-									<div class="col-md-2">
-										<input class="btn btn-success" type='submit' value='Search' />
-									</div>
+										<div class="col-md-2">
+											<input class="btn btn-success" type='submit' value='Search' />
+										</div>
 
+									</div>
 								</div>
-							</div>
-							<hr>
-						</form>
-						<!--Search-->
-						
-						<!-- Hide the form if nothing was searched -->
-						<div class="hideLogTicketForm" id="hideLogTicketForm">						
-						
-							<form:form method="post" class="well form-horizontal" action="logTicketAdmin" modelAttribute="logTicketAdmin"
+								<hr>
+							</form>
+							<!--Search-->
+						</c:if>
+
+						<c:if test="${not empty product.serialNumber }">
+							<form:form method="post" class="well form-horizontal"
+								action="UserlogTicket" modelAttribute="UserlogTicket"
 								id="logTicket">
-								
+
 								<!--First Column-->
 								<div class="col-md-6">
 									<!-- Text input Serial No-->
@@ -90,20 +97,21 @@
 											</div>
 										</div>
 									</div>
-	
+
 									<!-- Text input Machine Model-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Model No</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-barcode"></i></span> <input name="modelNumber" id="modelNumber"
+													class="glyphicon glyphicon-barcode"></i></span> <input
+													name="modelNumber" id="modelNumber"
 													value="${product.modelNumber }" class="form-control"
 													type="text" readonly="readonly">
 											</div>
 										</div>
 									</div>
-	
+
 									<!-- Text input Customer Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Customer Name</label>
@@ -112,39 +120,41 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													value="${product.customerDevice.customerName }"
-													class="form-control" id="customerName" name="customerName" type="text" required="required" readonly="readonly">
+													class="form-control" id="customerName" name="customerName"
+													type="text" required="required" readonly="readonly">
 											</div>
 										</div>
 									</div>
-	
-									
+
 									<!-- Assign Technician -->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Assign Technician</label>
+										<label class="col-md-3 control-label">Assign
+											Technician</label>
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select id="selectedTechnician" 
-													name="technicianUserName" id="selectedTechnician" class="form-control selectpicker">
+													class="glyphicon glyphicon-list"></i></span> <select
+													id="selectedTechnician" name="technicianUserName"
+													id="selectedTechnician" class="form-control selectpicker">
 													<option value="">Select Technician</option>
 													<c:forEach items="${technicians}" var="technician">
-													   <c:choose>
-													     <c:when test="${technician.leaveStatus =='On Leave'}">
-													         <option class="onleave" value="${technician.email}">${technician.firstName}
-															${technician.lastName} (On Leave)</option>
-													     </c:when>
-												          <c:when test="${technician.leaveStatus =='Available'}">
-													         <option value="${technician.email}">${technician.firstName}
-															${technician.lastName}</option>
-													     </c:when>
-													   </c:choose>
-														
+														<c:choose>
+															<c:when test="${technician.leaveStatus =='On Leave'}">
+																<option class="onleave" value="${technician.email}">${technician.firstName}
+																	${technician.lastName} (On Leave)</option>
+															</c:when>
+															<c:when test="${technician.leaveStatus =='Available'}">
+																<option value="${technician.email}">${technician.firstName}
+																	${technician.lastName}</option>
+															</c:when>
+														</c:choose>
+
 													</c:forEach>
 												</select>
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Select type Priority-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Priority</label>
@@ -152,7 +162,8 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
-													name="priority" id="priority" class="form-control selectpicker">
+													name="priority" id="priority"
+													class="form-control selectpicker">
 													<option value="">Select Priority</option>
 													<option value="High">High</option>
 													<option value="Medium">Medium</option>
@@ -161,19 +172,17 @@
 											</div>
 										</div>
 									</div>
-																	
-									
+
+
 									<!-- Text input Contact Person First Name-->
 									<div class="form-group">
-										<label class="col-md-3 control-label" style="color: red;">Contact Person</label>
+										<label class="col-md-3 control-label" style="color: red;">Contact
+											Person</label>
 										<div class="col-md-6 inputGroupContainer">
-											<div class="input-group">
-												
-											</div>
+											<div class="input-group"></div>
 										</div>
-									</div>								
-									
-										
+									</div>
+
 									<!-- Text input Contact Person First Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">First Name</label>
@@ -186,8 +195,7 @@
 											</div>
 										</div>
 									</div>
-									
-									
+
 									<!-- Text input Contact Person  Last Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Last Name</label>
@@ -195,21 +203,18 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-user"></i></span> <input id="lastName"
-													name="lastName" placeholder="Last Name" class="form-control"
-													type="text">
+													name="lastName" placeholder="Last Name"
+													class="form-control" type="text">
 											</div>
 										</div>
 									</div>
-									
-									
-	
 								</div>
 								<!--/F Column-->
-	
+
+
 								<!--Second column-->
 								<div class="col-sm-6">
-															
-									
+
 									<!-- Text area -->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Description</label>
@@ -217,26 +222,28 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-pencil"></i></span>
-												<textarea class="form-control" name="description" id="description"
-													placeholder="Description" onkeydown="upperCaseF(this)"
+												<textarea class="form-control" name="description"
+													id="description" placeholder="Description"
+													onkeydown="upperCaseF(this)"
 													style="margin: 0px; height: 194px;"></textarea>
 											</div>
 										</div>
 									</div>
-									
-									
+
+
 									<div class="form-group">
 										<label class="col-md-3 control-label">Email</label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-envelope"></i></span> <input id="contactEmail"
-													name="contactEmail" placeholder="Email Address"
-													class="form-control" type="email">
+													class="glyphicon glyphicon-envelope"></i></span> <input
+													id="contactEmail" name="contactEmail"
+													placeholder="Email Address" class="form-control"
+													type="email">
 											</div>
 										</div>
 									</div>
-									
+
 									<!-- Text input Contact Person Cellphone Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Cellphone No</label>
@@ -245,27 +252,32 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="contactCellNumber" name="contactCellNumber"
-													placeholder="Cellphone No (Optional)" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
+													placeholder="Cellphone No (Optional)" class="form-control"
+													maxlength="10" type="text"
+													onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
 									<!-- Text input Contact Person Tellphone Number-->
 									<div class="form-group">
-										<label class="col-md-3 control-label">Telephone No </label>
+										<label class="col-md-3 control-label">Tellphone No </label>
 										<div class="col-md-6 inputGroupContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-earphone"></i></span> <input
 													id="contactTelephoneNumber" name="contactTelephoneNumber"
-													placeholder="Telephone No (Optional)" class="form-control" maxlength="10" type="text" onkeypress="return isNumber(event)">
+													placeholder="Telephone No (Optional)" class="form-control"
+													maxlength="10" type="text"
+													onkeypress="return isNumber(event)">
 											</div>
 										</div>
 									</div>
-	
+
 								</div>
 								<!--/S Column-->
-																
-	
+
+
+
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<br> <br> <input type="submit" value="Log Ticket"
@@ -273,11 +285,15 @@
 											id="logTicket">
 									</div>
 								</div>
-	
+
 							</form:form>
-						
-						</div><!-- Hide content if nothing was not searched -->
-						
+						</c:if>
+
+						<c:if test="${empty product.serialNumber}">
+
+						</c:if>
+
+
 
 					</div>
 					<!-- /tab-content -->
@@ -301,7 +317,7 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	
+
 	<!-- /Script -->
 	<!-- Validate LogTicket -->
 	<script>
@@ -468,35 +484,15 @@
 						});
 	</script>
 
-<!-- //hide the all of the element class details -->
-<script>
 
-
-$(".hideLogTicketForm").each(function (i) {
-  if ($('input[name$=device][value=""]',this).length == 1) { 
-    $(this).hide();
-    console.log('hiding');
-    console.log("You cant see me!!!");
-  } else {
-    $(this).show();
-    console.log('showing');
-    console.log("Show me your true colours!!!");
-    var getId = document.getElementById("device").value;
-    console.log(getId);
-  }
-});
-
-   
+<!-- Make all Serials numbers UpperCase  -->
+<script type="text/javascript">
+	function upperCaseF(a) {
+		setTimeout(function() {
+			a.value = a.value.toUpperCase();
+		}, 1);
+	}
 </script>
-
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
-		function upperCaseF(a) {
-			setTimeout(function() {
-				a.value = a.value.toUpperCase();
-			}, 1);
-		}
-	</script>
 
 
 	<!-- Create datalist to populate search -->

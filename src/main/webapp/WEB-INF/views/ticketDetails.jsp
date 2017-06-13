@@ -451,7 +451,8 @@
 															</div>
 														</div>
 
-														<!-- Text checkbox Colour Reading-->
+														,<c:if test="${not empty ticketObject.device.colourReading}">
+														   <!-- Text checkbox Colour Reading-->
 														<div class="form-group">
 															<label class="col-md-4 control-label">Colour
 																Reading</label>
@@ -466,6 +467,7 @@
 																</div>
 															</div>
 														</div>
+														</c:if>
 														<div class="form-group">
 															<label class="col-md-4 control-label">Mono
 																Reading</label>

@@ -65,6 +65,7 @@ public class SparePartsController {
 			model.addObject("saveSpareParts", new SparePartsBean());
 			getSerials = spareMasterServiceInt.getSerials();
 			model.addObject("spareParts",getSerials);
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addSpares");
@@ -84,6 +85,7 @@ public class SparePartsController {
 			
 			retMessage = hOStockServeceInt.saveSpareparts(spareParts);			
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("addSpares", addSpares);
 			model.setViewName("confirmations");
@@ -104,6 +106,7 @@ public class SparePartsController {
 			getSerials = spareMasterServiceInt.getSerials();
 			model.addObject("spareParts",getSerials);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("receiveParts");
 		}
@@ -124,6 +127,7 @@ public class SparePartsController {
 			
 			model.addObject("retMessage", retMessage);
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("receiveSpareParts", receiveSpareParts);
 			model.setViewName("confirmations");
@@ -141,6 +145,7 @@ public class SparePartsController {
 		if(userName != null){
 			
 			model.addObject("spareParts", hOStockServeceInt.getAllSparePartsWithoutZero());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("availableSpareParts");
@@ -158,6 +163,7 @@ public class SparePartsController {
 			
 			model.addObject("employees",employeeService.getAllTechnicians());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("bootSite");
 		}
@@ -172,6 +178,7 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("orders",bootStock.getAllOrders(technician));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("bootSiteOrders");
@@ -189,6 +196,7 @@ public class SparePartsController {
 		if(userName != null){
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("customer",customerServiceInt.getClientList());			
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
@@ -206,6 +214,7 @@ public class SparePartsController {
 		
 		if(userName != null){
 			model.addObject("orders", siteStock.getOrdersForCustomer(customerName));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("stockSiteOrders");
@@ -223,6 +232,7 @@ public class SparePartsController {
 		if(userName != null){
 			model.addObject("orders", siteStock.getOrdersForCustomer(customerName));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("stockSiteOrdersForTechnician");
@@ -240,6 +250,7 @@ public class SparePartsController {
 		if(userName != null){
 			master =spareMasterServiceInt.getSpareMaster(partNumber);
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(master !=null){
 				model.addObject("sparePart", master);
@@ -270,6 +281,7 @@ public class SparePartsController {
 			}else{
 				model.addObject("retMessage", retMessage);
 			}
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addSpares");

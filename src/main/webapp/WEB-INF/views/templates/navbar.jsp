@@ -166,10 +166,16 @@
 								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
 					</li>
 					
-					<li>
+					<%-- <li>
 					    <a href='<c:url value="awaitingSpares.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Awaiting Spares Inbox <span class="ourbadge" class="btn-btn-danger">${awaitingSparesTickets}</span></a>
+					</li> --%>
+					
+					<li>
+					    <a href='<c:url value="escalatedTickes.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Escalated Tickets Inbox <span class="ourbadge" class="btn-btn-danger">${escalatedTickets}</span></a>
 					</li>
+					
 					
 
 				</ul>

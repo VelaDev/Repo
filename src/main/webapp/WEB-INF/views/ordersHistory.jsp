@@ -38,7 +38,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 						
-						
+						<%-- 
 						<form:form class="form-horizontal">
 							
 								<div class="col-sm-4">
@@ -75,7 +75,7 @@
 								<div class="col-md-2">
 									<input class="btn btn-success" type='submit' value='Submit' />
 								</div>
-							</form:form>
+							</form:form> --%>
 						
 						<form:form modelAttribute="orderHistory" method="post"
 							action="orderHistory" id="orderHistory" name="orderHistory">

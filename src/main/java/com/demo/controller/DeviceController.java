@@ -61,6 +61,7 @@ public class DeviceController {
 		if(userName != null){
 		
 			model.addObject("saveProduct", new DeviceBean());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("addProduct");
@@ -81,6 +82,7 @@ public class DeviceController {
 				model.addObject("customer", customerServiceInt.getClientByClientName(customerName));
 				retMessage =deviceServiceInt.prepareDeviceData(deviceBean);
 		        model.addObject("retMessage", retMessage);
+		        model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 		        model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 		        model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		        model.addObject("customerName", customerName);
@@ -99,7 +101,7 @@ public class DeviceController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-		
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("productList", deviceServiceInt.getDeviceList());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
@@ -124,6 +126,7 @@ public class DeviceController {
 				break;
 			}*/
 	        model.addObject("accessories", accessories);
+	        model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 	        model.addObject("device",deviceServiceInt.getDeviceBySerialNumber(serialNumber) );
 	        model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 	        model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
@@ -141,7 +144,7 @@ public class DeviceController {
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		
 		if(device != null){
-			
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
@@ -166,6 +169,7 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("updateDevice", new DeviceBean());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		    model.setViewName("updateDevice");
@@ -183,6 +187,7 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("deviceList", deviceServiceInt.getDeviceList());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("searchDevice");
@@ -205,6 +210,7 @@ public class DeviceController {
 		     if(device != null)
 				{
 		    		accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
+		    		model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 				    model.addObject("customer",contactDetailsServiceInt.contactDetails(device.getCustomerDevice().getCustomerName()));
 				    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				    model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
@@ -233,6 +239,7 @@ public class DeviceController {
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		if(device != null){
 			accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("productObject", device);
@@ -263,6 +270,7 @@ public class DeviceController {
 		    deviceBean.setUpdateFlag("YES");
 			retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
 			model.addObject("retMessage", retMessage);
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("udateDevice", udateDevice);
@@ -288,6 +296,7 @@ public class DeviceController {
 				if (device != null) {
 
 					model.addObject("technicians", employeeServiceInt.getAllTechnicians());
+					model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 					model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 					model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 					model.addObject("product", device);
@@ -296,6 +305,7 @@ public class DeviceController {
 					model.addObject("message", "Device does not exist.");				
 				}
 				if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+					model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 					model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 					//model.addObject("tickets", tickets);
 					//model.setViewName("confirmations");
@@ -320,6 +330,7 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("retMessage",accessoriesInt.removeAccessory(serial));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateDevice");

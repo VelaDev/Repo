@@ -1049,8 +1049,7 @@ public class TicketController {
 		    
 		    else if (userName.getRole().equalsIgnoreCase("Technician")){
 		    	model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-				model.addObject("ticketList", logTicketService.getAllBridgedTickets(userName.getEmail()));
-				
+				model.addObject("ticketList", logTicketService.getAllBridgedTickets(userName.getEmail()));				
 				model.addObject("ticketList", logTicketService.getAllBridgedTickets(startDate, endDate, userName.getEmail()));
 		    	model.setViewName("slaBridged");
 		    }			
@@ -1075,7 +1074,7 @@ public class TicketController {
 		    model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 		    model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 		    model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		    model.addObject("ticketList", logTicketService.getAllBridgedTickets(startDate, endDate));
+		    model.addObject("ticketList", logTicketService.getAllAwaitingSparesTickets(startDate, endDate));
 		    
 		    if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
 		    	
@@ -1084,8 +1083,8 @@ public class TicketController {
 		    
 		    else if (userName.getRole().equalsIgnoreCase("Technician")){
 		    	model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));			
-				model.addObject("ticketList", logTicketService.getAllBridgedTickets(userName.getEmail()));				
-				model.addObject("ticketList", logTicketService.getAllBridgedTickets(startDate, endDate, userName.getEmail()));
+				model.addObject("ticketList", logTicketService.getAllAwaitingSpares(userName.getEmail()));				
+				model.addObject("ticketList", logTicketService.getAllAwaitingSparesTickets(startDate, endDate, userName.getEmail()));
 		    	model.setViewName("awaitSpares");
 		    }			
 		}

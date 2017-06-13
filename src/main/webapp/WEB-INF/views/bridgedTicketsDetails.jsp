@@ -256,16 +256,18 @@
 												</div>
 											</div>
 										</div>
-										<!-- Text area Comment-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Comments</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="comments"
-														required="required" placeholder="Please enter comments"
-														id="comment" style="height: 153px;"></textarea>
+										<div class="comments" id="comments" style="display: none;">										
+											<!-- Text area Comment-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Comments</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-pencil"></i></span>
+														<textarea class="form-control" id="comments" name="comments"
+															required="required" placeholder="Please enter comments"
+															id="comment" style="height: 153px;"></textarea>
+													</div>
 												</div>
 											</div>
 										</div>

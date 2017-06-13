@@ -79,7 +79,9 @@
 					<p id="getme"></p>
 					<div class="tab-content">
 
-						<form:form action="searchpartNumber" method="post"
+							<c:if test="${empty sparePart.partNumber }">
+							
+								<form:form action="searchpartNumber" method="post"
 							id="searchpartNumber">
 							<div class="row">
 								<!-- Text input Search-->
@@ -109,6 +111,14 @@
 							<hr>
 						</form:form>
 						<!--Search-->
+							
+						</c:if>						
+						<c:if test="${not empty sparePart.partNumber }">
+						
+						</c:if>
+							
+												
+						<c:if test="${not empty sparePart.itemDescription }">
 
 						<form:form class="well form-horizontal" action="saveSpareParts"
 							modelAttribute="saveSpareParts" method="post" id="saveSpareParts">
@@ -233,6 +243,13 @@
 							</div>
 
 						</form:form>
+						
+						</c:if>
+						
+						<c:if test="${empty sparePart.itemDescription }">
+						
+							
+						</c:if>
 
 					</div>
 

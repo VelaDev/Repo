@@ -497,7 +497,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Escalated")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}
@@ -539,7 +539,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Closed")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}
@@ -581,7 +581,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("SLA Bridged")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}
@@ -623,7 +623,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Open")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}
@@ -665,7 +665,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Awaiting Spares")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}
@@ -707,7 +707,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if(current.compareTo(dateData)<0 ){
+				if(current.compareTo(dateData)<=0 ){
 					tempTickets.add(tic);
 				}
 			}
@@ -770,7 +770,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) < 0) {
+				if (current.compareTo(dateData) <= 0) {
 					tempTickets.add(tic);
 				}
 			}
@@ -856,7 +856,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (previoueDay.compareTo(dateData) < 0
+				if (previoueDay.compareTo(dateData) <= 0
 						&& currentDate.compareTo(dateData) >= 0) {
 					tempTickets.add(tic);
 				}
@@ -901,7 +901,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if(current.compareTo(dateData)<0){
+				if(current.compareTo(dateData)<=0){
 					tempTickets.add(tic);
 				}
 			}
@@ -1043,7 +1043,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Resolved")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}
@@ -1085,7 +1085,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Escalated")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}
@@ -1127,7 +1127,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Closed")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
@@ -1171,7 +1171,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("SLA Bridged")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
@@ -1215,7 +1215,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Open")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
@@ -1259,7 +1259,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Awaiting Spares")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
@@ -1303,7 +1303,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Resolved")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
@@ -1348,7 +1348,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Resolved")
-						&& current.compareTo(dateData) < 0) {
+						&& current.compareTo(dateData) <= 0) {
 					aList.add(ticket);
 				}
 			}
@@ -1396,7 +1396,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) < 0
+				if (current.compareTo(dateData) <= 0
 						&& ticket.getStatus().equalsIgnoreCase("Escalated")
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
@@ -1441,7 +1441,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Awaiting Spares")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					aList.add(ticket);
@@ -1485,7 +1485,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Closed")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					aList.add(ticket);
@@ -1529,7 +1529,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("SLA Bridged")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					aList.add(ticket);
@@ -1573,7 +1573,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (ticket.getStatus().equalsIgnoreCase("Resolved")
-						&& current.compareTo(dateData) < 0
+						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {
 					aList.add(ticket);
@@ -1669,7 +1669,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (previoueDay.compareTo(dateData) < 0
+				if (previoueDay.compareTo(dateData) <= 0
 						&& currentDate.compareTo(dateData) >= 0) {
 					tempTickets.add(tic);
 				}
@@ -1707,7 +1707,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (previoueDay.compareTo(dateData) < 0
+				if (previoueDay.compareTo(dateData) <= 0
 						&& currentDate.compareTo(dateData) >= 0) {
 					tempTickets.add(tic);
 				}
@@ -1746,7 +1746,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (previoueDay.compareTo(dateData) < 0
+				if (previoueDay.compareTo(dateData) <= 0
 						&& currentDate.compareTo(dateData) >= 0) {
 					tempTickets.add(tic);
 				}
@@ -1784,7 +1784,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (previoueDay.compareTo(dateData) < 0
+				if (previoueDay.compareTo(dateData) <= 0
 						&& currentDate.compareTo(dateData) >= 0) {
 					tempTickets.add(tic);
 				}
@@ -1823,7 +1823,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (previoueDay.compareTo(dateData) < 0
+				if (previoueDay.compareTo(dateData) <= 0
 						&& currentDate.compareTo(dateData) >= 0 && tic.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 					tempTickets.add(tic);
 				}
@@ -1862,7 +1862,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = tic.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (previoueDay.compareTo(dateData) < 0
+				if (previoueDay.compareTo(dateData) <= 0
 						&& currentDate.compareTo(dateData) >= 0 && tic.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 					tempTickets.add(tic);
 				}

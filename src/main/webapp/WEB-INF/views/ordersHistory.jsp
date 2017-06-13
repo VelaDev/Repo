@@ -37,9 +37,9 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-						
-						<%-- 
-						<form:form class="form-horizontal">
+
+						<form:form class="form-horizontal" modelAttribute="adminOrderHistory" method="post"
+							action="adminOrderHistory" id="adminOrderHistory" name="adminOrderHistory">
 							
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
@@ -75,7 +75,7 @@
 								<div class="col-md-2">
 									<input class="btn btn-success" type='submit' value='Submit' />
 								</div>
-							</form:form> --%>
+							</form:form>
 						
 						<form:form modelAttribute="orderHistory" method="post"
 							action="orderHistory" id="orderHistory" name="orderHistory">

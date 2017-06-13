@@ -139,7 +139,7 @@
 									Orders</a></li>
 							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped
 									Orders</a></li>
-							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
+							<li><a href='<c:url value="ordersHistory.html"/>'>Order History</a></li>
 						</ul>
 					</li>
 						
@@ -170,14 +170,10 @@
 					    <a href='<c:url value="awaitingSpares.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Awaiting Spares Inbox <span class="ourbadge" class="btn-btn-danger">${awaitingSparesTickets}</span></a>
 					</li> --%>
-					
 					<li>
 					    <a href='<c:url value="escalatedTickes.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Escalated Tickets Inbox <span class="ourbadge" class="btn-btn-danger">${escalatedTickets}</span></a>
 					</li>
-					
-					
-
 				</ul>
 
 			</div>

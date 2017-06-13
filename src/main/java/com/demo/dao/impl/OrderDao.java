@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +13,6 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.omg.CORBA.TCKind;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -604,8 +602,40 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public List<OrderHeader> getAllOrders(String startDate, String endDate) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Tickets> tempTickets = null;
+
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date dateData = null;
+		Calendar cal = Calendar.getInstance();
+		date = new Date();
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		Date dataDate = new Date();
+		List<OrderHeader>orders = new ArrayList<OrderHeader>();
+		try {
+			
+
+			// convert to date
+			currentDate = myFormat.parse(endDate);
+			previoueDay = myFormat.parse(startDate);
+
+			List<OrderHeader> tickets = getAllOrders();
+			for (OrderHeader tic : tickets) {
+				String convDate = tic.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (previoueDay.compareTo(dateData) <= 0
+						&& currentDate.compareTo(dateData) >= 0) {
+					orders.add(tic);
+				}
+
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		return orders;
 	}
 
 	@Override
@@ -622,7 +652,6 @@ public class OrderDao implements OrdersDaoInt {
 		// get Calendar instance
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
-		int tempCount = 0;
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
@@ -646,7 +675,7 @@ public class OrderDao implements OrdersDaoInt {
 				String convDate = order.getDateOrdered().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) < 0) {
+				if (current.compareTo(dateData) <= 0) {
 					aList.add(order);
 				}
 			}
@@ -659,7 +688,42 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public List<OrderHeader> getAllOrdersByDate(String technicianName) {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
 	}
 }

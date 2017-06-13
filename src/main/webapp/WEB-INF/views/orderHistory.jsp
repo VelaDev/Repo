@@ -26,12 +26,7 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
-					</c:out>
-				</div>
-			</c:if>
+			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -43,8 +38,9 @@
 				<div class="panel-body">
 					<div class="tab-content">
 											
-						<%-- <form:form class="form-horizontal">
-							
+
+					<form:form modelAttribute="adminOrderHistory" method="post"
+							action="adminOrderHistory" id="adminOrderHistory" name="adminOrderHistory">				
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
 									<div class="form-group">
@@ -79,7 +75,7 @@
 								<div class="col-md-2">
 									<input class="btn btn-success" type='submit' value='Submit' />
 								</div>
-							</form:form> --%>
+							</form:form>
 
 						<form:form modelAttribute="orderHistory" method="post"
 							action="orderHistory" id="orderHistory" name="orderHistory">

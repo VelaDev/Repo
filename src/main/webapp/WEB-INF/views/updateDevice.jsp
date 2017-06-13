@@ -532,9 +532,16 @@ input.currency {
 									</table>
 								</div>
 							</fieldset>
-							<!--Machine Accessories-->
+							
+							
 							</c:if>
+							<!--Machine Accessories-->
+							
+							
 							<!-- Other Machine Accessories -->
+								<div class="others" id="others">
+									<div class="col-sm-12">
+										<div class="resize">
 										<h5>Machine Accessories</h5>									
 											<p><input type="button" class="btn btn-success"  value="Add More"></p>
 											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">
@@ -547,14 +554,29 @@ input.currency {
 													</thead>
 													<tbody>
 														<tr>
-															<td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type"></td>
+															<td><select name="machineType" id="machineType"
+																class="form-control selectpicker">
+																<option value="">Select Machine Type </option>
+																<option value="Bridge unit">Bridge unit</option>
+																<option value="Finisher">Finisher</option>
+																<option value="Fax Unit">Fax Unit</option>
+																<option value="One bin tray">One bin tray</option>
+																<option value="LCT">LCT</option>
+																<option value="Credenza">Credenza</option>
+																<option value="Additional paper trays">Additional paper trays</option>
+																<option value="Wireless Card">Wireless Card</option>
+																<option value="Others">Others</option> 
+																 </select>
+															</td>
 															<td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"></td>
 															<td><input type="button" class="btn btn-danger" value="Remove" ></td>
 														</tr>
 													<tbody>
 											</table>					
 										
-									<!-- //Other Machine Accessories -->
+										</div>
+									</div>									
+								</div><!-- //Other Machine Accessories -->
 							
 
 							<div class="form-group row">
@@ -1041,7 +1063,7 @@ $('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
     $(this).closest('tr').remove();
 	})
 $('p input[type="button"]').click(function () {
-    $('#otherMachineAccessories').append('<tr><td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" /></td><td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+    $('#otherMachineAccessories').append('<tr><td><select name="machineType" id="machineType" class="form-control selectpicker"> <option value="">Select Machine Type </option><option value="Bridge unit">Bridge unit</option> <option value="Finisher">Finisher</option><option value="Fax Unit">Fax Unit</option><option value="One bin tray">One bin tray</option><option value="LCT">LCT</option><option value="Credenza">Credenza</option><option value="Additional paper trays">Additional paper trays</option><option value="Wireless Card">Wireless Card</option><option value="Others">Others</option> </select></td><td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 });
 
 </script>

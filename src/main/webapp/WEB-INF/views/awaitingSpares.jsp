@@ -146,23 +146,32 @@
 	</script>
 	
 	
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('#startDatePicker').datepicker({
-				format : "yyyy-mm-dd",
-				//startDate: 'd0',
-		        autoclose: true
-			});
-		});
-</script>
+<script>
+$(document).ready(function() {
+  var date = new Date();
+  var sevendaysago = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7);
+  var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  //var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#endDatePicker').datepicker({
-			format : "yyyy-mm-dd",
-			//startDate: 'd0',
-	        autoclose: true
-		});
-	});
+  $('#startDatePicker').datepicker({
+  
+		format : "yyyy-mm-dd",
+		todayHighlight: true,
+		//startDate: sevendaysago,
+		//endDate: end,
+		autoclose: true
+  });
+  $('#endDatePicker').datepicker({
+  
+		format : "yyyy-mm-dd",
+		todayHighlight: true,
+		//startDate: today,
+		//endDate: end,
+		autoclose: true
+  });
+
+  $('#startDatePicker').datepicker('setDate', sevendaysago);
+  $('#endDatePicker').datepicker('setDate', today);
+});
 </script>
 </html>

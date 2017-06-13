@@ -584,6 +584,7 @@ input.currency {
 											</tr>
 										</tbody>
 									</table>
+								</div>
 
 								<!-- Other Machine Accessories -->
 								<div class="others" id="others">

@@ -205,6 +205,15 @@ $(document)
 													}
 												}
 											}
+											,
+											comments : {
+												validators : {
+													notEmpty : {
+														message : 'Comments is required and can not be empty'
+													}
+												}
+											}
+
 											
 										}
 									});
@@ -306,10 +315,10 @@ function Faulty(val) {
 
 }
 
-// Select customer before showing add button-->
-function ShowCustomer(val) {
-	var element = document.getElementById('siteAdd');
-	if (val == 'pick a customer' || val == 'customer')
+// Select Open before showing comment-->
+function CheckStatus(val) {
+	var element = document.getElementById('comments');
+	if (val == 'pick a customer' || val == 'Open')
 		element.style.display = 'block';
 	else
 		element.style.display = 'none';

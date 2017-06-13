@@ -53,6 +53,22 @@ $('#status').change(function() {
 	}
 });
 
+$('#status').change(function() {
+	var opval = $(this).val();
+	if (opval == "Escalated") {
+		$('#escalatedSolutions').modal("show");
+	}
+});
+
+$('#status').change(function() {
+	var opval = $(this).val();
+	if (opval == "Awaiting Spares") {
+		$('#awaitingSparesSolutions').modal("show");
+	}
+});
+
+
+
 //"order Status" Table -->
 $(document).ready(function() {
 	$('#orderSts').DataTable({
@@ -89,22 +105,6 @@ function checkUsedPartNumbers() {
 
 }
 
-// Status Selection-->
-function CheckStatus(val) {
-	var element = document.getElementById('order');
-	if (val == 'pick a status' || val == 'Awaiting Spares')
-		element.style.display = 'block';
-	else
-		element.style.display = 'none';
-
-	var element = document.getElementById('manager');
-	if (val == 'pick a status' || val == 'Escalated')
-		element.style.display = 'block';
-	else
-		element.style.display = 'none';
-
-}
-
 // Validate action and used part numbers -->
 $(document)
 		.ready(
@@ -118,12 +118,6 @@ $(document)
 										rules : {
 
 											actionTaken : {
-												required : true
-											},
-											colourReading : {
-												required : true
-											},
-											monoReading : {
 												required : true
 											},
 											usedPartNumbers : {
@@ -162,15 +156,86 @@ $(document)
 										
 										messages : {
 											usedPartNumbers : 'Used part numbers is required check boot or site stock for used part numbers',
-											actionTaken : 'Action taken is required and can not be empty',
-											colourReading:'Colour reading is required and cannot be empty',
-											monoReading:'Mono reading is required and cannot be empty',
-											comment: 'Please provide comments on what solution you provided'
+											actionTaken : 'Action taken is required and can not be empty',											
+											comment : 'Please provide comments on what solution you provided'
 											
 											
 										}
 									});
 				});
+
+
+$(document)
+		.ready(
+				function() {
+					$('#updateResolved')
+							.bootstrapValidator(
+									{
+										feedbackIcons : {
+											valid : 'glyphicon glyphicon-ok',
+											invalid : 'glyphicon glyphicon-remove',
+											validating : 'glyphicon glyphicon-refresh'
+										},
+										fields : {
+											orderNum : {
+												validators : {
+													notEmpty : {
+														message : 'Order number is required and cant not be empty'
+													}
+												}
+											},
+											escalatedTo : {
+												validators : {
+													notEmpty : {
+														message : 'Manager is required and cant not be empty'
+													}
+												}
+											},
+											colourReading : {
+												validators : {
+													notEmpty : {
+														message : 'Colour reading is required and can not be empty'
+													}
+												}
+											},
+											monoReading : {
+												validators : {
+													notEmpty : {
+														message : 'Mono reading is required and can not be empty'
+													}
+												}
+											}
+											
+										}
+									});
+				});
+
+
+$(document)
+.ready(
+		function() {
+			$('#updataTckt')
+					.bootstrapValidator(
+							{
+								feedbackIcons : {
+									valid : 'glyphicon glyphicon-ok',
+									invalid : 'glyphicon glyphicon-remove',
+									validating : 'glyphicon glyphicon-refresh'
+								},
+								fields : {
+									status : {
+										validators : {
+											notEmpty : {
+												message : 'Status is required and cant not be empty'
+											}
+										}
+									}
+									
+								}
+							});
+		});
+
+
 
 // Select Action Taken -->
 $("#actionTaken").on(

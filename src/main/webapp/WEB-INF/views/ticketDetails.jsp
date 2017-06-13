@@ -94,8 +94,7 @@
 												<div class="input-group">
 													<span class="input-group-addon"><i
 														class="glyphicon glyphicon-list"></i></span> <select
-														onchange="CheckStatus(this.value);" name="status"
-														id="status" class="form-control selectpicker">
+														 name="status" id="status" class="form-control selectpicker">
 														<option value="${ticketObject.status}">${ticketObject.status}</option>
 														<option value="Awaiting Spares">Awaiting Spares</option>
 														<option value="Escalated">Escalate Ticket</option>
@@ -105,49 +104,7 @@
 											</div>
 										</div>
 
-										<!-- Select type Order No-->
-										<div class="order" id="order" style="display: none;">
-											<div class="form-group">
-												<label class="col-md-3 control-label"> Order No</label>
-												<div class="col-md-6 selectContainer">
-													<div class="input-group">
-														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-list"></i></span> <select id="order"
-															name="orderNum" class="form-control selectpicker">
-															<option value=0>Select Order No</option>
-															<c:forEach items="${OrderNumber}" var="orders">
-																<option value="${orders.recordID}">${orders.orderNum}
-																</option>
-															</c:forEach>
-
-														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-
-										<!-- Text input Manager-->
-										<div class="manager" id="manager" style="display: none;">
-											<div class="form-group">
-												<label class="col-md-3 control-label"> Manager</label>
-												<div class="col-md-6 inputGroupContainer">
-													<div class="input-group">
-														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-user"></i></span> <select
-															id="escalatedTo" name="escalatedTo"
-															class="form-control selectpicker">
-															<option value="">Select Manager</option>
-															<c:forEach items="${managersList}" var="manager">
-																<option value="${manager.email}">${manager.firstName}
-																	${manager.lastName}</option>
-															</c:forEach>
-
-														</select>
-													</div>
-												</div>
-											</div>
-										</div>
-
+										
 										<!-- Text input Ticket Priority-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Priority</label>
@@ -203,42 +160,42 @@
 										</div>
 
 										<c:if test="${not empty ticketObject.contactCellNumber }">
-												<!-- Text input Contact Person Cellphone Number-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Cellphone No</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-earphone"></i></span> <input
-																id="contactCellNumber" name="contactCellNumber"
-																placeholder="Cellphone No (Optional)" class="form-control"
-																maxlength="10" type="text" readonly
-																onkeypress="return isNumber(event)"
-																value="${ticketObject.contactCellNumber}">
-														</div>
+											<!-- Text input Contact Person Cellphone Number-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Cellphone No</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-earphone"></i></span> <input
+															id="contactCellNumber" name="contactCellNumber"
+															placeholder="Cellphone No (Optional)"
+															class="form-control" maxlength="10" type="text" readonly
+															onkeypress="return isNumber(event)"
+															value="${ticketObject.contactCellNumber}">
 													</div>
-												</div>	
+												</div>
+											</div>
 										</c:if>
 										<c:if test="${empty ticketObject.contactCellNumber }">
 										</c:if>
-																			
-										
+
+
 										<c:if test="${not empty ticketObject.contactTelephoneNumber }">
 											<!-- Text input Contact Person Tellphone Number-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Tellphone No </label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-earphone"></i></span> <input
-														id="contactTelephoneNumber" name="contactTelephoneNumber"
-														placeholder="Telephone No (Optional)" class="form-control"
-														maxlength="10" readonly type="text"
-														onkeypress="return isNumber(event)"
-														value="${ticketObject.contactTelephoneNumber}">
+											<div class="form-group">
+												<label class="col-md-3 control-label">Tellphone No </label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-earphone"></i></span> <input
+															id="contactTelephoneNumber" name="contactTelephoneNumber"
+															placeholder="Telephone No (Optional)"
+															class="form-control" maxlength="10" readonly type="text"
+															onkeypress="return isNumber(event)"
+															value="${ticketObject.contactTelephoneNumber}">
+													</div>
 												</div>
 											</div>
-										</div>
 										</c:if>
 										<c:if test="${empty ticketObject.contactTelephoneNumber }">
 										</c:if>
@@ -258,26 +215,10 @@
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" readonly
 														onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly style="height: 153px;">${ticketObject.description}</textarea>
+														required="required" readonly  style="height: 318px; margin: 0px; width: 243px;">${ticketObject.description}</textarea>
 												</div>
 											</div>
-										</div>
-										<!-- Text area Comment-->
-										<div class="form-group">
-											<label class="col-md-3 control-label">Comments</label>
-											<div class="col-md-6 inputGroupContainer">
-												<div class="input-group">
-													<span class="input-group-addon"><i
-														class="glyphicon glyphicon-pencil"></i></span>
-													<textarea class="form-control" name="comments"
-														required="required" placeholder="Please enter comments"
-														id="comment" style="height: 153px;"></textarea>
-												</div>
-											</div>
-										</div>
-
-
-
+										</div>										
 									</div>
 									<!--//Second Column-->
 								</fieldset>
@@ -493,7 +434,8 @@
 																		onchange="Faulty(this.value);">
 																		<option value="">Please select Action Taken
 																			for Repair</option>
-																		<option value="Replaced Part/Toner">Replaced Part/Toner</option>
+																		<option value="Replaced Part/Toner">Replaced
+																			Part/Toner</option>
 																		<option value="Cleared Paper Jam">Cleared
 																			Paper Jam</option>
 																		<option value="Installed Drivers">Installed
@@ -604,8 +546,7 @@
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<textarea class="form-control" name="comments"
-																		required="required"
-																		placeholder="Please enter comments" id="comment"
+																		required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment" id="comment"
 																		style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
 																		rows="3"></textarea>
 																</div>
@@ -758,17 +699,256 @@
 								</div>
 							</div>
 							<!--/site stock-->
+							
+							
+						<!-- /Escalated Details -->
+						<div id="escalatedSolutions" class="modal fade" role="dialog"
+							aria-labelledby="solutionDetailsLabel" aria-hidden="true">
+							<div class="modal-dialog-solution modal-lg">
+
+								<div class="modal-content-solution">
+
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">×</button>
+										<h3 class="modal-title">Escalate Details</h3>
+									</div>
+
+									<div class="modal-body-solution">
+
+										<!--wellform form-horizontal-->
+										<div class="form-horizontal">
+
+											<div class="groupsparedetails">
+												<legend align="left">Ticket Info</legend>
+												<!--First Column-->
+												<div class="col-md-12">
+
+													<!-- Text input Ticket Number-->
+													<div class="form-group">
+														<label class="col-md-4 control-label">Ticket
+															Number</label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	id="ticketNumber" class="form-control" type="text"
+																	name="ticketNumber"
+																	value="${ticketObject.ticketNumber}"
+																	readonly="readonly">
+															</div>
+														</div>
+													</div>
+
+													<!-- Select type status-->
+													<div class="form-group ">
+														<label class="col-md-4 control-label">Status</label>
+														<div class="col-md-8 selectContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span> <input
+																	type="text" name="status" readonly="readonly"
+																	class="form-control" value="Escalated" />
+															</div>
+														</div>
+													</div>
+
+													<!-- Text input Manager-->
+													<div class="form-group">
+														<label class="col-md-4 control-label"> Manager</label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-user"></i></span> <select
+																	id="escalatedTo" name="escalatedTo"
+																	class="form-control selectpicker">
+																	<option value="">Select Manager</option>
+																	<c:forEach items="${managersList}" var="manager">
+																		<option value="${manager.email}">${manager.firstName}
+																			${manager.lastName}</option>
+																	</c:forEach>
+
+																</select>
+															</div>
+														</div>
+													</div>
+
+												</div>
+											</div>
+											<!-- //group details -->
+
+											<!-- group Used Part Numbers -->
+											<div class="groupsearchdetails">
+												<legend>Comment </legend>
+												<!-- display Comments-->
+												<!-- Text area Comment-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comments </label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<textarea class="form-control" name="comments"
+																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	id="comment"
+																	style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
+																	rows="3"></textarea>
+															</div>
+														</div>
+													</div>
+												<!--// display Comments-->
+
+											</div>
+
+										</div>
+										<!--/wellform form-horizontal-->
+
+									</div>
+									<!-- modal-body -->
+
+									<!-- //group Used Part Numbers -->
+									
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+											<button type="submit" value="Submit" class="btn btn-primary"
+												id="send_btn">Submit</button>
+
+										</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal escalatedSolutions-->
+												
+						
+						<!-- /Escalated Details -->
+						<div id="awaitingSparesSolutions" class="modal fade" role="dialog"
+							aria-labelledby="solutionDetailsLabel" aria-hidden="true">
+							<div class="modal-dialog-solution modal-lg">
+
+								<div class="modal-content-solution">
+
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">×</button>
+										<h3 class="modal-title">Awaiting Spares Details</h3>
+									</div>
+
+									<div class="modal-body-solution">
+
+										<!--wellform form-horizontal-->
+										<div class="form-horizontal">
+
+											<div class="groupsparedetails">
+												<legend align="left">Ticket Info</legend>
+												<!--First Column-->
+												<div class="col-md-12">
+
+													<!-- Text input Ticket Number-->
+													<div class="form-group">
+														<label class="col-md-4 control-label">Ticket
+															Number</label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	id="ticketNumber" class="form-control" type="text"
+																	name="ticketNumber"
+																	value="${ticketObject.ticketNumber}"
+																	readonly="readonly">
+															</div>
+														</div>
+													</div>
+
+													<!-- Select type status-->
+													<div class="form-group ">
+														<label class="col-md-4 control-label">Status</label>
+														<div class="col-md-8 selectContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span> <input
+																	type="text" name="status" readonly="readonly"
+																	class="form-control" value="Awaiting Spares" />
+															</div>
+														</div>
+													</div>
+
+													<!-- Select type Order No-->										
+													<div class="form-group">
+														<label class="col-md-4 control-label"> Order No</label>
+														<div class="col-md-8 selectContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span> <select id="orderNum"
+																	name="orderNum" class="form-control selectpicker">
+																	<option value="">Select Order No</option>
+																	<c:forEach items="${OrderNumber}" var="orders">
+																		<option value="${orders.recordID}">${orders.orderNum}
+																		</option>
+																	</c:forEach>
+		
+																</select>
+															</div>
+														</div>
+													</div>
+													
+												</div>
+											</div>
+											<!-- //group details -->
+
+											<!-- group Used Part Numbers -->
+											<div class="groupsearchdetails">
+												<legend>Comment </legend>
+												<!-- display Comments-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comments </label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<textarea class="form-control" name="comments"
+																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	id="comment" style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
+																	rows="3"></textarea>
+															</div>
+														</div>
+													</div>
+												<!--// display Comments-->
+											</div>
+
+										</div>
+										<!--/wellform form-horizontal-->
+
+									</div>
+									<!-- modal-body -->
+
+									<!-- //group Used Part Numbers -->
+									
+										<div class="modal-footer">
+
+											<button type="button" class="btn btn-default"
+												data-dismiss="modal">Close</button>
+											<button type="submit" value="Submit" class="btn btn-primary"
+												id="send_btn">Submit</button>
+
+										</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+						<!-- /.modal escalatedSolutions-->
 
 						</form:form>
 						<!-- /Solution Details -->
 
+						
 
+						
+						
 						<!--history tab-->
 						<div class="tab-pane" id="historyDetails">
 							<h4 align="center">History Details</h4>
-							
-							
-							
+
 							<form:form class="well form-horizontal">
 								<div class="panel-body">
 									<!-- Below table will be displayed as Data table -->

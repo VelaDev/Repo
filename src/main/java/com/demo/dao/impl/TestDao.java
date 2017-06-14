@@ -43,7 +43,7 @@ public class TestDao implements TestDaoSs {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tickets.class);
 		return (List<Tickets>)criteria.list(); 
 	}
-	@Transactional(propagation=Propagation.REQUIRED)
+	@Transactional
 	@Scheduled(fixedRate = 600000)
 	@Override
 	public void calculateSLAHours() {
@@ -106,6 +106,7 @@ public class TestDao implements TestDaoSs {
 		
 		return aList;
 	}
+	
 	@Transactional
 	@Scheduled(fixedRate = 60000)
 	@Override

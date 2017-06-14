@@ -35,7 +35,7 @@
 				<div class="panel-body">
 					<div class="tab-content">
 							
-							<form:form class="form-horizontal" modelAttribute="bridgedTicketsAdmin" action="bridgedTicketsAdmin" method="post">
+							<form:form class="form-horizontal" id="sortByDate" modelAttribute="bridgedTicketsAdmin" action="bridgedTicketsAdmin" method="post">
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
 									<div class="form-group">

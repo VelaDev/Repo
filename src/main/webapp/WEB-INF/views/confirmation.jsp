@@ -48,7 +48,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${orders =='orders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="order.html" class="confirmtions"><b> here</b></a> to place another Order.	                            
+					 	        Click<a href="order.html" class="confirmtions"><b> here</b></a> to place another Order or click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                        
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Receive Order -->
@@ -76,7 +76,7 @@ a.confirmtions {
 				 	  		<c:choose>
 				 	    		<c:when test="${orders =='orders' }">
 					 	       		<c:out value="${retErrorMessage}"></c:out> 
-					 	        	Click<a href="order.html" class="confirmtions"> <b> here</b></a> to place another Order. 
+					 	        	Click<a href="order.html" class="confirmtions"> <b> here</b></a> to place another Order or click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.
 	                            	
 					 	    	</c:when>
 					 	    </c:choose>

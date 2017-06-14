@@ -36,7 +36,7 @@
 					<div class="tab-content">
 
 						
-							<form:form class="form-horizontal" method="post"
+							<form:form class="form-horizontal" id="sortByDate" method="post"
 							action="closedTicketsAdmin" id="closedTicketsAdmin" modelAttribute="closedTicketsAdmin">
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
@@ -167,6 +167,44 @@ $(document).ready(function() {
   $('#startDatePicker').datepicker('setDate', sevendaysago);
   $('#endDatePicker').datepicker('setDate', today);
 });
+</script>
+<script>
+$(document).ready(function() {
+	$('#sortByDate').bootstrapValidator({
+	   //framework: 'bootstrap',
+    icon: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    },
+        fields: {
+        	startDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'Start date is required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                        //max: 'endDate',
+                        message: 'Start date is not a valid'
+                    }
+                }
+            },
+            endDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'To this date is required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                        //min: 'startDate',
+                        message: 'To thi date is not a valid'
+                    }
+                }
+            },
+        }
+    })        
+}); 
 </script>
 	
 

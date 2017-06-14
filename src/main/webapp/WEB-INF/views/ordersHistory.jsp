@@ -38,8 +38,8 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<form:form class="form-horizontal" modelAttribute="adminOrderHistory" method="post"
-							action="adminOrderHistory" id="adminOrderHistory" name="adminOrderHistory">
+						<form:form class="form-horizontal" id="sortByDate" modelAttribute="adminOrderHistory" method="post"
+							action="adminOrderHistory" name="adminOrderHistory">
 							
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
@@ -150,24 +150,71 @@
 		});
 	</script>
 	
-	
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('#startDatePicker').datepicker({
-				format : "yyyy-mm-dd",
-				//startDate: 'd0',
-		        autoclose: true
-			});
-		});
+<script>
+$(document).ready(function() {
+  var date = new Date();
+  var sevendaysago = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7);
+  var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  //var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  $('#startDatePicker').datepicker({
+  
+		format : "yyyy-mm-dd",
+		todayHighlight: true,
+		//startDate: sevendaysago,
+		//endDate: end,
+		autoclose: true
+  });
+  $('#endDatePicker').datepicker({
+  
+		format : "yyyy-mm-dd",
+		todayHighlight: true,
+		//startDate: today,
+		//endDate: end,
+		autoclose: true
+  });
+
+  $('#startDatePicker').datepicker('setDate', sevendaysago);
+  $('#endDatePicker').datepicker('setDate', today);
+});
+</script>
+<script>
+$(document).ready(function() {
+	$('#sortByDate').bootstrapValidator({
+	   //framework: 'bootstrap',
+    icon: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+    },
+        fields: {
+        	startDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'Start date is required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                        //max: 'endDate',
+                        message: 'Start date is not a valid'
+                    }
+                }
+            },
+            endDate: {
+                validators: {
+                    notEmpty: {
+                        message: 'To this date is required'
+                    },
+                    date: {
+                        format: 'YYYY-MM-DD',
+                        //min: 'startDate',
+                        message: 'To thi date is not a valid'
+                    }
+                }
+            },
+        }
+    })        
+}); 
 </script>
 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#endDatePicker').datepicker({
-			format : "yyyy-mm-dd",
-			//startDate: 'd0',
-	        autoclose: true
-		});
-	});
-</script>
 </html>

@@ -483,10 +483,7 @@
 						});
 	</script>
 
-	<!-- //hide the all of the element class details -->
-	<script>
-
-	
+		
 	<!-- Make all Serials numbers UpperCase  -->
 	<script type="text/javascript">
 		function upperCaseF(a) {

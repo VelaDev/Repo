@@ -9,16 +9,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_custom.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">	
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-  
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
-<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <style>
 li {
 	list-style: none;
@@ -43,19 +52,21 @@ p.customerAddressTitle {
 	font-size: 1.1em;
 	font-weight: bolder;
 	margin-left: 23%;
-    margin-right: -25%;
+	margin-right: -25%;
 }
 
 ul.addressDeviceList {
 	margin-left: -7%;
 }
+
 input.currency {
-    text-align: right;
-    padding-right: 15px;
+	text-align: right;
+	padding-right: 15px;
 }
-.resize{
+
+.resize {
 	margin-left: 12%;
-    margin-right: 12%;
+	margin-right: 12%;
 }
 </style>
 
@@ -127,7 +138,8 @@ input.currency {
 
 									<div id="customerDeviceContainer"
 										style="width: auto; display: table;">
-										<div class="customerDeviceAddressTitle"><p class="customerAddressTitle">Customer Address</p>
+										<div class="customerDeviceAddressTitle">
+											<p class="customerAddressTitle">Customer Address</p>
 											<ul class="addressDeviceList" style="display: block;">
 												<li id="streetName">${productObject.customerDevice.streetNumber}
 													${productObject.customerDevice.streetName}</li>
@@ -270,13 +282,13 @@ input.currency {
 										<div class="col-md-6 selectContainer">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-list"></i></span> <select id="modelBrand"
-													name="modelBrand" class="form-control">
+													class="glyphicon glyphicon-list"></i></span> <select
+													id="modelBrand" name="modelBrand" class="form-control">
 													<option value="${productObject.modelBrand}">${productObject.modelBrand}</option>
 													<option value="Samsung">Samsung</option>
 													<option value="Canon">Canon</option>
 													<option value="Oce">Oce</option>
-													<option value="HP">HP</option>													
+													<option value="HP">HP</option>
 													<option value="Kyocera">Kyocera</option>
 													<option value="Nasua">Nasua</option>
 													<option value="Rico">Rico</option>
@@ -335,7 +347,7 @@ input.currency {
 										</div>
 									</div>
 									<c:if test="${not empty productObject.monoReading }">
-									  <div class="form-group">
+										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6">
 												<input type="text" class="form-control"
@@ -349,17 +361,18 @@ input.currency {
 											<div class="col-md-6">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon">$</i></span>
-													<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"
-													placeholder="Enter Mono Copy Cost" id="colour"
-													name="monoCopyCost" value="${productObject.monoCopyCost}">
+														class="glyphicon glyphicon">$</i></span> <input type="number"
+														min="0" step="0.01" data-number-to-fixed="2"
+														data-number-stepfactor="100" class="form-control currency"
+														placeholder="Enter Mono Copy Cost" id="colour"
+														name="monoCopyCost" value="${productObject.monoCopyCost}">
 												</div>
 											</div>
 											<br>
 										</div>
 									</c:if>
 									<c:if test="${not empty productObject.colourReading}">
-									  <!-- Text checkbox Colour Reading-->
+										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
 											<div class="col-md-6">
@@ -377,11 +390,12 @@ input.currency {
 											<div class="col-md-6">
 												<div class="input-group">
 													<span class="input-group-addon"><i
-														class="glyphicon glyphicon">$</i></span>
-												<input type="number" min="0" step="0.01" data-number-to-fixed="2" data-number-stepfactor="100" class="form-control currency"
-													placeholder="Enter Mono Copy Cost" id="colour"
-													name="colourCopyCost"
-													value="${productObject.colourCopyCost}"/>
+														class="glyphicon glyphicon">$</i></span> <input type="number"
+														min="0" step="0.01" data-number-to-fixed="2"
+														data-number-stepfactor="100" class="form-control currency"
+														placeholder="Enter Mono Copy Cost" id="colour"
+														name="colourCopyCost"
+														value="${productObject.colourCopyCost}" />
 												</div>
 											</div>
 											<br>
@@ -392,7 +406,7 @@ input.currency {
 
 								<!--Second column-->
 								<div class="col-sm-6">
-								
+
 									<!-- Text input Building Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Building Name</label>
@@ -414,12 +428,13 @@ input.currency {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-home"></i></span> <input
 													name="floorNumber" id="floorNumber"
-													placeholder="Floor Number" maxlength="4" class="form-control"
-													type="text" value="${productObject.floorNumber}">
+													placeholder="Floor Number" maxlength="4"
+													class="form-control" type="text"
+													value="${productObject.floorNumber}">
 											</div>
 										</div>
 									</div>
-								
+
 									<!-- Text input Street Number-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Street No</label>
@@ -505,104 +520,141 @@ input.currency {
 
 
 							<c:if test="${not empty accessories}">
-							    <!--Machine Accessories-->
-							<fieldset>
-								<legend align="left">Machine Accessories</legend>
+								<!--Machine Accessories-->
+								<fieldset>
+									<legend align="left">Machine Accessories</legend>
 
-								<div class="tablemachinesacccso">
-									<table id="myDatatable" class="display datatable">
-										<thead>
-											<tr>
-												<th>Machine Type</th>
-												<th>Serial Number</th>
-												<th>Remove Accessory</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${accessories}">
+									<div class="tablemachinesacccso">
+										<table id="myDatatable" class="display datatable">
+											<thead>
 												<tr>
-											
-                                                   	<td>${list.accessotyType}</td>
-													<td>${list.serial}</td>
-													<td><a href="removeAccessory?serial=<c:out value='${list.serial}'/>">Remove</a></td>
-                                                    </tr>
-											</c:forEach>
-										</tbody>
-									</table>
-								</div>
-							</fieldset>
-							
-							
+													<th>Machine Type</th>
+													<th>Serial Number</th>
+													<th>Remove Accessory</th>
+												</tr>
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach var="list" items="${accessories}">
+													<tr>
+
+														<td>${list.accessotyType}</td>
+														<td>${list.serial}</td>
+														<td><a
+															href="removeAccessory?serial=<c:out value='${list.serial}'/>">Remove</a></td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</div>
+								</fieldset>
+
+
 							</c:if>
 							<!--Machine Accessories-->
-							
-							
+
+
 							<!-- Other Machine Accessories -->
-								<div class="others" id="others">
-									<div class="col-sm-12">
-										<div class="resize">
-										<h5>Machine Accessories</h5>									
-											<p><input type="button" class="btn btn-success"  value="Add More"></p>
-											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">
-													<thead>
-														<tr>
-															<th>Machine Type</th>
-															<th>Serial Number</th>
-															<th>Delete</th>
-														</tr>
-													</thead>
-													<tbody>
-														<tr>
-															<td>
-																<select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value);">
-																	<option value="">Please select Machine Accessories</option>
-																	<option value="Bridge Unit">Bridge Unit</option>
-																	<option value="Finisher">Finisher</option>
-																	<option value="Fax Unit">Fax Unit</option>
-																	<option value="One Bin Tray">One Bin Tray</option>													
-																	<option value="LCT">LCT</option>
-																	<option value="Credenza">Credenza</option>
-																	<option value="Additional Paper Trays">Additional Paper Trays</option>
-																	<option value="Wireless Card">Wireless Card</option>
-																	<option value="others">Others</option>
-																</select>
-															</td>
-															<td>
-																<div class="bridgeAndFinisher" id="bridgeFinisher" style="display:none;">
-																	<input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinisher" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"><br>
-																	<input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" placeholder="Please Enter Finisher Serial" id="bridgeFinisher" class="form-control" type="text">
-																</div>
-																<input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/>
-																<input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="oneBinTraySerial" placeholder="Please Enter One Bin Tray Serial" class="form-control" type="text"/>
-																<input name="ltcTypeSerial" onkeydown="upperCaseF(this)" style="display:none;" id="lctSerial" placeholder="Please Enter LCT Serial" class="form-control" type="text"/>
-																<input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/>
-																<input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/>
-																<input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Wireless Card Serial" class="form-control" type="text"/>
-																<input name="others" onkeydown="upperCaseF(this)" style="display:none;" id="othersSerial"  class="form-control" type="text"/>
-															</td>
-															<td><input type="button" class="btn btn-danger" value="Remove" /></td>
-														</tr>
-													</tbody>
-											</table>					
-										
-										</div>
-									</div>									
-								</div><!-- //Other Machine Accessories -->
-							
+							<div class="others" id="others">
+								<div class="col-sm-12">
+									<div class="resize">
+										<h5>Machine Accessories</h5>
+										<p>
+											<input type="button" class="btn btn-success" value="Add More">
+										</p>
+										<table id="otherMachineAccessories"
+											class="table table-striped table-bordered table-hover table-condensed">
+											<thead>
+												<tr>
+													<th>Machine Type</th>
+													<th>Serial Number</th>
+													<th>Delete</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><select id="machineAccessories"
+														name="machineAccessories" class="form-control"
+														onchange="CheckMachineAccessories(this.value);">
+															<option value="">Please select Machine
+																Accessories</option>
+															<option value="Bridge Unit">Bridge Unit</option>
+															<option value="Finisher">Finisher</option>
+															<option value="Fax Unit">Fax Unit</option>
+															<option value="One Bin Tray">One Bin Tray</option>
+															<option value="LCT">LCT</option>
+															<option value="Credenza">Credenza</option>
+															<option value="Additional Paper Trays">Additional
+																Paper Trays</option>
+															<option value="Wireless Card">Wireless Card</option>
+															<option value="Others">Others</option>
+													</select> <input name="others" onkeydown="upperCaseF(this)"
+														style="display: none;" id="othersMachineType"
+														placeholder="Please Enetr Machine Type"
+														class="form-control" type="text" /></td>
+													<td>
+														<div class="bridgeAndFinisher" id="bridgeFinisher"
+															style="display: none;">
+															<input name="bridgeUnitSerialTypeSerialNo"
+																onkeydown="upperCaseF(this)" id="bridgeFinisher"
+																placeholder="Please Enter Bridge Unit Serial"
+																class="form-control" type="text"><br> <input
+																name="finisherTypeSerialNo" onkeydown="upperCaseF(this)"
+																placeholder="Please Enter Finisher Serial"
+																id="bridgeFinisher" class="form-control" type="text">
+														</div> <input name="faxUnitSerialTypeSerialNo"
+														onkeydown="upperCaseF(this)" style="display: none;"
+														id="faxUnitSerial"
+														placeholder="Please Enter Fax Unit Serial"
+														class="form-control" type="text" /> <input
+														name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)"
+														style="display: none;" id="oneBinTraySerial"
+														placeholder="Please Enter One Bin Tray Serial"
+														class="form-control" type="text" /> <input
+														name="ltcTypeSerial" onkeydown="upperCaseF(this)"
+														style="display: none;" id="lctSerial"
+														placeholder="Please Enter LCT Serial" class="form-control"
+														type="text" /> <input name="creTypeserial"
+														onkeydown="upperCaseF(this)" style="display: none;"
+														id="credenzaSerial"
+														placeholder="Please Enter Credenza Serial"
+														class="form-control" type="text" /> <input
+														name="addTypeserial" onkeydown="upperCaseF(this)"
+														style="display: none;" id="additionalPaperTraysSerial"
+														placeholder="Please Enter Additional Paper Trays Serial"
+														class="form-control" type="text" /> <input
+														name="wirelessCard" onkeydown="upperCaseF(this)"
+														style="display: none;" id="wirelessCardSerial"
+														placeholder="Please Enetr Wireless Card Serial"
+														class="form-control" type="text" /> <input name="others"
+														onkeydown="upperCaseF(this)" style="display: none;"
+														id="othersSerial" placeholder="Please Enetr Serial"
+														class="form-control" type="text" />
+
+													</td>
+													<td><input type="button" class="btn btn-danger"
+														value="Remove" /></td>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+							<!-- //Other Machine Accessories -->
+
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
-									<br>
-									<br> <input type="submit" id="updateProduct"
+									<br> <br> <input type="submit" id="updateProduct"
 										name="updateProduct" value="Update Device"
 										class="btn btn-primary btn-block btn-lg" tabindex="9"
 										id="updateProduct">
 								</div>
 							</div>
 
-						
-							
+
+
 						</form:form>
 
 
@@ -619,20 +671,25 @@ input.currency {
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-		
-	
+
+
 	<!-- Scripts -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
-	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-	
-	<!-- Datatables -->	
-	<script type="text/javascript"	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+
+	<!-- Datatables -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 	<!-- //Datatables -->
-	
+
 	<!-- /Scripts -->
-	
+
 	<!-- Validate update device -->
 	<script>
 $(document).ready(function() {
@@ -1067,9 +1124,9 @@ $(document).ready(function() {
 });
 });
 </script>
-	
-<!---Script to add other Accossory-->
-<script type="text/javascript">
+
+	<!---Script to add other Accossory-->
+	<script type="text/javascript">
 
 $('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
     $(this).closest('tr').remove();
@@ -1081,9 +1138,20 @@ $('p input[type="button"]').click(function () {
 
 
 </script>
+	<!---Script to add other Accossory-->
+	<script type="text/javascript">
 
-<!--Machine Accessories Selection-->
-<script type="text/javascript">
+$('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
+    $(this).closest('tr').remove();
+	})
+$('p input[type="button"]').click(function () {
+    $('#otherMachineAccessories').append('<tr><td><select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value);"><option value="">Please select Machine Accessories</option><option value="Bridge Unit">Bridge Unit</option><option value="Finisher">Finisher</option><option value="Fax Unit">Fax Unit</option><option value="One Bin Tray">One Bin Tray</option><option value="LCT">LCT</option><option value="Credenza">Credenza</option><option value="Additional Paper Trays">Additional Paper Trays</option><option value="Wireless Card">Wireless Card</option><option value="others">Others</option></select><input name="others" onkeydown="upperCaseF(this)" style="display:none;" id="othersMachineType" placeholder="Please Enetr Machine Type" class="form-control" type="text"/></div></td><td><div class="bridgeAndFinisher" id="bridgeFinishere" style="display:none;"><input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"/><br><input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Finisher Serial" class="form-control" type="text"/></div><input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/><input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" placeholder="Please Enter One Bin Tray Serial" id="oneBinTraySerial" class="form-control" type="text"/><input name="ltcTypeSerial" onkeydown="upperCaseF(this)"style="display:none;" placeholder="Please Enter LCT Serial" id="lctSerial" class="form-control" type="text"/><input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/><input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/><input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Wireless Card Serial" class="form-control" type="text"/><input name="others" onkeydown="upperCaseF(this)" style="display:none;" id="othersSerial" placeholder="Please Enetr Serial" class="form-control" type="text"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+});
+
+</script>
+
+	<!--Machine Accessories Selection-->
+	<script type="text/javascript">
 	
 	function CheckMachineAccessories(val){
 		
@@ -1122,7 +1190,7 @@ $('p input[type="button"]').click(function () {
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
-
+			
 		var element=document.getElementById('additionalPaperTraysSerial');
 		if (val=='pick machine type' || val=='Additional Paper Trays')
 			 element.style.display='block';
@@ -1134,14 +1202,25 @@ $('p input[type="button"]').click(function () {
 			 element.style.display='block';
 		 else  
 		   element.style.display='none';
-		
+		   
+		var element=document.getElementById('othersSerial');
+		if (val=='pick machine type' || val=='Others')
+			 element.style.display='block';
+		 else  
+		   element.style.display='none';
+		   		   
+		var element=document.getElementById('othersMachineType');
+		if (val=='pick machine type' || val=='Others')
+			 element.style.display='block';
+		 else  
+		   element.style.display='none';
+		   console.log(val);
 	}
 
 </script>
 
-
-<!--Mono and Colour Selection-->
-<script type="text/javascript">
+	<!--Mono and Colour Selection-->
+	<script type="text/javascript">
 
 function CheckColors(val){
  var element=document.getElementById('mono');
@@ -1160,8 +1239,8 @@ function CheckColors(val){
 
 </script>
 
-<!-- Make all Serials numbers UpperCase  -->
-<script type="text/javascript">
+	<!-- Make all Serials numbers UpperCase  -->
+	<script type="text/javascript">
 function upperCaseF(a){
     setTimeout(function(){
         a.value = a.value.toUpperCase();
@@ -1169,8 +1248,8 @@ function upperCaseF(a){
 }
 </script>
 
-<!-- Accept alphabetical characters only -->
-<script language="Javascript" type="text/javascript">
+	<!-- Accept alphabetical characters only -->
+	<script language="Javascript" type="text/javascript">
     function onlyAlphabets(e, t) {
         try {
             if (window.event) {
@@ -1191,8 +1270,8 @@ function upperCaseF(a){
     }
 </script>
 
-<!-- Accept alphanumeric characters only -->
-<script type="text/javascript">
+	<!-- Accept alphanumeric characters only -->
+	<script type="text/javascript">
 function isNumber(evt) {
 evt = (evt) ? evt : window.event;
 var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -1264,7 +1343,7 @@ $(document).ready(function() {
 	});
 </script>
 
-<script>
+	<script>
 	$(document).ready(function() {
 		$('#myDatatable').DataTable({
 			"jQueryUI" : true,

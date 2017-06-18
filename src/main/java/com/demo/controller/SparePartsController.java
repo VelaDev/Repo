@@ -156,7 +156,7 @@ public class SparePartsController {
 		return model;
 	}
 	@RequestMapping(value="bootSite", method=RequestMethod.GET)
-	public ModelAndView getSparePartsSite(){
+	public ModelAndView getSparePartBootStock(){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -172,6 +172,25 @@ public class SparePartsController {
 		}
 		return model;
 	}
+	//Removed code by mistake
+	@RequestMapping(value="stockSite", method=RequestMethod.GET)
+	public ModelAndView getSparePartSiteStock(){
+		model = new ModelAndView();
+				
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("customer",customerServiceInt.getClientList());			
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.setViewName("stockSite");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}	
+	
 	@RequestMapping(value="loadBootStock")
 	public ModelAndView loadBootStock(@RequestParam("technician") String technician){
 		model = new ModelAndView();

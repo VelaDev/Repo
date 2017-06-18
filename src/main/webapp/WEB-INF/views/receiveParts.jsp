@@ -247,11 +247,7 @@
 						</c:if>
 						
 						<c:if test="${empty sparePart.itemDescription }">
-						
-							
 						</c:if>
-
-					</div>
 
 				</div>
 				<!-- /tab-content -->

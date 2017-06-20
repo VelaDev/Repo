@@ -11,6 +11,4 @@ public interface AccessoriesDaoInt {
 	List<Accessories> getAccessoriesByDeviceSerial(String serialNo);
 	String removeAccessory(String serialNo);
 	Accessories getAccessories(String serialNo);
-	
-
 }

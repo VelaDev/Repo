@@ -531,8 +531,9 @@ public class TicketController {
 			
 			 if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
 			    	
-			    	model.setViewName("closedTicketsDetails");
+			    	
 			    	model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			    	model.setViewName("closedTicketsDetails");
 			    }
 			    
 			    else if (userName.getRole().equalsIgnoreCase("Technician")){
@@ -962,7 +963,7 @@ public class TicketController {
         
     }
 	@RequestMapping(value={"closedTicketsAdmin", "closedTechDetails"})
-	public ModelAndView closedTicketsAdmin(@RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate){
+	public ModelAndView closedTicketsAdmin1(@RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate){
 		
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");

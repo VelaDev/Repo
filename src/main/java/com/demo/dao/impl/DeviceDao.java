@@ -231,22 +231,21 @@ public class DeviceDao implements DeviceDaoInt {
 						list.add(accessory6);
 					}
 				}
-				List<String> accessoryType = new ArrayList<String>(Arrays.asList(deviceBean.getMachineType().split(",")));
-				List<String> accessorySerial = new ArrayList<String>(Arrays.asList(deviceBean.getSerialNumberOtherAccessory().split(",")));
-				for(int i =0;i<accessoryType.size();i++){
-					for(int x=0;x<accessorySerial.size();x++){
-						if(i==x){
-							Accessories otherAccessorry = new Accessories();
-							otherAccessorry.setAccessotyType(accessoryType.get(i));
-							otherAccessorry.setSerial(accessorySerial.get(x));
-							otherAccessorry.setDevice(device);
-							list.add(otherAccessorry);
+				if(deviceBean.getMachineType()!=null && deviceBean.getSerialNumberOtherAccessory()!=null){
+					List<String> accessoryType = new ArrayList<String>(Arrays.asList(deviceBean.getMachineType().split(",")));
+					List<String> accessorySerial = new ArrayList<String>(Arrays.asList(deviceBean.getSerialNumberOtherAccessory().split(",")));
+					for(int i =0;i<accessoryType.size();i++){
+						for(int x=0;x<accessorySerial.size();x++){
+							if(i==x){
+								Accessories otherAccessorry = new Accessories();
+								otherAccessorry.setAccessotyType(accessoryType.get(i));
+								otherAccessorry.setSerial(accessorySerial.get(x));
+								otherAccessorry.setDevice(device);
+								list.add(otherAccessorry);
+							}
 						}
 					}
 				}
-				
-
-
 				retMessage = contactPersonDaoInt
 						.saveContactPerson(contactPerson);
 				if (retMessage.equalsIgnoreCase("OK")) {

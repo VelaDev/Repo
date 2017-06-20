@@ -16,8 +16,6 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-
-
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -522,7 +520,7 @@
 
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
-															<legend id="hideUsedPartNumbersHidding" style="display:none">Used Part Numbers </legend>
+													<legend>Used Part Numbers </legend>
 
 													<div class="diplayNone" id="getPartToner">
 														<!-- Radio for Boot Stock-->

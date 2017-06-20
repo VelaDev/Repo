@@ -34,7 +34,7 @@ li{
 				</div>
 				<div class="panel-body" id="deliveryNote" style="background-color:white;"> 
 					<div class="tab-content">
-					 <!--  <a href="#" onclick="window.open('C:/VelapandaReports/ORD004.pdf', '_blank', 'fullscreen=yes'); return false;">MyPDF</a><br> --> 
+					  <!--  <a href="#" onclick="window.open('C:/VelapandaReports/ORD004.pdf', '_blank', 'fullscreen=yes'); return false;">MyPDF</a><br> -->
 					  <form:form>
 							
 							<fieldset>
@@ -88,7 +88,13 @@ li{
 									
 									</table>
 								</div>
-										
+									</td>
+								   </tr>
+								   
+		
+								</div>
+								
+							 </table><br>	
 							</fieldset><br>
 							<!-- Below table will be displayed as Data table -->
 						<table id="myDatatable" class="display datatable" border="2%">
@@ -156,7 +162,7 @@ li{
 					  </form:form>
 					</div>
 					<!-- /tab-content -->
-					
+
 				</div>
 				<!-- /panel body -->
 			</div>

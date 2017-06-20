@@ -277,13 +277,6 @@ $("#actionTaken").on(
 function Faulty(val) {
 	
 	
-	var element = document.getElementById('hideUsedPartNumbersHidding');
-	if (val == 'pick a Part or Toner options' || val == 'Replaced Part/Toner' )
-		element.style.display = 'block';	    
-	else
-		element.style.display = 'none';
-		console.log('Hide heading if Replaced Part/Toner is not selected ');
-	
 	
 	var element = document.getElementById('hideIfIsNotPartToner');
 	if (val == 'pick a Part or Toner options' || val == 'Replaced Part/Toner' )

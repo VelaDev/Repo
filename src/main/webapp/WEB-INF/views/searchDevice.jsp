@@ -48,7 +48,7 @@
 								<c:forEach var="list" items="${deviceList}">
 									<tr>
 										<td><a href="viewCustomer?customerName=<c:out value='${list.customerDevice.customerName}'/>">${list.customerDevice.customerName}</a></td>
-										<td><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">${list.serialNumber}</a></td>
+										<td>${list.serialNumber}</td>
 										<td>${list.modelNumber}</td>
 										<td>${list.startDate}</td>
 										<td>${list.endDate}</td>

@@ -62,9 +62,9 @@
 													<c:when test="${list.status =='Approved'}">
 														<button class="btn btn-info">Delivery</button>
 													</c:when>
-													<c:when test="${list.status =='Pending'}">
-														<button class="btn btn-info" disabled="disabled">Delivery</button>
-													</c:when>
+                                                     <c:when test="${list.status =='Pending'}">
+                                                     <button class="btn btn-info" disabled="disabled">Delivery</button>
+                                                     </c:when>
 												</c:choose>
 										</a></td>
 									</tr>
@@ -92,13 +92,13 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('#myDatatable').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-		/* few more options are available to use */
+		$(document).ready(function() {
+			$('#myDatatable').DataTable({
+				"jQueryUI" : true,
+				"pagingType" : "full_numbers",
+				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+			/* few more options are available to use */
+			});
 		});
-	});
 </script>
 </html>

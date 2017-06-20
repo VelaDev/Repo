@@ -37,7 +37,7 @@
 
 						
 							<form:form class="form-horizontal" id="sortByDate" method="post"
-							action="closedTicketsAdmin" id="closedTicketsAdmin" modelAttribute="closedTicketsAdmin">
+							 modelAttribute="closedTicketsAdmin" action="closedTicketsAdmin">
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
 									<div class="form-group">

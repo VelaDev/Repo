@@ -519,7 +519,7 @@
 
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
-															<legend id="hideUsedPartNumbersHidding" style="display:none">Used Part Numbers </legend>
+													<legend>Used Part Numbers </legend>
 
 
 													<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
@@ -573,7 +573,8 @@
 														style="display: none">
 														<!-- Text area Comment-->
 														<div class="form-group">
-															<label class="usedPart control-label">Please Enter Comment</label>
+															<label class="usedPart control-label">Comments on
+																Fautly</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<textarea class="form-control" name="comments"

@@ -528,6 +528,7 @@ input.currency {
 										<table id="myDatatable" class="display datatable">
 											<thead>
 												<tr>
+												
 													<th>Machine Type</th>
 													<th>Serial Number</th>
 													<th>Remove Accessory</th>
@@ -537,18 +538,20 @@ input.currency {
 												<!-- Iterating over the list sent from Controller -->
 												<c:forEach var="list" items="${accessories}">
 													<tr>
-
 														<td>${list.accessotyType}</td>
 														<td>${list.serial}</td>
-														<td><a
-															href="removeAccessory?serial=<c:out value='${list.serial}'/>">Remove</a></td>
+														<td><input type="checkbox" id="chkAccessories" name="chkAccessories" /></td>
 													</tr>
-												</c:forEach>
+												</c:forEach>											
+											
 											</tbody>
-										</table>
-									</div>
+												<a class="btn btn-danger" href="removeAccessory?serial=<c:out value='${list.serial}'/>">Remove</a>
+												<br/>
+										</table>											
+									</div>									
 								</fieldset>
-
+								
+								
 
 							</c:if>
 							<!--Machine Accessories-->
@@ -557,7 +560,8 @@ input.currency {
 							<!-- Other Machine Accessories -->
 							<div class="others" id="others">
 								<div class="col-sm-12">
-									<div class="resize">
+									<div class="resize">										
+										<br/><br/>
 										<h5>Machine Accessories</h5>
 										<p>
 											<input type="button" class="btn btn-success" value="Add More">

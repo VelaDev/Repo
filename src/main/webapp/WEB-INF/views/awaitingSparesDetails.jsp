@@ -411,13 +411,13 @@
 								<!-- //Customer Details -->
 
 								<br>
-								<div class="form-group row">
+								<!-- <div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
-								</div>
+								</div> -->
 
 							</form:form>
 
@@ -559,7 +559,8 @@
 
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
-													<legend>Used Part Numbers </legend>
+													
+													<legend id="hideUsedPartNumbersHidding" style="display:none">Used Part Numbers </legend>
 
 													<fieldset id="groupstock">
 														<!-- group Boot Stock -->

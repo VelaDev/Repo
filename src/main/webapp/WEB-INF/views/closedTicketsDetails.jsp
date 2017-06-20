@@ -522,7 +522,7 @@
 
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
-													<legend>Used Part Numbers </legend>
+															<legend id="hideUsedPartNumbersHidding" style="display:none">Used Part Numbers </legend>
 
 													<div class="diplayNone" id="getPartToner">
 														<!-- Radio for Boot Stock-->

@@ -351,13 +351,13 @@
 								<!-- //Customer Details -->
 
 								<br>
-								<div class="form-group row">
+								<!-- <div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
-								</div>
+								</div> -->
 
 							</form:form>
 
@@ -483,11 +483,11 @@
 
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
-													<legend>Used Part Numbers </legend>
-
-
+												
+													<legend id="hideUsedPartNumbersHidding" style="display:none">Used Part Numbers </legend>	
+																					  	
 													<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
-														style="display: none">
+														style="display: none">	
 
 														<fieldset id="groupstock">
 															<!-- group Boot Stock -->
@@ -537,8 +537,7 @@
 														style="display: none">
 														<!-- Text area Comment-->
 														<div class="form-group">
-															<label class="usedPart control-label">Comments on
-																Fautly</label>
+															<label class="usedPart control-label">Please Enter Comment</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<textarea class="form-control" name="comments"

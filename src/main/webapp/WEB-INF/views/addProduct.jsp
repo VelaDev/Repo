@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<title>Add Device | Velaphanda Trading & Projects</title>
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
@@ -48,10 +48,14 @@ input.currency {
 	padding-right: 15px;
 }
 
+.resize {
+	margin-left: 12%;
+	margin-right: 12%;
+}
 </style>
 
 
-<title>Add Device | Velaphanda Trading & Projects</title>
+
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -112,7 +116,7 @@ input.currency {
 
 									<div id="customerDeviceContainer"
 										style="width: auto; display: table;">
-										<div class="customerDeviceAddress">
+										<div class="customerDeviceAddressTitle">
 											<p class="customerAddressTitle">Customer Address</p>
 											<ul class="addressDeviceList" style="display: block;">
 												<li id="streetName">${customer.streetNumber}
@@ -910,11 +914,7 @@ $(document).ready(function() {
 						},
 						notEmpty : {
 							message : 'Street name is required and cannot be empty'
-						},
-		                regexp: {
-		                	 regexp: /^[-_ a-zA-Z]+$/,			                   
-		                    message: 'Street name must only consist of letters'
-		                }
+						}
 						
 					}
 				},

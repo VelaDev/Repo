@@ -369,7 +369,7 @@
 						<!--/general tab-->
 
 
-						<!-- Solution Details -->
+						<!-- resolvedSolution Details -->
 						<form:form action="updateTicket" modelAttribute="updateTicket"
 							method="post" id="updateResolved">
 
@@ -450,38 +450,45 @@
 																</div>
 															</div>
 														</div>
-
-														,<c:if test="${not empty ticketObject.device.colourReading}">
-														   <!-- Text checkbox Colour Reading-->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Colour
-																Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <input
-																		type="text" class="form-control"
-																		onkeypress="return isNumber(event)"
-																		placeholder="Enter Colour Reading" id="colourReading"
-																		name="colourReading">
+														
+														<div class="hideMonoAndColour" id="hideMonoAndColour" style="display: none">
+														
+															<c:if test="${not empty ticketObject.device.colourReading}">
+															   <!-- Text checkbox Colour Reading-->
+																<div class="form-group">
+																	<label class="col-md-4 control-label">Colour
+																		Reading</label>
+																	<div class="col-md-8 inputGroupContainer">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i
+																				class="glyphicon glyphicon-list"></i></span> <input
+																				type="text" class="form-control"
+																				onkeypress="return isNumber(event)"
+																				placeholder="Enter Colour Reading" id="colourReading"
+																				name="colourReading" >
+																		</div>
+																	</div>
 																</div>
-															</div>
-														</div>
-														</c:if>
-														<div class="form-group">
-															<label class="col-md-4 control-label">Mono
-																Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <input
-																		type="text" class="form-control"
-																		onkeypress="return isNumber(event)" id="mono"
-																		name="monoReading" placeholder="Enter Mono Reading">
+																</c:if>
+																<div class="form-group">
+																	<label class="col-md-4 control-label">Mono
+																		Reading</label>
+																	<div class="col-md-8 inputGroupContainer">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i
+																				class="glyphicon glyphicon-list"></i></span> <input
+																				type="text" class="form-control"
+																				onkeypress="return isNumber(event)" id="mono"
+																				name="monoReading" placeholder="Enter Mono Reading">
+																		</div>
+																	</div>
 																</div>
-															</div>
+																
 														</div>
-													</div>
+														<!-- HideMonoAndColour if no action is selscted -->
+														
+													</div><!--/First Column-->
+													
 												</div>
 												<!-- //group details -->
 
@@ -577,8 +584,6 @@
 
 										</div>
 
-
-
 									</div>
 									<!-- /.modal-content -->
 								</div>
@@ -641,7 +646,7 @@
 									</div>
 								</div>
 							</div>
-							<!--/site stock-->
+							<!--/Boot Stock-->
 
 
 							<!--Site Stock-->
@@ -699,8 +704,13 @@
 							</div>
 							<!--/site stock-->
 							
-							
-						<!-- /Escalated Details -->
+						</form:form>
+						<!-- resolvedSolution Details -->
+						
+						
+						<!-- /escalatedSolutions Details -->
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="updateResolved">
 						<div id="escalatedSolutions" class="modal fade" role="dialog"
 							aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 							<div class="modal-dialog-solution modal-lg">
@@ -819,10 +829,16 @@
 							<!-- /.modal-dialog -->
 						</div>
 						<!-- /.modal escalatedSolutions-->
-												
 						
-						<!-- /Escalated Details -->
-						<div id="awaitingSparesSolutions" class="modal fade" role="dialog"
+						</form:form>
+						<!-- /escalatedSolutions Details -->
+						
+
+						<!-- /awaitingSparesSolutions Details -->				
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="updateResolved">
+						
+							<div id="awaitingSparesSolutions" class="modal fade" role="dialog"
 							aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 							<div class="modal-dialog-solution modal-lg">
 
@@ -935,13 +951,9 @@
 							</div>
 							<!-- /.modal-dialog -->
 						</div>
-						<!-- /.modal escalatedSolutions-->
-
+						<!-- /.modal awaitingSparesSolutions-->
 						</form:form>
-						<!-- /Solution Details -->
-
-						
-
+							<!--awaitingSparesSolutions-->
 						
 						
 						<!--history tab-->

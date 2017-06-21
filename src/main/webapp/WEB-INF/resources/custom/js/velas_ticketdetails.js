@@ -254,8 +254,8 @@ $("#actionTaken").on(
 			if ($(this).val() == "Replaced Part/Toner") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', false);
-				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);
-				$('#usedPartNumbers').attr('disabled', false);
+				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);							
+				$('#usedPartNumbers').attr('disabled', true);
 				console.log($(this).val());
 			} else if ($(this).val() == ""
 					|| $(this).val() == "Cleared Paper Jam"
@@ -266,7 +266,7 @@ $("#actionTaken").on(
 					|| $(this).val() == "No fault Found") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', true);
-				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);
+				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);				
 				$('#usedPartNumbers').attr('disabled', true);
 				console.log($(this).val());
 			}
@@ -276,6 +276,13 @@ $("#actionTaken").on(
 //Select hideComent before -->
 function Faulty(val) {
 	
+	
+	var element = document.getElementById('hideUsedPartNumbersHidding');
+	if (val == 'pick a Part or Toner options' || val == 'Replaced Part/Toner' )
+		element.style.display = 'block';	    
+	else
+		element.style.display = 'none';
+		console.log('Hide heading if Replaced Part/Toner is not selected ');
 	
 	
 	var element = document.getElementById('hideIfIsNotPartToner');
@@ -311,8 +318,20 @@ function Faulty(val) {
 	else
 		element.style.display = 'none';
 	    console.log('Submit Hidden:  Hide submit buttons if nothing was selected from Acton Taken');
-	
-
+	    
+	var element = document.getElementById('hideMonoAndColour');
+	if (val == 'pick a show submit' || 
+			val == 'Cleared Paper Jam' || 
+			val == 'Installed Drivers' || 
+			val == 'Configured Drivers'||
+			val == 'Configured Printer'||
+			val == 'User Error' 	   || 
+			val == 'No fault Found'    ||
+			val == 'Replaced Part/Toner')
+		element.style.display = 'block';	    
+	else
+		element.style.display = 'none';
+	    console.log('hide Mono And Colour:  Hide Mono and Colour Reading if action ');
 }
 
 // Select Open before showing comment-->

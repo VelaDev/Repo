@@ -405,7 +405,7 @@
 	   return pattern.test(value);
 	}
 
-	$('#streetName').bind('keypress', testInput);
+	//$('#streetName').bind('keypress', testInput);
 
 </script>
 

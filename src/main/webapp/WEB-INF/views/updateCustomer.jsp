@@ -127,7 +127,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="streetName" id="streetName" placeholder="Street Name"
-												class="form-control" type="text" onkeypress="return onlyAlphabets(event,this);"  value="${customer.streetName}" >
+												class="form-control" type="text"  value="${customer.streetName}" >
 										</div>
 									</div>
 								</div>

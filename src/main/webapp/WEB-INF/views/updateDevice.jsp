@@ -562,85 +562,48 @@ input.currency {
 								<div class="col-sm-12">
 									<div class="resize">										
 										<br/><br/>
-										<h5>Machine Accessories</h5>
-										<p>
-											<input type="button" class="btn btn-success" value="Add More">
-										</p>
-										<table id="otherMachineAccessories"
-											class="table table-striped table-bordered table-hover table-condensed">
-											<thead>
-												<tr>
-													<th>Machine Type</th>
-													<th>Serial Number</th>
-													<th>Delete</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td><select id="machineAccessories"
-														name="machineAccessories" class="form-control"
-														onchange="CheckMachineAccessories(this.value);">
-															<option value="">Please select Machine
-																Accessories</option>
-															<option value="Bridge Unit">Bridge Unit</option>
-															<option value="Finisher">Finisher</option>
-															<option value="Fax Unit">Fax Unit</option>
-															<option value="One Bin Tray">One Bin Tray</option>
-															<option value="LCT">LCT</option>
-															<option value="Credenza">Credenza</option>
-															<option value="Additional Paper Trays">Additional
-																Paper Trays</option>
-															<option value="Wireless Card">Wireless Card</option>
-															<option value="Others">Others</option>
-													</select> <input name="others" onkeydown="upperCaseF(this)"
-														style="display: none;" id="othersMachineType"
-														placeholder="Please Enetr Machine Type"
-														class="form-control" type="text" /></td>
-													<td>
-														<div class="bridgeAndFinisher" id="bridgeFinisher"
-															style="display: none;">
-															<input name="bridgeUnitSerialTypeSerialNo"
-																onkeydown="upperCaseF(this)" id="bridgeFinisher"
-																placeholder="Please Enter Bridge Unit Serial"
-																class="form-control" type="text"><br> <input
-																name="finisherTypeSerialNo" onkeydown="upperCaseF(this)"
-																placeholder="Please Enter Finisher Serial"
-																id="bridgeFinisher" class="form-control" type="text">
-														</div> <input name="faxUnitSerialTypeSerialNo"
-														onkeydown="upperCaseF(this)" style="display: none;"
-														id="faxUnitSerial"
-														placeholder="Please Enter Fax Unit Serial"
-														class="form-control" type="text" /> <input
-														name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)"
-														style="display: none;" id="oneBinTraySerial"
-														placeholder="Please Enter One Bin Tray Serial"
-														class="form-control" type="text" /> <input
-														name="ltcTypeSerial" onkeydown="upperCaseF(this)"
-														style="display: none;" id="lctSerial"
-														placeholder="Please Enter LCT Serial" class="form-control"
-														type="text" /> <input name="creTypeserial"
-														onkeydown="upperCaseF(this)" style="display: none;"
-														id="credenzaSerial"
-														placeholder="Please Enter Credenza Serial"
-														class="form-control" type="text" /> <input
-														name="addTypeserial" onkeydown="upperCaseF(this)"
-														style="display: none;" id="additionalPaperTraysSerial"
-														placeholder="Please Enter Additional Paper Trays Serial"
-														class="form-control" type="text" /> <input
-														name="wirelessCard" onkeydown="upperCaseF(this)"
-														style="display: none;" id="wirelessCardSerial"
-														placeholder="Please Enetr Wireless Card Serial"
-														class="form-control" type="text" /> <input name="others"
-														onkeydown="upperCaseF(this)" style="display: none;"
-														id="othersSerial" placeholder="Please Enetr Serial"
-														class="form-control" type="text" />
-
-													</td>
-													<td><input type="button" class="btn btn-danger"
-														value="Remove" /></td>
-												</tr>
-											</tbody>
-										</table>
+											<h5>Machine Accessories</h5>									
+											<p><input type="button" class="btn btn-success"  value="Add More"></p>
+											<table id="otherMachineAccessories" class="table table-striped table-bordered table-hover table-condensed">
+													<thead>
+														<tr>
+															<th>Machine Type</th>
+															<th>Serial Number</th>
+															<th>Delete</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr id="machineAccessoryRow-1">
+															<td id="uniqueRowId">
+																<select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value , 1);">
+																	<option value="">Please select Machine Accessories</option>
+																	<option value="Bridge Unit">Bridge Unit</option>
+																	<option value="Finisher">Finisher</option>
+																	<option value="Fax Unit">Fax Unit</option>
+																	<option value="One Bin Tray">One Bin Tray</option>													
+																	<option value="LCT">LCT</option>
+																	<option value="Credenza">Credenza</option>
+																	<option value="Additional Paper Trays">Additional Paper Trays</option>
+																	<option value="Wireless Card">Wireless Card</option>
+																	</select>																
+															</td>															
+															<td id="uniqueRowId">
+																<div class="bridgeAndFinisher" name="bridgeFinisher" id="bridgeFinisher" style="display:none;">
+																	<input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinisher" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"><br>
+																	<input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" placeholder="Please Enter Finisher Serial" id="bridgeFinisher" class="form-control" type="text">
+																</div>
+																<input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/>
+																<input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="oneBinTraySerial" placeholder="Please Enter One Bin Tray Serial" class="form-control" type="text"/>
+																<input name="ltcTypeSerial" onkeydown="upperCaseF(this)" style="display:none;" id="lctSerial" placeholder="Please Enter LCT Serial" class="form-control" type="text"/>
+																<input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/>
+																<input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/>
+																<input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Enetr Wireless Card Serial" class="form-control" type="text"/>
+																
+															</td>
+															<td><input type="button" class="btn btn-danger" value="Remove" /></td>
+														</tr>
+													</tbody>
+											</table>
 
 									</div>
 								</div>
@@ -940,11 +903,7 @@ $(document).ready(function() {
 					},
 					notEmpty : {
 						message : 'Street name is required and cannot be empty'
-					},
-	                regexp: {
-	                	 regexp: /^[-_ a-zA-Z]+$/,			                   
-	                    message: 'Street name must only consist of letters'
-	                }
+					}
 					
 				}
 			},
@@ -1129,102 +1088,100 @@ $(document).ready(function() {
 });
 </script>
 
-	<!---Script to add other Accossory-->
-	<script type="text/javascript">
+
+<!---Script to add other Accossory-->
+<script type="text/javascript">
 
 $('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
     $(this).closest('tr').remove();
 	})
+
+//We are starting with 2, because there is already a row in the grid.
+var rowId = 2;
 $('p input[type="button"]').click(function () {
-    $('#otherMachineAccessories').append('<tr><td><select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value);"><option value="">Please select Machine Accessories</option><option value="Bridge Unit">Bridge Unit</option><option value="Finisher">Finisher</option><option value="Fax Unit">Fax Unit</option><option value="One Bin Tray">One Bin Tray</option><option value="LCT">LCT</option><option value="Credenza">Credenza</option><option value="Additional Paper Trays">Additional Paper Trays</option></select></td><td><div class="bridgeAndFinisher" id="bridgeFinishere" style="display:none;"><input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"/><br><input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Finisher Serial" class="form-control" type="text"/></div><input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/><input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" placeholder="Please Enter One Bin Tray Serial" id="oneBinTraySerial" class="form-control" type="text"/><input name="ltcTypeSerial" onkeydown="upperCaseF(this)"style="display:none;" placeholder="Please Enter LCT Serial" id="lctSerial" class="form-control" type="text"/><input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/><input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/><input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Wireless Card Serial" class="form-control" type="text"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
-});
+    $('#otherMachineAccessories').append('<tr id="machineAccessoryRow-' + rowId + '"><td><select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value, ' + rowId + ');"><option value="">Please select Machine Accessories</option><option value="Bridge Unit">Bridge Unit</option><option value="Finisher">Finisher</option><option value="Fax Unit">Fax Unit</option><option value="One Bin Tray">One Bin Tray</option><option value="LCT">LCT</option><option value="Credenza">Credenza</option><option value="Additional Paper Trays">Additional Paper Trays</option><option value="Wireless Card">Wireless Card</option><option value="others">Others</option></select></div></td><td><div class="bridgeAndFinisher" name="bridgeFinisher" id="bridgeFinishere" style="display:none;"><input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"/><br><input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Finisher Serial" class="form-control" type="text"/></div><input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/><input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" placeholder="Please Enter One Bin Tray Serial" id="oneBinTraySerial" class="form-control" type="text"/><input name="ltcTypeSerial" onkeydown="upperCaseF(this)"style="display:none;" placeholder="Please Enter LCT Serial" id="lctSerial" class="form-control" type="text"/><input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/><input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/><input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Wireless Card Serial" class="form-control" type="text"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 
-
-
-</script>
-	<!---Script to add other Accossory-->
-	<script type="text/javascript">
-
-$('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
-    $(this).closest('tr').remove();
-	})
-$('p input[type="button"]').click(function () {
-    $('#otherMachineAccessories').append('<tr><td><select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value);"><option value="">Please select Machine Accessories</option><option value="Bridge Unit">Bridge Unit</option><option value="Finisher">Finisher</option><option value="Fax Unit">Fax Unit</option><option value="One Bin Tray">One Bin Tray</option><option value="LCT">LCT</option><option value="Credenza">Credenza</option><option value="Additional Paper Trays">Additional Paper Trays</option><option value="Wireless Card">Wireless Card</option><option value="others">Others</option></select><input name="others" onkeydown="upperCaseF(this)" style="display:none;" id="othersMachineType" placeholder="Please Enetr Machine Type" class="form-control" type="text"/></div></td><td><div class="bridgeAndFinisher" id="bridgeFinishere" style="display:none;"><input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"/><br><input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Finisher Serial" class="form-control" type="text"/></div><input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/><input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" placeholder="Please Enter One Bin Tray Serial" id="oneBinTraySerial" class="form-control" type="text"/><input name="ltcTypeSerial" onkeydown="upperCaseF(this)"style="display:none;" placeholder="Please Enter LCT Serial" id="lctSerial" class="form-control" type="text"/><input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/><input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/><input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Wireless Card Serial" class="form-control" type="text"/><input name="others" onkeydown="upperCaseF(this)" style="display:none;" id="othersSerial" placeholder="Please Enetr Serial" class="form-control" type="text"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+  rowId++;
 });
 
 </script>
 
-	<!--Machine Accessories Selection-->
-	<script type="text/javascript">
+<!--Machine Accessories Selection-->
+<script type="text/javascript">
 	
-	function CheckMachineAccessories(val){
+	function CheckMachineAccessories(val,rowId){
 		
-		var element=document.getElementById('bridgeFinisher');
+		var element = $("#machineAccessoryRow-" + rowId + " [name='bridgeFinisher']")[0];		
 		if(val=='pick machine type' || val=='Bridge Unit' || val=='Finisher')
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
-		   
-	   var element=document.getElementById('bridgeFinisher');
-	   if(val=='pick machine type' || val=='Bridge Unit' || val=='Finisher')
+		   	  
+	    var element = $("#machineAccessoryRow-" + rowId + " [name='finisherTypeSerialNo']")[0];
+	    if(val=='pick machine type' || val=='Bridge Unit' || val=='Finisher')
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
 		   
-		var element=document.getElementById('faxUnitSerial');
+		var element = $("#machineAccessoryRow-" + rowId + " [name='faxUnitSerialTypeSerialNo']")[0];		
 		if(val=='pick machine type' || val=='Fax Unit')
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
-			
-		var element=document.getElementById('oneBinTraySerial');
+		
+		var element = $("#machineAccessoryRow-" + rowId + " [name='OneBinTrayTypeSerialNo']")[0]; 		
 		if(val=='pick machine type' || val=='One Bin Tray')
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
-	   
-		var element=document.getElementById('lctSerial');
+	  
+	    var element = $("#machineAccessoryRow-" + rowId + " [name='ltcTypeSerial']")[0];		
 		if(val=='pick machine type' || val=='LCT')
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
-		
-		var element=document.getElementById('credenzaSerial');
+		   
+		var element = $("#machineAccessoryRow-" + rowId + " [name='creTypeserial']")[0];
 		if(val=='pick machine type' || val=='Credenza')
 		   element.style.display='block';
 		 else  
 		   element.style.display='none';
-			
-		var element=document.getElementById('additionalPaperTraysSerial');
+		
+		var element = $("#machineAccessoryRow-" + rowId + " [name='addTypeserial']")[0];		
 		if (val=='pick machine type' || val=='Additional Paper Trays')
 			 element.style.display='block';
 		 else  
 		   element.style.display='none';
-		   
-		var element=document.getElementById('wirelessCardSerial');
+		  
+		var element = $("#machineAccessoryRow-" + rowId + " [name='wirelessCard']")[0];		
 		if (val=='pick machine type' || val=='Wireless Card')
 			 element.style.display='block';
 		 else  
 		   element.style.display='none';
+		
+		
+		var element = $("#machineAccessoryRow-" + rowId + " [name='machineType']")[0];		
+		if (val=='pick machine type' || val=='Others Accessories')
+			 element.style.display='block';
+		 else  
+		   element.style.display='none';	
+		
+		var element = $("#machineAccessoryRow-" + rowId + " [name='otherSerialNumber']")[0];		
+		if (val=='pick machine type' || val=='Others Accessories')			 
+			 element.style.display='block';			
+		 else  
+		   element.style.display='none';
+		   console.log("See whats cooking here: ", val,rowId, element);
 		   
-		var element=document.getElementById('othersSerial');
-		if (val=='pick machine type' || val=='Others')
-			 element.style.display='block';
-		 else  
-		   element.style.display='none';
-		   		   
-		var element=document.getElementById('othersMachineType');
-		if (val=='pick machine type' || val=='Others')
-			 element.style.display='block';
-		 else  
-		   element.style.display='none';
-		   console.log(val);
+		   
+		
 	}
+	
 
 </script>
 
-	<!--Mono and Colour Selection-->
-	<script type="text/javascript">
+<!--Mono and Colour Selection-->
+<script type="text/javascript">
 
 function CheckColors(val){
  var element=document.getElementById('mono');

@@ -351,13 +351,13 @@
 								<!-- //Customer Details -->
 
 								<br>
-								<div class="form-group row">
+								<!-- <div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
-								</div>
+								</div> -->
 
 							</form:form>
 
@@ -365,7 +365,7 @@
 						<!--/general tab-->
 
 
-						<!-- Solution Details -->
+						<!-- resolvedSolution Details -->
 						<form:form action="updateTicket" modelAttribute="updateTicket"
 							method="post" id="updateResolved">
 
@@ -447,47 +447,54 @@
 															</div>
 														</div>
 
-														<!-- Text checkbox Colour Reading-->
-														<div class="form-group">
-															<label class="col-md-4 control-label">Colour
-																Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <input
-																		type="text" class="form-control"
-																		onkeypress="return isNumber(event)"
-																		placeholder="Enter Colour Reading" id="colourReading"
-																		name="colourReading">
+														<div class="hideMonoAndColour" id="hideMonoAndColour" style="display: none">
+														
+															<c:if test="${not empty ticketObject.device.colourReading}">
+															   <!-- Text checkbox Colour Reading-->
+																<div class="form-group">
+																	<label class="col-md-4 control-label">Colour
+																		Reading</label>
+																	<div class="col-md-8 inputGroupContainer">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i
+																				class="glyphicon glyphicon-list"></i></span> <input
+																				type="text" class="form-control"
+																				onkeypress="return isNumber(event)"
+																				placeholder="Enter Colour Reading" id="colourReading"
+																				name="colourReading" >
+																		</div>
+																	</div>
 																</div>
-															</div>
-														</div>
-														<div class="form-group">
-															<label class="col-md-4 control-label">Mono
-																Reading</label>
-															<div class="col-md-8 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-list"></i></span> <input
-																		type="text" class="form-control"
-																		onkeypress="return isNumber(event)" id="mono"
-																		name="monoReading" placeholder="Enter Mono Reading">
+																</c:if>
+																<div class="form-group">
+																	<label class="col-md-4 control-label">Mono
+																		Reading</label>
+																	<div class="col-md-8 inputGroupContainer">
+																		<div class="input-group">
+																			<span class="input-group-addon"><i
+																				class="glyphicon glyphicon-list"></i></span> <input
+																				type="text" class="form-control"
+																				onkeypress="return isNumber(event)" id="mono"
+																				name="monoReading" placeholder="Enter Mono Reading">
+																		</div>
+																	</div>
 																</div>
-															</div>
+																
 														</div>
-
-
-													</div>
+														<!-- HideMonoAndColour if no action is selscted -->
+														
+													</div><!--/First Column-->
+													
 												</div>
 												<!-- //group details -->
 
 												<!-- group Used Part Numbers -->
 												<div class="groupsearchdetails">
-													<legend>Used Part Numbers </legend>
-
-
+												
+													<legend id="hideUsedPartNumbersHidding" style="display:none">Used Part Numbers </legend>	
+																					  	
 													<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
-														style="display: none">
+														style="display: none">	
 
 														<fieldset id="groupstock">
 															<!-- group Boot Stock -->
@@ -537,8 +544,7 @@
 														style="display: none">
 														<!-- Text area Comment-->
 														<div class="form-group">
-															<label class="usedPart control-label">Comments on
-																Fautly</label>
+															<label class="usedPart control-label">Please Enter Comment</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
 																	<textarea class="form-control" name="comments"
@@ -638,7 +644,7 @@
 									</div>
 								</div>
 							</div>
-							<!--/site stock-->
+							<!--/Boot stock-->
 
 
 							<!--Site Stock-->
@@ -695,9 +701,15 @@
 								</div>
 							</div>
 							<!--/site stock-->
+						
+						</form:form>
+						<!-- /resolvedSolution Details -->
+
 							
+						<!-- /escalatedSolutions Details -->
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="updateResolved">
 							
-						<!-- /Escalated Details -->
 						<div id="escalatedSolutions" class="modal fade" role="dialog"
 							aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 							<div class="modal-dialog-solution modal-lg">
@@ -816,9 +828,14 @@
 							<!-- /.modal-dialog -->
 						</div>
 						<!-- /.modal escalatedSolutions-->
-												
-						
-						<!-- /Escalated Details -->
+						</form:form>
+						<!-- / escalatedSolutions-->
+
+
+						<!-- awaitingSparesSolutions Details -->
+						<form:form action="updateTicket" modelAttribute="updateTicket"
+							method="post" id="updateResolved">
+							
 						<div id="awaitingSparesSolutions" class="modal fade" role="dialog"
 							aria-labelledby="solutionDetailsLabel" aria-hidden="true">
 							<div class="modal-dialog-solution modal-lg">
@@ -933,12 +950,8 @@
 							<!-- /.modal-dialog -->
 						</div>
 						<!-- /.modal escalatedSolutions-->
-
 						</form:form>
-						<!-- /Solution Details -->
-
-						
-
+						<!-- / escalatedSolutions-->
 						
 						
 						<!--history tab-->

@@ -70,7 +70,7 @@
 									</div>
 								</div>
 								<div class="col-md-2">
-									<input class="btn btn-success" type='submit' value='Submit' />
+									<input class="btn btn-success" type='submit' value='Search' />
 								</div>
 							 </form:form>
 						
@@ -78,9 +78,10 @@
 								<thead>
 									<tr>
 										<th>Ticket No</th>
-										<th>Assigned Technician</th>
-										<th>Description</th>
 										<th>Date</th>
+										<th>Device Serial</th>
+										<th>Description</th>
+										<th>Assigned Technician</th>
 										<th>Details</th>
 									</tr>
 								</thead>
@@ -88,10 +89,11 @@
 									<c:forEach items="${ticketList}" var="tickets">
 										<tr>
 											<td><c:out value="${tickets.ticketNumber}" /></td>
+											<td><c:out value="${tickets.dateTime}" /></td>
+											<td><c:out value="${tickets.device.serialNumber}" /></td>
+											<td><c:out value="${tickets.description}" /></td>
 											<td><c:out
 													value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
-											<td><c:out value="${tickets.description}" /></td>
-											<td><c:out value="${tickets.dateTime}" /></td>
 											<td><a href="closedTicketsDetails?id=<c:out value='${tickets.recordID}'/>">Tickets Details</a></td>
  
 										</tr>

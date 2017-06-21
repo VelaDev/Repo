@@ -75,9 +75,10 @@
 							<thead>
 								<tr>
 									<th>Ticket No</th>
-									<th>Assigned Technician</th>
-									<th>Description</th>
 									<th>Date</th>
+									<th>Serial</th>
+									<th>Description</th>
+									<th>Assigned Technician</th>
 	                                <th>Details</th>
 								</tr>
 							</thead>
@@ -85,9 +86,10 @@
 								<c:forEach items="${ticketList}" var="tickets">
 									<tr>
 										<td><c:out value="${tickets.ticketNumber}" /></td>
-										<td><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
-										<td><c:out value="${tickets.description}" /></td>
 										<td><c:out value="${tickets.dateTime}" /></td>
+										<td><c:out value="${tickets.device.serialNumber}" /></td>
+										<td><c:out value="${tickets.description}" /></td>
+										<td><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
 									    <td><a href="openTicketsDetails?id=<c:out value='${tickets.recordID}'/>">Tickets Details</a></td>
 	 
 									</tr>

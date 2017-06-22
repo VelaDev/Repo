@@ -37,12 +37,6 @@ public class AccessoriesService implements AccessoriesInt{
 	}
 
 	@Override
-	public String removeAccessory(String serialNo) {
-		return accessoriesDaoInt.removeAccessory(serialNo);
-		
-	}
-
-	@Override
 	public Accessories getAccessories(String serialNo) {
 		// TODO Auto-generated method stub
 		return accessoriesDaoInt.getAccessories(serialNo);

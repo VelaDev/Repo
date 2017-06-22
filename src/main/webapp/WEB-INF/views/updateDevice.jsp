@@ -520,9 +520,11 @@ input.currency {
 
 
 							<c:if test="${not empty accessories}">
+							<form:form modelAttribute="removeAccessory" action="removeAccessory" method="post">
 								<!--Machine Accessories-->
 								<fieldset>
 									<legend align="left">Machine Accessories</legend>
+									
 
 									<div class="tablemachinesacccso">
 										<table id="myDatatable" class="display datatable">
@@ -540,15 +542,23 @@ input.currency {
 													<tr>
 														<td>${list.accessotyType}</td>
 														<td>${list.serial}</td>
-														<td><input type="checkbox" id="chkAccessories" name="chkAccessories" /></td>
+														<td><input type="checkbox" id="chkAccessories" name="chkAccessories" value="${list.serial}"/></td>
 													</tr>
 												</c:forEach>											
 											
 											</tbody>
-												<a class="btn btn-danger" href="removeAccessory?serial=<c:out value='${list.serial}'/>">Remove</a>
-												<br/>
-										</table>											
-									</div>									
+				
+										</table>
+											
+									</div>
+									<div class="form-group row">
+								<div class="col-sm-offset-2 col-sm-8">
+									<br> <br> <input type="submit" value="Remove Accessory"
+										class="btn btn-danger" >
+								</div>
+							</div>
+										<!-- <input type="button" class="btn btn-danger"  value="Remove"> -->										
+									</form:form>								
 								</fieldset>
 								
 								

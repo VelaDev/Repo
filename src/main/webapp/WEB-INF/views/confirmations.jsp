@@ -96,7 +96,7 @@ a.confirmtions {
 				 	    <!-- update Device -->
 				 	  <c:choose>
 				 	    <c:when test="${updateDevice =='updateDevice' }">
-				 	       <c:out value="${retMessage}"></c:out> Click<a href="displayDevices.html" class="confirmtions"><b> here</b></a> to view list of Devices.
+				 	       <c:out value="${retMessage}"></c:out> Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of Devices.
 				 	    </c:when>
 				 	    </c:choose>
 				 	    

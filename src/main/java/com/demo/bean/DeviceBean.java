@@ -31,6 +31,8 @@ public class DeviceBean {
 	private String OneBinTrayType;
 	private String creType;
 	private String addType;
+	
+	private String []chkAccessories;
 
 	// Machine Accessories input text box
 	private String bridgeUnitSerialTypeSerialNo;

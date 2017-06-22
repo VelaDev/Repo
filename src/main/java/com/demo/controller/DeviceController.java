@@ -263,7 +263,7 @@ public class DeviceController {
 	public ModelAndView updateProduct(@ModelAttribute("updateProduct")DeviceBean deviceBean)
 	{
 		
-		String udateDevice ="udateDevice";
+		String updateDevice ="updateDevice";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
@@ -273,7 +273,7 @@ public class DeviceController {
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("udateDevice", udateDevice);
+			model.addObject("updateDevice", updateDevice);
 			 model.setViewName("confirmations");
 		}
 		else{
@@ -324,12 +324,12 @@ public class DeviceController {
 
 	
 	@RequestMapping(value="removeAccessory")
-	public ModelAndView removeAccessory(@RequestParam("serial")String serial)
+	public ModelAndView removeAccessory(DeviceBean removeAccessory)
 	{
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("retMessage",accessoriesInt.removeAccessory(serial));
+			model.addObject("retMessage","");
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));

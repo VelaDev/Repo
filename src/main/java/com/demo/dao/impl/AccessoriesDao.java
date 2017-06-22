@@ -94,12 +94,17 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 	}
 
 	@Override
-	public String removeAccessory(String serialNo) {
+	public String removeAccessory(String []serialNumbers) {
+		String serialNo = null;
 		try {
-			Accessories accessories = getAccessories(serialNo);
-			sessionFactory.getCurrentSession().delete(accessories);
-
-			retMessage = "Accessory " + serialNo + " is removed";
+			
+			for(int i=0;i < serialNumbers.length; i++){
+				serialNo = serialNumbers[i];
+				
+				Accessories accessories = getAccessories(serialNo);
+				sessionFactory.getCurrentSession().delete(accessories);
+			}
+			retMessage = "Accessories removed";
 		} catch (Exception e) {
 			e.getMessage();
 		}

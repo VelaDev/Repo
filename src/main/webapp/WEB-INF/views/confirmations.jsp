@@ -99,7 +99,6 @@ a.confirmtions {
 				 	       <c:out value="${retMessage}"></c:out> Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of Devices click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
 				 	    </c:when>
 				 	    </c:choose>
-				 	    
 				 	    <!-- Log a Ticket -->
 						 <c:choose>
 						 	   <c:when test="${tickets =='tickets' }">

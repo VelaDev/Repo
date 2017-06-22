@@ -69,7 +69,7 @@
 									</div>
 								</div>
 								<div class="col-md-2">
-									<input class="btn btn-success" type='submit' value='Submit' />
+									<input class="btn btn-success" type='submit' value='Search' />
 								</div>
 							</form:form>
 						
@@ -79,10 +79,10 @@
 							<thead>
 								<tr>
 									<th>Ticket No</th>
+									<th>Date</th>
 									<th>Ticket Status</th>
 									<th>Customer Name</th>
 									<th>Telephone No</th>
-									<th>Date</th>
 									<th>Ticket Details</th>
 								</tr>
 							</thead>
@@ -91,10 +91,10 @@
 								<c:forEach items="${ticketList}" var="ticket">
 									<tr>
 										<td><c:out value="${ticket.ticketNumber}" /></td>
+										<td><c:out value="${ticket.dateTime}" /></td>
 										<td><c:out value="${ticket.status} " /></td>
 										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
 										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
-										<td><c:out value="${ticket.dateTime}" /></td>
 										<td><a
 											href="bridgedTechDetails?id=<c:out value='${ticket.recordID}'/>">Ticket Details</a></td>
 									</tr>

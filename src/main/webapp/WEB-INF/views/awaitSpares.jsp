@@ -34,12 +34,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-
-						<c:if test="${empty ticketList}">
-							There are no awaiting spares at the moment
-						</c:if>
-						<c:if test="${not empty ticketList}">
-								
+	
 							<form:form class="form-horizontal" modelAttribute="awaitingTechDetails" action="awaitingTechDetails" method="post">
 								<div class="col-sm-4">
 									<!-- Text input First Date Leave-->
@@ -73,7 +68,7 @@
 									</div>
 								</div>
 								<div class="col-md-2">
-									<input class="btn btn-success" type='submit' value='Submit' />
+									<input class="btn btn-success" type='submit' value='Search' />
 								</div>
 							</form:form>
 								
@@ -81,9 +76,9 @@
 								<thead>
 									<tr>
 										<th>Ticket No</th>
-										<th>Assigned Technician</th>
+										<th>Date</th>
 										<th>Description</th>
-										<th>Date</th>										
+										<th>Assigned Technician</th>										
 										<th>Details</th>
 									</tr>
 								</thead>
@@ -91,19 +86,16 @@
 									<c:forEach items="${ticketList}" var="tickets">
 										<tr>
 											<td><c:out value="${tickets.ticketNumber}" /></td>
+											<td><c:out value="${tickets.dateTime}" /></td>
+											<td><c:out value="${tickets.description}" /></td>
 											<td><c:out
 													value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
-											<td><c:out value="${tickets.description}" /></td>
-											<td><c:out value="${tickets.dateTime}" /></td>
-											<%-- <td><a href="AssignTicketToOtherTechnician?ticketNumber=<c:out value='${tickets.ticketNumber}'/>">Update</a></td>
- 											 --%>
  											<td><a href="awaitingSparesTechDetails?id=<c:out value='${tickets.recordID}'/>">Ticket Details</a></td>
 									
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
-						</c:if>
 
 					</div>
 					<!-- /tab-content -->

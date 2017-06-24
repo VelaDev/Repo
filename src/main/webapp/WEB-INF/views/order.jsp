@@ -303,17 +303,14 @@ function compareQuantity(element, availableQuantity) {
 </script>
 
 
-	<script type="text/javascript">
+<script type="text/javascript">
 /*Check if checkbox is checked*/
 function checkChecked(searchForm) {
 	    var anyBoxesChecked = false;
 	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
 	        if ($(this).is(":checked")) {
 				anyBoxesChecked = true;
-	        }
-	       /*  else if(anyBoxesChecked == true){	        	
-	        	alert('Your order will be processed by selected Manager');
-	        } */
+	        }	       
 	    });
 	 
 	    if (anyBoxesChecked == false) {

@@ -97,7 +97,7 @@ input.currency {
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="updateProduct" modelAttribute="updateProduct"
-							id="updateDevice">
+							id="updateDevice" onsubmit="return checkChecked('updateDevice');">
 
 							<fieldset>
 								<legend>Customer Details</legend>
@@ -557,7 +557,7 @@ input.currency {
 										class="btn btn-danger" >
 								</div>
 							</div>
-										<!-- <input type="button" class="btn btn-danger"  value="Remove"> -->										
+																			
 									</form:form>								
 								</fieldset>
 								
@@ -1098,6 +1098,23 @@ $(document).ready(function() {
 });
 </script>
 
+<script type="text/javascript">
+/*Check if checkbox is checked*/
+function checkChecked(searchForm) {
+	    var anyBoxesChecked = false;
+	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
+	        if ($(this).is(":checked")) {
+				anyBoxesChecked = true;
+	        }
+	    });
+	 
+	    if (anyBoxesChecked == false) {
+	      alert('You need to tick atleast one checkbox to remove accessory. Please tick the checkbox and try again!');
+	      return false;
+	    } 
+	}
+ 
+</script>
 
 <!---Script to add other Accossory-->
 <script type="text/javascript">

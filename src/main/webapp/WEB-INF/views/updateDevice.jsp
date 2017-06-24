@@ -582,20 +582,38 @@ input.currency {
 															<th>Delete</th>
 														</tr>
 													</thead>
+													<c:forEach var="list" items="${accessories}">
+												
 													<tbody>
+													
 														<tr id="machineAccessoryRow-1">
 															<td id="uniqueRowId">
 																<select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value , 1);">
 																	<option value="">Please select Machine Accessories</option>
+																<c:if test="${list.accessotyType == 'Bridge Unit' }"  >
 																	<option value="Bridge Unit">Bridge Unit</option>
 																	<option value="Finisher">Finisher</option>
+																</c:if>
+																<c:if test="${list.accessotyType == 'Fax Unit' }" >
 																	<option value="Fax Unit">Fax Unit</option>
-																	<option value="One Bin Tray">One Bin Tray</option>													
+																</c:if>
+																<c:if test="${list.accessotyType == 'One Bin Tray' }" >
+																	<option value="One Bin Tray">One Bin Tray</option>
+																</c:if>
+																<c:if test="${list.accessotyType == 'LCT' }" >
 																	<option value="LCT">LCT</option>
+																</c:if>
+																<c:if test="${list.accessotyType == 'Credenza' }" >
 																	<option value="Credenza">Credenza</option>
+																</c:if>
+																<c:if test="${list.accessotyType == 'Additional Paper Trays' }" >
 																	<option value="Additional Paper Trays">Additional Paper Trays</option>
+																	
+																</c:if>
+																<c:if test="${list.accessotyType == 'Wireless Card' }" >
 																	<option value="Wireless Card">Wireless Card</option>
-																	</select>																
+																</c:if>
+																</select>																
 															</td>															
 															<td id="uniqueRowId">
 																<div class="bridgeAndFinisher" name="bridgeFinisher" id="bridgeFinisher" style="display:none;">
@@ -613,6 +631,7 @@ input.currency {
 															<td><input type="button" class="btn btn-danger" value="Remove" /></td>
 														</tr>
 													</tbody>
+													</c:forEach>
 											</table>
 
 									</div>

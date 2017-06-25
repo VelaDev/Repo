@@ -34,8 +34,9 @@
 <!--/style-->
 
 <style type="text/css">
-.db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) ~ li {
-    width: 10%;
+.db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
+	 ~ li {
+	width: 10%;
 }
 </style>
 
@@ -57,11 +58,12 @@
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber">
 
-				<div style="margin-bottom: -13px;" align=left>
+				<div style="margin-bottom: -22px;" align=left>
 
 					<select id="customers" name="customers">
 						<option value="">All Customers</option>
 					</select>
+					
 
 					<!-- Text input Search-->
 
@@ -81,7 +83,12 @@
 					<select id="customers" name="customers">
 						<option value="">All Customers</option>
 					</select>
+					<select id="selectDate" name="selectDate">
+						<option value="Last 7 Days">Last 7 Days</option>
+						<option value="Last 14 Days">Last 14 Days</option>
+				</select>
 				</div>
+				
 
 
 			</form:form>
@@ -98,258 +105,312 @@
 
 				<div class="panel-body">
 					<div class="tab-content">
-						
+
 						<div class="ticket-summary row-fluid">
 
-								<ul class="db-summary clearfix pb20 pt20 clear"
-									id="ticket-summary" class="nav nav-tabs">
+							<ul class="db-summary clearfix pb20 pt20 clear"
+								id="ticket-summary" class="nav nav-tabs">
 
 
-									<li><a href='#createOrder'
-										data-parallel-url="createOrder" data-toggle="tab"
-										data-parallel-placeholder="#ticket-leftFilter"
-										class="summery-filter clearfix" data-pjax="#body-container">
+								<li><a href='placeOrderForTechnician.html' data-parallel-url=""
+									data-parallel-placeholder="#ticket-leftFilter"
+									class="summery-filter clearfix" data-pjax="#body-container">
 
-											<div class="summary-count pull-left ml20">
-												<h4 align="center">2</h4>
-												<p align="center">Create Order</p>
-											</div>
-									</a></li>
+										<div class="summary-count pull-left ml20">
+											<h4 align="center">1</h4>
+											<p align="center">Place New Order</p>
+										</div>
+									</a>
+								</li>
 
-									<li><a href='#OrderToApprove' data-toggle="tab"
-										class="summery-filter clearfix" data-parallel-url="OrderToApprove"
-										data-parallel-placeholder="#ticket-leftFilter"
-										data-pjax="#body-container">
+								<li><a href='#OrderToApprove' data-toggle="tab"
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
 
-											<div class="summary-count pull-left ml20">
-												<h4 align="center">1</h4>
-												<p align="center">Order to Approve</p>
-											</div>
-									</a></li>
+										<div class="summary-count pull-left ml20">
+											<h4 align="center">1</h4>
+											<p align="center">Order to Approve</p>
+										</div>
+								</a></li>
 
-									<li><a href='#OrderToShip'
-										data-parallel-url="OrderToShip" data-toggle="tab"
-										data-parallel-placeholder="#ticket-leftFilter"
-										class="summery-filter clearfix" data-pjax="#body-container">
+								<li><a href='#OrderToShip' data-parallel-url="OrderToShip"
+									data-toggle="tab"
+									data-parallel-placeholder="#ticket-leftFilter"
+									class="summery-filter clearfix" data-pjax="#body-container">
 
-											<div class="summary-count pull-left ml20">
-												<h4 align="center">1</h4>
-												<p align="center">Order to Ship</p>
-											</div>
+										<div class="summary-count pull-left ml20">
+											<h4 align="center">1</h4>
+											<p align="center">Order to Ship</p>
+										</div>
 
-									</a></li>
+								</a></li>
 
-									<li><a href='#closedOrder'
-										data-parallel-url="closedOrder" data-toggle="tab"
-										data-parallel-placeholder="#ticket-leftFilter"
-										class="summery-filter clearfix" data-pjax="#body-container">
+								<li><a href='#closedOrder' data-parallel-url="closedOrder"
+									data-toggle="tab"
+									data-parallel-placeholder="#ticket-leftFilter"
+									class="summery-filter clearfix" data-pjax="#body-container">
 
-											<div class="summary-count pull-left">
-												<h4 align="center">2</h4>
-												<p align="center">Closed Order</p>
-											</div>
-									</a></li>
+										<div class="summary-count pull-left">
+											<h4 align="center">2</h4>
+											<p align="center">Closed Order</p>
+										</div>
+								</a></li>
 
 
-								</ul>
-							</div>
-						
+							</ul>
+						</div>
+
 						<form:form class="well form-horizontal" method="post"
 							action="orderManage" id="orderManage"
-							modelAttribute="orderManage">							
+							modelAttribute="orderManage">
+							
 							<!-- tab nav -->
-						<div class="tab-content">
-						
+							<div class="tab-content">
+
 								<div class="tab-pane active" id="createOrder">
-									createOrder
 									
-									<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="putInOrder"
-							onsubmit="return checkChecked('putInOrder');">
-
-
-							<!-- Select type Stock Type-->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Stock Type</label>
-								<div class="col-md-6 selectContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-list"></i></span><select id="stockType"
-											name="stockType" class="form-control"
-											onchange='CheckStockType(this.value);'
-											class="form-control selectpicker">
-											<option value="">Select Stock Type</option>
-											<option value="Boot">Boot</option>
-											<option value="Site">Site</option>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div id="Site" style='display: none;'>
-
-								<!-- Text input Customer Name-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Customer Name</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span><select id="Site"
-												name="customer" class="form-control selectpicker">
-												<option value="">Customer Name</option>
-												<c:forEach items="${customerList}" var="customer">
-													<option value="${customer.customerName}">${customer.customerName}</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Text input Technician name-->
-							<div class="form-group">
-									<label class="col-md-3 control-label">Technician</label>
-									<div class="col-md-6 selectContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-list"></i></span> <select
-												name="technicianUserName" id="technicianUserName" class="form-control selectpicker">
-												<option value="">Select Technician</option>
-												<c:forEach items="${technicianList}" var="technician">
-													<option value="${technician.email}">${technician.firstName} ${technician.lastName}</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-								</div>
-
-
-							<!-- Text input Approver-->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Approver</label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <select id="approver"
-											name="approver" class="form-control selectpicker">
-											<option value="">Select Approver</option>
-											<c:forEach items="${managersList}" var="manager">
-												<option value="${manager.email}">${manager.firstName}
-													${manager.lastName}</option>
-											</c:forEach>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<br />
-							<div id="makeOrders">
-								<table id="myDatatable" class="display datatable">
-									<thead>
-										<tr>
-											<th>Part No</th>
-											<th>Description</th>
-											<th>Model No</th>
-											<th>Available QTY</th>
-											<th>Tick To Order</th>
-											<th>Quantity</th>
-											<!-- <th>Edit</th> -->
-										</tr>
-									</thead>
-									<tbody>
-										<!-- Iterating over the list sent from Controller -->
-										<c:forEach var="list" items="${compatibility}">
-
+								  <form:form modelAttribute="orderHistory" method="post"
+									action="orderHistory" id="orderHistory" name="orderHistory">
+		
+									<!-- Below table will be displayed as Data table -->
+									<table id="createOrderDatatable" class="display datatable">
+										<thead>
 											<tr>
-												<td>${list.partNumber}</td>
-												<td>${list.itemDescription}</td>
-												<td>${list.compitableDevice}</td>
-												<td><input type="text"
-													id="${list.partNumber}_avaliableQuantity"
-													name="avaliableQuantity" class="form-control"
-													readonly="readonly" value="${list.quantity}"></td>
-												<td><input type="checkbox" id="checkedOrder"
-													name="selectedItem" class="form-group"
-													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
-												<td><input type="text" id="${list.partNumber}_quantity"
-													name="quantity" class="form-control"
-													onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
+												<th>Order No</th>
+												<th>Order Status</th>
+												<th>Customer</th>
+												<th>Approved Date</th>
+												<th>Stock Type</th>
+												<th>Ordered By</th>
+												<th>Order Details</th>
 											</tr>
-
-										</c:forEach>
-									</tbody>
-								</table>
-
-							</div>
-
-							<div class="form-group row">
-								<div class="col-sm-offset-2 col-sm-8">
-									<br> <br> <input type="submit" value="Place Order"
-										class="btn btn-primary btn-block btn-lg" tabindex="9"
-										id="putorder" name="putorder">
-								</div>
-							</div>
-
-						</form:form>
-									
-								</div>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach var="list" items="${orderList}">
+												<tr>
+													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+													<td>${list.status}</td>
+													<td></td>
+													<td>${list.dateOrdered}</td>
+													<td>${list.stockType}</td>
+													<td>Ordered By</td>
+													<td><a
+														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+		
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- table order -->
+								</form:form>
+								<!-- form order -->
 								
+								</div>
+
 								<div class="tab-pane" id="OrderToApprove">
-									OrderToApprove
-								</div>
+									<legend align=center>Orders To Approve</legend>
+										 <form:form modelAttribute="orderHistory" method="post"
+									action="orderHistory" id="orderHistory" name="orderHistory">
+		
+									<!-- Below table will be displayed as Data table -->
+									<table id="OrderToApproveDatatable" class="display datatable">
+										<thead>
+											<tr>
+												<th>Order No</th>
+												<th>Order Status</th>
+												<th>Customer</th>
+												<th>Approved Date</th>
+												<th>Stock Type</th>
+												<th>Ordered By</th>
+												<th>Order Details</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach var="list" items="${orderList}">
+												<tr>
+													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+													<td>${list.status}</td>
+													<td></td>
+													<td>${list.dateOrdered}</td>
+													<td>${list.stockType}</td>
+													<td>Ordered By</td>
+													<td><a
+														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+		
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- table order -->
+								</form:form>
+								<!-- form order -->
 								
+								
+								</div>
+
 								<div class="tab-pane" id="OrderToShip">
-									OrderToShip
-								</div>
+									<legend align=center>Orders To Ship</legend>
+										 <form:form modelAttribute="orderHistory" method="post"
+									action="orderHistory" id="orderHistory" name="orderHistory">
+		
+									<!-- Below table will be displayed as Data table -->
+									<table id="OrderToShipDatatable" class="display datatable">
+										<thead>
+											<tr>
+												<th>Order No</th>
+												<th>Order Status</th>
+												<th>Customer</th>
+												<th>Approved Date</th>
+												<th>Stock Type</th>
+												<th>Ordered By</th>
+												<th>Order Details</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach var="list" items="${orderList}">
+												<tr>
+													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+													<td>${list.status}</td>
+													<td></td>
+													<td>${list.dateOrdered}</td>
+													<td>${list.stockType}</td>
+													<td>Ordered By</td>
+													<td><a
+														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+		
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- table order -->
+								</form:form>
+								<!-- form order -->
 								
+								</div>
+
 								<div class="tab-pane" id="closedOrder">
-									closedOrder
-								</div>
+									<legend align=center>Closed Order</legend>
+									<form:form modelAttribute="orderHistory" method="post"
+									action="orderHistory" id="orderHistory" name="orderHistory">
+		
+									<!-- Below table will be displayed as Data table -->
+									<table id="closedOrderDatatable" class="display datatable">
+										<thead>
+											<tr>
+												<th>Order No</th>
+												<th>Order Status</th>
+												<th>Customer</th>
+												<th>Approved Date</th>
+												<th>Stock Type</th>
+												<th>Ordered By</th>
+												<th>Order Details</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach var="list" items="${orderList}">
+												<tr>
+													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+													<td>${list.status}</td>
+													<td></td>
+													<td>${list.dateOrdered}</td>
+													<td>${list.stockType}</td>
+													<td>Ordered By</td>
+													<td><a
+														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+		
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<!-- table order -->
+								</form:form>
+								<!-- form order -->
 								
-						</div>
-						<!-- /tab-content -->
+								
+								</div>
+
+							</div>
+							<!-- /tab-content -->
 
 						</form:form>
 
-					
+					</div>
+					<!-- /panel body -->
 				</div>
-				<!-- /panel body -->
+				<!--/panel success class-->
 			</div>
-			<!--/panel success class-->
+			<!-- /Container -->
+			<!-- Footer -->
+			<c:import url="templates/footer.jsp"></c:import>
+			<!--/ Footer -->
 		</div>
-		<!-- /Container -->
-		<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
-		<!--/ Footer -->
-	</div>
-	<!-- / velaphanda_containter -->
+		<!-- / velaphanda_containter -->
 
-	<!-- Script -->
-
-
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+		<!-- Script -->
+		<script type="text/javascript"
+			src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 
 		<!-- Datatables -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-	<!-- /Scripts -->
+		<script type="text/javascript"
+			src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+		<!-- /Scripts -->
 
-	<!-- Paging the table -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#myDatatable').DataTable({
-				"jQueryUI" : true,
-				"pagingType" : "full_numbers",
-				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-			/* few more options are available to use */
+		<!-- Paging the table -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#createOrderDatatable').DataTable({
+					"jQueryUI" : true,
+					"pagingType" : "full_numbers",
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				/* few more options are available to use */
+				});
 			});
-		});
-</script>
-
+		</script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#OrderToApproveDatatable').DataTable({
+					"jQueryUI" : true,
+					"pagingType" : "full_numbers",
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				/* few more options are available to use */
+				});
+			});
+		</script>
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#closedOrderDatatable').DataTable({
+					"jQueryUI" : true,
+					"pagingType" : "full_numbers",
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				/* few more options are available to use */
+				});
+			});
+		</script>	
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#OrderToShipDatatable').DataTable({
+					"jQueryUI" : true,
+					"pagingType" : "full_numbers",
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				/* few more options are available to use */
+				});
+			});
+		</script>	
+		
+					
+		<!--/Paging the table -->
 </body>
 </html>

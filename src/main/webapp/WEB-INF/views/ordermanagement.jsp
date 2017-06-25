@@ -38,6 +38,21 @@
 	 ~ li {
 	width: 10%;
 }
+.searchorder {
+    border:1px solid #000;
+    display:inline-block;
+}
+
+input,
+button {
+    background-color:transparent;
+    border:0;
+}
+input[type=text], input[type=password], textarea {
+       border: 1px solid #FFF;
+    border-radius: 5px;
+    padding: 0px;
+}
 </style>
 
 </head>
@@ -55,42 +70,39 @@
 
 				</div>
 			</c:if>
-			<form:form action="searchOrderNumber" method="post"
-				id="searchOrderNumber">
-
-				<div style="margin-bottom: -22px;" align=left>
+			<form:form action="searchOrderNumber" method="post" id="searchOrderNumber">
+				
+				<div  style="margin-bottom: -24px;" align=left>
 
 					<select id="customers" name="customers">
 						<option value="">All Customers</option>
-					</select>
-					
+					</select>					
 
 					<!-- Text input Search-->
-
-					<input name="orderNum" list="" id="orderNum" type="text"
-						placeholder='Order Number'>
-
-
-					<!-- Iterating over the list sent from Controller -->
-					<datalist id=""> <c:forEach var="list" items="">
-						<option value="">
-					</c:forEach> </datalist>
-
-
-					<input type='submit' value='Search' />
+					<div class="searchorder">
+					    <input type="text" name="orderNum" list="" id="orderNum" type="text" placeholder='Order Number'/>
+					    <input type='submit' value='Search' />
+					    
+					    <!-- Iterating over the list sent from Controller -->
+						<datalist id="">
+							 <c:forEach var="list" items="">
+								<option value="">
+							 </c:forEach> 
+						</datalist>
+					    
+					</div>
+					
+					
+					
 				</div>
 				<div align=right>
-					<select id="customers" name="customers">
-						<option value="">All Customers</option>
-					</select>
+					
 					<select id="selectDate" name="selectDate">
 						<option value="Last 7 Days">Last 7 Days</option>
 						<option value="Last 14 Days">Last 14 Days</option>
-				</select>
+					</select>
 				</div>
 				
-
-
 			</form:form>
 
 			<div class="panel panel-success">

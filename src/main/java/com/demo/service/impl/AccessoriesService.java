@@ -1,6 +1,7 @@
 package com.demo.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,11 @@ public class AccessoriesService implements AccessoriesInt{
 	public Accessories getAccessories(String serialNo) {
 		// TODO Auto-generated method stub
 		return accessoriesDaoInt.getAccessories(serialNo);
+	}
+
+	@Override
+	public List<String> getAccessoriesList(String deviceSerialNumber) {
+		return accessoriesDaoInt.getAccessoriesList(deviceSerialNumber);
 	}
 
 }

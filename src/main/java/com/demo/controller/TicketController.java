@@ -208,7 +208,6 @@ public class TicketController {
 			model.addObject("managersList",employeeServiceInt.getAllManagers());
 			model.addObject("customerList",customerServiceInt.getClientList());
 			model.addObject("bootStock", bootStockint.getAllOrders(technician,id));
-			/*model.addObject("siteStock",siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName(),id));*/
 			model.addObject("siteStock", siteStock.getOrdersForCustomer(ticket.getDevice().getCustomerDevice().getCustomerName(), id));
 			model.setViewName("ticketDetails");
 		}

@@ -2,6 +2,7 @@ package com.demo.controller;
 
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -142,7 +143,6 @@ public class DeviceController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
-		
 		if(device != null){
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
@@ -185,6 +185,7 @@ public class DeviceController {
 	{
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
+		
 		if(userName != null){
 			model.addObject("deviceList", deviceServiceInt.getDeviceList());
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
@@ -203,6 +204,10 @@ public class DeviceController {
 		model= new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
+		/*List<String> a = accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber());
+		for(String b:a){
+			System.err.println(b);
+		}*/
 		if(userName != null){
 		
 		     device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
@@ -217,6 +222,7 @@ public class DeviceController {
 				    model.addObject("productObject", device);
 				    model.addObject("AccessoryObject", deviceBean);
 				    model.addObject("accessories", accessories);
+				    model.addObject("addAccessory", accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber()));
 				}
 				else{
 					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");

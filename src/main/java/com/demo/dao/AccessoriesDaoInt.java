@@ -1,6 +1,7 @@
 package com.demo.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.demo.model.Accessories;
 
@@ -11,4 +12,5 @@ public interface AccessoriesDaoInt {
 	List<Accessories> getAccessoriesByDeviceSerial(String serialNo);
 	String removeAccessory(String[] strings);
 	Accessories getAccessories(String serialNo);
+	List<String> getAccessoriesList(String deviceSerialNumber);
 }

@@ -1,7 +1,10 @@
 package com.demo.dao.impl;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -22,7 +25,7 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 	SessionFactory sessionFactory;
 
 	List<Accessories> accessoriesList = null;
-	ArrayList<?> aList = null;
+	ArrayList<Accessories> aList = null;
 	Accessories acc = null;
 
 	private String retMessage = null;
@@ -68,23 +71,17 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Accessories> getAccessoriesByDeviceSerial(String serialNo) {
+		aList = new ArrayList<Accessories>();
+		accessoriesList = new ArrayList<Accessories>();
 		try {
 
-			aList = new ArrayList<Object>();
-			accessoriesList = new ArrayList<Accessories>();
+			
 			Criteria criteria = sessionFactory.getCurrentSession()
 					.createCriteria(Accessories.class);
 			aList.addAll(criteria.list());
-			for (Object access : aList) {
-				if (access instanceof Accessories) {
-					if (((Accessories) access).getDevice().getSerialNumber() != null
-							&& ((Accessories) access).getDevice()
-									.getSerialNumber()
-									.equalsIgnoreCase(serialNo)
-							&& ((Accessories) access).getDevice()
-									.getSerialNumber() != "") {
-						accessoriesList.add((Accessories) access);
-					}
+			for (Accessories access : aList) {
+				if(access.getDevice().getSerialNumber().equalsIgnoreCase(serialNo) && access.getDevice().getSerialNumber()!=null){
+					accessoriesList.add(access);
 				}
 			}
 		} catch (Exception ex) {
@@ -116,5 +113,26 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 
 		return (Accessories) sessionFactory.getCurrentSession().get(
 				Accessories.class, serialNo);
+	}
+
+	@Override
+	public List<String> getAccessoriesList(String deviceSerialNumber) {
+		List<Accessories> getAccessories = getAccessoriesByDeviceSerial(deviceSerialNumber);
+		Set<String> getAccess = new HashSet<String>();
+		List<String> current = new ArrayList<String>();
+		current.add("Additional Paper Trays");current.add("Bridge Unit");current.add("Credenza");current.add("Fax Unit");current.add("Finisher");current.add("LTC"); current.add("One bin tray");
+		try{
+			for(Accessories access: getAccessories){
+				for(String currentType:current){
+					if(access.getAccessotyType().equals(currentType)){
+						current.remove(currentType);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		
+		return current;
 	}
 }

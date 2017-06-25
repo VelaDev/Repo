@@ -24,6 +24,8 @@ import com.demo.model.Tickets;
 @Repository("LogTicketsDAOTest")
 @Transactional(propagation = Propagation.REQUIRED)
 public class TestDao implements TestDaoSs {
+	
+	
 	@Autowired
 	private SessionFactory sessionFactory;
 	@Autowired

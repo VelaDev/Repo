@@ -21,7 +21,6 @@ import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
-import com.demo.model.OrderHistory;
 import com.demo.service.BootStockInt;
 import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
@@ -235,25 +234,6 @@ public class OrdersController {
 
 		return model;
 	}
-	
-	@RequestMapping(value = "ordermanagement", method = RequestMethod.GET)
-	public ModelAndView displayOrderManagement() {
-		model = new ModelAndView();
-
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.setViewName("ordermanagement");
-		} else {
-			model.setViewName("login");
-		}
-
-		return model;
-	}
-	
 	@RequestMapping(value = "approveOrder", method = RequestMethod.GET)
 	public ModelAndView approveOrder(
 			@RequestParam("recordID") Integer recordID,
@@ -780,6 +760,27 @@ public class OrdersController {
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("RecordID", ordersServiceInt.getOrder(recordID));			
 			model.setViewName("viewAllUserOrderDetails");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "ordermanagement", method = RequestMethod.GET)
+	public ModelAndView displayOrderManagement() {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			int a = ordersServiceInt.countNewOrders("");
+			System.out.println(a);
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.setViewName("ordermanagement");
 		} else {
 			model.setViewName("login");
 		}

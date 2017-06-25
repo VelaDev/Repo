@@ -204,10 +204,10 @@ public class DeviceController {
 		model= new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
-		/*List<String> a = accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber());
+		List<String> a = accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber());
 		for(String b:a){
 			System.err.println(b);
-		}*/
+		}
 		if(userName != null){
 		
 		     device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);

@@ -88,7 +88,7 @@
 										<tr>
 											<td><c:out value="${tickets.ticketNumber}" /></td>
 											<td><c:out value="${tickets.dateTime}" /></td>
-											<td><c:out value="${tickets.device.SerialNumber}" /></td>
+											<td><c:out value="${tickets.device.serialNumber}" /></td>
 											<td><c:out value="${tickets.description}" /></td>
 											<td><c:out
 													value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
@@ -98,7 +98,6 @@
 									</c:forEach>
 								</tbody>
 							</table>
-
 					</div>
 					<!-- /tab-content -->
 

@@ -27,5 +27,9 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getAllOrders(String startDate, String endDate, String technicianEmail);
 	public List<OrderHeader> getAllOrdersByDate();
 	public List<OrderHeader> getAllOrdersByDate(String technicianName);
+	public int countNewOrders(String lastFourteenDays);
+	public int countApprovedOrders(String lastFourteenDays);
+	public int countShippedOrders(String lastFourteenDays);
+	public List<OrderHeader> getLastFourteenDaysOrders();
 
 }

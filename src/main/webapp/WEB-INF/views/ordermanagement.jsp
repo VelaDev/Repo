@@ -38,20 +38,21 @@
 	 ~ li {
 	width: 10%;
 }
+
 .searchorder {
-    border:1px solid #000;
-    display:inline-block;
+	border: 1px solid #000;
+	display: inline-block;
 }
 
-input,
-button {
-    background-color:transparent;
-    border:0;
+input, button {
+	background-color: transparent;
+	border: 0;
 }
+
 input[type=text], input[type=password], textarea {
-       border: 1px solid #FFF;
-    border-radius: 5px;
-    padding: 0px;
+	border: 1px solid #FFF;
+	border-radius: 5px;
+	padding: 0px;
 }
 </style>
 
@@ -70,39 +71,39 @@ input[type=text], input[type=password], textarea {
 
 				</div>
 			</c:if>
-			<form:form action="searchOrderNumber" method="post" id="searchOrderNumber">
-				
-				<div  style="margin-bottom: -24px;" align=left>
+			<form:form action="searchOrderNumber" method="post"
+				id="searchOrderNumber">
+
+				<div style="margin-bottom: -24px;" align=left>
 
 					<select id="customers" name="customers">
 						<option value="">All Customers</option>
-					</select>					
+					</select>
 
 					<!-- Text input Search-->
 					<div class="searchorder">
-					    <input type="text" name="orderNum" list="" id="orderNum" type="text" placeholder='Order Number'/>
-					    <input type='submit' value='Search' />
-					    
-					    <!-- Iterating over the list sent from Controller -->
-						<datalist id="">
-							 <c:forEach var="list" items="">
-								<option value="">
-							 </c:forEach> 
-						</datalist>
-					    
+						<input type="text" name="orderNum" list="" id="orderNum"
+							type="text" placeholder='Order Number' /> <input type='submit'
+							value='Search' />
+
+						<!-- Iterating over the list sent from Controller -->
+						<datalist id=""> <c:forEach var="list" items="">
+							<option value="">
+						</c:forEach> </datalist>
+
 					</div>
-					
-					
-					
+
+
+
 				</div>
 				<div align=right>
-					
+
 					<select id="selectDate" name="selectDate">
 						<option value="Last 7 Days">Last 7 Days</option>
 						<option value="Last 14 Days">Last 14 Days</option>
 					</select>
 				</div>
-				
+
 			</form:form>
 
 			<div class="panel panel-success">
@@ -124,7 +125,8 @@ input[type=text], input[type=password], textarea {
 								id="ticket-summary" class="nav nav-tabs">
 
 
-								<li><a href='placeOrderForTechnician.html' data-parallel-url=""
+								<li><a href='placeOrderForTechnician.html'
+									data-parallel-url=""
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
@@ -132,8 +134,7 @@ input[type=text], input[type=password], textarea {
 											<h4 align="center">1</h4>
 											<p align="center">Place New Order</p>
 										</div>
-									</a>
-								</li>
+								</a></li>
 
 								<li><a href='#OrderToApprove' data-toggle="tab"
 									class="summery-filter clearfix"
@@ -142,8 +143,8 @@ input[type=text], input[type=password], textarea {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20">
-											<h4 align="center">1</h4>
-											<p align="center">Order to Approve</p>
+											<h4 align="center">${newOrder}</h4>
+											<p align="center">Orders to Approve</p>
 										</div>
 								</a></li>
 
@@ -154,7 +155,7 @@ input[type=text], input[type=password], textarea {
 
 										<div class="summary-count pull-left ml20">
 											<h4 align="center">1</h4>
-											<p align="center">Order to Ship</p>
+											<p align="center">Orders to Ship</p>
 										</div>
 
 								</a></li>
@@ -177,174 +178,175 @@ input[type=text], input[type=password], textarea {
 						<form:form class="well form-horizontal" method="post"
 							action="orderManage" id="orderManage"
 							modelAttribute="orderManage">
-							
+
 							<!-- tab nav -->
 							<div class="tab-content">
 
 								<div class="tab-pane active" id="createOrder">
-									
-								  <form:form modelAttribute="orderHistory" method="post"
-									action="orderHistory" id="orderHistory" name="orderHistory">
-		
-									<!-- Below table will be displayed as Data table -->
-									<table id="createOrderDatatable" class="display datatable">
-										<thead>
-											<tr>
-												<th>Order No</th>
-												<th>Order Status</th>
-												<th>Customer</th>
-												<th>Approved Date</th>
-												<th>Stock Type</th>
-												<th>Ordered By</th>
-												<th>Order Details</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${orderList}">
+
+									<form:form modelAttribute="orderHistory" method="post"
+										action="orderHistory" id="orderHistory" name="orderHistory">
+
+										<!-- Below table will be displayed as Data table -->
+										<table id="createOrderDatatable" class="display datatable">
+											<thead>
 												<tr>
-													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-													<td>${list.status}</td>
-													<td></td>
-													<td>${list.dateOrdered}</td>
-													<td>${list.stockType}</td>
-													<td>Ordered By</td>
-													<td><a
-														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-		
+													<th>Order No</th>
+													<th>Date Ordered</th>
+													<th>Order Status</th>
+													<th>Customer</th>
+													<th>Stock Type</th>
+													<th>Ordered By</th>
+													<!-- <th>Order Details</th> -->
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<!-- table order -->
-								</form:form>
-								<!-- form order -->
-								
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach var="list" items="${orderList}">
+													<tr>
+														<td><a href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+														<td>${list.dateOrdered}</td>
+														<td>${list.status}</td>
+														 <c:if test="${empty list.customer.customerName }">
+														 <td>N/A</td>
+														 </c:if>
+														  <c:if test="${not empty list.customer.customerName }">
+														     <td>${list.customer.customerName }</td></c:if>
+														<td>${list.stockType}</td>
+														<td>${list.employee.firstName} ${list.employee.lastName}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<!-- table order -->
+									</form:form>
+									<!-- form order -->
+
 								</div>
 
 								<div class="tab-pane" id="OrderToApprove">
 									<legend align=center>Orders To Approve</legend>
-										 <form:form modelAttribute="orderHistory" method="post"
-									action="orderHistory" id="orderHistory" name="orderHistory">
-		
-									<!-- Below table will be displayed as Data table -->
-									<table id="OrderToApproveDatatable" class="display datatable">
-										<thead>
-											<tr>
-												<th>Order No</th>
-												<th>Order Status</th>
-												<th>Customer</th>
-												<th>Approved Date</th>
-												<th>Stock Type</th>
-												<th>Ordered By</th>
-												<th>Order Details</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${orderList}">
+									<form:form modelAttribute="orderHistory" method="post"
+										action="orderHistory" id="orderHistory" name="orderHistory">
+
+										<!-- Below table will be displayed as Data table -->
+										<table id="OrderToApproveDatatable" class="display datatable">
+											<thead>
 												<tr>
-													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-													<td>${list.status}</td>
-													<td></td>
-													<td>${list.dateOrdered}</td>
-													<td>${list.stockType}</td>
-													<td>Ordered By</td>
-													<td><a
-														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-		
+													<th>Order No</th>
+													<th>Order Status</th>
+													<th>Customer</th>
+													<th>Approved Date</th>
+													<th>Stock Type</th>
+													<th>Ordered By</th>
+													<th>Order Details</th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<!-- table order -->
-								</form:form>
-								<!-- form order -->
-								
-								
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach var="list" items="${orderList}">
+													<tr>
+														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+														<td>${list.status}</td>
+														<td></td>
+														<td>${list.dateOrdered}</td>
+														<td>${list.stockType}</td>
+														<td>Ordered By</td>
+														<td><a
+															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<!-- table order -->
+									</form:form>
+									<!-- form order -->
+
+
 								</div>
 
 								<div class="tab-pane" id="OrderToShip">
 									<legend align=center>Orders To Ship</legend>
-										 <form:form modelAttribute="orderHistory" method="post"
-									action="orderHistory" id="orderHistory" name="orderHistory">
-		
-									<!-- Below table will be displayed as Data table -->
-									<table id="OrderToShipDatatable" class="display datatable">
-										<thead>
-											<tr>
-												<th>Order No</th>
-												<th>Order Status</th>
-												<th>Customer</th>
-												<th>Approved Date</th>
-												<th>Stock Type</th>
-												<th>Ordered By</th>
-												<th>Order Details</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${orderList}">
+									<form:form modelAttribute="orderHistory" method="post"
+										action="orderHistory" id="orderHistory" name="orderHistory">
+
+										<!-- Below table will be displayed as Data table -->
+										<table id="OrderToShipDatatable" class="display datatable">
+											<thead>
 												<tr>
-													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-													<td>${list.status}</td>
-													<td></td>
-													<td>${list.dateOrdered}</td>
-													<td>${list.stockType}</td>
-													<td>Ordered By</td>
-													<td><a
-														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-		
+													<th>Order No</th>
+													<th>Order Status</th>
+													<th>Customer</th>
+													<th>Approved Date</th>
+													<th>Stock Type</th>
+													<th>Ordered By</th>
+													<th>Order Details</th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<!-- table order -->
-								</form:form>
-								<!-- form order -->
-								
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach var="list" items="${orderList}">
+													<tr>
+														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+														<td>${list.status}</td>
+														<td></td>
+														<td>${list.dateOrdered}</td>
+														<td>${list.stockType}</td>
+														<td>Ordered By</td>
+														<td><a
+															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<!-- table order -->
+									</form:form>
+									<!-- form order -->
+
 								</div>
 
 								<div class="tab-pane" id="closedOrder">
 									<legend align=center>Closed Order</legend>
 									<form:form modelAttribute="orderHistory" method="post"
-									action="orderHistory" id="orderHistory" name="orderHistory">
-		
-									<!-- Below table will be displayed as Data table -->
-									<table id="closedOrderDatatable" class="display datatable">
-										<thead>
-											<tr>
-												<th>Order No</th>
-												<th>Order Status</th>
-												<th>Customer</th>
-												<th>Approved Date</th>
-												<th>Stock Type</th>
-												<th>Ordered By</th>
-												<th>Order Details</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!-- Iterating over the list sent from Controller -->
-											<c:forEach var="list" items="${orderList}">
+										action="orderHistory" id="orderHistory" name="orderHistory">
+
+										<!-- Below table will be displayed as Data table -->
+										<table id="closedOrderDatatable" class="display datatable">
+											<thead>
 												<tr>
-													<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-													<td>${list.status}</td>
-													<td></td>
-													<td>${list.dateOrdered}</td>
-													<td>${list.stockType}</td>
-													<td>Ordered By</td>
-													<td><a
-														href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-		
+													<th>Order No</th>
+													<th>Order Status</th>
+													<th>Customer</th>
+													<th>Approved Date</th>
+													<th>Stock Type</th>
+													<th>Ordered By</th>
+													<th>Order Details</th>
 												</tr>
-											</c:forEach>
-										</tbody>
-									</table>
-									<!-- table order -->
-								</form:form>
-								<!-- form order -->
-								
-								
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach var="list" items="${orderList}">
+													<tr>
+														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+														<td>${list.status}</td>
+														<td></td>
+														<td>${list.dateOrdered}</td>
+														<td>${list.stockType}</td>
+														<td>Ordered By</td>
+														<td><a
+															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<!-- table order -->
+									</form:form>
+									<!-- form order -->
+
+
 								</div>
 
 							</div>
@@ -388,7 +390,7 @@ input[type=text], input[type=password], textarea {
 				});
 			});
 		</script>
-		
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#OrderToApproveDatatable').DataTable({
@@ -399,7 +401,7 @@ input[type=text], input[type=password], textarea {
 				});
 			});
 		</script>
-		
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#closedOrderDatatable').DataTable({
@@ -409,8 +411,8 @@ input[type=text], input[type=password], textarea {
 				/* few more options are available to use */
 				});
 			});
-		</script>	
-		
+		</script>
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#OrderToShipDatatable').DataTable({
@@ -420,9 +422,9 @@ input[type=text], input[type=password], textarea {
 				/* few more options are available to use */
 				});
 			});
-		</script>	
-		
-					
+		</script>
+
+
 		<!--/Paging the table -->
 </body>
 </html>

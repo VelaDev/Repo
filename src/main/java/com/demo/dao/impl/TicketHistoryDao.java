@@ -56,6 +56,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 			  ticketHistory.setMonoReading(ticket.getDevice().getMonoReading());
 			  ticketHistory.setColourReading(ticket.getDevice().getColourReading());
 			  sessionFactory.getCurrentSession().save(ticketHistory);
+			  System.out.println(ticketHistory.getStatus());
 			
 		}catch(Exception e){
 			e.getMessage();

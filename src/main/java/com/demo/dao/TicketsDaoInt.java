@@ -36,9 +36,7 @@ public interface TicketsDaoInt {
 	List<Tickets> getAssignedCallsToTechnician(String username);
 	List<Tickets> getAllEmployees(String searchName);
 	List<PieChart> ticketsResults();
-	//void calculateSLAHours();
 	String updateTicket(TicketsBean ticket);
-	//void updateSLA(Tickets tickets);
 	
     int ticketCountForTechnician(String technicianEmail);
     List<Tickets> getOpenTicketsForTechnician(String technicianEmail);
@@ -64,7 +62,10 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllResolvedTickets(String technicianEmail);
 	List<Tickets> getAwaitingSparesTickets();
 	
-	//void resolveToClosedTicketUpdate();
+	/*void calculateSLAHours();
+	void resolveToClosedTicketUpdate();
+	void updateSLA(Tickets tickets);*/
+	
 	
     
 	

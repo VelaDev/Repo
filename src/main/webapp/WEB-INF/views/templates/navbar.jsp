@@ -124,7 +124,11 @@
 
 								</ul></li>
 						</ul></li>
-
+					<li>
+					    <a href='<c:url value="ordermanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Order Management</a>
+					</li>
+					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Orders<span class="caret"></span></a>

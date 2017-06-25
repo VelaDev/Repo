@@ -235,7 +235,25 @@ public class OrdersController {
 
 		return model;
 	}
+	
+	@RequestMapping(value = "ordermanagement", method = RequestMethod.GET)
+	public ModelAndView displayOrderManagement() {
+		model = new ModelAndView();
 
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.setViewName("ordermanagement");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
 	@RequestMapping(value = "approveOrder", method = RequestMethod.GET)
 	public ModelAndView approveOrder(
 			@RequestParam("recordID") Integer recordID,

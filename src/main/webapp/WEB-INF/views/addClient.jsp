@@ -24,8 +24,7 @@
 
 				</div>
 			</c:if>
-			<div id="responseFromController"></div>
-
+			
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">

@@ -81,7 +81,7 @@
 
 							<c:if test="${empty sparePart.partNumber }">
 							
-								<form:form action="searchpartNumber" method="post"
+							<form:form action="searchpartNumber" method="post"
 							id="searchpartNumber">
 							<div class="row">
 								<!-- Text input Search-->

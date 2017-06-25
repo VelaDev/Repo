@@ -97,7 +97,7 @@ input.currency {
 						<!--Search-->
 						<form:form class="well form-horizontal" method="POST"
 							action="updateProduct" modelAttribute="updateProduct"
-							id="updateDevice" onsubmit="return checkChecked('updateDevice');">
+							id="updateDevice" >
 
 							<fieldset>
 								<legend>Customer Details</legend>
@@ -526,7 +526,7 @@ input.currency {
 									<legend align="left">Machine Accessories</legend>
 									
 
-									<div class="tablemachinesacccso">
+									<div class="tablemachinesacccso" name="removeAccessory">
 										<table id="myDatatable" class="display datatable">
 											<thead>
 												<tr>
@@ -582,37 +582,52 @@ input.currency {
 															<th>Delete</th>
 														</tr>
 													</thead>
-													<c:forEach var="list" items="${accessories}">
-												
+													
 													<tbody>
 													
 														<tr id="machineAccessoryRow-1">
 															<td id="uniqueRowId">
 																<select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value , 1);">
 																	<option value="">Please select Machine Accessories</option>
-																<c:if test="${list.accessotyType == 'Bridge Unit' }"  >
+																<c:forEach var="list" items="${accessories}">
+												
+																<c:if test="${list.accessotyType != 'Bridge Unit' || list.accessotyType != 'Finisher'}"  >
 																	<option value="Bridge Unit">Bridge Unit</option>
 																	<option value="Finisher">Finisher</option>
+																</c:if>
+																<c:if test="${list.accessotyType != 'Bridge Unit' || list.accessotyType != 'Finisher' }"  >																	
 																</c:if>
 																<c:if test="${list.accessotyType == 'Fax Unit' }" >
 																	<option value="Fax Unit">Fax Unit</option>
 																</c:if>
+																<c:if test="${list.accessotyType == 'Fax Unit' }"  >																	
+																</c:if>																
 																<c:if test="${list.accessotyType == 'One Bin Tray' }" >
 																	<option value="One Bin Tray">One Bin Tray</option>
 																</c:if>
+																<c:if test="${list.accessotyType == 'One Bin Tray' }"  >																	
+																</c:if>																
 																<c:if test="${list.accessotyType == 'LCT' }" >
 																	<option value="LCT">LCT</option>
+																</c:if>
+																<c:if test="${list.accessotyType == 'LCT' }"  >																	
 																</c:if>
 																<c:if test="${list.accessotyType == 'Credenza' }" >
 																	<option value="Credenza">Credenza</option>
 																</c:if>
+																<c:if test="${list.accessotyType == 'Credenza' }"  >																	
+																</c:if>																
 																<c:if test="${list.accessotyType == 'Additional Paper Trays' }" >
 																	<option value="Additional Paper Trays">Additional Paper Trays</option>
-																	
+																</c:if>
+																<c:if test="${list.accessotyType == 'Additional Paper Trays' }"  >																	
 																</c:if>
 																<c:if test="${list.accessotyType == 'Wireless Card' }" >
 																	<option value="Wireless Card">Wireless Card</option>
 																</c:if>
+																<c:if test="${list.accessotyType == 'Wireless Card' }"  >																	
+																</c:if>
+																</c:forEach>
 																</select>																
 															</td>															
 															<td id="uniqueRowId">
@@ -631,7 +646,7 @@ input.currency {
 															<td><input type="button" class="btn btn-danger" value="Remove" /></td>
 														</tr>
 													</tbody>
-													</c:forEach>
+													
 											</table>
 
 									</div>
@@ -1119,20 +1134,22 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 /*Check if checkbox is checked*/
-function checkChecked(searchForm) {
-	    var anyBoxesChecked = false;
-	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
-	        if ($(this).is(":checked")) {
-				anyBoxesChecked = true;
-	        }
-	    });
-	 
-	    if (anyBoxesChecked == false) {
-	      alert('You need to tick atleast one checkbox to remove accessory. Please tick the checkbox and try again!');
-	      return false;
-	    } 
-	}
- 
+function valthisform()
+{
+    var checkboxs=document.getElementsByName("removeAccessory");
+    var okay=false;
+    for(var i=0,l=checkboxs.length;i<l;i++)
+    {
+        if(checkboxs[i].checked)
+        {
+            okay=true;
+            break;
+        }
+    }
+    if(okay)alert("Thank you for checking a checkbox");
+    else alert("Please check a checkbox");
+}
+
 </script>
 
 <!---Script to add other Accossory-->
@@ -1145,7 +1162,7 @@ $('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
 //We are starting with 2, because there is already a row in the grid.
 var rowId = 2;
 $('p input[type="button"]').click(function () {
-    $('#otherMachineAccessories').append('<tr id="machineAccessoryRow-' + rowId + '"><td><select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value, ' + rowId + ');"><option value="">Please select Machine Accessories</option><option value="Bridge Unit">Bridge Unit</option><option value="Finisher">Finisher</option><option value="Fax Unit">Fax Unit</option><option value="One Bin Tray">One Bin Tray</option><option value="LCT">LCT</option><option value="Credenza">Credenza</option><option value="Additional Paper Trays">Additional Paper Trays</option><option value="Wireless Card">Wireless Card</option><option value="others">Others</option></select></div></td><td><div class="bridgeAndFinisher" name="bridgeFinisher" id="bridgeFinishere" style="display:none;"><input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"/><br><input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Finisher Serial" class="form-control" type="text"/></div><input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/><input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" placeholder="Please Enter One Bin Tray Serial" id="oneBinTraySerial" class="form-control" type="text"/><input name="ltcTypeSerial" onkeydown="upperCaseF(this)"style="display:none;" placeholder="Please Enter LCT Serial" id="lctSerial" class="form-control" type="text"/><input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/><input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/><input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Wireless Card Serial" class="form-control" type="text"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
+    $('#otherMachineAccessories').append('<tr id="machineAccessoryRow-' + rowId + '"><td><select id="machineAccessories" name="machineAccessories" class="form-control" onchange="CheckMachineAccessories(this.value, ' + rowId + ');"><option value="">Please select Machine Accessories</option><option value="Bridge Unit">Bridge Unit</option><option value="Finisher">Finisher</option><option value="Fax Unit">Fax Unit</option><option value="One Bin Tray">One Bin Tray</option><option value="LCT">LCT</option><option value="Credenza">Credenza</option><option value="Additional Paper Trays">Additional Paper Trays</option><option value="Wireless Card">Wireless Card</option></select></div></td><td><div class="bridgeAndFinisher" name="bridgeFinisher" id="bridgeFinishere" style="display:none;"><input name="bridgeUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Bridge Unit Serial" class="form-control" type="text"/><br><input name="finisherTypeSerialNo" onkeydown="upperCaseF(this)" id="bridgeFinishere" placeholder="Please Enter Finisher Serial" class="form-control" type="text"/></div><input name="faxUnitSerialTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" id="faxUnitSerial" placeholder="Please Enter Fax Unit Serial" class="form-control" type="text"/><input name="OneBinTrayTypeSerialNo" onkeydown="upperCaseF(this)" style="display:none;" placeholder="Please Enter One Bin Tray Serial" id="oneBinTraySerial" class="form-control" type="text"/><input name="ltcTypeSerial" onkeydown="upperCaseF(this)"style="display:none;" placeholder="Please Enter LCT Serial" id="lctSerial" class="form-control" type="text"/><input name="creTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="credenzaSerial" placeholder="Please Enter Credenza Serial" class="form-control" type="text"/><input name="addTypeserial" onkeydown="upperCaseF(this)" style="display:none;" id="additionalPaperTraysSerial" placeholder="Please Enter Additional Paper Trays Serial"  class="form-control" type="text"/><input name="wirelessCard" onkeydown="upperCaseF(this)" style="display:none;" id="wirelessCardSerial" placeholder="Please Wireless Card Serial" class="form-control" type="text"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
 
   rowId++;
 });

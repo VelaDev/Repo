@@ -6,8 +6,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="shortcut icon" href="<c:url value="/images/favicon.ico" />" type="image/x-icon"/>
-  
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -25,7 +23,6 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/css/app-310c175202e0f34694cea021357db448.css" />" />
 <!-- //Little Dash-board -->
-
 
 </head>
 

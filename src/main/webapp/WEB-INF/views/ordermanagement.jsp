@@ -40,8 +40,8 @@
 }
 
 .searchorder {
-	border: 1px solid #000;
-	display: inline-block;
+	#border: 1px solid #000;
+	#display: inline-block;
 }
 
 input, button {
@@ -49,11 +49,13 @@ input, button {
 	border: 0;
 }
 
-input[type=text], input[type=password], textarea {
-	border: 1px solid #FFF;
-	border-radius: 5px;
-	padding: 0px;
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+    z-index: 2;
+    height: 26px;
+    margin-left: -1px;
+    padding-bottom: 17px;
 }
+
 </style>
 
 </head>
@@ -74,42 +76,64 @@ input[type=text], input[type=password], textarea {
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber">
 
-				<div style="margin-bottom: -24px;" align=left>
+				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
 
-					<select id="customers" name="customers">
-						<option value="">All Customers</option>
-					</select>
-
-					<!-- Text input Search-->
-					<div class="searchorder">
-						<input type="text" name="orderNum" list="" id="orderNum"
-							type="text" placeholder='Order Number' /> <input type='submit'
-							value='Search' />
-
-						<!-- Iterating over the list sent from Controller -->
-						<datalist id=""> <c:forEach var="list" items="">
-							<option value="">
-						</c:forEach> </datalist>
-
+					<!-- Select type customers-->
+					<div class="form-group ">											
+					   <div class="col-md-4 selectContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+								  class="glyphicon glyphicon-list"></i></span> <select
+									 name="customers" id="customers" class="form-control selectpicker">
+										<option value="">All Customers</option>
+     								</select>
+							</div>
+						</div>
 					</div>
-
-
-
+					
+					<!-- Text input Search-->						
+					<div class="form-group">
+					 	<div class="col-md-4 inputGroupContainer">							
+						     <div class="input-group">
+						 		 <input type="text" placeholder="Search By Order Number" class="form-control" name="orderNum" id="orderNum">
+						  			<span class="input-group-btn">
+						    			<button class="btn btn-success" type="button">Search</button>
+						  			</span>
+							 </div><!-- /input-group -->
+						</div>
+						
+							<!-- Iterating over the list sent from Controller -->
+							<datalist id=""> <c:forEach var="list" items="">
+								<option value="">
+							</c:forEach> </datalist>
+						
+					 </div>  
+					
 				</div>
-				<div align=right>
-
-					<select id="selectDate" name="selectDate">
-						<option value="Last 7 Days">Last 7 Days</option>
-						<option value="Last 14 Days">Last 14 Days</option>
-					</select>
+				
+				<div align=right>					
+					<!-- Select type selectDate-->
+					<div class="form-group ">											
+					   <div class="col-md-4 selectContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+								  class="glyphicon glyphicon-list"></i></span> <select
+									 name="selectDate" id="selectDate" class="form-control selectpicker">
+										<option value="Last 7 Days">Last 7 Days</option>
+										<option value="Last 14 Days">Last 14 Days</option>
+     								</select>
+							</div>
+						</div>
+					</div>
 				</div>
-
+				
 			</form:form>
 
 			<div class="panel panel-success">
 				<!--Search-->
 				<div class="panel-heading">
 					<h3 class="panel-title">
+						<br/><br/>
 						<div align="left">
 							<b>Orders</b>
 						</div>
@@ -123,7 +147,6 @@ input[type=text], input[type=password], textarea {
 
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
-
 
 								<li><a href='placeOrderForTechnician.html'
 									data-parallel-url=""
@@ -170,7 +193,6 @@ input[type=text], input[type=password], textarea {
 											<p align="center">Closed Order</p>
 										</div>
 								</a></li>
-
 
 							</ul>
 						</div>

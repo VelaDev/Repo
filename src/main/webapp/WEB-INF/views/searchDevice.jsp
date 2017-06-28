@@ -48,7 +48,7 @@
 								<c:forEach var="list" items="${deviceList}">
 									<tr>
 										<td><a href="viewCustomer?customerName=<c:out value='${list.customerDevice.customerName}'/>">${list.customerDevice.customerName}</a></td>
-										<td>${list.serialNumber}</td>
+										<td><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">${list.serialNumber}</a></td>
 										<td>${list.modelNumber}</td>
 										<td>${list.startDate}</td>
 										<td>${list.endDate}</td>
@@ -86,7 +86,7 @@
 				"jQueryUI" : true,
 				"pagingType" : "full_numbers",
 				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-			/* few more options are available to use */
+				/* few more options are available to use */
 			});
 		});
 </script>

@@ -107,8 +107,7 @@ input, button {
 								<option value="">
 							</c:forEach> </datalist>
 						
-					 </div>  
-					
+					 </div>					
 				</div>
 				
 				<div align=right>					

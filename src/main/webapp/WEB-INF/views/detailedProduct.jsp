@@ -2,139 +2,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-<style>
-li {
-	list-style: none;
-}
-.machinedetailsfloatright {
-    float: left;
-    /* margin-right: 40%; */
-    padding-left: 23px;
-}
-.machinedetailsdetailsfloatleft {
-	float: left;
-	margin-left: 10px;
-}
-#customerr_container {
-    /* padding: 25px; */
-    /* margin-bottom: -7em; */
-    width: auto;
-    display: table;
-    font-size: 100%;
-    margin-left: -15%;
-}
-p.contactPerson_title, p.customerAddress_title {
-    font-size: 1.1em;
-    font-weight: bolder;
-    margin-left: -11%;
-}
-ul.address_list {
-    margin-left: -31%;
-}
-/* STRUCTURE */
 
-#content {
-	width: 40%;
-	float: left;
-	padding: 5px 15px;
-}
-
-#middle {
-	width: 22%; /* Account for margins + border values */
-	float: left;
-	padding: 5px 15px;
-	margin: 0px 5px 5px 5px;
-}
-
-#sidebar {
-	width: 35%;
-	padding: 5px 15px;
-	float: left;
-}
-
-
-/************************************************************************************
-MEDIA QUERIES
-*************************************************************************************/
-@media only screen and (max-width: 760px), (max-device-width: 1024px) and (min-device-width: 768px){
-	.machinedetailsfloatright {
-		float: left;
-		margin-right: -31%;
-		padding-left: 9%;
-		margin-top: 0%;
-	}
-}
-/* for 980px or less */
-@media screen and (max-width: 980px) {
-	
-	#pagewrap {
-		width: 94%;
-	}
-	#content {
-		width: 40%;
-		padding: 1% 4%;
-	}
-	#middle {
-		width: 41%;
-		padding: 1% 4%;
-		margin: 0px 0px 5px 5px;
-		float: right;
-	}
-	
-	#sidebar {
-		clear: both;
-		padding: 1% 4%;
-		width: auto;
-		float: none;
-	}
-
-
-}
-
-/* for 700px or less */
-@media screen and (max-width: 600px) {
-
-	#content {
-		width: auto;
-		float: none;
-	}
-	
-	#middle {
-		width: auto;
-		float: none;
-		margin-left: 0px;
-	}
-	
-	#sidebar {
-		width: auto;
-		float: none;
-	}
-
-}
-
-/* for 480px or less */
-@media screen and (max-width: 480px) {
-
-
-	#sidebar {
-		display: none;
-	}
-
-}
-
-header, #content, #middle, #sidebar {
-	margin-bottom: 5px;
-}
-
-</style>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Detailed Product | Velaphanda Trading & Projects</title>
+
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/custom/css/vela_details.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
+<style>li { list-style: none; }</style>
+
 </head>
 
 <body>

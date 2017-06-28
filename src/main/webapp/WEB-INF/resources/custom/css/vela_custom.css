@@ -184,14 +184,7 @@ ul#nav{
 ul#nav li{
 	list-style: none;
 }
-ul#nav lia{
-	background: url(/resources/bootstrap-3.3.6/images/image001.jpg) no-repeat 7px 7px transparent;
-    list-style-type: none;
-    margin: 0;
-    padding: 0px 0px 1px 24px;
-    vertical-align: middle;
-	 
-}
+
 ul#nav li a{
 	color:#ccc;
 	display:block;

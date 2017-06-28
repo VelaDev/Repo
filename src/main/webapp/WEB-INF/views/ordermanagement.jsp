@@ -153,8 +153,8 @@ input, button {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20">
-											<h4 align="center">1</h4>
-											<p align="center">Place New Order</p>
+											<h4 style="font-size:23px;" align="center">Place New Order</h4>
+											<!-- <p align="center">Place New Order</p> -->
 										</div>
 								</a></li>
 

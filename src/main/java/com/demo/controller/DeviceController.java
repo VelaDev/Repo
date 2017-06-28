@@ -204,12 +204,9 @@ public class DeviceController {
 		model= new ModelAndView();
 		
 		userName = (Employee) session.getAttribute("loggedInUser");
-		List<String> a = accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber());
-		for(String b:a){
-			System.err.println(b);
-		}
-		if(userName != null){
 		
+		if(userName != null){
+			List<String> addAccessory = accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber());
 		     device = deviceServiceInt.getDeviceBySerialNumber(serialNumber);
 		     deviceBean = deviceServiceInt.getAccessoriesForUpdate(serialNumber);
 		     if(device != null)
@@ -222,7 +219,7 @@ public class DeviceController {
 				    model.addObject("productObject", device);
 				    model.addObject("AccessoryObject", deviceBean);
 				    model.addObject("accessories", accessories);
-				    model.addObject("addAccessory", a);
+				    model.addObject("addAccessory", addAccessory);
 				    								
 				}
 				else{

@@ -11,5 +11,6 @@ public interface AccessoriesInt {
 	List<Accessories> getAccessoriesByDeviceSerial(String serialNo);
 	Accessories getAccessories(String serialNo);
 	List<String> getAccessoriesList(String deviceSerialNumber);
+	String removeAccessory(String []serialNumbers);
 
 }

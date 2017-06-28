@@ -566,10 +566,8 @@ input.currency {
 																<br> <br> <input type="submit" id="removeAccessory" name="removeAccessory"
 																	value="Remove Accessory" class="btn btn-danger">
 															</div>
-														</div>
+														</div>														
 													</div>
-													
-												
 											</form:form>
 
 										</c:if>

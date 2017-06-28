@@ -32,10 +32,6 @@ import com.demo.service.OrdersServiceInt;
 import com.demo.service.HOStockServeceInt;
 import com.demo.service.SiteStockInt;
 import com.demo.service.TicketsServiceInt;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.zugferd.exceptions.DataIncompleteException;
-import com.itextpdf.text.zugferd.exceptions.InvalidCodeException;
-import com.itextpdf.xmp.XMPException;
 
 @Controller
 public class OrdersController {
@@ -335,9 +331,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "printdeliveryNote", method = RequestMethod.GET)
 	public ModelAndView deliveriesNote(
-			@RequestParam("recordID") Integer recordID)
-			throws ParserConfigurationException, SAXException,
-			TransformerException, IOException, DocumentException, XMPException, DataIncompleteException, InvalidCodeException, java.text.ParseException {
+			@RequestParam("recordID") Integer recordID){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {

@@ -120,7 +120,7 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 		List<Accessories> getAccessories = getAccessoriesByDeviceSerial(deviceSerialNumber);
 		Set<String> getAccess = new HashSet<String>();
 		List<String> current = new ArrayList<String>();
-		current.add("Additional Paper Trays");current.add("Bridge Unit");current.add("Credenza");current.add("Fax Unit");current.add("Finisher");current.add("LTC"); current.add("One bin tray");
+		current.add("Additional Paper Trays");current.add("Bridge Unit");current.add("Credenza");current.add("Fax Unit");current.add("Finisher");current.add("LCT"); current.add("One Bin Tray");
 		try{
 			for(Accessories access: getAccessories){
 				for(String currentType:current){

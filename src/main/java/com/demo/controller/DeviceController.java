@@ -223,6 +223,7 @@ public class DeviceController {
 				    model.addObject("AccessoryObject", deviceBean);
 				    model.addObject("accessories", accessories);
 				    model.addObject("addAccessory", accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber()));
+				    								
 				}
 				else{
 					model.addObject("retMessage", "Device :" + serialNumber + " does not exist");

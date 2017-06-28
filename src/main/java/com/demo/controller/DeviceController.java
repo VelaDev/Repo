@@ -222,7 +222,7 @@ public class DeviceController {
 				    model.addObject("productObject", device);
 				    model.addObject("AccessoryObject", deviceBean);
 				    model.addObject("accessories", accessories);
-				    model.addObject("addAccessory", accessoriesInt.getAccessoriesList(deviceBean.getSerialNumber()));
+				    model.addObject("addAccessory", a);
 				    								
 				}
 				else{

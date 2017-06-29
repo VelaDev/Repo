@@ -775,16 +775,7 @@ $(document)
 													}
 												}
 											},
-											machineAccessories : {
-
-												validators : {
-
-													notEmpty : {
-														message : 'Machine Accessories is required and cannot be empty'
-													}
-
-												}
-											},
+											
 											faxunitserial : {
 												validators : {
 													stringLength : {

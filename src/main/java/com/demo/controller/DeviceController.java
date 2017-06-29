@@ -328,12 +328,13 @@ public class DeviceController {
 
 	
 	@RequestMapping(value="removeAccessory")
-	public ModelAndView removeAccessory(DeviceBean removeAccessory)
+	public ModelAndView removeAccessory(@ModelAttribute("removeAccessory")DeviceBean removeAccessory)
 	{
 		String updateDevice ="updateDevice";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			
 			model.addObject("retMessage",accessoriesInt.removeAccessory(removeAccessory.getChkAccessories()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());

@@ -1,10 +1,7 @@
 package com.demo.dao.impl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -15,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.AccessoriesDaoInt;
 import com.demo.model.Accessories;
-import com.demo.model.Device;
 
 @Repository("accessoriesDAO")
 @Transactional(propagation = Propagation.REQUIRED)

@@ -31,40 +31,70 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Order Item History</b>
+							<b>Order No : ${OrderNum.orderNum}</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
-					<div class="tab-content">						
-							<!-- Iterating over the list sent from Controller -->
+
+					<div id="navbar" class="navbar-collapse collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="active"><a href="#">Print</a></li>
+							<li><a href="#">Download PDF </a></li>
+						</ul>
+					</div>
+
+					<ul class="nav nav-tabs">
+
+						<li class="active"><a href="#orderDetails" data-toggle="tab">Order
+								Details</a></li>
+						<li><a href="#orderHistoryDetails" data-toggle="tab">History</a></li>
+
+					</ul>
+
+					<div class="tab-content">
+
+						<!--#orderDetails tab-->
+						<div class="tab-pane active" id="orderDetails">
+							<br />
+							<br />
 							<div class="orderDetails">
-								
-								<li id="placedBy ">Placed By : ${OrderNum.employee.firstName} ${OrderNum.employee.lastName}</li>
+
+								<li id="placedBy ">Placed By :
+									${OrderNum.employee.firstName} ${OrderNum.employee.lastName}</li>
 								<li id="approvedDate">Approved By : ${approver}</li>
 								<c:if test="${not empty OrderNum.customer.customerName}">
-										<li id="siteStock">Customer Name : ${OrderNum.customer.customerName}</li>
-								</c:if>	
-									<li id="approvedDate">Order No : ${OrderNum.orderNum}</li>
-								<li id="approvedDate">Date Ordered : ${OrderNum.dateOrdered}</li>							
-							</div><br>					
-						<div class="groupdetails-row-padding">
-							
-							<div id="pagewrap">
+									<li id="siteStock">Customer Name :
+										${OrderNum.customer.customerName}</li>
+								</c:if>
+								<li id="approvedDate">Order No : ${OrderNum.orderNum}</li>
+								<li id="approvedDate">Date Ordered :
+									${OrderNum.dateOrdered}</li>
+							</div>
+							<br>
 
-								<section id="content">
+						</div>
+
+						<!--#orderHistoryDetails tab-->
+						<div class="tab-pane" id="orderHistoryDetails">
+
+							<div class="groupdetails-row-padding">
+
+								<div id="pagewrap">
+
+									<section id="content">
 									<div class="groupclientdetails">
 										<legend>Order Details</legend>
 										<table id="orderInfo" class="display datatable">
 											<thead>
 												<tr>
-													<th>Part No</th>													
+													<th>Part No</th>
 													<th>Compatible Devices</th>
 													<th>Description</th>
 													<th>Quantity</th>
 													<!-- <th>Placed By</th>
 													<th>Approver</th> -->
-													
+
 												</tr>
 											</thead>
 											<tbody>
@@ -76,56 +106,57 @@
 														<td>${list.itemDescription}</td>
 														<td>${list.quantity}</td>
 														<%-- <td>${list.technician}</td>
-														<td>${list.quantity}</td> --%>											
+														<td>${list.quantity}</td> --%>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
-	
+
 									</div>
-								<!-- group client details --> 
-								</section>
-								<!-- section content -->
+									<!-- group client details --> </section>
+									<!-- section content -->
 
-								<aside id="sidebar">
-								<div class="groupproductdetails">
-									<legend>Order Status</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
+									<aside id="sidebar">
+									<div class="groupproductdetails">
+										<legend>Order Status</legend>
+										<form:form modelAttribute="orderHistory" method="post"
+											action="orderHistory" id="orderHistory" name="orderHistory">
 
-										<!-- Below table will be displayed as Data table -->
-										<table id="orderDetailss" class="table table-striped table-bordered table-hover table-condensed">
-											<thead>
-												<tr>
-													<th>Order Status</th>
-													<th>Date/Time</th>
-													
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${status}">
+											<!-- Below table will be displayed as Data table -->
+											<table id="orderDetails"
+												class="table table-striped table-bordered table-hover table-condensed">
+												<thead>
 													<tr>
+														<th>Order Status</th>
+														<th>Date/Time</th>
 
-														<td>${list.orderStatus}</td>
-														<td>${list.statusDateTime}</td>
-														
 													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order History -->
+												</thead>
+												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+													<c:forEach var="list" items="${status}">
+														<tr>
 
-									</form:form>
-									<!-- form order History -->
+															<td>${list.orderStatus}</td>
+															<td>${list.statusDateTime}</td>
+
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+											<!-- table order History -->
+
+										</form:form>
+										<!-- form order History -->
+									</div>
+									<!-- group product details --> </aside>
+									<!-- aside sidebar -->
 								</div>
-								<!-- group product details --> </aside>
-								<!-- aside sidebar -->
+								<!-- page wrap -->
 							</div>
-							<!-- page wrap -->
-						</div>
-						<!-- group details-row-padding -->
+							<!-- group details-row-padding -->
 
+						</div>
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -146,16 +177,6 @@
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 <!-- Paging the table -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#orderDetails').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-		/* few more options are available to use */
-		});
-	});
-</script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#orderInfo').DataTable({

@@ -4,6 +4,7 @@
  * Company: Velaphanda 
  * Last Date Modified:09-06-2017
  */
+/*Data tables on the system*/
 
 // myDatatable table -->
 $(document).ready(function() {
@@ -67,8 +68,6 @@ $('#status').change(function() {
 	}
 });
 
-
-
 //"order Status" Table -->
 $(document).ready(function() {
 	$('#orderSts').DataTable({
@@ -88,6 +87,10 @@ $(function(){
 	})
 
 });
+
+/* End Data tables on the system*/
+
+
 
 // Take selected used part numbers only -->
 function checkUsedPartNumbers() {

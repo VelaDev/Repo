@@ -11,6 +11,8 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+
 
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
@@ -184,11 +186,23 @@
 	<!-- / velaphanda_containter -->
 
 	<!-- Scripts -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>	
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+
 	<!-- Datatables -->
-	<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>	
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	<!-- //Datatables -->
+	
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	<!-- /Scripts -->
 	
 <!-- Paging the table -->
@@ -203,95 +217,7 @@
 		});
 </script>
 
-<!-- Validate Make Order for Technician -->
-<script>
- $(document).ready(function() {
-    $('#putInOrder').bootstrapValidator({
-         feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-        	stockType: {
-                validators: {
-					notEmpty: {
-                        message: 'Stoke type is required and cannot be empty'
-                    }
-                }
-            },
-            location: {
-                validators: {
-					stringLength : {
-						min : 2,
-					},
-                    notEmpty: {
-                        message: 'location is required and cannot be empty'
-                    }
-                }
-            },
-            technicianUserName: {
-                validators: {
-                    notEmpty: {
-                        message: 'Technician is required and cannot be empty'
-                    }
-                }
-            },
-            customer: {
-                validators: {
-                    notEmpty: {
-                        message: 'Customer is required and cannot be empty'
-                    }
-                }
-            },
-            approver: {
-                validators: {
-                    notEmpty: {
-                        message: 'Approver is required and cannot be empty'
-                    }
-                }
-            }/* ,
-            quantity: {
-                validators: {
-                    notEmpty: {
-                        alert: 'Quanity is required and cannot be empty'
-                    }
-                }
-            } */ 
-        }
-    });
-});
-
-</script>
-	
-
-
-<script type="text/javascript">
-/*Compare available quantity with entered quantity*/
-function compareQuantity(element, availableQuantity) {					
-	
-		if (availableQuantity > element.value){		
-		console.log("True,",element.value + " is less than " + availableQuantity);
-		console.log("Place an Order");
-		}
-		if (element.value == ''){
-			alert("Quantity can not be empty. \n Please enter quantity which is less than available quantity");
-			console.log(element.value);
-		}
-		else if(availableQuantity < element.value) {
-				alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
-				element.value = null;
-				console.log("False,",availableQuantity + " is small than " + element.value);
-				console.log("You can not place an order, enter less quantity");
-				console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
-		}
-}
-
-</script>
-
-
-<script type="text/javascript">
- 
+<script type="text/javascript"> 
 function checkChecked(searchForm) {
 	    var anyBoxesChecked = false;
 	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
@@ -305,8 +231,7 @@ function checkChecked(searchForm) {
 	      alert('You need to tick atleast one checkbox to place an order\n Please tick the checkbox and try again!');
 	      return false;
 	    } 
-	}
- 
+	} 
 </script>
 
 <script type="text/javascript">
@@ -326,20 +251,6 @@ $(function(){
 	  });
 
 	});
-	
-</script>
-
-<!--Stock type Selection-->
-<script type="text/javascript">
-	
-		function CheckStockType(val){
-		 var element=document.getElementById('Site');
-		 if(val=='select stock type'||val=='Site')
-		   element.style.display='block';
-		 else  
-		   element.style.display='none';
-		 
-		}
 	
 </script>
 

@@ -12,6 +12,16 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
+
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_details.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">	
+
 <style>
 li {
 	list-style: none;
@@ -259,7 +269,7 @@ input.currency {
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-list"></i></span> <select
 													id="modelBrand" name="modelBrand" class="form-control">
-													<option>Select Brand</option>
+													<option value="">Select Brand</option>
 													<option value="Samsung">Samsung</option>
 													<option value="Canon">Canon</option>
 													<option value="Oce">Oce</option>
@@ -329,7 +339,7 @@ input.currency {
 													class="glyphicon glyphicon-list"></i></span> <select
 													id="monocolour" name="colour" class="form-control"
 													onchange="CheckColors(this.value);">
-													<option>Select Mono/Colour</option>
+													<option value="">Select Mono/Colour</option>
 													<option value="mono">Mono</option>
 													<option value="colour">Colour</option>
 												</select>
@@ -525,9 +535,8 @@ input.currency {
 								<legend align="left">Machine Accessories</legend>
 
 								<div class="tablemachinesacccso">
-									<table id="tableselect"
-										class="table table-striped table-bordered table-hover table-condensed">
-
+									<table id="accessoriesTable" class="display datatable">
+										
 										<thead>
 											<tr>
 												<th>Machine Type</th>
@@ -599,7 +608,7 @@ input.currency {
 												<input type="button" class="btn btn-success"
 													value="Add More">
 											</p>
-											<table id="otherMachineAccessories"
+											<table id="addOtherMachineAccessories"
 												class="table table-striped table-bordered table-hover table-condensed">
 												<thead>
 													<tr>
@@ -618,7 +627,7 @@ input.currency {
 															name="serialNumberOtherAccessory"
 															onkeydown="upperCaseF(this)" placeholder="Serial Number" />
 														</td>
-														<td><input type="button" class="btn btn-danger"
+														<td><input type="button" id="remove" name="remove" class="btn btn-danger"
 															value="Remove"></td>
 													</tr>
 													<tbody>
@@ -661,626 +670,41 @@ input.currency {
 	<!-- / velaphanda_containter -->
 
 	<!-- Scripts -->
-	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+
+	<!-- Datatables -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	<!-- //Datatables -->
+	
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
+	
+	<!--  myDatatable table -->
+	<script type="text/javascript">	
+	$(document).ready(function() {
+	$('#accessoriesTable').DataTable({
+		"jQueryUI" : true,
+		"pagingType" : "full_numbers",
+		"lengthMenu" : [ [ 7, 10, 50, -1 ], [ 7, 10, 50, "All" ] ]
+	/* few more options are available to use */
+		});
+	});
+	</script>
+	<!-- myDatatable table  -->
+	
+	
 	<!-- /Scripts -->
 
 
-<!-- Validate add device -->
-<script>
-$(document).ready(function() {
-    $('#addDevice').bootstrapValidator({
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-           
-                customerName : {
-					validators : {
-						stringLength : {
-							min : 2,
+</body>
 
-						},
-						notEmpty : {
-							message : 'Customer name is required and cannot be empty'
-						}
-					}
-				},
-				//Contact Person
-				firstName : {
-					validators : {
-						notEmpty : {
-							stringLength : {
-								min : 3,
-							},
-							message : 'First Name is required and cannot be empty'
-						},
-						regexp: {
-							regexp :/^[-_ a-zA-Z]+$/,
-		                    message: 'First Name must only consist of letters'
-		                }
-					}
-				},
-				lastName : {
-					validators : {
-						notEmpty : {
-							stringLength : {
-								min : 3,
-							},
-							message : 'Last Name is required and cannot be empty'
-						},
-						regexp: {
-							regexp :/^[-_ a-zA-Z]+$/,			                   
-		                    message: 'Last Name must only consist of letters'
-		                }
-					}
-				},
-				cellphoneNumber : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for cellphone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for cellphone number'
-						},
-						regexp: {
-							
-							regexp: /^0[0-9].*$/,
-							message :'Cellphone number must start with 0 (Zero)'
-						}
-					}
-				},
-				telephoneNumber : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for telephone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for telephone number'
-						},
-						regexp: {
-							
-							regexp: /^0[0-9].*$/,
-							message :'Tellphone number must start with 0 (Zero)'
-						}
-					}
-				},
-				
-				cellphone : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for cellphone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for cellphone number'
-						},
-						regexp: {
-							
-							regexp: /^0[0-9].*$/,
-							message :'Cellphone number must start with 0 (Zero)'
-						}
-					}
-				},
-				telephone : {
-					validators : {
-						notEmpty : {
-							message : 'Please enter 10 digits for telephone number'
-						},
-						phone : {
-							country : 'US',
-							message : 'Please enter 10 digits for telephone number'
-						},
-						regexp: {
-							
-							regexp: /^0[0-9].*$/,
-							message :'Tellphone number must start with 0 (Zero)'
-						}
-					}
-				},
-
-				email : {
-					validators : {
-						notEmpty : {
-							message : 'Email address is required and cannot be empty'
-						},
-						emailAddress : {
-							message : 'The email address is not valid'
-						}
-					}
-				},//Contact Person
-				
-				
-				//Machine Details
-				
-                serialNumber : {
-					validators : {
-						stringLength : {
-								min : 2,
-
-							},
-							notEmpty : {
-								message : 'Serial Number is required and cannot be empty'
-							},
-							regexp: {
-			                    regexp: /^[a-z-A-Z0-9]+$/,
-			                    message: 'Serial Number can only consist of numbers '
-			                }
-						}
-				},
-				modelNumber : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Model number is required and cannot be empty'
-						}
-					}
-				},
-				modelBrand : {
-					validators : {
-						notEmpty : {
-							message : 'Brand is required and cannot be empty'
-						}
-					}
-				},
-				startDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Contract start date is required'
-                        },
-                        date: {
-                            format: 'YYYY-MM-DD',
-                            //max: 'endDate',
-                            message: 'Contract start date is not a valid'
-                        }
-                    }
-                },
-                endDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'Contract end date is required'
-                        },
-                        date: {
-                            format: 'YYYY-MM-DD',
-                           // min: 'startDate',
-                            message: 'Contract end date is not a valid'
-                        }
-                    }
-                },
-                installationDate: {
-                    validators: {
-                        notEmpty: {
-                            message: 'The installation date is required'
-                        },
-                        date: {
-                        	format: 'YYYY-MM-DD',
-                           // min: 'endDate',
-                            message: 'The installation date is not a valid'
-                        }
-                    }
-                },		
-				streetNumber : {
-					validators : {
-						stringLength : {
-							//min : 3,
-						},
-						notEmpty : {
-							message : 'Street number is required and cannot be empty'
-						},
-		                regexp: {
-		                    regexp: /^[0-9]+$/,
-		                    message: 'The Street number can only consist of numbers '
-		                }
-					}
-				},
-				buildingName : {            	
-	            	validators : {            		
-					stringLength : {
-						min : 2,
-					},
-					notEmpty : {
-						message : 'Building name is required and cannot be empty'
-						}
-					}
-				},
-	            
-	            floorNumber : {
-					validators : {
-						stringLength : {
-							//min : 3,
-						},
-						notEmpty : {
-							message : 'Floor number is required and cannot be empty'
-						},
-		                regexp: {
-		                    regexp: /^[0-9]+$/,
-		                    message: 'Floor number can only consist of numbers '
-		                }
-					}
-				},
-				streetName : {
-					validators : {
-						stringLength : {
-							min : 3,
-						},
-						notEmpty : {
-							message : 'Street name is required and cannot be empty'
-						}
-						
-					}
-				},
-				city_town : {
-					validators : {
-						stringLength : {
-							min : 3,							
-						},
-						notEmpty : {
-							message : 'City is required and cannot be empty'						
-							
-						},
-						 regexp: {
-		                	 regexp: /^[-_ a-zA-Z]+$/,			                   
-		                    message: 'City or Town must only consist of letters'
-		                }
-					}
-				},
-				province : {
-					validators : {
-						notEmpty : {
-							message : 'Province is required and cannot be empty'
-						}
-					}
-				},
-				zipcode : {
-					validators : {
-						stringLength : {
-							max : 4,
-							min : 4,
-						},
-						notEmpty : {
-							message : 'Zipcode is required and cannot be empty'
-						}
-					}
-				},
-				
-
-				colourReading: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Colour reading is required and cannot be empty'
-						}
-						
-					}
-				},
-				
-				colourCopyCost: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Colour Copy Cost is required and cannot be empty'
-						}
-						
-					}
-				},
-				
-				monoReading: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Mono reading is required and cannot be empty'
-						}
-						
-					}
-				},
-				monoCopyCost: {
-					
-					validators : {
-						stringLenth : {
-							min : 4,
-							max : 6,
-						},
-						notEmpty : {
-							message : 'Mono Copy Cost is required and cannot be empty'
-						}
-						
-					}
-				},
-				
-				//Machine Details
-				
-				
-				
-				//Machine Accesories
-				
-				bridgeunit : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Bridge unit is required and cannot be empty'
-						}
-					}
-				},
-				machineAccessories : {
-					
-					validators :{
-						
-						notEmpty : {
-							message : 'Machine Accessories is required and cannot be empty'
-						}
-						
-					}
-				},
-				faxunitserial : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Fax unit is required and cannot be empty'
-						}
-					}
-				},
-				
-				onebintray : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'One bintray is required and cannot be empty'
-						}
-					}
-				},
-				
-				finisherserial : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Finisher is required and cannot be empty'
-						}
-					}
-				},
-				
-				lct : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'LCT is required and cannot be empty'
-						}
-					}
-				},
-				
-				credenza : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Credenza is required and cannot be empty'
-						}
-					}
-				},
-				
-				additionalserial : {
-					validators : {
-						stringLength : {
-							min : 2,
-
-						},
-						notEmpty : {
-							message : 'Additional paper tray is required and cannot be empty'
-						}
-					}
-				}
-        }
-    });
-});
-</script>
-
-<!---Script to add other Accossory-->
-<script type="text/javascript">
-
-$('#otherMachineAccessories').on('click', 'input[type="button"]', function () {
-    $(this).closest('tr').remove();
-	})
-$('p input[type="button"]').click(function () {
-    $('#otherMachineAccessories').append('<tr><td><input type="text" class="form-control" id="machineType" name="machineType" placeholder="Machine Accessory Type" /></td><td><input type="text" class="form-control" id="serialNumberOtherAccessory" name="serialNumberOtherAccessory" onkeydown="upperCaseF(this)" placeholder="Serial Number"/></td><td><input type="button" class="btn btn-danger" value="Remove" /></td></tr>')
-});
-
-
-</script>
-
-<!--Mono and Colour Selection-->
-<script type="text/javascript">
-	
-	function CheckColors(val){
-	 var element=document.getElementById('mono');
-	 if(val=='pick a mono/colour' ||val=='mono'  || val == 'colour')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	 var element=document.getElementById('colour');
-	 if(val=='pick a colour'|| val=='colour')
-	   element.style.display='block';
-	 else  
-	   element.style.display='none';
-	   
-	}
-
-</script>
-
-
-
-<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
-	function upperCaseF(a){
-	    setTimeout(function(){
-	        a.value = a.value.toUpperCase();
-	    }, 1);
-	}
-</script>
-
-	<!-- Accept alphabetical characters only -->
-	<script language="Javascript" type="text/javascript">
-        function onlyAlphabets(e, t) {
-            try {
-                if (window.event) {
-                    var charCode = window.event.keyCode;
-                }
-                else if (e) {
-                    var charCode = e.which;
-                }
-                else { return true; }
-                if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123 ))
-                    return true;
-                else
-                    return false;
-            }
-            catch (err) {
-                alert(err.Description);
-            }
-        }
-    </script>
-
-	<!-- Accept alphanumeric characters only -->
-	<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
-
-	<!--Compare start, end and installation date between each other-->
-	<script type="text/javascript">
-
-$("#startDate, #endDate, #installationDate").datepicker();
-
-$("#endDate").change(function () {
-	
-    var startDate = document.getElementById("startDate").value;
-    var endDate = document.getElementById("endDate").value;
-    
-    if ((Date.parse(endDate) <= Date.parse(startDate))) {
-        alert("Contract end date should be greater than Contract start date");
-        document.getElementById("endDate").value = "";
-    }
-
-});
-$("#installationDate").change(function () {
-	
-    var startDate = document.getElementById("startDate").value;
-    var endDate = document.getElementById("endDate").value;
-    var installationDate = document.getElementById("installationDate").value;
- 
-    if ((Date.parse(installationDate) >= Date.parse(endDate)  &&  Date.parse(startDate))) {
-        alert("Installation date should be between contract start date and contract end date");
-        document.getElementById("installationDate").value = "";
-    }
-
-});
-</script>
-
-<!-- Enable datepicker for start, end and install date-->
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('#startDatePicker').datepicker({
-				format : "yyyy-mm-dd",
-				//startDate: 'd0',
-		        autoclose: true
-			});
-		});
-</script>
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#endDatePicker').datepicker({
-			format : "yyyy-mm-dd",
-		//	startDate: 'd0',
-	        autoclose: true
-		});
-	});
-</script>
-
-<script type="text/javascript">
-		$(document).ready(function() {
-			$('#installDatePicker').datepicker({
-				format : "yyyy-mm-dd",
-				//startDate: 'd0',
-		        autoclose: true
-			});
-		});
-</script>
-<!-- Check if checkboxes are checked, if checked enable input text -->
-	<script type="text/javascript">
-		document.getElementById('bridgeunitserial').onchange = function() {
-			document.getElementById('bridgeunit').disabled = !this.checked;
-			document.getElementById('finisherserial').disabled = !this.checked;
-		};
-		document.getElementById('finisher').onchange = function() {
-			document.getElementById('finisherserial').disabled = !this.checked;
-			document.getElementById('bridgeunit').disabled = !this.checked;
-		};
-		
-		document.getElementById('faxunit').onchange = function() {
-			document.getElementById('faxunitserial').disabled = !this.checked;
-		};
-		document.getElementById('onebintrayserial').onchange = function() {
-			document.getElementById('onebintray').disabled = !this.checked;
-		};
-		
-		document.getElementById('ltcserial').onchange = function() {
-			document.getElementById('lct').disabled = !this.checked;
-		};
-		document.getElementById('creserial').onchange = function() {
-			document.getElementById('cre').disabled = !this.checked;
-		};
-		document.getElementById('addserial').onchange = function() {
-			document.getElementById('add').disabled = !this.checked;
-		};
-		
-</script>
-
-
-
-
-	</body>
 </html>

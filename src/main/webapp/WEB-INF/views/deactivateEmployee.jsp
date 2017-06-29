@@ -6,11 +6,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">  
 	
-  <link href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" rel="stylesheet" type="text/css" /> 
-  <link href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" rel="stylesheet" type="text/css" /> 
-  
-  <link type="text/css" rel="stylesheet" href="<c:url value="/resources/comfirm_alerts/css/main.css" />"> 
-   <link type="text/css" rel="stylesheet" href="<c:url value="/resources/comfirm_alerts/css/confirm.css" />">
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css" 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+
 
 </head>
 <body >
@@ -161,12 +161,6 @@
 					<div class="form-group row">
 						<div class="col-sm-offset-2 col-sm-8">
 							<br><br>
-														
-							<!-- <div align="center">
-								<input type="submit" value="Deactivate Employee"
-								class="btn btn-primary example-button" tabindex="9"
-								id="deactivateEmp" name="deactivateEmp" data-bb-example-key="confirm-options">						
-							</div> -->
 							
 							<c:choose>
 						        <c:when test="${employeeObject.status=='INACTIVE' }">
@@ -187,14 +181,6 @@
 								         id="deactivateEmp" name="deactivateEmp" data-confirm="Are are sure you want to deactivate this employee?">
 						      </c:otherwise>
 					      </c:choose>
-							
-							<!-- Aikhona this not working for us 
-							<br/><br/>
-							<p><a  onclick="javascript:showConfirm('Please confirm','Are are sure you want to deactivate this employee?','Yes','','No','#')"><button class="btn btn-primary btn-block btn-lg" tabindex="9">Deactivate Employee</button></a></p>
-							
-							<!-- Aikhona this not working for us -->
-							
-							
 						</div>
 					</div>
 					
@@ -208,55 +194,16 @@
 		<!--/ Footer -->
 	</div><!-- / velaphanda_containter -->
 	
-<!-- Validator -->
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
-<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/anchor.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/bootbox.js" />"></script>
-<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/example.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/demos.js"/>"></script>
-
-<script type="text/javascript" src="<c:url value="/resources/comfirm_alerts/js/confirmStyle.js"/>"></script>
-<!-- Deactive script -->
-<script>
-$(document).on('click', ':not(form)[data-confirm]', function(e){
-    if(!confirm($(this).data('confirm'))){
-      e.stopImmediatePropagation();
-      e.preventDefault();
-		}
-});
-</script>
-
-<!-- Validate update employee -->
-
-<!--Validate search-->
-<script>
- $(document).ready(function() {
-    $('#searchEmployee').bootstrapValidator({
-         feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-        	empName: {
-                validators: {
-					stringLength : {
-						min : 2,
-					},
-                    notEmpty: {
-                        message: 'Employee name is required to search and cannot be empty'
-                    }
-                }
-            }
-        }
-    });
-});
-
-</script>
-
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+		
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 
 </body>
 </html>

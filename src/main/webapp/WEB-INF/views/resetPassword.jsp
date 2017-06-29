@@ -34,30 +34,7 @@
 				</div>
 				<div class="panel-body">
 					<div class="tab-content">
-					<!-- 
-						<form action="searchEmployeeForPasswordReset" method="post"
-							id="searchEmployeeForPasswordReset">
-							<div class="row">
-
-								<!-- Text input Search-->
-								<!-- 		<div class="form-group">
-							<label class="col-md-3 control-label">Search Employee</label>
-							<div class="col-md-4 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-user"></i></span> <input name="empName" id="empName"
-										 class="form-control" type="text" placeholder='Search By Email Address'>									
-								</div>								
-							</div>
-							<div class="col-md-2">
-									<input class="btn btn-success" type='submit' name="search" value='Search' />
-							</div>
-							</div>
-							</div>
-
-							<hr>
-							 -->
-							 						
+												 						
 						<form:form class="well form-horizontal" method="post"
 							action="resetPassword" modelAttribute="resetPassword"
 							id="resetPassword">
@@ -176,7 +153,6 @@
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-
 
 	<!-- Validator -->
 	<script type="text/javascript"

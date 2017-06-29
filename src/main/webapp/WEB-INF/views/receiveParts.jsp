@@ -14,13 +14,9 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+
 
 <style>
 .model {
@@ -185,8 +181,7 @@
 												<span class="input-group-addon"><i
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													type="number" placeholder="Enter Quantity" id="quantity"
-													name="quantity" class="form-control"
-													onkeyup="userTyped('checkSpares', this)">
+													name="quantity" class="form-control">
 											</div>
 										</div>
 									</div>
@@ -268,274 +263,19 @@
 	<!-- Scripts -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+		
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
+	
 	<!-- /Scripts -->
 
-	<!--if part number does not exist come here-->
-	<script type="text/javascript">
-
-// Validate "checkSpares" textbox
-var checkSpares = document.getElementById("checkSpares");
-
-var partNum = document.getElementById("partNum");
-var itemType = document.getElementById("itemType");
-var description = document.getElementById("description");
-var compitableDevice = document.getElementById("compitableDevice");
-
-checkSpares.addEventListener("click", function () {
-	partNum.readOnly = !checkSpares.checked;
-	itemType.readOnly = !checkSpares.checked;
-	description.readOnly = !checkSpares.checked;
-	compitableDevice.readOnly = !checkSpares.checked;
-});
-partNum.addEventListener("focus", function (evt) {
-     // Checkbox must be checked before data can be entered into textbox
-    partNum.readOnly = !checkSpares.checked;
-});
-itemType.addEventListener("focus", function (evt) {
-     // Checkbox must be checked before data can be entered into textbox
-    itemType.readOnly = !checkSpares.checked;
-});
-description.addEventListener("focus", function (evt) {
-     // Checkbox must be checked before data can be entered into textbox
-    description.readOnly = !checkSpares.checked;
-});
-compitableDevice.addEventListener("focus", function (evt) {
-     // Checkbox must be checked before data can be entered into textbox
-    compitableDevice.readOnly = !checkSpares.checked;
-    compitableDevice.readOnly = !checkSpares.checked;
-});
-
-</script>
-
-	<!-- Disable checkbox if quantity is not zero -->
-	<script type="text/javascript">
-
-function userTyped(commen, e){
-    if(e.value.length > 0){
-        document.getElementById(commen).disabled=false;
-    }else{
-        document.getElementById(commen).disabled=true;
-    }
- }
-
-</script>
-
-
-	<!--Mono and Colour Selection-->
-	<script type="text/javascript">
-	
-	function CheckColors(val){
-	 var element=document.getElementById('partNum');
-	 if(val=='hide checkbox'||val== '' )
-		 element.style.display='none';
-	 else
-	 	element.style.display='block';
-	   
-	}
-</script>
-
-	<script language="javascript">
-		function addRow(tableID) {
-
-			var table = document.getElementById(tableID);
-
-			var rowCount = table.rows.length;
-			var row = table.insertRow(rowCount);
-
-			var colCount = table.rows[0].cells.length;
-
-			for(var i=0; i<colCount; i++) {
-
-				var newcell	= row.insertCell(i);
-
-				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
-				//alert(newcell.childNodes);
-				switch(newcell.childNodes[0].type) {
-					case "text":
-							newcell.childNodes[0].value = "";
-							break;
-					case "checkbox":
-							newcell.childNodes[0].checked = false;
-							break;
-					case "select-one":
-							newcell.childNodes[0].selectedIndex = 0;
-							break;
-				}
-			}
-		}
-
-		function deleteRow(tableID) {
-			try {
-			var table = document.getElementById(tableID);
-			var rowCount = table.rows.length;
-
-			for(var i=0; i<rowCount; i++) {
-				var row = table.rows[i];
-				var chkbox = row.cells[0].childNodes[0];
-				if(null != chkbox && true == chkbox.checked) {
-					if(rowCount <= 1) {
-						alert("Cannot delete all the rows.");
-						break;
-					}
-					table.deleteRow(i);
-					rowCount--;
-					i--;
-				}
-
-
-			}
-			}catch(e) {
-				alert(e);
-			}
-		}
-
-	</script>
-
-
-	<!-- Create datalist to populate search -->
-	<script type="text/javascript">
-
-// Get the <datalist> and <input> elements.
-var dataList = document.getElementById('json-datalist');
-var input = document.getElementById('ajax');
-
-// Create a new XMLHttpRequest.
-var request = new XMLHttpRequest();
-
-// Handle state changes for the request.
-request.onreadystatechange = function(response) {
-  if (request.readyState === 4) {
-    if (request.status === 200) {
-      // Parse the JSON
-      var jsonOptions = JSON.parse(request.responseText);
-  
-      // Loop over the JSON array.
-      jsonOptions.forEach(function(item) {
-        // Create a new <option> element.
-        var option = document.createElement('option');
-        // Set the value using the item in the JSON array.
-        option.value = item;
-        // Add the <option> element to the <datalist>.
-        dataList.appendChild(option);
-      });
-      
-      // Update the placeholder text.
-      input.placeholder = "e.g. datalist";
-    } else {
-      // An error occured :(
-      input.placeholder = "Couldn't load datalist options :(";
-    }
-  }
-};
-
-// Update the placeholder text.
-input.placeholder = "Loading options...";
-
-// Set up and make the request.
-request.open('GET', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json', true);
-request.send();
-
-</script>
-
-	<script type="text/javascript">
-function isNumber(evt) {
-    evt = (evt) ? evt : window.event;
-    var charCode = (evt.which) ? evt.which : evt.keyCode;
-    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-        return false;
-    }
-    return true;
-}
-</script>
-
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
-	function upperCaseF(a){
-	    setTimeout(function(){
-	        a.value = a.value.toUpperCase();
-	    }, 1);
-	}
-</script>
-
-
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchpartNumber')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													partNumber : {
-														validators : {
-															stringLength : {
-																min : 3,
-															},
-															notEmpty : {
-																message : 'Part number is required to search and cannot be empty'
-															}
-														}
-													},
-												}
-											});
-						});
-	</script>
-
-	<!-- Validate add part -->
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#saveSpareParts')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													partNumber : {
-														validators : {
-															notEmpty : {
-																message : 'Part number is required and cannot be empty'
-															}
-														}
-													},
-													itemType : {
-														validators : {
-															notEmpty : {
-																message : 'Item type is required and cannot be empty'
-															}
-														}
-													},
-													quantity : {
-														validators : {
-															notEmpty : {
-																message : 'Quantity is required and cannot be empty'
-															}
-														}
-													},
-													description : {
-														validators : {
-															notEmpty : {
-																message : 'Description is required and cannot be empty'
-															}
-														}
-													},
-												}
-											});
-						});
-	</script>
 
 </body>
 

@@ -5,10 +5,10 @@
 <title>Change Password | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />"/>
-
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -127,110 +127,21 @@
 	<!-- / velaphanda_containter -->
 
 	<!-- Script -->
-	<script type="text/javascript" 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-	<script type="text/javascript" 	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript" 	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<!-- /Script-->
-	
-	<!-- Validate Reset Password -->
-	<script>
-		$(document).ready(function() {
-							$('#changePass').bootstrapValidator( {
-							feedbackIcons : {
-								valid : 'glyphicon glyphicon-ok',
-								invalid : 'glyphicon glyphicon-remove',
-								validating : 'glyphicon glyphicon-refresh'
-							},
-							fields : {
-							 // Check the password strength
-							 //It must contain at least one upper case character
-							                         //It must contain at least one lower case character
-							                         //It must contain atleast one special character
-							                         //It must contain at least one digit
-													/* newpassword: {
-											            validators: {
-											                identical: {
-											                    field: 'confirmPassword',
-											                    message: 'The password and its confirm are not the same'
-											                },
-															regexp: {
-											                    regexp:  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
-											                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, one special character and  at least one digit'
-											            	}
-											            }
-											        },
-											        // Check the password strength
-							                         //It must contain at least one upper case character
-							                         //It must contain at least one lower case character
-							                         //It must contain atleast one special character
-							                         //It must contain at least one digit
-											        confirmpassword: {
-											            validators: {
-											                identical: {
-											                    field: 'newpassword',
-											                    message: 'The password and its confirm are not the same'
-											                },
-															regexp: {
-											                    regexp: /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/,
-											                    message: 'Password must be more than 6 characters long, contain at least one upper case, one lower case, one special character and  at least one digit'
-											            	}
-																					               
-											            }
-											        }, */
-											        
-											        newpassword: {
-										                validators: {
-										                    notEmpty: {
-										                        message: 'The password is required and can\'t be empty'
-										                    },
-										                    identical: {
-										                        field: 'confirmpassword',
-										                        message: 'The password and its confirm are not the same'
-										                    },
-										                    stringLength: {
-										                        min: 6,
-										                        message: 'Password must be more than 6 characters long'
-										                    },
-										                    regexp: {
-											                    regexp: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[\d])(?=.*?[^\sa-zA-Z0-9]).{6,}$/,
-											                    message: 'Password must contain at least one upper case, one lower case, one special character and  at least one digit'
-											            	}
-										                }
-										            },
-										            confirmpassword: {
-										                validators: {
-										                    notEmpty: {
-										                        message: 'The confirm password is required and can\'t be empty'
-										                    },
-										                    identical: {
-										                        field: 'newpassword',
-										                        message: 'The password and its confirm are not the same'
-										                    },
-										                    stringLength: {
-										                        min: 6,
-										                        message: 'Password must be more than 6 characters long'
-										                    },
-										                    regexp: {
-										                    	regexp: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[\d])(?=.*?[^\sa-zA-Z0-9]).{6,}$/,
-											                    message: 'Password must contain at least one upper case, one lower case, one special character and  at least one digit'
-											            	}
-										                }
-										            },
 
-												}
-											});
-						});
-	</script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+		
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	
-	<!-- Password change alert script -->
-	<script>
-	$(document).on('click', ':not(form)[data-confirm]', function(e){
-    if(!confirm($(this).data('confirm'))){
-      e.stopImmediatePropagation();
-      e.preventDefault();
-		}
-	});
-	</script>
+	<!-- /Script -->
 	
 </body>
 </html>

@@ -165,7 +165,7 @@
 						</div>
 						
 					
-				</form:form>
+					</form:form>
 						
 					</div><!-- /tab-content -->									
 				</div><!-- /panel body -->
@@ -176,171 +176,20 @@
 		<!--/ Footer -->
 	</div><!-- / velaphanda_containter -->
 	
-<!-- Script -->
-<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script> 
-<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-<!-- //Script -->
+	<!-- Script -->
 
-<!-- Validate register employee -->
-<script>
- $(document).ready(function() {
-    $('#addEmployee').bootstrapValidator({
-         feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-        	firstName: {
-                validators: {
-					stringLength : {
-						min : 2,
-					},
-                    notEmpty: {
-                        message: 'First Name is required and cannot be empty'
-                    }
-                }
-            },
-            lastName: {
-                validators: {
-					stringLength : {
-						min : 2,
-					},
-                    notEmpty: {
-                        message: 'Last Name is required and cannot be empty'
-                    }
-                }
-            },
-            title: {
-                validators: {
-                    notEmpty: {
-                        message: 'Title is required and cannot be empty'
-                    }
-                }
-            },
-            gender: {
-                validators: {
-                    notEmpty: {
-                        message: 'Gender is required and cannot be empty'
-                    }
-                }
-            },
-            username: {
-                validators: {
-                    notEmpty: {
-					stringLength : {
-						min : 2,
-					},
-                        message: 'Username is required and cannot be empty'
-                    }
-                }
-            },
-            password: {
-                validators: {
-                    notEmpty: {
-					stringLength : {
-						min : 4,
-					},
-                        message: 'Password is required and cannot be empty'
-                    }
-                }
-            },
-            cellphoneNumber : {
-				validators : {
-					notEmpty : {
-						message : 'Cellphone number is required and cannot be empty'
-					},
-					regexp: {
-						
-						regexp: /^0[0-9].*$/,
-						message :'Cellphone number must start with 0 (Zero)'
-					}, 
-					phone : {
-						country : 'US',
-						message : 'Please provide a vaild Cellphone Number'
-					}
-					
-				}
-			},
-            email: {
-                validators: {
-                    notEmpty: {
-                        message: 'The email address is required and cannot be empty'
-                    },
-                     emailAddress: {
-                        message: 'The email address is not valid'
-                    } 
-                }
-            },
-            role: {
-                validators: {
-                    notEmpty: {
-                        message: 'Role is required and cannot be empty'
-                    }
-                }
-            },
-            cellNumber : {
-				validators : {
-					notEmpty : {
-						message : 'Please enter 10 numbers'
-					},
-					regexp: {
-						
-						regexp: /^0[0-9].*$/,
-						message :'Cellphone number must start with 0 (Zero)'
-					}, 
-					phone : {
-						country : 'US',
-						message : 'Please provide a vaild Cellphone Number'
-					}
-					
-				}
-			},
-        }
-    });
-});
-</script>	
+	<script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+		
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	
-	<!-- Accept alphanumeric characters only -->
-	<script type="text/javascript">
-	function isNumber(evt) {
-	    evt = (evt) ? evt : window.event;
-	    var charCode = (evt.which) ? evt.which : evt.keyCode;
-	    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-	        return false;
-	    }
-	    return true;
-	}
-	</script>
-	
-<!-- Check gender selection -->	
-<script type="text/javascript">
-	
-function CheckGender(val){
-	
-	 var element=document.getElementById('title');
-	  
-	 if (val=='pick title' || val=='Mr')
-	 {
-		document.getElementById('gender').value = 'Male';
-	 }
-	 else if (val=='pick title' || val=="Miss")
-	 {
-		document.getElementById('gender').value = 'Female'; 
-	 }
-	 else if (val=='pick title' || val=="Mrs")
-	 {
-	    document.getElementById('gender').value = 'Female'; 
-	 }
-	 else
-	 {
-		 document.getElementById('gender').value = '';  
-	 }
-	 
-}
+	<!-- /Script -->
 
-</script>
-	
 	</body>
 </html>

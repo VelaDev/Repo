@@ -78,7 +78,6 @@
 							</div>
 						</div>
 
-
 						<!-- Select type Item Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Item Type</label>
@@ -121,9 +120,6 @@
 								</div>
 							</div>
 						</div>
-
-
-
 						<br>
 						<div class="form-group row">
 							<div class="col-sm-offset-3 col-sm-6">
@@ -133,7 +129,6 @@
 							</div>
 						</div>
 					</form:form>
-			
 
 				</div>
 				<!-- /panel body -->
@@ -148,98 +143,20 @@
 	<!-- / velaphanda_containter -->
 
 
-	<!-- Scripts -->
+	<!-- Script -->
+
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
-	<!-- /Scripts -->
-
-	<!-- Validate add part -->
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#spareParts')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													partNumber : {
-														validators : {
-															notEmpty : {
-																message : 'Part number is required and cannot be empty'
-															}
-														}
-													},
-													itemType : {
-														validators : {
-															notEmpty : {
-																message : 'Item type is required and cannot be empty'
-															}
-														}
-													},
-													quantity : {
-														validators : {
-															notEmpty : {
-																message : 'Quantity is required and cannot be empty'
-															}
-														}
-													},
-													itemDescription : {
-														validators : {
-															notEmpty : {
-																message : 'Description is required and cannot be empty'
-															}
-														}
-													},
-													receivedBy  : {
-														validators : {
-															notEmpty : {
-																message : 'Received by is required and cannot be empty'
-															}
-														}
-													},
-													compitableDevice: {
-														validators : {
-															notEmpty : {
-																message : 'Compitable Device by is required and cannot be empty'
-															}
-														}
-													}
-												}
-											});
-						});
-	</script>
-
-	<script type="text/javascript">
-
-	function isNumber(evt) {
-	    evt = (evt) ? evt : window.event;
-	    var charCode = (evt.which) ? evt.which : evt.keyCode;
-	    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
-	        return false;
-	    }
-	    return true;
-	}
+		
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	
-</script>
-
-	<!-- Make all Serials numbers UpperCase  -->
-	<script type="text/javascript">
-	function upperCaseF(a){
-	    setTimeout(function(){
-	        a.value = a.value.toUpperCase();
-	    }, 1);
-	}
-</script>
+	<!-- /Script -->
 
 </body>
 </html>

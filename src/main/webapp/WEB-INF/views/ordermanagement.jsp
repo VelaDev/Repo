@@ -39,16 +39,6 @@
 	width: 10%;
 }
 
-.searchorder {
-	#border: 1px solid #000;
-	#display: inline-block;
-}
-
-input, button {
-	background-color: transparent;
-	border: 0;
-}
-
 .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
     z-index: 2;
     height: 26px;
@@ -176,10 +166,9 @@ input, button {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20">
-											<h4 align="center">1</h4>
+											<h4 align="center">0</h4>
 											<p align="center">Orders to Ship</p>
 										</div>
-
 								</a></li>
 
 								<li><a href='#closedOrder' data-parallel-url="closedOrder"
@@ -188,7 +177,7 @@ input, button {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left">
-											<h4 align="center">2</h4>
+											<h4 align="center">0</h4>
 											<p align="center">Closed Order</p>
 										</div>
 								</a></li>

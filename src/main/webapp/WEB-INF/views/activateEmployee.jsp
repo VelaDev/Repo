@@ -190,55 +190,16 @@
 	</div>
 	<!-- / velaphanda_containter -->
 
-	<!-- Validator -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
-	<!-- Deactive script -->
-	<script>
-		$(document).on('click', ':not(form)[data-confirm]', function(e) {
-			if (!confirm($(this).data('confirm'))) {
-				e.stopImmediatePropagation();
-				e.preventDefault();
-			}
-		});
-	</script>
-
-	<!-- Validate update employee -->
-
-	<!--Validate search-->
-	<script>
-		$(document)
-				.ready(
-						function() {
-							$('#searchEmployee')
-									.bootstrapValidator(
-											{
-												feedbackIcons : {
-													valid : 'glyphicon glyphicon-ok',
-													invalid : 'glyphicon glyphicon-remove',
-													validating : 'glyphicon glyphicon-refresh'
-												},
-												fields : {
-													empName : {
-														validators : {
-															stringLength : {
-																min : 2,
-															},
-															notEmpty : {
-																message : 'Employee name is required to search and cannot be empty'
-															}
-														}
-													}
-												}
-											});
-						});
-	</script>
-
+		
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 
 </body>
 </html>

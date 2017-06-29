@@ -723,7 +723,7 @@ input.currency {
 	
 	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	
-	<!-- myDatatable table -->
+	<!-- //myDatatable table -->
 	<script type="text/javascript">	
 	$(document).ready(function() {
 		$('#myDatatable').DataTable({

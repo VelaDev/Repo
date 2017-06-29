@@ -775,7 +775,7 @@ $(document)
 													}
 												}
 											},
-											
+
 											faxunitserial : {
 												validators : {
 													stringLength : {

@@ -63,8 +63,7 @@
 
 				</div>
 			</c:if>
-			<form:form action="searchOrderNumber" method="post"
-				id="searchOrderNumber">
+			<form:form action="searchOrderNumber" method="post" id="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
 
@@ -76,6 +75,7 @@
 								  class="glyphicon glyphicon-list"></i></span> <select
 									 name="customers" id="customers" class="form-control selectpicker">
 										<option value="">All Customers</option>
+										<option value=""></option>
      								</select>
 							</div>
 						</div>
@@ -105,12 +105,13 @@
 					<div class="form-group ">											
 					   <div class="col-md-4 selectContainer">
 							<div class="input-group">
-								<span class="input-group-addon"><i
-								  class="glyphicon glyphicon-list"></i></span> <select
-									 name="selectDate" id="selectDate" class="form-control selectpicker">
-										<option value="Last 7 Days">Last 7 Days</option>
-										<option value="Last 14 Days">Last 14 Days</option>
-     								</select>
+								<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span> 
+								  <select name="selectDate" id="selectDate" class="form-control selectpicker">
+									 	<option value="Last 14 Days">Last 14 Days</option>
+									 	<option value="Last 24 hours">Last 24 hours</option>
+									 	<option value="Last 7 Days">Last 7 Days</option>									 	
+									 	<option value="Last 30 Days">Last 30 Days</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -436,5 +437,38 @@
 
 
 		<!--/Paging the table -->
+		
+<!-- Check date from seven days ago to current date -->
+<script type="text/javascript">
+
+$(document).ready(function() {
+  var date = new Date();
+  var sevendaysago = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7);
+  var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  //var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+
+  $('#selectDate').datepicker({
+  
+		format : "yyyy-mm-dd",
+		todayHighlight: true,
+		//startDate: sevendaysago,
+		//endDate: end,
+		autoclose: true
+  });
+  $('#endDatePicker').datepicker({
+  
+		format : "yyyy-mm-dd",
+		todayHighlight: true,
+		//startDate: today,
+		//endDate: end,
+		autoclose: true
+  });
+
+  $('#startDatePicker').datepicker('setDate', sevendaysago);
+  $('#endDatePicker').datepicker('setDate', today);
+});
+</script>
+		
+		
 </body>
 </html>

@@ -141,8 +141,9 @@
 		});
 	</script>
 	
-	
-<script>
+<!-- Check date from seven days ago to current date -->
+<script type="text/javascript">
+
 $(document).ready(function() {
   var date = new Date();
   var sevendaysago = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7);
@@ -170,6 +171,7 @@ $(document).ready(function() {
   $('#endDatePicker').datepicker('setDate', today);
 });
 </script>
+
 <script>
 $(document).ready(function() {
 	$('#sortByDate').bootstrapValidator({

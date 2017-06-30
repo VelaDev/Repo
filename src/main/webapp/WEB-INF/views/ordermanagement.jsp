@@ -13,6 +13,8 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrap-3.3.7/css/daterangepicker.css" />" />
 
 <!-- Little Dash-board -->
 <link rel="stylesheet" type="text/css"
@@ -101,20 +103,14 @@
 				</div>
 				
 				<div align=right>					
-					<!-- Select type selectDate-->
-					<div class="form-group ">											
-					   <div class="col-md-4 selectContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span> 
-								  <select name="selectDate" id="selectDate" class="form-control selectpicker">
-									 	<option value="Last 14 Days">Last 14 Days</option>
-									 	<option value="Last 24 hours">Last 24 hours</option>
-									 	<option value="Last 7 Days">Last 7 Days</option>									 	
-									 	<option value="Last 30 Days">Last 30 Days</option>
-								</select>
-							</div>
-						</div>
+					<!-- Select type selectDateRange-->
+										
+					<div id="selectDateRange" name="selectDateRange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 29%; margin-right:1%;">
+					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+					<span></span> <b class="caret"></b>
 					</div>
+					
+					
 				</div>
 				
 			</form:form>
@@ -378,13 +374,13 @@
 		<!-- / velaphanda_containter -->
 
 		<!-- Script -->
-		<script type="text/javascript"
-			src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		<script type="text/javascript"
-			src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-		<script type="text/javascript"
-			src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-
+		<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		<script type="text/javascript" src="<c:url value="/resources/jquery/moment/moment.min.js"/>"></script>	
+		<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/daterangepicker.js"/>"></script>
+			
+		<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+		
+	
 		<!-- Datatables -->
 		<script type="text/javascript"
 			src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
@@ -435,40 +431,34 @@
 			});
 		</script>
 
-
-		<!--/Paging the table -->
-		
-<!-- Check date from seven days ago to current date -->
+<!-- Get the date from  -->
 <script type="text/javascript">
+$(function() {
 
-$(document).ready(function() {
-  var date = new Date();
-  var sevendaysago = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7);
-  var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-  //var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+    var start = moment().subtract(29, 'days');
+    var end = moment();
 
-  $('#selectDate').datepicker({
-  
-		format : "yyyy-mm-dd",
-		todayHighlight: true,
-		//startDate: sevendaysago,
-		//endDate: end,
-		autoclose: true
-  });
-  $('#endDatePicker').datepicker({
-  
-		format : "yyyy-mm-dd",
-		todayHighlight: true,
-		//startDate: today,
-		//endDate: end,
-		autoclose: true
-  });
+    function cb(start, end) {
+        $('#selectDateRange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
 
-  $('#startDatePicker').datepicker('setDate', sevendaysago);
-  $('#endDatePicker').datepicker('setDate', today);
+    $('#selectDateRange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+           'Today': [moment(), moment()],
+           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+           'This Month': [moment().startOf('month'), moment().endOf('month')],
+           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        }
+    }, cb);
+
+    cb(start, end);
+    
 });
 </script>
-		
 		
 </body>
 </html>

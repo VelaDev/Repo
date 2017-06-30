@@ -1191,6 +1191,7 @@ function CheckStockType(val){
 $(document).ready(function() {
 	$('#startDatePicker').datepicker({
 		format : "yyyy-mm-dd",
+		todayHighlight: true,
 		//startDate: 'd0',
 		autoclose : true
 	});
@@ -1199,6 +1200,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#endDatePicker').datepicker({
 		format : "yyyy-mm-dd",
+		todayHighlight: true,
 		//	startDate: 'd0',
 		autoclose : true
 	});
@@ -1207,6 +1209,7 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$('#installDatePicker').datepicker({
 		format : "yyyy-mm-dd",
+		todayHighlight: true,
 		//startDate: 'd0',
 		autoclose : true
 	});

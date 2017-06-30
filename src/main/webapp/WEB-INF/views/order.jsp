@@ -47,7 +47,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Place Order</b>
+							<b>New Order</b>
 						</div>
 					</h3>
 				</div>

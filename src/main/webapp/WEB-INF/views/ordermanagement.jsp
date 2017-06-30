@@ -41,13 +41,23 @@
 	width: 10%;
 }
 
-.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
-    z-index: 2;
-    height: 26px;
-    margin-left: -1px;
-    padding-bottom: 17px;
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
+	{
+	z-index: 2;
+	height: 26px;
+	margin-left: -1px;
+	padding-bottom: 17px;
 }
 
+.db-summary li:first-child {
+	border-right: 1px #dfdfdf solid;
+}
+
+.db-summary li {
+	float: left;
+	box-sizing: border-box;
+	border-right: 1px #dfdfdf solid;
+}
 </style>
 
 </head>
@@ -65,61 +75,65 @@
 
 				</div>
 			</c:if>
-			<form:form action="searchOrderNumber" method="post" id="searchOrderNumber">
+			<form:form action="searchOrderNumber" method="post"
+				id="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
 
 					<!-- Select type customers-->
-					<div class="form-group ">											
-					   <div class="col-md-4 selectContainer">
+					<div class="form-group ">
+						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-								  class="glyphicon glyphicon-list"></i></span> <select
-									 name="customers" id="customers" class="form-control selectpicker">
-										<option value="">All Customers</option>
-										<option value=""></option>
-     								</select>
+									class="glyphicon glyphicon-list"></i></span> <select name="customers"
+									id="customers" class="form-control selectpicker">
+									<option value="">All Customers</option>
+									<option value=""></option>
+								</select>
 							</div>
 						</div>
 					</div>
-					
-					<!-- Text input Search-->						
+
+					<!-- Text input Search-->
 					<div class="form-group">
-					 	<div class="col-md-4 inputGroupContainer">							
-						     <div class="input-group">
-						 		 <input type="text" placeholder="Search By Order Number" class="form-control" name="orderNum" id="orderNum">
-						  			<span class="input-group-btn">
-						    			<button class="btn btn-success" type="button">Search</button>
-						  			</span>
-							 </div><!-- /input-group -->
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+								<input type="text" placeholder="Search By Order Number"
+									class="form-control" name="orderNum" id="orderNum"> <span
+									class="input-group-btn">
+									<button class="btn btn-success" type="button">
+										<div class="up" style="margin-top: -8%; color: white;">Search</div>
+									</button>
+								</span>
+							</div>
+							<!-- /input-group -->
 						</div>
-						
-							<!-- Iterating over the list sent from Controller -->
-							<datalist id=""> <c:forEach var="list" items="">
-								<option value="">
-							</c:forEach> </datalist>
-						
-					 </div>					
-				</div>
-				
-				<div align=right>					
-					<!-- Select type selectDateRange-->
-										
-					<div id="selectDateRange" name="selectDateRange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 29%; margin-right:1%;">
-					<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-					<span></span> <b class="caret"></b>
+
+						<!-- Iterating over the list sent from Controller -->
+						<datalist id=""> <c:forEach var="list" items="">
+							<option value="">
+						</c:forEach> </datalist>
+
 					</div>
-					
-					
 				</div>
-				
+
+				<div align=right>
+					<!-- Select type selectDateRange-->
+					<div id="selectDateRange" name="selectDateRange" class="pull-right"
+						style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 16%; margin-right: 1%;">
+						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+						<span></span> <b class="caret"></b>
+					</div>
+				</div>
+
 			</form:form>
 
 			<div class="panel panel-success">
 				<!--Search-->
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<br/><br/>
+						<br />
+						<br />
 						<div align="left">
 							<b>Orders</b>
 						</div>
@@ -139,9 +153,12 @@
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
-										<div class="summary-count pull-left ml20">
-											<h4 style="font-size:23px;" align="center">Place New Order</h4>
-											<!-- <p align="center">Place New Order</p> -->
+										<div class="summary-count pull-left ml20"
+											style="margin-left: 28%">
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+											<br />
+											<br />
+											<p align="center">Create Order</p>
 										</div>
 								</a></li>
 
@@ -151,7 +168,8 @@
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 
-										<div class="summary-count pull-left ml20">
+										<div class="summary-count pull-left ml20"
+											style="margin-left: -8%">
 											<h4 align="center">${newOrder}</h4>
 											<p align="center">Orders to Approve</p>
 										</div>
@@ -211,16 +229,19 @@
 												<!-- Iterating over the list sent from Controller -->
 												<c:forEach var="list" items="${orderList}">
 													<tr>
-														<td><a href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+														<td><a
+															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
 														<td>${list.dateOrdered}</td>
 														<td>${list.status}</td>
-														 <c:if test="${empty list.customer.customerName }">
-														 <td>N/A</td>
-														 </c:if>
-														  <c:if test="${not empty list.customer.customerName }">
-														     <td>${list.customer.customerName }</td></c:if>
+														<c:if test="${empty list.customer.customerName }">
+															<td>N/A</td>
+														</c:if>
+														<c:if test="${not empty list.customer.customerName }">
+															<td>${list.customer.customerName }</td>
+														</c:if>
 														<td>${list.stockType}</td>
-														<td>${list.employee.firstName} ${list.employee.lastName}</td>
+														<td>${list.employee.firstName}
+															${list.employee.lastName}</td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -374,13 +395,17 @@
 		<!-- / velaphanda_containter -->
 
 		<!-- Script -->
-		<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		<script type="text/javascript" src="<c:url value="/resources/jquery/moment/moment.min.js"/>"></script>	
-		<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/daterangepicker.js"/>"></script>
-			
-		<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-		
-	
+		<script type="text/javascript"
+			src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/jquery/moment/moment.min.js"/>"></script>
+		<script type="text/javascript"
+			src="<c:url value="/resources/bootstrap-3.3.7/js/daterangepicker.js"/>"></script>
+
+		<script type="text/javascript"
+			src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+
+
 		<!-- Datatables -->
 		<script type="text/javascript"
 			src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
@@ -431,34 +456,49 @@
 			});
 		</script>
 
-<!-- Get the date from  -->
-<script type="text/javascript">
-$(function() {
+		<!-- Get the date from  -->
+		<script type="text/javascript">
+			$(function() {
 
-    var start = moment().subtract(29, 'days');
-    var end = moment();
+				var start = moment().subtract(29, 'days');
+				var end = moment();
 
-    function cb(start, end) {
-        $('#selectDateRange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
-    }
+				function cb(start, end) {
+					$('#selectDateRange span').html(
+							start.format('YYYY-MM-DD') + ' - '
+									+ end.format('YYYY-MM-DD'));
+				}
 
-    $('#selectDateRange').daterangepicker({
-        startDate: start,
-        endDate: end,
-        ranges: {
-           'Today': [moment(), moment()],
-           'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-           'This Month': [moment().startOf('month'), moment().endOf('month')],
-           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        }
-    }, cb);
+				$('#selectDateRange')
+						.daterangepicker(
+								{
+									startDate : start,
+									endDate : end,
+									ranges : {
+										'Today' : [ moment(), moment() ],
+										'Yesterday' : [
+												moment().subtract(1, 'days'),
+												moment().subtract(1, 'days') ],
+										'Last 7 Days' : [
+												moment().subtract(6, 'days'),
+												moment() ],
+										'Last 30 Days' : [
+												moment().subtract(29, 'days'),
+												moment() ],
+										'This Month' : [
+												moment().startOf('month'),
+												moment().endOf('month') ],
+										'Last Month' : [
+												moment().subtract(1, 'month')
+														.startOf('month'),
+												moment().subtract(1, 'month')
+														.endOf('month') ]
+									}
+								}, cb);
 
-    cb(start, end);
-    
-});
-</script>
-		
+				cb(start, end);
+
+			});
+		</script>
 </body>
 </html>

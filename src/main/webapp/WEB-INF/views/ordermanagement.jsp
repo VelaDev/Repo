@@ -439,7 +439,7 @@ $(function() {
     var end = moment();
 
     function cb(start, end) {
-        $('#selectDateRange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        $('#selectDateRange span').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
     }
 
     $('#selectDateRange').daterangepicker({

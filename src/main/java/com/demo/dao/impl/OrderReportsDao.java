@@ -1,8 +1,11 @@
 package com.demo.dao.impl;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+
 
 
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
@@ -11,6 +14,7 @@ import net.sf.dynamicreports.report.builder.column.Columns;
 import net.sf.dynamicreports.report.builder.component.Components;
 import net.sf.dynamicreports.report.builder.datatype.DataTypes;
 import net.sf.dynamicreports.report.constant.HorizontalAlignment;
+import net.sf.dynamicreports.report.exception.DRException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,7 +26,6 @@ import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrderReportsDaoInt;
 import com.demo.dao.OrdersDaoInt;
 import com.demo.model.CustomerContactDetails;
-import com.demo.model.OrderDetails;
 import com.demo.model.OrderHeader;
 import com.mysql.jdbc.Connection;
 
@@ -36,12 +39,9 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	private OrderDetailsDaoInt detailsDaoInt;
 	@Autowired
 	private CustomerContactDetailsDaoInt contactDetails;
-
-	private OrderHeader orderHeader;
-	private CustomerContactDetails customerContact;
-
 	
-	public Connection getConnection(){
+	
+	private static Connection getConnection(){
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -55,36 +55,38 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 		}
 		return connection;
 	}
+	
 	@Override
 	public void createPdf(Integer recordID) {
-       System.out.println("Out to print");
+	
+		Connection tempConnection = getConnection();
+		JasperReportBuilder report = DynamicReports.report();//a new report
+		report
+		  .columns(
+				  Columns.column("Part Number:", "Part_Number",
+							DataTypes.stringType()).setHorizontalAlignment(
+							HorizontalAlignment.LEFT),
+					Columns.column("Description", "Description",
+							DataTypes.stringType()),
+					Columns.column("Qty Ordered", "Quantity",
+							DataTypes.integerType())
+							.setHorizontalAlignment(
+									HorizontalAlignment.LEFT)
+		  	)
+		  .title(//title of the report
+		  	Components.text("Velaphanda Reports Testing")
+		  		.setHorizontalAlignment(HorizontalAlignment.CENTER))
+		  .pageFooter(Components.pageXofY())//show page number on the page footer
+		  .setDataSource("SELECT Part_Number, Description, Quantity FROM order_details where Order_Number ="+recordID, tempConnection);
+
 		try {
-			Connection connection = getConnection();
-			JasperReportBuilder report = DynamicReports.report();// a new report
-
-				report.columns(
-						Columns.column("Part Number:", "Part_Number",
-								DataTypes.stringType()).setHorizontalAlignment(
-								HorizontalAlignment.LEFT),
-						Columns.column("Description", "Description",
-								DataTypes.stringType()),
-						Columns.column("Qty Ordered", "Quantity",
-								DataTypes.integerType()),
-						Columns.column("Qty Delivered", "Quantity",
-								DataTypes.integerType())
-								.setHorizontalAlignment(
-										HorizontalAlignment.LEFT))
-						.title(// title of the report
-						Components.text("Delivery Note Report")
-								.setHorizontalAlignment(
-										HorizontalAlignment.CENTER))
-						.pageFooter(Components.pageXofY()).setDataSource("SELECT Part_Number, Description, Quantity, FROM order_details where Order_Number =" +recordID, connection);
-				
-			report.show();// show the report
-			report.toPdf(new FileOutputStream(
-					"/C:/Users/Mohapi/Desktop/BackUp/report.pdf"));
-		} catch (Exception e) {
-
-		}
+			report.show(false);
+			//report.toPdf(new FileOutputStream("/C:/Users/Mohapi/Desktop/BackUp/report.pdf"));//export the report to a pdf file
+		} catch (DRException e) {
+			e.printStackTrace();
+		} /*catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}*/
+		
 	}
 }

@@ -76,7 +76,7 @@
 				</div>
 			</c:if>
 			<form:form action="searchOrderNumber" method="post"
-				id="searchOrderNumber">
+				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
 
@@ -85,10 +85,14 @@
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select name="customers"
+									class="glyphicon glyphicon-list"></i></span> <select name="customerName"
 									id="customers" class="form-control selectpicker">
 									<option value="">All Customers</option>
-									<option value=""></option>
+									<c:forEach items="${customers}" var="customer">
+									
+										<option value="${customer.customerName}">${customer.customerName}</option>
+
+									</c:forEach>
 								</select>
 							</div>
 						</div>
@@ -132,8 +136,7 @@
 				<!--Search-->
 				<div class="panel-heading">
 					<h3 class="panel-title">
-						<br />
-						<br />
+						<br /> <br />
 						<div align="left">
 							<b>Orders</b>
 						</div>
@@ -156,8 +159,7 @@
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 28%">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-											<br />
-											<br />
+											<br /> <br />
 											<p align="center">Create Order</p>
 										</div>
 								</a></li>

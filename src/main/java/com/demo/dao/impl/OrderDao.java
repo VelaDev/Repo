@@ -776,7 +776,7 @@ public class OrderDao implements OrdersDaoInt {
 		
 		return 0;
 	}
-
+    
 	@Override
 	public int countShippedOrders(String lastFourteenDays) {
 		// TODO Auto-generated method stub

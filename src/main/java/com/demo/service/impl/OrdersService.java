@@ -139,8 +139,7 @@ public class OrdersService implements OrdersServiceInt{
 
 	@Override
 	public int countNewOrders(String lastFourteenDays) {
-		// TODO Auto-generated method stub
-		return 0;
+		return ordersDAO.countNewOrders(lastFourteenDays);
 	}
 
 	@Override

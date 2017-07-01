@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.xml.sax.SAXException;
 
 import com.demo.bean.OrdersBean;
 import com.demo.dao.OrderDetailsDaoInt;
@@ -769,9 +766,10 @@ public class OrdersController {
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			int a = ordersServiceInt.countNewOrders("");
-			System.out.println(a);
+			int a = ordersServiceInt.countNewOrders("today");
+			System.out.println("Print in controller "+a);
 			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+			model.addObject("customers", customerServiceInt.getClientList());
 			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordermanagement");

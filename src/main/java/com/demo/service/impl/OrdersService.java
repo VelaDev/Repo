@@ -144,19 +144,22 @@ public class OrdersService implements OrdersServiceInt{
 
 	@Override
 	public int countApprovedOrders(String lastFourteenDays) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public int countShippedOrders(String lastFourteenDays) {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
 	public List<OrderHeader> getLastFourteenDaysOrders() {
 		return ordersDAO.getLastFourteenDaysOrders();
+	}
+
+	@Override
+	public List<OrderHeader> approvedOrders() {
+		return ordersDAO.approvedOrders();
 	}
 
 

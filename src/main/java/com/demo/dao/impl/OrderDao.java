@@ -730,7 +730,6 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public int countNewOrders(String lastFourteenDays) {
 		
-		  System.out.println("Checking New Orders Count");
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date currentDate = new Date();
 		// get Calendar instance
@@ -761,7 +760,6 @@ public class OrderDao implements OrdersDaoInt {
 				dateData = myFormat.parse(normalDate);
 				if (current.compareTo(dateData) <= 0) {
 					tempCount++;
-					System.out.println(tempCount);
 				}
 			}
 		} catch (Exception exception) {
@@ -774,7 +772,43 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public int countApprovedOrders(String lastFourteenDays) {
 		
-		return 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = approvedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
 	}
     
 	@Override
@@ -823,5 +857,21 @@ public class OrderDao implements OrdersDaoInt {
 		}
 
 		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> approvedOrders() {
+		ArrayList<OrderHeader> pendingList = new ArrayList<OrderHeader>();
+		try {
+			pendingOrders = getAllOrders();
+			for (OrderHeader orderHeader : pendingOrders) {
+				if (orderHeader.getStatus().equalsIgnoreCase("Approved")) {
+					pendingList.add(orderHeader);
+				}
+			}
+		} catch (Exception e) {
+
+		}
+		return pendingList;
 	}
 }

@@ -29,6 +29,7 @@ import com.demo.service.OrdersServiceInt;
 import com.demo.service.HOStockServeceInt;
 import com.demo.service.SiteStockInt;
 import com.demo.service.TicketsServiceInt;
+import com.demo.service.VelaphandaInt;
 
 @Controller
 public class OrdersController {
@@ -59,6 +60,8 @@ public class OrdersController {
 	private OrderDetailsDaoInt detailsDaoInt;
 	@Autowired
 	private OrderHistoryInt historyInt;
+	@Autowired
+	private VelaphandaInt profile;
 	private ModelAndView model = null;
 	private String retMessage = null;
 	private Employee userName = null;
@@ -569,6 +572,7 @@ public class OrdersController {
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("velaphandaAddres", profile.getVelaphandaAddress("Velaphanda Trading & Projects"));
 			model.addObject("approver", approverName);
 			
 			if (userName.getRole().equalsIgnoreCase("Technician")) {				
@@ -583,6 +587,7 @@ public class OrdersController {
 				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("velaphandaAddres", profile.getVelaphandaAddress("Velaphanda Trading & Projects"));
 				model.addObject("status", historyInt.getAllOrderHistoryByOrderNumber(recordID));
 					
 		    	model.setViewName("ordersItemHistory");
@@ -771,6 +776,7 @@ public class OrdersController {
 			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
 			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
+			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordermanagement");
 		} else {

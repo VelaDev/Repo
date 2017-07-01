@@ -31,5 +31,6 @@ public interface OrdersServiceInt {
 	public int countApprovedOrders(String lastFourteenDays);
 	public int countShippedOrders(String lastFourteenDays);
 	public List<OrderHeader> getLastFourteenDaysOrders();
+	public List<OrderHeader> approvedOrders();
 
 }

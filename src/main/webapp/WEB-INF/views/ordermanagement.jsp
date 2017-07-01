@@ -95,50 +95,54 @@
 
 									</c:forEach>
 								</select>
-								<span
-									class="input-group-btn">
-									<button class="btn btn-success" type="submit">
-										<div class="up" style="margin-top: -8%; color: white;">Search</div>
-									</button>
-								</span>
+
 							</div>
 						</div>
 					</div>
-
-					<!-- Text input Search-->
 					<div class="form-group">
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
-								<input type="text" placeholder="Search By Order Number"
-									class="form-control" name="orderNum" id="orderNum"/> <span
-									class="input-group-btn">
-									<button class="btn btn-success" type="submit">
-										<div class="up" style="margin-top: -8%; color: white;">Search</div>
-									</button>
-								</span>
+								<!-- Select type selectDateRange-->
+								<div id="selectDateRange" name="selectDateRange" class="form-control"
+									style="background: #fff;
+										   cursor: pointer; 
+										   padding: 5px 10px; 
+										   border: 1px solid #ccc; 
+										   width: 119%;
+										   margin-left: 94%; 
+										   margin-right: 0%;">
+									<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
+									<span></span> <b class="caret"></b>
+								</div>
 							</div>
-							<!-- /input-group -->
 						</div>
-
-						<!-- Iterating over the list sent from Controller -->
-						<datalist id=""> <c:forEach var="list" items="">
-							<option value="">
-						</c:forEach> </datalist>
-
-					</div>
-				</div>
-
-				<div align=right>
-					<!-- Select type selectDateRange-->
-					<div id="selectDateRange" name="selectDateRange" class="pull-right"
-						style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 10%; margin-right: 1%;">
-						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-						<span></span> <b class="caret"></b>
-
-
 					</div>
 
-					
+
+					<div align=right>
+						<!-- Text input Search-->
+						<div class="form-group">
+							<div class="col-md-4 inputGroupContainer">
+								<div class="input-group">
+									<input type="text" placeholder="Search By Order Number"
+										class="form-control" name="orderNum" id="orderNum" /> <span
+										class="input-group-btn">
+										<button class="btn btn-success" type="submit">
+											<div class="up" style="margin-top: -8%; color: white;">Search</div>
+										</button>
+									</span>
+								</div>
+								<!-- /input-group -->
+							</div>
+
+							<!-- Iterating over the list sent from Controller -->
+							<datalist id=""> <c:forEach var="list" items="">
+								<option value="">
+							</c:forEach> </datalist>
+
+						</div>
+					</div>
+
 
 				</div>
 
@@ -479,26 +483,40 @@
 
 				function cb(start, end) {
 					start.format('YYYY-MM-DD');
-					$('#selectDateRange span').html(start.format('YYYY-MM-DD'));					
+					$('#selectDateRange span').html(start.format('YYYY-MM-DD'));
 					//document.getElementById('selectDateRange').value = start.format('YYYY-MM-DD');
 				}
 
 				$('#selectDateRange')
 						.daterangepicker(
 								{
-									  startDate: start,
-								      endDate: end,
-								      ranges: {
-								           '24 Hours': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],		  
-								           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-										   'Last 14 Days':[moment().subtract(14, 'days'), moment()],
-								           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-								           'This Month': [moment().startOf('month'), moment().endOf('month')],
-								           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-								        }
-							}, cb);
+									startDate : start,
+									endDate : end,
+									ranges : {
+										'24 Hours' : [
+												moment().subtract(1, 'days'),
+												moment().subtract(1, 'days') ],
+										'Last 7 Days' : [
+												moment().subtract(6, 'days'),
+												moment() ],
+										'Last 14 Days' : [
+												moment().subtract(14, 'days'),
+												moment() ],
+										'Last 30 Days' : [
+												moment().subtract(29, 'days'),
+												moment() ],
+										'This Month' : [
+												moment().startOf('month'),
+												moment().endOf('month') ],
+										'Last Month' : [
+												moment().subtract(1, 'month')
+														.startOf('month'),
+												moment().subtract(1, 'month')
+														.endOf('month') ]
+									}
+								}, cb);
 
-							cb(start, end);
+				cb(start, end);
 
 			});
 		</script>

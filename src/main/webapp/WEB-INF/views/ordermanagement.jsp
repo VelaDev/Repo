@@ -95,6 +95,12 @@
 
 									</c:forEach>
 								</select>
+								<span
+									class="input-group-btn">
+									<button class="btn btn-success" type="submit">
+										<div class="up" style="margin-top: -8%; color: white;">Search</div>
+									</button>
+								</span>
 							</div>
 						</div>
 					</div>
@@ -104,7 +110,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 								<input type="text" placeholder="Search By Order Number"
-									class="form-control" name="orderNum" id="orderNum"> <span
+									class="form-control" name="orderNum" id="orderNum"/> <span
 									class="input-group-btn">
 									<button class="btn btn-success" type="submit">
 										<div class="up" style="margin-top: -8%; color: white;">Search</div>
@@ -480,31 +486,19 @@
 				$('#selectDateRange')
 						.daterangepicker(
 								{
-									startDate : start,
-									endDate : end,
-									ranges : {
-										'Today' : [ moment(), moment() ],
-										'Yesterday' : [
-												moment().subtract(1, 'days'),
-												moment().subtract(1, 'days') ],
-										'Last 7 Days' : [
-												moment().subtract(6, 'days'),
-												moment() ],
-										'Last 30 Days' : [
-												moment().subtract(29, 'days'),
-												moment() ],
-										'This Month' : [
-												moment().startOf('month'),
-												moment().endOf('month') ],
-										'Last Month' : [
-												moment().subtract(1, 'month')
-														.startOf('month'),
-												moment().subtract(1, 'month')
-														.endOf('month') ]
-									}
-								}, cb);
+									  startDate: start,
+								      endDate: end,
+								      ranges: {
+								           '24 Hours': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],		  
+								           'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+										   'Last 14 Days':[moment().subtract(14, 'days'), moment()],
+								           'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+								           'This Month': [moment().startOf('month'), moment().endOf('month')],
+								           'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+								        }
+							}, cb);
 
-				cb(start, end);
+							cb(start, end);
 
 			});
 		</script>

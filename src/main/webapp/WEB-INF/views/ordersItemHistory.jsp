@@ -73,7 +73,7 @@
 									</ul>
 							</li>
 					 </ul>
-					
+					</div>
 									
 				</div>
 			</form:form>

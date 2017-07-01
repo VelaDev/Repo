@@ -85,11 +85,12 @@
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select name="customerName"
-									id="customers" class="form-control selectpicker">
+									class="glyphicon glyphicon-list"></i></span> <select
+									name="customerName" id="customers"
+									class="form-control selectpicker">
 									<option value="">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
-									
+
 										<option value="${customer.customerName}">${customer.customerName}</option>
 
 									</c:forEach>
@@ -105,7 +106,7 @@
 								<input type="text" placeholder="Search By Order Number"
 									class="form-control" name="orderNum" id="orderNum"> <span
 									class="input-group-btn">
-									<button class="btn btn-success" type="button">
+									<button class="btn btn-success" type="submit">
 										<div class="up" style="margin-top: -8%; color: white;">Search</div>
 									</button>
 								</span>
@@ -124,10 +125,15 @@
 				<div align=right>
 					<!-- Select type selectDateRange-->
 					<div id="selectDateRange" name="selectDateRange" class="pull-right"
-						style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 16%; margin-right: 1%;">
+						style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 10%; margin-right: 1%;">
 						<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
 						<span></span> <b class="caret"></b>
+
+
 					</div>
+
+					
+
 				</div>
 
 			</form:form>
@@ -466,9 +472,9 @@
 				var end = moment();
 
 				function cb(start, end) {
-					$('#selectDateRange span').html(
-							start.format('YYYY-MM-DD') + ' - '
-									+ end.format('YYYY-MM-DD'));
+					start.format('YYYY-MM-DD');
+					$('#selectDateRange span').html(start.format('YYYY-MM-DD'));					
+					//document.getElementById('selectDateRange').value = start.format('YYYY-MM-DD');
 				}
 
 				$('#selectDateRange')

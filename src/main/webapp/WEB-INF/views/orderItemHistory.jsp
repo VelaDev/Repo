@@ -44,7 +44,6 @@ table#orderDetails {
 				id="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
-
 					 <ul class="nav navbar-nav">
 
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -52,22 +51,23 @@ table#orderDetails {
 							aria-expanded="false">Order Confirmation<span class="caret"></span></a>
 									 <ul class="dropdown-menu">
 										<c:forEach var="list" items="${status}">
-										<c:choose>
-											<c:when test="${list.orderStatus == 'Pending'}">  
-											   <li><a href='<c:url value="approveOrder.html"/>'>Approve Order</a></li>
-											   <li><a href='<c:url value="declineOrder.html"/>'>Reject Order</a></li>
-											</c:when>											  	
-										</c:choose>
-										<c:choose>
-											<c:when test="${list.orderStatus == 'Approved'}">  
-											   <li><a href='<c:url value="approvedOrders.html"/>'>Ship Order</a></li>
-											</c:when>											  	
-										</c:choose>	
+											<c:choose>
+												<c:when test="${list.orderStatus == 'Pending'}">  
+												   <li><a href='<c:url value="approveOrder.html"/>'>Approve Order</a></li>
+												   <li><a href='<c:url value="declineOrder.html"/>'>Reject Order</a></li>
+												</c:when>											  	
+											</c:choose>
+											<c:choose>
+												<c:when test="${list.orderStatus == 'Approved'}">  
+												   <li><a href='<c:url value="approvedOrders.html"/>'>Ship Order</a></li>
+												</c:when>											  	
+											</c:choose>	
 										</c:forEach>					
 									</ul>
 							</li>
 					 </ul>
 					
+									
 				</div>
 
 			</form:form>

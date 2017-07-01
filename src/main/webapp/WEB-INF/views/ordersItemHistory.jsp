@@ -51,8 +51,7 @@
 				id="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
-
-				 <ul class="nav navbar-nav">
+					 <ul class="nav navbar-nav">
 
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -74,8 +73,9 @@
 									</ul>
 							</li>
 					 </ul>
-				
-
+					
+									
+				</div>
 			</form:form>
 			
 			<div class="panel panel-success">

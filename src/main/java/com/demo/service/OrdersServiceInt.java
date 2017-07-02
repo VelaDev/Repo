@@ -37,6 +37,14 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getLastFourteenDaysPendingOrders();
 	public List<OrderHeader> getLastFourteenDaysShippedOrders();
 	public int countClosedOrder(String lastFourteenDays);
+	
+	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders();
+	
+	public int countNewOrders(String lastFourteenDays, String technicianName);
+	public int countClosedOrder(String lastFourteenDays ,String technicianName);
+	public int countApprovedOrders(String lastFourteenDays,String technicianName);
+	public int countShippedOrders(String lastFourteenDays,String technicianName);
+	public int countOrdersReceive(String lastFourteenDays,String technicianName);
 
 }

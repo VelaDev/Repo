@@ -153,7 +153,6 @@ public class OrdersService implements OrdersServiceInt{
 	
 	@Override
 	public int countOrdersReceive(String lastFourteenDays) {
-		// TODO Auto-generated method stub
 		return ordersDAO.countOrdersReceive(lastFourteenDays);
 	}
 
@@ -191,6 +190,38 @@ public class OrdersService implements OrdersServiceInt{
 	@Override
 	public List<OrderHeader> getLastFourteenDaysClosedOrders() {
 		return ordersDAO.getLastFourteenDaysClosedOrders();
+	}
+
+	@Override
+	public int countNewOrders(String lastFourteenDays, String technicianName) {
+		return ordersDAO.countNewOrders(lastFourteenDays, technicianName);
+	}
+
+	@Override
+	public int countClosedOrder(String lastFourteenDays, String technicianName) {
+		return ordersDAO.countClosedOrder(lastFourteenDays, technicianName);
+	}
+
+	@Override
+	public int countApprovedOrders(String lastFourteenDays,
+			String technicianName) {
+		return ordersDAO.countApprovedOrders(lastFourteenDays, technicianName);
+	}
+
+	@Override
+	public int countShippedOrders(String lastFourteenDays, String technicianName) {
+		return ordersDAO.countShippedOrders(lastFourteenDays, technicianName);
+	}
+
+	@Override
+	public int countOrdersReceive(String lastFourteenDays, String technicianName) {
+		return ordersDAO.countOrdersReceive(lastFourteenDays, technicianName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName) {
+		
+		return ordersDAO.getLastFourteenDaysOrders(technicianName);
 	}
 
 	

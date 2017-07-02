@@ -116,6 +116,8 @@ public class DeviceDao implements DeviceDaoInt {
 		customer = new Customer();
 		contactPerson = new DeviceContactPerson();
 		device = new Device();
+		String newSerial = null;
+		String oldSerial =null;
 		
 		try {
 
@@ -157,8 +159,9 @@ public class DeviceDao implements DeviceDaoInt {
 					// addTypeserial
 					if (deviceBean.getAddTypeserial() != null) {
 						if (deviceBean.getAddTypeserial().length() > 0) {
-
-							accessory.setSerial(deviceBean.getAddTypeserial());
+							oldSerial = deviceBean.getAddTypeserial()+",";
+							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory.setSerial(newSerial);
 							accessory.setAccessotyType("Additional Paper Trays");
 							accessory.setDevice(device);
 							list.add(accessory);
@@ -168,8 +171,10 @@ public class DeviceDao implements DeviceDaoInt {
 						if (deviceBean.getBridgeUnitSerialTypeSerialNo().length() > 0) {
 
 							Accessories accessory1 = new Accessories();
-							accessory1.setSerial(deviceBean
-									.getBridgeUnitSerialTypeSerialNo());
+							
+							oldSerial = deviceBean.getBridgeUnitSerialTypeSerialNo()+",";;
+							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory1.setSerial(newSerial);
 							accessory1.setAccessotyType("Bridge Unit");
 							accessory1.setDevice(device);
 							list.add(accessory1);
@@ -180,7 +185,9 @@ public class DeviceDao implements DeviceDaoInt {
 						if (deviceBean.getCreTypeserial().length() > 0) {
 
 							Accessories accessory2 = new Accessories();
-							accessory2.setSerial(deviceBean.getCreTypeserial());
+							oldSerial = deviceBean.getCreTypeserial()+",";;
+							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory2.setSerial(newSerial);
 							accessory2.setAccessotyType("Credenza");
 							accessory2.setDevice(device);
 							list.add(accessory2);
@@ -191,8 +198,10 @@ public class DeviceDao implements DeviceDaoInt {
 					if (deviceBean.getFaxUnitSerialTypeSerialNo() != null) {
 						if (deviceBean.getFaxUnitSerialTypeSerialNo().length() > 0) {
 							Accessories accessory3 = new Accessories();
-							accessory3.setSerial(deviceBean
-									.getFaxUnitSerialTypeSerialNo());
+							
+							oldSerial = deviceBean.getFaxUnitSerialTypeSerialNo()+",";;
+							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory3.setSerial(newSerial);
 							accessory3.setAccessotyType("Fax Unit");
 							accessory3.setDevice(device);
 							list.add(accessory3);
@@ -203,8 +212,9 @@ public class DeviceDao implements DeviceDaoInt {
 						if (deviceBean.getFinisherTypeSerialNo().length() > 0) {
 
 							Accessories accessory4 = new Accessories();
-							accessory4.setSerial(deviceBean
-									.getFinisherTypeSerialNo());
+							oldSerial = deviceBean.getFinisherTypeSerialNo()+",";;
+							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory4.setSerial(newSerial);
 							accessory4.setAccessotyType("Finisher");
 							accessory4.setDevice(device);
 							list.add(accessory4);
@@ -215,7 +225,9 @@ public class DeviceDao implements DeviceDaoInt {
 						if (deviceBean.getLtcTypeSerial().length() > 0) {
 
 							Accessories accessory5 = new Accessories();
-							accessory5.setSerial(deviceBean.getLtcTypeSerial());
+							oldSerial = deviceBean.getLtcTypeSerial()+",";;
+							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory5.setSerial(newSerial);
 							accessory5.setAccessotyType("LTC");
 							accessory5.setDevice(device);
 							list.add(accessory5);
@@ -226,8 +238,9 @@ public class DeviceDao implements DeviceDaoInt {
 						if (deviceBean.getOneBinTrayTypeSerialNo().length() > 0) {
 
 							Accessories accessory6 = new Accessories();
-							accessory6.setSerial(deviceBean
-									.getOneBinTrayTypeSerialNo());
+							oldSerial = deviceBean.getOneBinTrayTypeSerialNo()+",";;
+							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory6.setSerial(newSerial);
 							accessory6.setAccessotyType("One bin tray");
 							accessory6.setDevice(device);
 							list.add(accessory6);

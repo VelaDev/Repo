@@ -33,5 +33,7 @@ public interface OrdersDaoInt {
 	public int countShippedOrders(String lastFourteenDays);
 	public List<OrderHeader> getLastFourteenDaysOrders();
 	public List<OrderHeader> approvedOrders();
+	public List<OrderHeader> getLastFourteenDaysApprovedOrders();
+	public List<OrderHeader> getLastFourteenDaysPendingOrders();
 
 }

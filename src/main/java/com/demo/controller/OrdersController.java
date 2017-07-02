@@ -771,9 +771,72 @@ public class OrdersController {
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+			model.addObject("customers", customerServiceInt.getClientList());
+			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
+			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.setViewName("ordermanagement");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "searchOrderNumber")
+	public ModelAndView searchOrderNumber(@RequestParam("customerName")String customerName,@RequestParam("orderNum")String orderNum) {
+		model = new ModelAndView();
+      System.err.println(customerName);
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			/*model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			int a = ordersServiceInt.countNewOrders("today");
 			System.out.println("Print in controller "+a);
 			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+			model.addObject("customers", customerServiceInt.getClientList());
+			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
+			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());*/
+			model.setViewName("ordermanagement");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "ordersToApprove", method = RequestMethod.GET)
+	public ModelAndView ordersToApprove() {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysPendingOrders());
+			model.addObject("customers", customerServiceInt.getClientList());
+			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
+			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.setViewName("ordermanagement");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	@RequestMapping(value = "ordersToShip", method = RequestMethod.GET)
+	public ModelAndView ordersToShip() {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysApprovedOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
 			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
 			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));

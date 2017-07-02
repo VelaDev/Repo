@@ -144,7 +144,7 @@ public class OrdersService implements OrdersServiceInt{
 
 	@Override
 	public int countApprovedOrders(String lastFourteenDays) {
-		return 0;
+		return ordersDAO.countApprovedOrders(lastFourteenDays);
 	}
 
 	@Override
@@ -160,6 +160,16 @@ public class OrdersService implements OrdersServiceInt{
 	@Override
 	public List<OrderHeader> approvedOrders() {
 		return ordersDAO.approvedOrders();
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrders() {
+		return ordersDAO.getLastFourteenDaysApprovedOrders();
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrders() {
+		return ordersDAO.getLastFourteenDaysPendingOrders();
 	}
 
 

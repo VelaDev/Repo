@@ -67,15 +67,7 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
-					</c:out>
-
-				</div>
-			</c:if>
-			<form:form action="searchOrderNumber" method="post"
+			<form:form action="searchOrderNumber" method="POST"
 				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
@@ -142,8 +134,6 @@
 
 						</div>
 					</div>
-
-
 				</div>
 
 			</form:form>
@@ -180,12 +170,7 @@
 										</div>
 								</a></li>
 
-								<li><a href='#OrderToApprove' data-toggle="tab"
-									class="summery-filter clearfix"
-									data-parallel-url="OrderToApprove"
-									data-parallel-placeholder="#ticket-leftFilter"
-									data-pjax="#body-container">
-
+								<li><a href='<c:url value="ordersToApprove"/>'>
 										<div class="summary-count pull-left ml20"
 											style="margin-left: -8%">
 											<h4 align="center">${newOrder}</h4>
@@ -193,13 +178,10 @@
 										</div>
 								</a></li>
 
-								<li><a href='#OrderToShip' data-parallel-url="OrderToShip"
-									data-toggle="tab"
-									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
+								<li><a href='<c:url value="ordersToShip"/>'>
 
 										<div class="summary-count pull-left ml20">
-											<h4 align="center">0</h4>
+											<h4 align="center">${approvedOrder}</h4>
 											<p align="center">Orders to Ship</p>
 										</div>
 								</a></li>

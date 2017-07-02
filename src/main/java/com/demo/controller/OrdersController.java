@@ -883,6 +883,7 @@ public class OrdersController {
 	public ModelAndView closedOrders() {
 		model = new ModelAndView();
 
+		
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));

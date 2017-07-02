@@ -840,7 +840,7 @@ public class OrdersController {
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysShippedOrders());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysApprovedOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
 			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
 			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));

@@ -1034,4 +1034,16 @@ public class OrderDao implements OrdersDaoInt {
 
 		return aList;
 	}
+
+	@Override
+	public int countClosedOrder(String lastFourteenDays) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -50,5 +50,6 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysShippedOrders();
 	public List<OrderHeader> getLastFourteenDaysClosedOrders();
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
+	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
 
 }

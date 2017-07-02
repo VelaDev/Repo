@@ -48,4 +48,5 @@ public interface OrdersServiceInt {
 	public int countOrdersReceive(String lastFourteenDays,String technicianName);
 
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
+	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
 }

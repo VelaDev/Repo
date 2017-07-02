@@ -210,25 +210,29 @@ input#selectDateRange{
 										</div>
 								</a></li>
 								
-								<li><a href='#shippedOrders' data-parallel-url="ShippedOrders"
-									data-toggle="tab"
+								<li><a href='<c:url value="ShippedOrders"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
 									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
+									data-pjax="#body-container">
 
-										<div class="summary-count pull-left ml20" style="margin-left: 5%">
+										<div class="summary-count pull-left ml20"
+											style="margin-left: 4%">
 											<h4 align="center">${countShippedOrder}</h4>
 											<p align="center">Shipped Orders</p>
 										</div>
 								</a></li>
 
-								<li><a href='#closedOrder' data-parallel-url="closedOrder"
-									data-toggle="tab"
+								<li><a href='<c:url value="closedOrders"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
 									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
+									data-pjax="#body-container">
 
-										<div class="summary-count pull-left" style="margin-left: 5%">
-											<h4 align="center">0</h4>
-											<p align="center">Closed Order</p>
+										<div class="summary-count pull-left ml20"
+											style="margin-left: 4%">
+											<h4 align="center">${countClosedOrder}</h4>
+											<p align="center">Closed Orders</p>
 										</div>
 								</a></li>
 

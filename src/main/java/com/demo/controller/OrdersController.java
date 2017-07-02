@@ -839,7 +839,7 @@ public class OrdersController {
 	@RequestMapping(value = "searchOrderNumber")
 	public ModelAndView searchOrderNumber(@RequestParam("customerName")String customerName,@RequestParam("orderNum")String orderNum,@RequestParam("selectDateRange")String selectDateRange) {
 		model = new ModelAndView();
-        System.err.println(customerName+ " " + selectDateRange);
+        System.err.println(selectDateRange);
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
@@ -850,10 +850,10 @@ public class OrdersController {
 				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
 				model.addObject("customers", customerServiceInt.getClientList());
-				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
-				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
-				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(selectDateRange,"",customerName));
+				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(selectDateRange,"",customerName));
+				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(selectDateRange,"",customerName));
+				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(selectDateRange,"",customerName));
 				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 				model.setViewName("ordermanagement");
 			}else if (userName.getRole().equalsIgnoreCase("Technician")){

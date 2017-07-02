@@ -28,6 +28,7 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getAllOrders(String startDate, String endDate, String technicianEmail);
 	public List<OrderHeader> getAllOrdersByDate();
 	public List<OrderHeader> getAllOrdersByDate(String technicianName);
+	
 	public int countNewOrders(String lastFourteenDays);
 	public int countClosedOrder(String lastFourteenDays);
 	public int countApprovedOrders(String lastFourteenDays);
@@ -35,11 +36,19 @@ public interface OrdersDaoInt {
 	public int countOrdersReceive(String lastFourteenDays);
 
 
+	public int countNewOrders(String lastFourteenDays, String technicianName,String customerName);
+	public int countClosedOrder(String lastFourteenDays ,String technicianName,String customerName);
+	public int countApprovedOrders(String lastFourteenDays,String technicianName,String customerName);
+	public int countShippedOrders(String lastFourteenDays,String technicianName,String customerName);
+	public int countOrdersReceive(String lastFourteenDays,String technicianName,String customerName);
+	
 	public int countNewOrders(String lastFourteenDays, String technicianName);
 	public int countClosedOrder(String lastFourteenDays ,String technicianName);
 	public int countApprovedOrders(String lastFourteenDays,String technicianName);
 	public int countShippedOrders(String lastFourteenDays,String technicianName);
 	public int countOrdersReceive(String lastFourteenDays,String technicianName);
+	
+	
 	
 	public List<OrderHeader> getLastFourteenDaysOrders();
 	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName);

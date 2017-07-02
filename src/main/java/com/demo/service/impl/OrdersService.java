@@ -237,5 +237,35 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.getLastFourteenDaysClosedOrders(technicianName);
 	}
 
+	@Override
+	public int countNewOrders(String lastFourteenDays, String technicianName,
+			String customerName) {
+		return ordersDAO.countNewOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public int countClosedOrder(String lastFourteenDays, String technicianName,
+			String customerName) {
+		return ordersDAO.countClosedOrder(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public int countApprovedOrders(String lastFourteenDays,
+			String technicianName, String customerName) {
+		return ordersDAO.countApprovedOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public int countShippedOrders(String lastFourteenDays,
+			String technicianName, String customerName) {
+		return ordersDAO.countShippedOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public int countOrdersReceive(String lastFourteenDays,
+			String technicianName, String customerName) {
+		return ordersDAO.countOrdersReceive(lastFourteenDays, technicianName, customerName);
+	}
+
 	
 }

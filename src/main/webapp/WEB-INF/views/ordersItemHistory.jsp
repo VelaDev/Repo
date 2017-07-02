@@ -78,16 +78,14 @@
 											<c:when test="${OrderNum.status == 'Approved'}">  
 											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
 											</c:when>											  	
-										</c:choose>	
-										<%-- <c:choose>
-											<c:when test="${OrderNum.status == 'Shipped'}">  
-											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
-											</c:when>											  	
-										</c:choose> --%>						
+										</c:choose>							
 									</ul>
 							</li>
-							<li class="active"><a href="#">Print</a></li>
+							<li class="active"><a
+											href="printdeliveryNote?recordID=<c:out value='${list.recordID}'/>">Print</a></li>
 							<li><a href="#">Download PDF </a></li>
+							
+							
 						</ul>
 					</div>
 					<legend></legend>

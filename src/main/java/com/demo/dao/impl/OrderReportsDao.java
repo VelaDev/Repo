@@ -1,7 +1,5 @@
 package com.demo.dao.impl;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -25,8 +23,6 @@ import com.demo.dao.CustomerContactDetailsDaoInt;
 import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrderReportsDaoInt;
 import com.demo.dao.OrdersDaoInt;
-import com.demo.model.CustomerContactDetails;
-import com.demo.model.OrderHeader;
 import com.mysql.jdbc.Connection;
 
 @Repository("orderReportDAO")
@@ -84,9 +80,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 			//report.toPdf(new FileOutputStream("/C:/Users/Mohapi/Desktop/BackUp/report.pdf"));//export the report to a pdf file
 		} catch (DRException e) {
 			e.printStackTrace();
-		} /*catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}*/
+		}
 		
 	}
 }

@@ -37,10 +37,6 @@
 
 <style type="text/css">
 
-i.glyphicon.glyphicon-calendar.col-sm-pull-2 {
-    right: -29%;
-}
-
 input#selectDateRange{
    
    background: #fff;
@@ -50,9 +46,6 @@ input#selectDateRange{
    width: 119%;
    margin-left: 69%; 
    margin-right: 0%;
-}
-.db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) ~ li {
-    width: 12%;
 }
 .db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
 	 ~ li {
@@ -83,7 +76,7 @@ input#selectDateRange{
 
 
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 
 			<c:if test="${not empty retMessage }">
@@ -118,12 +111,21 @@ input#selectDateRange{
 						</div>
 					</div>
 					
-					<div class="col-sm-4">
-						<label for="date"> <input type="text" id="selectDateRange"
-							name="selectDateRange" class="form-control">
-						</label> <i class="glyphicon glyphicon-calendar col-sm-pull-2"><i
-							class="caret"></i></i>
+					<div class="form-group">
+						<div class="col-md-4 inputGroupContainer">
+							<div class="input-group">
+								<!-- Select type selectDateRange-->
+								<input type="text" id="selectDateRange" name="selectDateRange" class="form-control" value=""/>
+								 <span class="input-group-addon"> <span
+									class="glyphicon glyphicon-calendar"></span>
+								 </span>
+								<span class="caret"></span>
+								
+							</div>
+						</div>
 					</div>
+					
+					
 
 
 					<div align=right>
@@ -180,7 +182,7 @@ input#selectDateRange{
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 4%">
+											style="margin-left: 28%">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Create Order</p>
@@ -194,7 +196,7 @@ input#selectDateRange{
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 4%">
+											style="margin-left: 20%">
 											<h4 align="center">${countNewOrders}</h4>
 											<p align="center">Orders to Approve</p>
 										</div>
@@ -204,7 +206,7 @@ input#selectDateRange{
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
-										<div class="summary-count pull-left ml20" style="margin-left: 5%">
+										<div class="summary-count pull-left ml20" style="margin-left: 25%">
 											<h4 align="center">${countApprovedOrder}</h4>
 											<p align="center">Orders to Ship</p>
 										</div>
@@ -215,7 +217,7 @@ input#selectDateRange{
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
-										<div class="summary-count pull-left ml20" style="margin-left: 5%">
+										<div class="summary-count pull-left ml20" style="margin-left: 25%">
 											<h4 align="center">${countShippedOrder}</h4>
 											<p align="center">Shipped Orders</p>
 										</div>
@@ -226,9 +228,9 @@ input#selectDateRange{
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
-										<div class="summary-count pull-left" style="margin-left: 5%">
+										<div class="summary-count pull-left" style="margin-left: 25%">
 											<h4 align="center">0</h4>
-											<p align="center">Closed Order</p>
+											<p align="center">Closed Orders</p>
 										</div>
 								</a></li>
 
@@ -287,7 +289,7 @@ input#selectDateRange{
 
 								</div>
 
-							<%-- 	<div class="tab-pane" id="OrderToApprove">
+								<div class="tab-pane" id="OrderToApprove">
 									<legend align=center>Orders To Approve</legend>
 									<form:form modelAttribute="orderHistory" method="post"
 										action="orderHistory" id="orderHistory" name="orderHistory">
@@ -327,8 +329,8 @@ input#selectDateRange{
 									<!-- form order -->
 
 
-								</div> --%>
-<%-- 
+								</div>
+
 								<div class="tab-pane" id="OrderToShip">
 									<legend align=center>Orders To Ship</legend>
 									<form:form modelAttribute="orderHistory" method="post"
@@ -368,7 +370,7 @@ input#selectDateRange{
 									</form:form>
 									<!-- form order -->
 
-								</div> --%>
+								</div>
 								
 								
 								<div class="tab-pane" id="shippedOrders">

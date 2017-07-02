@@ -84,14 +84,9 @@ table#orderDetails {
 						</ul>
 					</div>
 					<legend></legend>
-					
-					
 					<ul class="nav nav-tabs">
-
-						<li class="active"><a href="#orderDetails" data-toggle="tab">Order
-								Details</a></li>
+						<li class="active"><a href="#orderDetails" data-toggle="tab">Order Details</a></li>
 						<li><a href="#orderHistoryDetails" data-toggle="tab">History</a></li>
-
 					</ul>
 					
 					<div class="tab-content">
@@ -106,9 +101,10 @@ table#orderDetails {
 											<legend style="font-size: 12px;line-height: 1.42857143;">From</legend>
 										
 												<div class="machinedetailsdetailsfloatleft">
-													<label id="companyName" name="companyName"><b>${VelaphandaProfile.companyName}
+												
+													<label id="companyName" name="companyName"><b>${companyName}
 													</b></label> <br> 
-													<li id="streetNumberStreetName" name="streetNumberStreetName">${VelaphandaProfile.streetNumber} ${VelaphandaProfile.streetName}</li>
+													<li id="streetNumberStreetName" name="streetNumberStreetName">${streetNumber} ${streetName}</li>
 													<li id="city" name="city"></li>
 													<li id="areaCode" name="areaCode"></li>
 													<li id="telephoneNumber" name="telephoneNumber">Switchboard:</li>

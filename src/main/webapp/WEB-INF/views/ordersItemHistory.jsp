@@ -123,8 +123,7 @@
 													<li id="Fax" name="Fax">Fax : 086 403 7955  </li> 
 													<li id="Email" name="Email">Email : admin@velaphanda.co.za</li>
 				
-												</div>								
-												
+												</div>	
 										</div>
 									</section>
 

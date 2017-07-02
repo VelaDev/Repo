@@ -59,8 +59,14 @@ a.confirmtions {
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Update Ticket -->
-				 	    		<c:choose>
+				 	    	<c:choose>
 					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                    
+					 	    </c:when>
+				 	    	</c:choose>
+				 	    	<c:choose>
+					 	    <c:when test="${receiveOrder =='receiveOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
 					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                    
 					 	    </c:when>

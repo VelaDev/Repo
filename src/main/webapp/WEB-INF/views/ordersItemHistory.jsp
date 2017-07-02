@@ -113,17 +113,17 @@
 											<legend style="font-size: 12px;line-height: 1.42857143;">From</legend>
 										
 												<div class="machinedetailsdetailsfloatleft">
-													<label id="customerName" name="customerName"><b>Velaphanda Trading & Projects
+												
+													<label id="companyName" name="companyName"><b>${velaphandaAddres.companyName}
 													</b></label> <br> 
-													<li id="Address" name="Address">323 Lynnwood Road<br/>
-													Menlo Park<br/>
-													Pretoria East<br/>
-													0041 </li>
-													<li id="Tell" name="Tell">Switchboard:  (012) 771 6882 </li> 
-													<li id="Fax" name="Fax">Fax : 086 403 7955  </li> 
-													<li id="Email" name="Email">Email : admin@velaphanda.co.za</li>
-				
-												</div>	
+													<li id="streetNumberStreetName" name="streetNumberStreetName">${velaphandaAddres.streetNumber} ${velaphandaAddres.streetName}</li>
+													<li id="city" name="city">${velaphandaAddres.city}</li>
+													<li id="areaCode" name="areaCode">${velaphandaAddres.areaCode}</li>
+													<li id="telephoneNumber" name="telephoneNumber">Switchboard: ${velaphandaAddres.telephoneNumber}</li>
+													<li id="faxNumber" name="faxNumber">Fax :   ${velaphandaAddres.faxNumber}</li> 
+													<li id="emailAdress" name="emailAdress">Email :  ${velaphandaAddres.emailAdress}</li> 
+													
+												</div>		
 										</div>
 									</section>
 

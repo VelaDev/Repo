@@ -51,6 +51,9 @@ input#selectDateRange{
    margin-left: 69%; 
    margin-right: 0%;
 }
+.db-summary li:first-child:nth-last-child(3), .db-summary li:first-child:nth-last-child(3) ~ li {
+    width: 10.33333%;
+}
 .db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) ~ li {
     width: 12%;
 }
@@ -173,21 +176,34 @@ input#selectDateRange{
 
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
-
-								<li><a href='placeOrderForTechnician.html'
+								
+								<li><a href='order.html'
 									data-parallel-url=""
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 20%">
+											style="margin-left: 23%">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Create Order</p>
 										</div>
 								</a></li>
 
-								<li><a href='<c:url value="ordersToApprove"/>'
+								<li><a href='<c:url value="OrdersToReceive"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
+
+										<div class="summary-count pull-left ml20"
+											style="margin-left: -4%">
+											<h4 align="center">${countOrdersReceive}</h4>
+											<p align="center">Orders to Receive</p>
+										</div>
+								</a></li>
+
+								<li><a href='<c:url value="closedOrders"/>'
 									class="summery-filter clearfix"
 									data-parallel-url="OrderToApprove"
 									data-parallel-placeholder="#ticket-leftFilter"
@@ -195,40 +211,8 @@ input#selectDateRange{
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 4%">
-											<h4 align="center">${countNewOrders}</h4>
-											<p align="center">Orders to Approve</p>
-										</div>
-								</a></li>
-
-								<li><a href='<c:url value="ordersToShip"/>' data-parallel-url="OrderToShip"									
-									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20" style="margin-left: 5%">
-											<h4 align="center">${countApprovedOrder}</h4>
-											<p align="center">Orders to Ship</p>
-										</div>
-								</a></li>
-								
-								<li><a href='#shippedOrders' data-parallel-url="ShippedOrders"
-									data-toggle="tab"
-									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20" style="margin-left: 5%">
-											<h4 align="center">${countShippedOrder}</h4>
-											<p align="center">Shipped Orders</p>
-										</div>
-								</a></li>
-
-								<li><a href='#closedOrder' data-parallel-url="closedOrder"
-									data-toggle="tab"
-									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
-
-										<div class="summary-count pull-left" style="margin-left: 5%">
-											<h4 align="center">0</h4>
-											<p align="center">Closed Order</p>
+											<h4 align="center">${countClosedOrder}</h4>
+											<p align="center">Closed Orders</p>
 										</div>
 								</a></li>
 
@@ -287,130 +271,7 @@ input#selectDateRange{
 
 								</div>
 
-							<%-- 	<div class="tab-pane" id="OrderToApprove">
-									<legend align=center>Orders To Approve</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="OrderToApproveDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Order No</th>
-													<th>Order Status</th>
-													<th>Customer</th>
-													<th>Approved Date</th>
-													<th>Stock Type</th>
-													<th>Ordered By</th>
-													<th>Order Details</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${orderList}">
-													<tr>
-														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-														<td>${list.status}</td>
-														<td></td>
-														<td>${list.dateOrdered}</td>
-														<td>${list.stockType}</td>
-														<td>Ordered By</td>
-														<td><a
-															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-
-								</div> --%>
-<%-- 
-								<div class="tab-pane" id="OrderToShip">
-									<legend align=center>Orders To Ship</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="OrderToShipDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Order No</th>
-													<th>Order Status</th>
-													<th>Customer</th>
-													<th>Approved Date</th>
-													<th>Stock Type</th>
-													<th>Ordered By</th>
-													<th>Order Details</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${orderList}">
-													<tr>
-														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-														<td>${list.status}</td>
-														<td></td>
-														<td>${list.dateOrdered}</td>
-														<td>${list.stockType}</td>
-														<td>Ordered By</td>
-														<td><a
-															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-								</div> --%>
 								
-								
-								<div class="tab-pane" id="shippedOrders">
-									<legend align=center>Shipped Orders</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="shippedOrdersDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Order No</th>
-													<th>Order Status</th>
-													<th>Customer</th>
-													<th>Approved Date</th>
-													<th>Stock Type</th>
-													<th>Ordered By</th>
-													<th>Order Details</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${orderList}">
-													<tr>
-														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-														<td>${list.status}</td>
-														<td></td>
-														<td>${list.dateOrdered}</td>
-														<td>${list.stockType}</td>
-														<td>Ordered By</td>
-														<td><a
-															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-								</div>
 
 								<div class="tab-pane" id="closedOrder">
 									<legend align=center>Closed Order</legend>

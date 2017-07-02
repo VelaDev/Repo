@@ -59,24 +59,13 @@ table#orderDetails {
 						<ul class="nav navbar-nav navbar-left">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Order Action<span class="caret"></span></a>
+							aria-expanded="false">Receive Order<span class="caret"></span></a>
 									 <ul class="dropdown-menu">
 										<c:choose>
-											<c:when test="${OrderNum.status == 'Pending'}">  
-											   <li><a href="approveOrderItems?recordID= <c:out value='${OrderNum.recordID}'/>">Approve Order</a></li>
-											   <li><a href="declineOrder?recordID= <c:out value='${OrderNum.recordID}'/>">Reject Order</a></li>
-											</c:when>											  	
-										</c:choose>
-										<c:choose>
-											<c:when test="${OrderNum.status == 'Approved'}">  
-											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
-											</c:when>											  	
-										</c:choose>	
-										<%-- <c:choose>
 											<c:when test="${OrderNum.status == 'Shipped'}">  
-											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
+											   <li><a href="receive?recordID=<c:out value='${OrderNum.recordID}'/>">Receive Order</a></li>
 											</c:when>											  	
-										</c:choose> --%>						
+										</c:choose>											
 									</ul>
 							</li>
 							<li class="active"><a href="#">Print</a></li>
@@ -102,14 +91,14 @@ table#orderDetails {
 										
 												<div class="machinedetailsdetailsfloatleft">
 												
-													<label id="companyName" name="companyName"><b>${companyName}
+													<label id="companyName" name="companyName"><b>${velaphandaAddres.companyName}
 													</b></label> <br> 
-													<li id="streetNumberStreetName" name="streetNumberStreetName">${streetNumber} ${streetName}</li>
-													<li id="city" name="city"></li>
-													<li id="areaCode" name="areaCode"></li>
-													<li id="telephoneNumber" name="telephoneNumber">Switchboard:</li>
-													<li id="faxNumber" name="faxNumber">Fax :   </li> 
-													<li id="emailAdress" name="emailAdress">Email :  </li> 
+													<li id="streetNumberStreetName" name="streetNumberStreetName">${velaphandaAddres.streetNumber} ${velaphandaAddres.streetName}</li>
+													<li id="city" name="city">${velaphandaAddres.city}</li>
+													<li id="areaCode" name="areaCode">${velaphandaAddres.areaCode}</li>
+													<li id="telephoneNumber" name="telephoneNumber">Switchboard: ${velaphandaAddres.telephoneNumber}</li>
+													<li id="faxNumber" name="faxNumber">Fax :   ${velaphandaAddres.faxNumber}</li> 
+													<li id="emailAdress" name="emailAdress">Email :  ${velaphandaAddres.emailAdress}</li> 
 													
 												</div>								
 												

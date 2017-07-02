@@ -33,7 +33,7 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 
 			if (accessories.isEmpty() == false) {
 				for (Accessories access : accessories) {
-					if (access.getSerial() != null) {
+					if (access.getSerial().length()>3) {
 						sessionFactory.getCurrentSession().saveOrUpdate(access);
 						retMessage = "OK";
 					}

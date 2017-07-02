@@ -282,7 +282,7 @@ input#selectDateRange{
 
 								</div>
 
-								<div class="tab-pane" id="OrderToApprove">
+							<%-- 	<div class="tab-pane" id="OrderToApprove">
 									<legend align=center>Orders To Approve</legend>
 									<form:form modelAttribute="orderHistory" method="post"
 										action="orderHistory" id="orderHistory" name="orderHistory">
@@ -322,8 +322,8 @@ input#selectDateRange{
 									<!-- form order -->
 
 
-								</div>
-
+								</div> --%>
+<%-- 
 								<div class="tab-pane" id="OrderToShip">
 									<legend align=center>Orders To Ship</legend>
 									<form:form modelAttribute="orderHistory" method="post"
@@ -363,7 +363,7 @@ input#selectDateRange{
 									</form:form>
 									<!-- form order -->
 
-								</div>
+								</div> --%>
 								
 								
 								<div class="tab-pane" id="shippedOrders">

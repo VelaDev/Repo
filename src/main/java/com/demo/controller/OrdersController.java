@@ -787,9 +787,9 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value = "searchOrderNumber")
-	public ModelAndView searchOrderNumber(@RequestParam("customerName")String customerName,@RequestParam("orderNum")String orderNum,@RequestParam("selectDateRange")@DateTimeFormat(pattern="yyyy-MM-dd")Date date) {
+	public ModelAndView searchOrderNumber(@RequestParam("customerName")String customerName,@RequestParam("orderNum")String orderNum,@RequestParam("selectDateRange")String selectDateRange) {
 		model = new ModelAndView();
-      System.err.println(date);
+      
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			/*model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
@@ -820,8 +820,9 @@ public class OrdersController {
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysPendingOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
-			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
-			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countShippedOrder",ordersServiceInt.countApprovedOrders(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordermanagement");
 		} else {
@@ -841,8 +842,9 @@ public class OrdersController {
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysApprovedOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
-			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
-			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countShippedOrder",ordersServiceInt.countApprovedOrders(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordermanagement");
 		} else {

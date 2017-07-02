@@ -37,7 +37,7 @@ table#orderDetails {
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
+		<%-- <c:import url="templates/techniciannavbar.jsp"></c:import> --%>
 		<div class="container">
 		
 			<form:form action="searchOrderNumber" method="post"
@@ -49,7 +49,7 @@ table#orderDetails {
 				<div class="panel-heading">
 					<h3 class="panel-title">						
 						<div align="center">
-							<b>Order No : ${OrderNum.orderNum}</b>
+							<b>Order No : </b>
 						</div>
 					</h3>
 				</div>
@@ -64,8 +64,8 @@ table#orderDetails {
 										<c:forEach var="list" items="${status}">
 										<c:choose>
 											<c:when test="${list.orderStatus == 'Pending'}">  
-											   <li><a href='<c:url value="approveOrder.html"/>'>Approve Order</a></li>
-											   <li><a href='<c:url value="declineOrder.html"/>'>Reject Order</a></li>
+											   <li><a href="approveOrderItems?recordID= <c:out value='${OrderNum.recordID}'/>">Approve Order</a></li>
+											   <li><a href="declineOrder?recordID= <c:out value='${OrderNum.recordID}'/>">Reject Order</a></li>
 											</c:when>											  	
 										</c:choose>
 										<c:choose>

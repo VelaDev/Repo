@@ -172,5 +172,10 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.getLastFourteenDaysPendingOrders();
 	}
 
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrders() {
+		return ordersDAO.getLastFourteenDaysShippedOrders();
+	}
+
 
 }

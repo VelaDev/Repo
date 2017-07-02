@@ -68,19 +68,22 @@
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Order Action<span class="caret"></span></a>
 									 <ul class="dropdown-menu">
-										<c:forEach var="list" items="${status}">
 										<c:choose>
-											<c:when test="${list.orderStatus == 'Pending'}">  
+											<c:when test="${OrderNum.status == 'Pending'}">  
 											   <li><a href="approveOrderItems?recordID= <c:out value='${OrderNum.recordID}'/>">Approve Order</a></li>
 											   <li><a href="declineOrder?recordID= <c:out value='${OrderNum.recordID}'/>">Reject Order</a></li>
 											</c:when>											  	
 										</c:choose>
 										<c:choose>
-											<c:when test="${list.orderStatus == 'Approved'}">  
-											   <li><a href='<c:url value="approvedOrders.html"/>'>Ship Order</a></li>
+											<c:when test="${OrderNum.status == 'Approved'}">  
+											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
 											</c:when>											  	
 										</c:choose>	
-										</c:forEach>					
+										<%-- <c:choose>
+											<c:when test="${OrderNum.status == 'Shipped'}">  
+											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
+											</c:when>											  	
+										</c:choose> --%>						
 									</ul>
 							</li>
 							<li class="active"><a href="#">Print</a></li>

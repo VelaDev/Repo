@@ -48,7 +48,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${orders =='orders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_homes.png" /></a> or click<a href="ordertechmanagement.html" class="confirmtions"><b> here</b></a> to place another Order.                        
+					 	        Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a> or click<a href="ordertechmanagement.html" class="confirmtions"><b> here</b></a> to place another Order.                        
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Receive Order -->

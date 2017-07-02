@@ -46,51 +46,51 @@ a.confirmtions {
 				 	 <!-- Add employee -->
 				 	  <c:choose>
 				 	    <c:when test="${addEmployee =='addEmployee' }">
-				 	       <c:out value="${retMessage}"></c:out> Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of employees or 
-                            Click <a href="registerEmployee.html" class="confirmtions"> <b> here</b></a> to add another Employee or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of employees or 
+                            Click <a href="registerEmployee.html" class="confirmtions"> <b> here</b></a> to add another Employee.
 				 	    </c:when>
 				 	    </c:choose>
 				 	     <!-- Update employee -->
 				 	    <c:choose>
 				 	     <c:when test="${updateEmployee =='updateEmployee' }">
-				 	         <c:out value="${retMessage}"></c:out> Click<a href="home.html" class="confirmtions"> <b> here</b></a> to go to Home page or 
-                              Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page. 
+				 	         <c:out value="${retMessage}"></c:out> Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>.
+                              Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees 
 				 	    </c:when>
 				 	    </c:choose> 
 				 	     <!-- Change password -->
 				 	    <c:choose>
 				 	    <c:when test="${changePassword =='changePassword' }">
-                           <c:out value="${retMessage}"></c:out> Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a>  to view list of Employees or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.       
+                           <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a>  to view list of Employees.       
                            </c:when>
 				 	    </c:choose>
 				 	   <!--  Reset Password -->
 				 	    <c:choose>
 				 	       <c:when test="${resetPassword =='resetPassword' }">             
-                           <c:out value="${retMessage}"></c:out> Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.   
+                           <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees.   
                            </c:when>
 				 	    </c:choose>
 				 	    <!-- Deactivate employee -->
 				 	  <c:choose>
 				 	    <c:when test="${deactivateEmployee =='deactivateEmployee' }">
-				 	       <c:out value="${retMessage}"></c:out> Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of Employees or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of Employees.
 				 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- add Customer -->
 				 	  <c:choose>
 				 	    <c:when test="${addCustomer =='addCustomer' }">
-				 	       <c:out value="${retMessage}"></c:out> Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of Customers or click <a href="addClient.html" class="confirmtions"><b> here</b></a> to add another Customer.
+				 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of Customers. or click <a href="addClient.html" class="confirmtions"><b> here</b></a> to add another Customer.
 				 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- update Customer -->
 				 	   <c:choose>
 				 	    <c:when test="${updateCustomer =='updateCustomer' }">
-				 	       <c:out value="${retMessage}"></c:out> Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of Customers or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of Customers.
 				 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- add Device -->
 				 	  <c:choose>
 				 	    <c:when test="${addDevice =='addDevice' }">
-				 	       <c:out value="${retMessage}"></c:out> Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of Devices or click <a href="searchClientforProduct?customerName=<c:out value='${customerName}'/>" class="confirmtions"><b> here</b></a> to add another Device for ${customerName} or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of Devices or click <a href="searchClientforProduct?customerName=<c:out value='${customerName}'/>" class="confirmtions"><b> here</b></a> to add another Device for ${customerName}.
 				 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- update Device -->
@@ -102,7 +102,7 @@ a.confirmtions {
 				 	    <!-- Log a Ticket -->
 						 <c:choose>
 						 	   <c:when test="${tickets =='tickets' }">
-						 	       <c:out value="${retMessage}"></c:out> Click<a href="logTicket.html" class="confirmtions"><b> here</b></a> to log another Ticket or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+						 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="logTicket.html" class="confirmtions"><b> here</b></a> to log another Ticket.
 							   </c:when>
 						 </c:choose>
 						 
@@ -110,7 +110,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${orders =='orders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="placeOrderForTechnician.html" class="confirmtions"><b> here</b></a> to place another Order or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.                            
+					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="placeOrderForTechnician.html" class="confirmtions"><b> here</b></a> to place another Order.                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -118,21 +118,21 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${approverOrders =='approverOrders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="approvedOrders.html" class="confirmtions"><b> here</b></a> to view list of approved Orders or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.                            
+					 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to view list of approved Orders.                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- Approver Orders -->
 				 	  	<c:choose>
 					 	    <c:when test="${shipOrder =='shipOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="approvedOrders.html" class="confirmtions"><b> here</b></a> to view list of approved Orders or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
+					 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to view list of approved Orders.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	     <!-- Decline Order -->
 				 	  	<c:choose>
 					 	    <c:when test="${declineOrder =='declineOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="pendingOrders.html" class="confirmtions"><b> here</b></a> to view list of pending Orders or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
+					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a> .Click<a href="pendingOrders.html" class="confirmtions"><b> here</b></a> to view list of pending Orders.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -140,19 +140,19 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${managerUpdateTicket =='managerUpdateTicket' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
+					 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- Add Spares -->
 				 	  	<c:choose>
 					 	    <c:when test="${addSpares =='addSpares' }">
-					 	       <c:out value="${retMessage}"></c:out> Click<a href="addSpares.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.                            
+					 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="addSpares.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO.                            
 					 	    </c:when>
 				 	    </c:choose>				 	    
 				 	    <!-- Receive Spares -->
 				 	  	<c:choose>
 					 	    <c:when test="${receiveSpareParts =='receiveSpareParts' }">
-					 	       <c:out value="${retMessage}"></c:out> Click<a href="receiveParts.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.                            
+					 	       <c:out value="${retMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="receiveParts.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO.                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -167,15 +167,15 @@ a.confirmtions {
 				 	  <c:choose>
 				 	    <c:when test="${addEmployee =='addEmployee' }">
 				 	       <c:out value="${retErrorMessage}"></c:out> 
-				 	        Click<a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees or 
-                            Click <a href="registerEmployee.html" class="confirmtions"> <b> here</b></a> to add another new Employee or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees or 
+                            Click <a href="registerEmployee.html" class="confirmtions"> <b> here</b></a> to add another new Employee.
 				 	    </c:when>
 				 	    </c:choose>
 				 	     <!-- Update employee -->
 				 	    <c:choose>
 				 	     <c:when test="${updateEmployee =='updateEmployee' }">
 				 	         <c:out value="${retErrorMessage}"></c:out> 
-				 	          Click<a href="home.html" class="confirmtions"> <b> here</b></a> to go to Home page or 
+				 	          Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>.
                               Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees. 
 				 	    </c:when>
 				 	    </c:choose> 
@@ -183,56 +183,56 @@ a.confirmtions {
 				 	    <c:choose>
 				 	    <c:when test="${changePassword =='changePassword' }">
                            <c:out value="${retErrorMessage}"></c:out>
-                                Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a>  to view list of Employees or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.       
+                                Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click <a href="displayEmployees.html" class="confirmtions"> <b> here</b></a>  to view list of Employees.       
                            </c:when>
 				 	    </c:choose>
 				 	   <!--  Reset Password -->
 				 	    <c:choose>
 				 	       <c:when test="${resetPassword =='resetPassword' }">             
                            <c:out value="${retErrorMessage}"></c:out>
-                                  Click <a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of Employees or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page. 
+                                 Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click <a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of Employees. 
                            </c:when>
 				 	    </c:choose>
 				 	     <!--  Deactivate Employee -->
 				 	    <c:choose>
 				 	       <c:when test="${deactivateEmployee =='deactivateEmployee' }">             
                            <c:out value="${retErrorMessage}"></c:out>
-                                  Click <a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of Employees or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+                                  Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click <a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of Employees.
                            </c:when>
 				 	    </c:choose>
 				 	   <!--  Add Customer -->
 				 	    <c:choose>
 				 	    <c:when test="${addCustomer =='addCustomer' }">
 				 	       <c:out value="${retErrorMessage}"></c:out> 
-				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of Customers or Click <a href="addClient.html" class="confirmtions"><b> here</b></a> to add another Customer or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of Customers or Click <a href="addClient.html" class="confirmtions"><b> here</b></a> to add another Customer.
 				 	    </c:when>
 				 	    </c:choose>
 				 	     <!-- update Customer -->
 				 	  <c:choose>
 				 	    <c:when test="${updateCustomer =='updateCustomer' }">
 				 	       <c:out value="${retErrorMessage}"></c:out> 
-				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to display list of Customers or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to display list of Customers.
 				 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- add Device -->
 				 	  <c:choose>
 				 	    <c:when test="${addDevice =='addDevice' }">
 				 	       <c:out value="${retErrorMessage}"></c:out> 
-				 	        Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of Devices or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="searchDevice.html" class="confirmtions"><b> here</b></a> to view list of Devices.
 				 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- update Device -->
 				 	  <c:choose>
 				 	    <c:when test="${updateCustomer =='updateCustomer' }">
 				 	       <c:out value="${retErrorMessage}"></c:out> 
-				 	        Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+				 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="displayCustomers.html" class="confirmtions"><b> here</b></a> to view list of customers.
 				 	    </c:when>
 				 	    </c:choose>
 				 	     	<!-- Place an Orders -->
 				 	  		<c:choose>
 				 	    		<c:when test="${orders =='orders' }">
 					 	       		<c:out value="${retErrorMessage}"></c:out> 
-					 	        	Click<a href="placeOrderForTechnician.html" class="confirmtions"> <b> here</b></a> to place anoher order again or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+					 	        	Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="placeOrderForTechnician.html" class="confirmtions"> <b> here</b></a> to place anoher order again.
 	                            	
 					 	    	</c:when>
 					 	    </c:choose>
@@ -241,7 +241,7 @@ a.confirmtions {
 				 	  		<c:choose>
 				 	    		<c:when test="${approverOrders =='approverOrders' }">
 					 	       		<c:out value="${retErrorMessage}"></c:out> 
-					 	        	Click<a href="pendingOrders.html" class="confirmtions"> <b> here</b></a> to approve other orders or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+					 	        	Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"> <b> here</b></a> to approve other orders.
 	                            	
 					 	    	</c:when>
 					 	    </c:choose>
@@ -249,7 +249,7 @@ a.confirmtions {
 				 	  		<c:choose>
 				 	    		<c:when test="${shipOrder =='shipOrder' }">
 					 	       		<c:out value="${retErrorMessage}"></c:out> 
-					 	        	Click<a href="pendingOrders.html" class="confirmtions"> <b> here</b></a> to approve other orders or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.
+					 	        	Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"> <b> here</b></a> to approve other orders.
 	                            	
 					 	    	</c:when>
 					 	    </c:choose>
@@ -257,7 +257,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${declineOrder =='declineOrder' }">
 					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	        Click<a href="pendingOrders.html" class="confirmtions"><b> here</b></a> to view list of pending Orders or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.                            
+					 	      Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="pendingOrders.html" class="confirmtions"><b> here</b></a> to view list of pending Orders.                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -265,19 +265,19 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${managerUpdateTicket =='managerUpdateTicket' }">
 					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	        Click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
+					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- Add Spares -->
 				 	  	<c:choose>
 					 	    <c:when test="${addSpares =='addSpares' }">
-					 	       <c:out value="${retErrorMessage}"></c:out> Click<a href="addSpares.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.                            
+					 	       <c:out value="${retErrorMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a> Click<a href="addSpares.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO.                            
 					 	    </c:when>
 				 	    </c:choose>				 	    
 				 	    <!-- Receive Spares -->
 				 	  	<c:choose>
 					 	    <c:when test="${receiveSpareParts =='receiveSpareParts' }">
-					 	       <c:out value="${retErrorMessage}"></c:out> Click<a href="receiveParts.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO or click<a href="home.html" class="confirmtions"><b> here</b></a> to go to Home page.                          
+					 	       <c:out value="${retErrorMessage}"></c:out>Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="receiveParts.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO.                          
 					 	    </c:when>
 				 	    </c:choose>
 				 	    

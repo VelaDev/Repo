@@ -54,39 +54,45 @@ table#orderDetails {
 					</h3>
 				</div>
 				<div class="panel-body">
-
-					<div id="navbar" class="navbar-collapse collapse"  style="margin-left:-2%">
+						
+					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">
 						<ul class="nav navbar-nav navbar-left">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Order Confirmation<span class="caret"></span></a>
+							aria-expanded="false">Order Action<span class="caret"></span></a>
 									 <ul class="dropdown-menu">
-										<c:forEach var="list" items="${status}">
 										<c:choose>
-											<c:when test="${list.orderStatus == 'Pending'}">  
+											<c:when test="${OrderNum.status == 'Pending'}">  
 											   <li><a href="approveOrderItems?recordID= <c:out value='${OrderNum.recordID}'/>">Approve Order</a></li>
 											   <li><a href="declineOrder?recordID= <c:out value='${OrderNum.recordID}'/>">Reject Order</a></li>
 											</c:when>											  	
 										</c:choose>
 										<c:choose>
-											<c:when test="${list.orderStatus == 'Approved'}">  
-											   <li><a href='<c:url value="approvedOrders.html"/>'>Ship Order</a></li>
+											<c:when test="${OrderNum.status == 'Approved'}">  
+											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
 											</c:when>											  	
 										</c:choose>	
-										</c:forEach>					
+										<%-- <c:choose>
+											<c:when test="${OrderNum.status == 'Shipped'}">  
+											   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
+											</c:when>											  	
+										</c:choose> --%>						
 									</ul>
 							</li>
 							<li class="active"><a href="#">Print</a></li>
 							<li><a href="#">Download PDF </a></li>
 						</ul>
 					</div>
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav navbar-right">
-							<li class="active"><a href="#">Print</a></li>
-							<li><a href="#">Download PDF </a></li>
-						</ul>
-					</div>
+					<legend></legend>
 					
+					
+					<ul class="nav nav-tabs">
+
+						<li class="active"><a href="#orderDetails" data-toggle="tab">Order
+								Details</a></li>
+						<li><a href="#orderHistoryDetails" data-toggle="tab">History</a></li>
+
+					</ul>
 					
 					<div class="tab-content">
 

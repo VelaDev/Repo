@@ -189,7 +189,7 @@
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 20%">
-											<h4 align="center">${newOrder}</h4>
+											<h4 align="center">${countNewOrders}</h4>
 											<p align="center">Orders to Approve</p>
 										</div>
 								</a></li>
@@ -199,7 +199,7 @@
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20" style="margin-left: 25%">
-											<h4 align="center">0</h4>
+											<h4 align="center">${countApprovedOrder}</h4>
 											<p align="center">Orders to Ship</p>
 										</div>
 								</a></li>
@@ -210,7 +210,7 @@
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20" style="margin-left: 25%">
-											<h4 align="center">0</h4>
+											<h4 align="center">${countShippedOrder}</h4>
 											<p align="center">Shipped Orders</p>
 										</div>
 								</a></li>

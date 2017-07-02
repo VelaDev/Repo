@@ -1,11 +1,13 @@
 package com.demo.controller;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -773,8 +775,9 @@ public class OrdersController {
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
-			model.addObject("newOrder",ordersServiceInt.countNewOrders(""));
-			model.addObject("approvedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countShippedOrder",ordersServiceInt.countApprovedOrders(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordermanagement");
 		} else {
@@ -784,9 +787,9 @@ public class OrdersController {
 		return model;
 	}
 	@RequestMapping(value = "searchOrderNumber")
-	public ModelAndView searchOrderNumber(@RequestParam("customerName")String customerName,@RequestParam("orderNum")String orderNum) {
+	public ModelAndView searchOrderNumber(@RequestParam("customerName")String customerName,@RequestParam("orderNum")String orderNum,@RequestParam("selectDateRange")@DateTimeFormat(pattern="yyyy-MM-dd")Date date) {
 		model = new ModelAndView();
-      System.err.println(customerName);
+      System.err.println(date);
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			/*model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));

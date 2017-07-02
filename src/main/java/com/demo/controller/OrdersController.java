@@ -531,7 +531,7 @@ public class OrdersController {
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("receiveOrder", receiveOrder);
-			model.setViewName("confirmations");
+			model.setViewName("confirmation");
 		} else {
 			model.setViewName("login");
 		}
@@ -572,7 +572,7 @@ public class OrdersController {
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 
 			model.addObject("receiveOrder", receiveOrder);
-			model.setViewName("confirmation");
+			model.setViewName("confirmations");
 		} else {
 			model.setViewName("login");
 		}

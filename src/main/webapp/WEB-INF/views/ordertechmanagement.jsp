@@ -88,14 +88,6 @@ input#selectDateRange{
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
-					</c:out>
-
-				</div>
-			</c:if>
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 

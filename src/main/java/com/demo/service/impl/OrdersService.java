@@ -224,5 +224,12 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.getLastFourteenDaysOrders(technicianName);
 	}
 
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(
+			String technicianName) {
+		// 
+		return ordersDAO.getLastFourteenDaysOrdersToReceive(technicianName);
+	}
+
 	
 }

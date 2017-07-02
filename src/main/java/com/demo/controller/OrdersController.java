@@ -944,14 +944,13 @@ public class OrdersController {
 				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysClosedOrders());
 				model.addObject("customers", customerServiceInt.getClientList());
 				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
-				model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive(""));
+				model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive("",userName.getEmail()));
 				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
 				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
 				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
 				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 				model.setViewName("ordertechmanagement");
-				
 			}else if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
 			
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
@@ -988,10 +987,10 @@ public class OrdersController {
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysClosedOrders());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrdersToReceive(userName.getEmail()));
 			model.addObject("customers", customerServiceInt.getClientList());
 			model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive(""));
-			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+			model.addObject("countNewOrders",ordersServiceInt.countNewOrders("",userName.getEmail()));
 			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
 			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
 			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));

@@ -37,7 +37,7 @@ table#orderDetails {
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<%-- <c:import url="templates/techniciannavbar.jsp"></c:import> --%>
+		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 		
 			<form:form action="searchOrderNumber" method="post"
@@ -49,7 +49,7 @@ table#orderDetails {
 				<div class="panel-heading">
 					<h3 class="panel-title">						
 						<div align="center">
-							<b>Order No : </b>
+							<b>Order No : ${OrderNum.orderNum}</b>
 						</div>
 					</h3>
 				</div>

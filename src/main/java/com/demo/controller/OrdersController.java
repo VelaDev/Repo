@@ -255,7 +255,7 @@ public class OrdersController {
 		return model;
 	}
 
-	@RequestMapping(value = "approveOrderItems", method = RequestMethod.POST)
+	@RequestMapping(value = "approveOrderItems")
 	public ModelAndView approveOrderItems(
 			@RequestParam("recordID") Integer recordID) {
 		model = new ModelAndView();

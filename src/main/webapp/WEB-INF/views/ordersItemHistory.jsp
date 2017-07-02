@@ -71,8 +71,8 @@
 										<c:forEach var="list" items="${status}">
 										<c:choose>
 											<c:when test="${list.orderStatus == 'Pending'}">  
-											   <li><a href='<c:url value="approveOrder.html"/>'>Approve Order</a></li>
-											   <li><a href='<c:url value="declineOrder.html"/>'>Reject Order</a></li>
+											   <li><a href="approveOrderItems?recordID= <c:out value='${OrderNum.recordID}'/>">Approve Order</a></li>
+											   <li><a href="declineOrder?recordID= <c:out value='${OrderNum.recordID}'/>">Reject Order</a></li>
 											</c:when>											  	
 										</c:choose>
 										<c:choose>

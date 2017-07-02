@@ -844,6 +844,7 @@ public class OrdersController {
 		if (userName != null) {
 			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
 				
+				
 				model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());

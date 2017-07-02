@@ -553,7 +553,7 @@ input#selectDateRange{
 				var end = moment();
 
 				function cb(start, end) {
-					$('#selectDateRange input').html(start.format('YYYY-MM-DD') + ' TO ' + end.format('YYYY-MM-DD'));
+					$('#selectDateRange input').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
 					var selectDateRange = start.format('YYYY-MM-DD') + ' TO ' + end.format('YYYY-MM-DD');
 					document.getElementById('selectDateRange').value = selectDateRange;
 					console.log(selectDateRange);

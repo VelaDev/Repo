@@ -36,6 +36,17 @@
 <!--/style-->
 
 <style type="text/css">
+
+input#selectDateRange{
+   
+   background: #fff;
+   cursor: pointer; 
+   padding: 5px 10px; 
+   border: 1px solid #ccc; 
+   width: 119%;
+   margin-left: 69%; 
+   margin-right: 0%;
+}
 .db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
 	 ~ li {
 	width: 10%;
@@ -104,17 +115,7 @@
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
 								<!-- Select type selectDateRange-->
-								<div id="selectDateRange" name="selectDateRange" class="form-control"
-									style="background: #fff;
-										   cursor: pointer; 
-										   padding: 5px 10px; 
-										   border: 1px solid #ccc; 
-										   width: 119%;
-										   margin-left: 94%; 
-										   margin-right: 0%;">
-									<i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;
-									<span></span> <b class="caret"></b>
-								</div>
+								<input type="text" id="selectDateRange" name="selectDateRange" class="form-control" value=""/>
 							</div>
 						</div>
 					</div>
@@ -547,9 +548,10 @@
 				var end = moment();
 
 				function cb(start, end) {
-					start.format('YYYY-MM-DD');
-					$('#selectDateRange span').html(start.format('YYYY-MM-DD'));
-					//document.getElementById('selectDateRange').value = start.format('YYYY-MM-DD');
+					$('#selectDateRange input').html(start.format('YYYY-MM-DD') + ' TO ' + end.format('YYYY-MM-DD'));
+					var selectDateRange = start.format('YYYY-MM-DD') + ' TO ' + end.format('YYYY-MM-DD');
+					document.getElementById('selectDateRange').value = selectDateRange;
+					console.log(selectDateRange);
 				}
 
 				$('#selectDateRange')

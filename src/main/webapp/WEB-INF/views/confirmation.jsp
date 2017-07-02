@@ -48,29 +48,23 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${orders =='orders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="order.html" class="confirmtions"><b> here</b></a> to place another Order or click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                        
+					 	        Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_homes.png" /></a> or click<a href="ordertechmanagement.html" class="confirmtions"><b> here</b></a> to place another Order.                        
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Receive Order -->
-				 	    		<c:choose>
+				 	    	<c:choose>
 					 	    <c:when test="${receiveOrder =='receiveOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
+					 	        Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a> or click<a href="ordertechmanagement.html" class="confirmtions"><b> here</b></a> to receive other orders.	                            
 					 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Update Ticket -->
 				 	    	<c:choose>
 					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                    
+					 	        Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>                    
 					 	    </c:when>
-				 	    	</c:choose>
-				 	    	<c:choose>
-					 	    <c:when test="${receiveOrder =='receiveOrder' }">
-					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                    
-					 	    </c:when>
-				 	    	</c:choose>
+				 	    	</c:choose>				 	    	
 				 	    </div>
 				 	</c:if><!-- Successful message -->
 				 	
@@ -82,22 +76,22 @@ a.confirmtions {
 				 	  		<c:choose>
 				 	    		<c:when test="${orders =='orders' }">
 					 	       		<c:out value="${retErrorMessage}"></c:out> 
-					 	        	Click<a href="order.html" class="confirmtions"> <b> here</b></a> to place another Order or click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.
+					 	        	Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="order.html" class="confirmtions"> <b> here</b></a> to place another Order.
 	                            	
 					 	    	</c:when>
 					 	    </c:choose>
 					 	    <!-- Receive Order -->
-				 	    		<c:choose>
-					 	    <c:when test="${receiveOrder =='receiveOrder' }">
-					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	        Click<a href="viewApprovedOrders.html" class="confirmtions"><b> here</b></a> to receive other orders or click <a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to home page.	                            
-					 	    </c:when>
+				 	    	<c:choose>
+						 	    <c:when test="${receiveOrder =='receiveOrder' }">
+						 	       <c:out value="${retErrorMessage}"></c:out> 
+						 	      		Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordertechmanagement.html" class="confirmtions"><b> here</b></a> to receive other orders.	                            
+						 	    </c:when>
 				 	    	</c:choose>
 				 	    	<!-- Update Ticket -->
 				 	    		<c:choose>
 					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
 					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	        Click<a href="technicianHome.html" class="confirmtions"><b> here</b></a> to go to Home page.                    
+					 	        Go to <a href="technicianHome.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>.                   
 					 	    </c:when>
 				 	    	</c:choose>
 				 	  

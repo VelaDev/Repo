@@ -825,7 +825,7 @@ public class OrdersController {
 			model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive("",userName.getEmail()));
 			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
 			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder("",userName.getEmail()));
+			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(userName.getEmail()));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordertechmanagement");
@@ -970,9 +970,11 @@ public class OrdersController {
 				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
 				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders("",userName.getEmail()));
 				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders("",userName.getEmail()));
-				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder("",userName.getEmail()));
+				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(userName.getEmail()));
 				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+				
 				model.setViewName("ordertechmanagement");
+				
 			}else if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
 			
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));

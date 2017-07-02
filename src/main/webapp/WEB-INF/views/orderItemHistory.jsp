@@ -55,19 +55,22 @@ table#orderDetails {
 				</div>
 				<div class="panel-body">
 						
-					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">
+					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">						
 						<ul class="nav navbar-nav navbar-left">
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Receive Order<span class="caret"></span></a>
-									 <ul class="dropdown-menu">
+							<c:if test="${OrderNum.status == 'Shipped'}">
+							
+								<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">Order Action<span class="caret"></span></a>
+							    	<ul class="dropdown-menu">
 										<c:choose>
 											<c:when test="${OrderNum.status == 'Shipped'}">  
 											   <li><a href="receive?recordID=<c:out value='${OrderNum.recordID}'/>">Receive Order</a></li>
 											</c:when>											  	
-										</c:choose>											
+										</c:choose>
 									</ul>
-							</li>
+								</li>
+								</c:if>
 							<li class="active"><a href="#">Print</a></li>
 							<li><a href="#">Download PDF </a></li>
 						</ul>

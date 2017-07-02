@@ -180,7 +180,7 @@ input#selectDateRange{
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 4%">
+											style="margin-left: 28%">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Create Order</p>
@@ -557,8 +557,8 @@ input#selectDateRange{
 				var end = moment();
 
 				function cb(start, end) {
-					$('#selectDateRange input').html(start.format('YYYY-MM-DD') + ' TO ' + end.format('YYYY-MM-DD'));
-					var selectDateRange = start.format('YYYY-MM-DD') + ' TO ' + end.format('YYYY-MM-DD');
+					$('#selectDateRange input').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
+					var selectDateRange = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
 					document.getElementById('selectDateRange').value = selectDateRange;
 					console.log(selectDateRange);
 				}

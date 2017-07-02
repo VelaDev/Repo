@@ -90,7 +90,9 @@
 							<li><a href="#">Download PDF </a></li>
 						</ul>
 					</div>
-
+					<legend></legend>
+					
+					
 					<ul class="nav nav-tabs">
 
 						<li class="active"><a href="#orderDetails" data-toggle="tab">Order
@@ -98,7 +100,7 @@
 						<li><a href="#orderHistoryDetails" data-toggle="tab">History</a></li>
 
 					</ul>
-
+					
 					<div class="tab-content">
 
 						<!--#orderDetails tab-->

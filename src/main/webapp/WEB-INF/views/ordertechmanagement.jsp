@@ -37,19 +37,42 @@
 
 <style type="text/css">
 
+.selectDate {
+    position: relative;
+	display: inline-block;
+	height: 28px;
+	width: 48%;
+	margin-left: 25%;    
+}
+.selectDate input {
+    width: 100%; /* Arbitrary number */
+    height: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+#calendar {
+    height: 100%;
+    width: 40px; 
+    background-image: url(resources/images/calendar.png),url(resources/images/down_arrow.png);
+	background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%); /* OR margin-top: -20px (Half of the container's height) if you're supporting older browsers */
+}
+
+
 i.glyphicon.glyphicon-calendar.col-sm-pull-2 {
     right: -29%;
 }
 
 input#selectDateRange{
    
-   background: #fff;
-   cursor: pointer; 
-   padding: 5px 10px; 
-   border: 1px solid #ccc; 
-   width: 119%;
-   margin-left: 69%; 
-   margin-right: 0%;
+  cursor: pointer; 
+  
 }
 .db-summary li:first-child:nth-last-child(3), .db-summary li:first-child:nth-last-child(3) ~ li {
     width: 10.33333%;
@@ -114,10 +137,11 @@ input#selectDateRange{
 					</div>
 					
 					<div class="col-sm-4">
-						<label for="date"> <input type="text" id="selectDateRange"
-							name="selectDateRange" class="form-control">
-						</label> <i class="glyphicon glyphicon-calendar col-sm-pull-2"><i
-							class="caret"></i></i>
+						<div class='selectDate'>
+							<input type="textbox" id="selectDateRange" name="selectDateRange"
+								class="form-control" />
+							<span id="calendar"></span>
+						</div>
 					</div>
 
 
@@ -144,8 +168,6 @@ input#selectDateRange{
 
 						</div>
 					</div>
-
-
 				</div>
 
 			</form:form>
@@ -406,10 +428,10 @@ input#selectDateRange{
 				var end = moment();
 
 				function cb(start, end) {
-					$('#selectDateRange input').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
-					var selectDateRange = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+					$('#selectDateRange input').html(start.format('YYYY/DD/MM'));
+					var selectDateRange = start.format('YYYY/DD/MM');
 					document.getElementById('selectDateRange').value = selectDateRange;
-					console.log(selectDateRange);
+					console.log("Selected Date : ",selectDateRange);
 				}
 
 				$('#selectDateRange')

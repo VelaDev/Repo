@@ -36,24 +36,48 @@
 <!--/style-->
 
 <style type="text/css">
+.selectDate {
+    position: relative;
+    display: inline-block;
+    height: 28px;
+    width: 48%;
+    margin-left: 25%; 
+}
+
+.selectDate input {
+	width: 100%; /* Arbitrary number */
+	height: 100%;
+	padding-right: 40px;
+	box-sizing: border-box;
+}
+
+#calendar {
+	height: 100%;
+	width: 40px;
+	background-image: url(resources/images/calendar.png),url(resources/images/down_arrow.png);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	border: none;
+	background-color: transparent;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+}
 
 i.glyphicon.glyphicon-calendar.col-sm-pull-2 {
-    right: -29%;
+	right: -29%;
 }
 
-input#selectDateRange{
-   
-   background: #fff;
-   cursor: pointer; 
-   padding: 5px 10px; 
-   border: 1px solid #ccc; 
-   width: 119%;
-   margin-left: 69%; 
-   margin-right: 0%;
+input#selectDateRange {
+	cursor: pointer;
 }
-.db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) ~ li {
-    width: 12%;
+
+.db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) 
+	~ li {
+	width: 12%;
 }
+
 .db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
 	 ~ li {
 	width: 10%;
@@ -117,12 +141,13 @@ input#selectDateRange{
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="col-sm-4">
-						<label for="date"> <input type="text" id="selectDateRange"
-							name="selectDateRange" class="form-control">
-						</label> <i class="glyphicon glyphicon-calendar col-sm-pull-2"><i
-							class="caret"></i></i>
+						<div class='selectDate'>
+							<input type="textbox" id="selectDateRange" name="selectDateRange"
+								class="form-control" />
+							<span id="calendar"></span>
+						</div>
 					</div>
 
 
@@ -200,16 +225,18 @@ input#selectDateRange{
 										</div>
 								</a></li>
 
-								<li><a href='<c:url value="ordersToShip"/>' data-parallel-url="OrderToShip"									
+								<li><a href='<c:url value="ordersToShip"/>'
+									data-parallel-url="OrderToShip"
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
-										<div class="summary-count pull-left ml20" style="margin-left: 5%">
+										<div class="summary-count pull-left ml20"
+											style="margin-left: 5%">
 											<h4 align="center">${countApprovedOrder}</h4>
 											<p align="center">Orders to Ship</p>
 										</div>
 								</a></li>
-								
+
 								<li><a href='<c:url value="ShippedOrders"/>'
 									class="summery-filter clearfix"
 									data-parallel-url="OrderToApprove"
@@ -291,90 +318,6 @@ input#selectDateRange{
 
 								</div>
 
-							<%-- 	<div class="tab-pane" id="OrderToApprove">
-									<legend align=center>Orders To Approve</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="OrderToApproveDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Order No</th>
-													<th>Order Status</th>
-													<th>Customer</th>
-													<th>Approved Date</th>
-													<th>Stock Type</th>
-													<th>Ordered By</th>
-													<th>Order Details</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${orderList}">
-													<tr>
-														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-														<td>${list.status}</td>
-														<td></td>
-														<td>${list.dateOrdered}</td>
-														<td>${list.stockType}</td>
-														<td>Ordered By</td>
-														<td><a
-															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-
-								</div> --%>
-<%-- 
-								<div class="tab-pane" id="OrderToShip">
-									<legend align=center>Orders To Ship</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="OrderToShipDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Order No</th>
-													<th>Order Status</th>
-													<th>Customer</th>
-													<th>Approved Date</th>
-													<th>Stock Type</th>
-													<th>Ordered By</th>
-													<th>Order Details</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${orderList}">
-													<tr>
-														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-														<td>${list.status}</td>
-														<td></td>
-														<td>${list.dateOrdered}</td>
-														<td>${list.stockType}</td>
-														<td>Ordered By</td>
-														<td><a
-															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-								</div> --%>
-								
-								
 								<div class="tab-pane" id="shippedOrders">
 									<legend align=center>Shipped Orders</legend>
 									<form:form modelAttribute="orderHistory" method="post"
@@ -536,8 +479,8 @@ input#selectDateRange{
 				});
 			});
 		</script>
-		
-		
+
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#shippedOrdersDatatable').DataTable({
@@ -557,10 +500,10 @@ input#selectDateRange{
 				var end = moment();
 
 				function cb(start, end) {
-					$('#selectDateRange input').html(start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD'));
-					var selectDateRange = start.format('YYYY-MM-DD') + ' - ' + end.format('YYYY-MM-DD');
+					$('#selectDateRange input').html(start.format('YYYY/DD/MM'));
+					var selectDateRange = start.format('YYYY/DD/MM');
 					document.getElementById('selectDateRange').value = selectDateRange;
-					console.log(selectDateRange);
+					console.log("Selected Date : ",selectDateRange);
 				}
 
 				$('#selectDateRange')

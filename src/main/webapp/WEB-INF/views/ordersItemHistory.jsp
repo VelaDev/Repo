@@ -50,12 +50,23 @@
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber">
 
-				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
-					 <ul class="nav navbar-nav">
+			</form:form>
+			
+			<div class="panel panel-success">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<div align="center">
+							<b>Order No : ${OrderNum.orderNum}</b>
+						</div>
+					</h3>
+				</div>
+				<div class="panel-body">
 
+					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">
+						<ul class="nav navbar-nav navbar-left">
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Order Confirmation<span class="caret"></span></a>
+							aria-expanded="false">Order Action<span class="caret"></span></a>
 									 <ul class="dropdown-menu">
 										<c:forEach var="list" items="${status}">
 										<c:choose>
@@ -72,26 +83,6 @@
 										</c:forEach>					
 									</ul>
 							</li>
-					 </ul>
-					</div>
-									
-				</div>
-			</form:form>
-			
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<br />
-						<br />
-						<div align="center">
-							<b>Order No : ${OrderNum.orderNum}</b>
-						</div>
-					</h3>
-				</div>
-				<div class="panel-body">
-
-					<div id="navbar" class="navbar-collapse collapse">
-						<ul class="nav navbar-nav navbar-right">
 							<li class="active"><a href="#">Print</a></li>
 							<li><a href="#">Download PDF </a></li>
 						</ul>

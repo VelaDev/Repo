@@ -67,7 +67,15 @@
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-			<form:form action="searchOrderNumber" method="POST"
+
+			<c:if test="${not empty retMessage }">
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ retMessage}">
+					</c:out>
+
+				</div>
+			</c:if>
+			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
@@ -91,6 +99,7 @@
 							</div>
 						</div>
 					</div>
+					
 					<div class="form-group">
 						<div class="col-md-4 inputGroupContainer">
 							<div class="input-group">
@@ -134,6 +143,8 @@
 
 						</div>
 					</div>
+
+
 				</div>
 
 			</form:form>
@@ -170,19 +181,37 @@
 										</div>
 								</a></li>
 
-								<li><a href='<c:url value="ordersToApprove"/>'>
+								<li><a href='<c:url value="ordersToApprove"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
+
 										<div class="summary-count pull-left ml20"
-											style="margin-left: -8%">
+											style="margin-left: 20%">
 											<h4 align="center">${newOrder}</h4>
 											<p align="center">Orders to Approve</p>
 										</div>
 								</a></li>
 
-								<li><a href='<c:url value="ordersToShip"/>'>
+								<li><a href='<c:url value="ordersToShip"/>' data-parallel-url="OrderToShip"									
+									data-parallel-placeholder="#ticket-leftFilter"
+									class="summery-filter clearfix" data-pjax="#body-container">
 
-										<div class="summary-count pull-left ml20">
-											<h4 align="center">${approvedOrder}</h4>
+										<div class="summary-count pull-left ml20" style="margin-left: 25%">
+											<h4 align="center">0</h4>
 											<p align="center">Orders to Ship</p>
+										</div>
+								</a></li>
+								
+								<li><a href='#shippedOrders' data-parallel-url="ShippedOrders"
+									data-toggle="tab"
+									data-parallel-placeholder="#ticket-leftFilter"
+									class="summery-filter clearfix" data-pjax="#body-container">
+
+										<div class="summary-count pull-left ml20" style="margin-left: 25%">
+											<h4 align="center">0</h4>
+											<p align="center">Shipped Orders</p>
 										</div>
 								</a></li>
 
@@ -191,7 +220,7 @@
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
-										<div class="summary-count pull-left">
+										<div class="summary-count pull-left" style="margin-left: 25%">
 											<h4 align="center">0</h4>
 											<p align="center">Closed Order</p>
 										</div>
@@ -301,6 +330,48 @@
 
 										<!-- Below table will be displayed as Data table -->
 										<table id="OrderToShipDatatable" class="display datatable">
+											<thead>
+												<tr>
+													<th>Order No</th>
+													<th>Order Status</th>
+													<th>Customer</th>
+													<th>Approved Date</th>
+													<th>Stock Type</th>
+													<th>Ordered By</th>
+													<th>Order Details</th>
+												</tr>
+											</thead>
+											<tbody>
+												<!-- Iterating over the list sent from Controller -->
+												<c:forEach var="list" items="${orderList}">
+													<tr>
+														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
+														<td>${list.status}</td>
+														<td></td>
+														<td>${list.dateOrdered}</td>
+														<td>${list.stockType}</td>
+														<td>Ordered By</td>
+														<td><a
+															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
+
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										<!-- table order -->
+									</form:form>
+									<!-- form order -->
+
+								</div>
+								
+								
+								<div class="tab-pane" id="shippedOrders">
+									<legend align=center>Shipped Orders</legend>
+									<form:form modelAttribute="orderHistory" method="post"
+										action="orderHistory" id="orderHistory" name="orderHistory">
+
+										<!-- Below table will be displayed as Data table -->
+										<table id="shippedOrdersDatatable" class="display datatable">
 											<thead>
 												<tr>
 													<th>Order No</th>
@@ -448,6 +519,18 @@
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#OrderToShipDatatable').DataTable({
+					"jQueryUI" : true,
+					"pagingType" : "full_numbers",
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				/* few more options are available to use */
+				});
+			});
+		</script>
+		
+		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#shippedOrdersDatatable').DataTable({
 					"jQueryUI" : true,
 					"pagingType" : "full_numbers",
 					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]

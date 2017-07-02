@@ -43,40 +43,11 @@ table#orderDetails {
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber">
 
-				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
-					 <ul class="nav navbar-nav">
-
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Order Confirmation<span class="caret"></span></a>
-									 <ul class="dropdown-menu">
-										<c:forEach var="list" items="${status}">
-											<c:choose>
-												<c:when test="${list.orderStatus == 'Pending'}">  
-												   <li><a href='<c:url value="approveOrder.html"/>'>Approve Order</a></li>
-												   <li><a href='<c:url value="declineOrder.html"/>'>Reject Order</a></li>
-												</c:when>											  	
-											</c:choose>
-											<c:choose>
-												<c:when test="${list.orderStatus == 'Approved'}">  
-												   <li><a href='<c:url value="approvedOrders.html"/>'>Ship Order</a></li>
-												</c:when>											  	
-											</c:choose>	
-										</c:forEach>					
-									</ul>
-							</li>
-					 </ul>
-					
-									
-				</div>
-
 			</form:form>
 			
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<h3 class="panel-title">
-						<br />
-						<br />
+					<h3 class="panel-title">						
 						<div align="center">
 							<b>Order No : ${OrderNum.orderNum}</b>
 						</div>
@@ -84,21 +55,39 @@ table#orderDetails {
 				</div>
 				<div class="panel-body">
 
+					<div id="navbar" class="navbar-collapse collapse"  style="margin-left:-2%">
+						<ul class="nav navbar-nav navbar-left">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+							data-toggle="dropdown" role="button" aria-haspopup="true"
+							aria-expanded="false">Order Confirmation<span class="caret"></span></a>
+									 <ul class="dropdown-menu">
+										<c:forEach var="list" items="${status}">
+										<c:choose>
+											<c:when test="${list.orderStatus == 'Pending'}">  
+											   <li><a href='<c:url value="approveOrder.html"/>'>Approve Order</a></li>
+											   <li><a href='<c:url value="declineOrder.html"/>'>Reject Order</a></li>
+											</c:when>											  	
+										</c:choose>
+										<c:choose>
+											<c:when test="${list.orderStatus == 'Approved'}">  
+											   <li><a href='<c:url value="approvedOrders.html"/>'>Ship Order</a></li>
+											</c:when>											  	
+										</c:choose>	
+										</c:forEach>					
+									</ul>
+							</li>
+							<li class="active"><a href="#">Print</a></li>
+							<li><a href="#">Download PDF </a></li>
+						</ul>
+					</div>
 					<div id="navbar" class="navbar-collapse collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li class="active"><a href="#">Print</a></li>
 							<li><a href="#">Download PDF </a></li>
 						</ul>
 					</div>
-
-					<ul class="nav nav-tabs">
-
-						<li class="active"><a href="#orderDetails" data-toggle="tab">Order
-								Details</a></li>
-						<li><a href="#orderHistoryDetails" data-toggle="tab">History</a></li>
-
-					</ul>
-
+					
+					
 					<div class="tab-content">
 
 						<!--#orderDetails tab-->

@@ -51,14 +51,23 @@ public interface OrdersDaoInt {
 	
 	
 	public List<OrderHeader> getLastFourteenDaysOrders();
+	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,String technicianName,String customerName );
 	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName);
 	
 	public List<OrderHeader> approvedOrders();
+	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrders();
 	public List<OrderHeader> getLastFourteenDaysPendingOrders();
 	public List<OrderHeader> getLastFourteenDaysShippedOrders();
 	public List<OrderHeader> getLastFourteenDaysClosedOrders();
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
+	
+	
+	public List<OrderHeader> getLastFourteenDaysApprovedOrders(String lastFourteenDays,String technicianName,String customerName );
+	public List<OrderHeader> getLastFourteenDaysPendingOrders(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysShippedOrders(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysClosedOrders(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String lastFourteenDays,String technicianName,String customerName);
 
 }

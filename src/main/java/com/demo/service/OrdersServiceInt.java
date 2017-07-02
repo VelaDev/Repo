@@ -56,4 +56,12 @@ public interface OrdersServiceInt {
 
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
+	
+	
+	public List<OrderHeader> getLastFourteenDaysApprovedOrders(String lastFourteenDays,String technicianName,String customerName );
+	public List<OrderHeader> getLastFourteenDaysPendingOrders(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysShippedOrders(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysClosedOrders(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,String technicianName,String customerName );
 }

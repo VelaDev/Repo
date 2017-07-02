@@ -267,5 +267,41 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.countOrdersReceive(lastFourteenDays, technicianName, customerName);
 	}
 
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		return ordersDAO.getLastFourteenDaysApprovedOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		return ordersDAO.getLastFourteenDaysPendingOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		return ordersDAO.getLastFourteenDaysShippedOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		return ordersDAO.getLastFourteenDaysClosedOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(
+			String lastFourteenDays, String technicianName, String customerName) {
+		return ordersDAO.getLastFourteenDaysOrdersToReceive(lastFourteenDays, technicianName, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,
+			String technicianName, String customerName) {
+		return ordersDAO.getLastFourteenDaysOrders(lastFourteenDays, technicianName, customerName);
+	}
+
 	
 }

@@ -1539,22 +1539,603 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public int countApprovedOrders(String lastFourteenDays,
 			String technicianName, String customerName) {
-		// TODO Auto-generated method stub
-		return 0;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				List<OrderHeader>pendingOrders = approvedOrders();
+				for(OrderHeader order:pendingOrders){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						count++;
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				List<OrderHeader>pendingOrders = approvedOrders();
+				for(OrderHeader order:pendingOrders){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						count++;
+					}
+				}
+			}
+			
+			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return count;
 	}
 
 	@Override
 	public int countShippedOrders(String lastFourteenDays,
 			String technicianName, String customerName) {
-		// TODO Auto-generated method stub
-		return 0;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				List<OrderHeader>pendingOrders = shippedOrders();
+				for(OrderHeader order:pendingOrders){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						count++;
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				List<OrderHeader>pendingOrders = shippedOrders();
+				for(OrderHeader order:pendingOrders){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						count++;
+					}
+				}
+			}
+			
+			
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return count;
 	}
 
 	@Override
 	public int countOrdersReceive(String lastFourteenDays,
 			String technicianName, String customerName) {
-		// TODO Auto-generated method stub
-		return 0;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				List<OrderHeader>pendingOrders = shippedOrders();
+				for(OrderHeader order:pendingOrders){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						count++;
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				List<OrderHeader>pendingOrders = shippedOrders();
+				for(OrderHeader order:pendingOrders){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						count++;
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return count;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =approvedOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						aList.add(order);
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =approvedOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						aList.add(order);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =pendingOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						aList.add(order);
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =pendingOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						aList.add(order);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =shippedOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						aList.add(order);
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =shippedOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						aList.add(order);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =receivedOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						aList.add(order);
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList =receivedOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						aList.add(order);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(
+			String lastFourteenDays, String technicianName, String customerName) {
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList = getAllOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName) &&order.getStatus().equalsIgnoreCase("Shipped")){
+						aList.add(order);
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList = getAllOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0 && order.getStatus().equalsIgnoreCase("Shipped")){
+						aList.add(order);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,
+			String technicianName, String customerName) {
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		Date date = null;
+		Date date1 = null;
+		int count = 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date previoueDay = new Date();
+		Date currentDate = new Date();
+		System.out.println(lastFourteenDays.length());
+		try{
+			if(lastFourteenDays.length()>5 && customerName.length()>3){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList = getAllOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+						&& currentDate.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						aList.add(order);
+					}
+				}
+				
+			}else if(lastFourteenDays.length()>5 && customerName.equalsIgnoreCase("")){
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList = getAllOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(previoueDay.compareTo(dateData) >= 0
+							&& currentDate.compareTo(dateData) <= 0){
+						aList.add(order);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return aList;
 	}
 
 	

@@ -1306,7 +1306,7 @@ public class OrderDao implements OrdersDaoInt {
 				String convDate = order.getDateOrdered().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianName)&& order.getStatus().equalsIgnoreCase("Shipped")) {
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianName)   ) {
 					aList.add(order);
 				}
 			}

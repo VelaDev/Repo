@@ -110,7 +110,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${orders =='orders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="placeOrderForTechnician.html" class="confirmtions"><b> here</b></a> to place another Order.                            
+					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to go to order management.                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -118,21 +118,21 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${approverOrders =='approverOrders' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to view list of approved Orders.                            
+					 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to go to order management.                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    <!-- Approver Orders -->
 				 	  	<c:choose>
 					 	    <c:when test="${shipOrder =='shipOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to view list of approved Orders.	                            
+					 	       Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to go to order management.    
 					 	    </c:when>
 				 	    </c:choose>
 				 	     <!-- Decline Order -->
 				 	  	<c:choose>
 					 	    <c:when test="${declineOrder =='declineOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a> .Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to view list of pending Orders.	                            
+					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>. Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to go to order management.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    

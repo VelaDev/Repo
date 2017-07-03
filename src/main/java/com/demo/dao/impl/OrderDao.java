@@ -2131,6 +2131,28 @@ public class OrderDao implements OrdersDaoInt {
 						aList.add(order);
 					}
 				}
+			}else{
+				String firstDate = lastFourteenDays.substring(0, 10);
+				String secondDate = lastFourteenDays.substring(13,23);
+				
+				date = new SimpleDateFormat("MM/dd/yyyy").parse(firstDate);
+				date1 = new SimpleDateFormat("MM/dd/yyyy").parse(secondDate);
+				
+				String newFirstDate = new SimpleDateFormat("yyyy-MM-dd").format(date);
+				String newSecondDate = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+				
+				currentDate = myFormat.parse(newFirstDate);
+				previoueDay = myFormat.parse(newSecondDate);
+				
+				ticketList = getAllOrders();
+				for(OrderHeader order:ticketList){
+					String convDate = order.getDateOrdered().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					Date dateData = myFormat.parse(normalDate);
+					if(order.getCustomer().getCustomerName().equalsIgnoreCase(customerName) ){
+						aList.add(order);
+					}
+				}
 			}
 		}catch(Exception e){
 			e.getMessage();

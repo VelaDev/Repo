@@ -153,9 +153,9 @@ input#selectDateRange{
 									<input type="text" placeholder="Search By Order Number"
 										class="form-control" name="orderNum" id="orderNum" /> <span
 										class="input-group-btn">
-										<button class="btn btn-success" type="submit">
+										<!-- <button class="btn btn-success" type="submit">
 											<div class="up" style="margin-top: -8%; color: white;">Search</div>
-										</button>
+										</button> -->
 									</span>
 								</div>
 								<!-- /input-group -->

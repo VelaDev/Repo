@@ -64,6 +64,7 @@
 
 					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">
 						<ul class="nav navbar-nav navbar-left">	
+						<c:if test="${OrderNum.status == 'Pending'}">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Order Action<span class="caret"></span></a>
@@ -74,14 +75,24 @@
 												   <li><a href="declineOrder?recordID= <c:out value='${OrderNum.recordID}'/>">Reject Order</a></li>
 												</c:when>											  	
 											</c:choose>
-											<c:choose>
+																	
+										</ul>
+								</li>
+							</c:if>
+							<c:if test="${OrderNum.status == 'Approved'}">
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+									data-toggle="dropdown" role="button" aria-haspopup="true"
+									aria-expanded="false">Order Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											 <c:choose>
 												<c:when test="${OrderNum.status == 'Approved'}">  
 												   <li><a href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship Order</a></li>
 												</c:when>											  	
-											</c:choose>							
+											</c:choose>	
+																	
 										</ul>
-								</li>
-							
+								</li>  
+							</c:if>
 							<li class="active"><a
 											href="printdeliveryNote?recordID=<c:out value='${list.recordID}'/>">Print</a></li>
 							<li><a href="#">Download PDF </a></li>

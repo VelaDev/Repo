@@ -77,16 +77,6 @@
 					    <a href='<c:url value="ordertechmanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Management</a>
 					</li>
-					
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Orders<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href='<c:url value="order.html"/>'>Place Order</a></li>
-							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
-						</ul>
-					</li>
-					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Spares<span class="caret"></span></a>
@@ -101,7 +91,6 @@
 						aria-expanded="false">Leave<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href='<c:url value="leave.html"/>'>Request Leave</a></li>
-							<%-- <li><a href='<c:url value="updateLeave.html"/>'>Update Leave</a></li> --%>
 							<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
 						</ul>
 					</li>

@@ -132,7 +132,7 @@ a.confirmtions {
 				 	  	<c:choose>
 					 	    <c:when test="${declineOrder =='declineOrder' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a> .Click<a href="pendingOrders.html" class="confirmtions"><b> here</b></a> to view list of pending Orders.	                            
+					 	        Go to <a href="home.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a> .Click<a href="ordermanagement.html" class="confirmtions"><b> here</b></a> to view list of pending Orders.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    

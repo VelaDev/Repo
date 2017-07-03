@@ -78,7 +78,7 @@
 									Employee</a></li>
 							<li><a href='<c:url value="displayEmployees.html"/>'>View
 									Employee</a></li>
-							<%-- <li><a href='<c:url value="testReports.html"/>'>Checking Reports</a></li> --%>
+							
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Customers <b class="caret"></b></a>
@@ -96,14 +96,8 @@
 								class="dropdown-toggle" data-toggle="dropdown">Device
 									Management</a>
 								<ul class="dropdown-menu">
-									<%-- <li><a href='<c:url value="addProduct.html"/>'>Add
-											Device</a></li> --%>
-									<%-- <li><a href='<c:url value="updateDevice.html"/>'>Update
-											Device</a></li> --%>
 									<li><a href='<c:url value="searchDevice.html"/>'>View
 											Devices</a></li>
-									<!-- <li><a href="#">Delete Device</a></li> -->
-
 								</ul></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -120,7 +114,7 @@
 											Office</a></li>
 									<li><a href='<c:url value="bootSite.html"/>'>Boot Stock</a></li>
 									<li><a href='<c:url value="stockSite.html"/>'>Site Stock</a></li>
-									<!-- <li><a href='<c:url value="order.html"/>'>Make Order</a></li> -->
+									
 
 								</ul></li>
 						</ul></li>
@@ -128,31 +122,12 @@
 					    <a href='<c:url value="ordermanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Management</a>
 					</li>
-					
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Orders<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href='<c:url value="placeOrderForTechnician.html"/>'>Place
-									Order</a></li>
-							<%-- <li><a href='<c:url value="viewAllOrders.html"/>'>View
-									Orders</a></li> --%><%-- 
-							<li><a href='<c:url value="pendingOrders.html"/>'>Pending
-									Orders</a></li> --%>
-							<li><a href='<c:url value="approvedOrders.html"/>'>Approved
-									Orders</a></li>
-							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped
-									Orders</a></li>
-							<li><a href='<c:url value="ordersHistory.html"/>'>Order History</a></li>
-						</ul>
-					</li>
 						
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Tickets<span class="caret"></span></a>
 							<ul class="dropdown-menu">							
 								<li><a href='<c:url value="logTicket.html"/>'>Log Ticket</a></li>
-							<%-- 	<li><a href='<c:url value="monitoringTickets.html"/>'>Open Tickets</a></li> --%>
 							</ul>
 					</li> 
 						
@@ -161,7 +136,7 @@
 							aria-expanded="false">Leave<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href='<c:url value="requestLeave.html"/>'>Request Leave</a></li>
-								<%-- <li><a href='<c:url value="updateMakeLeave.html"/>'>Update Leave</a></li> --%>
+								
 								<li><a href='<c:url value="viewRequestedLeave.html"/>'>View Requested Leave</a></li>
 							</ul>
 					</li>					
@@ -169,11 +144,7 @@
 					    <a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
 					</li>
-					
-					<%-- <li>
-					    <a href='<c:url value="awaitingSpares.html"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Awaiting Spares Inbox <span class="ourbadge" class="btn-btn-danger">${awaitingSparesTickets}</span></a>
-					</li> --%>
+				
 					<li>
 					    <a href='<c:url value="escalatedTickes.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Escalated Tickets Inbox <span class="ourbadge" class="btn-btn-danger">${escalatedTickets}</span></a>

@@ -885,31 +885,30 @@ public class OrdersController {
 	@RequestMapping(value = "ordersToApprove", method = RequestMethod.GET)
 	public ModelAndView ordersToApprove() {
 		model = new ModelAndView();
-		System.err.println("ordersToApprove");
-        System.err.println(selectDateRange);
-        System.err.println(customerName);
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			if(customerName.length()>3 || selectDateRange.length()>3){
-				
-				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(selectDateRange,"",customerName));
-				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(selectDateRange,"",customerName));
-				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(selectDateRange,"",customerName));
-				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(selectDateRange,"",customerName));
-				
-				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysPendingOrders(selectDateRange,"",customerName));
-				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysPendingOrders(selectDateRange,"",customerName));
-				
-			}else {
+			if(customerName!=null && selectDateRange!= null){
+				if(customerName.length()>3 || selectDateRange.length()>3){
+					
+					model.addObject("countNewOrders",ordersServiceInt.countNewOrders(selectDateRange,"",customerName));
+					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(selectDateRange,"",customerName));
+					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(selectDateRange,"",customerName));
+					model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(selectDateRange,"",customerName));
+					
+					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysPendingOrders(selectDateRange,"",customerName));
+					
+				}
+			}
+			else {
 				
 				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
 				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
 				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
 				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
-				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysPendingOrders());
 				
 			}
+			
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
@@ -930,16 +929,28 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			
+			if(customerName!=null && selectDateRange!= null){
+				if(customerName.length()>3 || selectDateRange.length()>3){
+					
+					model.addObject("countNewOrders",ordersServiceInt.countNewOrders(selectDateRange,"",customerName));
+					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(selectDateRange,"",customerName));
+					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(selectDateRange,"",customerName));
+					model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(selectDateRange,"",customerName));
+					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysApprovedOrders(selectDateRange,"",customerName));
+					
+				
+			}
+			}else{
+				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysApprovedOrders());
+			}
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysApprovedOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
-			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
-			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
-			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordermanagement");
 		} else {
@@ -954,15 +965,28 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
+			if(customerName!=null && selectDateRange!= null){
+				if(customerName.length()>3 || selectDateRange.length()>3){
+					model.addObject("countNewOrders",ordersServiceInt.countNewOrders(selectDateRange,"",customerName));
+					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(selectDateRange,"",customerName));
+					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(selectDateRange,"",customerName));
+					model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(selectDateRange,"",customerName));
+					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysShippedOrders(selectDateRange,"",customerName));
+					
+				}
+			}
+			
+			else{
+				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysShippedOrders());
+			}
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysShippedOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
-			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
-			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
-			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.setViewName("ordermanagement");
 		} else {
@@ -997,18 +1021,32 @@ public class OrdersController {
 				model.setViewName("ordertechmanagement");
 				
 			}else if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
+				if(customerName!=null && selectDateRange!= null){
+					if(customerName.length()>3 || selectDateRange.length()>3){
+						
+						model.addObject("countNewOrders",ordersServiceInt.countNewOrders(selectDateRange,"",customerName));
+						model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(selectDateRange,"",customerName));
+						model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(selectDateRange,"",customerName));
+						model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(selectDateRange,"",customerName));
+						model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive(selectDateRange,"",customerName));
+						model.addObject("orderList",ordersServiceInt.getLastFourteenDaysClosedOrders(selectDateRange,"",customerName));
+					}
+				}
+				else{
+					
+					model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+					model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+					model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive(""));
+					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysClosedOrders());
+				}
 			
 			model.addObject("pendingOrderList",	ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysClosedOrders());
 			model.addObject("customers", customerServiceInt.getClientList());
-			model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive(""));
 			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
-			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
-			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 						
 			model.setViewName("ordermanagement");

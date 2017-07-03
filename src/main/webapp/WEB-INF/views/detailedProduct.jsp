@@ -75,7 +75,7 @@
 												</div>								
 												<div class="machinedetailsfloatright ">	
 												   <label id="customerName" name="customerName">: ${device.customerDevice.customerName}</label><br> 
-												   <label id="serialNumber" name="serialNumber">: ${device.serialNumber}</label><br>
+												   <label id="serialNumber" name="serialNumber">: <a href="searchDeviceSerialNumber?serialNumber=<c:out value='${device.serialNumber}'/>">${device.serialNumber}</a></label><br>
 												   <label id="modelNumber" name="modelNumber">: ${device.modelNumber}</label><br> 
 												   <label id="modelBrand" name="modelBrand">: ${device.modelBrand}</label><br> 
 												   <label id="startDate" name="startDate">: ${device.startDate}</label><br> 

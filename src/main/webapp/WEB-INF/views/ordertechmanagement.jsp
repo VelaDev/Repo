@@ -117,14 +117,15 @@ input#selectDateRange{
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
 
 					<!-- Select type customers-->
+					<!-- Select type customers-->
 					<div class="form-group ">
 						<div class="col-md-4 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
-									name="customerName" id="customers"
-									class="form-control selectpicker">
-									<option value="">All Customers</option>
+									name="customerName" id="customerName"
+									class="form-control selectpicker" onchange="location = this.value;">
+									<option value="All Customers">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
 
 										<option value="${customer.customerName}">${customer.customerName}</option>
@@ -136,11 +137,22 @@ input#selectDateRange{
 						</div>
 					</div>
 					
-					<div class="col-sm-4">
-						<div class='selectDate'>
-							<input type="textbox" id="selectDateRange" name="selectDateRange"
-								class="form-control" />
-							<span id="calendar"></span>
+					
+					<!-- Select type selectDateRange-->
+					<div class="form-group ">
+						<div class="col-md-4 selectContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-list"></i></span> <select
+									name="selectDateRange" id="selectDateRange"
+									class="form-control selectpicker" onchange="location = this.value;">
+									<option value="24 Hours">24 Hours</option>
+									<option value="Last 7 Days">Last 7 Days</option>
+									<option value="Last 14 Days" selected>Last 14 Days</option>
+									<option value="Last 30 Days">Last 30 Days</option>									
+								</select>
+
+							</div>
 						</div>
 					</div>
 
@@ -153,9 +165,9 @@ input#selectDateRange{
 									<input type="text" placeholder="Search By Order Number"
 										class="form-control" name="orderNum" id="orderNum" /> <span
 										class="input-group-btn">
-										<!-- <button class="btn btn-success" type="submit">
+										<button class="btn btn-success" type="submit">
 											<div class="up" style="margin-top: -8%; color: white;">Search</div>
-										</button> -->
+										</button>
 									</span>
 								</div>
 								<!-- /input-group -->
@@ -420,52 +432,6 @@ input#selectDateRange{
 			});
 		</script>
 
-		<!-- Get the date from  -->
-		<script type="text/javascript">
-			$(function() {
 
-				var start = moment().subtract(29, 'days');
-				var end = moment();
-
-				function cb(start, end) {
-					$('#selectDateRange input').html(start.format('YYYY/DD/MM'));
-					var selectDateRange = start.format('YYYY/DD/MM');
-					document.getElementById('selectDateRange').value = selectDateRange;
-					console.log("Selected Date : ",selectDateRange);
-				}
-
-				$('#selectDateRange')
-						.daterangepicker(
-								{
-									startDate : start,
-									endDate : end,
-									ranges : {
-										'24 Hours' : [
-												moment().subtract(1, 'days'),
-												moment().subtract(1, 'days') ],
-										'Last 7 Days' : [
-												moment().subtract(6, 'days'),
-												moment() ],
-										'Last 14 Days' : [
-												moment().subtract(14, 'days'),
-												moment() ],
-										'Last 30 Days' : [
-												moment().subtract(29, 'days'),
-												moment() ],
-										'This Month' : [
-												moment().startOf('month'),
-												moment().endOf('month') ],
-										'Last Month' : [
-												moment().subtract(1, 'month')
-														.startOf('month'),
-												moment().subtract(1, 'month')
-														.endOf('month') ]
-									}
-								}, cb);
-
-				cb(start, end);
-
-			});
-		</script>
 </body>
 </html>

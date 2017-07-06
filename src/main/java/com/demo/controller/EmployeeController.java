@@ -95,7 +95,7 @@ public class EmployeeController {
 		long numberOfDays = 1L;
 		
 		employee = employeeService.getEmployeeByEmpNumber(employee.getEmail());
-		password = PasswordEncrypt.encryptPassword(password);
+	    password = PasswordEncrypt.encryptPassword(password);
 		if(employee != null&& employee.getStatus().equalsIgnoreCase("ACTIVE")){
 			session.setAttribute("loggedInUser", employee);
 			String user= employee.getFirstName()+" " + employee.getLastName();

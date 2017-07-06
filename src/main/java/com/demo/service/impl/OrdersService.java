@@ -304,4 +304,36 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	
+	@Override
+	public int countRejectedOrders(String lastFourteenDays) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countRejectedOrder(String lastFourteenDays, String technicianName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders(
+			String technicianName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders(String lastFourteenDays, 
+			String technicianName, String customerName) {
+		return ordersDAO.getLastFourteenDaysOrders(lastFourteenDays, technicianName, customerName);
+	}
+
+	
 }

@@ -57,9 +57,8 @@ table#orderDetails {
 						
 					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">						
 						<ul class="nav navbar-nav navbar-left">		
-										
-								<c:if test="${OrderNum.status == 'Shipped'}">
-							
+						
+								<c:if test="${OrderNum.status == 'Shipped'}">							
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Order Action<span class="caret"></span></a>

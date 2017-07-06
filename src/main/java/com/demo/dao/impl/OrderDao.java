@@ -2160,5 +2160,31 @@ public class OrderDao implements OrdersDaoInt {
 		return aList;
 	}
 
+	@Override
+	public int countRejectedOrder(String lastFourteenDays) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int countRejectedOrder(String lastFourteenDays,
+			String technicianName, String customerName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int countRejectedOrder(String lastFourteenDays, String technicianName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders(
+			String lastFourteenDays, String technicianName, String customerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	
 }

@@ -63,7 +63,7 @@
 				<div class="panel-body">
 
 					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">
-						<ul class="nav navbar-nav navbar-left">	
+						<ul class="nav navbar-nav navbar-left">
 						<c:if test="${OrderNum.status == 'Pending'}">
 								<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"

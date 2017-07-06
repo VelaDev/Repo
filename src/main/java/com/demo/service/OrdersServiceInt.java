@@ -37,25 +37,30 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getLastFourteenDaysPendingOrders();
 	public List<OrderHeader> getLastFourteenDaysShippedOrders();
 	public int countClosedOrder(String lastFourteenDays);
+	public int countRejectedOrders(String lastFourteenDays);
 	
 	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders();
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders();
 	
 	public int countNewOrders(String lastFourteenDays, String technicianName);
 	public int countClosedOrder(String lastFourteenDays ,String technicianName);
 	public int countApprovedOrders(String lastFourteenDays,String technicianName);
 	public int countShippedOrders(String lastFourteenDays,String technicianName);
 	public int countOrdersReceive(String lastFourteenDays,String technicianName);
-	
+	public int countRejectedOrder(String lastFourteenDays,String technicianName);
+		
 	
 	public int countNewOrders(String lastFourteenDays, String technicianName,String customerName);
 	public int countClosedOrder(String lastFourteenDays ,String technicianName,String customerName);
 	public int countApprovedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public int countShippedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public int countOrdersReceive(String lastFourteenDays,String technicianName,String customerName);
+	
 
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders(String technicianName );
 	
 	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrders(String lastFourteenDays,String technicianName,String customerName );
@@ -64,4 +69,6 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String lastFourteenDays,String technicianName,String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,String technicianName,String customerName );
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders(String lastFourteenDays,String technicianName,String customerName);
+
 }

@@ -128,7 +128,7 @@ input#selectDateRange{
 									<option value="All Customers">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
 
-										<option value="${customer.customerName}">${customer.customerName}</option>
+										<option value="getCustomerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
 
 									</c:forEach>
 								</select>
@@ -136,7 +136,6 @@ input#selectDateRange{
 							</div>
 						</div>
 					</div>
-					
 					
 					<!-- Select type selectDateRange-->
 					<div class="form-group ">
@@ -146,10 +145,10 @@ input#selectDateRange{
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
-									<option value="24 Hours">24 Hours</option>
-									<option value="Last 7 Days">Last 7 Days</option>
-									<option value="Last 14 Days" selected>Last 14 Days</option>
-									<option value="Last 30 Days">Last 30 Days</option>									
+									<option value="24Hours">24 Hours</option>
+									<option value="Last7Days">Last 7 Days</option>
+									<option value="Last14Days" selected>Last 14 Days</option>
+									<option value="Last30Days">Last 30 Days</option>									
 								</select>
 
 							</div>
@@ -228,7 +227,20 @@ input#selectDateRange{
 											<p align="center">Orders to Receive</p>
 										</div>
 								</a></li>
+								
+								<li><a href='<c:url value="rejectedOrders"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
 
+										<div class="summary-count pull-left ml20"
+											style="margin-left: -1%">
+											<h4 align="center">${countRejectedOrder}</h4>
+											<p align="center">Rejected Orders</p>
+										</div>
+								</a></li>
+								
 								<li><a href='<c:url value="closedOrders"/>'
 									class="summery-filter clearfix"
 									data-parallel-url="OrderToApprove"
@@ -297,7 +309,6 @@ input#selectDateRange{
 
 								</div>
 
-								
 
 								<div class="tab-pane" id="closedOrder">
 									<legend align=center>Closed Order</legend>

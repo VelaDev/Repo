@@ -78,6 +78,10 @@ input#selectDateRange {
 	width: 12%;
 }
 
+.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(6) ~ li {
+    width: 11%;
+}
+
 .db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
 	 ~ li {
 	width: 10%;
@@ -105,7 +109,6 @@ input#selectDateRange {
 </head>
 <body>
 
-
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
@@ -132,8 +135,7 @@ input#selectDateRange {
 									class="form-control selectpicker" onchange="location = this.value;">
 									<option value="All Customers">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
-
-										<option value="${customer.customerName}">${customer.customerName}</option>
+										<option value="getCustomerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
 
 									</c:forEach>
 								</select>
@@ -141,7 +143,6 @@ input#selectDateRange {
 							</div>
 						</div>
 					</div>
-					
 					
 					<!-- Select type selectDateRange-->
 					<div class="form-group ">
@@ -151,10 +152,10 @@ input#selectDateRange {
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
-									<option value="24 Hours">24 Hours</option>
-									<option value="Last 7 Days">Last 7 Days</option>
-									<option value="Last 14 Days" selected>Last 14 Days</option>
-									<option value="Last 30 Days">Last 30 Days</option>									
+									<option value="24Hours">24 Hours</option>
+									<option value="Last7Days">Last 7 Days</option>
+									<option value="Last14Days" selected>Last 14 Days</option>
+									<option value="Last30Days">Last 30 Days</option>									
 								</select>
 
 							</div>
@@ -258,6 +259,18 @@ input#selectDateRange {
 											style="margin-left: 4%">
 											<h4 align="center">${countShippedOrder}</h4>
 											<p align="center">Shipped Orders</p>
+										</div>
+								</a></li>
+
+								<li><a href='<c:url value="rejectedOrders"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
+										<div class="summary-count pull-left ml20"
+											style="margin-left: 4%">
+											<h4 align="center">${countRejectedOrder}</h4>
+											<p align="center">Rejected Orders</p>
 										</div>
 								</a></li>
 

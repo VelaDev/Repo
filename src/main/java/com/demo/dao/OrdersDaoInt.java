@@ -34,6 +34,7 @@ public interface OrdersDaoInt {
 	public int countApprovedOrders(String lastFourteenDays);
 	public int countShippedOrders(String lastFourteenDays);
 	public int countOrdersReceive(String lastFourteenDays);
+	public int countRejectedOrder(String lastFourteenDays);
 
 
 	public int countNewOrders(String lastFourteenDays, String technicianName,String customerName);
@@ -41,13 +42,14 @@ public interface OrdersDaoInt {
 	public int countApprovedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public int countShippedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public int countOrdersReceive(String lastFourteenDays,String technicianName,String customerName);
+	public int countRejectedOrder(String lastFourteenDays,String technicianName,String customerName);
 	
 	public int countNewOrders(String lastFourteenDays, String technicianName);
 	public int countClosedOrder(String lastFourteenDays ,String technicianName);
 	public int countApprovedOrders(String lastFourteenDays,String technicianName);
 	public int countShippedOrders(String lastFourteenDays,String technicianName);
 	public int countOrdersReceive(String lastFourteenDays,String technicianName);
-	
+	public int countRejectedOrder(String lastFourteenDays,String technicianName);
 	
 	
 	public List<OrderHeader> getLastFourteenDaysOrders();
@@ -69,5 +71,6 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysShippedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String lastFourteenDays,String technicianName,String customerName);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders(String lastFourteenDays,String technicianName,String customerName);
 
 }

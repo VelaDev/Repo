@@ -615,6 +615,22 @@ public class OrderDao implements OrdersDaoInt {
 		}
 		return shippedOrders;
 	}
+	
+	private List<OrderHeader> getRejectedOrders(){
+		List<OrderHeader> shippedOrders = new ArrayList<OrderHeader>();
+		try{
+			pendingOrders = getAllOrders();
+			for(OrderHeader orderHeader:pendingOrders){
+				if(orderHeader.getStatus().equalsIgnoreCase("Declined")){
+					shippedOrders.add(orderHeader);
+				}
+			}
+		}catch(Exception e)
+		{
+			e.getMessage();
+		}
+		return shippedOrders;
+	}
 
 	@Override
 	public List<OrderHeader> getAllOrders(String startDate, String endDate) {
@@ -823,7 +839,6 @@ public class OrderDao implements OrdersDaoInt {
 		} catch (Exception exception) {
 			exception.getMessage();
 		}
-       System.out.println(tempCount);
 		return tempCount;
 	}
     
@@ -865,13 +880,11 @@ public class OrderDao implements OrdersDaoInt {
 		} catch (Exception exception) {
 			exception.getMessage();
 		}
-       System.out.println(tempCount);
 		return tempCount;
 	}
 	
 	@Override
 	public int countOrdersReceive(String lastFourteenDays) {
-		// TODO Auto-generated method stub
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date currentDate = new Date();
 		// get Calendar instance
@@ -1130,7 +1143,6 @@ public class OrderDao implements OrdersDaoInt {
 		} catch (Exception exception) {
 			exception.getMessage();
 		}
-       System.out.println(tempCount);
 		return tempCount;
 	}
 
@@ -1237,7 +1249,6 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public int countOrdersReceive(String lastFourteenDays, String technicianName) {
-		// TODO Auto-generated method stub
 				SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date currentDate = new Date();
 				// get Calendar instance
@@ -1612,7 +1623,6 @@ public class OrderDao implements OrdersDaoInt {
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date previoueDay = new Date();
 		Date currentDate = new Date();
-		System.out.println(lastFourteenDays.length());
 		try{
 			if(lastFourteenDays.length()>5 && customerName.length()>3){
 				String firstDate = lastFourteenDays.substring(0, 10);
@@ -1948,9 +1958,9 @@ public class OrderDao implements OrdersDaoInt {
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date previoueDay = new Date();
 		Date currentDate = new Date();
-		System.out.println(lastFourteenDays.length());
+	/*	System.out.println(lastFourteenDays.length());*/
 		try{
-			if(lastFourteenDays.length()>5 && customerName.length()>3){
+			if( customerName.length()>3){
 				String firstDate = lastFourteenDays.substring(0, 10);
 				String secondDate = lastFourteenDays.substring(13,23);
 				
@@ -2162,8 +2172,43 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public int countRejectedOrder(String lastFourteenDays) {
-		// TODO Auto-generated method stub
-		return 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = getRejectedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
 	}
 
 	@Override
@@ -2184,6 +2229,937 @@ public class OrderDao implements OrdersDaoInt {
 			String lastFourteenDays, String technicianName, String customerName) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenRejectedOrders(
+			String lastFourteenDays) {
+		
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =getRejectedOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(lastFourteenDays)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders() {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =getRejectedOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+        System.err.println(aList.size());
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders(
+			String technicianName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =getRejectedOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+        System.err.println(aList.size());
+		return aList;
+	}
+
+	@Override
+	public int countNewOrdersForCustomer(String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = pendingOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public int countClosedOrderForCustomer(String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = receivedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countApprovedOrdersForCustomer(String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = approvedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countShippedOrdersForCustomer(String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = shippedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countOrdersReceiveForCustomer(String customerName) {
+		// TODO Auto-generated method stub
+				SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+				Date currentDate = new Date();
+				// get Calendar instance
+				Calendar cal = Calendar.getInstance();
+				cal.setTime(new Date());
+				int tempCount = 0;
+				List<OrderHeader> pendingOrders = null;
+				try {
+					// substract 7 days
+					// If we give 7 there it will give 8 days back
+					cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+					// convert to date
+					Date myDate = cal.getTime();
+
+					String date1 = myFormat.format(myDate);
+					String Date2 = myFormat.format(currentDate);
+					Date current = new Date();
+					Date previous = new Date();
+					Date dateData = new Date();
+
+					current = myFormat.parse(date1);
+					previous = myFormat.parse(Date2);
+
+					pendingOrders = shippedOrders();
+					for (OrderHeader order : pendingOrders) {
+						String convDate = order.getDateOrdered().substring(0, 10);
+						String normalDate = convDate.replace("/", "-");
+						dateData = myFormat.parse(normalDate);
+						if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+							tempCount++;
+						}
+					}
+				} catch (Exception exception) {
+					exception.getMessage();
+				}
+		       System.out.println(tempCount);
+				return tempCount;
+	}
+
+	@Override
+	public int countRejectedOrderForCustomer(String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = getRejectedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomer(
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =approvedOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomer(
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =pendingOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomer(
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =shippedOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomer(
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =receivedOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomer(
+			String customerName) {
+		
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomer(
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =getRejectedOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForCustomer(String customerName) {
+		
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	@Override
+	public int countNewOrdersForTechnician_Customer(String technician,
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = pendingOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)&& order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public int countClosedOrderForTechnician_Customer(String technician,
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = receivedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countApprovedOrdersForTechnician_Customer(String technician,
+			String customerName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int countShippedOrdersForTechnicianCustomer(String technician,
+			String customerName) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int countOrdersReceiveForTechnician_Customer(String technician,
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = shippedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName) && order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public int countRejectedOrderForTechnicianCustomer(String technician,
+			String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = getRejectedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomer(
+			String technician, String customerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForTechnicianCustomer(
+			String technician, String customerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countClosedOrderForTechnician(String technician) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = receivedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForTechnicianCustomer(
+			String technician,String customerName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
 	}
 
 	

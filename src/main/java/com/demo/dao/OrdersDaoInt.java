@@ -53,6 +53,7 @@ public interface OrdersDaoInt {
 	
 	
 	public List<OrderHeader> getLastFourteenDaysOrders();
+	public List<OrderHeader> getLastFourteenDaysOrdersForCustomer(String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,String technicianName,String customerName );
 	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName);
 	
@@ -65,6 +66,10 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
 	
+	public List<OrderHeader> getLastFourteenRejectedOrders(String lastFourteenDays);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrders();
+	public List<OrderHeader>getLastFourteenDaysRejectedOrders(String technicianName);
+	
 	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrders(String lastFourteenDays,String technicianName,String customerName );
 	public List<OrderHeader> getLastFourteenDaysPendingOrders(String lastFourteenDays,String technicianName,String customerName);
@@ -72,5 +77,37 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String lastFourteenDays,String technicianName,String customerName);
 	public List<OrderHeader> getLastFourteenDaysRejectedOrders(String lastFourteenDays,String technicianName,String customerName);
+	
+	
+	public int countNewOrdersForCustomer(String customerName);
+	public int countClosedOrderForCustomer(String customerName);
+	public int countApprovedOrdersForCustomer(String customerName);
+	public int countShippedOrdersForCustomer(String customerName);
+	public int countOrdersReceiveForCustomer(String customerName);
+	public int countRejectedOrderForCustomer(String customerName);
+	
+	public int countClosedOrderForTechnician(String customerName);
+	
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomer(String customerName );
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomer(String customerName);
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomer(String customerName);
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomer(String customerName);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomer(String customerName);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomer(String customerName);
+	
+	public int countNewOrdersForTechnician_Customer(String technician,String customerName);
+	public int countClosedOrderForTechnician_Customer(String technician,String customerName);
+	public int countApprovedOrdersForTechnician_Customer(String technician,String customerName);
+	public int countShippedOrdersForTechnicianCustomer(String technician,String customerName);
+	public int countOrdersReceiveForTechnician_Customer(String technician,String customerName);
+	public int countRejectedOrderForTechnicianCustomer(String technician,String customerName);
+	
+	public List<OrderHeader>getLastFourteenDaysOrdersForTechnicianCustomer(String technician,String customerName);
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForTechnicianCustomer(String technician,String customerName);
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomer(String technician,String customerName);
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForTechnicianCustomer(String technician,String customerName);
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForTechnicianCustomer(String technician,String customerName);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForTechnicianCustomer(String technician,String customerName);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForTechnicianCustomer(String technician,String customerName);
 
 }

@@ -112,14 +112,6 @@ input#selectDateRange {
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-					<c:out value="${ retMessage}">
-					</c:out>
-
-				</div>
-			</c:if>
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 
@@ -135,8 +127,7 @@ input#selectDateRange {
 									class="form-control selectpicker" onchange="location = this.value;">
 									<option value="All Customers">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
-										<option value="getCustomerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
-
+										<option value="getCustomerName?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
 									</c:forEach>
 								</select>
 
@@ -155,7 +146,7 @@ input#selectDateRange {
 									<option value="24Hours">24 Hours</option>
 									<option value="Last7Days">Last 7 Days</option>
 									<option value="Last14Days" selected>Last 14 Days</option>
-									<option value="Last30Days">Last 30 Days</option>									
+									<option value="Last30Days">Last 30 Days</option>		
 								</select>
 
 							</div>

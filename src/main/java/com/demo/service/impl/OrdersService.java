@@ -306,27 +306,24 @@ public class OrdersService implements OrdersServiceInt{
 	
 	@Override
 	public int countRejectedOrders(String lastFourteenDays) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return ordersDAO.countRejectedOrder(lastFourteenDays);
 	}
 
 	@Override
 	public List<OrderHeader> getLastFourteenDaysRejectedOrders() {
-		// TODO Auto-generated method stub
-		return null;
+		return ordersDAO.getLastFourteenDaysRejectedOrders();
 	}
 
 	@Override
 	public int countRejectedOrder(String lastFourteenDays, String technicianName) {
-		// TODO Auto-generated method stub
-		return 0;
+		return ordersDAO.countRejectedOrder(lastFourteenDays, technicianName);
 	}
 
 	@Override
 	public List<OrderHeader> getLastFourteenDaysRejectedOrders(
 			String technicianName) {
-		// TODO Auto-generated method stub
-		return null;
+		return ordersDAO.getLastFourteenDaysRejectedOrders(technicianName);
 	}
 
 	@Override
@@ -335,5 +332,166 @@ public class OrdersService implements OrdersServiceInt{
 		return ordersDAO.getLastFourteenDaysOrders(lastFourteenDays, technicianName, customerName);
 	}
 
-	
+	@Override
+	public List<OrderHeader> getLastFourteenRejectedOrders(
+			String lastFourteenDays) {
+		return ordersDAO.getLastFourteenRejectedOrders(lastFourteenDays);
+	}
+
+	@Override
+	public int countNewOrdersForCustomer(String customerName) {
+		return ordersDAO.countNewOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public int countClosedOrderForCustomer(String customerName) {
+		
+		return ordersDAO.countClosedOrderForCustomer(customerName);
+	}
+
+	@Override
+	public int countApprovedOrdersForCustomer(String customerName) {
+		return ordersDAO.countApprovedOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public int countShippedOrdersForCustomer(String customerName) {
+		
+		return ordersDAO.countShippedOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public int countOrdersReceiveForCustomer(String customerName) {
+		return ordersDAO.countOrdersReceiveForCustomer(customerName);
+	}
+
+	@Override
+	public int countRejectedOrderForCustomer(String customerName) {
+		return ordersDAO.countRejectedOrderForCustomer(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomer(
+			String customerName) {
+		return ordersDAO.getLastFourteenDaysApprovedOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomer(
+			String customerName) {
+		return ordersDAO.getLastFourteenDaysPendingOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomer(
+			String customerName) {
+		return ordersDAO.getLastFourteenDaysShippedOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomer(
+			String customerName) {
+		
+		return ordersDAO.getLastFourteenDaysClosedOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomer(
+			String customerName) {
+		return ordersDAO.getLastFourteenDaysOrdersToReceiveForCustomer(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomer(
+			String customerName) {
+		return ordersDAO.getLastFourteenDaysRejectedOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForCustomer(String customerName) {
+		return ordersDAO.getLastFourteenDaysOrdersForCustomer(customerName);
+	}
+
+	@Override
+	public int countNewOrdersForTechnician_Customer(String technician,
+			String customerName) {
+		return ordersDAO.countNewOrdersForTechnician_Customer(technician,customerName);
+	}
+
+	@Override
+	public int countClosedOrderForTechnician_Customer(String technician,
+			String customerName) {
+		return ordersDAO.countClosedOrderForTechnician_Customer(technician, customerName);
+	}
+
+	@Override
+	public int countApprovedOrdersForTechnician_Customer(String technician,
+			String customerName) {
+		return ordersDAO.countApprovedOrdersForTechnician_Customer(technician, customerName);
+	}
+
+	@Override
+	public int countShippedOrdersForTechnicianCustomer(String technician,
+			String customerName) {
+		return ordersDAO.countShippedOrdersForTechnicianCustomer(technician, customerName);
+	}
+
+	@Override
+	public int countOrdersReceiveForTechnician_Customer(String technician,
+			String customerName) {
+		return ordersDAO.countOrdersReceiveForTechnician_Customer(technician, customerName);
+	}
+
+	@Override
+	public int countRejectedOrderForTechnicianCustomer(String technician,
+			String customerName) {
+		return ordersDAO.countRejectedOrderForTechnicianCustomer(technician, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		return ordersDAO.getLastFourteenDaysApprovedOrdersForTechnicianCustomer(technician,customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomer(
+			String technician, String customerName) {
+		return ordersDAO.getLastFourteenDaysPendingOrdersForCustomer(technician, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		return ordersDAO.getLastFourteenDaysShippedOrdersForTechnicianCustomer(technician, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		return ordersDAO.getLastFourteenDaysClosedOrdersForTechnicianCustomer(technician, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForTechnicianCustomer(
+			String technician, String customerName) {
+		return ordersDAO.getLastFourteenDaysOrdersToReceiveForTechnicianCustomer(technician, customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForTechnicianCustomer(
+			String technician, String customerName) {
+		return ordersDAO.getLastFourteenDaysOrdersToReceiveForTechnicianCustomer(technician,customerName);
+	}
+
+	@Override
+	public int countClosedOrderForTechnician(String customerName) {
+		return ordersDAO.countClosedOrderForTechnician(customerName);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForTechnicianCustomer(
+			String technician,String customerName) {
+		return ordersDAO.getLastFourteenDaysOrdersForTechnicianCustomer(technician,customerName);
+	}	
 }

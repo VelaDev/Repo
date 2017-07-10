@@ -128,7 +128,7 @@ input#selectDateRange{
 									<option value="All Customers">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
 
-										<option value="getCustomerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
+										<option value="getCustomerName?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
 
 									</c:forEach>
 								</select>

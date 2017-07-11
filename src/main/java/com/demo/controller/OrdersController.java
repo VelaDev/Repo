@@ -64,7 +64,7 @@ public class OrdersController {
 	private ModelAndView model = null;
 	private String retMessage = null;
 	private Employee userName = null;
-	private String retPage, customerName, orderNum, selectDateRange,
+	private String retPage, customerName, orderNum, selectDateRange, technicianName,
 			selectedDateRange = null;
 
 	@RequestMapping(value = "order", method = RequestMethod.GET)
@@ -2166,6 +2166,51 @@ if (selectedDateRange != null) {
 		return model;
 	}
 
+	@RequestMapping(value = "getTechnicianName", method = RequestMethod.GET)
+	public ModelAndView getTehnnicianName(
+			@RequestParam("technicianName") String localTechnicianName) {
+		//System.err.println(technicianName);
+		technicianName = localTechnicianName;
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+				model.addObject("countNewOrders", ordersServiceInt
+						.countNewOrdersForCustomer(customerName));
+				model.addObject("countApprovedOrder", ordersServiceInt
+						.countApprovedOrdersForCustomer(customerName));
+				model.addObject("countShippedOrder", ordersServiceInt
+						.countShippedOrdersForCustomer(customerName));
+				model.addObject("countClosedOrder", ordersServiceInt
+						.countClosedOrderForCustomer(customerName));
+				model.addObject("countRejectedOrder", ordersServiceInt
+						.countRejectedOrderForCustomer(customerName));
+
+				model.addObject(
+						"orderList",
+						ordersServiceInt
+								.getLastFourteenDaysOrdersForCustomer(localTechnicianName));
+
+				model.addObject("pendingOrderList",
+						ordersServiceInt.pendingOrders(userName.getEmail()));
+				model.addObject("inboxCount", ordersServiceInt
+						.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",
+						ticketsServiceInt.countEscalatedTickets());
+				model.addObject("customers", customerServiceInt.getClientList());
+				model.addObject("awaitingSparesTickets",
+						ticketsServiceInt.countAwaitingSparesTickets());
+				model.setViewName("ordermanagement");
+			}
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
 	@RequestMapping(value = "getCustomerName", method = RequestMethod.GET)
 	public ModelAndView getCustomerName(
 			@RequestParam("customerName") String localCustomerName) {
@@ -2234,7 +2279,7 @@ if (selectedDateRange != null) {
 						ticketsServiceInt.countAwaitingSparesTickets());
 				model.addObject("ticketCount", ticketsServiceInt
 						.ticketCountForTechnician(userName.getEmail()));
-				model.setViewName("ordertechmanagement");
+				model.setViewName("ordermanagement");
 			}
 		} else {
 			model.setViewName("login");
@@ -2242,4 +2287,6 @@ if (selectedDateRange != null) {
 
 		return model;
 	}
+	
+	
 }

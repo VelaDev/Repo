@@ -119,7 +119,7 @@ input#selectDateRange {
 
 					<!-- Select type customers-->
 					<div class="form-group ">
-						<div class="col-md-4 selectContainer">
+						<div class="col-md-3 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
@@ -137,7 +137,7 @@ input#selectDateRange {
 					
 					<!-- Select type selectDateRange-->
 					<div class="form-group ">
-						<div class="col-md-4 selectContainer">
+						<div class="col-md-3 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
@@ -154,12 +154,30 @@ input#selectDateRange {
 							</div>
 						</div>
 					</div>
+					
+						<!-- Select type selectTehnnician-->
+					<div class="form-group ">
+						<div class="col-md-3 selectContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-list"></i></span> <select
+									name="technicianName" id="technicianName"
+									class="form-control selectpicker" onchange="location = this.value;">
+									<option>Select Technician</option>
+										<c:forEach items="${technicians}" var="technician">
+											<option value="getTechnicianName?technicianName=<c:out value='${employee.technicianName}'/>">${employee.technicianName}</option>
+										</c:forEach>							
+								</select>
 
+							</div>
+						</div>
+					</div>
+					
 
 					<div align=right>
 						<!-- Text input Search-->
 						<div class="form-group">
-							<div class="col-md-4 inputGroupContainer">
+							<div class="col-md-3 inputGroupContainer">
 								<div class="input-group">
 									<input type="text" placeholder="Search By Order Number"
 										class="form-control" name="orderNum" id="orderNum" /> <span

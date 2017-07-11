@@ -157,7 +157,7 @@ input#selectDateRange{
 						</div>
 					</div>
 
-
+				
 					<div align=right>
 						<!-- Text input Search-->
 						<div class="form-group">

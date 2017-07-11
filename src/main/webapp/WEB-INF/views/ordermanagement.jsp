@@ -143,10 +143,12 @@ input#selectDateRange {
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
-									<option value="24Hours">24 Hours</option>
-									<option value="Last7Days">Last 7 Days</option>
-									<option value="Last14Days" selected>Last 14 Days</option>
-									<option value="Last30Days">Last 30 Days</option>		
+									<option>Select a date</option>
+									<!-- <option value="24Hours">24 Hours</option> -->
+									<option value="24Hours?selectedDate=<c:out value="24Hours"/>">Last 24 Hours</option>
+									<option value="Last7Days?selectedDate=<c:out value="Last7Days"/>">Last 7 Days</option>
+									<option value="Last14Days?selectedDate=<c:out value="Last14Days"/>">Last 14 Hours</option>
+									<option value="Last30Days?selectedDate=<c:out value="Last30Days"/>">Last 30 Hours</option>		
 								</select>
 
 							</div>

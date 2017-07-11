@@ -53,6 +53,8 @@ public interface OrdersDaoInt {
 	
 	
 	public List<OrderHeader> getLastFourteenDaysOrders();
+	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(String technicianEmail,String selectedDate);
 	public List<OrderHeader> getLastFourteenDaysOrdersForCustomer(String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,String technicianName,String customerName );
 	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName);
@@ -62,6 +64,7 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysApprovedOrders();
 	public List<OrderHeader> getLastFourteenDaysPendingOrders();
 	public List<OrderHeader> getLastFourteenDaysShippedOrders();
+	public List<OrderHeader> getLastFourteenDaysShippedForTechnicianOrders(String technician);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders();
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
@@ -86,6 +89,21 @@ public interface OrdersDaoInt {
 	public int countOrdersReceiveForCustomer(String customerName);
 	public int countRejectedOrderForCustomer(String customerName);
 	
+	
+	public int countNewOrdersForSelectedDate(String lastFourteenDays);
+	public int countClosedOrderForSelectedDate(String lastFourteenDays);
+	public int countApprovedOrdersForSelectedDate(String lastFourteenDays);
+	public int countShippedOrdersForSelectedDate(String lastFourteenDays);
+	public int countOrdersReceiveForSelectedDate(String lastFourteenDays);
+	public int countRejectedOrderForSelectedDate(String lastFourteenDays);
+	
+	public int countNewOrdersForSelectedDate(String technician,String lastFourteenDays);
+	public int countClosedOrderForSelectedDate(String technician,String lastFourteenDays);
+	public int countApprovedOrdersForSelectedDate(String technician,String lastFourteenDays);
+	public int countShippedOrdersForSelectedDate(String technician,String lastFourteenDays);
+	public int countOrdersReceiveForSelectedDate(String technician,String lastFourteenDays);
+	public int countRejectedOrderForSelectedDate(String technician,String lastFourteenDays);
+	
 	public int countClosedOrderForTechnician(String customerName);
 	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomer(String customerName );
@@ -94,6 +112,23 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomer(String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomer(String customerName);
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomer(String customerName);
+	
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForSelectedDate(String selectedDate );
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForSelectedDate(String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForSelectedDate(String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForSelectedDate(String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForSelectedDate(String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForSelectedDate(String selectedDate);
+	
+	
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForSelectedDate(String technicianEmail,String selectedDate );
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForSelectedDate(String technicianEmail,String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForSelectedDate(String technicianEmail,String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForSelectedDate(String technicianEmail,String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForSelectedDate(String technicianEmail,String selectedDate);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForSelectedDate(String technicianEmail,String selectedDate);
+	
+	
 	
 	public int countNewOrdersForTechnician_Customer(String technician,String customerName);
 	public int countClosedOrderForTechnician_Customer(String technician,String customerName);

@@ -493,5 +493,163 @@ public class OrdersService implements OrdersServiceInt{
 	public List<OrderHeader> getLastFourteenDaysOrdersForTechnicianCustomer(
 			String technician,String customerName) {
 		return ordersDAO.getLastFourteenDaysOrdersForTechnicianCustomer(technician,customerName);
+	}
+
+	@Override
+	public int countNewOrdersForSelectedDate(String lastFourteenDays) {
+		return ordersDAO.countNewOrdersForSelectedDate(lastFourteenDays);
+	}
+
+	@Override
+	public int countClosedOrderForSelectedDate(String lastFourteenDays) {
+		return ordersDAO.countClosedOrderForSelectedDate(lastFourteenDays);
+	}
+
+	@Override
+	public int countApprovedOrdersForSelectedDate(String lastFourteenDays) {
+
+		return ordersDAO.countApprovedOrdersForSelectedDate(lastFourteenDays);
+	}
+
+	@Override
+	public int countShippedOrdersForSelectedDate(String lastFourteenDays) {
+		
+		return ordersDAO.countShippedOrdersForSelectedDate(lastFourteenDays);
+	}
+
+	@Override
+	public int countOrdersReceiveForSelectedDate(String lastFourteenDays) {
+		return ordersDAO.countOrdersReceiveForSelectedDate(lastFourteenDays);
+	}
+
+	@Override
+	public int countRejectedOrderForSelectedDate(String lastFourteenDays) {
+		return ordersDAO.countRejectedOrderForSelectedDate(lastFourteenDays);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(String selectedDate) {
+		return ordersDAO.getLastFourteenDaysOrdersForSelectedDate(selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForSelectedDate(
+			String selectedDate) {
+		return ordersDAO.getLastFourteenDaysApprovedOrdersForSelectedDate(selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForSelectedDate(
+			String selectedDate) {
+		return ordersDAO.getLastFourteenDaysPendingOrdersForSelectedDate(selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForSelectedDate(
+			String selectedDate) {
+		return ordersDAO.getLastFourteenDaysShippedOrdersForSelectedDate(selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForSelectedDate(
+			String selectedDate) {
+		return ordersDAO.getLastFourteenDaysClosedOrdersForSelectedDate(selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForSelectedDate(
+			String selectedDate) {
+		return ordersDAO.getLastFourteenDaysOrdersToReceiveForSelectedDate(selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForSelectedDate(
+			String selectedDate) {
+		return ordersDAO.getLastFourteenDaysRejectedOrdersForSelectedDate(selectedDate);
+	}
+
+	@Override
+	public int countNewOrdersForSelectedDate(String technician,
+			String lastFourteenDays) {
+		return ordersDAO.countNewOrdersForSelectedDate(technician,lastFourteenDays);
+	}
+
+	@Override
+	public int countClosedOrderForSelectedDate(String technician,
+			String lastFourteenDays) {
+		return ordersDAO.countClosedOrderForSelectedDate(technician, lastFourteenDays);
+	}
+
+	@Override
+	public int countApprovedOrdersForSelectedDate(String technician,
+			String lastFourteenDays) {
+
+		return ordersDAO.countApprovedOrdersForSelectedDate(technician, lastFourteenDays);
+	}
+
+	@Override
+	public int countShippedOrdersForSelectedDate(String technician,
+			String lastFourteenDays) {
+		return ordersDAO.countShippedOrdersForSelectedDate(technician, lastFourteenDays);
+	}
+
+	@Override
+	public int countOrdersReceiveForSelectedDate(String technician,
+			String lastFourteenDays) {
+		return ordersDAO.countOrdersReceiveForSelectedDate(technician, lastFourteenDays);
+	}
+
+	@Override
+	public int countRejectedOrderForSelectedDate(String technician,
+			String lastFourteenDays) {
+		return ordersDAO.countRejectedOrderForSelectedDate(technician, lastFourteenDays);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getLastFourteenDaysApprovedOrdersForSelectedDate(technicianEmail, selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getLastFourteenDaysPendingOrdersForSelectedDate(technicianEmail, selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getLastFourteenDaysShippedOrdersForSelectedDate(technicianEmail, selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getLastFourteenDaysClosedOrdersForSelectedDate(technicianEmail, selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getLastFourteenDaysOrdersToReceiveForSelectedDate(technicianEmail, selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getLastFourteenDaysRejectedOrdersForSelectedDate(technicianEmail, selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getLastFourteenDaysOrdersForSelectedDate(technicianEmail,selectedDate);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedForTechnicianOrders(
+			String technician) {
+		return ordersDAO.getLastFourteenDaysShippedForTechnicianOrders(technician);
 	}	
 }

@@ -184,7 +184,7 @@ input#selectDateRange{
 									<input name="orderNumber" list="orderNumbers"
 													class="form-control" type="text"
 													onkeydown="upperCaseF(this)"
-													placeholder='Enter Order Number' /> <span
+													placeholder='Enter Order Number'/> <span
 										class="input-group-btn">
 										<button class="btn btn-success" type="submit">
 											<div class="up" style="margin-top: -8%; color: white;">Search</div>
@@ -195,10 +195,12 @@ input#selectDateRange{
 							</div>
 
 							<!-- Iterating over the list sent from Controller -->
-										<datalist id="orderNumbers"> <c:forEach var="list"
-											items="${orderNumbers}">
-											<option value="${list}">
-										</c:forEach></datalist>
+							<datalist id="orderNumbers">
+								<c:forEach var="list"
+									items="${orderNumbers}">
+									<option value="${list}">
+								</c:forEach>
+							</datalist>
 
 						</div>
 					</div>
@@ -395,8 +397,7 @@ input#selectDateRange{
 		<!-- Script -->
 		<script type="text/javascript"
 			src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		<script type="text/javascript"
-			src="<c:url value="/resources/jquery/moment/moment.min.js"/>"></script>
+		
 		<script type="text/javascript"
 			src="<c:url value="/resources/bootstrap-3.3.7/js/daterangepicker.js"/>"></script>
 
@@ -464,7 +465,9 @@ input#selectDateRange{
 				});
 			});
 		</script>
-       <script type="text/javascript">
+		
+    <!-- Create datalist to populate search -->
+	<script type="text/javascript">
 		// Get the <datalist> and <input> elements.
 		var dataList = document.getElementById('json-datalist');
 		var input = document.getElementById('ajax');
@@ -509,6 +512,7 @@ input#selectDateRange{
 						true);
 		request.send();
 	</script>
+		
 
 </body>
 </html>

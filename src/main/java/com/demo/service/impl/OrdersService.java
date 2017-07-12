@@ -662,5 +662,35 @@ public class OrdersService implements OrdersServiceInt{
 	public List<OrderHeader> getLastFourteenDaysOrdersNumber(
 			String technicianName) {
 		return ordersDAO.getLastFourteenDaysOrdersNumber(technicianName);
+	}
+
+	@Override
+	public int countNewOrdersForCustomerNewSearch(String technicianEmail) {
+		return ordersDAO.countNewOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public int countClosedOrderForCustomerNewSearch(String technicianEmail) {
+		return ordersDAO.countClosedOrderForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public int countApprovedOrdersForCustomerNewSearch(String technicianEmail) {
+		return ordersDAO.countApprovedOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public int countShippedOrdersForCustomerNewSearch(String technicianEmail) {
+		return ordersDAO.countShippedOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public int countOrdersReceiveForCustomerNewSearch(String technicianEmail) {
+		return ordersDAO.countOrdersReceiveForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public int countRejectedOrderForCustomerNewSearch(String technicianEmail) {
+		return ordersDAO.countRejectedOrderForCustomerNewSearch(technicianEmail);
 	}	
 }

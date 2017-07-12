@@ -89,6 +89,12 @@ public interface OrdersDaoInt {
 	public int countOrdersReceiveForCustomer(String customerName);
 	public int countRejectedOrderForCustomer(String customerName);
 	
+	public int countNewOrdersForCustomerNewSearch(String technicianEmail);
+	public int countClosedOrderForCustomerNewSearch(String technicianEmail);
+	public int countApprovedOrdersForCustomerNewSearch(String technicianEmail);
+	public int countShippedOrdersForCustomerNewSearch(String technicianEmail);
+	public int countOrdersReceiveForCustomerNewSearch(String technicianEmail);
+	public int countRejectedOrderForCustomerNewSearch(String technicianEmail);
 	
 	public int countNewOrdersForSelectedDate(String lastFourteenDays);
 	public int countClosedOrderForSelectedDate(String lastFourteenDays);

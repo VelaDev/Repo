@@ -2455,7 +2455,6 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public int countOrdersReceiveForCustomer(String customerName) {
-		// TODO Auto-generated method stub
 				SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 				Date currentDate = new Date();
 				// get Calendar instance
@@ -4325,5 +4324,152 @@ public class OrderDao implements OrdersDaoInt {
 		return aList;
 	}
 
-	
+	@Override
+	public int countNewOrdersForCustomerNewSearch(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			
+
+			pendingOrders = pendingOrders();
+			for (OrderHeader order : pendingOrders) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public int countClosedOrderForCustomerNewSearch(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			
+
+			pendingOrders = receivedOrders();
+			for (OrderHeader order : pendingOrders) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countApprovedOrdersForCustomerNewSearch(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+
+			pendingOrders = approvedOrders();
+			for (OrderHeader order : pendingOrders) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countShippedOrdersForCustomerNewSearch(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			pendingOrders = shippedOrders();
+			for (OrderHeader order : pendingOrders) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countOrdersReceiveForCustomerNewSearch(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			
+
+			pendingOrders = shippedOrders();
+			for (OrderHeader order : pendingOrders) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public int countRejectedOrderForCustomerNewSearch(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			
+			pendingOrders = getRejectedOrders();
+			for (OrderHeader order : pendingOrders) {
+				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
+	}
+
 }

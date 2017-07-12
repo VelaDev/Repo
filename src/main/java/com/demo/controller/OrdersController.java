@@ -888,7 +888,6 @@ public class OrdersController {
 
 		return model;
 	}
-
 	@RequestMapping(value = "ordermanagement", method = RequestMethod.GET)
 	public ModelAndView displayOrderManagement() {
 		model = new ModelAndView();
@@ -952,10 +951,8 @@ public class OrdersController {
 		} else {
 			model.setViewName("login");
 		}
-
 		return model;
 	}
-
 	@RequestMapping(value = "searchOrderNumber")
 	public ModelAndView searchOrderNumber(
 			@RequestParam("orderNumber") String localOrderNum) {

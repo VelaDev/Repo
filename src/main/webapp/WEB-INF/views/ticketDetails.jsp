@@ -551,7 +551,7 @@
 															<label class="usedPart control-label">Please Enter Comment</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
-																	<textarea class="form-control" name="comments"
+																	<textarea class="form-control" name="comments" maxlength="50"
 																		required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment" id="comment"
 																		style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
 																		rows="3"></textarea>
@@ -795,7 +795,7 @@
 														<label class="col-md-3 control-label">Comments </label>
 														<div class="col-md-8 inputGroupContainer">
 															<div class="input-group">
-																<textarea class="form-control" name="comments"
+																<textarea class="form-control" name="comments" maxlength="50"
 																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	id="comment"
 																	style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
@@ -920,8 +920,8 @@
 														<label class="col-md-3 control-label">Comments </label>
 														<div class="col-md-8 inputGroupContainer">
 															<div class="input-group">
-																<textarea class="form-control" name="comments"
-																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																<textarea class="form-control" name="comments" maxlength="50"
+																	required="required" onkeydown="upperCaseF(this)" maxlength="50" placeholder="Please enter comment"
 																	id="comment" style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
 																	rows="3"></textarea>
 															</div>
@@ -986,6 +986,9 @@
 														<c:when test="${history.status =='Open'}">
 															<td><c:out value="${history.actionTaken}" />Log
 																Ticket</td>
+														</c:when>
+														<c:when test="${history.status =='Re-Opened'}">
+															<td><c:out value="${history.actionTaken}" />Re-Opened</td>
 														</c:when>
 														<c:otherwise>
 															<td><c:out value="${history.actionTaken}" /></td>

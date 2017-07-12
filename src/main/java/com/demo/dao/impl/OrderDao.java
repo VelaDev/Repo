@@ -1,7 +1,6 @@
 package com.demo.dao.impl;
 
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -2366,27 +2365,12 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
+			
 
 			pendingOrders = pendingOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					tempCount++;
 				}
 			}
@@ -2407,27 +2391,12 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
+			
 
 			pendingOrders = receivedOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					tempCount++;
 				}
 			}
@@ -2447,27 +2416,11 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
 
 			pendingOrders = approvedOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					tempCount++;
 				}
 			}
@@ -2487,27 +2440,10 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
 			pendingOrders = shippedOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					tempCount++;
 				}
 			}
@@ -2528,27 +2464,12 @@ public class OrderDao implements OrdersDaoInt {
 				int tempCount = 0;
 				List<OrderHeader> pendingOrders = null;
 				try {
-					// substract 7 days
-					// If we give 7 there it will give 8 days back
-					cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-					// convert to date
-					Date myDate = cal.getTime();
-
-					String date1 = myFormat.format(myDate);
-					String Date2 = myFormat.format(currentDate);
-					Date current = new Date();
-					Date previous = new Date();
-					Date dateData = new Date();
-
-					current = myFormat.parse(date1);
-					previous = myFormat.parse(Date2);
+					
 
 					pendingOrders = shippedOrders();
 					for (OrderHeader order : pendingOrders) {
-						String convDate = order.getDateOrdered().substring(0, 10);
-						String normalDate = convDate.replace("/", "-");
-						dateData = myFormat.parse(normalDate);
-						if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						
+						if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 							tempCount++;
 						}
 					}
@@ -2569,27 +2490,10 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
+			
 			pendingOrders = getRejectedOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					tempCount++;
 				}
 			}
@@ -2611,27 +2515,10 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
 			ticketList =approvedOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					aList.add(order);
 				}
 			}
@@ -2653,27 +2540,11 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
+			
 			ticketList =pendingOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					aList.add(order);
 				}
 			}
@@ -2695,27 +2566,12 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
+			
 
 			ticketList =shippedOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					aList.add(order);
 				}
 			}
@@ -2736,27 +2592,11 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
+			
 			ticketList =receivedOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					aList.add(order);
 				}
 			}
@@ -2784,27 +2624,11 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
+			
 			ticketList =getRejectedOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					aList.add(order);
 				}
 			}
@@ -2825,27 +2649,12 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
+			
 
 			ticketList = getAllOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					aList.add(order);
 				}
 			}
@@ -2909,27 +2718,11 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
+			
 			pendingOrders = receivedOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					tempCount++;
 				}
 			}
@@ -2964,27 +2757,11 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
+			
 			pendingOrders = shippedOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName) && order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName) && order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
 					tempCount++;
 				}
 			}
@@ -3006,27 +2783,12 @@ public class OrderDao implements OrdersDaoInt {
 		int tempCount = 0;
 		List<OrderHeader> pendingOrders = null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
+			
 
 			pendingOrders = getRejectedOrders();
 			for (OrderHeader order : pendingOrders) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					tempCount++;
 				}
 			}
@@ -3054,8 +2816,28 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public List<OrderHeader> getLastFourteenDaysShippedOrdersForTechnicianCustomer(
 			String technician, String customerName) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			
+			ticketList =shippedOrders();
+			for (OrderHeader order : ticketList) {
+				
+				if ( order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
 	}
 
 	@Override
@@ -3069,27 +2851,11 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
+			
 			ticketList =receivedOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)&& order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+				
+				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)&& order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
 					aList.add(order);
 				}
 			}
@@ -3110,8 +2876,28 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForTechnicianCustomer(
 			String technician, String customerName) {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			
+
+			ticketList =getRejectedOrders();
+			for (OrderHeader order : ticketList) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+        System.err.println(aList.size());
+		return aList;
 	}
 
 	@Override
@@ -3165,27 +2951,10 @@ public class OrderDao implements OrdersDaoInt {
 		List <OrderHeader> aList = new ArrayList<OrderHeader>();
 	    List<OrderHeader>	ticketList =null;
 		try {
-			// substract 7 days
-			// If we give 7 there it will give 8 days back
-			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			// convert to date
-			Date myDate = cal.getTime();
-
-			String date1 = myFormat.format(myDate);
-			String Date2 = myFormat.format(currentDate);
-			Date current = new Date();
-			Date previous = new Date();
-			Date dateData = new Date();
-
-			current = myFormat.parse(date1);
-			previous = myFormat.parse(Date2);
-
-			ticketList = getAllOrders();
+		      ticketList = getAllOrders();
 			for (OrderHeader order : ticketList) {
-				String convDate = order.getDateOrdered().substring(0, 10);
-				String normalDate = convDate.replace("/", "-");
-				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 					aList.add(order);
 				}
 			}

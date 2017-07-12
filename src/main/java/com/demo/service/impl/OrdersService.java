@@ -481,7 +481,7 @@ public class OrdersService implements OrdersServiceInt{
 	@Override
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForTechnicianCustomer(
 			String technician, String customerName) {
-		return ordersDAO.getLastFourteenDaysOrdersToReceiveForTechnicianCustomer(technician,customerName);
+		return ordersDAO.getLastFourteenDaysRejectedOrdersForTechnicianCustomer(technician,customerName);
 	}
 
 	@Override

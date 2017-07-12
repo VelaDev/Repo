@@ -134,7 +134,6 @@ input#selectDateRange {
 							</div>
 						</div>
 					</div>
-					
 					<!-- Select type selectDateRange-->
 					<div class="form-group ">
 						<div class="col-md-3 selectContainer">

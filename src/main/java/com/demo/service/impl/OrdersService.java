@@ -729,5 +729,10 @@ public class OrdersService implements OrdersServiceInt{
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomerNewSearch(
 			String technicianEmail) {
 		return ordersDAO.getLastFourteenDaysRejectedOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public List<String> getDates() {
+		return ordersDAO.getDates();
 	}	
 }

@@ -126,30 +126,26 @@ input#selectDateRange{
 									name="customerName" id="customerName"
 									class="form-control selectpicker" onchange="location = this.value;">
 									<c:if test="${not empty selectedName }">
-									   <option value="${ selectedName}">${ selectedName}</option>
+									   <option value="${selectedName}">${selectedName}</option>
 									</c:if>
 									<option value="getCustomerName?customerName=<c:out value="All Customers"/>">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
-
 										<option value="getCustomerName?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
-
 									</c:forEach>
 								</select>
-
 							</div>
 						</div>
 					</div>
-					
 					<!-- Select type selectDateRange-->
-					<div class="form-group ">
+					<%-- <div class="form-group ">
 						<div class="col-md-3 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
-									<c:if test="${not empty newDate }">
-									   <option value="${ newDate}">${ newDate}</option>
+									<c:if test="${not empty newDate}">
+									   <option value="${newDate}">${newDate}</option>
 									</c:if>
 									<option value="24Hours?selectedDate=<c:out value="24Hours"/>">Last 24 Hours</option>
 									<option value="Last7Days?selectedDate=<c:out value="Last7Days"/>">Last 7 Days</option>
@@ -157,6 +153,26 @@ input#selectDateRange{
 									<option value="Last30Days?selectedDate=<c:out value="Last30Days"/>">Last 30 Days</option>		
 								</select>
 
+							</div>
+						</div>
+					</div> --%>
+					
+					<div class="form-group ">
+						<div class="col-md-4 selectContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-list"></i></span> <select
+									name="customerName" id="customerName"
+									class="form-control selectpicker" onchange="location = this.value;">
+									<c:if test="${not empty newDate }">
+									   <option value="${newDate}">${newDate}</option>
+									</c:if>
+									<%-- <option value="getCustomerName?customerName=<c:out value="All Customers"/>">All Customers</option> --%>
+									<option value="24Hours?selectedDate=<c:out value="24Hours"/>">Last 24 Hours</option>
+									<option value="Last7Days?selectedDate=<c:out value="Last7Days"/>">Last 7 Days</option>
+									<option value="Last14Days?selectedDate=<c:out value="Last14Days"/>">Last 14 Days</option>
+									<option value="Last30Days?selectedDate=<c:out value="Last30Days"/>">Last 30 Days</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -437,8 +453,7 @@ input#selectDateRange{
 				});
 			});
 		</script>
-		
-		
+
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#shippedOrdersDatatable').DataTable({
@@ -449,7 +464,7 @@ input#selectDateRange{
 				});
 			});
 		</script>
-<script type="text/javascript">
+       <script type="text/javascript">
 		// Get the <datalist> and <input> elements.
 		var dataList = document.getElementById('json-datalist');
 		var input = document.getElementById('ajax');

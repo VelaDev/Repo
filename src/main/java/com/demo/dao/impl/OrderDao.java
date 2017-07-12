@@ -2649,7 +2649,6 @@ public class OrderDao implements OrdersDaoInt {
 	    List<OrderHeader>	ticketList =null;
 		try {
 			
-
 			ticketList = getAllOrders();
 			for (OrderHeader order : ticketList) {
 				if(customerName.equalsIgnoreCase("All Customers")){
@@ -4512,6 +4511,16 @@ public class OrderDao implements OrdersDaoInt {
 			String technicianEmail) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<String> getDates() {
+		List<String> newDates = new ArrayList<String>();
+		newDates.add("Last 24 Hours");
+		newDates.add("Last 7 Days");
+		newDates.add("Last 14 Days");
+		newDates.add("Last 30 Days");
+		return newDates;
 	}
 
 }

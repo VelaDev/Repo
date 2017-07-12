@@ -2653,10 +2653,14 @@ public class OrderDao implements OrdersDaoInt {
 
 			ticketList = getAllOrders();
 			for (OrderHeader order : ticketList) {
-				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if(customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
+				}else{
+					if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
 				}
+				
 			}
 		} catch (Exception exception) {
 			exception.getMessage();

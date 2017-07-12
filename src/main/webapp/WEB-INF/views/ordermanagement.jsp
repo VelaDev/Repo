@@ -145,9 +145,7 @@ input#selectDateRange {
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
-									<option>Select a date</option>
-									
-									<c:if test="${not empty newDate}">
+									<c:if test="${not empty newDate }">
 									   <option value="${ newDate}">${ newDate}</option>
 									</c:if>
 									<option value="24Hours?selectedDate=<c:out value="24Hours"/>">Last 24 Hours</option>

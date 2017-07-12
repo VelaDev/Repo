@@ -144,5 +144,6 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysClosedOrdersForTechnicianCustomer(String technician,String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForTechnicianCustomer(String technician,String customerName);
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForTechnicianCustomer(String technician,String customerName);
-
+	String[] getOrderNumbers();
+	public List<OrderHeader>getLastFourteenDaysOrdersNumber(String technicianName);
 }

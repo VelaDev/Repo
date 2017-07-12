@@ -4277,5 +4277,53 @@ public class OrderDao implements OrdersDaoInt {
 		return aList;
 	}
 
+	@Override
+	public String[] getOrderNumbers() {
+		List<OrderHeader> list = null;
+		ArrayList<String> newList = null;
+		String array[] = null;
+		try {
+			list = getAllOrders();
+			newList = new ArrayList<String>();
+
+			for (OrderHeader order : list) {
+				newList.add(order.getOrderNum());
+			}
+
+			array = new String[newList.size()];
+
+			for (int i = 0; i < newList.size(); i++) {
+				array[i] = newList.get(i);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return array;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersNumber(
+			String technicianName) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			ticketList = getAllOrders();
+			for (OrderHeader order : ticketList) {
+				if (order.getOrderNum().equalsIgnoreCase(technicianName)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
 	
 }

@@ -144,6 +144,8 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(String technicianEmail,String selectedDate);
 	
 	
-	
+	String[] getOrderNumbers();
+	public List<OrderHeader> getLastFourteenDaysOrdersNumber(
+			String technicianName);
 
 }

@@ -64,12 +64,11 @@
 										<datalist id="serialNumbers"> <c:forEach var="list"
 											items="${serialNumbers}">
 											<option value="${list}">
-										</c:forEach> </datalist>
+										</c:forEach></datalist>
 
 										<div class="col-md-2">
 											<input class="btn btn-success" type='submit' value='Search' />
 										</div>
-
 									</div>
 								</div>
 								<hr>

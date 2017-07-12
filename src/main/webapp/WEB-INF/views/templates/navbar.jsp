@@ -79,7 +79,9 @@
 							<li><a href='<c:url value="displayEmployees.html"/>'>View
 									Employee</a></li>
 							
-						</ul></li>
+						</ul>
+					</li>
+					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown">Customers <b class="caret"></b></a>
 						<ul class="dropdown-menu">
@@ -99,7 +101,9 @@
 									<li><a href='<c:url value="searchDevice.html"/>'>View
 											Devices</a></li>
 								</ul></li>
-						</ul></li>
+						</ul>
+					</li>
+						
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Spare Parts<span class="caret"></span></a>
@@ -117,11 +121,32 @@
 									
 
 								</ul></li>
-						</ul></li>
-					<li>
+						</ul>
+					</li>
+					
+					<li>					
+					
 					    <a href='<c:url value="ordermanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Management</a>
 					</li>
+					
+					<%-- <li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown" role="button" aria-haspopup="true"
+						aria-expanded="false">Orders<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href='<c:url value="placeOrderForTechnician.html"/>'>Place
+									Order</a></li>
+							<li><a href='<c:url value="viewAllOrders.html"/>'>View
+									Orders</a></li> --%><%-- 
+							<li><a href='<c:url value="pendingOrders.html"/>'>Pending
+									Orders</a></li>
+							<li><a href='<c:url value="approvedOrders.html"/>'>Approved
+									Orders</a></li>
+							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped
+									Orders</a></li>
+							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
+						</ul>
+					</li> --%>
 						
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"

@@ -48,6 +48,9 @@ public class DeviceBean {
 	private String serialNumberOtherAccessory;
 	private String accessoryName;
 	private String accessorySerial;
+	// new ones
+	private String othersMachineType;
+	private String othersSerialNumber;
 
 	private String buildingName;
 	private String floorNumber;

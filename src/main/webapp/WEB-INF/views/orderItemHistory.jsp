@@ -153,7 +153,10 @@ table#orderDetails {
 													<li style="font-size:15px;" id="orderNum"><b>${OrderNum.orderNum}</b></li>
 													<li id="status">Order Status: ${OrderNum.status}</li>	
 													<li id="dateOrdered">Stock Type: ${OrderNum.stockType}</li>												  
-													<li id="dateOrdered">Ordered Date: ${OrderNum.dateOrdered}</li>							
+													<li id="dateOrdered">Ordered Date: ${OrderNum.dateOrdered}</li>
+													<c:if test="${OrderNum.status == 'Declined'}">
+														<p id="lebaka"><span  style=font-weight:bolder>Reason for Decline</span>: <span  style=color:red>${OrderNum.comments}</span></p>
+													</c:if>						
 													
 												  </div><br>
 												   

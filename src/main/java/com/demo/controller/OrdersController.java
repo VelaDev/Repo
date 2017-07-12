@@ -1551,7 +1551,6 @@ public class OrdersController {
 			if (userName.getRole().equalsIgnoreCase("Manager")|| userName.getRole().equalsIgnoreCase("Admin")) {
 				
 				if (selectedDateRange != null) {
-					
 					model.addObject("countNewOrders", ordersServiceInt.countNewOrdersForSelectedDate(selectedDateRange));
 					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrdersForSelectedDate(selectedDateRange));
 					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrdersForSelectedDate(selectedDateRange));

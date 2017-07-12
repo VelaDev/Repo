@@ -91,6 +91,13 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getLastFourteenDaysRejectedOrders(String lastFourteenDays,String technicianName,String customerName);
 
 	
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomerNewSearch(String technicianEmail );
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomerNewSearch(String technicianEmail);
+	
 	public int countNewOrdersForCustomer(String customerName);
 	public int countClosedOrderForCustomer(String customerName);
 	public int countApprovedOrdersForCustomer(String customerName);

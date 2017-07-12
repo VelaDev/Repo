@@ -692,5 +692,42 @@ public class OrdersService implements OrdersServiceInt{
 	@Override
 	public int countRejectedOrderForCustomerNewSearch(String technicianEmail) {
 		return ordersDAO.countRejectedOrderForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		
+		return ordersDAO.getLastFourteenDaysApprovedOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		return ordersDAO.getLastFourteenDaysPendingOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		return ordersDAO.getLastFourteenDaysShippedOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		return ordersDAO.getLastFourteenDaysClosedOrdersForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomerNewSearch(
+			String technicianEmail) {
+		return ordersDAO.getLastFourteenDaysOrdersToReceiveForCustomerNewSearch(technicianEmail);
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		return ordersDAO.getLastFourteenDaysRejectedOrdersForCustomerNewSearch(technicianEmail);
 	}	
 }

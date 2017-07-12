@@ -4472,4 +4472,46 @@ public class OrderDao implements OrdersDaoInt {
 		return tempCount;
 	}
 
+	@Override
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomerNewSearch(
+			String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomerNewSearch(
+			String technicianEmail) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -119,6 +119,13 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomer(String customerName);
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomer(String customerName);
 	
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomerNewSearch(String technicianEmail );
+	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForCustomerNewSearch(String technicianEmail);
+	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomerNewSearch(String technicianEmail);
+	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForSelectedDate(String selectedDate );
 	public List<OrderHeader> getLastFourteenDaysPendingOrdersForSelectedDate(String selectedDate);
 	public List<OrderHeader> getLastFourteenDaysShippedOrdersForSelectedDate(String selectedDate);

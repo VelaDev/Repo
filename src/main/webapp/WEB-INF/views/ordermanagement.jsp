@@ -167,19 +167,29 @@ input#selectDateRange {
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="technicianName" id="technicianName"
 									class="form-control selectpicker" onchange="location = this.value;">
+									<c:if test="${not empty technicianName }">
+									   <option value="${ technicianName}">${ technicianName}</option>
+									</c:if>
 									<option>Select Technician</option>
 										<c:forEach items="${technicians}" var="technician">
-												<option value="getTechnicianName?technicianName=<c:out value='${employee.email}'/>">${technician.firstName} ${technician.lastName}</option>
-												
+												<option value="getTechnicianName?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>	
 										</c:forEach>
 																	
 								</select>
-
+								<%-- <select
+									name="customerName" id="customerName"
+									class="form-control selectpicker" onchange="location = this.value;">
+									<c:if test="${not empty selectedName }">
+									   <option value="${ selectedName}">${ selectedName}</option>
+									</c:if>
+									<option value="getTechnicianName?customerName=<c:out value="All Customers"/>">All Customers</option>
+									<c:forEach items="${technicians}" var="technician">
+										<option value="getTechnicianName?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>
+									</c:forEach>
+								</select> --%>
 							</div>
 						</div>
 					</div>
-					
-
 					<div align=right>
 						<!-- Text input Search-->
 						<div class="form-group">

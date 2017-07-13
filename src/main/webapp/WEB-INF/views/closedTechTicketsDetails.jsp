@@ -904,6 +904,9 @@
 														<c:when test="${history.status =='Open'}">
 															<td>Log Ticket</td>
 														</c:when>
+														<c:when test="${history.status =='Re-Opened'}">
+															<td>Ticket Re-Opened</td>
+														</c:when>
 														<c:when test="${history.status =='Escalated'}">
 															<td>Ticket Escalated to Manager</td>
 														</c:when>

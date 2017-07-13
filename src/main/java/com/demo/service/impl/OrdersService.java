@@ -734,5 +734,16 @@ public class OrdersService implements OrdersServiceInt{
 	@Override
 	public List<String> getDates() {
 		return ordersDAO.getDates();
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForCustomerNewSearch(
+			String technician) {
+		return ordersDAO.getLastFourteenDaysOrdersForCustomerNewSearch(technician);
+	}
+
+	@Override
+	public String[] getOrderNumbers(String technicianEmail) {
+		return ordersDAO.getOrderNumbers(technicianEmail);
 	}	
 }

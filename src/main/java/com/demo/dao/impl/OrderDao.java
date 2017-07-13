@@ -2220,8 +2220,43 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public int countRejectedOrder(String lastFourteenDays, String technicianName) {
-		// TODO Auto-generated method stub
-		return 0;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<OrderHeader> pendingOrders = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			pendingOrders = getRejectedOrders();
+			for (OrderHeader order : pendingOrders) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianName)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+       System.out.println(tempCount);
+		return tempCount;
 	}
 
 	@Override
@@ -4474,31 +4509,101 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomerNewSearch(
-			String technicianEmail) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForCustomerNewSearch(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			ticketList =approvedOrders();
+			for (OrderHeader order : ticketList) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return aList;
 	}
-
 	@Override
 	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomerNewSearch(
 			String technicianEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			  ticketList =pendingOrders();
+			   for (OrderHeader order : ticketList) {
+				
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
 	}
 
 	@Override
 	public List<OrderHeader> getLastFourteenDaysShippedOrdersForCustomerNewSearch(
 			String technicianEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			
+
+			ticketList =shippedOrders();
+			for (OrderHeader order : ticketList) {
+				
+				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return aList;
 	}
 
 	@Override
 	public List<OrderHeader> getLastFourteenDaysClosedOrdersForCustomerNewSearch(
 			String technicianEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			
+			ticketList =receivedOrders();
+			for (OrderHeader order : ticketList) {
+				
+				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return aList;
 	}
 
 	@Override
@@ -4511,8 +4616,26 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForCustomerNewSearch(
 			String technicianEmail) {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			
+			ticketList =getRejectedOrders();
+			for (OrderHeader order : ticketList) {
+				
+				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return aList;
 	}
 
 	@Override
@@ -4523,6 +4646,58 @@ public class OrderDao implements OrdersDaoInt {
 		newDates.add("Last 14 Days");
 		newDates.add("Last 30 Days");
 		return newDates;
+	}
+
+	@Override
+	public List<OrderHeader> getLastFourteenDaysOrdersForCustomerNewSearch(
+			String technician) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			
+			ticketList = getAllOrders();
+			for (OrderHeader order : ticketList) {
+				
+					if (order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+						aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	@Override
+	public String[] getOrderNumbers(String technicianEmail) {
+		List<OrderHeader> list = null;
+		ArrayList<String> newList = null;
+		String array[] = null;
+		try {
+			list = getAllOrders();
+			newList = new ArrayList<String>();
+
+			for (OrderHeader order : list) {
+				if(order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+					newList.add(order.getOrderNum());
+				}
+			}
+
+			array = new String[newList.size()];
+
+			for (int i = 0; i < newList.size(); i++) {
+				array[i] = newList.get(i);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return array;
 	}
 
 }

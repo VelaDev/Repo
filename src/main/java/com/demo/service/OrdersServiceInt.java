@@ -43,7 +43,6 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getLastFourteenDaysClosedOrders();
 	public List<OrderHeader> getLastFourteenDaysRejectedOrders();
 	
-	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForSelectedDate(String selectedDate );
 	public List<OrderHeader> getLastFourteenDaysPendingOrdersForSelectedDate(String selectedDate);
 	public List<OrderHeader> getLastFourteenDaysShippedOrdersForSelectedDate(String selectedDate);
@@ -75,7 +74,7 @@ public interface OrdersServiceInt {
 	public int countShippedOrders(String lastFourteenDays,String technicianName,String customerName);
 	public int countOrdersReceive(String lastFourteenDays,String technicianName,String customerName);
 	
-
+	public List<OrderHeader> getLastFourteenDaysOrdersForCustomerNewSearch(String technician);
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceive(String technicianName);
 	public List<OrderHeader> getLastFourteenDaysClosedOrders(String technicianName );
 	public List<OrderHeader> getLastFourteenDaysRejectedOrders(String technicianName );
@@ -159,6 +158,7 @@ public interface OrdersServiceInt {
 	
 	public List<String> getDates();
 	String[] getOrderNumbers();
+	String[] getOrderNumbers(String technicianEmail);
 	public List<OrderHeader> getLastFourteenDaysOrdersNumber(
 			String technicianName);
 

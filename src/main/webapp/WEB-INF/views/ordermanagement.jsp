@@ -168,8 +168,8 @@ input#selectDateRange {
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="technicianName" id="technicianName"
 									class="form-control selectpicker" onchange="location = this.value;">
-									<c:if test="${not empty technicianName }">
-									   <option value="${ technicianName}">${ technicianName}</option>
+									<c:if test="${not empty selectedTechnician }">
+									   <option >${ selectedTechnician.firstName} ${ selectedTechnician.lastName}</option>
 									</c:if>
 									<option>Select Technician</option>
 										<c:forEach items="${technicians}" var="technician">

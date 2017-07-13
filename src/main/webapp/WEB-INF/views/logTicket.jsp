@@ -224,7 +224,7 @@
 												<textarea class="form-control" name="description"
 													id="description" placeholder="Description"
 													onkeydown="upperCaseF(this)"
-													style="margin: 0px; height: 194px;"></textarea>
+													style="margin: 0px; height: 194px;" maxlength="150"></textarea>
 											</div>
 										</div>
 									</div>
@@ -369,11 +369,11 @@
 														validators : {
 															stringLength : {
 																min : 10,
-																max : 200,
-																message : 'Please enter at least 10 characters and no more than 200'
+																max : 100,
+																message : 'Please enter at least 10 characters and no more than 100'
 															},
 															notEmpty : {
-																message : 'Descritipn is required and cannot be empty'
+																message : 'Description is required and cannot be empty'
 															}
 														}
 													},

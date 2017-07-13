@@ -135,6 +135,7 @@ $(document)
 												}
 											},
 											comment : {
+												max:150,
 												required : {
 													depends : function(element) {
 														if ($("#actionTaken").val() == "Cleared Paper Jam"

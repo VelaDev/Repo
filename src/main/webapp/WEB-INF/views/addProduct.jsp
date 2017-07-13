@@ -45,7 +45,7 @@ li {
 p.customerAddressTitle {
 	font-size: 1.1em;
 	font-weight: bolder;
-	margin-left: 23%;
+	margin-left: 16%;
 	margin-right: -25%;
 }
 

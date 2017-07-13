@@ -145,6 +145,9 @@ input#selectDateRange {
 									class="glyphicon glyphicon-list"></i></span> <select
 									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
+									<c:if test="${empty newDate }">
+									   <option >Select a date</option>
+									</c:if>
 									<c:if test="${not empty newDate }">
 									   <option value="${ newDate}">${ newDate}</option>
 									</c:if>

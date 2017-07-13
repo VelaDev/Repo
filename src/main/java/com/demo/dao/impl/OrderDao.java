@@ -269,6 +269,8 @@ public class OrderDao implements OrdersDaoInt {
 			if(customer !=null){
 				cus = customerDaoInt.getClientByClientName(customer);
 				cusOrder.setCustomer(cus);
+			}else{
+				cusOrder.setCustomer(null);
 			}
 			if(emp.getRole().equalsIgnoreCase("Manager")){
 				cusOrder.setApprover(emp.getEmail());
@@ -2979,13 +2981,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			
@@ -3030,13 +3032,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3078,13 +3080,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3126,13 +3128,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3174,13 +3176,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3223,13 +3225,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3274,13 +3276,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-						if(selectedDate.equalsIgnoreCase("24Hours")){
+						if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-						}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+ 						}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-						}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+						}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-						}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+						}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 						}
 						// convert to date
@@ -3326,13 +3328,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+				}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3377,13 +3379,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+				}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3428,13 +3430,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+				}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3479,13 +3481,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+				}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3530,13 +3532,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+				}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3581,13 +3583,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+				}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3631,13 +3633,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			
@@ -3683,13 +3685,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3739,13 +3741,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3788,13 +3790,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3837,13 +3839,13 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
-			if(lastFourteenDays.equalsIgnoreCase("24Hours")){
+			if(lastFourteenDays.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last7Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last14Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(lastFourteenDays.equalsIgnoreCase("Last30Days")){
+			}else if(lastFourteenDays.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3888,13 +3890,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3939,13 +3941,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -3990,13 +3992,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -4041,13 +4043,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -4092,13 +4094,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -4143,13 +4145,13 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-			if(selectedDate.equalsIgnoreCase("24Hours")){
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-			}else if(selectedDate.equalsIgnoreCase("Last7Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-			}else if(selectedDate.equalsIgnoreCase("Last14Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-			}else if(selectedDate.equalsIgnoreCase("Last30Days")){
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
 				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
 			}
 			// convert to date
@@ -4194,15 +4196,15 @@ public class OrderDao implements OrdersDaoInt {
 			// substract 7 days
 			// If we give 7 there it will give 8 days back
 			// If we give 7 there it will give 8 days back
-						if(selectedDate.equalsIgnoreCase("24Hours")){
-							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
-						}else if(selectedDate.equalsIgnoreCase("Last7Days")){
-							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
-						}else if(selectedDate.equalsIgnoreCase("Last14Days")){
-							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
-						}else if(selectedDate.equalsIgnoreCase("Last30Days")){
-							cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
-						}
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
+			}
 						// convert to date
 						Date myDate = cal.getTime();
 

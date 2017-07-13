@@ -45,7 +45,7 @@ li {
 p.customerAddressTitle {
 	font-size: 1.1em;
 	font-weight: bolder;
-	margin-left: 23%;
+	margin-left: 16%;
 	margin-right: -25%;
 }
 
@@ -535,7 +535,7 @@ input.currency {
 								<legend align="left">Machine Accessories</legend>
 
 								<div class="tablemachinesacccso">
-									<table id="accessoriesTable" class="display datatable">
+									<table id="accessories" class="table table-striped table-bordered table-hover table-condensed">
 										
 										<thead>
 											<tr>
@@ -546,14 +546,14 @@ input.currency {
 										<tbody>
 											<tr>
 												<td><input type="checkbox" id="bridgeunitserial"
-													name="bridgeUnitSerialType"> Bridge unit</td>
+													name="bridgeUnitSerialType" value="Bridge unit"> Bridge unit</td>
 												<td><input type="text" class="form-control"
 													onkeydown="upperCaseF(this)" id="bridgeunit"
 													name="bridgeUnitSerialTypeSerialNo" disabled="disabled"></td>
 											</tr>
 											<tr>
 												<td><input type="checkbox" class="select" id="finisher"
-													name="finisherType"> Finisher</td>
+													name="finisherType" value="Finisher"> Finisher</td>
 												<td><input type="text" class="form-control"
 													onkeydown="upperCaseF(this)" id="finisherserial"
 													name="finisherTypeSerialNo" disabled="disabled"></td>

@@ -1217,6 +1217,16 @@ $(document).ready(function() {
 /*--//End Enable datepicker for start, end and install date --*/
 
 /*--  Check if checkboxes are checked for adding machine accessories, if checked enable input text --*/
+var bridgeUnit = $("input[type='checkbox'][value='Bridge unit']");
+var finisher = $("input[type='checkbox'][value='Finisher']");
+
+bridgeUnit.on('change', function(){
+	finisher.prop('checked',this.checked);
+});
+finisher.on('change', function(){
+	bridgeUnit.prop('checked',this.checked);
+});
+
 document.getElementById('bridgeunitserial').onchange = function() {
 	document.getElementById('bridgeunit').disabled = !this.checked;
 	document.getElementById('finisherserial').disabled = !this.checked;

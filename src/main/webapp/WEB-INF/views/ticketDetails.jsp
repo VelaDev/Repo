@@ -215,7 +215,7 @@
 														class="glyphicon glyphicon-pencil"></i></span>
 													<textarea class="form-control" readonly
 														onkeydown="upperCaseF(this)" name="description"
-														required="required" readonly  style="height: 318px; margin: 0px; width: 243px;">${ticketObject.description}</textarea>
+														required="required" readonly maxlength="150"  style="height: 318px; margin: 0px; width: 243px;" >${ticketObject.description}</textarea>
 												</div>
 											</div>
 										</div>										
@@ -551,7 +551,7 @@
 															<label class="usedPart control-label">Please Enter Comment</label>
 															<div class="col-md-8 inputGroupContainer">
 																<div class="input-group">
-																	<textarea class="form-control" name="comments" maxlength="50"
+																	<textarea class="form-control" name="comments" maxlength="150"
 																		required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment" id="comment"
 																		style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
 																		rows="3"></textarea>
@@ -770,7 +770,7 @@
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-user"></i></span> <select
 																	id="escalatedTo" name="escalatedTo"
-																	class="form-control selectpicker">
+																	class="form-control selectpicker" required="required">
 																	<option value="">Select Manager</option>
 																	<c:forEach items="${managersList}" var="manager">
 																		<option value="${manager.email}">${manager.firstName}
@@ -795,7 +795,7 @@
 														<label class="col-md-3 control-label">Comments </label>
 														<div class="col-md-8 inputGroupContainer">
 															<div class="input-group">
-																<textarea class="form-control" name="comments" maxlength="50"
+																<textarea class="form-control" name="comments" maxlength="150"
 																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	id="comment"
 																	style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
@@ -895,8 +895,8 @@
 														<div class="col-md-8 selectContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-list"></i></span> <select id="orderNum"
-																	name="orderNum" class="form-control selectpicker">
+																	class="glyphicon glyphicon-list"></i></span> <select id="orderNumber"
+																	name="orderNum" required="required" class="form-control selectpicker">
 																	<option value="">Select Order No</option>
 																	<c:forEach items="${OrderNumber}" var="orders">
 																		<option value="${orders.recordID}">${orders.orderNum}
@@ -920,8 +920,8 @@
 														<label class="col-md-3 control-label">Comments </label>
 														<div class="col-md-8 inputGroupContainer">
 															<div class="input-group">
-																<textarea class="form-control" name="comments" maxlength="50"
-																	required="required" onkeydown="upperCaseF(this)" maxlength="50" placeholder="Please enter comment"
+																<textarea class="form-control" name="comments" maxlength="150"
+																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	id="comment" style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
 																	rows="3"></textarea>
 															</div>

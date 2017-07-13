@@ -1534,8 +1534,9 @@ public class OrdersController {
 	@RequestMapping(value = "getCustomerName", method = RequestMethod.GET)
 	public ModelAndView getCustomerName(@RequestParam("customerName") String localCustomerName) {
 		customerName = localCustomerName;
+		selectedDateRange = null;
+		tempEmployee = null;
 		model = new ModelAndView();
-
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			if (userName.getRole().equalsIgnoreCase("Manager")|| userName.getRole().equalsIgnoreCase("Admin")) {
@@ -1592,6 +1593,8 @@ public class OrdersController {
 	public ModelAndView getTehnnicianName(
 			@RequestParam("technicianName") String localTechnicianName) {
 		tempEmployee = employeeServiceInt.getEmployeeByEmpNumber(localTechnicianName);
+		selectedDateRange = null;
+		customerName = null;
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -1624,7 +1627,10 @@ public class OrdersController {
 	public ModelAndView getUserSelectedDate(
 			@RequestParam("selectedDate") String localSelectedDate) {
 		selectedDateRange = localSelectedDate;
-		System.err.println(selectedDateRange);
+		customerName = null;
+		tempEmployee = null;
+		System.err.println(tempEmployee);
+		System.err.println(customerName);
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			if (userName.getRole().equalsIgnoreCase("Manager")|| userName.getRole().equalsIgnoreCase("Admin")) {

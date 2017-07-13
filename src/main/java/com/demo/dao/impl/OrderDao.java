@@ -2407,7 +2407,12 @@ public class OrderDao implements OrdersDaoInt {
 			pendingOrders = pendingOrders();
 			for (OrderHeader order : pendingOrders) {
 				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if (order.getCustomer()!=null) {
+					if(order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						tempCount++;
+					}
+					
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2433,7 +2438,12 @@ public class OrderDao implements OrdersDaoInt {
 			pendingOrders = receivedOrders();
 			for (OrderHeader order : pendingOrders) {
 				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if (order.getCustomer()!=null) {
+					if(order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						tempCount++;
+					}
+					
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2457,7 +2467,12 @@ public class OrderDao implements OrdersDaoInt {
 			pendingOrders = approvedOrders();
 			for (OrderHeader order : pendingOrders) {
 				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if (order.getCustomer()!=null) {
+					if(order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						tempCount++;
+					}
+					
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2480,7 +2495,12 @@ public class OrderDao implements OrdersDaoInt {
 			pendingOrders = shippedOrders();
 			for (OrderHeader order : pendingOrders) {
 				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if (order.getCustomer()!=null) {
+					if(order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						tempCount++;
+					}
+					
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2505,7 +2525,12 @@ public class OrderDao implements OrdersDaoInt {
 					pendingOrders = shippedOrders();
 					for (OrderHeader order : pendingOrders) {
 						
-						if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						if (order.getCustomer()!=null) {
+							if(order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+								tempCount++;
+							}
+							
+						}else if(customerName.equalsIgnoreCase("All Customers")){
 							tempCount++;
 						}
 					}
@@ -2529,7 +2554,12 @@ public class OrderDao implements OrdersDaoInt {
 			
 			pendingOrders = getRejectedOrders();
 			for (OrderHeader order : pendingOrders) {
-				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if (order.getCustomer()!=null) {
+					if(order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)){
+						tempCount++;
+					}
+					
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2553,10 +2583,14 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			ticketList =approvedOrders();
 			for (OrderHeader order : ticketList) {
-				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if(order.getCustomer()!=null){
+					if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
 				}
+				
 			}
 		} catch (Exception exception) {
 			exception.getMessage();
@@ -2579,10 +2613,14 @@ public class OrderDao implements OrdersDaoInt {
 			
 			ticketList =pendingOrders();
 			for (OrderHeader order : ticketList) {
+					if(order.getCustomer()!= null){
+						if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+							aList.add(order);
+						}
+					}else if(customerName.equalsIgnoreCase("All Customers")){
+						aList.add(order);
+					}
 				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
-					aList.add(order);
-				}
 			}
 		} catch (Exception exception) {
 			exception.getMessage();
@@ -2606,10 +2644,14 @@ public class OrderDao implements OrdersDaoInt {
 
 			ticketList =shippedOrders();
 			for (OrderHeader order : ticketList) {
-				
-				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if(order.getCustomer()!= null){
+					if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
 				}
+				
 			}
 		} catch (Exception exception) {
 			exception.getMessage();
@@ -2632,7 +2674,11 @@ public class OrderDao implements OrdersDaoInt {
 			ticketList =receivedOrders();
 			for (OrderHeader order : ticketList) {
 				
-				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if(order.getCustomer()!= null){
+					if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
 				}
 			}
@@ -2664,7 +2710,11 @@ public class OrderDao implements OrdersDaoInt {
 			ticketList =getRejectedOrders();
 			for (OrderHeader order : ticketList) {
 				
-				if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if(order.getCustomer()!= null){
+					if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
 				}
 			}
@@ -2690,8 +2740,8 @@ public class OrderDao implements OrdersDaoInt {
 			for (OrderHeader order : ticketList) {
 				if(customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
-				}else{
-					if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				}else if(order.getCustomer()!= null){
+					if ( order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
 						aList.add(order);
 					}
 				}
@@ -2867,10 +2917,14 @@ public class OrderDao implements OrdersDaoInt {
 			
 			ticketList =shippedOrders();
 			for (OrderHeader order : ticketList) {
-				
-				if ( order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if(order.getCustomer()!= null){
+					if ( order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
+				}else if(customerName.equalsIgnoreCase("All Customer")){
 					aList.add(order);
 				}
+				
 			}
 		} catch (Exception exception) {
 			exception.getMessage();
@@ -2894,7 +2948,12 @@ public class OrderDao implements OrdersDaoInt {
 			ticketList =receivedOrders();
 			for (OrderHeader order : ticketList) {
 				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)&& order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+				if(order.getCustomer() != null){
+					if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)&& order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+						aList.add(order);
+					}
+				}
+				else if(customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
 				}
 			}
@@ -2927,10 +2986,14 @@ public class OrderDao implements OrdersDaoInt {
 
 			ticketList =getRejectedOrders();
 			for (OrderHeader order : ticketList) {
-				
-				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+				if(order.getCustomer()!=null){
+					if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
+				}else if (customerName.equalsIgnoreCase("All Customers")){
 					aList.add(order);
 				}
+				
 			}
 		} catch (Exception exception) {
 			exception.getMessage();
@@ -4374,8 +4437,9 @@ public class OrderDao implements OrdersDaoInt {
 
 			pendingOrders = pendingOrders();
 			for (OrderHeader order : pendingOrders) {
-				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
 					tempCount++;
 				}
 			}
@@ -4403,6 +4467,8 @@ public class OrderDao implements OrdersDaoInt {
 				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
+					tempCount++;
 				}
 			}
 		} catch (Exception exception) {
@@ -4427,6 +4493,8 @@ public class OrderDao implements OrdersDaoInt {
 				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
+					tempCount++;
 				}
 			}
 		} catch (Exception exception) {
@@ -4449,6 +4517,8 @@ public class OrderDao implements OrdersDaoInt {
 			for (OrderHeader order : pendingOrders) {
 				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
 					tempCount++;
 				}
 			}
@@ -4475,6 +4545,8 @@ public class OrderDao implements OrdersDaoInt {
 				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 					tempCount++;
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
+					tempCount++;
 				}
 			}
 		} catch (Exception exception) {
@@ -4497,7 +4569,9 @@ public class OrderDao implements OrdersDaoInt {
 			
 			pendingOrders = getRejectedOrders();
 			for (OrderHeader order : pendingOrders) {
-				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
 					tempCount++;
 				}
 			}
@@ -4523,6 +4597,8 @@ public class OrderDao implements OrdersDaoInt {
 				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 					aList.add(order);
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
+					aList.add(order);
 				}
 			}
 		} catch (Exception exception) {
@@ -4544,9 +4620,11 @@ public class OrderDao implements OrdersDaoInt {
 			  ticketList =pendingOrders();
 			   for (OrderHeader order : ticketList) {
 				
-				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
-					aList.add(order);
-				}
+				   if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+						aList.add(order);
+					}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
+						aList.add(order);
+					}
 			}
 		} catch (Exception exception) {
 			exception.getMessage();
@@ -4571,7 +4649,9 @@ public class OrderDao implements OrdersDaoInt {
 			ticketList =shippedOrders();
 			for (OrderHeader order : ticketList) {
 				
-				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
 					aList.add(order);
 				}
 			}
@@ -4595,8 +4675,9 @@ public class OrderDao implements OrdersDaoInt {
 			
 			ticketList =receivedOrders();
 			for (OrderHeader order : ticketList) {
-				
-				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
 					aList.add(order);
 				}
 			}
@@ -4628,7 +4709,9 @@ public class OrderDao implements OrdersDaoInt {
 			ticketList =getRejectedOrders();
 			for (OrderHeader order : ticketList) {
 				
-				if ( order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}else if(technicianEmail.equalsIgnoreCase("All Technicians")){
 					aList.add(order);
 				}
 			}
@@ -4663,8 +4746,10 @@ public class OrderDao implements OrdersDaoInt {
 			ticketList = getAllOrders();
 			for (OrderHeader order : ticketList) {
 				
-					if (order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
-						aList.add(order);
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+					aList.add(order);
+				}else if(technician.equalsIgnoreCase("All Technicians")){
+					aList.add(order);
 				}
 			}
 		} catch (Exception exception) {

@@ -305,6 +305,7 @@ public class TicketsDao implements TicketsDaoInt {
 					} else {
 
 						ticket.setActionTaken(tickets.getActionTaken());
+						ticket.setStatus("Re-Opened");
 						sessionFactory.getCurrentSession().update(device);
 						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 

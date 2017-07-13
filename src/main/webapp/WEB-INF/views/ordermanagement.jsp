@@ -116,7 +116,6 @@ input#selectDateRange {
 				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
-
 					<!-- Select type customers-->
 					<div class="form-group ">
 						<div class="col-md-3 selectContainer">
@@ -146,7 +145,7 @@ input#selectDateRange {
 									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
 									<c:if test="${empty newDate }">
-									   <option >Select a date</option>
+									   <option>Select a date</option>
 									</c:if>
 									<c:if test="${not empty newDate }">
 									   <option value="${ newDate}">${ newDate}</option>
@@ -171,23 +170,12 @@ input#selectDateRange {
 									<c:if test="${not empty selectedTechnician }">
 									   <option >${ selectedTechnician.firstName} ${ selectedTechnician.lastName}</option>
 									</c:if>
-									<option>Select Technician</option>
-										<c:forEach items="${technicians}" var="technician">
+									   <option value="getTechnicianName?technicianName=<c:out value="All Technicians"/>">All Technicians</option>
+									<c:forEach items="${technicians}" var="technician">
 												<option value="getTechnicianName?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>	
 										</c:forEach>
 																	
 								</select>
-								<%-- <select
-									name="customerName" id="customerName"
-									class="form-control selectpicker" onchange="location = this.value;">
-									<c:if test="${not empty selectedName }">
-									   <option value="${ selectedName}">${ selectedName}</option>
-									</c:if>
-									<option value="getTechnicianName?customerName=<c:out value="All Customers"/>">All Customers</option>
-									<c:forEach items="${technicians}" var="technician">
-										<option value="getTechnicianName?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>
-									</c:forEach>
-								</select> --%>
 							</div>
 						</div>
 					</div>

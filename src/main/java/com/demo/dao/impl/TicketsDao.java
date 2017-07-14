@@ -416,7 +416,6 @@ public class TicketsDao implements TicketsDaoInt {
 			for (Tickets ticket : technicianCount) {
 				if (ticket.getEmployee().getEmail()
 						.equalsIgnoreCase(technicianEmail)) {
-
 					tempCount++;
 				}
 			}

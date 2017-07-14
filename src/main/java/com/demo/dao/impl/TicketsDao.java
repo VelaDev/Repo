@@ -424,7 +424,6 @@ public class TicketsDao implements TicketsDaoInt {
 		}
 		return tempCount;
 	}
-
 	@Override
 	public List<Tickets> getOpenTicketsForTechnician(String technicianEmail) {
 		List<Tickets> ticketList = new ArrayList<Tickets>();

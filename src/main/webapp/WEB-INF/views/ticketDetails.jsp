@@ -988,7 +988,7 @@
 																Ticket</td>
 														</c:when>
 														<c:when test="${history.status =='Re-Opened'}">
-															<td><c:out value="${history.actionTaken}" />Re-Opened</td>
+															<td>Ticket Re-Opened</td>
 														</c:when>
 														<c:otherwise>
 															<td><c:out value="${history.actionTaken}" /></td>

@@ -182,12 +182,12 @@ public class TicketsDao implements TicketsDaoInt {
 		try {
 			ticketList = getAllLoggedTickets();
 			for (Tickets ticket : ticketList) {
-				if ((ticket.getStatus().equalsIgnoreCase("Open") && ticket
-						.isOneHourFlag() == false)) {
+				if ((ticket.getStatus().equalsIgnoreCase("Open")||ticket.getStatus().equalsIgnoreCase("Re-Open")) && ticket
+						.isOneHourFlag() == false ) {
 					aList.add(ticket);
-				} else if ((ticket.getStatus().equalsIgnoreCase("Open")
+				} else if ((ticket.getStatus().equalsIgnoreCase("Open") ||ticket.getStatus().equalsIgnoreCase("Re-Open"))
 						&& ticket.isOneHourFlag() == true && ticket
-							.isFourHourFlag() == false)) {
+							.isFourHourFlag() == false) {
 					aList.add(ticket);
 				}
 			}
@@ -305,7 +305,6 @@ public class TicketsDao implements TicketsDaoInt {
 					} else {
 
 						ticket.setActionTaken(tickets.getActionTaken());
-						ticket.setStatus("Re-Opened");
 						sessionFactory.getCurrentSession().update(device);
 						sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 
@@ -319,7 +318,7 @@ public class TicketsDao implements TicketsDaoInt {
 					ticket.setComments(tickets.getComments());
 					ticket.setDateTime(dateFormat.format(date));
 
-					ticket.setStatus(status);
+					ticket.setStatus("Re-Open");
 
 					sessionFactory.getCurrentSession().saveOrUpdate(ticket);
 					if (tickets.getMonoReading() != null
@@ -332,7 +331,7 @@ public class TicketsDao implements TicketsDaoInt {
 				}
 			}
 		} catch (Exception e) {
-			retMessage = "SLA did not start because of " + e.getMessage() + ".";
+			retMessage = "Something went wrong when updating ticket " + ticket.getTicketNumber();
 		}
 		return retMessage;
 	}
@@ -434,9 +433,8 @@ public class TicketsDao implements TicketsDaoInt {
 			List<Tickets> technicianCount = getAllOpenTickets();
 
 			for (Tickets ticket : technicianCount) {
-				if (ticket.getEmployee().getEmail()
-						.equalsIgnoreCase(technicianEmail)
-						&& (ticket.getStatus().equalsIgnoreCase("Open"))) {
+				if ( ticket.getStatus().equalsIgnoreCase("Open")||(ticket.getStatus().equalsIgnoreCase("Re-Open")&&ticket.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail))) {
 
 					ticketList.add(ticket);
 				}
@@ -625,7 +623,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = ticket.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (ticket.getStatus().equalsIgnoreCase("Open")
+				if (ticket.getStatus().equalsIgnoreCase("Open")||ticket.getStatus().equalsIgnoreCase("Re-Open")
 						&& current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
@@ -1217,7 +1215,7 @@ public class TicketsDao implements TicketsDaoInt {
 				String convDate = ticket.getDateTime().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (ticket.getStatus().equalsIgnoreCase("Open")
+				if (ticket.getStatus().equalsIgnoreCase("Open")||ticket.getStatus().equalsIgnoreCase("Re-Open")
 						&& current.compareTo(dateData) <= 0
 						&& ticket.getEmployee().getEmail()
 								.equalsIgnoreCase(technicianEmail)) {

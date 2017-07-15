@@ -39,16 +39,13 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	private List<Tickets> ticketList = null;
 	ArrayList<Tickets> aList = null;
 	
-	
 	@SuppressWarnings("unchecked")
 	public List<Tickets> getAllLoggedTickets() {
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Tickets.class);
 		return (List<Tickets>)criteria.list(); 
 	}
-	
-	
-	@Transactional
+	@Transactional(propagation=Propagation.REQUIRED)
 	@Scheduled(fixedRate = 600000)
 	@Override
 	public void calculateSLAHours() {
@@ -99,9 +96,9 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 		try{
 			ticketList = getAllLoggedTickets();
 			for(Tickets ticket:ticketList){
-				if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isOneHourFlag()==false)){
+				if((ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Re-Open")&& ticket.isOneHourFlag()==false)){
 					aList.add(ticket);
-				}else if((ticket.getStatus().equalsIgnoreCase("Open")&& ticket.isOneHourFlag()==true && ticket.isFourHourFlag()==false)){
+				}else if((ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Re-Open")&& ticket.isOneHourFlag()==true && ticket.isFourHourFlag()==false)){
 					aList.add(ticket);
 				}
 			}
@@ -111,7 +108,6 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 		
 		return aList;
 	}
-	
 	@Transactional
 	@Scheduled(fixedRate = 60000)
 	@Override

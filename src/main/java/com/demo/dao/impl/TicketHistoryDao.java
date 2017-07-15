@@ -36,6 +36,8 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 	ArrayList<?> aList = null;
 	ArrayList list = null;
 	
+	
+	@Transactional(propagation=Propagation.REQUIRED)
 	@Override
 	public void insertTicketHistory(Tickets ticket) {
 		ticketHistory = new TicketHistory();
@@ -56,6 +58,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 			  ticketHistory.setMonoReading(ticket.getDevice().getMonoReading());
 			  ticketHistory.setColourReading(ticket.getDevice().getColourReading());
 			  sessionFactory.getCurrentSession().save(ticketHistory);
+			  sessionFactory.getCurrentSession().beginTransaction().commit();
 			  System.out.println(ticketHistory.getStatus());
 			
 		}catch(Exception e){

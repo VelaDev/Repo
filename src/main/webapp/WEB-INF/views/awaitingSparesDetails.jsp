@@ -411,13 +411,13 @@
 								<!-- //Customer Details -->
 
 								<br>
-								<div class="form-group row">
+								<!-- <div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<input type="submit" value="Submit"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
 											id="updateGen">
 									</div>
-								</div>
+								</div> -->
 
 							</form:form>
 

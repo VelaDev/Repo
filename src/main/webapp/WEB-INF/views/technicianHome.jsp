@@ -43,21 +43,18 @@
 									<th>Ticket Status</th>
 									<th>Customer Name</th>
 									<th>Telephone No</th>
-									<th>Date</th>
-									<th>Ticket Details</th>
+									<th>Date</th>									
 								</tr>
 							</thead>
 							<tbody>
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach items="${technicianTickets}" var="ticket">
 									<tr>
-										<td><c:out value="${ticket.ticketNumber}" /></td>
+										<td><a href="ticketDetails?id=<c:out value='${ticket.recordID}'/>"><c:out value="${ticket.ticketNumber}" /></a></td>
 										<td><c:out value="${ticket.status} " /></td>
 										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
 										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
-										<td><c:out value="${ticket.dateTime}" /></td>
-										<td><a
-											href="ticketDetails?id=<c:out value='${ticket.recordID}'/>">Ticket Details</a></td>
+										<td><c:out value="${ticket.dateTime}" /></td>										
 									</tr>
 								</c:forEach>
 							</tbody>

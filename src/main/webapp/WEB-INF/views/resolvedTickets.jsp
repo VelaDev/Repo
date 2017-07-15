@@ -80,20 +80,18 @@
 										<th>Device Serial</th>
 										<th>Description</th>
 										<th>Assigned Technician</th>										
-										<th>Details</th>
+									
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${ticketList}" var="tickets">
 										<tr>
-											<td><c:out value="${tickets.ticketNumber}" /></td>
+											<td><a href="resolvedTickectDetails?id=<c:out value='${tickets.recordID}'/>"><c:out value="${tickets.ticketNumber}" /></a></td>
 											<td><c:out value="${tickets.dateTime}" /></td>
 											<td><c:out value="${tickets.device.serialNumber}" /></td>
 											<td><c:out value="${tickets.description}" /></td>
-											<td><c:out
-													value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
- 											<td><a href="resolvedTickectDetails?id=<c:out value='${tickets.recordID}'/>">Ticket Details</a></td>
-									
+											<td><c:out value="${tickets.employee.firstName}  ${tickets.employee.lastName}" /></td>
+ 											
 										</tr>
 									</c:forEach>
 								</tbody>

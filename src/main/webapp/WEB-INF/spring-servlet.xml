@@ -72,6 +72,7 @@
 				 <value>com.demo.model.DeviceContactPerson</value>
 				 <value>com.demo.model.UserLogDetails</value>
 				 <value>com.demo.model.Leave</value>
+				 <value>com.demo.model.LeaveStatus</value>
 				 <value>com.demo.model.SpareReports</value>
 				 <value>com.demo.model.SpareMaster</value>
 				 <value>com.demo.model.Credentials</value>

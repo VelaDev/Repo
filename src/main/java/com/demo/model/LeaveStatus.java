@@ -1,10 +1,11 @@
 package com.demo.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -16,12 +17,12 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="LEAVES") 
+@Table(name="LEAVESTATUS") 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public class Leave implements Serializable{
+public class LeaveStatus implements Serializable{
 
 	/**
 	 * 
@@ -30,20 +31,12 @@ public class Leave implements Serializable{
 	@Id
 	@Column(name="Leave_ID")
 	private int leaveID;
-	@Column(name="Leave_Type")
-	private String leaveType;
 	@Column(name="First_Leave_Date")
 	private String startDate;
 	@Column(name="Last_Leave_Date")
 	private String endDate;
-	@Column(name="Contact_Number")
-	private String contactNumber;
-	@Column(name="Address")
-	private String address;
 	@Column(name="Status")
 	private String status;
-	@Column(name="LeaveDate")
-	private String leaveDate;
 	
 	@ManyToOne
 	@JoinColumn(name="Requested_By")

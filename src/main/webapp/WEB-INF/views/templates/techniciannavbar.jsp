@@ -77,6 +77,10 @@
 					    <a href='<c:url value="ordertechmanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Management</a>
 					</li>
+					<li>
+					    <a href='<c:url value="techleavemanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Leave Management</a>
+					</li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Spares<span class="caret"></span></a>

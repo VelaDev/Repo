@@ -66,4 +66,137 @@ public class LeaveService implements LeaveInt{
 		return leaveDaoInt.techniciansOnLeave();
 	}
 
+	@Override
+	public int countAllPendingLeave() {
+		return leaveDaoInt.countAllPendingLeave();
+	}
+
+	@Override
+	public int countAllActiveLeave() {
+		return leaveDaoInt.countAllActiveLeave();
+	}
+
+	@Override
+	public List<Leave> getPendingLeaves() {
+	
+		return leaveDaoInt.getPendingLeaves();
+	}
+
+	@Override
+	public List<Leave> getActiveLeave() {
+			return leaveDaoInt.getActiveLeave();
+	}
+
+	@Override
+	public List<Leave> leaveHistory() {
+			return leaveDaoInt.leaveHistory();
+	}
+
+	@Override
+	public List<Leave> getPendingLeaveByTechnician(String technicianEmail) {
+		    return leaveDaoInt.getPendingLeaveByTechnician(technicianEmail);
+	}
+
+	@Override
+	public int getPendingLeaveCountByTechnician(String technicianEmail) {
+			return leaveDaoInt.getPendingLeaveCountByTechnician(technicianEmail);
+	}
+
+	@Override
+	public int getActiveLeaveCountByTechnician(String technicianEmail) {
+		return leaveDaoInt.getActiveLeaveCountByTechnician(technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getActiveLeaveByTechnician(String technicianEmail) {
+		return leaveDaoInt.getActiveLeaveByTechnician(technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getAllActiveAndPendingLeave() {
+		return leaveDaoInt.getAllActiveAndPendingLeave();
+	}
+
+	@Override
+	public List<Leave> activeAndPendingLeaveByTechnician(String technicianEmail) {
+		return leaveDaoInt.activeAndPendingLeaveByTechnician(technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getLeaveHistoryByTechician(String technicianEmail) {
+		return leaveDaoInt.getLeaveHistoryByTechician(technicianEmail);
+	}
+
+	@Override
+	public int countpendingLeaveForSelectedDate(String dateRange) {
+		return leaveDaoInt.countpendingLeaveForSelectedDate(dateRange);
+	}
+
+	@Override
+	public List<String> getLeaveDates() {
+		return leaveDaoInt.getLeaveDates();
+	}
+
+	@Override
+	public List<Leave> getAllLeaveForSelectedRange(String dateRange) {
+		return leaveDaoInt.getAllLeaveForSelectedRange(dateRange);
+	}
+
+	@Override
+	public int countActiveLeaveForSelectedDate(String dateRange) {
+		return leaveDaoInt.countActiveLeaveForSelectedDate(dateRange);
+	}
+
+	@Override
+	public List<Leave> getPendingLeaveForSelectedRange(String dateRange) {
+		return leaveDaoInt.getPendingLeaveForSelectedRange(dateRange);
+	}
+
+	@Override
+	public List<Leave> getActiveLeaveForSelectedRange(String dateRange) {
+		// TODO Auto-generated method stub
+		return leaveDaoInt.getActiveLeaveForSelectedRange(dateRange);
+	}
+
+	@Override
+	public List<Leave> getLeaveHistoryForSelectedRange(String dateRange) {
+		return leaveDaoInt.getLeaveHistoryForSelectedRange(dateRange);
+	}
+
+	@Override
+	public int countTechpendingLeaveForSelectedDate(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.countTechpendingLeaveForSelectedDate(dateRange, technicianEmail);
+	}
+
+	@Override
+	public int countTechActiveLeaveForSelectedDate(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.countTechActiveLeaveForSelectedDate(dateRange, technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getAllTechLeaveForSelectedRange(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.getAllTechLeaveForSelectedRange(dateRange, technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getTechPendingLeaveForSelectedRange(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.getTechPendingLeaveForSelectedRange(dateRange, technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getTechActiveLeaveForSelectedRange(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.getTechActiveLeaveForSelectedRange(dateRange, technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getTechLeaveHistoryForSelectedRange(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.getTechLeaveHistoryForSelectedRange(dateRange, technicianEmail);
+	}
+
 }

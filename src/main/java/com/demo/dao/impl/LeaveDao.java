@@ -1,6 +1,9 @@
 package com.demo.dao.impl;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -23,6 +26,7 @@ import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LeaveDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.Leave;
+import com.demo.model.OrderHeader;
 
 @Repository("leaveDAO")
 @Transactional(propagation = Propagation.REQUIRED)
@@ -46,10 +50,902 @@ public class LeaveDao implements LeaveDaoInt {
 	private Employee emp = null;
 
 	@Override
+	public List<Leave> getAllTechLeaveForSelectedRange(String dateRange, String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = activeAndPendingLeaveByTechnician(technicianEmail);
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+	
+	@Override
+	public List<Leave> getAllLeaveForSelectedRange(String dateRange) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = leaveRequests();
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+	
+	@Override
+	public List<Leave> getActiveLeaveForSelectedRange(String dateRange) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getActiveLeave();
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+	
+	
+	@Override
+	public List<Leave> getLeaveHistoryForSelectedRange(String dateRange) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = leaveHistory();
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+	
+	
+	
+	@Override
+	public List<Leave> getPendingLeaveForSelectedRange(String dateRange) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getPendingLeaves();
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+	
+	@Override
+	public List<Leave> getTechLeaveHistoryForSelectedRange(String dateRange, String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getLeaveHistoryByTechician(technicianEmail);
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+	
+	@Override
+	public List<Leave> getTechActiveLeaveForSelectedRange(String dateRange, String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getActiveLeaveByTechnician(technicianEmail);
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+
+	@Override
+	public List<Leave> getTechPendingLeaveForSelectedRange(String dateRange, String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Leave> aList = new ArrayList<Leave>();
+		List<Leave> leaveList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getPendingLeaveByTechnician(technicianEmail);
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(leave);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
+		return aList;
+	}
+
+	@Override
+	public List<String> getLeaveDates() {
+		List<String> newDates = new ArrayList<String>();
+		newDates.add("Last 7 Days");
+		newDates.add("Last 30 Days");
+		newDates.add("Last 6 Months");
+		newDates.add("Last Year");
+		return newDates;
+	}
+
+	@Override
+	public int countTechpendingLeaveForSelectedDate(String dateRange, String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<Leave> pendingLeave = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getPendingLeaveByTechnician(technicianEmail);
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		System.out.println(tempCount);
+		return tempCount;
+	}
+	
+	@Override
+	public int countTechActiveLeaveForSelectedDate(String dateRange, String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<Leave> pendingLeave = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getActiveLeaveByTechnician(technicianEmail);
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		System.out.println(tempCount);
+		return tempCount;
+	}
+	
+	@Override
+	public int countpendingLeaveForSelectedDate(String dateRange) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<Leave> pendingLeave = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getPendingLeaves();
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		System.out.println(tempCount);
+		return tempCount;
+	}
+	@Override
+	public int countActiveLeaveForSelectedDate(String dateRange) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 6);
+			} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 31);
+			} else if (dateRange.equalsIgnoreCase("Last 6 Months")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 182);
+			} else if (dateRange.equalsIgnoreCase("Last Year")) {
+				cal.set(Calendar.DAY_OF_MONTH,
+						cal.get(Calendar.DAY_OF_MONTH) - 365);
+			}
+
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			leaveList = getActiveLeave();
+			for (Leave leave : leaveList) {
+				String convDate = leave.getLeaveDate().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		System.out.println(tempCount);
+		return tempCount;
+	}
+
+	@Override
+	public int countAllPendingLeave() {
+
+		int tempCount = 0;
+		List<Leave> pendingLeave = null;
+		try {
+
+			pendingLeave = getPendingLeaves();
+			for (Leave leave : pendingLeave) {
+
+				if (leave.getStatus().equalsIgnoreCase("Pending")) {
+					tempCount++;
+				}
+
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int getPendingLeaveCountByTechnician(String technicianEmail) {
+		List<Leave> pendingLeave = null;
+		int tempCount = 0;
+		try {
+			leaveList = getPendingLeaves();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
+					tempCount++;
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public List<Leave> getPendingLeaveByTechnician(String technicianEmail) {
+		List<Leave> currentList = new ArrayList<Leave>();
+
+		try {
+			leaveList = getPendingLeaves();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+					currentList.add(leave);
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
+					currentList.add(leave);
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	@Override
+	public List<Leave> getActiveLeaveByTechnician(String technicianEmail) {
+		List<Leave> currentList = new ArrayList<Leave>();
+
+		try {
+			leaveList = getActiveLeave();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+					currentList.add(leave);
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
+					currentList.add(leave);
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	@Override
+	public int getActiveLeaveCountByTechnician(String technicianEmail) {
+		List<Leave> pendingLeave = null;
+		int tempCount = 0;
+		try {
+			leaveList = getActiveLeave();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+					if (leave.getStatus().equalsIgnoreCase("Active")) {
+						tempCount++;
+					}
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
+					tempCount++;
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countAllActiveLeave() {
+
+		int tempCount = 0;
+		List<Leave> activeLeave = null;
+		try {
+
+			activeLeave = getActiveLeave();
+			for (Leave leave : activeLeave) {
+
+				if (leave.getStatus().equalsIgnoreCase("Active")) {
+					tempCount++;
+				}
+			}
+			System.err.println("Count is " + tempCount);
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	public String getLeaveStatus(String startDate, String endDate) {
+		String leaveStatus = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date start = sdf.parse(startDate);
+			Date end = sdf.parse(endDate);
+			Date currentDate = sdf.parse(sdf.format(new Date()));
+
+			// Leave Start date in future
+			if (start.compareTo(currentDate) > 0) {
+				leaveStatus = "Pending";
+			}
+			// Leave Started and end day not reached yet
+			else if (start.compareTo(currentDate) <= 0
+					&& end.compareTo(currentDate) >= 0) {
+				leaveStatus = "Active";
+			}
+			// End date reached
+			else if (end.compareTo(currentDate) < 0) {
+				leaveStatus = "Completed";
+			}
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return leaveStatus;
+	}
+	
+/*	@Scheduled(fixedRate=18000000)
+	public void updateLeaveStatus() {
+		
+		String startDate = "";  
+		String endDate = "";
+		String leaveStatus = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date start = sdf.parse(startDate);
+			Date end = sdf.parse(endDate);
+			Date currentDate = sdf.parse(sdf.format(new Date()));
+
+			// Leave Start date in future
+			if (start.compareTo(currentDate) > 0) {
+				leaveStatus = "Pending";
+			}
+			// Leave Started and end day not reached yet
+			else if (start.compareTo(currentDate) <= 0
+					&& end.compareTo(currentDate) >= 0) {
+				leaveStatus = "Active";
+			}
+			// End date reached
+			else if (end.compareTo(currentDate) < 0) {
+				leaveStatus = "Completed";
+			}
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+*/
+
+	boolean duplicateLeave(String startDate, String endDate, String technician) {
+		boolean duplicate = false;
+		tempLeave = new ArrayList<Leave>();
+		try {
+			leaveList = leaveRequests();
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+					if (startDate.equalsIgnoreCase(leave.getStartDate())
+							&& (endDate.equalsIgnoreCase(leave.getEndDate()))) {
+
+						duplicate = true;
+
+					}
+					tempLeave.add(leave);
+				}
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		return duplicate;
+	}
+
+	@Override
 	public String leaveRequest(LeaveBean leave) {
 		Employee employee = (Employee) session.getAttribute("loggedInUser");
 		globalLeave = new Leave();
 		String userName = null;
+		
+		//Get Current Time Stamp
+	
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+	    LocalDateTime now = LocalDateTime.now();
 		try {
 			int newrecordID = 0;
 			if (leave.getTechnicianUserName() != null) {
@@ -63,16 +959,25 @@ public class LeaveDao implements LeaveDaoInt {
 			}
 
 			emp = employeeDaoInt.getEmployeeByEmpNum(userName);
-			if (emp.getLeaveStatus().equalsIgnoreCase("On Leave")) {
-				retMessage = "Kindly note that "+emp.getFirstName() +" "+emp.getLastName()+" on leave.";
-			} else  {
-				globalLeave.setStatus("On Leave");
+			// if (emp.getLeaveStatus().equalsIgnoreCase("Active")) {
+			boolean duplicate = duplicateLeave(leave.getStartDate(),
+					leave.getEndDate(), userName);
+
+			if (duplicate == true) {
+				retMessage = "Leave already exist for " + emp.getFirstName()
+						+ " " + emp.getLastName();
+			} else {
+
+				String leaveStatus = getLeaveStatus(leave.getStartDate(),
+						leave.getEndDate());
+				globalLeave.setStatus(leaveStatus);
 
 				globalLeave.setAddress(leave.getAddress());
 				globalLeave.setContactNumber(leave.getContactNumber());
 				globalLeave.setEndDate(leave.getEndDate());
 				globalLeave.setLeaveType(leave.getLeaveType());
 				globalLeave.setStartDate(leave.getStartDate());
+				globalLeave.setLeaveDate(dtf.format(now));
 				recordID = newRecordID();
 				newrecordID = recordID;
 
@@ -85,7 +990,7 @@ public class LeaveDao implements LeaveDaoInt {
 			}
 
 		} catch (Exception e) {
-			retMessage = "Leave not submitted " + e.getMessage()+".";
+			retMessage = "Leave not submitted " + e.getMessage() + ".";
 		}
 		return retMessage;
 	}
@@ -112,7 +1017,7 @@ public class LeaveDao implements LeaveDaoInt {
 			sessionFactory.getCurrentSession().update(globalLeave);
 			retMessage = "Leave sucessfully updated";
 		} catch (Exception e) {
-			retMessage = "Leave not updated " + e.getMessage()+".";
+			retMessage = "Leave not updated " + e.getMessage() + ".";
 		}
 		return retMessage;
 	}
@@ -140,19 +1045,137 @@ public class LeaveDao implements LeaveDaoInt {
 				Leave.class);
 		return (List<Leave>) criteria.list();
 	}
-	
-	
-	private List<Leave> getCurrentLeaves(){
+
+	@Override
+	public List<Leave> activeAndPendingLeaveByTechnician(String technicianEmail) {
 		List<Leave> currentList = new ArrayList<Leave>();
-		try{
-			leaveList = leaveRequests();
-			
-			for(Leave leave:leaveList){
-				if(leave.getStatus().equalsIgnoreCase("On Leave")){
+
+		try {
+			leaveList = getAllActiveAndPendingLeave();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+
+					currentList.add(leave);
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
 					currentList.add(leave);
 				}
 			}
-		}catch(Exception e){
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	@Override
+	public List<Leave> getAllActiveAndPendingLeave() {
+		List<Leave> currentList = new ArrayList<Leave>();
+		try {
+			leaveList = leaveRequests();
+
+			for (Leave leave : leaveList) {
+				if (leave.getStatus().equalsIgnoreCase("Active")
+						|| leave.getStatus().equalsIgnoreCase("Pending")) {
+					currentList.add(leave);
+				}
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	private List<Leave> getCurrentLeaves() {
+		List<Leave> currentList = new ArrayList<Leave>();
+		try {
+			leaveList = leaveRequests();
+
+			for (Leave leave : leaveList) {
+				if (leave.getStatus().equalsIgnoreCase("On Leave")) {
+					currentList.add(leave);
+				}
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	@Override
+	public List<Leave> leaveHistory() {
+		List<Leave> currentList = new ArrayList<Leave>();
+
+		try {
+			leaveList = leaveRequests();
+
+			for (Leave leave : leaveList) {
+				if (leave.getStatus().equalsIgnoreCase("Completed")) {
+					currentList.add(leave);
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	@Override
+	public List<Leave> getLeaveHistoryByTechician(String technicianEmail) {
+		List<Leave> currentList = new ArrayList<Leave>();
+
+		try {
+			leaveList = leaveHistory();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+
+					currentList.add(leave);
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
+					currentList.add(leave);
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	@Override
+	public List<Leave> getPendingLeaves() {
+		List<Leave> currentList = new ArrayList<Leave>();
+
+		try {
+			leaveList = leaveRequests();
+
+			for (Leave leave : leaveList) {
+				if (leave.getStatus().equalsIgnoreCase("Pending")) {
+					currentList.add(leave);
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+
+	@Override
+	public List<Leave> getActiveLeave() {
+		List<Leave> currentList = new ArrayList<Leave>();
+		try {
+			leaveList = leaveRequests();
+
+			for (Leave leave : leaveList) {
+				if (leave.getStatus().equalsIgnoreCase("Active")) {
+					currentList.add(leave);
+				}
+			}
+		} catch (Exception e) {
 			e.getMessage();
 		}
 		return currentList;
@@ -296,36 +1319,36 @@ public class LeaveDao implements LeaveDaoInt {
 		return techniciansOnLeave;
 	}
 
-	
 	@Transactional
-	@Scheduled(fixedRate=1440000)
+	@Scheduled(fixedRate = 1440000)
 	@Override
 	public void isTechnicianOnLeaveDate() {
-			myFormat = new SimpleDateFormat("yyyy-MM-dd");
-			currentDate = new Date();
-			secondDate = new Date();
-			Calendar cal = Calendar.getInstance();
-		    String date1 =  myFormat.format(cal.getTime());
-			try {
-				tempLeave = getCurrentLeaves();
-				
-				if(tempLeave.size()>0){
-					for (Leave leave : tempLeave) {
-						secondDate = myFormat.parse(leave.getEndDate());
-						currentDate = myFormat.parse(date1);
-						if (currentDate.compareTo(secondDate)>=0) {
-							emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
-							emp.setLeaveStatus("Available");
-							sessionFactory.getCurrentSession().update(emp);
-							leave.setStatus("Available");
-							sessionFactory.getCurrentSession().update(leave);
-						}
+		myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		currentDate = new Date();
+		secondDate = new Date();
+		Calendar cal = Calendar.getInstance();
+		String date1 = myFormat.format(cal.getTime());
+		try {
+			tempLeave = getCurrentLeaves();
+
+			if (tempLeave.size() > 0) {
+				for (Leave leave : tempLeave) {
+					secondDate = myFormat.parse(leave.getEndDate());
+					currentDate = myFormat.parse(date1);
+					if (currentDate.compareTo(secondDate) >= 0) {
+						emp = employeeDaoInt.getEmployeeByEmpNum(leave
+								.getEmployee().getEmail());
+						emp.setLeaveStatus("Available");
+						sessionFactory.getCurrentSession().update(emp);
+						leave.setStatus("Available");
+						sessionFactory.getCurrentSession().update(leave);
 					}
 				}
-
-			} catch (Exception e) {
-				e.getMessage();
 			}
-		
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
 	}
 }

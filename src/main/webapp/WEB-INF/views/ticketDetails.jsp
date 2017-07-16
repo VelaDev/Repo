@@ -50,8 +50,7 @@
 				<div class="panel-body">
 					<ul class="nav nav-tabs">
 
-						<li class="active"><a href="#generalDetails"
-							data-toggle="tab">General</a></li>
+						<li class="active"><a href="#generalDetails" data-toggle="tab">General</a></li>
 						<li><a href="#historyDetails" data-toggle="tab">History</a></li>
 
 					</ul>

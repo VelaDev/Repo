@@ -553,7 +553,7 @@ input.currency {
 																	<tr>
 																		<td>${list.accessotyType}</td>
 																		<td>${list.serial}</td>
-																		<td><input type="checkbox" class="chkAccessories"
+																		<td><input type="checkbox" class="chkAccessories" id="chkAccessories_${list.serial}"
 																			name="chkAccessories" value="${list.serial}" /></td>
 																	</tr>
 																</c:forEach>

@@ -51,7 +51,13 @@
 					
 					<form:form class="well form-horizontal" method="POST"
 						action="makeLeave" modelAttribute="leamakeLeaveve" id="makeLeave">
-
+						<div class="form-group row">
+							<div class="col-sm-offset-3 col-sm-2">
+								<input type="submit" value="Create Leave"
+									class="btn btn-primary btn-block btn-sm" tabindex="9"
+									id="addLeave">
+							</div>
+						</div>
 						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>
@@ -139,16 +145,7 @@
 								</div>
 							</div>
 						</div>
-						<br>
-						<div class="form-group row">
-							<div class="col-sm-offset-3 col-sm-6">
-								<input type="submit" value="Make Leave"
-									class="btn btn-primary btn-block btn-lg" tabindex="9"
-									id="addLeave">
-							</div>
-						</div>
-
-
+					
 					</form:form>
 
 				</div>

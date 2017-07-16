@@ -1709,7 +1709,6 @@ public class OrdersController {
  
         model.addObject("exception", ex.getMessage()+ ". Please restart the server");
         return model;
-        
     }
 	
 }

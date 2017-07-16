@@ -2,8 +2,6 @@ package com.demo.dao.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -943,9 +941,15 @@ public class LeaveDao implements LeaveDaoInt {
 		String userName = null;
 		
 		//Get Current Time Stamp
-	
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-	    LocalDateTime now = LocalDateTime.now();
+		Calendar cal = Calendar.getInstance();		
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:s");
+		Date currentDate = new Date();
+		cal.setTime(new Date());
+
+		currentDate = cal.getTime();
+
+	    
+	    
 		try {
 			int newrecordID = 0;
 			if (leave.getTechnicianUserName() != null) {
@@ -977,7 +981,7 @@ public class LeaveDao implements LeaveDaoInt {
 				globalLeave.setEndDate(leave.getEndDate());
 				globalLeave.setLeaveType(leave.getLeaveType());
 				globalLeave.setStartDate(leave.getStartDate());
-				globalLeave.setLeaveDate(dtf.format(now));
+			    globalLeave.setLeaveDate(myFormat.format(currentDate));
 				recordID = newRecordID();
 				newrecordID = recordID;
 

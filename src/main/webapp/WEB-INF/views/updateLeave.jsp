@@ -40,8 +40,21 @@
 
 					<form:form class="well form-horizontal" method="POST"
 						action="updateLeave" modelAttribute="updateLeave" id="updateLeave">
-
-						<!-- Text input Leave ID-->
+						
+						<div class="form-group row">
+							<div class="col-sm-offset-3 col-sm-2">
+								<input type="submit" value="Update Leave"
+									class="btn btn-primary btn-block btn-sm" tabindex="9"
+									id="updateLeave">
+							</div>
+							<div class="col-sm-offset-3 col-sm-2">
+								<input type="submit" value="Cancel Leave"
+									class="btn btn-danger btn-block btn-sm" tabindex="9"
+									id="cancelLeave">
+							</div>
+						</div>
+						
+						<%-- <!-- Text input Leave ID-->
 						<div class="form-group">
 							<label class="col-xs-3 control-label">Leave ID</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -54,7 +67,8 @@
 									
 								</div>
 							</div>
-						</div>
+						</div> --%>
+						
 						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>

@@ -41,7 +41,21 @@
 					<form:form class="well form-horizontal" method="POST"
 						action="updateMakeLeave" modelAttribute="updateMakeLeave" id="updateMakeLeave">
 						
-						<!-- Text input Leave ID-->
+						<div class="form-group row">
+							<div class="col-sm-offset-3 col-sm-2">
+								<input type="submit" value="Update Leave"
+									class="btn btn-primary btn-block btn-sm" tabindex="9"
+									id="updateLeave">
+							</div>
+							<div class="col-sm-offset-3 col-sm-2">
+								<input type="submit" value="Cancel Leave"
+									class="btn btn-danger btn-block btn-sm" tabindex="9"
+									id="cancelLeave">
+							</div>
+						</div>
+						
+						
+						<%-- <!-- Text input Leave ID-->
 						<div class="form-group">
 							<label class="col-xs-3 control-label">Leave ID</label>
 							<div class="col-md-6 inputGroupContainer">
@@ -53,7 +67,7 @@
 										id="leaveID"  value="${leave.leaveID}" readonly="readonly"/>
 								</div>
 							</div>
-						</div>
+						</div> --%>
 						
 						<!-- Text input Leave ID-->
 						<div class="form-group">

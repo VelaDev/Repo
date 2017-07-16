@@ -124,6 +124,11 @@
 						</ul>
 					</li>
 					
+					<li>
+					    <a href='<c:url value="sparemanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Spares Management</a>
+					</li>
+					
 					<li>					
 					
 					    <a href='<c:url value="ordermanagement.html"/>' role="button" aria-haspopup="true"

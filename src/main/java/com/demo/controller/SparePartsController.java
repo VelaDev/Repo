@@ -35,6 +35,8 @@ public class SparePartsController {
 	@Autowired
 	private OrdersServiceInt ordersServiceInt;
 	@Autowired
+	private EmployeeServiceInt employeeServiceInt;
+	@Autowired
 	private HOStockServeceInt hOStockServeceInt;
 	@Autowired
 	private OrderDetailsInt orderDetailsInt;
@@ -310,5 +312,50 @@ public class SparePartsController {
 		}
 		return model;
 	}
+	
+	
+	//spare management
+	@RequestMapping(value = "sparemanagement", method = RequestMethod.GET)
+	public ModelAndView displayOrderTechManagement() {
+		
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders(userName.getEmail()));
+			model.addObject("customers",customerServiceInt.getClientList());
+			model.addObject("dates", ordersServiceInt.getDates());
+			model.addObject("countNewOrders",ordersServiceInt.countNewOrders("", userName.getEmail()));
+			model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive("", userName.getEmail()));
+			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+			model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrder("",userName.getEmail()));
+			model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician(userName.getEmail()));
+			model.addObject("ticketCount", ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers(userName.getEmail()));
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			
+			//Load Data of HO 
+			model.addObject("spareParts", hOStockServeceInt.getAllSparePartsWithoutZero());
+			
+			//Load Data Boot Site
+			model.addObject("employees",employeeService.getAllTechnicians());
+			
+			//Load data of bootSite
+			model.addObject("customer",customerServiceInt.getClientList());			
+		
+			
+			model.setViewName("sparemanagement");
+		} else {
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
+	
 	
 }

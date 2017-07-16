@@ -36,6 +36,32 @@
 <!--/style-->
 
 <style type="text/css">
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+	background-color: #f2f2f2;
+	color: #444;
+	cursor: pointer;
+	/* padding: 18px; */
+	width: 100%;
+	text-align: left;
+	border: none;
+	outline: none;
+	transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+	background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.bootPanel {
+	padding: 0 18px;
+	background-color: white;
+	display: none;
+}
+
 .selectDate {
 	position: relative;
 	display: inline-block;
@@ -232,59 +258,38 @@ input#selectDateRange {
 
 							<div class="tab-pane" id="siteStock">
 								<legend align=center>Site Stock</legend>
-								<table id="myDatatable" class="display datatable">
-									<thead>
-										<tr>
-											<th>Technician Names</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- Iterating over the list sent from Controller -->
-										<c:forEach var="list" items="${employees}">
-											<tr>
-												<td><a
-													href="loadBootStock?technician=<c:out value='${list.firstName} ${list.lastName}'/>">${list.firstName}
-														${list.lastName}</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+
+								<!-- Iterating over the list sent from Controller -->
+								<c:forEach var="list" items="${customer}">
+									<button class="accordion">
+										<a href="loadStockSite?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a>
+									</button>
+									<div class="bootPanel"></div>
+								</c:forEach>
+								
 							</div>
 
 							<div class="tab-pane" id="bootStock">
 								<legend align=center>Boot Stock</legend>
 
-								<!-- Below table will be displayed as Data table -->
-								<table id="myDatatable" class="display datatable">
-									<thead>
-										<tr>
-											<th>Customers</th>
-										</tr>
-									</thead>
-									<tbody>
-										<!-- Iterating over the list sent from Controller -->
-										<c:forEach var="list" items="${customer}">
-											<tr>
-												<td><a
-													href="loadStockSite?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-
+								<c:forEach var="list" items="${employees}">
+									<button class="accordion">
+										<a href="loadBootStock?technician=<c:out value='${list.firstName} ${list.lastName}'/>">${list.firstName} ${list.lastName}</a>
+									</button>
+									<div class="bootPanel"></div>
+								</c:forEach>
 							</div>
-
+							
+	`						
+						</div>
+							<!-- /tab-content -->
 
 
 						</div>
-						<!-- /tab-content -->
-
-
-
+						<!-- /panel body -->
 					</div>
-					<!-- /panel body -->
+					<!--/panel success class-->
 				</div>
-				<!--/panel success class-->
 			</div>
 			<!-- /Container -->
 			<!-- Footer -->
@@ -296,8 +301,7 @@ input#selectDateRange {
 		<!-- Script -->
 		<script type="text/javascript"
 			src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		<script type="text/javascript"
-			src="<c:url value="/resources/jquery/moment/moment.min.js"/>"></script>
+
 		<script type="text/javascript"
 			src="<c:url value="/resources/bootstrap-3.3.7/js/daterangepicker.js"/>"></script>
 
@@ -376,6 +380,28 @@ input#selectDateRange {
 				/* few more options are available to use */
 				});
 			});
+		</script>
+
+
+		<script>
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+
+			for (i = 0; i < acc.length; i++) {
+				acc[i].onclick = function() {
+					/* Toggle between adding and removing the "active" class,
+					to highlight the button that controls the panel */
+					this.classList.toggle("active");
+
+					/* Toggle between hiding and showing the active panel */
+					var bootPanel = this.nextElementSibling;
+					if (bootPanel.style.display === "block") {
+						bootPanel.style.display = "none";
+					} else {
+						bootPanel.style.display = "block";
+					}
+				}
+			}
 		</script>
 </body>
 </html>

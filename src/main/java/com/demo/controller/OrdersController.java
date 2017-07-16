@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
@@ -10,6 +11,7 @@ import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -387,7 +389,7 @@ public class OrdersController {
 					ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets",
 					ticketsServiceInt.countAwaitingSparesTickets());
-			model.setViewName("deliveryNote");
+			model.setViewName("orderItemHistory");
 		} else {
 			model.setViewName("login");
 		}
@@ -1693,5 +1695,21 @@ public class OrdersController {
 
 		return model;
 	}
+	@ExceptionHandler({FileNotFoundException.class})
+    public ModelAndView dataIntegrity(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception"," Create a folder 'VelaphandaReports' on C drive to save the reports");
+        return model;
+        
+    }
+	@ExceptionHandler({OutOfMemoryError.class})
+    public ModelAndView PermGem(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception", ex.getMessage()+ ". Please restart the server");
+        return model;
+        
+    }
 	
 }

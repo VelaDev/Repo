@@ -93,9 +93,9 @@
 										</ul>
 								</li>  
 							</c:if>
-							<li class="active"><a
-											href="printdeliveryNote?recordID=<c:out value='${list.recordID}'/>">Print</a></li>
-							<li><a href="#">Download PDF </a></li>
+							<%-- <li class="active"><a
+											href="printdeliveryNote?recordID=<c:out value='${OrderNum.recordID}'/>">Print</a></li> --%>
+							<li><a href="printdeliveryNote?recordID=<c:out value='${OrderNum.recordID}'/>">Download PDF </a></li>
 							
 							
 						</ul>

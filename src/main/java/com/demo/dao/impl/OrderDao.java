@@ -551,6 +551,7 @@ public class OrderDao implements OrdersDaoInt {
 					ticketHistoryDaoInt.insertTicketHistory(tick);
 				}
 			}
+			
 			retMessage = "Order " + cusOrder.getOrderNum()+ " declined";
 		}catch(Exception e){
 			retMessage = e.getMessage();

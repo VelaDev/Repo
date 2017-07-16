@@ -536,22 +536,35 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public String declineOrder(String orderNum,String reasonForeclined) {
+		
+		date = new Date();
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		try{
 			cusOrder = declineOrder(orderNum);
+			
 			cusOrder.setComments(reasonForeclined);
 			cusOrder.setStatus("Declined");
 			sessionFactory.getCurrentSession().update(cusOrder);
 			historyDaoInt.insetOrderHistory(cusOrder);
 			List<Tickets> ticketList = ticketsDaoInt.getAwaitingSparesTickets();
 			for(Tickets tick:ticketList){
-				if(tick.getOrderHeader().getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
-					tick.setStatus("Re-Open");
-					tick.setDateTime(dateFormat.format(date));
-					sessionFactory.getCurrentSession().update(tick);
-					ticketHistoryDaoInt.insertTicketHistory(tick);
+				System.err.println(tick.getOrderHeader().getOrderNum());
+				String trmpOrderNum = tick.getOrderHeader().getOrderNum();
+				
+				int result = Integer.parseInt(trmpOrderNum.substring(5));
+				System.err.println(result);
+				System.err.println(cusOrder.getRecordID());
+				if(tick.getOrderHeader()!= null){
+					System.err.println("Inside ");
+					if(result == cusOrder.getRecordID()){
+						tick.setStatus("Re-Open");
+						tick.setDateTime(dateFormat.format(date));
+						sessionFactory.getCurrentSession().update(tick);
+						ticketHistoryDaoInt.insertTicketHistory(tick);
+					}
 				}
+				
 			}
-			
 			retMessage = "Order " + cusOrder.getOrderNum()+ " declined";
 		}catch(Exception e){
 			retMessage = e.getMessage();

@@ -507,7 +507,7 @@
 																	<div class="input-group">
 																		<input type="radio" value="bootType" name="groupboot"
 																			data-toggle="modal" data-target="#bootStock"
-																			disabled="disabled" id="BootStocked">
+																			readonly="readonly" id="BootStocked">
 																	</div>
 																</div>
 															</div>
@@ -532,7 +532,7 @@
 																<div class="col-md-8 inputGroupContainer">
 																	<div class="input-group">
 																		<textarea id="usedPartNumbers" name="usedPartNumbers"
-																			disabled="disabled" class="form-control"
+																			readonly="readonly" class="form-control"
 																			style="width: 272px; height: 93px; font-size: 11px; margin: 0px;"
 																			rows="3">
 																			</textarea>

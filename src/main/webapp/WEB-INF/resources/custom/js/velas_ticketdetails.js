@@ -255,11 +255,12 @@ $("#actionTaken").on(
 		'change',
 		function() {
 
+			
 			if ($(this).val() == "Replaced Part/Toner") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', false);
-				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);							
-				$('#usedPartNumbers').attr('disabled', true);
+				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',false);							
+				$('#usedPartNumbers').attr('disabled', false);
 				console.log($(this).val());
 			} else if ($(this).val() == ""
 					|| $(this).val() == "Cleared Paper Jam"
@@ -270,8 +271,8 @@ $("#actionTaken").on(
 					|| $(this).val() == "No fault Found") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', true);
-				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',true);				
-				$('#usedPartNumbers').attr('disabled', true);
+				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',false);				
+				$('#usedPartNumbers').attr('disabled', false);
 				console.log($(this).val());
 			}
 		});

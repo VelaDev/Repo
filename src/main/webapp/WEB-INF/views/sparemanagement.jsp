@@ -259,29 +259,51 @@ input#selectDateRange {
 							<div class="tab-pane" id="siteStock">
 								<legend align=center>Site Stock</legend>
 
-								<!-- Iterating over the list sent from Controller -->
-								<c:forEach var="list" items="${customer}">
-									<button class="accordion">
-										<a href="loadStockSite?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a>
-									</button>
-									<div class="bootPanel"></div>
-								</c:forEach>
-								
+
+								<table id="loadStockSite" class="display datatable">
+									<thead>
+										<tr>
+											<th>Customer Nane</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- Iterating over the list sent from Controller -->
+										<c:forEach var="list" items="${customer}">
+											<tr>
+												<td><a
+													href="loadStockSite?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
+
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+
 							</div>
 
 							<div class="tab-pane" id="bootStock">
 								<legend align=center>Boot Stock</legend>
+								<!-- Below table will be displayed as Data table -->
+								<table id="loadBootStock" class="display datatable">
+									<thead>
+										<tr>
+											<th>Technician Nane</th>
+										</tr>
+									</thead>
+									<tbody>
+										<!-- Iterating over the list sent from Controller -->
+										<c:forEach var="list" items="${employees}">
+											<tr>
 
-								<c:forEach var="list" items="${employees}">
-									<button class="accordion">
-										<a href="loadBootStock?technician=<c:out value='${list.firstName} ${list.lastName}'/>">${list.firstName} ${list.lastName}</a>
-									</button>
-									<div class="bootPanel"></div>
-								</c:forEach>
+												<td><a
+													href="loadBootStock?technician=<c:out value='${list.firstName} ${list.lastName}'/>">${list.firstName}
+														${list.lastName}</a></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
+
+
 							</div>
-							
-	`						
-						</div>
 							<!-- /tab-content -->
 
 
@@ -382,26 +404,26 @@ input#selectDateRange {
 			});
 		</script>
 
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#loadBootStock').DataTable({
+					"jQueryUI" : true,
+					"pagingType" : "full_numbers",
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				/* few more options are available to use */
+				});
+			});
+		</script>
 
-		<script>
-			var acc = document.getElementsByClassName("accordion");
-			var i;
-
-			for (i = 0; i < acc.length; i++) {
-				acc[i].onclick = function() {
-					/* Toggle between adding and removing the "active" class,
-					to highlight the button that controls the panel */
-					this.classList.toggle("active");
-
-					/* Toggle between hiding and showing the active panel */
-					var bootPanel = this.nextElementSibling;
-					if (bootPanel.style.display === "block") {
-						bootPanel.style.display = "none";
-					} else {
-						bootPanel.style.display = "block";
-					}
-				}
-			}
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#loadStockSite').DataTable({
+					"jQueryUI" : true,
+					"pagingType" : "full_numbers",
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				/* few more options are available to use */
+				});
+			});
 		</script>
 </body>
 </html>

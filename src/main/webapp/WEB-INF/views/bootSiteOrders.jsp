@@ -110,7 +110,7 @@
 							<div class="tab-pane active" id="numberOfParts'">
 
 								<form action="">
-									<!-- Below table will be displayed as Data table -->
+									
 									<!-- Below table will be displayed as Data table -->
 									<table id="myDatatable" class="display datatable">
 										<thead>

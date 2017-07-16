@@ -49,7 +49,7 @@ a.confirmtions {
 						 	 	<!-- Log a Ticket -->
 							 	<c:choose>
 							 	   <c:when test="${tickets =='tickets' }">
-							 	       <c:out value="${retMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket. Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to go to Home page.
+							 	       <c:out value="${retMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket.
 							 	   </c:when>
 							 	</c:choose>
 							 	
@@ -57,7 +57,7 @@ a.confirmtions {
 				 	  			<c:choose>
 						 	    <c:when test="${orders =='orders' }">
 						 	       <c:out value="${retMessage}"></c:out> 
-						 	        Click<a href="userPlaceOrder.html" class="confirmtions"><b> here</b></a> to place another Order. Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to go to Home page.	                            
+						 	        Click<a href="userPlaceOrder.html" class="confirmtions"><b> here</b></a> to place another Order.                             
 						 	    </c:when>
 					 	    	</c:choose>
 						 					 	     
@@ -73,19 +73,22 @@ a.confirmtions {
 					 	  		<c:choose>
 					 	    		<c:when test="${orders =='orders' }">
 						 	       		<c:out value="${retErrorMessage}"></c:out> 
-						 	        	Click<a href="userPlaceOrder.html" class="confirmtions"> <b> here</b></a> to place another Order. Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to go to Home page.
+						 	        	Click<a href="userPlaceOrder.html" class="confirmtions"> <b> here</b></a> to place another Order.
 		                            	
 						 	    	</c:when>
 						 	    </c:choose>
 						 	    <!-- Log a Ticket -->
 							 	<c:choose>
 							 	   <c:when test="${tickets =='tickets' }">
-							 	       <c:out value="${retMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket. Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to go to Home page.
+							 	       <c:out value="${retMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket. 
 							 	   </c:when>
 							 	</c:choose>
 					 	  
 					 	    </div>
-					 	</c:if><!-- On failure returned message -->
+					 	</c:if><!-- On failure returned message -->'
+					 	
+					 	<a href="ticket.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>
+					 	
 					</div>
 					<!-- /tab-content -->
 

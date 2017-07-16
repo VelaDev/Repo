@@ -312,8 +312,7 @@ public class SparePartsController {
 		}
 		return model;
 	}
-	
-	
+		
 	//spare management
 	@RequestMapping(value = "sparemanagement", method = RequestMethod.GET)
 	public ModelAndView displayOrderTechManagement() {

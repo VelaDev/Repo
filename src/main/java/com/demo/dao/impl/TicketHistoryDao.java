@@ -58,6 +58,8 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 			  ticketHistory.setMonoReading(ticket.getDevice().getMonoReading());
 			  ticketHistory.setColourReading(ticket.getDevice().getColourReading());
 			  sessionFactory.getCurrentSession().save(ticketHistory);
+			  
+			  
 			  if(ticketHistory.getStatus().equalsIgnoreCase("SLA Bridged")){
 				  sessionFactory.getCurrentSession().beginTransaction().commit();
 			  }

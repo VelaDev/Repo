@@ -482,7 +482,7 @@ public class OrderDao implements OrdersDaoInt {
 			List<Tickets> ticketList = ticketsDaoInt.getAwaitingSparesTickets();
 			for(Tickets tick:ticketList){
 				if(tick.getOrderHeader().getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
-					tick.setStatus("Open");
+					tick.setStatus("Re-Open");
 					tick.setDateTime(dateFormat.format(date));
 					sessionFactory.getCurrentSession().update(tick);
 					ticketHistoryDaoInt.insertTicketHistory(tick);
@@ -542,6 +542,15 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setStatus("Declined");
 			sessionFactory.getCurrentSession().update(cusOrder);
 			historyDaoInt.insetOrderHistory(cusOrder);
+			List<Tickets> ticketList = ticketsDaoInt.getAwaitingSparesTickets();
+			for(Tickets tick:ticketList){
+				if(tick.getOrderHeader().getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
+					tick.setStatus("Re-Open");
+					tick.setDateTime(dateFormat.format(date));
+					sessionFactory.getCurrentSession().update(tick);
+					ticketHistoryDaoInt.insertTicketHistory(tick);
+				}
+			}
 			retMessage = "Order " + cusOrder.getOrderNum()+ " declined";
 		}catch(Exception e){
 			retMessage = e.getMessage();
@@ -1958,7 +1967,6 @@ public class OrderDao implements OrdersDaoInt {
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date previoueDay = new Date();
 		Date currentDate = new Date();
-	/*	System.out.println(lastFourteenDays.length());*/
 		try{
 			if( customerName.length()>3){
 				String firstDate = lastFourteenDays.substring(0, 10);
@@ -2025,7 +2033,6 @@ public class OrderDao implements OrdersDaoInt {
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date previoueDay = new Date();
 		Date currentDate = new Date();
-		System.out.println(lastFourteenDays.length());
 		try{
 			if(lastFourteenDays.length()>5 && customerName.length()>3){
 				String firstDate = lastFourteenDays.substring(0, 10);

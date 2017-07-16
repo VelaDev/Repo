@@ -47,7 +47,7 @@
 									class="btn btn-primary btn-block btn-sm" tabindex="9"
 									id="updateLeave">
 							</div>
-							<div class="col-sm-offset-3 col-sm-2">
+							<div class="col-sm-2">
 								<input type="submit" value="Cancel Leave"
 									class="btn btn-danger btn-block btn-sm" tabindex="9"
 									id="cancelLeave">
@@ -151,14 +151,14 @@
 							</div>
 						</div>
 						<br>
-						<div class="form-group row">
+						<!-- <div class="form-group row">
 							<div class="col-sm-offset-3 col-sm-6">
 								<input type="submit" value="Update Leave"
 									class="btn btn-primary btn-block btn-lg" tabindex="9"
 									id="updateLeave">
 							</div>
 						</div>
-
+ -->
 
 					</form:form>
 

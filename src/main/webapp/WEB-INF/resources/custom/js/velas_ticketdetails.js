@@ -255,6 +255,7 @@ $("#actionTaken").on(
 		'change',
 		function() {
 
+			
 			if ($(this).val() == "Replaced Part/Toner") {
 				$('input[type="radio"]:enabled').attr('disabled', true);
 				$('#BootStocked, #SiteStocked').attr('disabled', false);

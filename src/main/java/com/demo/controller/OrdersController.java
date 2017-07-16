@@ -1,8 +1,12 @@
 package com.demo.controller;
 
+import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.xml.sax.SAXException;
 
 import com.demo.bean.OrdersBean;
 import com.demo.dao.OrderDetailsDaoInt;
@@ -29,6 +34,10 @@ import com.demo.service.HOStockServeceInt;
 import com.demo.service.SiteStockInt;
 import com.demo.service.TicketsServiceInt;
 import com.demo.service.VelaphandaInt;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.zugferd.exceptions.DataIncompleteException;
+import com.itextpdf.text.zugferd.exceptions.InvalidCodeException;
+import com.itextpdf.xmp.XMPException;
 
 @Controller
 public class OrdersController {
@@ -128,7 +137,7 @@ public class OrdersController {
 				model.addObject("orders", orders);
 				model.setViewName("confirmation");
 				// model.setViewName("order");
-			} else {
+			} else if(userName.getRole().equalsIgnoreCase("User")){
 				model.setViewName("confirm");
 				model.addObject("orders", orders);
 				// model.setViewName("userPlaceOrder");
@@ -329,12 +338,11 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = "deliveryNote", method = RequestMethod.GET)
-	public ModelAndView deliveries(@RequestParam("recordID") Integer recordID) {
+	public ModelAndView f(@RequestParam("recordID") Integer recordID) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			System.out.println("Re sa sheba fela " + recordID);
 			OrderHeader order = ordersServiceInt.getOrder(recordID);
 			List<OrderDetails> list = orderDetailsInt
 					.getOrderDetailsByOrderNum("key", recordID);
@@ -360,7 +368,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "printdeliveryNote", method = RequestMethod.GET)
 	public ModelAndView deliveriesNote(
-			@RequestParam("recordID") Integer recordID) {
+			@RequestParam("recordID") Integer recordID) throws ParserConfigurationException, SAXException, TransformerException, IOException, DocumentException, XMPException, ParseException, DataIncompleteException, InvalidCodeException {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -370,7 +378,6 @@ public class OrdersController {
 					.getOrderDetailsByOrderNum("key", recordID);
 			model.addObject("pendingOrderList", list);
 			model.addObject("OrderNum", order);
-
 			model.addObject("recordID", recordID);
 			model.addObject("contactPerson", contactDetailsServiceInt
 					.getContactPerson(userName.getFirstName()));

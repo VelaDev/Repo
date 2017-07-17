@@ -139,16 +139,15 @@
 													<option value="">Select Technician</option>
 													<c:forEach items="${technicians}" var="technician">
 														<c:choose>
-															<c:when test="${technician.leaveStatus =='On Leave'}">
+															<c:when test="${technician.leaveStatus =='Active'}">
 																<option class="onleave" value="${technician.email}">${technician.firstName}
-																	${technician.lastName} (On Leave)</option>
+																	${technician.lastName} (Leave Active)</option>
 															</c:when>
-															<c:when test="${technician.leaveStatus =='Available'}">
+															<c:when test="${technician.leaveStatus !='Active'}">
 																<option value="${technician.email}">${technician.firstName}
 																	${technician.lastName}</option>
 															</c:when>
 														</c:choose>
-
 													</c:forEach>
 												</select>
 											</div>

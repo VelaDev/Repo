@@ -114,10 +114,9 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
 			retMessage = logTicketService.logTicket(logTickets);
-			
 			if(retMessage.startsWith("K")){
 			 String	message =retMessage;
-			 model.addObject("message",message );
+			 model.addObject("retMessage",retMessage );
 			}else{
 				model.addObject("retMessage",retMessage );
 				

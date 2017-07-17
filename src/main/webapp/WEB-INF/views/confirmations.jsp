@@ -107,6 +107,11 @@ a.confirmtions {
 						 	       <c:out value="${retMessage}"></c:out>  Click<a href="logTicket.html" class="confirmtions"><b> here</b></a> to log another Ticket.
 							   </c:when>
 						 </c:choose>
+						 <c:choose>
+						 	   <c:when test="${tickets =='tickets' }">
+						 	       <c:out value="${message}"></c:out>  Click<a href="logTicket.html" class="confirmtions"><b> here</b></a> to log another Ticket.
+							   </c:when>
+						 </c:choose>
 						 
 						 <!-- Place an Orders -->
 				 	  	<c:choose>

@@ -16,13 +16,22 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
-	
+<style type="text/css">
+input#updateLeave {
+	width: 57%;
+}
+
+input#cancelLeave {
+	width: 57%;
+}
+</style>
+
 </head>
 <body>
 	<div class="velaphanda_containter" id="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-		<c:if test="${not empty retMessage }">
+			<c:if test="${not empty retMessage }">
 				<div class="alert alert-info" role="alert">
 					<c:out value="${ retMessage}">
 					</c:out>
@@ -40,20 +49,63 @@
 
 					<form:form class="well form-horizontal" method="POST"
 						action="updateLeave" modelAttribute="updateLeave" id="updateLeave">
+
+						<c:if test="${Leave.status == 'Completed'}">
+							<c:choose>
+								<c:when test="${Leave.status == 'Completed'}">
+								</c:when>
+							</c:choose>
+						</c:if>
 						
-						<div class="form-group row">
-							<div class="col-sm-offset-3 col-sm-2">
-								<input type="submit" value="Update Leave"
-									class="btn btn-primary btn-block btn-sm" tabindex="9"
-									id="updateLeave">
-							</div>
-							<div class="col-sm-2">
-								<input type="submit" value="Cancel Leave"
-									class="btn btn-danger btn-block btn-sm" tabindex="9"
-									id="cancelLeave">
-							</div>
-						</div>
+						<c:if test="${Leave.status == 'Cancelled'}">
+							<c:choose>
+								<c:when test="${Leave.status == 'Cancelled'}">
+								</c:when>
+							</c:choose>
+						</c:if>
 						
+						<c:if test="${Leave.status == 'Active'}">
+								<c:choose>
+								<c:when test="${Leave.status == 'Active'}">
+								<div class="form-group row">
+										<div class="col-sm-offset-3 col-sm-2">
+											<input type="submit" value="Update Leave"
+												class="btn btn-primary btn-block btn-sm" tabindex="9"
+												id="updateLeave">
+										</div>
+
+									</div>
+									<div class="col-sm-2">
+										<input type="submit" value="Cancel Leave"
+											class="btn btn-danger btn-block btn-sm" tabindex="9"
+											id="cancelLeave">
+									</div>
+								</c:when>								
+							</c:choose>
+						</c:if>
+
+						<c:if test="${Leave.status == 'Pending'}">
+							<c:choose>
+								<c:when test="${Leave.status == 'Pending'}">
+									<div class="form-group row">
+										<div class="col-sm-offset-3 col-sm-2">
+											<input type="submit" value="Update Leave"
+												class="btn btn-primary btn-block btn-sm" tabindex="9"
+												id="updateLeave">
+										</div>
+
+									</div>
+									<div class="col-sm-2">
+										<input type="submit" value="Cancel Leave"
+											class="btn btn-danger btn-block btn-sm" tabindex="9"
+											id="cancelLeave">
+									</div>
+								</c:when>
+							</c:choose>
+
+						</c:if>
+
+
 						<%-- <!-- Text input Leave ID-->
 						<div class="form-group">
 							<label class="col-xs-3 control-label">Leave ID</label>
@@ -68,7 +120,7 @@
 								</div>
 							</div>
 						</div> --%>
-						
+
 						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>
@@ -78,7 +130,8 @@
 										class="glyphicon glyphicon-list"></i></span> <select name="leaveType"
 										id="leaveID" class="form-control selectpicker">
 										<option value="${leave.leaveType}">${leave.leaveType}</option>
-										<option value="Annual Vacation Leave">Annual Vacation Leave</option>
+										<option value="Annual Vacation Leave">Annual Vacation
+											Leave</option>
 										<option value="Sick Leave">Sick Leave</option>
 										<option value="Emergency Leave">Emergency Leave</option>
 									</select>
@@ -92,9 +145,9 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="startDatePicker">
 									<input type='text' class="form-control" name="startDate"
-										id="startDate" placeholder="YYYY-MM-DD" value="${leave.startDate}" /> <span
-										class="input-group-addon"> <span
-										class="glyphicon glyphicon-calendar"></span>
+										id="startDate" placeholder="YYYY-MM-DD"
+										value="${leave.startDate}" /> <span class="input-group-addon">
+										<span class="glyphicon glyphicon-calendar"></span>
 									</span>
 								</div>
 							</div>
@@ -105,8 +158,8 @@
 							<div class="col-md-6 inputGroupContainer">
 								<div class="input-group input-append date" id="endDatePicker">
 									<input type='text' class="form-control" name="endDate"
-										id="endDate" placeholder="YYYY-MM-DD" value="${leave.endDate}"/> <span
-										class="input-group-addon"> <span
+										id="endDate" placeholder="YYYY-MM-DD" value="${leave.endDate}" />
+									<span class="input-group-addon"> <span
 										class="glyphicon glyphicon-calendar"></span>
 									</span>
 								</div>
@@ -121,7 +174,9 @@
 										class="glyphicon glyphicon-earphone"></i></span> <input
 										id="contactNumber" name="contactNumber"
 										placeholder="Contact Number during absence"
-										class="form-control" type="text" onkeypress="return isNumber(event)" value="${leave.contactNumber}">
+										class="form-control" type="text"
+										onkeypress="return isNumber(event)"
+										value="${leave.contactNumber}">
 								</div>
 							</div>
 						</div>
@@ -146,7 +201,7 @@
 							</div>
 						</div> -->
 					</form:form>
-				 </div>
+				</div>
 				<!-- /panel body -->
 			</div>
 			<!--/panel success class-->
@@ -157,7 +212,7 @@
 		<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
-	
+
 	<!-- Scripts -->
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
@@ -169,8 +224,8 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 	<!-- /Scripts -->
 
-<!--Compare start, end and installation date between each other-->
-<script type="text/javascript">
+	<!--Compare start, end and installation date between each other-->
+	<script type="text/javascript">
 
 $("#startDate, #endDate").datepicker();
 
@@ -191,7 +246,7 @@ if ((Date.parse(endDate) < Date.parse(startDate))) {
 </script>
 
 
-<script type="text/javascript">
+	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#startDatePicker').datepicker({
 				format : "yyyy-mm-dd",
@@ -201,7 +256,7 @@ if ((Date.parse(endDate) < Date.parse(startDate))) {
 		});
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 	$(document).ready(function() {
 		$('#endDatePicker').datepicker({
 			format : "yyyy-mm-dd",
@@ -211,7 +266,7 @@ if ((Date.parse(endDate) < Date.parse(startDate))) {
 	});
 </script>
 
-<script>
+	<script>
 $(document).ready(function() {
 	$('#updateLeave').bootstrapValidator({
 	   //framework: 'bootstrap',
@@ -284,7 +339,7 @@ $(document).ready(function() {
 
 </script>
 
-<script type="text/javascript">
+	<script type="text/javascript">
 
 	function isNumber(evt) {
 	    evt = (evt) ? evt : window.event;

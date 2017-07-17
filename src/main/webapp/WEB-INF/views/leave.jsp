@@ -16,6 +16,12 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+	
+<style type="text/css">
+input#addLeave {
+    width: 45%;
+}
+</style>
 
 </head>
 <body>
@@ -54,7 +60,7 @@
 						
 						<div class="form-group row">
 							<div class="col-sm-offset-3 col-sm-2">
-								<input type="submit" value="Create Leave"
+								<input type="submit" value="Create"
 									class="btn btn-primary btn-block btn-sm" tabindex="9"
 									id="addLeave">
 							</div>

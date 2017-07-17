@@ -37,6 +37,7 @@
 								<th>Type of Leave</th>
 								<th>First Date Leave</th>
 								<th>Last Date Leave</th>
+								<th>Leave Status</th>
 								<th>Contact Number</th>
 								<th>Address</th>
 								<th>Update Leave</th>
@@ -51,6 +52,7 @@
 									<td><c:out value="${leave.leaveType}" /></td>
 									<td><c:out value="${leave.startDate}" /></td>
 									<td><c:out value="${leave.endDate}" /></td>
+									<td><c:out value="${leave.status}" /></td>
 									<td><c:out value="${leave.contactNumber}" /></td>
 									<td><c:out value="${leave.address}" /></td>
 									<td><a 	href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">Update Leave</a></td>

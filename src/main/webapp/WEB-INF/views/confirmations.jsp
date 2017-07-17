@@ -109,7 +109,9 @@ a.confirmtions {
 						 </c:choose>
 						 <c:choose>
 						 	   <c:when test="${tickets =='tickets' }">
-						 	       <c:out value="${message}"></c:out>  Click<a href="logTicket.html" class="confirmtions"><b> here</b></a> to log another Ticket.
+						 	      <c:if test="${not empty message}">
+						 	       <c:out value="${message}"></c:out>  Click<a href="logTicket.html" class="confirmtions" class="danger"><b> here</b></a> to log another Ticket.
+							   </c:if>
 							   </c:when>
 						 </c:choose>
 						 

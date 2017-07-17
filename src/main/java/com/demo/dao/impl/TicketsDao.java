@@ -96,8 +96,7 @@ public class TicketsDao implements TicketsDaoInt {
 			technician = employeeDaoInt.getEmployeeByEmpNum(tickets
 					.getTechnicianUserName());
 			if (technician != null
-					&& technician.getLeaveStatus()
-							.equalsIgnoreCase("Available")) {
+					&& technician.getLeaveStatus()!="Active") {
 				device = deviceDaoInt.getDeviceBySerialNumbuer(tickets
 						.getDevice());
 				if (device != null) {

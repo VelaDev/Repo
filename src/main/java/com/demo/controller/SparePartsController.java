@@ -57,6 +57,7 @@ public class SparePartsController {
 	private String retPage = null;
 	private HOStock stock;
 	private SpareMaster master;
+	private Employee tempEmployee = null;
 	
 	@RequestMapping(value="addSpares", method=RequestMethod.GET)
 	public ModelAndView loadAddSpares()
@@ -355,6 +356,50 @@ public class SparePartsController {
 		return model;
 	}
 	
+	//Number of parts
+	@RequestMapping(value="numberOfParts", method=RequestMethod.GET)
+	public ModelAndView getNumberOfSpareParts(){
+		model = new ModelAndView();
+				
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.setViewName("stockSiteOrders");
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}	
 	
 	
+	//Number of toner
+	@RequestMapping(value="numberOfToners", method=RequestMethod.GET)
+	public ModelAndView getNumberOfToners(){
+	model = new ModelAndView();
+					
+			userName = (Employee) session.getAttribute("loggedInUser");
+			if(userName != null){
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));
+				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+				model.setViewName("stockSiteOrders");
+			}
+			else{
+				model.setViewName("login");
+			}
+			return model;
+		}	
+		
+	
+
 }
+	
+	
+

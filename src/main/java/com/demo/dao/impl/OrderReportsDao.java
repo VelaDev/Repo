@@ -2,6 +2,7 @@ package com.demo.dao.impl;
 
 
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.xml.sax.SAXException;
+
 
 
 
@@ -58,11 +60,14 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	private Date currentDate;
 	private SimpleDateFormat dateFormat;
 	static Calendar cal = Calendar.getInstance();
+	String home = System.getProperty("user.home");
+	String folderName =home+"/Downloads/Velaphanda Reports";
 	
 	/*String dateTimeStamp =  dateFormat.format(cal.getTime());
 	String reportName = "DeliveryNote"+dateTimeStamp+".pdf";*/
 	
-	public static final String DEST = "C:/VelaphandaReports/";
+	
+	public static final String DEST = "folderName";
 	public static final String ICC = "C:/Users/Mohapi/git/Repo/src/main/java/resources/sRGB_CS_profile.icm";
 	public static final String FONT = "/resources/OpenSans-Regular.ttf";
 	public static final String FONTB = "/resources//OpenSans-Bold.ttf";
@@ -91,7 +96,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	private CustomerContactDetails customerContact;
 	private VelaphandaProfile profile;
 	
-
+	
 	@Override
 	public void createPdf(Integer recordID)throws ParserConfigurationException, SAXException,
 	TransformerException, IOException, DocumentException, XMPException,
@@ -104,9 +109,25 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 		profile = velaphandaInt.getVelaphandaAddress("Velaphanda Trading & Projects");
 		// PdfAWriter writer = PdfAWriter.getInstance(document, new
 		// FileOutputStream(DEST), PdfAConformanceLevel.ZUGFeRDBasic);
-		PdfWriter writer = PdfWriter.getInstance(document,
+		
+		
+		PdfWriter writer ;
+		
+		boolean file = new File(folderName).mkdir(); 
+		if(!file){
+			writer = PdfWriter.getInstance(document,
+					new FileOutputStream(folderName+"/"+orderHeader.getOrderNum()+".pdf"));
+			writer.setPdfVersion(PdfWriter.VERSION_1_7);
+		}else{  
+			writer = PdfWriter.getInstance(document,
+					new FileOutputStream(folderName+"/"+orderHeader.getOrderNum()+".pdf"));
+			writer.setPdfVersion(PdfWriter.VERSION_1_7);
+		}
+		
+		
+		/*PdfWriter writer = PdfWriter.getInstance(document,
 				new FileOutputStream(DEST+"/"+orderHeader.getOrderNum()+".pdf"));
-		writer.setPdfVersion(PdfWriter.VERSION_1_7);
+		writer.setPdfVersion(PdfWriter.VERSION_1_7);*/
 
 		//Get payment information from order table
 		orderHeader = ordersDaoInt.getOrder(recordID);

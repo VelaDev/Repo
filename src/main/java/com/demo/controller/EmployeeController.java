@@ -676,9 +676,7 @@ public class EmployeeController {
 	@ExceptionHandler({JDBCConnectionException.class})
     public ModelAndView jdbConnectionException(Exception ex) {
         ModelAndView model = new ModelAndView("405");
- 
         model.addObject("exception", ex.getMessage());
-         
         return model;
     }
 }

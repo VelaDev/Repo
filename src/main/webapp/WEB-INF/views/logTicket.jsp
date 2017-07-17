@@ -142,7 +142,7 @@
 																<option class="onleave" value="${technician.email}">${technician.firstName}
 																	${technician.lastName} (Leave Active)</option>
 															</c:when>
-															<c:when test="${technician.leaveStatus =='Available'}">
+															<c:when test="${technician.leaveStatus !='Active'}">
 																<option value="${technician.email}">${technician.firstName}
 																	${technician.lastName}</option>
 															</c:when>
@@ -153,7 +153,6 @@
 											</div>
 										</div>
 									</div>
-
 									<!-- Select type Priority-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Priority</label>

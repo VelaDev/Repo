@@ -123,11 +123,6 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 					new FileOutputStream(folderName+"/"+orderHeader.getOrderNum()+".pdf"));
 			writer.setPdfVersion(PdfWriter.VERSION_1_7);
 		}
-		
-		
-		/*PdfWriter writer = PdfWriter.getInstance(document,
-				new FileOutputStream(DEST+"/"+orderHeader.getOrderNum()+".pdf"));
-		writer.setPdfVersion(PdfWriter.VERSION_1_7);*/
 
 		//Get payment information from order table
 		orderHeader = ordersDaoInt.getOrder(recordID);

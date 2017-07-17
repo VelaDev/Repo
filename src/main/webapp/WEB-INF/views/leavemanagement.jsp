@@ -230,7 +230,7 @@ input#selectDateRange {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 28%">
+											style="margin-left: 9%">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Leave History</p>

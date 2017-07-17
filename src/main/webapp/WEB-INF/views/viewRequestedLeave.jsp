@@ -36,6 +36,7 @@
 								<th>Email</th>
 								<th>Type of Leave</th>
 								<th>First Date Leave</th>
+								<th>Leave Status</th>
 								<th>Last Date Leave</th>
 								<th>Contact Number</th>
 								<th>Address</th>
@@ -52,6 +53,7 @@
 									<td><c:out value="${leave.employee.email}" /></td>
 									<td><c:out value="${leave.leaveType}" /></td>
 									<td><c:out value="${leave.startDate}" /></td>
+									<td><c:out value="${leave.status}" /></td>
 									<td><c:out value="${leave.endDate}" /></td>
 									<td><c:out value="${leave.contactNumber}" /></td>
 									<td><c:out value="${leave.address}" /></td>

@@ -53,7 +53,6 @@ public class LeaveController {
 				model.addObject("technicians",
 						employeeServiceInt.getAllTechnicians());
 				model.addObject("dates", leaveInt.getLeaveDates());
-				// model.addObject("selectedTechnician", tempEmployee);
 				model.addObject("leaveList",
 						leaveInt.getAllActiveAndPendingLeave());
 
@@ -146,6 +145,9 @@ public class LeaveController {
 					model.addObject("technicians",
 							employeeServiceInt.getAllTechnicians());
 					model.addObject("selectedTechnician", tempEmployee);
+					model.addObject("newDate", selectedDateRange);
+					model.addObject("dates", leaveInt.getLeaveDates());
+					
 					model.setViewName("leavemanagement");
 
 				} else if (selectedDateRange != null) {
@@ -171,6 +173,7 @@ public class LeaveController {
 							employeeServiceInt.getAllTechnicians());
 					model.addObject("selectedTechnician", tempEmployee);
 					model.addObject("leaveList", leaveInt.getActiveLeave());
+					model.addObject("dates", leaveInt.getLeaveDates());
 					model.addObject("newDate", selectedDateRange);
 					model.setViewName("leavemanagement");
 
@@ -234,6 +237,7 @@ public class LeaveController {
 							employeeServiceInt.getAllTechnicians());
 					model.addObject("selectedTechnician", tempEmployee);
 					model.addObject("newDate", selectedDateRange);
+					model.addObject("dates", leaveInt.getLeaveDates());
 					model.setViewName("leavemanagement");
 
 				} else if (selectedDateRange != null) {
@@ -261,7 +265,7 @@ public class LeaveController {
 					model.addObject("dates", leaveInt.getLeaveDates());
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("leaveList", leaveInt.getPendingLeaves());
-
+					model.addObject("dates", leaveInt.getLeaveDates());
 					model.setViewName("leavemanagement");
 
 				}
@@ -280,6 +284,7 @@ public class LeaveController {
 							employeeServiceInt.getAllTechnicians());
 					model.addObject("dates", leaveInt.getLeaveDates());
 					model.addObject("newDate", selectedDateRange);
+					model.addObject("dates", leaveInt.getLeaveDates());
 					model.setViewName("techleavemanagement"); 
 			 }
 			 else{
@@ -290,6 +295,7 @@ public class LeaveController {
 					model.addObject("dates", leaveInt.getLeaveDates());
 					model.addObject("leaveList", leaveInt
 							.getPendingLeaveByTechnician(userName.getEmail()));
+					model.addObject("dates", leaveInt.getLeaveDates());
 
 					model.setViewName("techleavemanagement");
 			 }

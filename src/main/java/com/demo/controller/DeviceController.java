@@ -156,7 +156,6 @@ public class DeviceController {
 		else{
 			model.addObject("product", null);
 		}
-		
 		model.setViewName("ticket");
 		}
 		else{

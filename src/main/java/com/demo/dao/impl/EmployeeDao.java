@@ -105,7 +105,6 @@ public class EmployeeDao implements EmployeeDaoInt{
 		 List<Leave> tempTechList = leaveDao.getActiveLeave();
 		 for(Object emp:aList)
 		 {
-				 
 				 if(emp instanceof Employee){
 					 if(((Employee) emp).getRole().equalsIgnoreCase("Technician")){
 						 empList.add((Employee) emp);

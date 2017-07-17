@@ -147,7 +147,6 @@
 																	${technician.lastName}</option>
 															</c:when>
 														</c:choose>
-
 													</c:forEach>
 												</select>
 											</div>

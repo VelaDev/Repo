@@ -374,22 +374,41 @@ public class OrdersController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			deliveryServiceInt.createPdf(recordID);
-			OrderHeader order = ordersServiceInt.getOrder(recordID);
-			List<OrderDetails> list = orderDetailsInt
-					.getOrderDetailsByOrderNum("key", recordID);
-			model.addObject("pendingOrderList", list);
-			model.addObject("OrderNum", order);
-			model.addObject("recordID", recordID);
-			model.addObject("contactPerson", contactDetailsServiceInt
-					.getContactPerson(userName.getFirstName()));
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",
-					ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets",
-					ticketsServiceInt.countAwaitingSparesTickets());
-			model.setViewName("orderItemHistory");
+			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
+				deliveryServiceInt.createPdf(recordID);
+				OrderHeader order = ordersServiceInt.getOrder(recordID);
+				List<OrderDetails> list = orderDetailsInt
+						.getOrderDetailsByOrderNum("key", recordID);
+				model.addObject("pendingOrderList", list);
+				model.addObject("OrderNum", order);
+				model.addObject("recordID", recordID);
+				model.addObject("contactPerson", contactDetailsServiceInt
+						.getContactPerson(userName.getFirstName()));
+				model.addObject("inboxCount",
+						ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",
+						ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets",
+						ticketsServiceInt.countAwaitingSparesTickets());
+				model.setViewName("ordersItemHistory");
+			}else if (userName.getRole().equalsIgnoreCase("Technician")){
+				deliveryServiceInt.createPdf(recordID);
+				OrderHeader order = ordersServiceInt.getOrder(recordID);
+				List<OrderDetails> list = orderDetailsInt
+						.getOrderDetailsByOrderNum("key", recordID);
+				model.addObject("pendingOrderList", list);
+				model.addObject("OrderNum", order);
+				model.addObject("recordID", recordID);
+				model.addObject("contactPerson", contactDetailsServiceInt
+						.getContactPerson(userName.getFirstName()));
+				model.addObject("inboxCount",
+						ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",
+						ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets",
+						ticketsServiceInt.countAwaitingSparesTickets());
+				model.setViewName("orderItemHistory");
+			}
 		} else {
 			model.setViewName("login");
 		}
@@ -1707,7 +1726,7 @@ public class OrdersController {
     public ModelAndView PermGem(Exception ex) {
         ModelAndView model = new ModelAndView("405");
  
-        model.addObject("exception", ex.getMessage()+ ". Please restart the server");
+        model.addObject("exception","Please restart the server");
         return model;
     }
 	

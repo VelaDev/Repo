@@ -73,8 +73,8 @@ table#orderDetails {
 									
 								</c:if>
 								
-							<li class="active"><a href="#">Print</a></li>
-							<li><a href="#">Download PDF </a></li>
+							<li><a href="printdeliveryNote?recordID=<c:out value='${OrderNum.recordID}'/>">Download PDF </a></li>
+							
 						</ul>
 					</div>
 					<legend></legend>

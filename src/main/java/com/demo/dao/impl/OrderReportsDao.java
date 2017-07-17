@@ -24,6 +24,8 @@ import org.xml.sax.SAXException;
 
 
 
+
+
 import com.demo.dao.CustomerContactDetailsDaoInt;
 import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrderReportsDaoInt;
@@ -31,6 +33,8 @@ import com.demo.dao.OrdersDaoInt;
 import com.demo.model.CustomerContactDetails;
 import com.demo.model.OrderDetails;
 import com.demo.model.OrderHeader;
+import com.demo.model.VelaphandaProfile;
+import com.demo.service.VelaphandaInt;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
@@ -80,9 +84,12 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	private OrderDetailsDaoInt detailsDaoInt;
 	@Autowired
 	private CustomerContactDetailsDaoInt contactDetails;
+	@Autowired
+	private VelaphandaInt velaphandaInt;
 	
 	private OrderHeader orderHeader;
 	private CustomerContactDetails customerContact;
+	private VelaphandaProfile profile;
 	
 
 	@Override
@@ -94,6 +101,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 		Document document = new Document(PageSize.A4.rotate());
 		
 		orderHeader = ordersDaoInt.getOrder(recordID);
+		profile = velaphandaInt.getVelaphandaAddress("Velaphanda Trading & Projects");
 		// PdfAWriter writer = PdfAWriter.getInstance(document, new
 		// FileOutputStream(DEST), PdfAConformanceLevel.ZUGFeRDBasic);
 		PdfWriter writer = PdfWriter.getInstance(document,
@@ -151,11 +159,10 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 					"E-Mail: "+ orderHeader.getEmployee().getEmail(),"","","");
 			table.addCell(customerAddress);
 		}
-		PdfPCell velaphandaAddress = getVelaphandaAddress("DELIVERY NOTE",
-				"VELAPHANDA TRADING & PROJECTS", "REG NO:2008/164490/23",
+		PdfPCell velaphandaAddress = getVelaphandaAddress("DELIVERY NOTE",profile.getCompanyName(), "REG NO:2008/164490/23",
 				"POSTNET SUITE 357, PRIVATE BAG X1028", "LYTTLETON 0140",
-				"TEL: 012 765 0200 FAX: 086 403 7955",
-				"E-MAIL: sales@velaphanda.co.za");
+				"TEL: "+profile.getTelephoneNumber()+" FAX: " + profile.getFaxNumber(),
+				"E-MAIL: "+ profile.getEmailAdress());
 		table.addCell(velaphandaAddress);
 
 		PdfPCell paymentInformation = getPaymentInformation(

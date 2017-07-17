@@ -23,6 +23,7 @@ import com.demo.service.CustomerContactDetailsServiceInt;
 import com.demo.service.CustomerServiceInt;
 import com.demo.service.EmployeeServiceInt;
 import com.demo.service.DeviceServiceInt;
+import com.demo.service.LeaveInt;
 import com.demo.service.OrdersServiceInt;
 import com.demo.service.TicketsServiceInt;
 
@@ -44,6 +45,8 @@ public class DeviceController {
 	private TicketsServiceInt ticketsServiceInt;
     @Autowired
     private CustomerContactDetailsServiceInt contactDetailsServiceInt;
+    @Autowired
+    private LeaveInt leaveInt;
     
     @Autowired 
     HttpSession session;

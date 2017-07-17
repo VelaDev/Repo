@@ -4,8 +4,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -17,10 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.CredentialsDaoInt;
 import com.demo.dao.EmployeeDaoInt;
+import com.demo.dao.LeaveDaoInt;
 import com.demo.dao.LoginAttemptDaoInt;
 import com.demo.model.Credentials;
 import com.demo.model.Employee;
+import com.demo.model.Leave;
 import com.demo.model.LoginAttempt;
+import com.demo.service.LeaveInt;
 
 
 @Repository("employeeDAO")
@@ -35,6 +40,9 @@ public class EmployeeDao implements EmployeeDaoInt{
 	private CredentialsDaoInt credentialsDaoInt;
 	@Autowired 
 	private LoginAttemptDaoInt attemptDaoInt;
+	
+	 @Autowired
+	 private LeaveDaoInt leaveDao;
 	String retMessage = null;
 	private Employee emp = null;
 	private List<Employee> empEmail = null;
@@ -90,17 +98,19 @@ public class EmployeeDao implements EmployeeDaoInt{
 	public List<Employee> getAllTechnicians() {
 		@SuppressWarnings("rawtypes")
 		ArrayList<?> aList = new ArrayList();
-		ArrayList<Employee> empList = new ArrayList<Employee>();
+		List<Employee> empList = new ArrayList<Employee>();
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
 		 
 		 aList.addAll(criteria.list());
+		 List<Leave> tempTechList = leaveDao.getActiveLeave();
 		 for(Object emp:aList)
 		 {
-			 if(emp instanceof Employee){
-				 if(((Employee) emp).getRole().equalsIgnoreCase("Technician")){
-					 empList.add((Employee) emp);
+				 
+				 if(emp instanceof Employee){
+					 if(((Employee) emp).getRole().equalsIgnoreCase("Technician")){
+						 empList.add((Employee) emp);
+					 }
 				 }
-			 }
 		 }
 		return empList;
 	}

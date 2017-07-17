@@ -953,8 +953,7 @@ public class LeaveDao implements LeaveDaoInt {
 		try {
 			int newrecordID = 0;
 			if (leave.getTechnicianUserName() != null) {
-				employee = employeeDaoInt.getEmployeeByEmpNum(leave
-						.getTechnicianUserName());
+				employee = employeeDaoInt.getEmployeeByEmpNum(leave.getTechnicianUserName());
 				globalLeave.setEmployee(employee);
 				userName = employee.getEmail();
 			} else {
@@ -987,7 +986,7 @@ public class LeaveDao implements LeaveDaoInt {
 
 				globalLeave.setLeaveID(newrecordID);
 				sessionFactory.getCurrentSession().save(globalLeave);
-				emp.setLeaveStatus("On Leave");
+				emp.setLeaveStatus(leaveStatus);
 				sessionFactory.getCurrentSession().update(emp);
 
 				retMessage = "Leave successfully submited.";

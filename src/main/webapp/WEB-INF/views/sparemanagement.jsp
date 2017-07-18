@@ -180,7 +180,7 @@ input#selectDateRange {
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 4%">
-											<h4 align="center">26</h4>
+											<h4 align="center">${hoCount}</h4>
 											<p align="center">Head Office</p>
 										</div>
 								</a></li>
@@ -192,7 +192,7 @@ input#selectDateRange {
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 4%">
-											<h4 align="center">7</h4>
+											<h4 align="center">${siteCount}</h4>
 											<p align="center">Site Stock</p>
 										</div>
 								</a></li>
@@ -205,7 +205,7 @@ input#selectDateRange {
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 28%">
 
-											<h4 align="center">7</h4>
+											<h4 align="center">${bootCount}</h4>
 											<p align="center">Boot Stock</p>
 										</div>
 								</a></li>

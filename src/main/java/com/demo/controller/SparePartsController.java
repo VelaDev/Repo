@@ -4,6 +4,8 @@ package com.demo.controller;
 
 import javax.servlet.http.HttpSession;
 
+import net.sf.jasperreports.engine.xml.JRPenFactory.Bottom;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,6 +60,9 @@ public class SparePartsController {
 	private HOStock stock;
 	private SpareMaster master;
 	private Employee tempEmployee = null;
+	private String globalTechnicianName = null;
+	private String globalCustomerName = null;
+	
 	
 	@RequestMapping(value="addSpares", method=RequestMethod.GET)
 	public ModelAndView loadAddSpares()
@@ -198,7 +203,10 @@ public class SparePartsController {
 	public ModelAndView loadBootStock(@RequestParam("technician") String technician){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
+		globalTechnicianName = technician;
 		if(userName != null){
+			model.addObject("countPartForTech",bootStock.countPartsForTechnician(technician));
+			model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
 			model.addObject("orders",bootStock.getAllOrders(technician));
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
@@ -233,12 +241,15 @@ public class SparePartsController {
 	public ModelAndView loadStockSite(@RequestParam("customerName") String customerName){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
+		globalTechnicianName = null;
+		globalCustomerName = customerName;
 		
 		if(userName != null){
-			model.addObject("orders", siteStock.getOrdersForCustomer(customerName));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("orders", siteStock.getOrdersForCustomer(globalCustomerName));
+			model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+			model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+	
+			
 			model.setViewName("stockSiteOrders");
 		}
 		else{
@@ -322,22 +333,13 @@ public class SparePartsController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders(userName.getEmail()));
-			model.addObject("customers",customerServiceInt.getClientList());
-			model.addObject("dates", ordersServiceInt.getDates());
-			model.addObject("countNewOrders",ordersServiceInt.countNewOrders("", userName.getEmail()));
-			model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive("", userName.getEmail()));
-			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
-			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-			model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrder("",userName.getEmail()));
-			model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician(userName.getEmail()));
-			model.addObject("ticketCount", ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers(userName.getEmail()));
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			//HO Count
+			model.addObject("hoCount", hOStockServeceInt.countHeadOfficeStock());
+			//Site Count
+			model.addObject("siteCount", siteStock.countSiteStock());
+			//Boot Count
+			model.addObject("bootCount", bootStock.countBootStock());
+			
 			
 			//Load Data of HO 
 			model.addObject("spareParts", hOStockServeceInt.getAllSparePartsWithoutZero());
@@ -363,12 +365,22 @@ public class SparePartsController {
 				
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.setViewName("stockSiteOrders");
+			
+			if (globalTechnicianName != null){
+				model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
+				model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
+				model.addObject("orders", bootStock.getPartsForTechnician(globalTechnicianName));
+				
+				model.setViewName("bootSiteOrders");	
+			}
+			else if (globalCustomerName != null){
+				model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+				model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+				model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));
+				
+				model.setViewName("stockSiteOrders");
+			}
+			
 		}
 		else{
 			model.setViewName("login");
@@ -384,12 +396,23 @@ public class SparePartsController {
 					
 			userName = (Employee) session.getAttribute("loggedInUser");
 			if(userName != null){
-				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-				model.addObject("shipment",	ordersServiceInt.shippedOrders(userName.getEmail()));
-				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-				model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-				model.setViewName("stockSiteOrders");
+				
+				if (globalTechnicianName != null){
+					model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
+					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
+					model.addObject("orders", bootStock.getTonerForTechnician(globalTechnicianName));
+					
+					model.setViewName("bootSiteOrders");	
+				}
+				else if (globalCustomerName != null){
+					
+					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+					model.addObject("orders", siteStock.getTonerForCustomer(globalCustomerName));
+					
+					model.setViewName("stockSiteOrders");
+				}
+				
 			}
 			else{
 				model.setViewName("login");

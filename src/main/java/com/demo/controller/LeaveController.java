@@ -610,7 +610,7 @@ public class LeaveController {
 			model.addObject("inboxCount",
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("ticketCount", ticketsServiceInt
-					.ticketCountForTechnician(userName.getEmail()));
+					.ticketCountForTechnician(userName.getEmail()));			
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
 

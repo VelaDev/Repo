@@ -87,7 +87,7 @@
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 28%">
-											<h4 align="center">${countPartForCustomer}</h4>
+											<h4 align="center">7</h4>
 											<p align="center">Parts</p>
 										</div>
 								</a></li>
@@ -100,7 +100,7 @@
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 4%">
-											<h4 align="center">${countTonerForCustomer}</h4>
+											<h4 align="center">26</h4>
 											<p align="center">Toners</p>
 										</div>
 								</a></li>

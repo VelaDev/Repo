@@ -553,7 +553,7 @@ input.currency {
 																	<tr>
 																		<td>${list.accessotyType}</td>
 																		<td>${list.serial}</td>
-																		<td><input type="checkbox" class="chkAccessories" id="${list.accessotyType}"
+																		<td><input type="checkbox" class="chkAccessories" id="chkAccessories_${list.serial}"
 																			name="chkAccessories" value="${list.serial}" /></td>
 																	</tr>
 																</c:forEach>
@@ -866,27 +866,9 @@ function CheckMachineAccessories(val, rowId) {
 /*--//End Machine Accessories Selection--*/
 
 </script>
-
-
-<script type="text/javascript">
-
-/*--  Check if checkboxes are checked for adding machine accessories, if checked enable input text --*/
-var bridgeUnit = document.getElementById("Bridge Unit");
-var finisher = document.getElementById("Finisher");
-var bridgeUnit = $("input[type='checkbox'][id='Bridge Unit']");
-var finisher = $("input[type='checkbox'][id='Finisher']");
-
-bridgeUnit.on('change', function(){
-	finisher.prop('checked',this.checked);
-	console.log("Checked: ",finisher,bridgeUnit);
-});
-finisher.on('change', function(){
-	bridgeUnit.prop('checked',this.checked);
-	console.log("Checked: ",finisher,bridgeUnit);
-});
-
-</script>
-<!-- /Scripts -->
+	
+	
+	<!-- /Scripts -->
 
 </body>
 

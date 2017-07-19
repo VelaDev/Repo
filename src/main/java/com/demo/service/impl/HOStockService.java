@@ -46,10 +46,4 @@ public class HOStockService implements HOStockServeceInt{
 		return sparePartsDAO.getAllSparePartsWithoutZero();
 	}
 
-
-	@Override
-	public int countHeadOfficeStock() {
-		return sparePartsDAO.countHeadOfficeStock();
-	}
-
 }

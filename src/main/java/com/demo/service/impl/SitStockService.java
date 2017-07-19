@@ -32,29 +32,5 @@ public class SitStockService implements SiteStockInt{
 		
 		return siteStock.getOrdersForCustomer(customerName, ticketID);
 	}
-	@Override
-	public int countSiteStock() {
-		return siteStock.countSiteStock();
-	}
-	@Override
-	public List<SiteStock> getTonerForCustomer(String customerName) {
-		// TODO Auto-generated method stub
-		return siteStock.getTonerForCustomer(customerName);
-	}
-	@Override
-	public List<SiteStock> getPartsForCustomer(String customerName) {
-		// TODO Auto-generated method stub
-		return siteStock.getPartsForCustomer(customerName);
-	}
-	@Override
-	public int countTonerForCustomer(String customerName) {
-		// TODO Auto-generated method stub
-		return siteStock.countTonerForCustomer(customerName);
-	}
-	@Override
-	public int countPartsForCustomer(String customerName) {
-		// TODO Auto-generated method stub
-		return siteStock.countPartsForCustomer(customerName);
-	}
 
 }

@@ -15,7 +15,6 @@ import com.demo.dao.BootStockDaoInt;
 import com.demo.dao.TicketsDaoInt;
 import com.demo.model.BootStock;
 import com.demo.model.OrderDetails;
-import com.demo.model.SiteStock;
 import com.demo.model.Tickets;
 
 
@@ -141,100 +140,5 @@ public class BootSiteDao implements BootStockDaoInt{
 		}
 		return localStock;
 	}
-	
-	@Override
-	public int countBootStock() {
-//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
-		int bootCount = 0;
-		try{
-			List<BootStock> tempBootList = getAllOrders();
-			for(BootStock stock:tempBootList){
-				if(stock.getQuantity()> 0){
-					bootCount = bootCount + stock.getQuantity();
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return bootCount;
-	}
-	
-	@Override
-	public int countPartsForTechnician(String technicianName) {
-//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
-		int bootCount = 0;
-		try{
-			List<BootStock> tempBootList = getAllOrders();
-			for(BootStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Part") && stock.getTechnicianName().equalsIgnoreCase(technicianName)){
-					bootCount = bootCount + stock.getQuantity();
-					System.err.println("The Quantiry is " + stock.getQuantity());
-					
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		System.err.println("The technicianName is " + technicianName);
-		System.err.println("The count is " + bootCount);
-		return bootCount;
-	}
-	
-	@Override
-	public List<BootStock> getPartsForTechnician(String technicianName) {
- 		List<BootStock> currentList = new ArrayList<BootStock>();
-		int bootCount = 0;
-		try{
-			List<BootStock> tempBootList = getAllOrders();
-			for(BootStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Part") && stock.getTechnicianName().equalsIgnoreCase(technicianName)){
-					currentList.add(stock);
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return currentList;
-	}
-	
-	
-	@Override
-	public int countTonerForTechnician(String technicianName) {
-//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
-		int bootCount = 0;
-		try{
-			List<BootStock> tempBootList = getAllOrders();
-			for(BootStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Toner") && stock.getTechnicianName().equalsIgnoreCase(technicianName)){
-					bootCount = bootCount + stock.getQuantity();
-					System.err.println("The Quantiry is " + stock.getQuantity());
-					
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		System.err.println("The technicianName is " + technicianName);
-		System.err.println("The count is " + bootCount);
-		return bootCount;
-	}
-	
-	@Override
-	public List<BootStock> getTonerForTechnician(String technicianName) {
- 		List<BootStock> currentList = new ArrayList<BootStock>();
-		int bootCount = 0;
-		try{
-			List<BootStock> tempBootList = getAllOrders();
-			for(BootStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Toner") && stock.getTechnicianName().equalsIgnoreCase(technicianName)){
-					currentList.add(stock);
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return currentList;
-	}
-	
 
 }

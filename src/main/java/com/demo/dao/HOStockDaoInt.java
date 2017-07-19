@@ -12,5 +12,4 @@ public interface HOStockDaoInt {
 	public String updateSpareParts(HOStock spareParts);
 	public List<HOStock> getAllSpareParts();
 	public List<HOStock> getAllSparePartsWithoutZero();
-	int countHeadOfficeStock();
 }

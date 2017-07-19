@@ -24,7 +24,6 @@ import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.LeaveDaoInt;
 import com.demo.model.Employee;
 import com.demo.model.Leave;
-import com.demo.model.OrderHeader;
 
 @Repository("leaveDAO")
 @Transactional(propagation = Propagation.REQUIRED)

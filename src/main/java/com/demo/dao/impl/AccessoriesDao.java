@@ -97,7 +97,7 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 				Accessories accessories = getAccessories(serialNo);
 				sessionFactory.getCurrentSession().delete(accessories);
 			}
-			retMessage = "Accessories removed";
+			retMessage = "Accessories removed,";
 		} catch (Exception e) {
 			e.getMessage();
 		}

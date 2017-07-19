@@ -13,8 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.SiteStocDaoInt;
 import com.demo.dao.TicketsDaoInt;
-import com.demo.model.SiteStock;
-import com.demo.model.HOStock;
 import com.demo.model.OrderDetails;
 import com.demo.model.SiteStock;
 import com.demo.model.Tickets;
@@ -46,6 +44,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 					 siteStock = new SiteStock();
 						siteStock.setCustomerName(stock.getOrderHeader().getCustomer().getCustomerName());
 						siteStock.setItemDescription(stock.getItemDescription());
+						siteStock.setCompatibleDevice(stock.getCompatibleDevice());
 						siteStock.setItemType(stock.getStockType());
 						siteStock.setLocation(stock.getLocation());
 						siteStock.setPartNumber(stock.getPartNumber());
@@ -148,101 +147,4 @@ public class SiteStockDao implements SiteStocDaoInt {
 		}
 		return localtemp;
 	}
-	
-	
-	@Override
-	public int countSiteStock() {
-//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
-		int siteCount = 0;
-		try{
-			List<SiteStock> tempSiteList = getAllOrders();
-			for(SiteStock stock:tempSiteList){
-				if(stock.getQuantity()> 0){
-					siteCount = siteCount + stock.getQuantity();
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return siteCount;
-	}
-	
-	
-	@Override
-	public int countPartsForCustomer(String customerName) {
-//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
-		int bootCount = 0;
-		try{
-			System.out.println("Customer 1 " + customerName);
-			List<SiteStock> tempBootList = getOrdersForCustomer(customerName);
-			for(SiteStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Part")){
-					System.out.println("Customer 2 " + customerName);
-					bootCount = bootCount + stock.getQuantity();
-					System.err.println("The Quantiry is " + stock.getQuantity());
-					
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return bootCount;
-	}
-	
-	@Override
-	public List<SiteStock> getPartsForCustomer(String customerName) {
- 		List<SiteStock> currentList = new ArrayList<SiteStock>();
-		int bootCount = 0;
-		try{
-			List<SiteStock> tempBootList = getAllOrders();
-			for(SiteStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Part") && stock.getCustomerName().equalsIgnoreCase(customerName)){
-					currentList.add(stock);
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return currentList;
-	}
-	
-	
-	@Override
-	public int countTonerForCustomer(String customerName) {
-//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
-		int bootCount = 0;
-		try{
-			List<SiteStock> tempBootList = getAllOrders();
-			for(SiteStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Toner") && stock.getCustomerName().equalsIgnoreCase(customerName)){
-					bootCount = bootCount + stock.getQuantity();
-					System.err.println("The Quantiry is " + stock.getQuantity());
-					
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-
-		return bootCount;
-	}
-	
-	@Override
-	public List<SiteStock> getTonerForCustomer(String customerName) {
- 		List<SiteStock> currentList = new ArrayList<SiteStock>();
-		int bootCount = 0;
-		try{
-			List<SiteStock> tempBootList = getAllOrders();
-			for(SiteStock stock:tempBootList){
-				if(stock.getItemType().equalsIgnoreCase("Toner") && stock.getCustomerName().equalsIgnoreCase(customerName)){
-					currentList.add(stock);
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return currentList;
-	}
-	
-	
 }

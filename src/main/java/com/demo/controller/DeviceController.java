@@ -268,18 +268,23 @@ public class DeviceController {
 	@RequestMapping(value="updateProduct")
 	public ModelAndView updateProduct(@ModelAttribute("updateProduct")DeviceBean deviceBean)
 	{
-		
-		String updateDevice ="updateDevice";
 		model = new ModelAndView();
+		String updateDevice ="updateDevice";
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		    deviceBean.setUpdateFlag("YES");
-			retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
+		    retMessage = deviceServiceInt.prepareDeviceData(deviceBean);
 			model.addObject("retMessage", retMessage);
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("updateDevice", updateDevice);
+			model.addObject("serial", deviceBean.getSerialNumber());
+			if(retMessage.startsWith("Accessories removed")){
+				String removeAcessory = "removeAcessory";
+				model.addObject("removeAcessory", removeAcessory);
+			}else{
+				model.addObject("updateDevice", updateDevice);
+			}
 			 model.setViewName("confirmations");
 		}
 		else{

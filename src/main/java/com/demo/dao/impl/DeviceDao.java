@@ -158,23 +158,23 @@ public class DeviceDao implements DeviceDaoInt {
 					Accessories accessory = new Accessories();
 					// addTypeserial
 					if (deviceBean.getAddTypeserial() != null) {
-						if (deviceBean.getAddTypeserial().length() > 0) {
-							oldSerial = deviceBean.getAddTypeserial()+",";
-							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
-							accessory.setSerial(newSerial);
+						if (deviceBean.getAddTypeserial().length() > 3) {
+							oldSerial = deviceBean.getAddTypeserial().replace(",", "");
+							//newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory.setSerial(oldSerial);
 							accessory.setAccessotyType("Additional Paper Trays");
 							accessory.setDevice(device);
 							list.add(accessory);
 						}
 					}
 					if (deviceBean.getBridgeUnitSerialTypeSerialNo() != null) {
-						if (deviceBean.getBridgeUnitSerialTypeSerialNo().length() > 0) {
+						if (deviceBean.getBridgeUnitSerialTypeSerialNo().length() > 3) {
 
 							Accessories accessory1 = new Accessories();
 							
-							oldSerial = deviceBean.getBridgeUnitSerialTypeSerialNo()+",";;
-							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
-							accessory1.setSerial(newSerial);
+							oldSerial = deviceBean.getBridgeUnitSerialTypeSerialNo().replace(",", "");
+							//newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory1.setSerial(oldSerial);
 							accessory1.setAccessotyType("Bridge Unit");
 							accessory1.setDevice(device);
 							list.add(accessory1);
@@ -182,12 +182,12 @@ public class DeviceDao implements DeviceDaoInt {
 					}
 					// creTypeserial
 					if (deviceBean.getCreTypeserial() != null) {
-						if (deviceBean.getCreTypeserial().length() > 0) {
+						if (deviceBean.getCreTypeserial().length() > 3) {
 
 							Accessories accessory2 = new Accessories();
-							oldSerial = deviceBean.getCreTypeserial()+",";;
-							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
-							accessory2.setSerial(newSerial);
+							oldSerial = deviceBean.getCreTypeserial().replace(",", "");
+							//newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory2.setSerial(oldSerial);
 							accessory2.setAccessotyType("Credenza");
 							accessory2.setDevice(device);
 							list.add(accessory2);
@@ -196,12 +196,12 @@ public class DeviceDao implements DeviceDaoInt {
 					}
 
 					if (deviceBean.getFaxUnitSerialTypeSerialNo() != null) {
-						if (deviceBean.getFaxUnitSerialTypeSerialNo().length() > 0) {
+						if (deviceBean.getFaxUnitSerialTypeSerialNo().length() > 3) {
 							Accessories accessory3 = new Accessories();
 							
-							oldSerial = deviceBean.getFaxUnitSerialTypeSerialNo()+",";;
-							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
-							accessory3.setSerial(newSerial);
+							oldSerial = deviceBean.getFaxUnitSerialTypeSerialNo().replace(",", "");
+							//newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory3.setSerial(oldSerial);
 							accessory3.setAccessotyType("Fax Unit");
 							accessory3.setDevice(device);
 							list.add(accessory3);
@@ -209,12 +209,12 @@ public class DeviceDao implements DeviceDaoInt {
 					}
 
 					if (deviceBean.getFinisherTypeSerialNo() != null) {
-						if (deviceBean.getFinisherTypeSerialNo().length() > 0) {
+						if (deviceBean.getFinisherTypeSerialNo().length() > 3) {
 
 							Accessories accessory4 = new Accessories();
-							oldSerial = deviceBean.getFinisherTypeSerialNo()+",";;
-							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
-							accessory4.setSerial(newSerial);
+							oldSerial = deviceBean.getFinisherTypeSerialNo().replace(",", "");
+							//newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory4.setSerial(oldSerial);
 							accessory4.setAccessotyType("Finisher");
 							accessory4.setDevice(device);
 							list.add(accessory4);
@@ -222,26 +222,26 @@ public class DeviceDao implements DeviceDaoInt {
 					}
 
 					if (deviceBean.getLtcTypeSerial() != null) {
-						if (deviceBean.getLtcTypeSerial().length() > 0) {
+						if (deviceBean.getLtcTypeSerial().length() > 3) {
 
 							Accessories accessory5 = new Accessories();
-							oldSerial = deviceBean.getLtcTypeSerial()+",";;
-							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
-							accessory5.setSerial(newSerial);
-							accessory5.setAccessotyType("LTC");
+							oldSerial = deviceBean.getLtcTypeSerial().replace(",", "");
+							//newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory5.setSerial(oldSerial);
+							accessory5.setAccessotyType("LCT");
 							accessory5.setDevice(device);
 							list.add(accessory5);
 						}
 					}
 
 					if (deviceBean.getOneBinTrayTypeSerialNo() != null) {
-						if (deviceBean.getOneBinTrayTypeSerialNo().length() > 0) {
+						if (deviceBean.getOneBinTrayTypeSerialNo().length() > 3) {
 
 							Accessories accessory6 = new Accessories();
-							oldSerial = deviceBean.getOneBinTrayTypeSerialNo()+",";;
-							newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
-							accessory6.setSerial(newSerial);
-							accessory6.setAccessotyType("One bin tray");
+							oldSerial = deviceBean.getOneBinTrayTypeSerialNo().replace(",", "");
+							//newSerial = oldSerial.substring( 0, oldSerial.indexOf(","));
+							accessory6.setSerial(oldSerial);
+							accessory6.setAccessotyType("One Bin Tray");
 							accessory6.setDevice(device);
 							list.add(accessory6);
 						}
@@ -301,7 +301,6 @@ public class DeviceDao implements DeviceDaoInt {
 				}
 			}else{
 				retMessage = accessoriesDaoInt.removeAccessory(deviceBean.getChkAccessories());
-				retMessage = retMessage + " for device " + deviceBean.getSerialNumber() ;
 			}
 
 		} catch (Exception e) {

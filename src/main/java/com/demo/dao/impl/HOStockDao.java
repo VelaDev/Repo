@@ -141,23 +141,5 @@ public class HOStockDao implements HOStockDaoInt {
 		return tempList;
 	}
 	
-	@Override
-	public int countHeadOfficeStock() {
-		tempList = new ArrayList<HOStock>();
-		int headCount = 0;
-		try{
-			tempHOList = getAllSpareParts();
-			for(HOStock hoStock:tempHOList){
-				if(hoStock.getQuantity()>0){
-					headCount = headCount + hoStock.getQuantity();
-				}
-			}
-		}catch(Exception e){
-			e.getMessage();
-		}
-		return headCount;
-	}
-	
-	
 
 }

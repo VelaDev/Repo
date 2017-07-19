@@ -101,6 +101,12 @@ a.confirmtions {
 				 	   		     
 				 	    </c:when>
 				 	    </c:choose>
+				 	    <c:choose>
+				 	    <c:when test="${removeAcessory =='removeAcessory' }">
+				 	       <c:out value="${retMessage}"></c:out> Click<a  class="confirmtions" href="searchDeviceSerialNumber?serialNumber=<c:out value="${serial }"/>"><b> ${serial}</b></a> to update Device.
+				 	   		     
+				 	    </c:when>
+				 	    </c:choose>
 				 	    <!-- Log a Ticket -->
 						 <c:choose>
 						 	   <c:when test="${tickets =='tickets' }">

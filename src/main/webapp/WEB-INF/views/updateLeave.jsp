@@ -58,7 +58,7 @@ input#cancelLeave {
 													id="updateLeave">
 											</div>											
 											<div class="col-sm-2">												
-												<a href="leaveCancellation?leaveID=<c:out value='${leave.leaveID}'/>">Cancel Leave</a>	
+												<a href="leaveCancellation?leaveID=<c:out value='${leave.leaveID}'/>" class="btn btn-danger btn-block btn-sm" tabindex id="cancelUpdate" style="width:54%;margin-left: -36%;">Cancel Leave</a>	
 											</div>
 
 										</div>

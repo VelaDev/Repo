@@ -72,7 +72,7 @@ input#addLeave {
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="leaveType"
-										id="leaveID" class="form-control selectpicker">
+										id="leaveType" class="form-control selectpicker">
 										<option value="">Select Leave</option>
 										<option value="Annual Vacation Leave">Annual Vacation
 											Leave</option>

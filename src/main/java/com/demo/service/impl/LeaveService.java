@@ -154,7 +154,6 @@ public class LeaveService implements LeaveInt{
 
 	@Override
 	public List<Leave> getActiveLeaveForSelectedRange(String dateRange) {
-		// TODO Auto-generated method stub
 		return leaveDaoInt.getActiveLeaveForSelectedRange(dateRange);
 	}
 

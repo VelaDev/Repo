@@ -555,7 +555,7 @@ public class LeaveController {
 	@RequestMapping(value = { "makeLeave", "userMakeLeave" }, method = RequestMethod.POST)
 	public ModelAndView submitLeave(@ModelAttribute("makeLeave") LeaveBean leave) {
 		model = new ModelAndView();
-       
+       ;
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
@@ -564,21 +564,19 @@ public class LeaveController {
 				String retErrorMessage = retMessage;
 				model.addObject("retErrorMessage", retErrorMessage);
 			} 
-			
-			else {
-				
+			else{
 				model.addObject("retMessage", retMessage);
 			}
-			
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
                 
-				String managerAddLeave = "managerAddLeave";
+				
 				if(retMessage.startsWith("Leave already exist")){
 					String managerOnLeave = "managerOnLeave";
-					model.addObject("manonLeave", retMessage);
+					model.addObject("retMessage", retMessage);
 					model.addObject("managerOnLeave", managerOnLeave);
 				}else{
+					String managerAddLeave = "managerAddLeave";
 					model.addObject("managerAddLeave", managerAddLeave);
 				}
 				
@@ -586,12 +584,14 @@ public class LeaveController {
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 
-				String techAddLeave = "techAddLeave";
 				if(retMessage.startsWith("Leave already exist")){
 					String techOnLeave = "techOnLeave";
-					model.addObject("onLeave", retMessage);
+					System.err.println(techOnLeave);
+					model.addObject("retMessage", retMessage);
 					model.addObject("techOnLeave", techOnLeave);
 				}else{
+					String techAddLeave = "techAddLeave";
+					model.addObject("retMessage", retMessage);
 					model.addObject("techAddLeave", techAddLeave);
 				}
 				

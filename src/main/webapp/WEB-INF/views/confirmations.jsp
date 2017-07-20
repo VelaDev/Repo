@@ -172,12 +172,12 @@ a.confirmtions {
 					 	           Click<a href="leavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
 					 	    </c:when>
 				 	    </c:choose>
-				 	    <%-- <c:choose>
-					 	    <c:when test="${addLeave =='addLeave' }">
+				 	    <c:choose>
+					 	    <c:when test="${managerOnLeave =='managerOnLeave' }">
 					 	       <c:out value="${retMessage}"></c:out> 
 					 	           Click<a href="leavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
 					 	    </c:when>
-				 	    </c:choose> --%>
+				 	    </c:choose>
 				 	     <!-- update leave -->
 				 	  	<c:choose>
 					 	    <c:when test="${updateLeave =='updateLeave' }">

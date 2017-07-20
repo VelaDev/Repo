@@ -295,7 +295,9 @@ input.currency {
 													<option value="Kyocera">Kyocera</option>
 													<option value="Nasua">Nasua</option>
 													<option value="Rico">Rico</option>
-													<option value="Riso">Riso</option>
+													<option value="Ricoh">Ricoh</option>
+													<option value="Toshiba">Toshiba</option>
+													
 												</select>
 											</div>
 										</div>

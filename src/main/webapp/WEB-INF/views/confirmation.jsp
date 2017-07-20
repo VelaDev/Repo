@@ -89,8 +89,8 @@ a.confirmtions {
 				 	    </c:choose>	
 				 	    <c:choose>
 					 	    <c:when test="${techOnLeave =='techOnLeave' }">
-					 	       <c:out value="${onLeave}"></c:out> 
-					 	           Click<a href="techleavemanagement.html" class="confirmtions"  class="alert alert-danger" role="alert"><b> here</b></a> to go to leave management.                         
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	           Click<a href="techleavemanagement.html" class="confirmtions"  ><b> here</b></a> to go to leave management.                         
 					 	    </c:when>
 				 	    </c:choose>		 	    	
 				 	    </div>

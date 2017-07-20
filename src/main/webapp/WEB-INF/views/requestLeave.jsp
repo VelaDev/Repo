@@ -71,7 +71,7 @@ input#addLeave {
 								<div class="input-group">
 									<span class="input-group-addon"><i
 										class="glyphicon glyphicon-list"></i></span> <select name="leaveType"
-										id="leaveID" class="form-control selectpicker">
+										id="leaveType" class="form-control selectpicker">
 										<option value="">Select Leave</option>
 										<option value="Annual Vacation Leave">Annual Vacation
 											Leave</option>
@@ -229,10 +229,17 @@ $(document).ready(function() {
         validating: 'glyphicon glyphicon-refresh'
     },
         fields: {
-            leaveID: {
+        	leaveType: {
                 validators: {
                     notEmpty: {
                         message: 'Leave type is required,and can not be empty'
+                    }
+                }
+            },
+            technicianUserName:{
+                validators: {
+                    notEmpty: {
+                        message: 'Technician name is required,and can not be empty'
                     }
                 }
             },

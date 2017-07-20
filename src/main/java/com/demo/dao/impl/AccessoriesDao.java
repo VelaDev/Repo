@@ -127,7 +127,6 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 		}catch(Exception e){
 			e.getMessage();
 		}
-		
 		return current;
 	}
 }

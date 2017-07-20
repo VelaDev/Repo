@@ -57,9 +57,9 @@ input#cancelLeave {
 													class="btn btn-primary btn-block btn-sm" tabindex="9"
 													id="updateLeave">
 											</div>											
-											<%-- <div class="col-sm-2">												
-												<a href="cancelLeave?leaveID=<c:out value='${leave.leaveID}'/>" style="width:59%;" class="btn btn-danger btn-block btn-sm" tabindex="9"	id="cancelLeave" name="cancelLeave" >Cancel Leave</a>	
-											</div> --%>
+											<div class="col-sm-2">												
+												<a href="leaveCancellation?leaveID=<c:out value='${leave.leaveID}'/>">Cancel Leave</a>	
+											</div>
 
 										</div>
 							</c:if>

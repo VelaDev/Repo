@@ -199,4 +199,9 @@ public class LeaveService implements LeaveInt{
 		return leaveDaoInt.getTechLeaveHistoryForSelectedRange(dateRange, technicianEmail);
 	}
 
+	@Override
+	public String cancelLeave(int leaveID) {
+		return leaveDaoInt.cancelLeave(leaveID);
+	}
+
 }

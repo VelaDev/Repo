@@ -49,5 +49,6 @@ public interface LeaveDaoInt {
 			String technicianEmail);
 	
 	void scheduledLeaveStatus();
+	String cancelLeave(int leaveID);
 	
 }

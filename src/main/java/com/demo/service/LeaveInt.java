@@ -46,4 +46,5 @@ public interface LeaveInt {
 			String technicianEmail);
 	List<Leave> getTechLeaveHistoryForSelectedRange(String dateRange,
 			String technicianEmail);
+	String cancelLeave(int leaveID);
 }

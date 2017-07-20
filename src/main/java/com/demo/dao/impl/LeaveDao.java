@@ -1383,8 +1383,6 @@ public class LeaveDao implements LeaveDaoInt {
 
 */
 	//}
-
-
 	@Scheduled(fixedRate= 1440000)
 	@Override
 	public void scheduledLeaveStatus() {
@@ -1418,5 +1416,23 @@ public class LeaveDao implements LeaveDaoInt {
 		}catch(Exception e){
 			e.getMessage();
 		}
+	}
+
+	@Override
+	public String cancelLeave(int leaveID) {
+		
+		try{
+			Leave leave = getLeave(leaveID);
+			if(leave!= null){
+				leave.setStatus("Cancelled");
+				emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
+				emp.setLeaveStatus("Cancelled");
+				sessionFactory.getCurrentSession().update(emp);
+				retMessage ="Leave cancelled";
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return retMessage;
 	}
 }

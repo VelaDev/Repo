@@ -9,4 +9,10 @@ public interface SiteStockInt {
 	List<SiteStock> getOrdersForCustomer(String customerName);
 	List<SiteStock> getOrdersByTechnician(String technician);
 	List<SiteStock> getOrdersForCustomer(String customerName,int ticketID);
+	int countSiteStock();
+	List<SiteStock> getTonerForCustomer(String customerName);
+	List<SiteStock> getPartsForCustomer(String customerName);
+	int countTonerForCustomer(String customerName);
+	int countPartsForCustomer(String customerName);
+	List<SiteStock> getAllSiteStock();
 }

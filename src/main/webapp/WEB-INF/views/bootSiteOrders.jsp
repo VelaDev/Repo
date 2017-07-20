@@ -83,7 +83,7 @@
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 28%">
-											<h4 align="center">26</h4>
+											<h4 align="center">${countPartForTech}</h4>
 											<p align="center">Parts</p>
 										</div>
 								</a></li>
@@ -96,7 +96,7 @@
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 4%">
-											<h4 align="center">6</h4>
+											<h4 align="center">${countTonerForTech}</h4>
 											<p align="center">Toners</p>
 										</div>
 								</a></li>

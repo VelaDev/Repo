@@ -13,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.demo.dao.SiteStocDaoInt;
 import com.demo.dao.TicketsDaoInt;
+import com.demo.model.BootStock;
+import com.demo.model.SiteStock;
+import com.demo.model.HOStock;
 import com.demo.model.OrderDetails;
 import com.demo.model.SiteStock;
 import com.demo.model.Tickets;
@@ -29,6 +32,15 @@ public class SiteStockDao implements SiteStocDaoInt {
 	List<SiteStock> sitetStockList = null;
 	List<SiteStock> siteStocks = null;
 
+	
+	@Override
+	public List<SiteStock> getAllSiteStock() {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				SiteStock.class);
+		return (List<SiteStock>) criteria.list();
+	}
+	
+	
 	@Override
 	public void saveSiteStock(List<OrderDetails> detailsDaos) {
 		try {
@@ -44,11 +56,11 @@ public class SiteStockDao implements SiteStocDaoInt {
 					 siteStock = new SiteStock();
 						siteStock.setCustomerName(stock.getOrderHeader().getCustomer().getCustomerName());
 						siteStock.setItemDescription(stock.getItemDescription());
-						siteStock.setCompatibleDevice(stock.getCompatibleDevice());
-						siteStock.setItemType(stock.getStockType());
+						siteStock.setItemType(stock.getItemType());
 						siteStock.setLocation(stock.getLocation());
 						siteStock.setPartNumber(stock.getPartNumber());
 						siteStock.setQuantity(stock.getQuantity());
+						siteStock.setCompatibleDevice(stock.getCompatibleDevice());
 						siteStock.setTechnicianEmail(stock.getTechnician());
 						siteStock.setTechnicianName(stock.getTechnician());
 						
@@ -147,4 +159,103 @@ public class SiteStockDao implements SiteStocDaoInt {
 		}
 		return localtemp;
 	}
+	
+	
+	@Override
+	public int countSiteStock() {
+//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
+		int siteCount = 0;
+		try{
+			List<SiteStock> tempSiteList = getAllSiteStock();
+			for(SiteStock stock:tempSiteList){
+				if(stock.getQuantity()> 0){
+					siteCount = siteCount + stock.getQuantity();
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return siteCount;
+	}
+	
+	
+	@Override
+	public int countPartsForCustomer(String customerName) {
+		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
+		int bootCount = 0;
+		try{
+			
+			tempSiteList = getPartsForCustomer(customerName);
+		
+			System.out.println("Customer 3 " + customerName + tempSiteList.size());
+			for(SiteStock stock:tempSiteList){
+				if(stock.getCustomerName() != null){
+					System.out.println("Customer 2 " + stock.getCustomerName());
+					bootCount = bootCount + stock.getQuantity();
+					System.err.println("The Quantiry is " + stock.getItemType());
+					
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return bootCount;
+	}
+	
+	@Override
+	public List<SiteStock> getPartsForCustomer(String customerName) {
+ 		List<SiteStock> currentList = new ArrayList<SiteStock>();
+		int bootCount = 0;
+		try{
+			List<SiteStock> tempBootList = getAllSiteStock();
+			for(SiteStock stock:tempBootList){
+				if(stock.getItemType().equalsIgnoreCase("Part") && stock.getCustomerName().equalsIgnoreCase(customerName)){
+					currentList.add(stock);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return currentList;
+	}
+	
+	
+	@Override
+	public int countTonerForCustomer(String customerName) {
+//		List<SiteStock> tempSiteList = new ArrayList<SiteStock>();
+		int bootCount = 0;
+		try{
+			List<SiteStock> tempBootList = getTonerForCustomer(customerName);
+			for(SiteStock stock:tempBootList){
+				if(stock.getItemType().equalsIgnoreCase("Toner") && stock.getCustomerName().equalsIgnoreCase(customerName)){
+					bootCount = bootCount + stock.getQuantity();
+					System.err.println("The Quantiry is " + stock.getQuantity());
+					
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+
+		return bootCount;
+	}
+	
+	@Override
+	public List<SiteStock> getTonerForCustomer(String customerName) {
+ 		List<SiteStock> currentList = new ArrayList<SiteStock>();
+		int bootCount = 0;
+		try{
+			List<SiteStock> tempBootList = getAllSiteStock();
+			for(SiteStock stock:tempBootList){
+				if(stock.getItemType().equalsIgnoreCase("Toner") && stock.getCustomerName().equalsIgnoreCase(customerName)){
+					currentList.add(stock);
+				}
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return currentList;
+	}
+	
+	
 }

@@ -10,5 +10,6 @@ public interface HOStockServeceInt {
 	public HOStock getSparePartBySerial(String serialNum);
 	public List<HOStock> getAllSpareParts();
 	public List<HOStock> getAllSparePartsWithoutZero();
+	int countHeadOfficeStock();
 
 }

@@ -33,4 +33,46 @@ public class BootStockService implements BootStockInt{
 		return bootStockDaoInt.getAllOrders(technician, ticketRecordID);
 	}
 
+	@Override
+	public int countBootStock() {
+		// TODO Auto-generated method stub
+		return bootStockDaoInt.countBootStock();
+	}
+
+	@Override
+	public int countPartsForTechnician(String technicianName) {
+		// TODO Auto-generated method stub
+		return bootStockDaoInt.countPartsForTechnician(technicianName);
+	}
+
+	@Override
+	public List<BootStock> getPartsForTechnician(String technicianName) {
+		// TODO Auto-generated method stub
+		return bootStockDaoInt.getPartsForTechnician(technicianName);
+	}
+
+	@Override
+	public int countTonerForTechnician(String technicianName) {
+		// TODO Auto-generated method stub
+		return bootStockDaoInt.countTonerForTechnician(technicianName);
+	}
+
+	@Override
+	public List<BootStock> getTonerForTechnician(String technicianName) {
+		// TODO Auto-generated method stub
+		return bootStockDaoInt.getTonerForTechnician(technicianName);
+	}
+
+	@Override
+	public List<BootStock> getAllBootStock() {
+		// TODO Auto-generated method stub
+		return bootStockDaoInt.getAllBootStock();
+	}
+
+	@Override
+	public List<BootStock> getAllBootStockByTechnician(String technicianName) {
+		// TODO Auto-generated method stub
+		return bootStockDaoInt.getAllBootStockByTechnician(technicianName);
+	}
+
 }

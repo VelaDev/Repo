@@ -62,7 +62,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
-				
+				    <%-- 
 					<li>
 					    <a href='<c:url value="technicianHome.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Open Tickets<span class="ourbadge" class="btn-btn-danger">${ticketCount}</span></a>
@@ -72,6 +72,12 @@
 					    <a href='<c:url value="technicianDashboard.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Tickets</a>
 					</li>
+					<li>
+					    <a href='<c:url value="techsparemanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Spare Management</a>
+					</li>
+					--%>
+					<li>
 					
 					<li>
 					    <a href='<c:url value="ordertechmanagement.html"/>' role="button" aria-haspopup="true"
@@ -81,6 +87,7 @@
 					    <a href='<c:url value="techleavemanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Leave Management</a>
 					</li>
+					
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Spares<span class="caret"></span></a>
@@ -89,7 +96,7 @@
 							<li><a href='<c:url value="availableBootStock.html"/>'>Available Boot Stock</a></li>
 						</ul>
 					</li>
-					
+					<%-- 
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Leave<span class="caret"></span></a>
@@ -98,6 +105,8 @@
 							<li><a href='<c:url value="viewLeaveRequests.html"/>'>View Requested Leave</a></li>
 						</ul>
 					</li>
+					
+					--%>
 					
 				</ul>
 			</div>

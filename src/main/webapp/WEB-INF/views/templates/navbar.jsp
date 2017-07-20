@@ -103,7 +103,7 @@
 								</ul></li>
 						</ul>
 					</li>
-						
+				<%--
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">Spare Parts<span class="caret"></span></a>
@@ -123,6 +123,8 @@
 								</ul></li>
 						</ul>
 					</li>
+					**/
+					 --%>
 					
 					<li>
 					    <a href='<c:url value="sparemanagement.html"/>' role="button" aria-haspopup="true"
@@ -156,7 +158,7 @@
 							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
 						</ul>
 					</li> --%>
-						
+					<%--	
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 							data-toggle="dropdown" role="button" aria-haspopup="true"
 							aria-expanded="false">Tickets<span class="caret"></span></a>
@@ -183,6 +185,7 @@
 					    <a href='<c:url value="escalatedTickes.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Escalated Tickets Inbox <span class="ourbadge" class="btn-btn-danger">${escalatedTickets}</span></a>
 					</li>
+					--%>
 				</ul>
 
 			</div>

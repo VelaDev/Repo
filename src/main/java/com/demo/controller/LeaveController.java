@@ -555,7 +555,7 @@ public class LeaveController {
 	@RequestMapping(value = { "makeLeave", "userMakeLeave" }, method = RequestMethod.POST)
 	public ModelAndView submitLeave(@ModelAttribute("makeLeave") LeaveBean leave) {
 		model = new ModelAndView();
-
+       
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
@@ -564,6 +564,7 @@ public class LeaveController {
 				String retErrorMessage = retMessage;
 				model.addObject("retErrorMessage", retErrorMessage);
 			} else {
+				
 				model.addObject("retMessage", retMessage);
 			}
 			model.addObject("escalatedTickets",
@@ -576,16 +577,22 @@ public class LeaveController {
 					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
-
-				model.setViewName("requestLeave");
+                
+				String managerAddLeave = "managerAddLeave";
+				model.addObject("managerAddLeave", managerAddLeave);
+				model.setViewName("confirmations");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 
-				model.setViewName("leave");
+				String techAddLeave = "techAddLeave";
+				model.addObject("techAddLeave", techAddLeave);
+				model.setViewName("confirmation");
 
 			} else if (userName.getRole().equalsIgnoreCase("User")) {
 
-				model.setViewName("userMakeLeave");
+				String addLeave = "addLeave";
+				model.addObject("addLeave", addLeave);
+				model.setViewName("confirm");
 			}
 		} else {
 			model.setViewName("login");
@@ -597,6 +604,7 @@ public class LeaveController {
 			"updateUserMakeLeave" }, method = RequestMethod.POST)
 	public ModelAndView updateLeave(
 			@ModelAttribute("updateLeave") LeaveBean leave) {
+		
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -613,19 +621,22 @@ public class LeaveController {
 					.ticketCountForTechnician(userName.getEmail()));			
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
-
+				String updateLeave = "updateLeave";
+				model.addObject("updateLeave", updateLeave);
 				model.addObject("retMessage", retMessage);
-				model.setViewName("updateMakeLeave");
+				model.setViewName("confirmations");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
-
+				String techUpdateLeave = "techUpdateLeave";
 				model.addObject("retMessage", retMessage);
-				model.setViewName("updateLeave");
+				model.addObject("techUpdateLeave", techUpdateLeave);
+				model.setViewName("confirmation");
 
 			} else if (userName.getRole().equalsIgnoreCase("User")) {
-
+				String userUpdateLeave = "userUpdateLeave";
 				model.addObject("retMessage", retMessage);
-				model.setViewName("updateUserMakeLeave");
+				model.addObject("userUpdateLeave", userUpdateLeave);
+				model.setViewName("confirm");
 			}
 		} else {
 			model.setViewName("login");
@@ -681,6 +692,37 @@ public class LeaveController {
 			model.setViewName("login");
 		}
 
+		return model;
+	}
+	
+	@RequestMapping(value = "cancelLeave", method = RequestMethod.GET)
+	public ModelAndView cancelLeave(@RequestParam("leaveID") String leaveID) {
+		
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if(userName != null){
+			System.err.println(leaveID);
+			/*retMessage = leaveInt.updateLeaveRequest(leave);*/
+			model.addObject("escalatedTickets",
+					ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets",
+					ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("ticketCount", ticketsServiceInt
+					.ticketCountForTechnician(userName.getEmail()));
+			if(userName.getRole().equalsIgnoreCase("Manager")||userName.getRole().equalsIgnoreCase("Admin")){
+				
+			}else if(userName.getRole().equalsIgnoreCase("Technician")){
+				
+			}else if(userName.getRole().equalsIgnoreCase("User")){
+				
+			}
+			
+		}else{
+			model.setViewName("login");
+		}
+		
 		return model;
 	}
 }

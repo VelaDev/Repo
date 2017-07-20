@@ -159,6 +159,32 @@ a.confirmtions {
 					 	                                    
 					 	    </c:when>
 				 	    </c:choose>
+				 	     <!-- create leave -->
+				 	  	<c:choose>
+					 	    <c:when test="${managerAddLeave =='managerAddLeave' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	           Click<a href="leavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+					 	    </c:when>
+				 	    </c:choose>
+				 	   <%--  <c:choose>
+					 	    <c:when test="${addLeave =='addLeave' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	           Click<a href="leavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+					 	    </c:when>
+				 	    </c:choose>
+				 	    <c:choose>
+					 	    <c:when test="${addLeave =='addLeave' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	           Click<a href="leavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+					 	    </c:when>
+				 	    </c:choose> --%>
+				 	     <!-- update leave -->
+				 	  	<c:choose>
+					 	    <c:when test="${updateLeave =='updateLeave' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	           Click<a href="leavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+					 	    </c:when>
+				 	    </c:choose>
 				 	    <!-- Add Spares -->
 				 	  	<c:choose>
 					 	    <c:when test="${addSpares =='addSpares' }">

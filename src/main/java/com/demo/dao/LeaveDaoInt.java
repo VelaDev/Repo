@@ -48,6 +48,6 @@ public interface LeaveDaoInt {
 	List<Leave> getTechLeaveHistoryForSelectedRange(String dateRange,
 			String technicianEmail);
 	
-	
+	void scheduledLeaveStatus();
 	
 }

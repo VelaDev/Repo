@@ -875,40 +875,7 @@ public class LeaveDao implements LeaveDaoInt {
 		return leaveStatus;
 	}
 	
-/*	@Scheduled(fixedRate=18000000)
-	public void updateLeaveStatus() {
-		
-		String startDate = "";  
-		String endDate = "";
-		String leaveStatus = "";
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			Date start = sdf.parse(startDate);
-			Date end = sdf.parse(endDate);
-			Date currentDate = sdf.parse(sdf.format(new Date()));
-
-			// Leave Start date in future
-			if (start.compareTo(currentDate) > 0) {
-				leaveStatus = "Pending";
-			}
-			// Leave Started and end day not reached yet
-			else if (start.compareTo(currentDate) <= 0
-					&& end.compareTo(currentDate) >= 0) {
-				leaveStatus = "Active";
-			}
-			// End date reached
-			else if (end.compareTo(currentDate) < 0) {
-				leaveStatus = "Completed";
-			}
-
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-	}
-*/
+	
 
 	boolean duplicateLeave(String startDate, String endDate, String technician) {
 		boolean duplicate = false;
@@ -1008,6 +975,7 @@ public class LeaveDao implements LeaveDaoInt {
 			globalLeave.setLeaveID(leave.getLeaveID());
 			globalLeave.setLeaveType(leave.getLeaveType());
 			globalLeave.setStartDate(leave.getStartDate());
+			globalLeave.setStatus("Pending");
 
 			if (leave.getTechnicianUserName() != null) {
 				employee = employeeDaoInt.getEmployeeByEmpNum(leave
@@ -1017,7 +985,7 @@ public class LeaveDao implements LeaveDaoInt {
 				globalLeave.setEmployee(employee);
 			}
 			sessionFactory.getCurrentSession().update(globalLeave);
-			retMessage = "Leave sucessfully updated";
+			retMessage = "Leave updated";
 		} catch (Exception e) {
 			retMessage = "Leave not updated " + e.getMessage() + ".";
 		}
@@ -1078,17 +1046,46 @@ public class LeaveDao implements LeaveDaoInt {
 			leaveList = leaveRequests();
 
 			for (Leave leave : leaveList) {
-				if (leave.getStatus().equalsIgnoreCase("Active")
-						|| leave.getStatus().equalsIgnoreCase("Pending")) {
+				/*if (leave.getStatus().equalsIgnoreCase("Active")
+						|| leave.getStatus().equalsIgnoreCase("Pending")) {*/
 					currentList.add(leave);
-				}
+			//	}
 			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
 		return currentList;
 	}
-
+    private List<Leave> getActiveLeaves(){
+    	List<Leave> tempList = null;
+    	try{
+    		List<Leave> activeLeave = getAllActiveAndPendingLeave();
+    		tempList = new ArrayList<Leave>();
+    		for(Leave leave: activeLeave){
+    			if(leave.getStatus().equalsIgnoreCase("Active")){
+    				tempList.add(leave);
+    			}
+    		}
+    	}catch(Exception e){
+    		e.getMessage();
+    	}
+    	return tempList;
+    }
+    private List<Leave> getPendingLeave(){
+    	List<Leave> tempList = null;
+    	try{
+    		List<Leave> activeLeave = getAllActiveAndPendingLeave();
+    		tempList = new ArrayList<Leave>();
+    		for(Leave leave: activeLeave){
+    			if(leave.getStatus().equalsIgnoreCase("Panding")){
+    				tempList.add(leave);
+    			}
+    		}
+    	}catch(Exception e){
+    		e.getMessage();
+    	}
+    	return tempList;
+    }
 	private List<Leave> getCurrentLeaves() {
 		List<Leave> currentList = new ArrayList<Leave>();
 		try {
@@ -1352,5 +1349,74 @@ public class LeaveDao implements LeaveDaoInt {
 			e.getMessage();
 		}
 
+	}
+	//@Scheduled(fixedRate=18000000)
+	//public void updateLeaveStatus() {
+		/*
+		String startDate = "";  
+		String endDate = "";
+		String leaveStatus = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			Date start = sdf.parse(startDate);
+			Date end = sdf.parse(endDate);
+			Date currentDate = sdf.parse(sdf.format(new Date()));
+
+			// Leave Start date in future
+			if (start.compareTo(currentDate) > 0) {
+				leaveStatus = "Pending";
+			}
+			// Leave Started and end day not reached yet
+			else if (start.compareTo(currentDate) <= 0
+					&& end.compareTo(currentDate) >= 0) {
+				leaveStatus = "Active";
+			}
+			// End date reached
+			else if (end.compareTo(currentDate) < 0) {
+				leaveStatus = "Completed";
+			}
+
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+*/
+	//}
+
+
+	@Scheduled(fixedRate= 1440000)
+	@Override
+	public void scheduledLeaveStatus() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date start,currentDate,end = null;
+		try{
+			// Update completed status
+			currentDate = sdf.parse(sdf.format(new Date()));
+			List <Leave> getAllActiveDates = getActiveLeaves();
+			for(Leave leave:getAllActiveDates){
+				end = sdf.parse(leave.getEndDate());
+				if(end.compareTo(currentDate)<0){
+					leave.setStatus("Completed");
+					emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
+					emp.setLeaveStatus("Completed");
+					sessionFactory.getCurrentSession().update(emp);
+				}
+			}
+			//Update active status
+			List <Leave> getAllPandingDates = getPendingLeave();
+			for(Leave leave:getAllPandingDates){
+				start = sdf.parse(leave.getStartDate());
+				if(start.compareTo(currentDate)==0){
+					leave.setStatus("Active");
+					emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
+					emp.setLeaveStatus("Active");
+					sessionFactory.getCurrentSession().update(emp);
+				}
+			}
+			
+		}catch(Exception e){
+			e.getMessage();
+		}
 	}
 }

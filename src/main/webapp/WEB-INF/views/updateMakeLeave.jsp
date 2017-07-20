@@ -49,84 +49,24 @@ input#cancelLeave {
 					<form:form class="well form-horizontal" method="POST"
 						action="updateMakeLeave" modelAttribute="updateMakeLeave"
 						id="updateMakeLeave">
-						
-						<c:if test="${Leave.status == 'Completed'}">
-							<c:choose>
-								<c:when test="${Leave.status == 'Completed'}">
-								</c:when>
-							</c:choose>
-						</c:if>
-						
-						<c:if test="${Leave.status == 'Cancelled'}">
-							<c:choose>
-								<c:when test="${Leave.status == 'Cancelled'}">
-								</c:when>
-							</c:choose>
-						</c:if>
-						
-						
-							<c:if test="${leave.status == 'Active'}">
-								<c:choose>
-									<c:when test="${leave.status == 'Active'}">
+						<c:if test="${leave.status != 'Active'}">
 										<div class="form-group row">
 											<div class="col-sm-offset-3 col-sm-2">
 												<input type="submit" value="Update Leave"
 													class="btn btn-primary btn-block btn-sm" tabindex="9"
 													id="updateLeave">
 											</div>											
-											<!-- <div class="col-sm-2">
-												<input type="submit" value="Cancel Leave"
-													class="btn btn-danger btn-block btn-sm" tabindex="9"
-													id="cancelLeave">
-											</div> -->
-											
-											<div class="col-sm-2">												
-												<a href="cancelLeave?leaveID=<c:out value='${leave.leaveID}'/>" style="width:59%;" class="btn btn-danger btn-block btn-sm" tabindex="9"	id="cancelLeave" name="cancelLeave" >Cancel Leave</a>	
-											</div>
+											<%-- <div class="col-sm-2">												
+												<a
+							                        href="cancelLeave?leaveID=<c:out value='${leave.leaveID}'/>">Cancel Leave</a>	
+											</div> --%>
 
 										</div>
-									</c:when>
-								</c:choose>
 							</c:if>
-						
-							<c:if test="${leave.status == 'Pending'}">
-								<c:choose>
-									<c:when test="${Leave.status == 'Pending'}">
-										<div class="form-group row">
-											<div class="col-sm-offset-3 col-sm-2">
-												<input type="submit" value="Update Leave"
-													class="btn btn-primary btn-block btn-sm" tabindex="9"
-													id="updateLeave">
-											</div>
-											<!-- <div class="col-sm-2">
-												<input type="submit" value="Cancel Leave"
-													class="btn btn-danger btn-block btn-sm" tabindex="9"
-													id="cancelLeave">
-											</div> -->								
-											<div class="col-sm-2">												
-												<a href="cancelLeave?leaveID=<c:out value='${leave.leaveID}'/>" style="width:59%;" class="btn btn-danger btn-block btn-sm" tabindex="9"	id="cancelLeave" name="cancelLeave" >Cancel Leave</a>	
-											</div>
-										</div>
-										
-									</c:when>
-								</c:choose>
-
-							</c:if>
-						
-						<%-- <!-- Text input Leave ID-->
-						<div class="form-group">
-							<label class="col-xs-3 control-label">Leave ID</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-								  <span
-										class="input-group-addon"> <span
-										class="glyphicon glyphicon-barcode"></span></span>
-									<input type='text' class="form-control" name="leaveID"
-										id="leaveID"  value="${leave.leaveID}" readonly="readonly"/>
-								</div>
-							</div>
-						</div> --%>
-
+						             <input type="hidden"
+										id="leaveID" name="leaveID"
+										value="${leave.leaveID}" >
+							
 						<!-- Text input Leave ID-->
 						<div class="form-group">
 							<label class="col-xs-3 control-label">Technician</label>

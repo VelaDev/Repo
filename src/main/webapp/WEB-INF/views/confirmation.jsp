@@ -65,7 +65,21 @@ a.confirmtions {
 					 	       <c:out value="${retMessage}"></c:out> 
 					 	                             
 					 	    </c:when>
-				 	    	</c:choose>				 	    	
+				 	    	</c:choose>	
+				 	    	 <!-- create leave -->
+				 	  	<c:choose>
+					 	    <c:when test="${techAddLeave =='techAddLeave' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	           Click<a href="techleavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+					 	    </c:when>
+				 	    </c:choose>	
+				 	     <!-- update leave -->
+				 	  	<c:choose>
+					 	    <c:when test="${techUpdateLeave =='techUpdateLeave' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	           Click<a href="techleavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+					 	    </c:when>
+				 	    </c:choose>			 	    	
 				 	    </div>
 				 	</c:if><!-- Successful message -->
 				 	

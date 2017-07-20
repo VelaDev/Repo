@@ -70,8 +70,6 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 		aList = new ArrayList<Accessories>();
 		accessoriesList = new ArrayList<Accessories>();
 		try {
-
-			
 			Criteria criteria = sessionFactory.getCurrentSession()
 					.createCriteria(Accessories.class);
 			aList.addAll(criteria.list());

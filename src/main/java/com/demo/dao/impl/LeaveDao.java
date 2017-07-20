@@ -1405,7 +1405,9 @@ public class LeaveDao implements LeaveDaoInt {
 			List <Leave> getAllPandingDates = getPendingLeave();
 			for(Leave leave:getAllPandingDates){
 				start = sdf.parse(leave.getStartDate());
-				if(start.compareTo(currentDate)==0){
+				end = sdf.parse(leave.getLeaveDate());
+				if(start.compareTo(currentDate) <= 0
+						&& end.compareTo(currentDate) >= 0){
 					leave.setStatus("Active");
 					emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
 					emp.setLeaveStatus("Active");
@@ -1417,10 +1419,8 @@ public class LeaveDao implements LeaveDaoInt {
 			e.getMessage();
 		}
 	}
-
 	@Override
 	public String cancelLeave(int leaveID) {
-		
 		try{
 			Leave leave = getLeave(leaveID);
 			if(leave!= null){

@@ -295,13 +295,12 @@ input.currency {
 													<option value="Kyocera">Kyocera</option>
 													<option value="Nasua">Nasua</option>
 													<option value="Ricoh">Ricoh</option>
-													<option value="Toshiba">Toshiba</option>
-													
+													<option value="Toshiba">Toshiba</option>		
 												</select>
 											</div>
 										</div>
+									
 									</div>
-
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">
 										<label class="col-xs-3 control-label">Contract Start

@@ -294,7 +294,6 @@ input.currency {
 													<option value="HP">HP</option>
 													<option value="Kyocera">Kyocera</option>
 													<option value="Nasua">Nasua</option>
-													<option value="Rico">Rico</option>
 													<option value="Ricoh">Ricoh</option>
 													<option value="Toshiba">Toshiba</option>
 													

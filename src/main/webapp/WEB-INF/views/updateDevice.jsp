@@ -299,7 +299,6 @@ input.currency {
 												</select>
 											</div>
 										</div>
-									
 									</div>
 									<!-- Text input Contract Start Date-->
 									<div class="form-group">

@@ -31,19 +31,19 @@
 					</h3>
 				</div>
 				<div class="panel-body">
-				
+
 					<c:if test="${not empty retMessage }">
 						<div class="alert alert-info" role="alert">
 							<c:out value="${ retMessage}">
 							</c:out>
 						</div>
 					</c:if>
-					
-					<c:if test="${not empty errorRetMessage }">		
+
+					<c:if test="${not empty errorRetMessage }">
 						<div class="alert alert-danger" role="alert">
 							<c:out value="${ errorRetMessage}">
 							</c:out>
-							
+
 						</div>
 					</c:if>
 					<form:form class="well form-horizontal" method="POST"
@@ -94,7 +94,28 @@
 								</div>
 							</div>
 						</div>
+						<!-- Select type Brand-->
+						<div class="form-group">
+							<label class="col-md-3 control-label">Brand</label>
+							<div class="col-md-6 selectContainer">
+								<div class="input-group">
+									<span class="input-group-addon"><i
+										class="glyphicon glyphicon-list"></i></span> <select id="modelBrand"
+										name="modelBrand" class="form-control">
+										<option value="">Select Brand</option>
+										<option value="Samsung">Samsung</option>
+										<option value="Canon">Canon</option>
+										<option value="Oce">Oce</option>
+										<option value="HP">HP</option>
+										<option value="Kyocera">Kyocera</option>
+										<option value="Nasua">Nasua</option>
+										<option value="Ricoh">Ricoh</option>
+										<option value="Toshiba">Toshiba</option>
 
+									</select>
+								</div>
+							</div>
+						</div>
 						<!-- Text input Description-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Description</label>
@@ -148,14 +169,15 @@
 	<script type="text/javascript"
 		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 	<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+		src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-		
-	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
-	
+
+	<script type="text/javascript"
+		src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
+
 	<!-- /Script -->
 
 </body>

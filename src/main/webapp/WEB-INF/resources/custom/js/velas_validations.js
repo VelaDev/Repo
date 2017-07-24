@@ -892,6 +892,13 @@ $(document)
 													}
 												}
 											},
+											modelBrand : {
+												validators : {
+													notEmpty : {
+														message : 'Model brand is required and cannot be empty'
+													}
+												}
+											},
 											receivedBy : {
 												validators : {
 													notEmpty : {

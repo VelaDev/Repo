@@ -1393,11 +1393,69 @@ public class OrdersController {
 
 		return model;
 	}
+	
+	//pending orders
+	@RequestMapping(value = "pendingOrdersForTechnician", method = RequestMethod.GET)
+	public ModelAndView pendingOrders() {
+		model = new ModelAndView();
 
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {			
+				
+				if (customerName != null) {
+               	    model.addObject("selectedName", customerName);
+					model.addObject("countNewOrders", ordersServiceInt.countNewOrdersForTechnician_Customer(userName.getEmail(),customerName));
+					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrdersForTechnician_Customer(userName.getEmail(),customerName));
+					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrdersForTechnicianCustomer(userName.getEmail(),customerName));
+					model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician_Customer(userName.getEmail(),customerName));
+					model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrderForTechnicianCustomer(userName.getEmail(),customerName));
+					model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceiveForTechnician_Customer(userName.getEmail(),customerName));
+					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysRejectedOrdersForTechnicianCustomer(userName.getEmail(),customerName));
+					
+				}else if(selectedDateRange!=null){
+					
+					model.addObject("newDate", selectedDateRange);
+					model.addObject("countNewOrders", ordersServiceInt.countNewOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
+					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
+					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
+					model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForSelectedDate(userName.getEmail(),selectedDateRange));
+					model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrderForSelectedDate(userName.getEmail(),selectedDateRange));
+					model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceiveForSelectedDate(userName.getEmail(),selectedDateRange));
+					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysRejectedOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
+					
+				}else{
+                    model.addObject("orderList", ordersServiceInt.getLastFourteenDaysPendingOrders(userName.getEmail()));
+					
+					model.addObject("countNewOrders", ordersServiceInt.countNewOrders("", userName.getEmail()));
+					model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive("",userName.getEmail()));
+					
+					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders("",userName.getEmail()));
+					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders("",userName.getEmail()));
+					model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician(userName.getEmail()));
+					model.addObject("countRejectedOrder", ordersServiceInt.countRejectedOrders(userName.getEmail()));
+				}
+				model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("ticketCount", ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("customers",customerServiceInt.getClientList());
+				model.addObject("dates", ordersServiceInt.getDates());
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers(userName.getEmail()));
+				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
+				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
+				model.setViewName("ordertechmanagement");
+		
+		}else{
+			model.setViewName("login");	
+		}
+		
+		return model;
+	}//pending orders
+	
+	
 	@RequestMapping(value = "rejectedOrders", method = RequestMethod.GET)
 	public ModelAndView rejectedOrders() {
 		model = new ModelAndView();
-
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
@@ -1502,6 +1560,10 @@ public class OrdersController {
 		
 		return model;
 	}
+	
+	
+	
+	
 	@RequestMapping(value = "OrdersToReceive", method = RequestMethod.GET)
 	public ModelAndView receiveOrders() {
 		model = new ModelAndView();
@@ -1658,13 +1720,12 @@ public class OrdersController {
 		selectedDateRange = localSelectedDate;
 		customerName = null;
 		tempEmployee = null;
-		System.err.println(tempEmployee);
-		System.err.println(customerName);
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			if (userName.getRole().equalsIgnoreCase("Manager")|| userName.getRole().equalsIgnoreCase("Admin")) {
 				
 				if (selectedDateRange != null) {
+		
 					model.addObject("countNewOrders", ordersServiceInt.countNewOrdersForSelectedDate(selectedDateRange));
 					model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrdersForSelectedDate(selectedDateRange));
 					model.addObject("countShippedOrder",ordersServiceInt.countShippedOrdersForSelectedDate(selectedDateRange));
@@ -1694,7 +1755,7 @@ public class OrdersController {
 				model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrderForSelectedDate(userName.getEmail(),selectedDateRange));
 				model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceiveForSelectedDate(userName.getEmail(),selectedDateRange));
 
-				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrdersForSelectedDate(selectedDateRange));
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
 
 				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
 				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));

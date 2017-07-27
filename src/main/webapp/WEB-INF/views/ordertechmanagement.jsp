@@ -235,6 +235,19 @@ input#selectDateRange{
 										</div>
 								</a></li>
 								
+								<li><a href='<c:url value="pendingOrdersForTechnician"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="OrderToApprove"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
+
+										<div class="summary-count pull-left ml20"
+											style="margin-left: -1%">
+											<h4 align="center">${countRejectedOrder}</h4>
+											<p align="center">Pending Orders</p>
+										</div>
+								</a></li>
+								
 								<li><a href='<c:url value="rejectedOrders"/>'
 									class="summery-filter clearfix"
 									data-parallel-url="OrderToApprove"

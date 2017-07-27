@@ -147,6 +147,7 @@ public interface OrdersServiceInt {
 	public int countRejectedOrderForSelectedDate(String technician,String lastFourteenDays);
 	
 	public List<OrderHeader> getLastFourteenDaysShippedForTechnicianOrders(String technician);
+	List<OrderHeader> getLastFourteenDaysPendingOrders(String technicianName);
 	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrdersForSelectedDate(String technicianEmail,String selectedDate );
 	public List<OrderHeader> getLastFourteenDaysPendingOrdersForSelectedDate(String technicianEmail,String selectedDate);

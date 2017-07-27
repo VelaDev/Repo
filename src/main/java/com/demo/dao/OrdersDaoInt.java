@@ -72,7 +72,7 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenRejectedOrders(String lastFourteenDays);
 	public List<OrderHeader> getLastFourteenDaysRejectedOrders();
 	public List<OrderHeader>getLastFourteenDaysRejectedOrders(String technicianName);
-	
+	List<OrderHeader> getLastFourteenDaysPendingOrders(String technicianName);
 	
 	public List<OrderHeader> getLastFourteenDaysApprovedOrders(String lastFourteenDays,String technicianName,String customerName );
 	public List<OrderHeader> getLastFourteenDaysPendingOrders(String lastFourteenDays,String technicianName,String customerName);

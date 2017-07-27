@@ -102,15 +102,12 @@ public class EmployeeController {
 			String userEmail = employee.getEmail();
 			session.setAttribute("user", user);
 			session.setAttribute("userEmail", userEmail);
-			
-			
+		
 			if(employee.isFirstTimeLogin()==true && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 				model.setViewName("changePassword");
 			}else{
 				
 				numberOfDays = credentialsServiceInt.passwordDateDifference(userName);
-				
-				System.out.println("Number of days : "+numberOfDays);
 				
 				if(numberOfDays > 65 && numberOfDays <= 75){
 					int noDays = (int) (75 - numberOfDays);
@@ -121,7 +118,10 @@ public class EmployeeController {
 					model.setViewName("passwordExpired");
 				}
 				else{
+					String approver = employee.getEmail();
 					model.addObject("loggedInUser", employee.getEmail());
+					model.addObject("approver", approver);
+					System.err.println(approver);
 					if(employee.getRole().equalsIgnoreCase("ADMIN")&& employee.getEmail().equals(userName)&& employee.getPassword().equals(password)||
 							employee.getRole().equalsIgnoreCase("Manager") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password)){
 						String userSessionID =session.getId();

@@ -16,12 +16,18 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
+
+<%-- <link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables_test/dataTables.checkboxes.css" />">
+<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables_test/datatables.min.css" />">
+ --%>
+
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />"> 
+	
 <!--/style-->
 </head>
 <body>
@@ -135,11 +141,12 @@
 								<table id="myDatatable" class="display datatable">
 									<thead>
 										<tr>
+											
 											<th>Part No</th>
 											<th>Description</th>
 											<th>Model No</th>
-											<th>Available QTY</th>
-											<th>Tick To Order</th>
+											<th>Tick to Order</th>
+											<th>Available QTY</th>											
 											<th>Quantity</th>
 											<!-- <th>Edit</th> -->
 										</tr>
@@ -152,13 +159,14 @@
 												<td>${list.partNumber}</td>
 												<td>${list.itemDescription}</td>
 												<td>${list.compitableDevice}</td>
+												<td><input type="checkbox" id="checkedOrder"
+													name="selectedItem" class="form-group"
+													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
 												<td><input type="text"
 													id="${list.partNumber}_avaliableQuantity"
 													name="avaliableQuantity" class="form-control"
 													readonly="readonly" value="${list.quantity}"></td>
-												<td><input type="checkbox" id="checkedOrder"
-													name="selectedItem" class="form-group"
-													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+												
 												<td><input type="text" id="${list.partNumber}_quantity"
 													name="quantity" class="form-control"
 													onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
@@ -196,37 +204,26 @@
 	<!-- / velaphanda_containter -->
 
 	<!-- Scripts -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 
 	<!-- Datatables -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	 <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	 
+	<%-- <script type="text/javascript" src="<c:url value="/resources/datatables_test/datatables.min.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/datatables_test/dataTables.checkboxes.min.js" />"></script>
+	 --%>	
 	<!-- //Datatables -->
 	
 	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	<!-- /Scripts -->
 
-	<!-- Paging the table -->
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#myDatatable').DataTable({
-				"jQueryUI" : true,
-				"pagingType" : "full_numbers",
-				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-			/* few more options are available to use */
-			});
-		});
-</script>
 
+
+	
 <script type="text/javascript">
 /*Check if checkbox is checked*/
 function checkChecked(searchForm) {
@@ -259,6 +256,54 @@ $(function(){
 	
 </script>
 
+<script type="text/javascript">
+
+/*
+$(function(){
+	   $('#putorder').click(function(){
+
+	    $(':checkbox:checked').each(function(i){
+	      alert($(this).val());
+	    });
+	  });
+	}); */
+
+
+</script>
+
+
+<script>
+
+var table = $('#myDatatable').DataTable({
+		"jQueryUI" : true,
+		"pagingType" : "full_numbers",
+		"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+	   // ... skipped ...
+	});
+
+	$('form').on('submit', function(e){
+	   var $form = $(this);
+
+	   // Iterate over all checkboxes in the table
+	   table.$('input[type="checkbox"]').each(function(){
+	      // If checkbox doesn't exist in DOM
+	      if(!$.contains(document, this)){
+	         // If checkbox is checked
+	         if(this.checked){
+	            // Create a hidden element 
+	            $form.append(
+	               $('<input>')
+	                  .attr('type', 'hidden')
+	                  .attr('name', this.name)
+	                  .val(this.value)
+	            );
+	         }
+	      } 
+	   });          
+	});
+
+
+</script>
 
 </body>
 </html>

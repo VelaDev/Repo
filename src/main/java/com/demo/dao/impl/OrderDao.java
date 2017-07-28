@@ -2805,7 +2805,9 @@ public class OrderDao implements OrdersDaoInt {
 				String convDate = order.getDateOrdered().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)&& order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2832,6 +2834,8 @@ public class OrderDao implements OrdersDaoInt {
 			for (OrderHeader order : pendingOrders) {
 				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2870,7 +2874,9 @@ public class OrderDao implements OrdersDaoInt {
 			pendingOrders = shippedOrders();
 			for (OrderHeader order : pendingOrders) {
 				
-				if (order.getCustomer().getCustomerName().equalsIgnoreCase(customerName) && order.getEmployee().getEmail().equalsIgnoreCase(technician)) {
+				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -2898,6 +2904,8 @@ public class OrderDao implements OrdersDaoInt {
 			for (OrderHeader order : pendingOrders) {
 				
 				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+					tempCount++;
+				}else if(customerName.equalsIgnoreCase("All Customers")){
 					tempCount++;
 				}
 			}
@@ -3101,6 +3109,8 @@ public class OrderDao implements OrdersDaoInt {
 				
 				if(order.getCustomer()!=null){
 					if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}else if(customerName.equalsIgnoreCase("All Customers")){
 						aList.add(order);
 					}
 				}

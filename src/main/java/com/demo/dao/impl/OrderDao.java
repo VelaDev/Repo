@@ -1240,7 +1240,7 @@ public class OrderDao implements OrdersDaoInt {
 				String convDate = order.getDateOrdered().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianName)&& order.getStatus().equalsIgnoreCase("Shipped")) {
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianName)) {
 					tempCount++;
 				}
 			}
@@ -2918,8 +2918,31 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public List<OrderHeader> getLastFourteenDaysPendingOrdersForCustomer(
 			String technician, String customerName) {
-		// TODO Auto-generated method stub
-		return null;
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			
+			ticketList =pendingOrders();
+			for (OrderHeader order : ticketList) {
+				if(order.getCustomer()!= null){
+					if ( order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
+				}else if(customerName.equalsIgnoreCase("All Customer")){
+					aList.add(order);
+				}
+				
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
 	}
 
 	@Override
@@ -3076,8 +3099,10 @@ public class OrderDao implements OrdersDaoInt {
 		      ticketList = getAllOrders();
 			for (OrderHeader order : ticketList) {
 				
-				if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
-					aList.add(order);
+				if(order.getCustomer()!=null){
+					if (order.getEmployee().getEmail().equalsIgnoreCase(technician)&& order.getCustomer().getCustomerName().equalsIgnoreCase(customerName)) {
+						aList.add(order);
+					}
 				}
 			}
 		} catch (Exception exception) {
@@ -4335,7 +4360,7 @@ public class OrderDao implements OrdersDaoInt {
 						current = myFormat.parse(date1);
 						previous = myFormat.parse(Date2);
 
-			ticketList = getAllOrders();
+			ticketList = pendingOrders();
 			for (OrderHeader order : ticketList) {
 				String convDate = order.getDateOrdered().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
@@ -4844,6 +4869,58 @@ public class OrderDao implements OrdersDaoInt {
 			exception.getMessage();
 		}
 
+		return aList;
+	}
+
+	@Override
+	public List<OrderHeader> getAllLastFourteenDaysOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <OrderHeader> aList = new ArrayList<OrderHeader>();
+	    List<OrderHeader>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			// If we give 7 there it will give 8 days back
+			if(selectedDate.equalsIgnoreCase("Last 24 Hours")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 1);
+			}else if(selectedDate.equalsIgnoreCase("Last 7 Days")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			}else if(selectedDate.equalsIgnoreCase("Last 14 Days")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			}else if(selectedDate.equalsIgnoreCase("Last 30 Days")){
+				cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 30);
+			}
+						// convert to date
+						Date myDate = cal.getTime();
+
+						String date1 = myFormat.format(myDate);
+						String Date2 = myFormat.format(currentDate);
+						Date current = new Date();
+						Date previous = new Date();
+						Date dateData = new Date();
+
+						current = myFormat.parse(date1);
+						previous = myFormat.parse(Date2);
+
+			ticketList = getAllOrders();
+			for (OrderHeader order : ticketList) {
+				String convDate = order.getDateOrdered().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					aList.add(order);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		System.err.println(aList.size());
 		return aList;
 	}
 

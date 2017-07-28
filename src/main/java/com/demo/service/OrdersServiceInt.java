@@ -156,6 +156,7 @@ public interface OrdersServiceInt {
 	public List<OrderHeader> getLastFourteenDaysOrdersToReceiveForSelectedDate(String technicianEmail,String selectedDate);
 	public List<OrderHeader> getLastFourteenDaysRejectedOrdersForSelectedDate(String technicianEmail,String selectedDate);
 	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(String technicianEmail,String selectedDate);
+	public List<OrderHeader> getAllLastFourteenDaysOrdersForSelectedDate(String technicianEmail, String selectedDate);
 	
 	public List<String> getDates();
 	String[] getOrderNumbers();

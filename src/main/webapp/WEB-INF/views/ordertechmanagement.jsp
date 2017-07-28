@@ -243,7 +243,7 @@ input#selectDateRange{
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: -1%">
-											<h4 align="center">${countRejectedOrder}</h4>
+											<h4 align="center">${countNewOrders}</h4>
 											<p align="center">Pending Orders</p>
 										</div>
 								</a></li>

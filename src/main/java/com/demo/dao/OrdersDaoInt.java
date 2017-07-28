@@ -55,6 +55,7 @@ public interface OrdersDaoInt {
 	public List<OrderHeader> getLastFourteenDaysOrders();
 	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(String selectedDate);
 	public List<OrderHeader> getLastFourteenDaysOrdersForSelectedDate(String technicianEmail,String selectedDate);
+	public List<OrderHeader> getAllLastFourteenDaysOrdersForSelectedDate(String technicianEmail, String selectedDate);
 	public List<OrderHeader> getLastFourteenDaysOrdersForCustomer(String customerName);
 	public List<OrderHeader> getLastFourteenDaysOrders(String lastFourteenDays,String technicianName,String customerName );
 	public List<OrderHeader> getLastFourteenDaysOrders(String technicianName);

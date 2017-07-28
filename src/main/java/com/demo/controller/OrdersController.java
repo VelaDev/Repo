@@ -10,6 +10,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -952,6 +953,7 @@ public class OrdersController {
 
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
+			System.err.println("Jwale hee " + ordersServiceInt.countNewOrders("", userName.getEmail()));
 			model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
@@ -1410,7 +1412,7 @@ public class OrdersController {
 					model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician_Customer(userName.getEmail(),customerName));
 					model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrderForTechnicianCustomer(userName.getEmail(),customerName));
 					model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceiveForTechnician_Customer(userName.getEmail(),customerName));
-					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysRejectedOrdersForTechnicianCustomer(userName.getEmail(),customerName));
+					model.addObject("orderList", ordersServiceInt.getLastFourteenDaysPendingOrdersForCustomer(userName.getEmail(), customerName));
 					
 				}else if(selectedDateRange!=null){
 					
@@ -1421,7 +1423,7 @@ public class OrdersController {
 					model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForSelectedDate(userName.getEmail(),selectedDateRange));
 					model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrderForSelectedDate(userName.getEmail(),selectedDateRange));
 					model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceiveForSelectedDate(userName.getEmail(),selectedDateRange));
-					model.addObject("orderList",ordersServiceInt.getLastFourteenDaysRejectedOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
+					model.addObject("orderList", ordersServiceInt.getLastFourteenDaysOrdersForSelectedDate(userName.getEmail(), selectedDateRange));
 					
 				}else{
                     model.addObject("orderList", ordersServiceInt.getLastFourteenDaysPendingOrders(userName.getEmail()));
@@ -1658,7 +1660,6 @@ public class OrdersController {
 				model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician_Customer(userName.getEmail(), customerName));
 				model.addObject("countRejectedOrder", ordersServiceInt.countRejectedOrderForTechnicianCustomer(userName.getEmail(), customerName));
 				model.addObject("countOrdersReceive", ordersServiceInt.countOrdersReceiveForTechnician_Customer(userName.getEmail(), customerName));
-				model.addObject("orderList", ordersServiceInt.getLastFourteenDaysOrdersForTechnicianCustomer(userName.getEmail(), customerName));
 				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
 				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
@@ -1671,6 +1672,8 @@ public class OrdersController {
 				model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers(userName.getEmail()));
 				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 				model.addObject("selectedName", customerName);
+                model.addObject("orderList", ordersServiceInt.getLastFourteenDaysOrdersForTechnicianCustomer(userName.getEmail(), customerName));
+
 				model.setViewName("ordertechmanagement");
 			}
 		} else {
@@ -1755,7 +1758,7 @@ public class OrdersController {
 				model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrderForSelectedDate(userName.getEmail(),selectedDateRange));
 				model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceiveForSelectedDate(userName.getEmail(),selectedDateRange));
 
-				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
+				model.addObject("orderList",ordersServiceInt.getAllLastFourteenDaysOrdersForSelectedDate(userName.getEmail(),selectedDateRange));
 
 				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
 				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
@@ -1788,6 +1791,13 @@ public class OrdersController {
         ModelAndView model = new ModelAndView("405");
  
         model.addObject("exception","Please restart the server");
+        return model;
+    }
+	@ExceptionHandler({DataIntegrityViolationException.class})
+    public ModelAndView dataIntegrityViolation(Exception ex) {
+        ModelAndView model = new ModelAndView("405");
+ 
+        model.addObject("exception","Could not execute JDBC batch update");
         return model;
     }
 	

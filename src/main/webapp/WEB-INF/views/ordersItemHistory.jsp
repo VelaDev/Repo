@@ -63,8 +63,7 @@ table#orderDetails {
 					<div id="navbar" class="navbar-collapse collapse"
 						style="margin-left: -2%">
 						<ul class="nav navbar-nav navbar-left">
-							<c:choose>
-								<c:when test="${OrderNum.approver == approver }">
+
 									<c:if test="${OrderNum.status == 'Pending'}">
 										<li class="dropdown"><a href="#" class="dropdown-toggle"
 											data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -98,16 +97,9 @@ table#orderDetails {
 
 											</ul></li>
 									</c:if>
-								</c:when>
-
-							</c:choose>
-
-
 							<li><a
 								href="printdeliveryNote?recordID=<c:out value='${OrderNum.recordID}'/>">Download
 									PDF </a></li>
-
-
 						</ul>
 					</div>
 					<legend></legend>

@@ -752,5 +752,11 @@ public class OrdersService implements OrdersServiceInt{
 			String technicianName) {
 		
 		return ordersDAO.getLastFourteenDaysPendingOrders(technicianName);
+	}
+
+	@Override
+	public List<OrderHeader> getAllLastFourteenDaysOrdersForSelectedDate(
+			String technicianEmail, String selectedDate) {
+		return ordersDAO.getAllLastFourteenDaysOrdersForSelectedDate(technicianEmail, selectedDate);
 	}	
 }

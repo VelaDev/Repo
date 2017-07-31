@@ -5,7 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.Order;
 import com.demo.bean.OrdersBean;
 import com.demo.dao.ApprovedOrderStockDaoInt;
 import com.demo.dao.BootStockDaoInt;
@@ -247,7 +250,7 @@ public class OrderDao implements OrdersDaoInt {
 
 	@Override
 	public String prepareOrderMaking(OrdersBean orderBean) {
-		orderDetailList = new ArrayList<OrderDetails>();
+		
 
 		cusOrder = new OrderHeader();
 		String orderNumber = null;
@@ -255,6 +258,7 @@ public class OrderDao implements OrdersDaoInt {
 		String[] split;
 		String partNumber,splitString = null;
 		int quatity = 0;
+		String tempString = null;
 
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
@@ -294,8 +298,8 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setApproved(false);
 			cusOrder.setDateOrdered(dateFormat.format(date));
 
+			ArrayList< String> tempList = new ArrayList<String>();
 			for (int i = 0; i < orderBean.getSelectedItem().length; i++) {
-				orderDetails = new OrderDetails();
 				splitString = orderBean.getSelectedItem()[i];
 				split = splitString.split(",");
 				partNumber = split[0];
@@ -303,6 +307,22 @@ public class OrderDao implements OrdersDaoInt {
 				part = hOStockDaoInt.getSparePartBySerial(partNumber);
 				if(part != null){
 					quatity = Integer.parseInt(quantityArray[i]);
+					tempString = partNumber+":"+ quatity;
+					tempList.add(tempString);
+				}
+				
+			}
+			orderDetailList = new ArrayList<OrderDetails>();
+            Set<String> uniqueParts = removeDuplicates(tempList);
+            
+            for(String ord:uniqueParts){
+            	split = ord.split(":");
+				partNumber = split[0];
+				quatity = Integer.parseInt(split[1]);
+				orderDetails = new OrderDetails();
+            	part = hOStockDaoInt.getSparePartBySerial(partNumber);
+            	
+				if(part != null){
 					orderDetails.setPartNumber(partNumber);
 					orderDetails.setCompatibleDevice(part.getCompitableDevice());
 					orderDetails.setItemDescription(part.getItemDescription());
@@ -322,9 +342,7 @@ public class OrderDao implements OrdersDaoInt {
 
 					orderDetailList.add(orderDetails);
 				}
-				
-			}
-
+            }
 			retMessage = makeOrder(cusOrder);
 			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
 		} catch (Exception ex) {
@@ -333,6 +351,10 @@ public class OrderDao implements OrdersDaoInt {
 		return retMessage;
 	}
 
+	private Set<String> removeDuplicates(ArrayList<String> tempList){
+		Set<String> uniqueParts = new HashSet<>(tempList);
+		return uniqueParts;
+	}
 	private String[] quantity(String[] arr, int length) {
 		String[] newQuantity = new String[length];
 		int x = 0;

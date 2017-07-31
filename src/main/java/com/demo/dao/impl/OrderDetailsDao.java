@@ -30,7 +30,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt {
 		try {
 
 			for (OrderDetails orders : orderDetails) {
-				sessionFactory.getCurrentSession().saveOrUpdate(orders);
+				sessionFactory.getCurrentSession().save(orders);
 				retMessage = "OK";
 			}
 		} catch (Exception e) {

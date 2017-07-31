@@ -31,20 +31,6 @@
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
 
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
-
-					<c:out value="${ retMessage}">
-					</c:out>
-				</div>
-			</c:if>
-			<c:if test="${not empty retErrorMessage }">
-				<div class="alert alert-info" role="alert">
-
-					<c:out value="${ retErrorMessage}">
-					</c:out>
-				</div>
-			</c:if>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -157,7 +143,7 @@
 												<td>${list.compitableDevice}</td>
 												<td><input type="checkbox" id="checkedOrder"
 													name="selectedItem" class="form-group"
-													value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+													value="${list.partNumber}"></td>
 												<td><input type="text"
 													id="${list.partNumber}_avaliableQuantity"
 													name="avaliableQuantity" class="form-control"

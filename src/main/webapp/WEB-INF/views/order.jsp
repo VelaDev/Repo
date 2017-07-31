@@ -126,9 +126,9 @@
 											
 											<th>Part No</th>
 											<th>Description</th>
-											<th>Model No</th>
-											<th>Tick to Order</th>
-											<th>Available QTY</th>											
+											<th>Model No</th>											
+											<th>Available QTY</th>
+											<th><input type="checkbox" id="markall" value="" />&nbsp;Tick To Order</th>										
 											<th>Quantity</th>
 											<!-- <th>Edit</th> -->
 										</tr>
@@ -140,18 +140,10 @@
 											<tr>
 												<td>${list.partNumber}</td>
 												<td>${list.itemDescription}</td>
-												<td>${list.compitableDevice}</td>
-												<td><input type="checkbox" id="checkedOrder"
-													name="selectedItem" class="form-group"
-													value="${list.partNumber}"></td>
-												<td><input type="text"
-													id="${list.partNumber}_avaliableQuantity"
-													name="avaliableQuantity" class="form-control"
-													readonly="readonly" value="${list.quantity}"></td>
-												
-												<td><input type="text" id="${list.partNumber}_quantity"
-													name="quantity" class="form-control"
-													onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
+												<td>${list.compitableDevice}</td>												
+												<td><input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
+												<td><input type="checkbox" id="checkedOrder" name="selectedItem"	value="${list.partNumber}"></td>
+												<td><input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
 											</tr>
 
 										</c:forEach>
@@ -209,6 +201,12 @@ $(document).ready(function (){
 			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
 	   });
 
+	   //mark all at once
+		$('#markall').click(function(e){
+			    var table= $(e.target).closest('table');
+			    $('td input:checkbox',table).prop('checked',this.checked);		   
+		});
+	   
 	   // Handle form submission event
 	   $('#putInOrder').on('submit', function(e){
 	      var form = this;

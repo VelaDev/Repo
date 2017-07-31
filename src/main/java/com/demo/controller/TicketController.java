@@ -20,6 +20,7 @@ import com.demo.bean.SparePartsBean;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Customer;
 import com.demo.model.Employee;
+import com.demo.model.OrderHeader;
 import com.demo.model.OrderHistory;
 import com.demo.model.Tickets;
 import com.demo.service.BootStockInt;
@@ -78,6 +79,95 @@ public class TicketController {
 	private Employee userName= null;
 	private String retMessage ="";
 	public String[] getSerials = null;
+	
+	
+	@RequestMapping(value = "ticketmanagement", method = RequestMethod.GET)
+	public ModelAndView displayTicketManagement() {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			
+			model.addObject("lastForteenList", ticketsServiceInt.getLastFourteenDaysTickets());
+			//List<Tickets> getLastFourteenDaysTickets();
+			
+			model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+			model.addObject("customers", customerServiceInt.getClientList());
+			model.addObject("dates", ordersServiceInt.getDates());
+			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+			model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrders(""));
+			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers());
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.setViewName("ticketmanagement");
+		} else {
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
+	@RequestMapping(value = { "ticketItemDetailsM", "ticketItemDetailsM" }, method = RequestMethod.GET)
+	public ModelAndView orderHistory(@RequestParam("recordID") Integer recordID, @ModelAttribute Tickets ticket) {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			
+			ticket = logTicketService.getLoggedTicketByTicketNumber(recordID);
+			model.addObject("ticketObject", ticket);
+			
+			
+			OrderHeader ord = ordersServiceInt.getOrder(recordID);
+			Employee appoer = employeeServiceInt.getEmployeeByEmpNumber(ord
+					.getApprover());
+			String approverName = appoer.getFirstName() + " "
+					+ appoer.getLastName();
+			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.addObject("status",
+					historyInt.getAllOrderHistoryByOrderNumber(recordID));
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets",
+					ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets",
+					ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("ticketCount", ticketsServiceInt
+					.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("approver", approverName);
+
+			if (userName.getRole().equalsIgnoreCase("Technician")) {
+
+				model.setViewName("ticketItemDetailsM");
+			} else if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+
+				model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+				model.addObject("inboxCount", ordersServiceInt
+						.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",
+						ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets",
+						ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("ticketCount", ticketsServiceInt
+						.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("status",
+						historyInt.getAllOrderHistoryByOrderNumber(recordID));
+
+				model.setViewName("ticketItemDetailsM");
+			}
+
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
 	
 	@RequestMapping(value="ticket",method=RequestMethod.GET)
 	public ModelAndView loadTicket() {

@@ -131,6 +131,11 @@
 								aria-expanded="false">Spares Management</a>
 					</li>
 					
+					<li>
+					    <a href='<c:url value="ticketmanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Ticket Management</a>
+					</li>
+					
 					<li>					
 					
 					    <a href='<c:url value="ordermanagement.html"/>' role="button" aria-haspopup="true"

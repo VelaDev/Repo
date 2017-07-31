@@ -35,6 +35,7 @@ import com.demo.dao.TicketHistoryDaoInt;
 import com.demo.model.BootStock;
 import com.demo.model.Employee;
 import com.demo.model.Device;
+import com.demo.model.OrderDetails;
 import com.demo.model.OrderHeader;
 import com.demo.model.SiteStock;
 import com.demo.model.Tickets;
@@ -83,6 +84,63 @@ public class TicketsDao implements TicketsDaoInt {
 
 	String ticketNumber = null;
 	Integer recordID = 1;
+
+	
+    //   Start of new functionality
+	
+	@Transactional
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tickets> getAllLoggedTickets() {
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				Tickets.class);
+		criteria.addOrder(Order.desc("recordID"));
+		return (List<Tickets>) criteria.list();
+	}
+	
+	@Override
+	public List<Tickets> getLastFourteenDaysTickets() {
+		
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List <Tickets> aList = new ArrayList<Tickets>();
+	    List<Tickets>	ticketList =null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList =getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0) {
+					aList.add(ticket);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
 
 	@Override
 	public String logTicket(TicketsBean tickets) {
@@ -156,7 +214,7 @@ public class TicketsDao implements TicketsDaoInt {
 		}
 		return retMessage;
 	}
-
+	
 	@Override
 	public Tickets getLoggedTicketsByTicketNumber(int ticketNumber) {
 
@@ -164,16 +222,11 @@ public class TicketsDao implements TicketsDaoInt {
 				ticketNumber);
 	}
 
-	@Transactional
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Tickets> getAllLoggedTickets() {
+	
+	//   End of new functionality
 
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
-				Tickets.class);
-		criteria.addOrder(Order.desc("recordID"));
-		return (List<Tickets>) criteria.list();
-	}
+
+
 
 	@Override
 	public List<Tickets> getAllOpenTickets() {

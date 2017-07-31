@@ -61,6 +61,9 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllBridgedTickets(String technicianEmail);
 	List<Tickets> getAllResolvedTickets(String technicianEmail);
 	List<Tickets> getAwaitingSparesTickets();
+	List<Tickets> getLastFourteenDaysTickets();
+	
+
 	
 	/*void calculateSLAHours();
 	void resolveToClosedTicketUpdate();

@@ -80,5 +80,6 @@ public interface TicketsServiceInt {
 	List<Tickets> getAllBridgedTickets(String startDate,String endDate,String technicianEmail);
 	List<Tickets> getAllAwaitingSparesTickets(String startDate,String endDate,String technicianEmail);
 	List<Tickets> getAllOpenTickets(String startDate,String endDate,String technicianEmail);
+	List<Tickets> getLastFourteenDaysTickets();
 
 }

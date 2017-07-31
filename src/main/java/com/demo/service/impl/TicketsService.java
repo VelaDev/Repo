@@ -266,4 +266,12 @@ public class TicketsService implements TicketsServiceInt{
 			String technicianEmail) {
 		return logTicketsDAO.getAllOpenTickets(startDate, endDate, technicianEmail);
 	}
+
+	@Override
+	public List<Tickets> getLastFourteenDaysTickets() {
+		// TODO Auto-generated method stub
+		return logTicketsDAO.getLastFourteenDaysTickets();
+	}
+
+
 }

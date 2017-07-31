@@ -68,9 +68,9 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	
 	
 	public static final String DEST = "folderName";
-	public static final String ICC = "C:/Users/Mohapi/git/Repo/src/main/java/resources/sRGB_CS_profile.icm";
-	public static final String FONT = "/resources/OpenSans-Regular.ttf";
-	public static final String FONTB = "/resources//OpenSans-Bold.ttf";
+	public static final String ICC = "/resources/reports_fonts/sRGB_CS_profile.icm";
+	public static final String FONT = "/resources/reports_fonts/OpenSans-Regular.ttf";
+	public static final String FONTB = "/resources/reports_fonts/OpenSans-Bold.ttf";
 
 	protected Font font8;
 	protected Font font8b;
@@ -148,7 +148,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 		PdfPTable table = new PdfPTable(1);
 		table.setWidthPercentage(30);
 		Image img = Image
-				.getInstance("C:/Users/Mohapi/git/Repo/src/main/webapp/WEB-INF/resources/images/mainlogo.jpg");
+				.getInstance("/resources/images/mainlogo.jpg");
 		img.setWidthPercentage(1);
 		PdfPCell cell = new PdfPCell(img);
 		cell.setBorder(PdfPCell.NO_BORDER);

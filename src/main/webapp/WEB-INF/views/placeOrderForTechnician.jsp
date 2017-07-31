@@ -14,9 +14,14 @@
 <link rel="stylesheet" type="text/css" href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 
 
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
-<link type="text/css" rel="stylesheet" href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />"> 
+	
+
 <!--/style-->
 </head>
 <body>
@@ -135,9 +140,8 @@
 											<th>Description</th>
 											<th>Model No </th>
 											<th>Available QTY</th>
-											<th>Tick To Order</th>
-											<th>Quantity</th>
-											<!-- <th>Edit</th> -->
+											<th><input type="checkbox" id="markall" value="" />&nbsp;Tick To Order</th>
+											<th>Quantity</th>											
 										</tr>
 									</thead>
 									<tbody>
@@ -149,8 +153,8 @@
 												<td>${list.itemDescription}</td>
 												<td>${list.compitableDevice}</td>
 												<td><input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
-								                <td><input type="checkbox" id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
-								                <td><input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
+								                <td><input type="checkbox" id="checkedOrder"  name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
+												<td><input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
 											</tr>
 
 										</c:forEach>
@@ -197,52 +201,54 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 
 	<!-- Datatables -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-	<!-- //Datatables -->
+	<%--  <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	 --%>
+	 <script type="text/javascript" src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
+	<!--// Datatables -->
 	
 	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	<!-- /Scripts -->
 	
 <!-- Paging the table -->
 <script type="text/javascript">
-
 $(document).ready(function (){
-	   var table = $('#myDatatable').DataTable({
-		   "jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-	   });
-
-	   //mark all at once
-		$('#markall').click(function(e){
-			    var table= $(e.target).closest('table');
-			    $('td input:checkbox',table).prop('checked',this.checked);		   
-		});
-	   
-	   // Handle form submission event
-	   $('#putInOrder').on('submit', function(e){
-	      var form = this;
-
-	      // Encode a set of form elements from all pages as an array of names and values
-	      var params = table.$('input').serializeArray();
-
-	      // Iterate over all form elements
-	      $.each(params, function(){
-	         // If element doesn't exist in DOM
-	         if(!$.contains(document, form[this.name])){
-	            // Create a hidden element
-	            $(form).append(
-	               $('<input>')
-	                  .attr('type', 'hidden')
-	                  .attr('name', this.name)
-	                  .val(this.value)
-	            );
-	         }
-	      });
-	   });
+	//define myDatatable
+	var table = $('#myDatatable').DataTable({
+		 "jQueryUI" : true,
+		  "pagingType" : "full_numbers",
+		  "lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+	  });
+	
+    //mark all at once
+	$('#markall').click(function(e){
+		    var table= $(e.target).closest('table');
+		    $('td input:checkbox',table).prop('checked',this.checked);		   
 	});
+    
+   // Handle form submission event 
+   $('#putInOrder').on('submit', function(e){
+      var form = this;
 
+      // Encode a set of form elements from all pages as an array of names and values
+      var params = table.$('input').serializeArray();
+
+      // Iterate over all form elements
+      $.each(params, function(){     
+         // If element doesn't exist in DOM
+         if(!$.contains(document, form[this.name])){
+            // Create a hidden element 
+            $(form).append(
+               $('<input>')
+                  .attr('type', 'hidden')
+                  .attr('name', this.name)
+                  .val(this.value)
+            );
+         } 
+      });      
+
+    
+   });      
+});
 </script>
 
 <script type="text/javascript"> 
@@ -260,12 +266,6 @@ function checkChecked(searchForm) {
 	      return false;
 	    } 
 	} 
-</script>
-
-<script type="text/javascript">
-document.getElementById('checkedOrder').onchange = function() {
-	document.getElementsByClass('form-control').disabled = !this.checked;
-};
 </script>
 
 <script type="text/javascript">

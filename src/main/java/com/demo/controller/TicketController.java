@@ -81,6 +81,37 @@ public class TicketController {
 	public String[] getSerials = null;
 	
 	
+	@RequestMapping(value = "techticketmanagement", method = RequestMethod.GET)
+	public ModelAndView displayTechticketManagement() {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			
+			model.addObject("lastForteenList", ticketsServiceInt.getLastFourteenDaysTickets());
+			//List<Tickets> getLastFourteenDaysTickets();
+			
+			model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
+			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+			model.addObject("customers", customerServiceInt.getClientList());
+			model.addObject("dates", ordersServiceInt.getDates());
+			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+			model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrders(""));
+			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers());
+			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+			model.setViewName("techticketmanagement");
+		} else {
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
 	@RequestMapping(value = "ticketmanagement", method = RequestMethod.GET)
 	public ModelAndView displayTicketManagement() {
 		model = new ModelAndView();

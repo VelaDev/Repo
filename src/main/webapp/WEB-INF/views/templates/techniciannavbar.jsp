@@ -78,6 +78,10 @@
 					</li>
 					--%>
 					<li>
+					    <a href='<c:url value="techticketmanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Ticket Management</a>
+					</li>
+					
 					
 					<li>
 					    <a href='<c:url value="ordertechmanagement.html"/>' role="button" aria-haspopup="true"

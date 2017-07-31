@@ -20,7 +20,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demo.bean.Order;
 import com.demo.bean.OrdersBean;
 import com.demo.dao.ApprovedOrderStockDaoInt;
 import com.demo.dao.BootStockDaoInt;
@@ -310,7 +309,6 @@ public class OrderDao implements OrdersDaoInt {
 					tempString = partNumber+":"+ quatity;
 					tempList.add(tempString);
 				}
-				
 			}
 			orderDetailList = new ArrayList<OrderDetails>();
             Set<String> uniqueParts = removeDuplicates(tempList);
@@ -339,7 +337,6 @@ public class OrderDao implements OrdersDaoInt {
 					}
 					orderDetails.setOrderHeader(cusOrder);
 					orderDetails.setDateTime(dateFormat.format(date));
-
 					orderDetailList.add(orderDetails);
 				}
             }

@@ -78,8 +78,8 @@ input#selectDateRange {
 	width: 12%;
 }
 
-.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(6) ~ li {
-    width: 11%;
+.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(8) ~ li {
+    width: 13%;
 }
 
 .db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
@@ -232,13 +232,13 @@ input#selectDateRange {
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
 
-								<li><a href='placeOrderForTechnician.html'
+								<li><a href='logTicket.html'
 									data-parallel-url=""
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 28%">
+											style="margin-left: -10%;padding-right: 17%;">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Create Ticket</p>
@@ -252,7 +252,7 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 4%">
+											style="margin-left: 18%">
 											<h4 align="center">${countNewOrders}</h4>
 											<p align="center">Open Tickets</p>
 										</div>
@@ -264,7 +264,7 @@ input#selectDateRange {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 5%">
+											style="margin-left: 3%">
 											<h4 align="center">${countApprovedOrder}</h4>
 											<p align="center">Acknowledged Tickets</p>
 										</div>
@@ -277,7 +277,7 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 4%">
+											style="margin-left: 19%">
 											<h4 align="center">${countShippedOrder}</h4>
 											<p align="center">Taken Tickets</p>
 										</div>
@@ -289,7 +289,7 @@ input#selectDateRange {
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 										<div class="summary-count pull-left"
-											style="margin-left: 4%">
+											style="margin-left: -2%">
 											<h4 align="center">${countRejectedOrder}</h4>
 											<p align="center">Tickets Awaiting Spares</p>
 										</div>
@@ -302,7 +302,7 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 4%">
+											style="margin-left: 12%">
 											<h4 align="center">${countClosedOrder}</h4>
 											<p align="center">Escalated Tickets</p>
 										</div>
@@ -317,7 +317,7 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 4%">
+											style="margin-left: 12%">
 											<h4 align="center">${countClosedOrder}</h4>
 											<p align="center">Resolved Tickets</p>
 										</div>

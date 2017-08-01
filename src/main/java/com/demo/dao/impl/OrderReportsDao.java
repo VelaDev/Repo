@@ -69,8 +69,8 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	
 	public static final String DEST = "folderName";
 	public static final String ICC = "/resources/reports_fonts/sRGB_CS_profile.icm";
-	public static final String FONT = "/resources/reports_fonts/OpenSans-Regular.ttf";
-	public static final String FONTB = "/resources/reports_fonts/OpenSans-Bold.ttf";
+	public static final String FONT = "/resources/OpenSans-Regular.ttf";
+	public static final String FONTB = "/resources/OpenSans-Bold.ttf";
 
 	protected Font font8;
 	protected Font font8b;

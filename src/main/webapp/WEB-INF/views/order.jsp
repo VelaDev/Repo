@@ -16,13 +16,21 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
-
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_details.css" />">
  <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />"> 
+	
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/buttons.dataTables.css" />"> 
+	
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/scroller.dataTables.css" />"> 
+
 	
 <!--/style-->
 </head>
@@ -134,35 +142,70 @@
 
 							<br />
 							<div id="makeOrders">
-								<table id="myDatatable" class="display datatable">
-									<thead>
-										<tr>
-											<th>Part No</th>
-											<th>Description</th>
-											<th>Model No </th>
-											<th>Available QTY</th>
-											<th><input type="checkbox" id="markall" value="" />&nbsp;Tick To Order</th>
-											<th>Quantity</th>											
-										</tr>
-									</thead>
-									<tbody>
-										<!-- Iterating over the list sent from Controller -->
-										<c:forEach var="list" items="${compatibility}">
 
-											<tr>
-												<td>${list.partNumber}</td>
-												<td>${list.itemDescription}</td>
-												<td>${list.compitableDevice}</td>
-												<td><input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}"></td>
-								                <td><input type="checkbox" id="checkedOrder"  name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}"></td>
-												 <td><input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" /></td>
+								<div class="groupdetails-row-padding">
+									<div id="pagewrap">
+										<section id="content" style="width: 61%;">
+										<div class="groupclientdetails">
+											<table width="100%" class="display"
+												id="availableHOstockForOrder" cellspacing="0">
+												<thead>
+													<tr>
+														<th>Part No</th>
+														<th>Description</th>
+														<th>Model No</th>
+														<th>Available QTY</th>
+														<th>Quantity</th>
+														<th>Add</th>
+													</tr>
+												</thead>
+												<tbody>
+													<!-- Iterating over the list sent from Controller -->
+													<c:forEach var="list" items="${compatibility}">
 
-											</tr>
+														<tr>
+															<td>${list.partNumber}</td>
+															<td>${list.itemDescription}</td>
+															<td>${list.compitableDevice}</td>
+															<td><input type="text"
+																id="${list.partNumber}_avaliableQuantity"
+																name="avaliableQuantity" class="form-control"
+																readonly="readonly" value="${list.quantity}"></td>
+															<td><input type="text"
+																id="${list.partNumber}_quantity" name="quantity"
+																class="form-control"
+																onblur="compareQuantity(this, ${list.quantity})"
+																value="" /></td>
 
-										</c:forEach>
-									</tbody>
-								</table>
+														</tr>
 
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+										</section>
+										<aside id="sidebar" style="width:35%;margin-left: 3%;">
+										<div class="groupproductdetails">
+											<table width="100%" class="display"
+												id="selectedHOStockToOrder">
+												<thead>
+													<tr>
+														<th>Part No</th>
+														<th>Quantity</th>
+														<th>Remove</th>
+													</tr>
+												</thead>
+												<tbody></tbody>
+											</table>
+										</div>
+										<!-- //groupproductdetails --> </aside>
+										<!-- //sidebar -->
+									</div>
+									<!--// pagewrap -->
+								</div>
+								<!-- //groupdetails-row-padding -->
+
+								
 							</div>
 
 							<div class="form-group row">
@@ -201,50 +244,107 @@
 	<%--  <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 	 --%>
 	 <script type="text/javascript" src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
+	 <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery-ui.js" />"></script>
+	 <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.buttons.js" />"></script>	 
+	 <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.jqueryui.js" />"></script>
+	 <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.select.js" />"></script>
+	 
 	<!-- //Datatables -->
 	
-	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	<!-- /Scripts -->
-<!-- Paging the table -->
+
 <script type="text/javascript">
-$(document).ready(function (){
-	//define myDatatable
-	var table = $('#myDatatable').DataTable({
-		 "jQueryUI" : true,
-		  "pagingType" : "full_numbers",
-		  "lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-	  });
-   
-    //mark all at once
-	$('#markall').click(function(e){
-		    var table= $(e.target).closest('table');
-		    $('td input:checkbox',table).prop('checked',this.checked);		   
-	});
-   // Handle form submission event 
-   $('#putInOrder').on('submit', function(e){
-      var form = this;
+           
+            $(function ($) {
 
-      // Encode a set of form elements from all pages as an array of names and values
-      var params = table.$('input').serializeArray();
+                var tb = $("#availableHOstockForOrder").DataTable({
+                    info: true, 
+                    searching:true, 
+                    paging: true,
+                    columnDefs: [{
+                        targets: [-1],
+                        render: function () {
+                            return "<button type='button'>Add</button>"
+                        }
+                    }],
+                    data: list,
+                    columns: [{
+                        data: "part no"
+                    }, {
+                        data: "description"
+                    }, {
+                        data: "model no"
+                    }, {
+                        data: "avalaible qty"
+                    }, {
+                        data: "quantity"
+                    },
+                    { data: null }],
 
-      // Iterate over all form elements
-      $.each(params, function(){     
-         // If element doesn't exist in DOM
-         if(!$.contains(document, form[this.name])){
-            // Create a hidden element 
-            $(form).append(
-               $('<input>')
-                  .attr('type', 'hidden')
-                  .attr('name', this.name)
-                  .val(this.value)
-            );
-         } 
-      });      
+                    initComplete: function () {
+                        $("#availableHOstockForOrder button").on("click", function (evt) {
 
-    
-   });      
-});
-</script>
+                            var t1 = $("#availableHOstockForOrder").DataTable();
+                            var t2 = $("#selectedHOStockToOrder").DataTable();
+                            var tr = $(this).closest("tr");
+                            var row = t1.row(tr);
+                            var data = JSON.parse(JSON.stringify(row.data()));
+                            row.remove().draw();
+                            t2.row.add(data).draw();
+                        });
+                       
+                    }
+                }) // end table for availableHOstockForOrder
+                
+                $("#selectedHOStockToOrder").DataTable({ 
+                info: true, 
+                searching:true, 
+                paging: true,
+                columns: [{ data: "part no" }, { data: "quantity" },{ data: "null" }],
+                columnDefs: [{
+                        targets: [-1],
+                        render: function () {
+                            return "<button type='button'>Remove</button>"
+                        }
+                }],
+              
+                initComplete: function () {
+                        
+                        $("#selectedHOStockToOrder button").on("click", function (evt) {
+                            var t1 = $("#selectedHOStockToOrder").DataTable();
+                            var t2 = $("#availableHOstockForOrder").DataTable();
+                            var tr = $(this).closest("tr");
+                            var row = t1.row(tr);
+                            var data = JSON.parse(JSON.stringify(row.data()));
+                            row.remove().draw();
+                            t2.row.add(data).draw();
+                        });
+                  }
+                
+                              
+                }); //end selectedHOStockToOrder
+
+            }) // end ready document
+            
+           // JavaScript code written in the JSP to access the compatibility HO stock
+            var list = [ 
+                         <c:forEach var="list" items="${compatibility}" >
+				            {
+				             	"part no": '${list.partNumber}',
+					  			"description": '${list.itemDescription}',
+					  			"model no": '${list.compitableDevice}',
+					  			"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
+					  			"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" />',
+				              
+				            },</c:forEach>
+				       ]
+            
+ </script>
+	
+	
+
 	
 <script type="text/javascript">
 /*Check if checkbox is checked*/

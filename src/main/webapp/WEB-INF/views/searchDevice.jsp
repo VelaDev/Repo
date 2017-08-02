@@ -36,6 +36,7 @@
 								<tr>
 									<th>Customer Name</th>
 									<th>Serial No</th>
+									<th>Address</th>
 									<th>Model No </th>
 									<th>Start Date </th>
 									<th>End Date </th>
@@ -49,6 +50,7 @@
 									<tr>
 										<td><a href="viewCustomer?customerName=<c:out value='${list.customerDevice.customerName}'/>">${list.customerDevice.customerName}</a></td>
 										<td><a href="detailedProduct?serialNumber=<c:out value='${list.serialNumber}'/>">${list.serialNumber}</a></td>
+										<td>${list.buildingName } ${list.streetNumber } ${list.streetName }</td>
 										<td>${list.modelNumber}</td>
 										<td>${list.startDate}</td>
 										<td>${list.endDate}</td>

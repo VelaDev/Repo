@@ -246,7 +246,7 @@ public class DeviceDao implements DeviceDaoInt {
 							list.add(accessory6);
 						}
 					}
-					if(deviceBean.getMachineType()!=null && deviceBean.getSerialNumberOtherAccessory()!=null){
+					if(deviceBean.getMachineType().length()>3 && deviceBean.getSerialNumberOtherAccessory().length()>3){
 						List<String> accessoryType = new ArrayList<String>(Arrays.asList(deviceBean.getMachineType().split(",")));
 						List<String> accessorySerial = new ArrayList<String>(Arrays.asList(deviceBean.getSerialNumberOtherAccessory().split(",")));
 						for(int i =0;i<accessoryType.size();i++){
@@ -306,7 +306,7 @@ public class DeviceDao implements DeviceDaoInt {
 		} catch (Exception e) {
 			retMessage = e.getMessage();
 		}
-
+        System.err.println("Karabo "+retMessage);
 		return retMessage;
 	}
 

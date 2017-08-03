@@ -7,6 +7,7 @@
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:task="http://www.springframework.org/schema/task"
     xmlns:util="http://www.springframework.org/schema/util"
+    xmlns:p="http://www.springframework.org/schema/p"
 	xsi:schemaLocation="
                         http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -22,7 +23,7 @@
    <context:component-scan base-package="com.demo" />
    <mvc:annotation-driven /> 
 	<context:property-placeholder location="classpath:resources/database.properties" />
-	
+	<import resource="jasper.xml" />
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 		<property name="cacheSeconds" value="0"/>
 	</bean>
@@ -35,6 +36,8 @@
 		<property name="prefix" value="/WEB-INF/views/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
+	<bean class="org.springframework.web.servlet.view.XmlViewResolver"
+			p:location="/WEB-INF/jasper.xml"  p:order="0"/>
 	
 			
 	<bean id="dataSource"
@@ -101,7 +104,5 @@
 	<!-- <bean class="org.springframework.web.servlet.view.XmlViewResolver">
         <property name="location" value="/WEB-INF/jasper.xml"></property>
 	</bean> -->
-	
-	
 		
 </beans>

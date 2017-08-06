@@ -31,6 +31,7 @@ public class OrdersBean {
 	private String device;
 
 	private String []quantity;
+	private String []quantityEntered;
 	private String[]selectedItem;
 	private String stockType;
 	private String technician;

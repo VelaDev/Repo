@@ -67,8 +67,7 @@
 					<div class="tab-content">
 
 						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="putInOrder"
-							onsubmit="return checkChecked('putInOrder');">
+							method="post" action="makeOrder" id="putInOrder">
 
 
 							<!-- Select type Stock Type-->
@@ -152,10 +151,11 @@
 
 								<div class="groupdetails-row-padding">
 									<div id="pagewrap">
-										<section id="content" style="width: 61%;">
+										<section id="content" style="width: 63%;margin-left: -1%;">
 										<div class="groupclientdetails">
-											<table width="100%" class="display"
-												id="availableHOstockForOrder" cellspacing="0">
+											<h5><b>Available HO Stock</b></h5>
+											<table class="display" id="availableHOstockForOrder"
+												cellspacing="0">
 												<thead>
 													<tr>
 														<th>Part No</th>
@@ -163,24 +163,24 @@
 														<th>Model No</th>
 														<th>Available QTY</th>
 														<th>Quantity</th>
-														<th>Add</th>
+														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody>
-													
+
 												</tbody>
 											</table>
 										</div>
 										</section>
-										<aside id="sidebar" style="width:35%;margin-left: 3%;">
+										<aside id="sidebar" style="width:37%;margin-left: 1%;">
 										<div class="groupproductdetails">
-											<table width="100%" class="display"
-												id="selectedHOStockToOrder">
+											<h5><b>Selected HO Stock To Order</b></h5>
+											<table class="display" id="selectedHOStockToOrder">
 												<thead>
 													<tr>
-														<th>Part No</th>
+														<th>Part No</th>														
 														<th>Quantity</th>
-														<th>Remove</th>
+														<th>Action</th>
 													</tr>
 												</thead>
 												<tbody></tbody>
@@ -193,8 +193,7 @@
 								</div>
 								<!-- //groupdetails-row-padding -->
 
-								
-							</div>
+							</div><!-- //make order -->
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
@@ -232,10 +231,7 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-
-	<!-- Datatables -->
-	<%--  <script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-	 --%>
+	
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
 	<script type="text/javascript"
@@ -253,22 +249,33 @@
 		src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	<!-- /Scripts -->
 
-<script type="text/javascript">
-           
-            $(function ($) {
+	<!--Order Datatables-->
+        <script type="text/javascript">
 
-                var tb = $("#availableHOstockForOrder").DataTable({
+            // startup and initialize empty tables for appearance
+            $(function ($) {
+				createDataTableForAvailableHOstock("#availableHOstockForOrder", null);
+                createDataTableSelectedHOStock('#selectedHOStockToOrder', null);                
+                // set up event handlers for both directrions
+                $('#selectedHOStockToOrder').on("click", "tbody button", function (evt) { moveRow(evt, '#selectedHOStockToOrder', '#availableHOstockForOrder'); })
+                $('#availableHOstockForOrder').on("click", "tbody button", function (evt) { moveRow(evt, '#availableHOstockForOrder', '#selectedHOStockToOrder'); })
+               
+            })//end startup and initialize empty tables for appearance
+            
+            // create data table for createDataTableForAvailableHOstock.
+            function createDataTableForAvailableHOstock(target, data) {
+
+                $(target).DataTable({
                     info: true, 
-                    searching:true, 
-                    paging: true,
+					searching:true, 
+					paging: true, 
+					data: list,
                     columnDefs: [{
-                        targets: [-1],
-                        render: function () {
-                            return "<button type='button'>Add</button>"
+                        targets: [-1], render: function () {
+                            return "<button type='button' onclick='saveEneteredQuantity();'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
                         }
                     }],
-                    data: list,
-                    columns: [{
+                     columns: [{
                         data: "part no"
                     }, {
                         data: "description"
@@ -281,82 +288,76 @@
                     },
                     { data: null }],
 
-                    initComplete: function () {
-                        $("#availableHOstockForOrder button").on("click", function (evt) {
 
-                            var t1 = $("#availableHOstockForOrder").DataTable();
-                            var t2 = $("#selectedHOStockToOrder").DataTable();
-                            var tr = $(this).closest("tr");
-                            var row = t1.row(tr);
-                            var data = JSON.parse(JSON.stringify(row.data()));
-                            row.remove().draw();
-                            t2.row.add(data).draw();
-                        });
-                       
-                    }
-                }) // end table for availableHOstockForOrder
-                
-                $("#selectedHOStockToOrder").DataTable({ 
-                info: true, 
-                searching:true, 
-                paging: true,
-                columns: [{ data: "part no" }, { data: "quantity" },{ data: "null" }],
-                columnDefs: [{
-                        targets: [-1],
-                        render: function () {
-                            return "<button type='button'>Remove</button>"
+                });
+            }//end create data table for createDataTableForAvailableHOstock.
+            
+			 // create data table for createDataTableSelectedHOStock.
+            function createDataTableSelectedHOStock(target, data) {
+
+                $(target).DataTable({
+                    
+					info: true, 
+					searching:true, 
+					paging: true, 					
+                    columnDefs: [{
+                        targets: [-1], render: function () {
+                            return "<button type='button'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
                         }
-                }],
-              
-                initComplete: function () {
-                        
-                        $("#selectedHOStockToOrder button").on("click", function (evt) {
-                            var t1 = $("#selectedHOStockToOrder").DataTable();
-                            var t2 = $("#availableHOstockForOrder").DataTable();
-                            var tr = $(this).closest("tr");
-                            var row = t1.row(tr);
-                            var data = JSON.parse(JSON.stringify(row.data()));
-                            row.remove().draw();
-                            t2.row.add(data).draw();
-                        });
-                  }
-                
-                              
-                }); //end selectedHOStockToOrder
+                    }],
+                     columns: [{
+                        data: "part no"
+                    },                    
+                    {
+                        data: "quantityEntered"
+                    },
+                    { data: null }],
 
-            }) // end ready document
+                });
+            } // end create data table for createDataTableSelectedHOStock.
+			
+			
+            //Check saveEneteredQuantity
+			function saveEneteredQuantity(){
+
+				var getEnteredQuantity;
+			    var quantity;			    
+        		quantity = document.getElementsByName('quantity')[0].value;
+				document.getElementsByName('quantityEntered')[0].value = "C Quantity: " + quantity;
+				getEnteredQuantity = quantity;
+				console.log("Entered Quantity: ",getEnteredQuantity);
+				
+			}// end Check saveEneteredQuantity
+			
+					
+            // function to move rows
+            function moveRow(evt, fromTable, toTable) {
+
+                var table1 = $(fromTable).DataTable();
+                var table2 = $(toTable).DataTable();
+                var tr = $(evt.target).closest("tr");				
+                var row = table1.row(tr);
+                var data = JSON.parse(JSON.stringify(row.data()));               
+                table2.row.add(data).draw();
+				row.remove().draw();				
+            }//end startup and initialize empty tables for appearance
             
            // this is JavaScript code written in the JSP to access the compatibility HO stock
             var list = [ 
-                         <c:forEach var="list" items="${compatibility}" >
-				            {
-				             	"part no": '${list.partNumber}',
-					  			"description": '${list.itemDescription}',
-					  			"model no": '${list.compitableDevice}',
-					  			"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
-					  			"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onblur="compareQuantity(this, ${list.quantity})" value="" />',
-				              
-				            },</c:forEach>
-				       ]
+               	<c:forEach var="list" items="${compatibility}" >
+                  	{
+					  	"part no": '${list.partNumber}',
+						"description": '${list.itemDescription}',
+						"model no": '${list.compitableDevice}',
+						"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
+						"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" value=""  />',
+						"quantityEntered": '<input type="text" id="${list.partNumber}_quantity" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />'
+			      	},
+			   </c:forEach>
+			]
             
  </script>
 
-<script type="text/javascript"> 
-function checkChecked(searchForm) {
-	    var anyBoxesChecked = false;
-	    $('#' + searchForm + ' input[type="checkbox"]').each(function() {
-	        if ($(this).is(":checked")) {
-				//alert('Your order will be processed by selected Manager');
-	            anyBoxesChecked = true;
-	        }
-	    });
-	 
-	    if (anyBoxesChecked == false) {
-	      alert('You need to tick atleast one checkbox to place an order\n Please tick the checkbox and try again!');
-	      return false;
-	    } 
-	} 
-</script>
 
 	<script type="text/javascript">
 $(function(){

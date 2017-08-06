@@ -269,8 +269,47 @@ public class TicketsService implements TicketsServiceInt{
 
 	@Override
 	public List<Tickets> getLastFourteenDaysTickets() {
-		// TODO Auto-generated method stub
 		return logTicketsDAO.getLastFourteenDaysTickets();
+	}
+
+	@Override
+	public List<Tickets> getAllAcknowledgedTickets() {
+		return logTicketsDAO.getAllAcknowledgedTickets();
+	}
+
+	@Override
+	public List<Tickets> getAllTakenTickets() {
+		return logTicketsDAO.getAllTakenTickets();
+	}
+
+	@Override
+	public List<Tickets> getAllAcknowledgedTickets(String technicianEmail) {
+		return logTicketsDAO.getAllAcknowledgedTickets(technicianEmail);
+	}
+
+	@Override
+	public List<Tickets> getAllTakenTickets(String technicianEmail) {
+		return logTicketsDAO.getAllTakenTickets(technicianEmail);
+	}
+
+	@Override
+	public int countAcknowledgedTickets() {
+		return logTicketsDAO.countAcknowledgedTickets();
+	}
+
+	@Override
+	public int countTakenTickets() {
+		return logTicketsDAO.countTakenTickets();
+	}
+
+	@Override
+	public int countAcknowledgedTickets(String technicianEmail) {
+		return logTicketsDAO.countAcknowledgedTickets(technicianEmail);
+	}
+
+	@Override
+	public int countTakenTickets(String technicianEmail) {
+		return logTicketsDAO.countTakenTickets(technicianEmail);
 	}
 
 

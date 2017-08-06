@@ -883,6 +883,39 @@ public class TicketsDao implements TicketsDaoInt {
 		return aList;
 	}
 
+	private List<Tickets> acknowledgedTickets() {
+		aList = new ArrayList<Tickets>();
+		try {
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				if (ticket.getStatus().equalsIgnoreCase("Acknowledged")) {
+					aList.add(ticket);
+				} 
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	private List<Tickets> takenTickets() {
+		aList = new ArrayList<Tickets>();
+		try {
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				if (ticket.getStatus().equalsIgnoreCase("Taken")) {
+					aList.add(ticket);
+				} 
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	
 	@Override
 	public List<Tickets> getAllClosedTickets(String startDate, String endDate) {
 		List<Tickets> tempTickets = null;
@@ -1505,6 +1538,7 @@ public class TicketsDao implements TicketsDaoInt {
 		return aList;
 	}
 
+
 	@Override
 	public List<Tickets> getAllClosedTickets(String technicianEmail) {
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -1662,6 +1696,7 @@ public class TicketsDao implements TicketsDaoInt {
 	 * }catch(Exception e){ e.getMessage(); } }
 	 */
 
+	@SuppressWarnings("unused")
 	private List<Tickets> getResolvedTickets() {
 		aList = new ArrayList<Tickets>();
 		try {
@@ -1945,4 +1980,354 @@ public class TicketsDao implements TicketsDaoInt {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public List<Tickets> getAllAcknowledgedTickets() {
+		aList = new ArrayList<Tickets>();
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Acknowledged")
+						&& current.compareTo(dateData) <= 0) {
+					aList.add(ticket);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	@Override
+	public List<Tickets> getAllAcknowledgedTickets(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Acknowledged")
+						&& current.compareTo(dateData) <= 0
+						&& ticket.getEmployee().getEmail()
+								.equalsIgnoreCase(technicianEmail)) {
+					aList.add(ticket);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	@Override
+	public List<Tickets> getAllTakenTickets() {
+		aList = new ArrayList<Tickets>();
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Taken")
+						&& current.compareTo(dateData) <= 0) {
+					aList.add(ticket);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	@Override
+	public List<Tickets> getAllTakenTickets(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Taken")
+						&& current.compareTo(dateData) <= 0
+						&& ticket.getEmployee().getEmail()
+								.equalsIgnoreCase(technicianEmail)) {
+					aList.add(ticket);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+
+	
+	@Override
+	public int countAcknowledgedTickets() {
+		
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Acknowledged")
+						&& current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return tempCount;
+	}
+	
+	@Override
+	public int countAcknowledgedTickets(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Acknowledged")
+						&& current.compareTo(dateData) <= 0
+						&& ticket.getEmployee().getEmail()
+								.equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return tempCount;
+	}
+	
+	@Override
+	public int countTakenTickets() {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Taken")
+						&& current.compareTo(dateData) <= 0) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return tempCount;
+	}
+	
+	@Override
+	public int countTakenTickets(String technicianEmail) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 6);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (ticket.getStatus().equalsIgnoreCase("Taken")
+						&& current.compareTo(dateData) <= 0
+						&& ticket.getEmployee().getEmail()
+								.equalsIgnoreCase(technicianEmail)) {
+					tempCount++;
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return tempCount;
+	}
+
+	
 }

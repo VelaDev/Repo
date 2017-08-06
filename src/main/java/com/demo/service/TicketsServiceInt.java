@@ -15,6 +15,10 @@ public interface TicketsServiceInt {
 	List<Tickets> getAllLoggedTickets();
 
 	List<Tickets> getAllOpenTickets();
+	
+	List<Tickets> getAllAcknowledgedTickets();
+	
+	List<Tickets> getAllTakenTickets();	
 
 	List<Tickets> getAllEscalatedTickets();
 
@@ -55,7 +59,11 @@ public interface TicketsServiceInt {
 	int countAwaitingSparesTickets();
 
 	int countResolvedTickets();
-
+	
+	int countAcknowledgedTickets();
+	
+	int countTakenTickets();
+	
 	int countEscalatedTickets(String technicianEmail);
 
 	int countClosedTickets(String technicianEmail);
@@ -68,12 +76,19 @@ public interface TicketsServiceInt {
 
 	int countResolvedTickets(String technicianEmail);
 	
+    int countAcknowledgedTickets(String technicianEmail);
+	
+	int countTakenTickets(String technicianEmail);
+	
 	List<Tickets> getAllOpenTickets(String technicianEmail);
 	List<Tickets> getAllEscalatedTickets(String technicianEmail);
 	List<Tickets> getAllAwaitingSpares(String technicianEmail);
 	List<Tickets> getAllClosedTickets(String technicianEmail);
 	List<Tickets> getAllBridgedTickets(String technicianEmail);
 	List<Tickets> getAllResolvedTickets(String technicianEmail);
+	List<Tickets> getAllAcknowledgedTickets(String technicianEmail);	
+	List<Tickets> getAllTakenTickets(String technicianEmail);	
+	
 	
 	List<Tickets> getAllClosedTickets(String startDate,String endDate, String technicianEmail);
 	List<Tickets> getAllEscalatedTickets(String startDate,String endDate,String technicianEmail);

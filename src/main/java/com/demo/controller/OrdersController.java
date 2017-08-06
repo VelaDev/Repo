@@ -1106,6 +1106,8 @@ public class OrdersController {
 
 		return model;
 	}
+	
+	
 
 	@RequestMapping(value = "ordersToShip", method = RequestMethod.GET)
 	public ModelAndView ordersToShip() {
@@ -1182,7 +1184,7 @@ public class OrdersController {
 
 		return model;
 	}
-
+	
 	@RequestMapping(value = "ShippedOrders", method = RequestMethod.GET)
 	public ModelAndView shippedOrderDetails() {
 		model = new ModelAndView();
@@ -1321,8 +1323,7 @@ public class OrdersController {
 				model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
 				model.setViewName("ordertechmanagement");
 
-			} else if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
+			} else if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 				if (customerName != null) {
 					if (customerName.length() > 3) {
 						model.addObject("selectedName", customerName);

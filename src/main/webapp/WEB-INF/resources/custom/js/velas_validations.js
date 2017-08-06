@@ -1181,7 +1181,7 @@ function compareQuantity(element, availableQuantity) {
 				console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
 		}
 }
-/*Compare available quantity with entered quantity*/
+/*--//End Compare available quantity with entered quantity--*/
 
 
 /* --Stock type Selection-- */

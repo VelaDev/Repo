@@ -14,7 +14,11 @@
 	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
-	
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom_ticktes.css" />">
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+
 
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
@@ -23,232 +27,1143 @@
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 <style type="text/css">
-
 .orderDetails {
-    margin-left: -14px;
-}
-table#orderDetails {
-    margin-left: 14%;
-    /* margin-right: -9%; */
-    width: 73%;
+    margin-left: -22px;
 }
 
+table#orderDetails {
+	margin-left: 14%;
+	/* margin-right: -9%; */
+	width: 73%;
+}
 </style>
 </head>
 <body>
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-		
+
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber">
 
 			</form:form>
-			
+
 			<div class="panel panel-success">
 				<div class="panel-heading">
-					<h3 class="panel-title">						
+					<h3 class="panel-title">
 						<div align="center">
-							<b>Order No : ${OrderNum.orderNum}</b>
+							<b>Ticket No : ${ticketObject.ticketNumber}</b>
 						</div>
 					</h3>
 				</div>
 				<div class="panel-body">
-						
-					<div id="navbar" class="navbar-collapse collapse" style="margin-left:-2%">						
-						<ul class="nav navbar-nav navbar-left">		
-						
-								<c:if test="${OrderNum.status == 'Shipped'}">							
+
+					<div id="navbar" class="navbar-collapse collapse"
+						style="margin-left: -2%">
+						<ul class="nav navbar-nav navbar-left">
+
+							<c:choose>
+								<c:when test="${ticketObject.status =='Open'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
-										aria-expanded="false">Order Action<span class="caret"></span></a>
-								    	<ul class="dropdown-menu">
-											<c:choose>
-												<c:when test="${OrderNum.status == 'Shipped'}">  
-												   <li><a href="receive?recordID=<c:out value='${OrderNum.recordID}'/>">Receive Order</a></li>
-												</c:when>											  	
-											</c:choose>
-										</ul>
-									</li>
-									
-								</c:if>
-								
-							<li><a href="printdeliveryNote?recordID=<c:out value='${OrderNum.recordID}'/>">Download PDF </a></li>
-							
+										aria-expanded="false">Ticket Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="reOpen?=<c:out value='${ticketObject.ticketNumber}'/>">Re-assign
+													ticket</a></li>
+										</ul></li>
+								</c:when>
+								<c:when test="${ticketObject.status =='Taken'}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Ticket Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Awaiting
+													Spare</a></li>
+											<li><a
+												href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Escalate
+													Ticket</a></li>
+										</ul></li>
+								</c:when>
+								<c:when test="${ticketObject.status =='Acknowledged'}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Ticket Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="#ticketReassign" data-toggle="tab"">Re-assign
+													ticket</a></li>
+										</ul></li>
+								</c:when>
+								<c:when test="${ticketObject.status =='Awaiting Spares'}">
+								</c:when>
+								<c:when test="${ticketObject.status =='Escalated'}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Ticket Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="#ticketReassign" data-toggle="tab">Re-assign
+													ticket</a></li>
+											<li><a href="#ticketResolvedDetailss" data-toggle="tab">Resolve</a></li>
+										</ul></li>
+								</c:when>
+								<c:when test="${ticketObject.status =='SLA Bridged'}">
+								</c:when>
+								<c:when test="${ticketObject.status =='Resolved'}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Ticket Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a
+												href="reOpen?=<c:out value='${ticketObject.ticketNumber}'/>">Re-open
+													ticket</a></li>
+										</ul></li>
+								</c:when>
+								<c:when test="${ticketObject.status =='Closed'}">
+								</c:when>
+								<c:otherwise>
+									<c:out value="${ticketObject.status}" />
+								</c:otherwise>
+							</c:choose>
+
+
+							<li><a
+								href="printdeliveryNote?recordID=<c:out value='${ticketObject.ticketNumber}'/>">Download
+									PDF </a></li>
+
 						</ul>
 					</div>
 					<legend></legend>
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#orderDetails" data-toggle="tab">Order Details</a></li>
-						<li><a href="#orderHistoryDetails" data-toggle="tab">History</a></li>
+						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket
+								Details</a></li>
+						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket
+								History</a></li>
+						<c:choose>
+							<c:when test="${ticketObject.status =='Escalated'}">
+								<li><a href="#ticketResolvedDetailss" data-toggle="tab">Resolve
+										Ticket</a></li>
+								<li><a href="#ticketReassign" data-toggle="tab">Re-assign
+										ticket</a></li>
+							</c:when>
+							<c:when test="${ticketObject.status =='Acknowledged'}">
+								<li><a href="#ticketReassign" data-toggle="tab">Re-assign
+										ticket</a></li>
+							</c:when>
+						</c:choose>
+
 					</ul>
-					
+
 					<div class="tab-content">
 
-						<!--#orderDetails tab-->
-						<div class="tab-pane active" id="orderDetails">
-							<br/><br/>	
+						<!--#ticketDetails tab-->
+						<div class="tab-pane active" id="ticketDetails">
+							<br /> <br />
 							<div id="pagewrap">
-								
-									<section id="content" style="width:35%;">
-										<div class="groupclientdetails">
-											<legend style="font-size: 12px;line-height: 1.42857143;">Device</legend>
-										
-												<div class="machinedetailsdetailsfloatleft">
-												
-													<label id="serialNumber" name="serialNumber"><b>Serial Number: ${ticketObject.device.serialNumber} </b></label> 
-													<br> 
-													<li id="modelNumber" name="modelNumber">Model: ${ticketObject.device.modelNumber}</li>
-													<li id="brand" name="brand"> Device Brand: ${ticketObject.device.modelBrand}</li>
-													<br> 
-													<label id="location" name=""location""><b>Location</b></label>
-													<li id="building" name="building">Floor ${ticketObject.device.floorNumber} ${ticketObject.device.buildingName}</li>
-													<li id="street" name="street">${ticketObject.device.streetNumber} ${ticketObject.device.streetName}</li>
-													<li id="city" name="city">${ticketObject.device.city_town}</li>
-													<li id="province" name=""province"">${ticketObject.device.province}</li>
-													<li id="areaCode" name="areaCode">${ticketObject.device.areaCode}</li>
-																									
-												</div>								
-												
-										</div>
-									</section>
 
-									<section id="middle">
-	
-										<div class="groupclientaddress">
-											<legend style="font-size: 12px;line-height: 1.42857143;">Ticket Contacts</legend>
-		
-											<div class="machinedetailsfloatright ">	
-												  
-												  <div class="orderDetails">												
-													<li id="contactName"><b>${ticketObject.firstName} ${ticketObject.lastName}</b></li>
-													<li id="cell">Cell No: ${ticketObject.contactCellNumber}</li>
-													<li id="telephone">Telephone No: ${ticketObject.contactTelephoneNumber}</li>
-													<li id="email">E-Mail: ${ticketObject.contactEmail}</li>
-												   </div><br>
-											</div>
-		
-										</div>
-										
-									</section>
+								<section id="content" style="width:35%;">
+								<div class="groupclientdetails">
+									<legend style="font-size: 12px; line-height: 1.42857143;">Device</legend>
 
-									<aside id="sidebar">
-									
-										<div class="groupproductdetails">
-										<legend style="font-size: 12px;line-height: 1.42857143;">Ticket</legend>
-											<div class="machinedetailsfloatright ">	
-												   <div class="orderDetails">
-													<li style="font-size:15px;" id="ticketNum"><b>${ticketObject.ticketNumber}</b></li>
-													<li id="customer">Customer: ${ticketObject.device.customerDevice.customerName}</li>	
-													<li id=tcketStatus>Status: ${ticketObject.status}</li>	
-													<li id=ticketDate>Date: ${ticketObject.dateTime}</li>
-													<li id=assignedTo>Assigned To: ${ticketObject.employee.firstName} ${ticketObject.employee.lastName}</li>
-													<br>
-													<li id="ticket_Description"> <b>Description</b></li>	
-													<li id="ticketDescription"> ${ticketObject.description}</li>												  																	
-													
-												  </div><br>
-												   
-											</div>	
-											
+									<div class="machinedetailsdetailsfloatleft">
+
+										<label id="serialNumber" name="serialNumber"><b>Serial
+												Number: ${ticketObject.device.serialNumber} </b></label> <br>
+										<li id="modelNumber" name="modelNumber">Model:
+											${ticketObject.device.modelNumber}</li>
+										<li id="brand" name="brand">Device Brand:
+											${ticketObject.device.modelBrand}</li> <br> <label
+											id="location" name=""location""><b>Location</b></label>
+										<li id="building" name="building">Floor
+											${ticketObject.device.floorNumber}
+											${ticketObject.device.buildingName}</li>
+										<li id="street" name="street">${ticketObject.device.streetNumber}
+											${ticketObject.device.streetName}</li>
+										<li id="city" name="city">${ticketObject.device.city_town}</li>
+										<li id="province" name=""province"">${ticketObject.device.province}</li>
+										<li id="areaCode" name="areaCode">${ticketObject.device.areaCode}</li>
+
+									</div>
+
+								</div>
+								</section>
+
+								<section id="middle">
+
+								<div class="groupclientaddress">
+									<legend style="font-size: 12px; line-height: 1.42857143;">Ticket
+										Contacts</legend>
+
+									<div class="machinedetailsfloatright ">
+
+										<div class="orderDetails">
+											<li id="contactName"><b>${ticketObject.firstName}
+													${ticketObject.lastName}</b></li>
+											<li id="cell">Cell No: ${ticketObject.contactCellNumber}</li>
+											<li id="telephone">Telephone No:
+												${ticketObject.contactTelephoneNumber}</li>
+											<li id="email">E-Mail: ${ticketObject.contactEmail}</li>
 										</div>
-									</aside>
-									
-									<div class="limeItems" style="margin-left:1%;">
-									
-										<legend style="font-size: 15px;line-height: 1.42857143;" align="center"><b>Ticket Details </b></legend>
-										<table id="orderInfo" class="display datatable">
-												<thead>
-													<tr>
-														<th>Ticket No</th>
-														<th>Status</th>
-														<th>Priority</th>
-														<th>Technician Email</th>
-														<th>Comments</th>
-											 		<!-- <th>Placed By</th>
+										<br>
+									</div>
+
+								</div>
+
+								</section>
+
+								<aside id="sidebar">
+
+								<div class="groupproductdetails">
+									<legend style="font-size: 12px; line-height: 1.42857143;">Ticket</legend>
+									<div class="machinedetailsfloatright ">
+										<div class="orderDetails">
+											<li style="font-size: 15px;" id="ticketNum"><b>${ticketObject.ticketNumber}</b></li>
+											<li id="customer">Customer:
+												${ticketObject.device.customerDevice.customerName}</li>
+											<li id=tcketStatus>Status: ${ticketObject.status}</li>
+											<li id=ticketDate>Date: ${ticketObject.dateTime}</li>
+											<li id=assignedTo>Assigned To:
+												${ticketObject.employee.firstName}
+												${ticketObject.employee.lastName}</li> <br>
+											<li id="ticket_Description"><b>Description</b></li>
+											<li id="ticketDescription">${ticketObject.description}</li>
+
+										</div>
+										<br>
+
+									</div>
+
+								</div>
+								</aside>
+
+								<div class="limeItems" style="margin-left: 1%;">
+
+									<legend style="font-size: 15px; line-height: 1.42857143;"
+										align="center">
+										<b>Ticket Details </b>
+									</legend>
+									<table id="orderInfo" class="display datatable">
+										<thead>
+											<tr>
+												<th>Ticket No</th>
+												<th>Status</th>
+												<th>Priority</th>
+												<th>Technician Email</th>
+												<th>Comments</th>
+												<!-- <th>Placed By</th>
 														<th>Approver</th> -->
-	
-													</tr>
-												</thead>
-												<tbody>
-													<!-- Iterating over the list sent from Controller -->
-													
-														<tr>
-															<td>${ticketObject.ticketNumber}}</td>
-															<td>${ticketObject.status}</td>
-															<td>${ticketObject.priority}</td>
-															<td>${ticketObject.employee.email}</td>
-															<td>${ticketObject.comments}</td>
-															<%-- <td>${list.technician}</td>
+
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+
+											<tr>
+												<td>${ticketObject.ticketNumber}</td>
+												<td>${ticketObject.status}</td>
+												<td>${ticketObject.priority}</td>
+												<td>${ticketObject.employee.email}</td>
+												<td>${ticketObject.comments}</td>
+												<%-- <td>${list.technician}</td>
 															<td>${list.quantity}</td> --%>
-														</tr>
-													
-												</tbody>
-											</table>
-											
-										 </div>									
-								
+											</tr>
+
+										</tbody>
+									</table>
+
+								</div>
+
 							</div>
 
-							
+
 						</div>
 
-						<!--#orderHistoryDetails tab-->
-						<div class="tab-pane" id="orderHistoryDetails">
+						<!--#ticketHistoryDetails tab-->
+						<div class="tab-pane" id="ticketHistoryDetails">
 
 							<div class="groupdetails-row-padding">
 
 								<div class="groupclientdetails">
-										<br/>
-											<legend>Order Status</legend>
-										<form:form modelAttribute="orderHistory" method="post"
-											action="orderHistory" id="orderHistory" name="orderHistory">
-
+									<br />
+									<legend style="font-size: 15px; line-height: 1.42857143;"
+										align="center">
+										<b>Ticket History </b>
+									</legend>
+									<form:form class="well form-horizontal">
+										<div class="panel-body">
 											<!-- Below table will be displayed as Data table -->
-											<table id="orderDetails"
-												class="table table-striped table-bordered table-hover table-condensed">
+											<table id="tckHistory" class="display datatable">
 												<thead>
 													<tr>
-														<th>Order Status</th>
-														<th>Date/Time</th>
-
+														<th>Ticket No</th>
+														<th>Ticket Status</th>
+														<th>Action Taken</th>
+														<th>Date</th>
+														<th>Assigned To</th>
+														<th>Colour Reading</th>
+														<th>Mono Reading</th>
+														<th>Comment</th>
 													</tr>
 												</thead>
 												<tbody>
 													<!-- Iterating over the list sent from Controller -->
-													<c:forEach var="list" items="${status}">
+													<c:forEach items="${ticketHistoryList}" var="history">
 														<tr>
-
-															<td>${list.orderStatus}</td>
-															<td>${list.statusDateTime}</td>
-
+															<td><c:out value="${history.ticketNumber}" /></td>
+															<td><c:out value="${history.status}" /></td>
+															<c:choose>
+																<c:when test="${history.status =='Open'}">
+																	<td><c:out value="${history.actionTaken}" />Log
+																		Ticket</td>
+																</c:when>
+																<c:when test="${history.status =='Awaiting Spares'}">
+																	<td>Waiting for Order: <c:out
+																			value="${orders.orderNum}" /></td>
+																</c:when>
+																<c:when test="${history.status =='Escalated'}">
+																	<td>Ticket Escalated to Manager</td>
+																</c:when>
+																<c:when test="${history.status =='SLA Bridged'}">
+																	<td><c:out value="${history.actionTaken}" />System
+																		update</td>
+																</c:when>
+																<c:when test="${history.status =='Re-Opened'}">
+																	<td>Ticket Re-Opened</td>
+																</c:when>
+																<c:when test="${history.status =='Acknowledged'}">
+																	<td><c:out value="${history.actionTaken}" />Tickets
+																		Acknowledged</td>
+																</c:when>
+																<c:when test="${history.status =='Taken'}">
+																	<td>Ticket Taken</td>
+																</c:when>
+																<c:otherwise>
+																	<td><c:out value="${history.actionTaken}" /></td>
+																</c:otherwise>
+															</c:choose>
+															<td><c:out value="${history.escalatedDate}" /></td>
+															<td><c:out
+																	value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+															<td><c:out value="${history.colourReading }" /></td>
+															<td><c:out value="${history.monoReading }" /></td>
+															<td><c:out value="${history.comment}" /></td>
 														</tr>
 													</c:forEach>
 												</tbody>
 											</table>
-											<!-- table order History -->
 
-										</form:form>
-										<!-- form order History -->										
+										</div>
+									</form:form>
 
-								</div><!-- group client details -->
-							 	 
+								</div>
+								<!-- group client details -->
+
 							</div>
-							<!-- group details-row-padding -->
 
 						</div>
-						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Escalated'}">
+
+								<div class="tab-pane" id="ticketResolvedDetailss">
+
+									<div class="panel-body">
+
+										<!-- resolvedSolution Details -->
+										<form:form action="updateTicket" modelAttribute="updateTicket"
+											method="post" id="updateResolved"
+											class="well form-horizontal">
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Resolve</b>
+											</legend>
+
+
+											<!-- Text area Action Taken-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Action Taken</label>
+												<div class="col-md-6 selectContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-list"></i></span><select
+															name="actionTaken" id="actionTaken"
+															class="form-control selectpicker"
+															onchange="Faulty(this.value);">
+															<option value="">Please select Action Taken for
+																Repair</option>
+															<option value="Replaced Part/Toner">Replaced
+																Part/Toner</option>
+															<option value="Cleared Paper Jam">Cleared Paper
+																Jam</option>
+															<option value="Installed Drivers">Installed
+																Drivers</option>
+															<option value="Configured Drivers">Configured
+																Drivers</option>
+															<option value="Configured Printer">Configured
+																Printer</option>
+															<option value="User Error">User Error</option>
+															<option value="No fault Found">No fault Found</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="hideMonoAndColour" id="hideMonoAndColour"
+												style="display: none">
+
+												<c:if test="${not empty ticketObject.device.colourReading}">
+													<!-- Text checkbox Colour Reading-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Colour
+															Reading</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span> <input
+																	type="text" class="form-control"
+																	onkeypress="return isNumber(event)"
+																	placeholder="Enter Colour Reading" id="colourReading"
+																	name="colourReading">
+															</div>
+														</div>
+													</div>
+												</c:if>
+												<div class="form-group">
+													<label class="col-md-3 control-label">Mono Reading</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> <input type="text"
+																class="form-control" onkeypress="return isNumber(event)"
+																id="mono" name="monoReading"
+																placeholder="Enter Mono Reading">
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<!-- HideMonoAndColour if no action is selscted -->
+
+
+
+											<!-- group Used Part Numbers -->
+											<div class="groupsearchdetails">
+
+												<legend id="hideUsedPartNumbersHidding"
+													style="display: none; width: 50%; margin-left: 25%;">Used
+													Part Numbers </legend>
+
+												<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
+													style="display: none">
+
+													<fieldset id="groupstock" style="margin-left: -1%">
+
+														<!-- group Boot Stock -->
+														<div class="form-group">
+															<label class="col-xs-3 control-label">Boot Stock</label>
+															<div class="col-md-6 inputGroupContainer">
+																<input type="radio" value="bootType" name="groupboot"
+																	data-toggle="modal" data-target="#bootStock"
+																	readonly="readonly" id="BootStocked">
+															</div>
+														</div>
+
+														<!-- group Site Stock -->
+														<div class="form-group">
+															<label class="col-xs-3 control-label">Site Stock</label>
+															<div class="col-md-6 inputGroupContainer">
+																<input type="radio" value="siteType" name="groupboot"
+																	data-toggle="modal" data-target="#siteStock"
+																	disabled="disabled" id="SiteStocked">
+															</div>
+														</div>
+
+													</fieldset>
+
+
+													<!-- display ticked Used Part Numbers-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Used Part
+															Numbers</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span>
+																<textarea id="usedPartNumbers" name="usedPartNumbers"
+																	readonly="readonly" class="form-control"
+																	style="height: 60px; font-size: 11px;">
+													 </textarea>
+															</div>
+														</div>
+													</div>
+													<!--// display ticked Used Part Numbers-->
+
+												</div>
+												<!-- // end hideIfIsNotPartToner -->
+
+												<!-- display Comments-->
+												<div class="hideComent" id="hideComent"
+													style="display: none">
+													<div class="form-group">
+														<label class="col-md-3 control-label">Please Enter
+															Comment</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea id="comment" name="comment"
+																	class="form-control" placeholder="Please Enter Comment"
+																	style="height: 100px;">
+													 </textarea>
+															</div>
+														</div>
+													</div>
+												</div>
+												<!--// display Comments-->
+
+											</div>
+											<!-- // group used part numbers -->
+
+											<div class="actionTakenSubmit" id="actionTakenSubmit"
+												style="display: none;">
+
+												<div class="form-group row">
+													<div class="col-sm col-sm-8"
+														style="margin-left: 26%; width: 48%;">
+														<input type="submit" name=resolve value="Resolve Ticket"
+															class="btn btn-primary btn-block btn-lg" tabindex="9"
+															id="resolve">
+													</div>
+												</div>
+
+											</div>
+											<!-- //actionTakenSubmit -->
+
+										</form:form>
+										<!-- resolvedSolution Details -->
+
+
+										<!--Boot Stock-->
+										<div id="bootStock" class="modal fade" role="dialog"
+											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+											<div class="modal-dialog">
+												<!-- Modal content-->
+												<div class="modal-content" id="botStock">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">×</button>
+														<h3 class="modal-title">Boot Stock</h3>
+													</div>
+													<div class="modal-body">
+														<table id="bStock" class="display datatable">
+															<thead>
+																<tr>
+																	<th>Part No</th>
+																	<th>Description</th>
+																	<th>Item Type</th>
+																	<th>Quantity</th>
+																	<th>Tick</th>
+
+																</tr>
+															</thead>
+															<tbody>
+																<!-- Iterating over the list sent from Controller -->
+																<c:forEach var="list" items="${bootStock}">
+
+																	<tr>
+																		<td>${list.partNumber}</td>
+																		<td>${list.itemDescription}</td>
+																		<td>${list.itemType}</td>
+																		<td>${list.quantity}</td>
+																		<td><input type="checkbox"
+																			id="${list.partNumber}_selectedItem"
+																			name="selectedItem" class="form-group"
+																			onClick="checkUsedPartNumbers();"
+																			value="${list.partNumber}"></td>
+																	</tr>
+
+																</c:forEach>
+															</tbody>
+														</table>
+														<input type="hidden" class="form-control" id="setStock"
+															name="bootType" value="Boot">
+
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">Close</button>
+														<button id="save" type="button" class="btn btn-primary"
+															data-dismiss="modal">Save</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--/Boot Stock-->
+
+
+										<!--Site Stock-->
+										<div id="siteStock" class="modal fade" role="dialog"
+											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+											<div class="modal-dialog">
+												<!-- Modal content-->
+												<div class="modal-content" id="siStock">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">×</button>
+														<h3 class="modal-title">Site Stock</h3>
+													</div>
+													<div class="modal-body">
+														<table id="sStock" class="display datatable">
+															<thead>
+																<tr>
+																	<th>Part No</th>
+																	<th>Description</th>
+																	<th>Model No</th>
+																	<th>Quantity</th>
+																	<th>Tick</th>
+																</tr>
+															</thead>
+															<tbody>
+																<!-- Iterating over the list sent from Controller -->
+																<c:forEach var="list" items="${siteStock}">
+
+																	<tr>
+																		<td>${list.partNumber}</td>
+																		<td>${list.itemDescription}</td>
+																		<td>${list.itemType}</td>
+																		<td>${list.quantity}</td>
+																		<td><input type="checkbox"
+																			id="${list.partNumber}_selectedItem"
+																			name="selectedItem" class="form-group"
+																			onClick="checkUsedPartNumbers();"
+																			value="${list.partNumber}"></td>
+																	</tr>
+																</c:forEach>
+															</tbody>
+														</table>
+														<input type="hidden" class="form-control" id="botStock"
+															name="bootType" value="Site">
+
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+															<button id="save" type="button" class="btn btn-primary"
+																data-dismiss="modal">Save</button>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--/site stock-->
+
+									</div>
+									<!-- /panel body -->
+								</div>
+								<!-- //resolvedSolution  -->
+
+							</c:when>
+						</c:choose>
+
+						<c:choose>
+							<c:when test="${ticketObject.status =='Acknowledged'}">
+
+								<div class="tab-pane active" id="ticketReassign">
+
+									<div class="panel-body">
+
+										<!-- ticketReassign Details -->
+										<form:form action="updateTicket" modelAttribute="updateTicket"
+											method="post" id="updateResolved"
+											class="well form-horizontal">
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Re-assign ticket</b>
+											</legend>
+
+											<!--First Column-->
+											<div class="col-md-6">
+												<!-- Text input Serial No-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Serial No</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="device" id="device" readonly="readonly"
+																value="${product.serialNumber }" class="form-control"
+																type="text">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Machine Model-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Model No</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="modelNumber" id="modelNumber"
+																value="${product.modelNumber }" class="form-control"
+																type="text" readonly="readonly">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Customer Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Customer Name</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																value="${product.customerDevice.customerName }"
+																class="form-control" id="customerName"
+																name="customerName" type="text" required="required"
+																readonly="readonly">
+														</div>
+													</div>
+												</div>
+
+												<!-- Assign Technician -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Assign
+														Technician</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> <select
+																id="selectedTechnician" name="technicianUserName"
+																id="selectedTechnician"
+																class="form-control selectpicker">
+																<option value="">Select Technician</option>
+																<c:forEach items="${technicians}" var="technician">
+																	<c:choose>
+																		<c:when test="${technician.leaveStatus =='Active'}">
+																			<option class="onleave" value="${technician.email}">${technician.firstName}
+																				${technician.lastName} (Leave Active)</option>
+																		</c:when>
+																		<c:when test="${technician.leaveStatus !='Active'}">
+																			<option value="${technician.email}">${technician.firstName}
+																				${technician.lastName}</option>
+																		</c:when>
+																	</c:choose>
+																</c:forEach>
+															</select>
+														</div>
+													</div>
+												</div>
+
+												<!-- Select type Priority-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Priority</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> <select
+																name="priority" id="priority"
+																class="form-control selectpicker">
+																<option value="">Select Priority</option>
+																<option value="High">High</option>
+																<option value="Medium">Medium</option>
+																<option value="Low">Low</option>
+															</select>
+														</div>
+													</div>
+												</div>
+
+
+												<!-- Text input Contact Person First Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" style="color: red;">Contact
+														Person</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group"></div>
+													</div>
+												</div>
+
+												<!-- Text input Contact Person First Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">First Name</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-user"></i></span> <input
+																id="firstName" name="firstName" placeholder="First Name"
+																class="form-control" type="text">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Contact Person  Last Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Last Name</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-user"></i></span> <input
+																id="lastName" name="lastName" placeholder="Last Name"
+																class="form-control" type="text">
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--/F Column-->
+
+
+											<!--Second column-->
+											<div class="col-sm-6">
+
+												<!-- Text area -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Description</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-pencil"></i></span>
+															<textarea class="form-control" name="description"
+																id="description" placeholder="Description"
+																onkeydown="upperCaseF(this)"
+																style="margin: 0px; height: 194px;" maxlength="150"></textarea>
+														</div>
+													</div>
+												</div>
+
+
+												<div class="form-group">
+													<label class="col-md-3 control-label">Email</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-envelope"></i></span> <input
+																id="contactEmail" name="contactEmail"
+																placeholder="Email Address" class="form-control"
+																type="email">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Contact Person Cellphone Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Cellphone No</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-earphone"></i></span> <input
+																id="contactCellNumber" name="contactCellNumber"
+																placeholder="Cellphone No (Optional)"
+																class="form-control" maxlength="10" type="text"
+																onkeypress="return isNumber(event)">
+														</div>
+													</div>
+												</div>
+												<!-- Text input Contact Person Tellphone Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Tellphone No
+													</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-earphone"></i></span> <input
+																id="contactTelephoneNumber"
+																name="contactTelephoneNumber"
+																placeholder="Telephone No (Optional)"
+																class="form-control" maxlength="10" type="text"
+																onkeypress="return isNumber(event)">
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<!--/S Column-->
+
+
+											<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Reassign Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+
+
+
+										</form:form>
+										<!-- ticketReassign Details -->
+
+									</div>
+									<!-- /panel body -->
+								</div>
+								<!-- /re-assign ticket -->
+							</c:when>
+						</c:choose>
+
+						<c:choose>
+							<c:when test="${ticketObject.status =='Escalated'}">
+
+								<div class="tab-pane active" id="ticketReassign">
+
+									<div class="panel-body">
+
+										<!-- ticketReassign Details -->
+										<form:form action="updateTicket" modelAttribute="updateTicket"
+											method="post" id="updateResolved"
+											class="well form-horizontal">
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Re-assign ticket</b>
+											</legend>
+
+
+											<!--First Column-->
+											<div class="col-md-6">
+												<!-- Text input Serial No-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Serial No</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="device" id="device" readonly="readonly"
+																value="${product.serialNumber }" class="form-control"
+																type="text">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Machine Model-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Model No</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="modelNumber" id="modelNumber"
+																value="${product.modelNumber }" class="form-control"
+																type="text" readonly="readonly">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Customer Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Customer Name</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																value="${product.customerDevice.customerName }"
+																class="form-control" id="customerName"
+																name="customerName" type="text" required="required"
+																readonly="readonly">
+														</div>
+													</div>
+												</div>
+
+												<!-- Assign Technician -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Assign
+														Technician</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> <select
+																id="selectedTechnician" name="technicianUserName"
+																id="selectedTechnician"
+																class="form-control selectpicker">
+																<option value="">Select Technician</option>
+																<c:forEach items="${technicians}" var="technician">
+																	<c:choose>
+																		<c:when test="${technician.leaveStatus =='Active'}">
+																			<option class="onleave" value="${technician.email}">${technician.firstName}
+																				${technician.lastName} (Leave Active)</option>
+																		</c:when>
+																		<c:when test="${technician.leaveStatus !='Active'}">
+																			<option value="${technician.email}">${technician.firstName}
+																				${technician.lastName}</option>
+																		</c:when>
+																	</c:choose>
+																</c:forEach>
+															</select>
+														</div>
+													</div>
+												</div>
+
+												<!-- Select type Priority-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Priority</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> <select
+																name="priority" id="priority"
+																class="form-control selectpicker">
+																<option value="">Select Priority</option>
+																<option value="High">High</option>
+																<option value="Medium">Medium</option>
+																<option value="Low">Low</option>
+															</select>
+														</div>
+													</div>
+												</div>
+
+
+												<!-- Text input Contact Person First Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label" style="color: red;">Contact
+														Person</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group"></div>
+													</div>
+												</div>
+
+												<!-- Text input Contact Person First Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">First Name</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-user"></i></span> <input
+																id="firstName" name="firstName" placeholder="First Name"
+																class="form-control" type="text">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Contact Person  Last Name-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Last Name</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-user"></i></span> <input
+																id="lastName" name="lastName" placeholder="Last Name"
+																class="form-control" type="text">
+														</div>
+													</div>
+												</div>
+											</div>
+											<!--/F Column-->
+
+
+											<!--Second column-->
+											<div class="col-sm-6">
+
+												<!-- Text area -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Description</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-pencil"></i></span>
+															<textarea class="form-control" name="description"
+																id="description" placeholder="Description"
+																onkeydown="upperCaseF(this)"
+																style="margin: 0px; height: 194px;" maxlength="150"></textarea>
+														</div>
+													</div>
+												</div>
+
+
+												<div class="form-group">
+													<label class="col-md-3 control-label">Email</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-envelope"></i></span> <input
+																id="contactEmail" name="contactEmail"
+																placeholder="Email Address" class="form-control"
+																type="email">
+														</div>
+													</div>
+												</div>
+
+												<!-- Text input Contact Person Cellphone Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Cellphone No</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-earphone"></i></span> <input
+																id="contactCellNumber" name="contactCellNumber"
+																placeholder="Cellphone No (Optional)"
+																class="form-control" maxlength="10" type="text"
+																onkeypress="return isNumber(event)">
+														</div>
+													</div>
+												</div>
+												<!-- Text input Contact Person Tellphone Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Tellphone No
+													</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-earphone"></i></span> <input
+																id="contactTelephoneNumber"
+																name="contactTelephoneNumber"
+																placeholder="Telephone No (Optional)"
+																class="form-control" maxlength="10" type="text"
+																onkeypress="return isNumber(event)">
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<!--/S Column-->
+
+
+
+
+											<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Reassign Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+
+
+										</form:form>
+										<!-- ticketReassign Details -->
+
+
+									</div>
+									<!-- /panel body -->
+								</div>
+								<!-- /re-assign ticket -->
+
+							</c:when>
+						</c:choose>
+
+						<div class="tab-pane active" id="ticketResolvedDetails"></div>
+
+						<div class="tab-pane active" id="ticketReassign"></div>
+
+
+
+
 					</div>
-					<!-- /tab-content -->
+					<!-- group details-row-padding -->
+
 				</div>
-				<!-- /panel body -->
+
 			</div>
-			<!--/panel success class-->
+			<!-- /tab-content -->
 		</div>
-		<!-- /Container -->
-		<!-- Footer -->
-		<c:import url="templates/footer.jsp"></c:import>
-		<!--/ Footer -->
+		<!-- /panel body -->
+	</div>
+	<!--/panel success class-->
+	</div>
+	<!-- /Container -->
+	<!-- Footer -->
+	<c:import url="templates/footer.jsp"></c:import>
+	<!--/ Footer -->
 	</div>
 	<!-- / velaphanda_containter -->
 
@@ -256,11 +1171,31 @@ table#orderDetails {
 <script type="text/javascript"
 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<script type="text/javascript"
+	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+<script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+
+<script type="text/javascript"
+	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
+
 <!-- Paging the table -->
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#orderInfo').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+		/* few more options are available to use */
+		});
+	});
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#tckHistory').DataTable({
 			"jQueryUI" : true,
 			"pagingType" : "full_numbers",
 			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]

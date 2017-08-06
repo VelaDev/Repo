@@ -17,6 +17,8 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllOpenTickets();
 	List<Tickets> getAllEscalatedTickets();
 	List<Tickets> getAllAwaitingSpares();
+    List<Tickets> getAllAcknowledgedTickets();	
+	List<Tickets> getAllTakenTickets();	
 	
 	List<Tickets> getAllClosedTickets();
 	List<Tickets> getAllClosedTickets(String startDate,String endDate);
@@ -46,6 +48,8 @@ public interface TicketsDaoInt {
     int countOpenTickets();
     int countAwaitingSparesTickets();
     int countResolvedTickets();
+    int countAcknowledgedTickets();	
+	int countTakenTickets();
     
     int countEscalatedTickets(String technicianEmail);
     int countClosedTickets(String technicianEmail);
@@ -53,6 +57,8 @@ public interface TicketsDaoInt {
     int countOpenTickets(String technicianEmail);
     int countAwaitingSparesTickets(String technicianEmail);
     int countResolvedTickets(String technicianEmail);
+    int countAcknowledgedTickets(String technicianEmail);	
+	int countTakenTickets(String technicianEmail);
     
     List<Tickets> getAllOpenTickets(String technicianEmail);
 	List<Tickets> getAllEscalatedTickets(String technicianEmail);
@@ -60,10 +66,11 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllClosedTickets(String technicianEmail);
 	List<Tickets> getAllBridgedTickets(String technicianEmail);
 	List<Tickets> getAllResolvedTickets(String technicianEmail);
+	List<Tickets> getAllAcknowledgedTickets(String technicianEmail);	
+	List<Tickets> getAllTakenTickets(String technicianEmail);	
 	List<Tickets> getAwaitingSparesTickets();
 	List<Tickets> getLastFourteenDaysTickets();
 	
-
 	
 	/*void calculateSLAHours();
 	void resolveToClosedTicketUpdate();

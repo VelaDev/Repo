@@ -78,7 +78,7 @@ input#selectDateRange {
 	width: 12%;
 }
 
-.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(7) ~ li {
+.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(8) ~ li {
     width: 13%;
 }
 
@@ -165,10 +165,10 @@ input#selectDateRange {
 						<div class="form-group">
 							<div class="col-md-3 inputGroupContainer">
 								<div class="input-group">
-									<input name="orderNumber" list="orderNumbers"
+									<input name="ticketNumbers" list="ticketNumbers"
 													class="form-control" type="text"
 													onkeydown="upperCaseF(this)"
-													placeholder='Enter Order Number' /> <span
+													placeholder='Enter Ticket Number' /> <span
 										class="input-group-btn">
 										<button class="btn btn-success" type="submit">
 											<div class="up" style="margin-top: -8%; color: white;">Search</div>
@@ -179,16 +179,15 @@ input#selectDateRange {
 							</div>
 
 							<!-- Iterating over the list sent from Controller -->
-							<datalist id="orderNumbers"> 
+							<datalist id="ticketNumbers"> 
 								<c:forEach var="list"
-									items="${orderNumbers}">
+									items="${ticketNumbers}">
 									<option value="${list}">
 								</c:forEach>
 							 </datalist>
 
 						</div>
 					</div>
-
 
 				</div>
 
@@ -214,93 +213,107 @@ input#selectDateRange {
 								id="ticket-summary" class="nav nav-tabs">
 
 								
-								<li><a href='<c:url value="ordersToApprove"/>'
+								<li><a href='<c:url value="openTickets"/>'
 									class="summery-filter clearfix"
-									data-parallel-url="OrderToApprove"
+									data-parallel-url="openTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 										<div class="summary-count pull-left"
 											style="margin-left: -16%;">
-											<h4 align="center">${countNewOrders}</h4>
+											<h4 align="center">${countOpenTickets}</h4>
 											<p align="center">Open Tickets</p>
 										</div>
 								</a></li>
-								<li><a href='<c:url value="ordersToShip"/>'
-									data-parallel-url="OrderToShip"
+								
+								<li><a href='<c:url value="acknowledgedTickets"/>'
+									data-parallel-url="AcknowledgedTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
 											style="margin-left: 3%">
-											<h4 align="center">${countApprovedOrder}</h4>
+											<h4 align="center">${countAcknowledgedTickets}</h4>
 											<p align="center">Acknowledged Tickets</p>
 										</div>
 								</a></li>
 
-								<li><a href='<c:url value="ShippedOrders"/>'
+								<li><a href='<c:url value="takenTickets"/>'
 									class="summery-filter clearfix"
-									data-parallel-url="OrderToApprove"
+									data-parallel-url="TakenTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
 											style="margin-left: 19%">
-											<h4 align="center">${countShippedOrder}</h4>
+											<h4 align="center">${countTakenTickets}</h4>
 											<p align="center">Taken Tickets</p>
 										</div>
 								</a></li>
 
-								<li><a href='<c:url value="rejectedOrders"/>'
+								<li><a href='<c:url value="ticketsAwaitingSpares"/>'
 									class="summery-filter clearfix"
-									data-parallel-url="OrderToApprove"
+									data-parallel-url="TicketsAwaitingSpares"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 										<div class="summary-count pull-left"
 											style="margin-left: -2%">
-											<h4 align="center">${countRejectedOrder}</h4>
+											<h4 align="center">${countAwaitingSparesTickets}</h4>
 											<p align="center">Tickets Awaiting Spares</p>
 										</div>
 								</a></li>
 								
-								<li><a href='<c:url value="closedOrders"/>'
+								<li><a href='<c:url value="escalatedTickets"/>'
 									class="summery-filter clearfix"
-									data-parallel-url="OrderToApprove"
+									data-parallel-url="escalatedTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
 											style="margin-left: 12%">
-											<h4 align="center">${countClosedOrder}</h4>
+											<h4 align="center">${countEscalatedTickets}</h4>
 											<p align="center">Escalated Tickets</p>
 										</div>
 								</a>
 								</li>
 								
-																
-								<li><a href='<c:url value="closedOrders"/>'
+								<li><a href='<c:url value="sLABridgedTickets"/>'
 									class="summery-filter clearfix"
-									data-parallel-url="OrderToApprove"
+									data-parallel-url="sLABridgedTickets"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
+
+										<div class="summary-count pull-left"
+											style="margin-left: 2%;">
+											<h4 align="center">${countBridgedTickets}</h4>
+											<p align="center">SLA Bridged Tickets</p>
+										</div>
+								</a>
+								</li>
+																
+								<li><a href='<c:url value="resolvedTickets"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="resolvedTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
 											style="margin-left: 12%">
-											<h4 align="center">${countClosedOrder}</h4>
+											<h4 align="center">${countResolvedTickets}</h4>
 											<p align="center">Resolved Tickets</p>
 										</div>
 								</a>
 								</li>
 								
 																
-								<li><a href='<c:url value="closedOrders"/>'
+								<li><a href='<c:url value="closedTickets"/>'
 									class="summery-filter clearfix"
-									data-parallel-url="OrderToApprove"
+									data-parallel-url="closedTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
 											style="margin-left: 4%">
-											<h4 align="center">${countClosedOrder}</h4>
+											<h4 align="center">${countClosedTickets}</h4>
 											<p align="center">Closed Tickets</p>
 										</div>
 								</a>
@@ -342,7 +355,7 @@ input#selectDateRange {
 												<c:forEach var="list" items="${lastForteenList}">
 													<tr>
 														<td><a
-															href="ticketItemDetailsM?recordID=<c:out value='${list.recordID}'/>">${list.ticketNumber}</a></td>
+															href="ticketItemDetailsT?recordID=<c:out value='${list.recordID}'/>">${list.ticketNumber}</a></td>
 														<td>${list.description}</td>
 														<td>${list.status}</td>
 														<td>${list.dateTime}</td>

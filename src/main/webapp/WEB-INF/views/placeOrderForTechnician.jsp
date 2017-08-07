@@ -320,12 +320,24 @@
             //Check saveEneteredQuantity
 			function saveEneteredQuantity(){
 
-				var getEnteredQuantity;
+				/* var getEnteredQuantity;
 			    var quantity;			    
         		quantity = document.getElementsByName('quantity')[0].value;
 				document.getElementsByName('quantityEntered')[0].value = "C Quantity: " + quantity;
 				getEnteredQuantity = quantity;
+				console.log("Entered Quantity: ",getEnteredQuantity); */
+				
+				var quantity;				
+				var getEnteredQuantity;					
+        		quantity = document.getElementsByName('quantity')[0].value;				
+				document.getElementsByName('quantityEntered')[0].value = quantity;
+				for (var i = 0; i < quantity.length; ++i) {
+					var getEnteredQuantity = quantity[i];  
+					console.log("See whats on the loop :",getEnteredQuantity);
+				}
+				getEnteredQuantity = quantity;
 				console.log("Entered Quantity: ",getEnteredQuantity);
+				
 				
 			}// end Check saveEneteredQuantity
 			

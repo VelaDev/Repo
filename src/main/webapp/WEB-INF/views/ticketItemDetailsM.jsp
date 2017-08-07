@@ -679,53 +679,8 @@ table#orderDetails {
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
 												align="center">
-												<b>Re-assign ticket</b>
+												<b>Re-assign</b>
 											</legend>
-
-											<!--First Column-->
-											<div class="col-md-6">
-												<!-- Text input Serial No-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Serial No</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-barcode"></i></span> <input
-																name="device" id="device" readonly="readonly"
-																value="${product.serialNumber }" class="form-control"
-																type="text">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Machine Model-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Model No</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-barcode"></i></span> <input
-																name="modelNumber" id="modelNumber"
-																value="${product.modelNumber }" class="form-control"
-																type="text" readonly="readonly">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Customer Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Customer Name</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-barcode"></i></span> <input
-																value="${product.customerDevice.customerName }"
-																class="form-control" id="customerName"
-																name="customerName" type="text" required="required"
-																readonly="readonly">
-														</div>
-													</div>
-												</div>
 
 												<!-- Assign Technician -->
 												<div class="form-group">
@@ -756,141 +711,15 @@ table#orderDetails {
 													</div>
 												</div>
 
-												<!-- Select type Priority-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Priority</label>
-													<div class="col-md-6 selectContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-list"></i></span> <select
-																name="priority" id="priority"
-																class="form-control selectpicker">
-																<option value="">Select Priority</option>
-																<option value="High">High</option>
-																<option value="Medium">Medium</option>
-																<option value="Low">Low</option>
-															</select>
-														</div>
-													</div>
-												</div>
-
-
-												<!-- Text input Contact Person First Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label" style="color: red;">Contact
-														Person</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group"></div>
-													</div>
-												</div>
-
-												<!-- Text input Contact Person First Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">First Name</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-user"></i></span> <input
-																id="firstName" name="firstName" placeholder="First Name"
-																class="form-control" type="text">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Contact Person  Last Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Last Name</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-user"></i></span> <input
-																id="lastName" name="lastName" placeholder="Last Name"
-																class="form-control" type="text">
-														</div>
-													</div>
-												</div>
-											</div>
-											<!--/F Column-->
-
-
-											<!--Second column-->
-											<div class="col-sm-6">
-
-												<!-- Text area -->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Description</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-pencil"></i></span>
-															<textarea class="form-control" name="description"
-																id="description" placeholder="Description"
-																onkeydown="upperCaseF(this)"
-																style="margin: 0px; height: 194px;" maxlength="150"></textarea>
-														</div>
-													</div>
-												</div>
-
-
-												<div class="form-group">
-													<label class="col-md-3 control-label">Email</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-envelope"></i></span> <input
-																id="contactEmail" name="contactEmail"
-																placeholder="Email Address" class="form-control"
-																type="email">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Contact Person Cellphone Number-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Cellphone No</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-earphone"></i></span> <input
-																id="contactCellNumber" name="contactCellNumber"
-																placeholder="Cellphone No (Optional)"
-																class="form-control" maxlength="10" type="text"
-																onkeypress="return isNumber(event)">
-														</div>
-													</div>
-												</div>
-												<!-- Text input Contact Person Tellphone Number-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Tellphone No
-													</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-earphone"></i></span> <input
-																id="contactTelephoneNumber"
-																name="contactTelephoneNumber"
-																placeholder="Telephone No (Optional)"
-																class="form-control" maxlength="10" type="text"
-																onkeypress="return isNumber(event)">
-														</div>
-													</div>
-												</div>
-
-											</div>
-											<!--/S Column-->
-
-
 											<div class="form-group row">
 												<div class="col-sm col-sm-8"
 													style="margin-left: 26%; width: 48%;">
-													<input type="submit" name=resolve value="Reassign Ticket"
+													<input type="submit" name=resolve value="Re-assign Ticket"
 														class="btn btn-primary btn-block btn-lg" tabindex="9"
 														id="resolve">
 												</div>
 											</div>
-
-
-
+											
 										</form:form>
 										<!-- ticketReassign Details -->
 
@@ -915,55 +744,9 @@ table#orderDetails {
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
 												align="center">
-												<b>Re-assign ticket</b>
+												<b>Re-assign</b>
 											</legend>
-
-
-											<!--First Column-->
-											<div class="col-md-6">
-												<!-- Text input Serial No-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Serial No</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-barcode"></i></span> <input
-																name="device" id="device" readonly="readonly"
-																value="${product.serialNumber }" class="form-control"
-																type="text">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Machine Model-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Model No</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-barcode"></i></span> <input
-																name="modelNumber" id="modelNumber"
-																value="${product.modelNumber }" class="form-control"
-																type="text" readonly="readonly">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Customer Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Customer Name</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-barcode"></i></span> <input
-																value="${product.customerDevice.customerName }"
-																class="form-control" id="customerName"
-																name="customerName" type="text" required="required"
-																readonly="readonly">
-														</div>
-													</div>
-												</div>
-
+											
 												<!-- Assign Technician -->
 												<div class="form-group">
 													<label class="col-md-3 control-label">Assign
@@ -993,141 +776,14 @@ table#orderDetails {
 													</div>
 												</div>
 
-												<!-- Select type Priority-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Priority</label>
-													<div class="col-md-6 selectContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-list"></i></span> <select
-																name="priority" id="priority"
-																class="form-control selectpicker">
-																<option value="">Select Priority</option>
-																<option value="High">High</option>
-																<option value="Medium">Medium</option>
-																<option value="Low">Low</option>
-															</select>
-														</div>
-													</div>
-												</div>
-
-
-												<!-- Text input Contact Person First Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label" style="color: red;">Contact
-														Person</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group"></div>
-													</div>
-												</div>
-
-												<!-- Text input Contact Person First Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">First Name</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-user"></i></span> <input
-																id="firstName" name="firstName" placeholder="First Name"
-																class="form-control" type="text">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Contact Person  Last Name-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Last Name</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-user"></i></span> <input
-																id="lastName" name="lastName" placeholder="Last Name"
-																class="form-control" type="text">
-														</div>
-													</div>
-												</div>
-											</div>
-											<!--/F Column-->
-
-
-											<!--Second column-->
-											<div class="col-sm-6">
-
-												<!-- Text area -->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Description</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-pencil"></i></span>
-															<textarea class="form-control" name="description"
-																id="description" placeholder="Description"
-																onkeydown="upperCaseF(this)"
-																style="margin: 0px; height: 194px;" maxlength="150"></textarea>
-														</div>
-													</div>
-												</div>
-
-
-												<div class="form-group">
-													<label class="col-md-3 control-label">Email</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-envelope"></i></span> <input
-																id="contactEmail" name="contactEmail"
-																placeholder="Email Address" class="form-control"
-																type="email">
-														</div>
-													</div>
-												</div>
-
-												<!-- Text input Contact Person Cellphone Number-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Cellphone No</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-earphone"></i></span> <input
-																id="contactCellNumber" name="contactCellNumber"
-																placeholder="Cellphone No (Optional)"
-																class="form-control" maxlength="10" type="text"
-																onkeypress="return isNumber(event)">
-														</div>
-													</div>
-												</div>
-												<!-- Text input Contact Person Tellphone Number-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Tellphone No
-													</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-earphone"></i></span> <input
-																id="contactTelephoneNumber"
-																name="contactTelephoneNumber"
-																placeholder="Telephone No (Optional)"
-																class="form-control" maxlength="10" type="text"
-																onkeypress="return isNumber(event)">
-														</div>
-													</div>
-												</div>
-
-											</div>
-											<!--/S Column-->
-
-
-
-
 											<div class="form-group row">
 												<div class="col-sm col-sm-8"
 													style="margin-left: 26%; width: 48%;">
-													<input type="submit" name=resolve value="Reassign Ticket"
+													<input type="submit" name=resolve value="Re-assign Ticket"
 														class="btn btn-primary btn-block btn-lg" tabindex="9"
 														id="resolve">
 												</div>
 											</div>
-
 
 										</form:form>
 										<!-- ticketReassign Details -->

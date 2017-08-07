@@ -179,8 +179,7 @@
 												<thead>
 													<tr>
 														<th>Part No</th>														
-														<th>Provided Qty</th>
-														<th>Selected Item</th>
+														<th>Provided Qty</th>														
 														<th>Action</th>
 													</tr>
 												</thead>
@@ -277,7 +276,7 @@
                             return "<button type='button' onclick='saveEneteredQuantity();'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
                         }
                     }],
-                     columns: [{
+                    columns: [{
                         data: "part no"
                     }, {
                         data: "description"
@@ -286,7 +285,7 @@
                     }, {
                         data: "avalaible qty"
                     }, {
-                        data: "quantity"
+                        data: "quantityEntered"
                     },
                     { data: null }],
 
@@ -308,17 +307,15 @@
                             return "<button type='button'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
                         }
                     }],
-                     columns: [{
+                    columns: [{
                         data: "part no"
                     },                    
                     {
-                        data: "quantityEntered"
-                    },
-                    {
-                        data: "selectedItem"
-                    },
+                        data: "quantity"
+                    },                    
                     
                     { data: null }],
+
 
                 });
             } // end create data table for createDataTableSelectedHOStock.
@@ -337,14 +334,14 @@
 				var quantity;				
 				var getEnteredQuantity;
 				
-				quantity = document.getElementsByName('quantity')[0].value;				
-				document.getElementsByName('quantityEntered')[0].value = quantity;
+				getEnteredQuantity = document.getElementsByName('quantityEntered')[0].value;				
+				document.getElementsByName('quantity')[0].value = getEnteredQuantity;
 				if(quantity == ''){
 					alert("Quantity can not be empty.\n Please enter quantity which is less than available quantity");
 					console.log("Q",element.value);
 				}
-				getEnteredQuantity = quantity;
-				console.log("Entered Quantity: ",getEnteredQuantity);				 
+				quantity = getEnteredQuantity;
+				console.log("Entered Quantity: ",quantity);				 
 				
 			}// end Check saveEneteredQuantity
 			
@@ -365,14 +362,13 @@
             var list = [ 
 			               	<c:forEach var="list" items="${compatibility}" >
 			                  	{
-								  	"part no": '${list.partNumber}',
+								  	"part no": '<input type="text" class="form-control" name="selectedItem" value="${list.partNumber}" readonly="readonly">',
 									"description": '${list.itemDescription}',
 									"model no": '${list.compitableDevice}',
 									"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
-									"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',
-									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />',
-						      		"selectedItem": '<input type="checkbox"  id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" checked/>'
-						               
+									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',
+									"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />',
+						      		  
 			                  	},
 						   </c:forEach>
 						]

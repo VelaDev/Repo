@@ -284,7 +284,7 @@
                     }, {
                         data: "avalaible qty"
                     }, {
-                        data: "quantity"
+                        data: "quantityEntered"
                     },
                     { data: null }],
 
@@ -310,7 +310,7 @@
                         data: "part no"
                     },                    
                     {
-                        data: "quantityEntered"
+                        data: "quantity"
                     },
                     {
                         data: "selectedItem"
@@ -367,9 +367,9 @@
 									"description": '${list.itemDescription}',
 									"model no": '${list.compitableDevice}',
 									"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
-									"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',
-									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />',
-						      		"selectedItem": '<input type="checkbox" class="form-group" id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" checked/>'
+									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',
+									"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />',
+						      		"selectedItem": '<input type="checkbox" id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" checked/>'
 						               
 			                  	},
 						   </c:forEach>

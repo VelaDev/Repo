@@ -1170,8 +1170,11 @@ function compareQuantity(element, availableQuantity) {
 		console.log("Place an Order");
 		}
 		if (element.value == ''){
-			alert("Quantity can not be empty. \n Please enter quantity which is less than available quantity");
-			console.log(element.value);
+			alert("Quantity can not be empty.\n Please enter quantity which is less than available quantity");
+			console.log("Q",element.value);
+		}
+		if(element.value == 0){
+			alert("Quantity can not be 0.\n Please enter quantity which is less than available quantity");			
 		}
 		else if(availableQuantity < element.value) {
 				alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");

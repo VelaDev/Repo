@@ -174,12 +174,13 @@
 										</section>
 										<aside id="sidebar" style="width:37%;margin-left: 1%;">
 										<div class="groupproductdetails">
-											<h5><b>Selected HO Stock To Order</b></h5>
+											<h5><b>Selected Line Items To Order</b></h5>
 											<table class="display" id="selectedHOStockToOrder">
 												<thead>
 													<tr>
 														<th>Part No</th>														
-														<th>Quantity</th>
+														<th>Provided Qty</th>
+														<th>Selected Item</th>
 														<th>Action</th>
 													</tr>
 												</thead>
@@ -204,8 +205,7 @@
 							</div>
 
 						</form:form>
-
-
+						
 					</div>
 					<!-- /tab-content -->
 				</div>
@@ -314,6 +314,10 @@
                     {
                         data: "quantityEntered"
                     },
+                    {
+                        data: "selectedItem"
+                    },
+                    
                     { data: null }],
 
                 });
@@ -331,45 +335,47 @@
 				console.log("Entered Quantity: ",getEnteredQuantity); */
 				
 				var quantity;				
-				var getEnteredQuantity;					
-        		quantity = document.getElementsByName('quantity')[0].value;				
+				var getEnteredQuantity;
+				
+				quantity = document.getElementsByName('quantity')[0].value;				
 				document.getElementsByName('quantityEntered')[0].value = quantity;
-				for (var i = 0; i < quantity.length; ++i) {
-					var getEnteredQuantity = quantity[i];  
-					console.log("See whats on the loop :",getEnteredQuantity);
+				if(quantity == ''){
+					alert("Quantity can not be empty.\n Please enter quantity which is less than available quantity");
+					console.log("Q",element.value);
 				}
 				getEnteredQuantity = quantity;
-				console.log("Entered Quantity: ",getEnteredQuantity);
-				
+				console.log("Entered Quantity: ",getEnteredQuantity);				 
 				
 			}// end Check saveEneteredQuantity
 			
-					
+			
+			
             // function to move rows
             function moveRow(evt, fromTable, toTable) {
-
                 var table1 = $(fromTable).DataTable();
                 var table2 = $(toTable).DataTable();
                 var tr = $(evt.target).closest("tr");				
                 var row = table1.row(tr);
                 var data = JSON.parse(JSON.stringify(row.data()));               
                 table2.row.add(data).draw();
-				row.remove().draw();				
+                row.remove().draw();				
             }//end startup and initialize empty tables for appearance
             
            // this is JavaScript code written in the JSP to access the compatibility HO stock
             var list = [ 
-               	<c:forEach var="list" items="${compatibility}" >
-                  	{
-					  	"part no": '${list.partNumber}',
-						"description": '${list.itemDescription}',
-						"model no": '${list.compitableDevice}',
-						"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
-						"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" value=""  />',
-						"quantityEntered": '<input type="text" id="${list.partNumber}_quantity" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />'
-			      	},
-			   </c:forEach>
-			]
+			               	<c:forEach var="list" items="${compatibility}" >
+			                  	{
+								  	"part no": '${list.partNumber}',
+									"description": '${list.itemDescription}',
+									"model no": '${list.compitableDevice}',
+									"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
+									"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',
+									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />',
+						      		"selectedItem": '<input type="checkbox" class="form-group" id="checkedOrder" name="selectedItem"  value="${list.partNumber},${list.compitableDevice},${list.itemDescription}" checked/>'
+						               
+			                  	},
+						   </c:forEach>
+						]
             
  </script>
 

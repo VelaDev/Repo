@@ -266,9 +266,11 @@
             function createDataTableForAvailableHOstock(target, data) {
 
                 $(target).DataTable({
-                    info: true, 
+                	info: true, 
 					searching:true, 
-					paging: true, 
+					scrollY: "200px",
+					scrollCollapse: true,
+					paging:false, 
 					data: list,
                     columnDefs: [{
                         targets: [-1], render: function () {
@@ -296,10 +298,11 @@
             function createDataTableSelectedHOStock(target, data) {
 
                 $(target).DataTable({
-                    
-					info: true, 
+                	info: true, 
 					searching:true, 
-					paging: true, 					
+					scrollY: "200px",
+					scrollCollapse: true,
+					paging:false, 					
                     columnDefs: [{
                         targets: [-1], render: function () {
                             return "<button type='button'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"

@@ -276,7 +276,8 @@
                         }
                     }],
                      columns: [{
-                        data: "part no"
+                    	 
+                        data: "part no available HO Stock"
                     }, {
                         data: "description"
                     }, {
@@ -360,8 +361,9 @@
             var list = [ 
 			               	<c:forEach var="list" items="${compatibility}" >
 			                  	{
+			                  		"part no available HO Stock": '${list.partNumber}',
 			                  		"part no": '<input type="text" class="form-control" name="selectedItem" value="${list.partNumber}" readonly="readonly">',
-									"description": '${list.itemDescription}',
+			                  		"description": '${list.itemDescription}',
 									"model no": '${list.compitableDevice}',
 									"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
 									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',

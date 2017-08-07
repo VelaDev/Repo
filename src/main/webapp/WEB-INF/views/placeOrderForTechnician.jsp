@@ -276,8 +276,9 @@
                             return "<button type='button' onclick='saveEneteredQuantity();'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
                         }
                     }],
-                    columns: [{
-                        data: "part no"
+                     columns: [{
+                    	 
+                        data: "part no available HO Stock"
                     }, {
                         data: "description"
                     }, {
@@ -307,7 +308,7 @@
                             return "<button type='button'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
                         }
                     }],
-                    columns: [{
+                     columns: [{
                         data: "part no"
                     },                    
                     {
@@ -315,7 +316,6 @@
                     },                    
                     
                     { data: null }],
-
 
                 });
             } // end create data table for createDataTableSelectedHOStock.
@@ -341,7 +341,7 @@
 					console.log("Q",element.value);
 				}
 				quantity = getEnteredQuantity;
-				console.log("Entered Quantity: ",quantity);				 
+				console.log("Entered Quantity: ",quantity);					 
 				
 			}// end Check saveEneteredQuantity
 			
@@ -362,13 +362,14 @@
             var list = [ 
 			               	<c:forEach var="list" items="${compatibility}" >
 			                  	{
-								  	"part no": '<input type="text" class="form-control" name="selectedItem" value="${list.partNumber}" readonly="readonly">',
-									"description": '${list.itemDescription}',
+			                  		"part no available HO Stock": '${list.partNumber}',
+			                  		"part no": '<input type="text" class="form-control" name="selectedItem" value="${list.partNumber}" readonly="readonly">',
+			                  		"description": '${list.itemDescription}',
 									"model no": '${list.compitableDevice}',
 									"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
 									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',
 									"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />',
-						      		  
+						      		      
 			                  	},
 						   </c:forEach>
 						]

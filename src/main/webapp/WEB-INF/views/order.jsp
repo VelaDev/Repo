@@ -18,20 +18,20 @@
 
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/vela_details.css" />">
- <link type="text/css" rel="stylesheet"
+<link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />"> 
-	
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/buttons.dataTables.css" />"> 
-	
-<link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/scroller.dataTables.css" />"> 
+	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
-	
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/buttons.dataTables.css" />">
+
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/datatables/1.10.13/css/scroller.dataTables.css" />">
+
+
 <!--/style-->
 </head>
 <body>
@@ -144,11 +144,10 @@
 
 								<div class="groupdetails-row-padding">
 									<div id="pagewrap">
-										<section id="content" style="width: 63%;margin-left: -1%;">
+										<section id="content" style="width: 63%; margin-left: -5%;">
 										<div class="groupclientdetails">
-											<h5><b>Available HO Stock</b></h5>
-											<table class="display" id="availableHOstockForOrder"
-												cellspacing="0">
+											<h5>Available HO Stock</h5>
+											<table id="availableHOstockForOrder" class="display">
 												<thead>
 													<tr>
 														<th>Part No</th>
@@ -159,25 +158,85 @@
 														<th>Action</th>
 													</tr>
 												</thead>
-												<tbody>
 
+												<tbody>
+													<tr class="hover">
+														<td>CLT-C659S/SEE</td>
+														<td>Cyan Toner Cartridge</td>
+														<td>CLX-8640/8650</td>
+														<td><input type="text"
+															id="CLT-C806S/SEE_avaliableQuantity"
+															name="avaliableQuantity" class="form-control" readonly
+															value="21" /></td>
+														<td><input type="text" id="CLT-C806S/SEE_quantity"
+															name="quantityEntered" class="form-control"
+															onkeypress="return isNumber(event)"
+															onblur="compareQuantity(this, 21)" value="" /></td>
+														<td><input class="addBtn" type="button"
+															onclick="saveEneteredQuantity();" value="Add"></td>
+													</tr>
+													<tr class="hover">
+														<td>CLT-C806S/SEE</td>
+														<td>Cyan Toner Cartridge</td>
+														<td>SL-X7400GX/X7500GX/X7600GX</td>
+														<td><input type="text"
+															id="CLT-C806S/SEE_avaliableQuantity"
+															name="avaliableQuantity" class="form-control" readonly
+															value="20" /></td>
+														<td><input type="text"
+															id="CLT-C806S/SEE_quantityEntered" name="quantityEntered"
+															class="form-control" onkeypress="return isNumber(event)"
+															onblur="compareQuantity(this, 20)" value="" /></td>
+														<td><input class="addBtn" type="button"
+															onclick="saveEneteredQuantity();" value="Add"></td>
+													</tr>
+													<tr class="hover">
+														<td>CLT-C808S/SEE</td>
+														<td>Cyan Toner Cartridge</td>
+														<td>SL-X4220RX/X4250LX/X4300LX</td>
+														<td><input type="text"
+															id="CLT-C806S/SEE_avaliableQuantity"
+															name="avaliableQuantity" class="form-control" readonly
+															value="25" /></td>
+														<td><input type="text"
+															id="CLT-C806S/SEE_quantityEntered" name="quantityEntered"
+															class="form-control" onkeypress="return isNumber(event)"
+															onblur="compareQuantity(this, 25)" value="" /></td>
+														<td><input class="addBtn" type="button"
+															onclick="saveEneteredQuantity();" value="Add"></td>
+													</tr>
+													<tr class="hover">
+														<td>CLT-C809S/SEE</td>
+														<td>Cyan Toner Cartridge</td>
+														<td>CLX-9201/9251/9301</td>
+														<td><input type="text"
+															id="CLT-C806S/SEE_avaliableQuantity"
+															name="avaliableQuantity" class="form-control" readonly
+															value="41" /></td>
+														<td><input type="text"
+															id="CLT-C806S/SEE_quantityEntered" name="quantityEntered"
+															class="form-control" onkeypress="return isNumber(event)"
+															onblur="compareQuantity(this, 41)" value="" /></td>
+														<td><input class="addBtn" type="button"
+															onclick="saveEneteredQuantity();" value="Add"></td>
+													</tr>
 												</tbody>
 											</table>
+
 										</div>
 										</section>
-																<aside id="sidebar" style="width:37%;margin-left: 1%;">
+										<aside id="sidebar" style="width: 41%; margin-left: 1%;">
 										<div class="groupproductdetails">
-											<h5><b>Selected HO Stock To Order</b></h5>
-											<table class="display" id="selectedHOStockToOrder">
-												<thead>
-													<tr>
-														<th>Part No</th>														
-														<th>Provided Qty</th>
-														<th>Selected Item</th>
-														<th>Action</th>
-													</tr>
-												</thead>
-												<tbody></tbody>
+											<h5>Selected Line Items to Order</h5>
+											<table id="selectedHOStockToOrder" class="display">
+												<tr class="header">
+													<th>Part No</th>
+													<th>Description</th>
+													<th>Model No</th>
+													<th>Available QTY</th>
+													<th>Provided QTY</th>
+													<th>Action</th>
+												</tr>
 											</table>
 										</div>
 										<!-- //groupproductdetails --> </aside>
@@ -187,7 +246,8 @@
 								</div>
 								<!-- //groupdetails-row-padding -->
 
-							</div><!-- //make order -->
+							</div>
+							<!-- //make order -->
 
 							<div class="form-group row">
 								<div class="col-sm-offset-2 col-sm-8">
@@ -225,7 +285,7 @@
 		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
-	
+
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
 	<script type="text/javascript"
@@ -248,7 +308,7 @@
 	<!-- /Scripts -->
 
 	<!--Order Datatables-->
-        <script type="text/javascript">
+	<script type="text/javascript">
 
             // startup and initialize empty tables for appearance
             $(function ($) {
@@ -335,7 +395,7 @@
 				
 				getEnteredQuantity = document.getElementsByName('quantityEntered')[0].value;				
 				document.getElementsByName('quantity')[0].value = getEnteredQuantity;
-				if(quantity == ''){
+				if(getEnteredQuantity == ''){
 					alert("Quantity can not be empty.\n Please enter quantity which is less than available quantity");
 					console.log("Q",element.value);
 				}
@@ -374,7 +434,7 @@
 						]
             
  </script>
-<script type="text/javascript">
+	<script type="text/javascript">
 $(function(){
 
 	  $('.form-control').keypress(function(e) {

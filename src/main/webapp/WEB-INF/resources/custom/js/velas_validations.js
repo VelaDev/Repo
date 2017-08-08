@@ -1162,29 +1162,26 @@ $(document).ready(function() {
    });
 });/*-- //End Validate Make Order --*/
 
-/*Compare available quantity with entered quantity*/
+//Compare available quantity with entered quantity
 function compareQuantity(element, availableQuantity) {					
-	
-		if (availableQuantity > element.value){		
+		
+	if (availableQuantity > element.value){		
 		console.log("True,",element.value + " is less than " + availableQuantity);
 		console.log("Place an Order");
-		}
-		if (element.value == ''){
-			alert("Quantity can not be empty.\n Please enter quantity which is less than available quantity");
-			console.log("Q",element.value);
-		}
-		if(element.value == 0){
-			alert("Quantity can not be 0.\n Please enter quantity which is less than available quantity");			
-		}
-		else if(availableQuantity < element.value) {
-				alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
-				element.value = null;
-				console.log("False,",availableQuantity + " is small than " + element.value);
-				console.log("You can not place an order, enter less quantity");
-				console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
-		}
+	}
+	if (element.value == '' || element.value == 0){
+		alert("Quantity can not be empty or cant not be zero.\n Please enter quantity which is less than available quantity");
+		console.log(element.value);
+	}
+	else if(availableQuantity < element.value) {
+		alert("Your order quantity can not be greater than available quantity. \n Please enter less quantity");
+		element.value = null;
+		console.log("False,",availableQuantity + " is small than " + element.value);
+		console.log("You can not place an order, enter less quantity");
+		console.log("Enter value between 1 till " +element.value+ " not more than " +availableQuantity);
+	}
 }
-/*--//End Compare available quantity with entered quantity--*/
+//End Compare available quantity with entered quantity	
 
 
 /* --Stock type Selection-- */

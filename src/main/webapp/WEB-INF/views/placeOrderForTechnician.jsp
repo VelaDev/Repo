@@ -341,7 +341,7 @@
 				row.appendTo($("#selectedHOStockToOrder"));
 				console.debug("Check itmes: ",items);				
 			    data = JSON.parse(JSON.stringify(items.data));
-	            console.log("My list: ",items.data());				
+	            console.log("My list: ",items.data);				
 				var newSelectedItem = {partNumber:row.data().partNo, nQuantity:row.data().quantityEntered}
 				console.log("My list: ",newSelectedItem);
 			

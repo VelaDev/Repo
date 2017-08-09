@@ -171,7 +171,7 @@
 														<c:forEach var="list" items="${compatibility}">
 														<tr>
 													
-															<td>${list.partNumber}</td>
+			 												<td>${list.partNumber}</td>
 															<td>${list.itemDescription}</td>
 															<td>${list.compitableDevice}</td>
 															<td><input type="text"

@@ -144,7 +144,7 @@
 
 								<div class="groupdetails-row-padding">
 									<div id="pagewrap">
-										<section id="content" style="width: 63%; margin-left: -5%;">
+										<section id="content" style="width: 63%;margin-left: -1%;">
 										<div class="groupclientdetails">
 											<h5>Available HO Stock</h5>
 											<table id="availableHOstockForOrder" class="display">
@@ -158,85 +158,54 @@
 														<th>Action</th>
 													</tr>
 												</thead>
-
 												<tbody>
-													<tr class="hover">
-														<td>CLT-C659S/SEE</td>
-														<td>Cyan Toner Cartridge</td>
-														<td>CLX-8640/8650</td>
-														<td><input type="text"
-															id="CLT-C806S/SEE_avaliableQuantity"
-															name="avaliableQuantity" class="form-control" readonly
-															value="21" /></td>
-														<td><input type="text" id="CLT-C806S/SEE_quantity"
-															name="quantityEntered" class="form-control"
-															onkeypress="return isNumber(event)"
-															onblur="compareQuantity(this, 21)" value="" /></td>
-														<td><input class="addBtn" type="button"
+
+														<c:forEach var="list" items="${compatibility}">
+														<tr>
+													
+															<td><input type="text"
+																class="form-control readonly="
+																readonly" value="${list.partNumber}"></td>
+															<td>${list.itemDescription}</td>
+															<td>${list.compitableDevice}</td>
+															<td><input type="text"
+																id="${list.partNumber}_avaliableQuantity"
+																name="avaliableQuantity" class="form-control"
+																readonly="readonly" value="${list.quantity}"></td>
+															<td><input type="text"
+																id="${list.partNumber}_quantity" name="quantity"
+																class="form-control" onkeypress="return isNumber(event)"
+																onblur="compareQuantity(this, ${list.quantity})"
+																value="" /></td>
+															<td><input class="addLineItemToOrder" type="button"
 															onclick="saveEneteredQuantity();" value="Add"></td>
-													</tr>
-													<tr class="hover">
-														<td>CLT-C806S/SEE</td>
-														<td>Cyan Toner Cartridge</td>
-														<td>SL-X7400GX/X7500GX/X7600GX</td>
-														<td><input type="text"
-															id="CLT-C806S/SEE_avaliableQuantity"
-															name="avaliableQuantity" class="form-control" readonly
-															value="20" /></td>
-														<td><input type="text"
-															id="CLT-C806S/SEE_quantityEntered" name="quantityEntered"
-															class="form-control" onkeypress="return isNumber(event)"
-															onblur="compareQuantity(this, 20)" value="" /></td>
-														<td><input class="addBtn" type="button"
-															onclick="saveEneteredQuantity();" value="Add"></td>
-													</tr>
-													<tr class="hover">
-														<td>CLT-C808S/SEE</td>
-														<td>Cyan Toner Cartridge</td>
-														<td>SL-X4220RX/X4250LX/X4300LX</td>
-														<td><input type="text"
-															id="CLT-C806S/SEE_avaliableQuantity"
-															name="avaliableQuantity" class="form-control" readonly
-															value="25" /></td>
-														<td><input type="text"
-															id="CLT-C806S/SEE_quantityEntered" name="quantityEntered"
-															class="form-control" onkeypress="return isNumber(event)"
-															onblur="compareQuantity(this, 25)" value="" /></td>
-														<td><input class="addBtn" type="button"
-															onclick="saveEneteredQuantity();" value="Add"></td>
-													</tr>
-													<tr class="hover">
-														<td>CLT-C809S/SEE</td>
-														<td>Cyan Toner Cartridge</td>
-														<td>CLX-9201/9251/9301</td>
-														<td><input type="text"
-															id="CLT-C806S/SEE_avaliableQuantity"
-															name="avaliableQuantity" class="form-control" readonly
-															value="41" /></td>
-														<td><input type="text"
-															id="CLT-C806S/SEE_quantityEntered" name="quantityEntered"
-															class="form-control" onkeypress="return isNumber(event)"
-															onblur="compareQuantity(this, 41)" value="" /></td>
-														<td><input class="addBtn" type="button"
-															onclick="saveEneteredQuantity();" value="Add"></td>
-													</tr>
+																
+														</tr>
+														</c:forEach>
+													
+
 												</tbody>
 											</table>
 
 										</div>
 										</section>
-										<aside id="sidebar" style="width: 41%; margin-left: 1%;">
+										<aside id="sidebar" style="width: 37%; margin-left: 1%;">
 										<div class="groupproductdetails">
 											<h5>Selected Line Items to Order</h5>
 											<table id="selectedHOStockToOrder" class="display">
-												<tr class="header">
-													<th>Part No</th>
-													<th>Description</th>
-													<th>Model No</th>
-													<th>Available QTY</th>
-													<th>Provided QTY</th>
-													<th>Action</th>
-												</tr>
+												<thead>
+													<tr>
+														<th>Part No</th>
+														<th>Description</th>
+														<th>Model No</th>
+														<th>Available QTY</th>
+														<th>Quantity</th>
+														<th>Action</th>
+
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
 											</table>
 										</div>
 										<!-- //groupproductdetails --> </aside>
@@ -245,7 +214,12 @@
 									<!--// pagewrap -->
 								</div>
 								<!-- //groupdetails-row-padding -->
-
+								
+							  <!-- part Number and Quantity Entered -->
+							  <input type="hidden"id="quantityList" name="quantityList" class="form-control"value="" />
+							  <input type="hidden"id="partNumberList" name="partNumberList" class="form-control"value="" />
+							  
+							  
 							</div>
 							<!-- //make order -->
 
@@ -258,7 +232,6 @@
 							</div>
 
 						</form:form>
-
 
 					</div>
 					<!-- /tab-content -->
@@ -288,6 +261,9 @@
 
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
+
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/1.10.13/js/jquery-ui.js" />"></script>
 	<script type="text/javascript"
@@ -296,159 +272,91 @@
 		src="<c:url value="/resources/datatables/1.10.13/js/dataTables.jqueryui.js" />"></script>
 	<script type="text/javascript"
 		src="<c:url value="/resources/datatables/1.10.13/js/dataTables.select.js" />"></script>
-
 	<!-- //Datatables -->
 
 	<script type="text/javascript"
 		src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	<!-- /Scripts -->
-
-	<script type="text/javascript"
-		src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
-	<!-- /Scripts -->
-
+	<script type="text/javascript">	
+			$(document).ready(function() {
+				$('#availableHOstockForOrder').DataTable({
+					info: true, 
+					searching:true, 
+					scrollY: "200px",
+					scrollCollapse: true,
+					paging:false,
+				/* few more options are available to use */
+				});
+			});
+			</script>
 	<!--Order Datatables-->
 	<script type="text/javascript">
-
-            // startup and initialize empty tables for appearance
-            $(function ($) {
-				createDataTableForAvailableHOstock("#availableHOstockForOrder", null);
-                createDataTableSelectedHOStock('#selectedHOStockToOrder', null);                
-                // set up event handlers for both directrions
-                $('#selectedHOStockToOrder').on("click", "tbody button", function (evt) { moveRow(evt, '#selectedHOStockToOrder', '#availableHOstockForOrder'); })
-                $('#availableHOstockForOrder').on("click", "tbody button", function (evt) { moveRow(evt, '#availableHOstockForOrder', '#selectedHOStockToOrder'); })
-               
-            })//end startup and initialize empty tables for appearance
-            
-            // create data table for createDataTableForAvailableHOstock.
-            function createDataTableForAvailableHOstock(target, data) {
-
-                $(target).DataTable({
-                	info: true, 
-					searching:true, 
-					scrollY: "200px",
-					scrollCollapse: true,
-					paging:false, 
-					data: list,
-                    columnDefs: [{
-                        targets: [-1], render: function () {
-                            return "<button type='button' onclick='saveEneteredQuantity();'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
-                        }
-                    }],
-                     columns: [{
-                    	 
-                        data: "part no available HO Stock"
-                    }, {
-                        data: "description"
-                    }, {
-                        data: "model no"
-                    }, {
-                        data: "avalaible qty"
-                    }, {
-                        data: "quantityEntered"
-                    },
-                    { data: null }],
-
-
-                });
-            }//end create data table for createDataTableForAvailableHOstock.
-            
-			 // create data table for createDataTableSelectedHOStock.
-            function createDataTableSelectedHOStock(target, data) {
-
-                $(target).DataTable({
-                	info: true, 
-					searching:true, 
-					scrollY: "200px",
-					scrollCollapse: true,
-					paging:false, 					
-                    columnDefs: [{
-                        targets: [-1], render: function () {
-                            return "<button type='button'>" + (target == '#selectedHOStockToOrder' ? 'Remove' : 'Add') + "</button>"
-                        }
-                    }],
-                     columns: [{
-                        data: "part no"
-                    },                    
-                    {
-                        data: "quantity"
-                    },                    
-                    
-                    { data: null }],
-
-                });
-            } // end create data table for createDataTableSelectedHOStock.
 			
+	        var partNumberList = [];
+	        var quantityList = [];
+	        debugger;
 			
-            //Check saveEneteredQuantity
 			function saveEneteredQuantity(){
-
-				/* var getEnteredQuantity;
-			    var quantity;			    
-        		quantity = document.getElementsByName('quantity')[0].value;
-				document.getElementsByName('quantityEntered')[0].value = "C Quantity: " + quantity;
+				
+				var quantity;
+				var quantityName;				
+				var getEnteredQuantity;	
+				var enteredQuatity;
+				var getIndex;
+				var textvalue = "";
+				
+        		
+				quantity = document.getElementsByName("quantity").length;
+				quantityName = document.getElementsByName('quantity').value;	
+				console.log("Count the lenght of the input textbox on the HO Stock : ",quantity);
+				document.getElementsByName("quantityEntered").value = quantityName;
 				getEnteredQuantity = quantity;
-				console.log("Entered Quantity: ",getEnteredQuantity); */
-				
-				var quantity;				
-				var getEnteredQuantity;
-				
-				getEnteredQuantity = document.getElementsByName('quantityEntered')[0].value;				
-				document.getElementsByName('quantity')[0].value = getEnteredQuantity;
-				if(getEnteredQuantity == ''){
-					alert("Quantity can not be empty.\n Please enter quantity which is less than available quantity");
-					console.log("Q",element.value);
+				for (var i = 0; i < quantity ; i++) {
+				  textvalue = textvalue + document.getElementsByName("quantity").item(i).value; 
 				}
-				quantity = getEnteredQuantity;
-				console.log("Entered Quantity: ",quantity);					 
+				$('[name="quantity"]' ).each( function( index ) {
+					 getIndex = $( this ).val();
+					 enteredQuatity = $( '[name="quantity"]' ).eq( index ).val();					  
+				});				
+				quantity = textvalue;
+				alert("This was provided: ",quantity);
 				
-			}// end Check saveEneteredQuantity
+				debugger;
+				console.log("Check the grapped quantity on table of Selected Line Items to Order : ",quantity);
+				if(quantity == '' || quantity== 0){
+					alert("Quantity can not 0.\n Please enter quantity which is less than available quantity");	
+				}
+				console.log("Entered Quantity: ",quantity);
+			}
+			$(".addLineItemToOrder").on("click", function() {
+				
+			    debugger;
+			    var items = [];
+				var data;
+				data = items;
+				var row = $(this).closest("tr").clone(); 
+				
+				var partNumber = $(this).closest('tr').find('td:eq(0)').find('input').val();
+				var quantity = $(this).closest('tr').find('td:eq(4)').find('input').val();
+				
+				partNumberList [partNumberList.length] = [partNumber];
+				quantityList [quantityList.length]= [quantity];
+				
+				document.getElementById("quantityList").value = quantityList;
+				document.getElementById("partNumberList").value = partNumberList;
+				
+				
+				items.push(row);
+				row.appendTo($("#selectedHOStockToOrder"));
+				console.debug("Check itmes: ",items);				
+			    data = JSON.parse(JSON.stringify(items.data));
+	            console.log("My list: ",items.data);				
+				var newSelectedItem = {partNumber:row.data().partNo, nQuantity:row.data().quantityEntered}				
 			
-			
-			
-            // function to move rows
-            function moveRow(evt, fromTable, toTable) {
-                var table1 = $(fromTable).DataTable();
-                var table2 = $(toTable).DataTable();
-                var tr = $(evt.target).closest("tr");				
-                var row = table1.row(tr);
-                var data = JSON.parse(JSON.stringify(row.data()));               
-                table2.row.add(data).draw();
-                row.remove().draw();				
-            }//end startup and initialize empty tables for appearance
-            
-           // this is JavaScript code written in the JSP to access the compatibility HO stock
-            var list = [ 
-			               	<c:forEach var="list" items="${compatibility}" >
-			                  	{
-			                  		"part no available HO Stock": '${list.partNumber}',
-			                  		"part no": '<input type="text" class="form-control" name="selectedItem" value="${list.partNumber}" readonly="readonly">',
-			                  		"description": '${list.itemDescription}',
-									"model no": '${list.compitableDevice}',
-									"avalaible qty": '<input type="text" id="${list.partNumber}_avaliableQuantity" name="avaliableQuantity" class="form-control" readonly="readonly" value="${list.quantity}">',
-									"quantityEntered": '<input type="text" id="${list.partNumber}_quantityEntered" name="quantityEntered" class="form-control" onkeypress="return isNumber(event)" onblur="compareQuantity(this, ${list.quantity})" required="required" value=""  />',
-									"quantity": '<input type="text" id="${list.partNumber}_quantity" name="quantity" class="form-control" onkeypress="return isNumber(event)"  readonly=readonly value="" />',
-						      		      
-			                  	},
-						   </c:forEach>
-						]
-            
- </script>
-	<script type="text/javascript">
-$(function(){
-
-	  $('.form-control').keypress(function(e) {
-		if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
-	  })
-	  .on("quantity",function(e){
-		e.preventDefault();
-	  });
-
-	});
-	
+				
+			});
+			          
 </script>
-
-
 
 
 </body>

@@ -222,6 +222,8 @@
 									<!--// pagewrap -->
 								</div>
 								<!-- //groupdetails-row-padding -->
+								
+							  <!-- part Number and Quantity Entered -->
 							  <input type="hidden"id="quantityList" name="quantityList" class="form-control"value="" />
 							  <input type="hidden"id="partNumberList" name="partNumberList" class="form-control"value="" />
 							  
@@ -350,9 +352,6 @@
 				
 				document.getElementById("quantityList").value = quantityList;
 				document.getElementById("partNumberList").value = partNumberList;
-			
-
-				
 				
 				debugger;
 				
@@ -361,28 +360,13 @@
 				console.debug("Check itmes: ",items);				
 			    data = JSON.parse(JSON.stringify(items.data));
 	            console.log("My list: ",items.data);				
-				var newSelectedItem = {partNumber:row.data().partNo, nQuantity:row.data().quantityEntered}
-				console.log("My list: ",newSelectedItem);
+				var newSelectedItem = {partNumber:row.data().partNo, nQuantity:row.data().quantityEntered}				
 			
-				
+				$('table').on('click', '.RemoveRow', function(){
+					  $(this).closest('tr').remove();
+				});
 			});
 			          
-</script>
-
-
-
-	<script type="text/javascript">
-$(function(){
-
-	  $('.form-control').keypress(function(e) {
-		if(isNaN(this.value+""+String.fromCharCode(e.charCode))) return false;
-	  })
-	  .on("quantity",function(e){
-		e.preventDefault();
-	  });
-
-	});
-	
 </script>
 
 </body>

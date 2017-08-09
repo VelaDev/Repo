@@ -68,10 +68,9 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a
-												href="reOpen?=<c:out value='${ticketObject.ticketNumber}'/>">Re-assign
-													ticket</a></li>
-										</ul></li>
+											<li><a href="Open?=<c:out value='${ticketObject.ticketNumber}'/>">Re-assign ticket</a></li>
+										</ul>
+									</li>
 								</c:when>
 								<c:when test="${ticketObject.status =='Taken'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -361,6 +360,7 @@ table#orderDetails {
 							</div>
 
 						</div>
+						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
 
@@ -664,7 +664,11 @@ table#orderDetails {
 
 							</c:when>
 						</c:choose>
-
+						
+						<c:choose>
+							
+						</c:choose>
+						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Acknowledged'}">
 

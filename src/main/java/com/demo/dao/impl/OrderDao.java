@@ -261,9 +261,11 @@ public class OrderDao implements OrdersDaoInt {
 
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
-		String[] quantityArray = quantity(orderBean.getQuantity(),
-				orderBean.getSelectedItem().length);
-
+		//String[] quantityArray = quantity(orderBean.getQuantity(), orderBean.getSelectedItem().length);
+		
+		String[] quantityArray = quantity(orderBean.getQuantityList(),
+				orderBean.getPartNumberList().length);
+		
 		try {
 
 			Employee user = (Employee) session.getAttribute("loggedInUser");
@@ -298,8 +300,8 @@ public class OrderDao implements OrdersDaoInt {
 			cusOrder.setDateOrdered(dateFormat.format(date));
 
 			ArrayList< String> tempList = new ArrayList<String>();
-			for (int i = 0; i < orderBean.getSelectedItem().length; i++) {
-				splitString = orderBean.getSelectedItem()[i];
+			for (int i = 0; i < orderBean.getPartNumberList().length; i++) {
+				splitString = orderBean.getPartNumberList()[i];
 				split = splitString.split(",");
 				partNumber = split[0];
 				

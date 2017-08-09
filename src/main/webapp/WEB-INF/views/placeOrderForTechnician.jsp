@@ -37,6 +37,7 @@
 <!--/style-->
 </head>
 <body>
+   
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
@@ -221,7 +222,10 @@
 									<!--// pagewrap -->
 								</div>
 								<!-- //groupdetails-row-padding -->
-
+							  <input type="hidden"id="quantityList" name="quantityList" class="form-control"value="" />
+							  <input type="hidden"id="partNumberList" name="partNumberList" class="form-control"value="" />
+							  
+							  
 							</div>
 							<!-- //make order -->
 
@@ -294,7 +298,9 @@
 	<!--Order Datatables-->
 	<script type="text/javascript">
 			
-	
+	        var partNumberList = [];
+	        var quantityList = [];
+	        debugger;
 			
 			function saveEneteredQuantity(){
 				
@@ -304,6 +310,7 @@
 				var enteredQuatity;
 				var getIndex;
 				var textvalue = "";
+				
         		
 				quantity = document.getElementsByName("quantity").length;
 				quantityName = document.getElementsByName('quantity').value;	
@@ -330,11 +337,23 @@
 			$(".addLineItemToOrder").on("click", function() {
 				
 			    debugger;
-			    
-				var items = [];
+			    var items = [];
 				var data;
 				data = items;
-				var row = $(this).closest("tr").clone();				
+				var row = $(this).closest("tr").clone(); 
+				
+				var partNumber = $(this).closest('tr').find('td:eq(0)').find('input').val();
+				var quantity = $(this).closest('tr').find('td:eq(4)').find('input').val();
+				
+				partNumberList [partNumberList.length] = [partNumber];
+				quantityList [quantityList.length]= [quantity];
+				
+				document.getElementById("quantityList").value = quantityList;
+				document.getElementById("partNumberList").value = partNumberList;
+			
+
+				
+				
 				debugger;
 				
 				items.push(row);

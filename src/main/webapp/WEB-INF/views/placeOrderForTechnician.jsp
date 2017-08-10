@@ -225,9 +225,9 @@
 								</div>
 								<!-- //groupdetails-row-padding -->
 								
-							  <!-- part Number and Quantity Entered -->
-							  <input type="hidden"id="quantityList" name="quantityList" class="form-control"value="" />
-							  <input type="hidden"id="partNumberList" name="partNumberList" class="form-control"value="" />
+														  <!-- part Number and Quantity Entered -->
+							  <input type="hidden" id="quantityList" name="quantityList" class="form-control"value="" />
+							  <input type="hidden" id="partNumberList" name="partNumberList" class="form-control"value="" />
 							  
 							  
 							</div>
@@ -270,48 +270,42 @@
 		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 
 	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
+		src="<c:url value="/resources/datatables//1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/jquery-ui.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/dataTables.buttons.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/dataTables.jqueryui.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/dataTables.select.js" />"></script>
+	
 	<!-- //Datatables -->
 
 	<script type="text/javascript"
 		src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 	<!-- /Scripts -->
-	<script type="text/javascript">	
-			$(document).ready(function() {
+	
+	<!--Order-->
+	<script type="text/javascript">
+	
+		  $(document).ready(function() {
 				$('#availableHOstockForOrder').DataTable({
+					"pagingType" : "full_numbers",
+					"jQueryUI" : true,
 					info: true, 
 					searching:true, 
 					scrollY: "200px",
 					scrollCollapse: true,
 					paging:false,
+					"lengthMenu" : [ [ 5, 10, 50, -1 ], [ 5, 10, 50, "All" ] ]
+					
 				/* few more options are available to use */
 				});
 			});
-			</script>
-	<!--Order Datatables-->
-	<script type="text/javascript">
-			
+					
 	        var partNumberList = [];
 	        var quantityList = [];
-	        debugger;
+	        
 			
 			function saveEneteredQuantity(){
 				
 				var quantity;
 				var quantityName;				
-				var textvalue = "";
-				
+				var textvalue = "";				
         		
 				quantity = document.getElementsByName("quantity").length;
 				quantityName = document.getElementsByName('quantity').value;	
@@ -334,39 +328,38 @@
 					alert("Quantity can not 0.\n Please enter quantity which is less than available quantity");	
 				}
 				console.log("Entered Quantity: ",quantity);
-			}
-			$(".addLineItemToOrder").on("click", function() {
-				
-			    debugger;
-			    var items = [];
-				var row = $(this).closest("tr").clone(); 
+			  }//saveEneteredQuantity
+			
+			  //remove row from table 1 to table 2 if add is clicked
+			  $('#availableHOStockForOrder').on('click', '.addLineItemToOrder', function() {
+			  
+				//$(".addLineItem").on("click", function() {
+		        var itemsBooks = [];
+		        row = $(this).closest("tr").clone();
 				
 				var partNumber = $(this).closest('tr').find('td:eq(0)').text();
 				var quantity = $(this).closest('tr').find('td:eq(4)').find('input').val();
-				
+							
 				partNumberList [partNumberList.length] = [partNumber];
 				quantityList [quantityList.length]= [quantity];
-				
+							
 				document.getElementById("quantityList").value = quantityList;
 				document.getElementById("partNumberList").value = partNumberList;
 				
-				debugger;
-				
-				items.push(row);
-				row.appendTo($("#selectedHOStockToOrder"));				
-				$(this).closest('tr').remove();
-				$('input[type="button"]', row).removeClass ('AddNew').addClass('RemoveRow').val('Remove');
-				
-			});
-			$('table').on('click', '.RemoveRow', function(){
-				  $(this).closest('tr').remove();
-			});  
-			$('#availableHOStockForOrder').on('click', '.RemoveRow', function(){
-				
-				  items.push(row);
-				  row.appendTo($("#availableHOStockForOrder"));
-			}); 
-</script>
+		        itemsBooks.push(row);
+		        row.appendTo($("#selectedHOStockToOrder"));
+		        $(this).closest('tr').remove();
+		        $('input[type="button"]', row).removeClass('AddNew').addClass('RemoveRow').val('Remove');
 
-</body>
-</html>
+		    });
+
+		   //remove row from table 2 to table 1 if remove is clicked
+		    $('#selectedHOStockToOrder').on('click', '.RemoveRow', function(){
+		        row = $(this).closest("tr").clone();
+		        row.appendTo($("#availableHOStockForOrder"));
+		        $(this).closest('tr').remove();
+		        $('input[type="button"]', row).removeClass('RemoveRow').addClass('addLineItemToOrder').val('Add');
+		    });
+					
+			
+</script>

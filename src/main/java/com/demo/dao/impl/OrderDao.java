@@ -34,6 +34,7 @@ import com.demo.dao.SiteStocDaoInt;
 import com.demo.dao.TicketHistoryDaoInt;
 import com.demo.dao.TicketsDaoInt;
 import com.demo.model.Customer;
+import com.demo.model.DeliveryNoteHeader;
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
 import com.demo.model.OrderDetails;
@@ -85,6 +86,7 @@ public class OrderDao implements OrdersDaoInt {
 	private Date date = null;
 	private List<OrderDetails> orderDetailList = null;
 	private OrderDetails orderDetails = null;
+	private DeliveryNoteHeader deliveryNoteHeader = null;
 	private List<OrderHeader> pendingOrders;
 	private List<OrderDetails> listOrders;
 
@@ -105,6 +107,18 @@ public class OrderDao implements OrdersDaoInt {
 					+ "not placed " + e.getMessage()+".";
 		}
 		return retMessage;
+	}
+	
+	@Override
+	public void saveDeliveryNoteHeader(DeliveryNoteHeader deliveryNote) {
+		
+		try {
+			sessionFactory.getCurrentSession().save(deliveryNote);
+			
+		} catch (Exception e) {
+			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
+					+ "not placed " + e.getMessage()+".";
+		}
 	}
 
 	@Override
@@ -266,6 +280,8 @@ public class OrderDao implements OrdersDaoInt {
 		String[] quantityArray = quantity(orderBean.getQuantityList(),
 				orderBean.getPartNumberList().length);
 		
+		System.err.println("Partnumber " + " " + orderBean.getPartNumberList().length);
+		
 		try {
 
 			Employee user = (Employee) session.getAttribute("loggedInUser");
@@ -321,7 +337,7 @@ public class OrderDao implements OrdersDaoInt {
 				quatity = Integer.parseInt(split[1]);
 				orderDetails = new OrderDetails();
             	part = hOStockDaoInt.getSparePartBySerial(partNumber);
-            	
+            	System.err.println("Partnumber values " + " " + partNumber);
 				if(part != null){
 					orderDetails.setPartNumber(partNumber);
 					orderDetails.setCompatibleDevice(part.getCompitableDevice());
@@ -341,6 +357,30 @@ public class OrderDao implements OrdersDaoInt {
 					orderDetails.setDateTime(dateFormat.format(date));
 					orderDetailList.add(orderDetails);
 				}
+				
+				//store Delivery Report Header Details
+				/*
+				deliveryNoteHeader.setOrderNum(orderNumber);
+				deliveryNoteHeader.setDateOrdered(dateFormat.format(date));
+				deliveryNoteHeader.setContactPerson(emp.getFirstName() + " " + emp.getLastName());
+				deliveryNoteHeader.setContactNumber(emp.getCellNumber());
+				deliveryNoteHeader.setContactEmail(emp.getEmail());
+				deliveryNoteHeader.setCustomerName(cus.getCustomerName());
+				deliveryNoteHeader.setCustomerStreet(cus.getStreetNumber() + " " + cus.getStreetName());
+				deliveryNoteHeader.setCustomerCity(cus.getCity_town());
+				deliveryNoteHeader.setCustomerAreaCode(cus.getZipcode());
+				deliveryNoteHeader.setCustomerProvince(cus.getProvince());
+				
+				deliveryNoteHeader.setCompanyName("VELAPHANDA TRADING & PROJECTS");
+				deliveryNoteHeader.setCompanyStreet("POSTNET SUITE 357, PRIVATE BAG X1028");
+				deliveryNoteHeader.setCompanyCity("LYTTLETON 0140");
+				deliveryNoteHeader.setCompanyProvince("Gauteng");
+				deliveryNoteHeader.setCompanyRegistration("REG NO:2008/164490/23");
+				deliveryNoteHeader.setCompanyTelephone("012 765 0200");
+				deliveryNoteHeader.setCompanyFax("012 765 0200");
+				deliveryNoteHeader.setCompanyEmail("sales@velaphanda.co.za");
+					*/		
+				
             }
 			retMessage = makeOrder(cusOrder);
 			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);

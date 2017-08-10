@@ -3,6 +3,7 @@ package com.demo.dao;
 import java.util.List;
 
 import com.demo.bean.OrdersBean;
+import com.demo.model.DeliveryNoteHeader;
 import com.demo.model.OrderHeader;
 
 public interface OrdersDaoInt {
@@ -163,4 +164,5 @@ public interface OrdersDaoInt {
 	List<OrderHeader> getLastFourteenDaysOrdersForCustomerNewSearch(String technician);
 	public List<OrderHeader>getLastFourteenDaysOrdersNumber(String technicianName);
 	public List<String> getDates();
+	void saveDeliveryNoteHeader(DeliveryNoteHeader deliveryNote);
 }

@@ -326,7 +326,7 @@
 					 enteredQuatity = $( '[name="quantity"]' ).eq( index ).val();					  
 				});				
 				quantity = textvalue;
-				alert("This was provided: ",quantity);
+				//alert("This was provided: ",quantity);
 				
 				debugger;
 				console.log("Check the grapped quantity on table of Selected Line Items to Order : ",quantity);

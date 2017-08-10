@@ -351,11 +351,9 @@
 		        $('input[type="button"]', row).removeClass('AddNew').addClass('RemoveRow').val('Remove');
 
 		    });
-
 		   */
 		    
-		     //remove row from table 1 to table 2 if add is clicked
-			
+		     //remove row from table 1 to table 2 if add is clicked			
 			$(".addLineItemToOrder").on("click", function() {
 				
 			    debugger;

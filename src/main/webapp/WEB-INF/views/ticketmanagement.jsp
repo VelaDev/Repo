@@ -335,8 +335,8 @@ input#selectDateRange {
 											<p align="center">Resolved Tickets</p>
 										</div>
 								</a>
-								</li>								
-																
+								</li>
+															
 								<li><a href='<c:url value="closedTickets"/>'
 									class="summery-filter clearfix"
 									data-parallel-url="closedTickets"
@@ -351,7 +351,6 @@ input#selectDateRange {
 								</a>
 								</li>
 								
-							
 							</ul>
 						</div>
 

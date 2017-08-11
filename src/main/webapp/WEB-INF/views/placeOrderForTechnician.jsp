@@ -32,7 +32,14 @@
 
 <link type="text/css" rel="stylesheet"
       href="<c:url value="/resources/datatables/1.10.13/css/scroller.dataTables.css" />">
+<style>
 
+table#toOrder thead {
+    background-color: #CCCCCC;
+    height: 112%;
+}
+
+</style>
 
 <!--/style-->
 </head>
@@ -164,7 +171,7 @@
                                                                                     <th>Description</th>
                                                                                     <th>Model No</th>
                                                                                     <th>Available QTY</th>
-                                                                                    <th>Quantity</th>
+                                                                                    <th>Provide QTY</th>
                                                                                     <th>Action</th>
                                                                               </tr>
                                                                         </thead>
@@ -199,19 +206,23 @@
                                                             <div class="groupproductdetails">
                                                             	</br>
                                                             	<h5 align="center"><b>Selected Order Line Items</b></h5>
-                                                                  <table id="toOrder" class="display">
+                                                            	<div class="dataTables_scroll">
+                                                                  <table id="toOrder" class="display toOrder">
                                                                         <thead>
                                                                               <tr>
                                                                                     <th>Part No</th>
                                                                                     <th>Description</th>
                                                                                     <th>Model No</th>
                                                                                     <th>Available QTY</th>
-                                                                                    <th>Quantity</th>
+                                                                                    <th>QTY Provided</th>
                                                                                     <th>Action</th>
                                                                               </tr>
                                                                         </thead>
-                                                                        <tbody></tbody>
-                                                                  </table>
+													                     <tbody >
+		                                                                 </tbody>
+	                                                                   
+	                                                              </table>
+                                                                  </div>
                                                             </div>
                                                             <!-- //groupproductdetails --> 
                                                             </div><!-- //sidebar -->
@@ -280,10 +291,10 @@
       <!-- /Scripts -->
 
 
-      <!--Order Datatables-->
-      <script type="text/javascript">
+    <!--Order avalialable head office stock-->
+    <script type="text/javascript">
       
-      $(document).ready(function() {
+    $(document).ready(function() {
             $('#stockForOrder').DataTable({
                   info: true, 
                   searching:true, 
@@ -291,80 +302,64 @@
                   scrollCollapse: true,
                   paging:false,
             /* few more options are available to use */
-            });
-      });
+          });
+    });
                   
     var partNumberList = [];
     var quantityList = [];
-      
-               $('#stockForOrder').on('click', '.addLineItem', function() {
-               //     $(".addLineItem").on("click", function() {
-                      debugger;
-                  var quantity;
-                    
-                        
-                        row = $(this).closest("tr").clone(); 
-                        quantity = $(this).closest('tr').find('td:eq(4)').find('input').val();
-                        
-                        console.log("Check the grapped quantity on table of Selected Line Items to Order : ",quantity);
-                        if(quantity == '' || quantity== 0){
-                              alert("Quantity can not 0.\n Please enter quantity which is less than available quantity"); 
-                        }
-                        
-                        
-                        if (quantity > 0)
-                              {
-                              var items = [];
-                                    row = $(this).closest("tr").clone();
-                                    var partNumber = $(this).closest('tr').find('td:eq(0)').text();
-                                    var quantity = $(this).closest('tr').find('td:eq(4)').find('input').val();
+    //move selected line items to table 2
+    $('#stockForOrder').on('click', '.addLineItem', function() {
+    
+       var quantity;
+       row = $(this).closest("tr").clone(); 
+       quantity = $(this).closest('tr').find('td:eq(4)').find('input').val();
+       console.log("Check the grapped quantity on table of Selected Line Items to Order : ",quantity);
+       
+       if(quantity == '' || quantity== 0){
+           alert("Quantity can not be zero.\n Please enter quantity which is less than available quantity"); 
+         }
+       if (quantity > 0){
+            var items = [];
+            row = $(this).closest("tr").clone();
+            var partNumber = $(this).closest('tr').find('td:eq(0)').text();
+            var quantity = $(this).closest('tr').find('td:eq(4)').find('input').val();
+            
+            document.getElementById("quantityList").value = quantityList;
+            document.getElementById("partNumberList").value = partNumberList;
                                     
-                                    
-                                    document.getElementById("quantityList").value = quantityList;
-                                    document.getElementById("partNumberList").value = partNumberList;
-                                    
-                                    items.push(row);
-                                    row.appendTo($("#toOrder"));
-                                    $(this).closest('tr').remove();
-                                    $('input[type="button"]', row).removeClass('AddNew').addClass('RemoveRow').val('Remove');
+            items.push(row);
+            row.appendTo($("#toOrder"));
+            $(this).closest('tr').remove();
+            $('input[type="button"]', row).removeClass('AddNew').addClass('RemoveRow').val('Remove');
+        }
+     });
 
-                              }
-                     
-                    
-                  });
-
-                  //remove table 1 from table 2
-                  $('#toOrder').on('click', '.RemoveRow', function(){
-                        
-                        row = $(this).closest("tr").clone();
-                        row.appendTo($("#stockForOrder"));
-                        $(this).closest('tr').remove();
-                        $('input[type="button"]', row).removeClass('RemoveRow').addClass('addLineItem').val('Add');
-                       
-                      
-                  });
-                  
-                  //remove table 1 from table 2
-                  $('#putorder').on('click', function(){
-
-                        var row;
-                        $('#toOrder tr').each(function(row, tr){
-                        
-                              partNumberList[row]=[$(tr).find('td:eq(0)').text()];
-                        quantityList[row]=[$(this).closest('tr').find('td:eq(4)').find('input').val()];
-                        }); 
-                        
-                        partNumberList.shift();
-                        quantityList.shift();
-                        document.getElementById("quantityList").value = quantityList;
-                        document.getElementById("partNumberList").value = partNumberList;
-                  
-                  });
-                  
-                  
-                  
+    //remove selected line items from table 1 to table 2
+    $('#toOrder').on('click', '.RemoveRow', function(){
+    
+    	row = $(this).closest("tr").clone();
+        row.appendTo($("#stockForOrder"));
+        $(this).closest('tr').remove();
+        $('input[type="button"]', row).removeClass('RemoveRow').addClass('addLineItem').val('Add');
+    });
+     
+    //send selected items when user clicks submit button
+     $('#putorder').on('click', function(){
+           var row;
+           $('#toOrder tr').each(function(row, tr){
+             partNumberList[row]=[$(tr).find('td:eq(0)').text()];
+             quantityList[row]=[$(this).closest('tr').find('td:eq(4)').find('input').val()];
+      }); 
+      partNumberList.shift();
+      quantityList.shift();
+      document.getElementById("quantityList").value = quantityList;
+      document.getElementById("partNumberList").value = partNumberList;
+    }); 
+    
+    
                
 </script>
+
 
 </body>
 </html>

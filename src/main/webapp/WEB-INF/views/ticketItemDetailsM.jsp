@@ -63,66 +63,68 @@ table#orderDetails {
 						<ul class="nav navbar-nav navbar-left">
 
 							<c:choose>
+								
 								<c:when test="${ticketObject.status =='Open'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="Open?=<c:out value='${ticketObject.ticketNumber}'/>">Re-assign ticket</a></li>
+											<li><a href="#mTicketOpenReassign" data-toggle="tab">Re-assign</a></li>
 										</ul>
 									</li>
 								</c:when>
+								
+								<c:when test="${ticketObject.status =='SLA Bridged'}">
+								</c:when>
+								
 								<c:when test="${ticketObject.status =='Taken'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a
-												href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Awaiting
-													Spare</a></li>
-											<li><a
-												href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Escalate
-													Ticket</a></li>
+											<li><a href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Awaiting Spare</a></li>
+											<li><a href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Escalate Ticket</a></li>
 										</ul></li>
 								</c:when>
+								
 								<c:when test="${ticketObject.status =='Acknowledged'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#ticketReassign" data-toggle="tab"">Re-assign
-													ticket</a></li>
+											<li><a href="#mTicketAcknowledgedReassign" data-toggle="tab"">Re-assign</a></li>
 										</ul></li>
 								</c:when>
-								<c:when test="${ticketObject.status =='Awaiting Spares'}">
-								</c:when>
+								
 								<c:when test="${ticketObject.status =='Escalated'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#ticketReassign" data-toggle="tab">Re-assign
-													ticket</a></li>
-											<li><a href="#ticketResolvedDetailss" data-toggle="tab">Resolve</a></li>
+											<li><a href="#mTicketEscalatedReassign" data-toggle="tab">Re-assign ticket</a></li>
+											<li><a href="#mTicketEscalatedResolvedDetails" data-toggle="tab">Resolve</a></li>
 										</ul></li>
 								</c:when>
-								<c:when test="${ticketObject.status =='SLA Bridged'}">
+								
+								<c:when test="${ticketObject.status =='Awaiting Spares'}">
 								</c:when>
+								
 								<c:when test="${ticketObject.status =='Resolved'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a
-												href="reOpen?=<c:out value='${ticketObject.ticketNumber}'/>">Re-open
-													ticket</a></li>
+											<li><a href="reOpen?=<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
 										</ul></li>
 								</c:when>
+								
 								<c:when test="${ticketObject.status =='Closed'}">
 								</c:when>
+								
 								<c:otherwise>
 									<c:out value="${ticketObject.status}" />
 								</c:otherwise>
+								
 							</c:choose>
 
 
@@ -134,21 +136,19 @@ table#orderDetails {
 					</div>
 					<legend></legend>
 					<ul class="nav nav-tabs">
-						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket
-								Details</a></li>
-						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket
-								History</a></li>
+						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>
+						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
-								<li><a href="#ticketResolvedDetailss" data-toggle="tab">Resolve
-										Ticket</a></li>
-								<li><a href="#ticketReassign" data-toggle="tab">Re-assign
-										ticket</a></li>
+								<li><a href="#mTicketEscalatedResolvedDetails" data-toggle="tab">Resolve</a></li>
+								<li><a href="#mTicketEscalatedReassign" data-toggle="tab">Re-assign</a></li>
 							</c:when>
 							<c:when test="${ticketObject.status =='Acknowledged'}">
-								<li><a href="#ticketReassign" data-toggle="tab">Re-assign
-										ticket</a></li>
+								<li><a href="#mTicketAcknowledgedReassign" data-toggle="tab">Re-assign</a></li>
 							</c:when>
+							<c:when test="${ticketObject.status =='Open'}">
+								<li><a href="#mTicketOpenReassign" data-toggle="tab">Re-assign</a></li>
+							</c:when>							
 						</c:choose>
 
 					</ul>
@@ -364,7 +364,7 @@ table#orderDetails {
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
 
-								<div class="tab-pane" id="ticketResolvedDetailss">
+								<div class="tab-pane" id="mTicketEscalatedResolvedDetails">
 
 									<div class="panel-body">
 
@@ -666,13 +666,14 @@ table#orderDetails {
 						</c:choose>
 						
 						<c:choose>
-							
+							<c:when test="${ticketObject.status =='Acknowledged'}">
+							</c:when>
 						</c:choose>
 						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Acknowledged'}">
 
-								<div class="tab-pane active" id="ticketReassign">
+								<div class="tab-pane" id="mTicketAcknowledgedReassign">
 
 									<div class="panel-body">
 
@@ -694,8 +695,7 @@ table#orderDetails {
 														<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-list"></i></span> <select
-																id="selectedTechnician" name="technicianUserName"
-																id="selectedTechnician"
+																id="technicianUserName" name="technicianUserName"
 																class="form-control selectpicker">
 																<option value="">Select Technician</option>
 																<c:forEach items="${technicians}" var="technician">
@@ -737,7 +737,7 @@ table#orderDetails {
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
 
-								<div class="tab-pane active" id="ticketReassign">
+								<div class="tab-pane" id="mTicketEscalatedReassign">
 
 									<div class="panel-body">
 
@@ -759,8 +759,75 @@ table#orderDetails {
 														<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-list"></i></span> <select
-																id="selectedTechnician" name="technicianUserName"
-																id="selectedTechnician"
+																id="technicianUserName" name="technicianUserName"
+																
+																class="form-control selectpicker">
+																<option value="">Select Technician</option>
+																<c:forEach items="${technicians}" var="technician">
+																	<c:choose>
+																		<c:when test="${technician.leaveStatus =='Active'}">
+																			<option class="onleave" value="${technician.email}">${technician.firstName}
+																				${technician.lastName} (Leave Active)</option>
+																		</c:when>
+																		<c:when test="${technician.leaveStatus !='Active'}">
+																			<option value="${technician.email}">${technician.firstName}
+																				${technician.lastName}</option>
+																		</c:when>
+																	</c:choose>
+																</c:forEach>
+															</select>
+														</div>
+													</div>
+												</div>
+
+											<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Re-assign Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+
+										</form:form>
+										<!-- ticketReassign Details -->
+
+
+									</div>
+									<!-- /panel body -->
+								</div>
+								<!-- /re-assign ticket -->
+
+							</c:when>
+						</c:choose>
+						
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Open'}">
+
+								<div class="tab-pane" id="mTicketOpenReassign">
+
+									<div class="panel-body">
+
+										<!-- ticketReassign Details -->
+										<form:form action="updateTicket" modelAttribute="updateTicket"
+											method="post" id="updateResolved"
+											class="well form-horizontal">
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Re-assign</b>
+											</legend>
+											
+												<!-- Assign Technician -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Assign
+														Technician</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> <select
+																id="technicianUserName" name="technicianUserName" 
 																class="form-control selectpicker">
 																<option value="">Select Technician</option>
 																<c:forEach items="${technicians}" var="technician">

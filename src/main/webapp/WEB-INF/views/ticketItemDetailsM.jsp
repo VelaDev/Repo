@@ -83,7 +83,7 @@ table#orderDetails {
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
 											<li><a href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Awaiting Spare</a></li>
-											<li><a href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Escalate Ticket</a></li>
+											<li><a href="#mTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
 										</ul></li>
 								</c:when>
 								
@@ -92,7 +92,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#mTicketAcknowledgedReassign" data-toggle="tab"">Re-assign</a></li>
+											<li><a href="#mTicketAcknowledgedReassign" data-toggle="tab">Re-assign</a></li>
 										</ul></li>
 								</c:when>
 								
@@ -101,7 +101,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#mTicketEscalatedReassign" data-toggle="tab">Re-assign ticket</a></li>
+											<li><a href="#mTicketEscalatedReassign" data-toggle="tab">Re-assign</a></li>
 											<li><a href="#mTicketEscalatedResolvedDetails" data-toggle="tab">Resolve</a></li>
 										</ul></li>
 								</c:when>
@@ -135,6 +135,7 @@ table#orderDetails {
 						</ul>
 					</div>
 					<legend></legend>
+					
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>
 						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
@@ -149,6 +150,11 @@ table#orderDetails {
 							<c:when test="${ticketObject.status =='Open'}">
 								<li><a href="#mTicketOpenReassign" data-toggle="tab">Re-assign</a></li>
 							</c:when>							
+						</c:choose>						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Taken'}">
+							 <li><a href="mTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
+						</c:when>
 						</c:choose>
 
 					</ul>
@@ -734,6 +740,8 @@ table#orderDetails {
 							</c:when>
 						</c:choose>
 
+
+
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
 
@@ -797,6 +805,85 @@ table#orderDetails {
 									<!-- /panel body -->
 								</div>
 								<!-- /re-assign ticket -->
+
+							</c:when>
+						</c:choose>
+						
+						<!--mTicketTakenEscalate -->
+						<c:choose>
+							<c:when test="${ticketObject.status =='Taken'}">
+
+								<div class="tab-pane" id="mTicketTakenEscalate">
+
+									<div class="panel-body">
+
+										<!-- ticketReassign Details -->
+										<form:form action="updateTicket" modelAttribute="updateTicket"
+											method="post" id="updateResolved"
+											class="well form-horizontal">
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Escalate Ticket</b>
+											</legend>
+											
+												
+											  <!-- Text input Manager-->
+												<div class="form-group">
+														<label class="col-md-3 control-label"> Manager</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-user"></i></span> <select
+																	id="escalatedTo" name="escalatedTo"
+																	class="form-control selectpicker" required="required">
+																	<option value="">Select Manager</option>
+																	<c:forEach items="${managersList}" var="manager">
+																		<option value="${manager.email}">${manager.firstName}
+																			${manager.lastName}</option>
+																	</c:forEach>
+
+																</select>
+															</div>
+														</div>
+													</div>
+													
+												<!-- display Comments-->
+												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comments </label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<textarea class="form-control" name="comments" maxlength="150"
+																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	id="comment"></textarea>
+															</div>
+														</div>
+													</div>
+													
+												<!--// display Comments-->
+
+										
+												
+												
+
+											<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Re-assign Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+
+										</form:form>
+										<!-- escalate ticke Details -->
+
+
+									</div>
+									<!-- /panel body -->
+								</div>
+								<!-- /escalate ticket -->
 
 							</c:when>
 						</c:choose>

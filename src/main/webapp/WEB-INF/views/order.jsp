@@ -181,7 +181,7 @@ table#toOrder thead {
                                                                                                 readonly="readonly" value="${list.quantity}"></td>
                                                                                           <td><input type="text"
                                                                                                 id="${list.partNumber}_quantity" name="quantity"
-                                                                                                class="form-control" onkeypress="return isNumber(event)"
+                                                                                                class="form-control" required="required" onkeypress="return isNumber(event)"
                                                                                                 onblur="compareQuantity(this, ${list.quantity})"
                                                                                                 value="" /></td>
                                                                                           <td><input class="addLineItem" type="button"

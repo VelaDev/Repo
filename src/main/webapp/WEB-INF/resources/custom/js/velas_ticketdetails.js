@@ -123,9 +123,9 @@ $(document)
 											actionTaken : {
 												required : true
 											},
-											technicianUserName : {
+											/*technicianUserName : {
 												required : true
-											},
+											},*/
 											usedPartNumbers : {
 												required : {
 													depends : function(element) {
@@ -165,7 +165,7 @@ $(document)
 											usedPartNumbers : 'Used part numbers is required check boot or site stock for used part numbers',
 											actionTaken : 'Action taken is required and can not be empty',											
 											comment : 'Please provide comments on what solution you provided',
-										    technicianUserName : 'Technician is required and can not be empty'
+										    //technicianUserName : 'Technician is required and can not be empty'
 											
 										}
 									});

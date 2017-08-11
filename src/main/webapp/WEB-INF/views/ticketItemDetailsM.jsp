@@ -741,7 +741,7 @@ table#orderDetails {
 						</c:choose>
 
 
-
+						<!-- mTicketEscalatedReassign -->
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
 
@@ -809,6 +809,7 @@ table#orderDetails {
 							</c:when>
 						</c:choose>
 						
+						
 						<!--mTicketTakenEscalate -->
 						<c:choose>
 							<c:when test="${ticketObject.status =='Taken'}">
@@ -817,7 +818,7 @@ table#orderDetails {
 
 									<div class="panel-body">
 
-										<!-- ticketReassign Details -->
+										<!-- mTicketTakenEscalate Details -->
 										<form:form action="updateTicket" modelAttribute="updateTicket"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
@@ -863,14 +864,10 @@ table#orderDetails {
 													
 												<!--// display Comments-->
 
-										
-												
-												
-
 											<div class="form-group row">
 												<div class="col-sm col-sm-8"
 													style="margin-left: 26%; width: 48%;">
-													<input type="submit" name=resolve value="Re-assign Ticket"
+													<input type="submit" name=resolve value="Escalate Ticket"
 														class="btn btn-primary btn-block btn-lg" tabindex="9"
 														id="resolve">
 												</div>
@@ -954,13 +951,58 @@ table#orderDetails {
 
 							</c:when>
 						</c:choose>
-
-						<div class="tab-pane active" id="ticketResolvedDetails"></div>
-
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Awaiting Spare'}">
+							
+									<div class="tab-pane active" id="ticketResolvedDetails">
+									
+									<form id="updateResolve" post="updateTicket" moduleAttribute="updateTicket" action="üpdateTicket">
+											
+											<div class="tab-content">
+													
+													<!-- Select type Order No-->										
+													<div class="form-group">
+														<label class="col-md-4 control-label"> Order No</label>
+														<div class="col-md-8 selectContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span> <select id="orderNumber"
+																	name="orderNum" required="required" class="form-control selectpicker">
+																	<option value="">Select Order No</option>
+																	<c:forEach items="${OrderNumber}" var="orders">
+																		<option value="${orders.recordID}">${orders.orderNum}
+																		</option>
+																	</c:forEach>
+		
+																</select>
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comments </label>
+														<div class="col-md-8 inputGroupContainer">
+															<div class="input-group">
+																<textarea class="form-control" name="comments" maxlength="150"
+																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	id="comment" style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
+																	rows="3"></textarea>
+															</div>
+														</div>
+													</div>
+												<!--// display Comments-->
+											
+											</div>
+									
+									</form>
+									
+									
+									</div>
+							</c:when>
+						</c:choose>
+						
 						<div class="tab-pane active" id="ticketReassign"></div>
-
-
-
 
 					</div>
 					<!-- group details-row-padding -->

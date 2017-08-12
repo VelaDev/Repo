@@ -79,6 +79,11 @@ public interface TicketsDaoInt {
 	List<Tickets> getTicketListByTechnicianEmail(String technicianEmail);
 	String[] getTicketNumbers();
 	List<Tickets> searchTicketByTicketNumber(String ticketNumber);
+	List<Tickets> getFourteenDaysTicketsForTech(String technicianEmail);
+	int getTicketCountForTechnician(String status, String dateRange,
+			String technicianEmail, String customer, String ticketNumber);
+	List<Tickets> getTicketListByStatusForTech(String status, String dateRange,
+			String technicianEmail, String customer, String ticketNumber);
 	
 	
 	/*void calculateSLAHours();

@@ -217,7 +217,109 @@ public class TicketsDao implements TicketsDaoInt {
 		return tempCount;
 	}
 	
-	
+	@Override
+	public int getTicketCountForTechnician(String status, String dateRange,
+			String technicianEmail, String customer, String ticketNumber) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		aList = new ArrayList<Tickets>();
+		try {
+			
+			//Get Count by Date Range and Status
+			if (dateRange.length() >= 3 && status.length() >= 3) {
+				if (dateRange.equalsIgnoreCase("Last 24 Hours")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 1);
+				} else if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 6);
+				} else if (dateRange.equalsIgnoreCase("Last 14 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 13);
+				} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 30);
+				}
+				Date myDate = cal.getTime();
+
+				String date1 = myFormat.format(myDate);
+				String Date2 = myFormat.format(currentDate);
+				Date current = new Date();
+				Date previous = new Date();
+				Date dateData = new Date();
+
+				current = myFormat.parse(date1);
+				previous = myFormat.parse(Date2);
+
+				ticketList = getAllLoggedTickets();
+				for (Tickets ticket : ticketList)
+				{
+					String convDate = ticket.getDateTime().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					dateData = myFormat.parse(normalDate);
+					if (ticket.getStatus().equalsIgnoreCase(status)
+							&& current.compareTo(dateData) <= 0 && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail) ) {
+						tempCount++;
+					}
+				}
+
+			}		
+					
+			//Get Count by Customer Name and Status
+			else if (customer.length() >= 3 && status.length() >= 3) {
+				ticketList = getAllLoggedTickets();
+				boolean isAllCustomers = false;
+				isAllCustomers = customer.equalsIgnoreCase("All Customers");
+				if (isAllCustomers == false){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer) &&
+								ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							tempCount++;
+						}
+					}
+
+				}
+				if (isAllCustomers == true){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status) && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							tempCount++;
+						}
+					}
+
+				}
+				
+			}	
+			
+			else if (ticketNumber.length() >= 3 && status.length() >= 3) {
+				ticketList = getAllLoggedTickets();
+				if (ticketNumber != null){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getTicketNumber().equalsIgnoreCase(ticketNumber) &&
+								ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							tempCount++;
+						}
+					}
+				}
+				
+			}
+			
+				
+			
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return tempCount;
+	}
 	
 	
 	
@@ -365,6 +467,123 @@ public class TicketsDao implements TicketsDaoInt {
 
 		return aList;
 	}
+	
+	@Override
+	public List<Tickets> getTicketListByStatusForTech(String status, String dateRange,
+			String technicianEmail, String customer, String ticketNumber) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+			
+			//Get Ticket List by Date Range and Status
+			if (dateRange.length() >= 3 && status.length() >= 3) {
+				if (dateRange.equalsIgnoreCase("Last 24 Hours")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 1);
+				} else if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 6);
+				} else if (dateRange.equalsIgnoreCase("Last 14 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 13);
+				} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 30);
+				}
+				Date myDate = cal.getTime();
+
+				String date1 = myFormat.format(myDate);
+				String Date2 = myFormat.format(currentDate);
+				Date current = new Date();
+				Date previous = new Date();
+				Date dateData = new Date();
+
+				current = myFormat.parse(date1);
+				previous = myFormat.parse(Date2);
+
+				ticketList = getAllLoggedTickets();
+				for (Tickets ticket : ticketList)
+				{
+					String convDate = ticket.getDateTime().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					dateData = myFormat.parse(normalDate);
+					if (ticket.getStatus().equalsIgnoreCase(status)
+							&& current.compareTo(dateData) <= 0 && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+						aList.add(ticket);
+					}
+				}
+
+			}		
+			//Get Ticket List by Customer Name and Status
+			else if (customer.length() >= 3 && status.length() >= 3) {
+				ticketList = getAllLoggedTickets();
+				boolean isAllCustomers = false;
+				isAllCustomers = customer.equalsIgnoreCase("All Customers");
+				
+				if (isAllCustomers == false)
+				{
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)) {
+							aList.add(ticket);
+						}
+					}
+				}
+				else if (isAllCustomers == true)
+				{
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status) && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							aList.add(ticket);
+						}
+					}
+				}
+				
+			}
+			
+			
+			else if (ticketNumber.length() >= 3 && status.length() >= 3) {
+				ticketList = getAllLoggedTickets();
+				if (ticketNumber != null){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getTicketNumber().equalsIgnoreCase(ticketNumber) && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							aList.add(ticket);
+						}
+					}
+				}
+				
+			}
+				//Get Ticket List by status
+			else {
+					ticketList = getAllLoggedTickets();
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status) &&
+								ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							aList.add(ticket);
+						}
+					}
+
+			}	
+			
+				
+			
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
 	
 	@Override
 	public List<Tickets> getTicketListByCustomerName(String customer) {
@@ -590,6 +809,48 @@ public class TicketsDao implements TicketsDaoInt {
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
 				if (current.compareTo(dateData) <= 0) {
+					aList.add(ticket);
+				}
+			}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	@Override
+	public List<Tickets> getFourteenDaysTicketsForTech(String technicianEmail) {
+
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		List<Tickets> aList = new ArrayList<Tickets>();
+		List<Tickets> ticketList = null;
+		try {
+			// substract 7 days
+			// If we give 7 there it will give 8 days back
+			cal.set(Calendar.DAY_OF_MONTH, cal.get(Calendar.DAY_OF_MONTH) - 13);
+			// convert to date
+			Date myDate = cal.getTime();
+
+			String date1 = myFormat.format(myDate);
+			String Date2 = myFormat.format(currentDate);
+			Date current = new Date();
+			Date previous = new Date();
+			Date dateData = new Date();
+
+			current = myFormat.parse(date1);
+			previous = myFormat.parse(Date2);
+
+			ticketList = getAllLoggedTickets();
+			for (Tickets ticket : ticketList) {
+				String convDate = ticket.getDateTime().substring(0, 10);
+				String normalDate = convDate.replace("/", "-");
+				dateData = myFormat.parse(normalDate);
+				if (current.compareTo(dateData) <= 0 && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 					aList.add(ticket);
 				}
 			}

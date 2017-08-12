@@ -349,6 +349,25 @@ public class TicketsService implements TicketsServiceInt{
 	public List<Tickets> searchTicketByTicketNumber(String ticketNumber) {
 		return logTicketsDAO.searchTicketByTicketNumber(ticketNumber);
 	}
+
+	@Override
+	public List<Tickets> getFourteenDaysTicketsForTech(String technicianEmail) {
+		return logTicketsDAO.getFourteenDaysTicketsForTech(technicianEmail);
+	}
+
+	@Override
+	public int getTicketCountForTechnician(String status, String dateRange,
+			String technicianEmail, String customer, String ticketNumber) {
+		return logTicketsDAO.getTicketCountForTechnician(status, dateRange, technicianEmail, customer, ticketNumber);
+	}
+
+	@Override
+	public List<Tickets> getTicketListByStatusForTech(String status,
+			String dateRange, String technicianEmail, String customer,
+			String ticketNumber) {
+		// TODO Auto-generated method stub
+		return logTicketsDAO.getTicketListByStatusForTech(status, dateRange, technicianEmail, customer, ticketNumber);
+	}
 	
 	
 

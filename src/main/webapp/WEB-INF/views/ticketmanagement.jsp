@@ -209,8 +209,10 @@ input#selectDateRange {
 
 						</div>
 					</div>
-
-
+					
+					<input type="hidden" id="ticketNumber" name="ticketNumber" value="${ticketObject.ticketNumber}"> 
+					
+					
 				</div>
 
 			</form:form>
@@ -229,10 +231,9 @@ input#selectDateRange {
 				<div class="panel-body">
 					<div class="tab-content">
 					
-					<input type="hidden" id="ticketNumber" name="tickectNumber" value="${ticketObject.ticketNumber}"> 
-					
-					<c:if test="${not empty ${ticketObject.ticketNumber}">
-						
+				    
+					<c:if test="${empty $ticketObject.ticketNumber}">
+					 
 						
 						<div class="ticket-summary row-fluid">
 
@@ -361,12 +362,12 @@ input#selectDateRange {
 							
 							</ul>
 						</div>
+						</c:if>
+						
+						<c:if test="${not empty $ticketObject.ticketNumber}">
 						
 						</c:if>
 						
-						<c:if test="${empty ticketObject.ticketNumber}">
-								
-						</c:if>
 						
 						<form:form class="well form-horizontal" method="post"
 							action="ticketManage" id="ticketManage"

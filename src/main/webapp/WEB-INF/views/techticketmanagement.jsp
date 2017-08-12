@@ -198,8 +198,8 @@ input#selectDateRange {
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<input type="hidden" id="ticketNumber" name="tickectNumber" value="${ticketObject.ticketNumber}"> 
-						<c:if test="${not empty ${ticketObject.ticketNumber}">
+						
+						<c:if test="${empty $ticketObject.ticketNumber}">
 						
 						<div class="ticket-summary row-fluid">
 
@@ -318,6 +318,9 @@ input#selectDateRange {
 						</div>
 						
 					</c:if>
+					
+					<input type="hidden" id="ticketNumber" name="tickectNumber" value="${ticketObject.ticketNumber}"/> 
+						
 
 						<form:form class="well form-horizontal" method="post"
 							action="ticketManage" id="ticketManage"
@@ -350,12 +353,11 @@ input#selectDateRange {
 												<!-- Iterating over the list sent from Controller -->
 												<c:forEach var="list" items="${lastForteenList}">
 													<tr>
-														<td><a
-															href="ticketItemDetailsT?recordID=<c:out value='${list.recordID}'/>">${list.ticketNumber}</a></td>
-														<td>${list.dateTime}</td>														<
+														<td><a href="ticketItemDetailsT?recordID=<c:out value='${list.recordID}'/>">${list.ticketNumber}</a></td>
+														<td>${list.dateTime}</td>
 														<td>${list.description}</td>
 														<td>${list.status}</td>
-														td>${list.device.customerDevice.customerName}</td>
+														<td>${list.device.customerDevice.customerName}</td>
 														<td>${list.device.serialNumber}</td>
 														<td>${list.device.modelNumber}</td>
 														<td>${list.employee.firstName}

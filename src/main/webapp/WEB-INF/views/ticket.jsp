@@ -42,42 +42,42 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-							<c:if test="${empty product.modelNumber}">
+						  <c:if test="${empty product.modelNumber}">
 
-							<form action="searchSerialNumberUserLogticket" method="post"
-								id="searchBylogTicket">
-								<div class="row">
-									<!-- Text input Search-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Search Device </label>
-										<div class="col-md-4 inputGroupContainer">
-											<div class="input-group">
-												<span class="input-group-addon"><i
-													class="glyphicon glyphicon-hdd"></i></span> <input
-													name="serialNumber" list="serialNumbers"
-													class="form-control" type="text"
-													onkeydown="upperCaseF(this)"
-													placeholder='Enter Serial Number' />
+								<form action="searchSerialNumberUserLogticket" method="post"
+									id="searchBylogTicket">
+									<div class="row">
+										<!-- Text input Search-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Search Device </label>
+											<div class="col-md-4 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-hdd"></i></span> <input
+														name="serialNumber" list="serialNumbers"
+														class="form-control" type="text"
+														onkeydown="upperCaseF(this)"
+														placeholder='Enter Serial Number' />
+												</div>
 											</div>
+											<!-- Iterating over the list sent from Controller -->
+											<datalist id="serialNumbers"> <c:forEach var="list"
+												items="${serialNumbers}">
+												<option value="${list}">
+											</c:forEach> </datalist>
+	
+											<div class="col-md-2">
+												<input class="btn btn-success" type='submit' value='Search' />
+											</div>
+	
 										</div>
-										<!-- Iterating over the list sent from Controller -->
-										<datalist id="serialNumbers"> <c:forEach var="list"
-											items="${serialNumbers}">
-											<option value="${list}">
-										</c:forEach> </datalist>
-
-										<div class="col-md-2">
-											<input class="btn btn-success" type='submit' value='Search' />
-										</div>
-
 									</div>
-								</div>
-								<hr>
-							</form>
+									<hr>
+								</form>
 							<!--Search-->
 						</c:if>
 
-						<c:if test="${not empty product.serialNumber }">
+						<c:if test="${not empty product.serialNumber}">
 							<form:form method="post" class="well form-horizontal"
 								action="UserlogTicket" modelAttribute="UserlogTicket"
 								id="logTicket">

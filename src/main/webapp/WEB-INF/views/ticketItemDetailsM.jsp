@@ -114,7 +114,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="reOpenTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
+											<li><a href="reOpenTicket?=open<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
 										</ul></li>
 								</c:when>
 								

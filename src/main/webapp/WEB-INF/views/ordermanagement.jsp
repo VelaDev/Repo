@@ -121,12 +121,13 @@ input#selectDateRange {
 						<div class="col-md-3 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
+									class="glyphicon glyphicon-list"></i></span> 
+								<select
 									name="customerName" id="customerName"
-									class="form-control selectpicker" onchange="location = this.value;">
-									<c:if test="${not empty selectedName }">
-									   <option value="${ selectedName}">${selectedName}</option>
-									</c:if>
+									class="form-control selectpicker" onchange="location=this.value;">
+									<%-- <c:if test="${not empty selectedName }">
+									   <option value="${selectedName}">${selectedName}</option>
+									</c:if> --%>
 									<option value="getCustomerName?customerName=<c:out value="All Customers"/>">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
 										<option value="getCustomerName?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>

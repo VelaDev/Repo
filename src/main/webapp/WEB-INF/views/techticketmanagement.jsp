@@ -123,7 +123,6 @@ input#selectDateRange {
 										<option value="getCustomerName?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
 									</c:forEach>
 								</select>
-
 							</div>
 						</div>
 					</div>

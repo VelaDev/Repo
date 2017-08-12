@@ -180,7 +180,7 @@ $(document)
 		.ready(
 				function() {
 					$(
-							'#updateResolved,#ticketAcknowledgedReassign,#ticketEscalatedReassign,#ticketOpenReassign,#ticketTakenEscalate,#ticketTakenAwaiting')
+							'#updateResolved,#ticketAcknowledgedReassign,#ticketEscalatedReassign,#ticketOpenReassign,#ticketTakenEscalate,#ticketTakenAwaiting,#ticketTakenEscalate,#ticketTakenResolve')
 
 							.bootstrapValidator(
 									{
@@ -229,6 +229,13 @@ $(document)
 												validators : {
 													notEmpty : {
 														message : 'Technician is required and can not be empty'
+													}
+												}
+											},
+											reasonBridge:{
+												validators:{
+													notEmpty:{
+														message:'Reason is required and can not be empty'
 													}
 												}
 											}

@@ -50,11 +50,12 @@
 								<!-- Iterating over the list sent from Controller -->
 								<c:forEach items="${technicianTickets}" var="ticket">
 									<tr>
-										<td><a href="ticketDetails?id=<c:out value='${ticket.recordID}'/>"><c:out value="${ticket.ticketNumber}" /></a></td>
+										<td><a href="techticketmanagement?id=<c:out value='${ticket.recordID}'/>"><c:out value="${ticket.ticketNumber}" /></a></td>
+										<td><c:out value="${ticket.dateTime}" /></td>	
 										<td><c:out value="${ticket.status} " /></td>
 										<td><c:out value="${ticket.device.customerDevice.customerName}" /></td>
 										<td><c:out value="${ticket.device.customerDevice.telephoneNumber} " /></td>
-										<td><c:out value="${ticket.dateTime}" /></td>										
+																			
 									</tr>
 								</c:forEach>
 							</tbody>
@@ -94,7 +95,8 @@
 			$('#myDatatable').DataTable({
 				"jQueryUI" : true,
 				"pagingType" : "full_numbers",
-				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+				"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+				"order": [[1 , "desc" ]]
 			/* few more options are available to use */
 			});
 		});

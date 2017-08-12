@@ -82,7 +82,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="acknowledgedTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Awaiting Spare</a></li>
+											<li><a href="#mTicketTakenAwaiting" data-toggle="tab">Awaiting Spare</a></li>
 											<li><a href="#mTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
 										</ul></li>
 								</c:when>
@@ -127,10 +127,9 @@ table#orderDetails {
 								
 							</c:choose>
 
-
-							<li><a
-								href="printdeliveryNote?recordID=<c:out value='${ticketObject.ticketNumber}'/>">Download
-									PDF </a></li>
+							<%-- 
+							<li><a href="printdeliveryNote?recordID=<c:out value='${ticketObject.ticketNumber}'/>">Download
+									PDF </a></li> --%>
 
 						</ul>
 					</div>
@@ -153,9 +152,26 @@ table#orderDetails {
 						</c:choose>						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Taken'}">
-							 <li><a href="mTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
+							 <li><a href="#mTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
+							  <li><a href="#mTicketTakenAwaiting" data-toggle="tab">Awaiting Spares</a></li>
 						</c:when>
 						</c:choose>
+						
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Resolved'}">
+							 <li><a href="#mTicketReopenResolved" data-toggle="tab">Resolved Ticket Details</a></li>							  
+						</c:when>						
+						</c:choose>
+						
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Closed'}">
+							 <li><a href="#mTicketClosedNoAction" data-toggle="tab">Closed Ticket Details</a></li>							  
+						</c:when>						
+						</c:choose>
+						
+						
 
 					</ul>
 
@@ -247,7 +263,7 @@ table#orderDetails {
 										align="center">
 										<b>Ticket Details </b>
 									</legend>
-									<table id="orderInfo" class="display datatable">
+									<table id="ticketInfo" class="display datatable">
 										<thead>
 											<tr>
 												<th>Ticket No</th>
@@ -255,9 +271,7 @@ table#orderDetails {
 												<th>Priority</th>
 												<th>Technician Email</th>
 												<th>Comments</th>
-												<!-- <th>Placed By</th>
-														<th>Approver</th> -->
-
+												
 											</tr>
 										</thead>
 										<tbody>
@@ -510,20 +524,22 @@ table#orderDetails {
 												<!-- display Comments-->
 												<div class="hideComent" id="hideComent"
 													style="display: none">
+													<!-- display Comments-->
+												
 													<div class="form-group">
-														<label class="col-md-3 control-label">Please Enter
-															Comment</label>
+														<label class="col-md-3 control-label">Comment</label>
 														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea id="comment" name="comment"
-																	class="form-control" placeholder="Please Enter Comment"
-																	style="height: 100px;">
-													 </textarea>
+																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	></textarea>
 															</div>
 														</div>
 													</div>
+													
+												<!--// display Comments-->
 												</div>
 												<!--// display Comments-->
 
@@ -809,83 +825,6 @@ table#orderDetails {
 							</c:when>
 						</c:choose>
 						
-						
-						<!--mTicketTakenEscalate -->
-						<c:choose>
-							<c:when test="${ticketObject.status =='Taken'}">
-
-								<div class="tab-pane" id="mTicketTakenEscalate">
-
-									<div class="panel-body">
-
-										<!-- mTicketTakenEscalate Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
-											method="post" id="updateResolved"
-											class="well form-horizontal">
-
-											<legend style="font-size: 15px; line-height: 1.42857143;"
-												align="center">
-												<b>Escalate Ticket</b>
-											</legend>
-											
-												
-											  <!-- Text input Manager-->
-												<div class="form-group">
-														<label class="col-md-3 control-label"> Manager</label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-user"></i></span> <select
-																	id="escalatedTo" name="escalatedTo"
-																	class="form-control selectpicker" required="required">
-																	<option value="">Select Manager</option>
-																	<c:forEach items="${managersList}" var="manager">
-																		<option value="${manager.email}">${manager.firstName}
-																			${manager.lastName}</option>
-																	</c:forEach>
-
-																</select>
-															</div>
-														</div>
-													</div>
-													
-												<!-- display Comments-->
-												
-													<div class="form-group">
-														<label class="col-md-3 control-label">Comments </label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<textarea class="form-control" name="comments" maxlength="150"
-																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
-																	id="comment"></textarea>
-															</div>
-														</div>
-													</div>
-													
-												<!--// display Comments-->
-
-											<div class="form-group row">
-												<div class="col-sm col-sm-8"
-													style="margin-left: 26%; width: 48%;">
-													<input type="submit" name=resolve value="Escalate Ticket"
-														class="btn btn-primary btn-block btn-lg" tabindex="9"
-														id="resolve">
-												</div>
-											</div>
-
-										</form:form>
-										<!-- escalate ticke Details -->
-
-
-									</div>
-									<!-- /panel body -->
-								</div>
-								<!-- /escalate ticket -->
-
-							</c:when>
-						</c:choose>
-						
-						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Open'}">
 
@@ -952,76 +891,459 @@ table#orderDetails {
 							</c:when>
 						</c:choose>
 						
+						
+							<!--mTicketTakenEscalate -->
 						<c:choose>
-							<c:when test="${ticketObject.status =='Awaiting Spare'}">
-							
-									<div class="tab-pane active" id="ticketResolvedDetails">
-									
-									<form id="updateResolve" post="updateTicket" moduleAttribute="updateTicket" action="üpdateTicket">
+							<c:when test="${ticketObject.status =='Taken'}">
+
+								<div class="tab-pane" id="mTicketTakenEscalate">
+
+									<div class="panel-body">
+
+										<!-- mTicketTakenEscalate Details -->
+										<form:form action="updateTicket" modelAttribute="updateTicket"
+											method="post" id="updateResolved"
+											class="well form-horizontal">
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Escalate Ticket</b>
+											</legend>
 											
-											<div class="tab-content">
-													
-													<!-- Select type Order No-->										
-													<div class="form-group">
-														<label class="col-md-4 control-label"> Order No</label>
-														<div class="col-md-8 selectContainer">
+												
+											  <!-- Text input Manager-->
+												<div class="form-group">
+														<label class="col-md-3 control-label"> Manager</label>
+														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-list"></i></span> <select id="orderNumber"
-																	name="orderNum" required="required" class="form-control selectpicker">
-																	<option value="">Select Order No</option>
-																	<c:forEach items="${OrderNumber}" var="orders">
-																		<option value="${orders.recordID}">${orders.orderNum}
-																		</option>
+																	class="glyphicon glyphicon-user"></i></span> <select
+																	id="escalatedTo" name="escalatedTo"
+																	class="form-control selectpicker" >
+																	<option value="">Select Manager</option>
+																	<c:forEach items="${managersList}" var="manager">
+																		<option value="${manager.email}">${manager.firstName}
+																			${manager.lastName}</option>
 																	</c:forEach>
-		
+
 																</select>
 															</div>
 														</div>
 													</div>
 													
+												<!-- display Comments-->
+												
 													<div class="form-group">
-														<label class="col-md-3 control-label">Comments </label>
-														<div class="col-md-8 inputGroupContainer">
+														<label class="col-md-3 control-label">Comment</label>
+														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
-																<textarea class="form-control" name="comments" maxlength="150"
-																	required="required" onkeydown="upperCaseF(this)" placeholder="Please enter comment"
-																	id="comment" style="width: 279px; height: 172px; font-size: 11px; margin: 0px;"
-																	rows="3"></textarea>
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	></textarea>
 															</div>
 														</div>
 													</div>
+													
 												<!--// display Comments-->
-											
+
+											<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Escalate Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
 											</div>
-									
-									</form>
-									
-									
+
+										</form:form>
+										<!-- escalate ticket Details -->
+
+
 									</div>
+									<!-- /panel body -->
+								</div>
+								<!-- /escalate ticket -->
+
+							</c:when>
+						</c:choose>	
+						
+						<!-- mTicketTakenAwaiting -->
+						<c:choose>
+							<c:when test="${ticketObject.status =='Taken'}">
+							
+									<div class="tab-pane" id="mTicketTakenAwaiting">
+									
+									  <div class="panel-body">
+									
+										<!-- mTicketTakenEscalate Details -->
+										<form:form id="updateResolved" class="well form-horizontal" action="updateTicket" modelAttribute="updateTicket"
+											method="post"  >
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Awaiting Spares</b>
+											</legend>
+											
+												
+											  <!-- Text input Order No-->
+												<div class="form-group">
+														<label class="col-md-3 control-label"> Order No</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-user"></i></span> <select
+																	id="orderNum" name="orderNum"
+																	class="form-control selectpicker" >
+																	<option value="">Select Order No</option>
+																	<c:forEach items="${OrderNumber}" var="orders">
+																		<option value="${orders.recordID}">${order.recordID}
+																			</option>
+																	</c:forEach>
+
+																</select>
+															</div>
+														</div>
+													</div>
+													
+												<!-- display Comments-->
+												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comment</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	></textarea>
+															</div>
+														</div>
+													</div>
+													
+												<!--// display Comments-->
+
+											<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Awaiting For Spares"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+
+										</form:form>
+										<!-- Awaiting ticket Details -->
+									
+									 </div>
+								</div>
 							</c:when>
 						</c:choose>
 						
-						<div class="tab-pane active" id="ticketReassign"></div>
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Resolved'}">
+						
+						      <!-- ticketReopenResolved -->
+						      <div class="tab-pane" id="mTicketReopenResolved">
+						      
+						      <div class="panel-body">									
+						      			
+								<form:form class="well form-horizontal">
+										
+										<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Resolved Details</b>
+										</legend>
+										
+										<!-- Text input Serial No-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Serial No</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input
+														name="serialNumber" placeholder="Serial Number"
+														value="${ticketObject.getDevice().getSerialNumber() }"
+														class="form-control" type="text" readonly>
+												</div>
+											</div>
+										</div>
+	
+										<!-- Text area Action Taken-->
+											<div class="actionTaken">
+												<div class="form-group">
+													<label class="col-md-3 control-label">Action Taken</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input id="actionTaken"
+																class="form-control" type="text" name="actionTaken"
+																value="${ticketObject.actionTaken }" readonly="readonly">
+														</div>
+													</div>
+												</div>
+											</div>
+										
+									<c:if test="${empty ticketObject.comments}">
+									</c:if>
+									<c:if test="${not empty ticketObject.comments}">					
+											 <!-- Text area Comment-->
+											<div class="form-group">
+													<label class="col-md-3 control-label">Comments</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-pencil"></i></span>
+															<textarea class="form-control" name="comments" id="comment"readonly="readonly"
+															 style="height: 100px;">${ticketObject.comments}</textarea>
+														</div>
+													</div>
+											</div>
+									</c:if>
+									
+									<c:if test="${empty ticketObject.usedPartNumbers}">
+									</c:if>
+									<c:if test="${not empty ticketObject.usedPartNumbers}">
+																
+										<!-- Text area Used Spare Part-->
+										<div class="usedPartNumbersDetails">
+											<div class="form-group">
+												<label class="col-md-3 control-label">Used Spare/Part</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-barcode"></i></span> <input id="usedPartNumbers"
+															class="form-control" type="text" name="usedPartNumbers"
+															value="${ticketObject.usedPartNumbers}" readonly="readonly">
+													</div>
+												</div>
+											</div>
+										</div>
+									</c:if>	
+										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+														class="form-control" readonly="readonly"
+														onkeypress="return isNumber(event)"
+														placeholder="Enter Colour Reading" id="colour"
+														name="colourReading"
+														value="${ticketObject.getDevice().getColourReading() }"
+														name="colourReading">
+												</div>
+											</div>
+										</div>
+	
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+														class="form-control" onkeypress="return isNumber(event)"
+														id="mono" readonly="readonly" name="monoReading"
+														placeholder="Enter Mono Reading" name="monoReading"
+														value="${ticketObject.getDevice().getMonoReading() }">
+												</div>
+											</div>
+										</div>
+	
+										<div class="diplayNone" id="getPartTonerResolved"
+											style="display: none">
+	
+											<!-- display ticked Used Part Numbers-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Used Part
+													Numbers</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-barcode"></i></span>
+														<textarea id="tickedUsedPartNumbers" class="form-control"
+															readonly="readonly" name="usedPartNumbers"></textarea>
+													</div>
+												</div>
+											</div>
+											<!--// display ticked Used Part Numbers-->
+	
+										</div>
+										<!-- displayNone for getPartToner -->
+
+
+									</form:form>
+									
+									</div>
+								<!-- pane body -->									
+						      
+						      </div>						
+						
+						   </c:when>
+						</c:choose><!-- ticketReopenResolved -->
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Closed'}">
+						
+							<!-- ticketClosedNoAction -->
+							<div class="tab-pane" id="mTicketClosedNoAction">
+							
+							<div class="panel-body">
+								
+									<form:form class="well form-horizontal">
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+														align="center">
+														<b>Closed Details</b>
+												</legend>
+											<!-- Text input Serial No-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Serial No</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-barcode"></i></span> <input
+															name="serialNumber" placeholder="Serial Number"
+															value="${ticketObject.getDevice().getSerialNumber() }"
+															class="form-control" type="text" readonly>
+													</div>
+												</div>
+											</div>
+											
+											<!-- Text area Action Taken-->
+											<div class="actionTaken">
+												<div class="form-group">
+													<label class="col-md-3 control-label">Action Taken</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input id="actionTaken"
+																class="form-control" type="text" name="actionTaken"
+																value="${ticketObject.actionTaken }" readonly="readonly">
+														</div>
+													</div>
+												</div>
+											</div>
+											
+										<c:if test="${empty ticketObject.comments}">
+										</c:if>
+										<c:if test="${not empty ticketObject.comments}">					
+												 <!-- Text area Comment-->
+												<div class="form-group">
+														<label class="col-md-3 control-label">Comments</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-pencil"></i></span>
+																<textarea class="form-control" name="comments" id="comment"readonly="readonly"
+																 style="height: 100px;">${ticketObject.comments}</textarea>
+															</div>
+														</div>
+												</div>
+										</c:if>
+										
+										<c:if test="${empty ticketObject.usedPartNumbers}">
+										</c:if>
+										<c:if test="${not empty ticketObject.usedPartNumbers}">
+																	
+											<!-- Text area Used Spare Part-->
+											<div class="usedPartNumbersDetails">
+												<div class="form-group">
+													<label class="col-md-3 control-label">Used Spare/Part</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input id="usedPartNumbers"
+																class="form-control" type="text" name="usedPartNumbers"
+																value="${ticketObject.usedPartNumbers}" readonly="readonly">
+														</div>
+													</div>
+												</div>
+											</div>
+										</c:if>	
+											<!-- Text checkbox Colour Reading-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Colour Reading</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+															class="form-control" readonly="readonly"
+															onkeypress="return isNumber(event)"
+															placeholder="Enter Colour Reading" id="colour"
+															name="colourReading"
+															value="${ticketObject.getDevice().getColourReading() }"
+															name="colourReading">
+													</div>
+												</div>
+											</div>
+		
+											<div class="form-group">
+												<label class="col-md-3 control-label">Mono Reading</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+															class="form-control" onkeypress="return isNumber(event)"
+															id="mono" readonly="readonly" name="monoReading"
+															placeholder="Enter Mono Reading" name="monoReading"
+															value="${ticketObject.getDevice().getMonoReading() }">
+													</div>
+												</div>
+											</div>
+		
+											<div class="diplayNone" id="getPartTonerResolved"
+												style="display: none">
+		
+												<!-- display ticked Used Part Numbers-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Used Part
+														Numbers</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span>
+															<textarea id="tickedUsedPartNumbers" class="form-control"
+																readonly="readonly" name="usedPartNumbers"></textarea>
+														</div>
+													</div>
+												</div>
+												<!--// display ticked Used Part Numbers-->
+		
+											</div>
+											<!-- displayNone for getPartToner -->
+		
+									</form:form>
+								</div>
+								<!-- pane body -->
+							
+							</div>
+							
+						   </c:when>
+						</c:choose><!-- ticketClosedNoAction -->
 
 					</div>
 					<!-- group details-row-padding -->
 
 				</div>
+				<!-- /tab-content -->
 
-			</div>
-			<!-- /tab-content -->
-		</div>
-		<!-- /panel body -->
-	</div>
-	<!--/panel success class-->
-	</div>
-	<!-- /Container -->
+			</div><!-- /panel body -->
+			
+		</div><!-- /Container -->
+		
+		
 	<!-- Footer -->
 	<c:import url="templates/footer.jsp"></c:import>
 	<!--/ Footer -->
-	</div>
+	
 	<!-- / velaphanda_containter -->
+	</div>
+	<!--/panel success class-->
+	
+	
 
 </body>
 <script type="text/javascript"
@@ -1041,7 +1363,7 @@ table#orderDetails {
 <!-- Paging the table -->
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#orderInfo').DataTable({
+		$('#ticketInfo').DataTable({
 			"jQueryUI" : true,
 			"pagingType" : "full_numbers",
 			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]

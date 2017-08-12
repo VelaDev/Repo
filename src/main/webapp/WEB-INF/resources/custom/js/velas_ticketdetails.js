@@ -123,9 +123,6 @@ $(document)
 											actionTaken : {
 												required : true
 											},
-											/*technicianUserName : {
-												required : true
-											},*/
 											usedPartNumbers : {
 												required : {
 													depends : function(element) {
@@ -216,7 +213,7 @@ $(document)
 											comments : {
 												validators : {
 													notEmpty : {
-														message : 'Comments is required and can not be empty'
+														message : 'Comment is required and can not be empty'
 													}
 												}
 											},

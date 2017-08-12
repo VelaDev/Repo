@@ -144,7 +144,7 @@ input#selectDateRange {
 							<div class="input-group">
 								<span class="input-group-addon"><i
 									class="glyphicon glyphicon-list"></i></span> <select
-									name="getTicketDateRange" id="selectDateRange"
+									name="selectDateRange" id="selectDateRange"
 									class="form-control selectpicker" onchange="location = this.value;">
 									<c:if test="${empty newDate }">
 									   <option>Select a date</option>
@@ -172,9 +172,9 @@ input#selectDateRange {
 									<c:if test="${not empty selectedTechnician }">
 									   <option >${ selectedTechnician.firstName} ${ selectedTechnician.lastName}</option>
 									</c:if>
-									   <option value="getTechnicianName?technicianName=<c:out value="All Technicians"/>">All Technicians</option>
+									   <option value="getTicketByTechnician?technicianName=<c:out value="All Technicians"/>">All Technicians</option>
 									<c:forEach items="${technicians}" var="technician">
-												<option value="getTechnicianName?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>	
+												<option value="getTicketByTechnician?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>	
 										</c:forEach>
 																	
 								</select>

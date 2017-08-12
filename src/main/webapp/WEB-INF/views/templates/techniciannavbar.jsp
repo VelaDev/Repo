@@ -72,19 +72,19 @@
 					    <a href='<c:url value="technicianDashboard.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Tickets</a>
 					</li>
+					
+					--%>
+					
 					<li>
 					    <a href='<c:url value="techsparemanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Spare Management</a>
 					</li>
-					--%>
 					
-					
-					<li>
+					 <li>
 					    <a href='<c:url value="techticketmanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Ticket Management</a>
-					</li>
-					
-					
+					</li> 
+										
 					<li>
 					    <a href='<c:url value="ordertechmanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Management</a>

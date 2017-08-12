@@ -125,7 +125,7 @@ input#selectDateRange {
 									name="customerName" id="customerName"
 									class="form-control selectpicker" onchange="location = this.value;">
 									<c:if test="${not empty selectedName }">
-									   <option value="${ selectedName}">${ selectedName}</option>
+									   <option value="${ selectedName}">${selectedName}</option>
 									</c:if>
 									<option value="getCustomerName?customerName=<c:out value="All Customers"/>">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
@@ -483,9 +483,13 @@ input#selectDateRange {
 		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#createOrderDatatable').DataTable({
+					
+					
 					"jQueryUI" : true,
 					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+					"order": [[1 , "desc" ]]
+				
 				/* few more options are available to use */
 				});
 			});

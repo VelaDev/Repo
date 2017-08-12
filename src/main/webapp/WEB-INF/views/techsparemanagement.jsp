@@ -191,7 +191,6 @@ input#selectDateRange {
 						<div class="tab-content">
 
 							<div class="tab-pane active" id="receiveParts"></div>
-
 							<div class="tab-pane" id="hoSpareParts">
 								<legend align=center>Head Office Stock</legend>
 								<form:form modelAttribute="hoSpareParts" method="post"
@@ -226,7 +225,6 @@ input#selectDateRange {
 									<!-- table order -->
 								</form:form>
 								<!-- form order -->
-
 							</div>
 
 							<div class="tab-pane" id="siteStock">

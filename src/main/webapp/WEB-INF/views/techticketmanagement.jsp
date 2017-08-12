@@ -220,7 +220,7 @@ input#selectDateRange {
 									data-pjax="#body-container">
 										<div class="summary-count pull-left"
 											style="margin-left: -16%;">
-											<h4 align="center">${countOpenTickets}</h4>
+											<h4 align="center" style="color:#01960C;">${countOpenTickets}</h4>
 											<p align="center">Open Tickets</p>
 										</div>
 								</a></li>
@@ -284,7 +284,7 @@ input#selectDateRange {
 
 										<div class="summary-count pull-left"
 											style="margin-left: 2%;">
-											<h4 align="center">${countBridgedTickets}</h4>
+											<h4 align="center" style="color:red;">${countBridgedTickets}</h4>
 											<p align="center">SLA Bridged Tickets</p>
 										</div>
 								</a>
@@ -302,8 +302,7 @@ input#selectDateRange {
 											<p align="center">Resolved Tickets</p>
 										</div>
 								</a>
-								</li>
-								
+								</li>								
 																
 								<li><a href='<c:url value="closedTickets"/>'
 									class="summery-filter clearfix"
@@ -336,7 +335,7 @@ input#selectDateRange {
 										action="orderHistory" id="orderHistory" name="orderHistory">
 
 										<!-- Below table will be displayed as Data table -->
-										<table id="createOrderDatatable" class="display datatable">
+										<table id="displayTicketDetails" class="display datatable">
 											<thead>
 												<tr>
 													<th>Ticket Number</th>
@@ -493,10 +492,12 @@ input#selectDateRange {
 		<!-- Paging the table -->
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('#createOrderDatatable').DataTable({
+				$('#displayTicketDetails').DataTable({
 					"jQueryUI" : true,
 					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+					"order": [[1 , "desc" ]]
+					
 				/* few more options are available to use */
 				});
 			});

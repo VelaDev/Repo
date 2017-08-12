@@ -154,14 +154,28 @@ public class TicketsDao implements TicketsDaoInt {
 			//Get Count by Customer Name and Status
 			else if (customer.length() >= 3 && status.length() >= 3) {
 				ticketList = getAllLoggedTickets();
-				for (Tickets ticket : ticketList)
-				{
-					if (ticket.getStatus().equalsIgnoreCase(status)
-							&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)) {
-						tempCount++;
+				boolean isAllCustomers = false;
+				isAllCustomers = customer.equalsIgnoreCase("All Customers");
+				if (isAllCustomers == false){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)) {
+							tempCount++;
+						}
 					}
-				}
 
+				}
+				if (isAllCustomers == true){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)) {
+							tempCount++;
+						}
+					}
+
+				}
+				
 			}	
 			
 				
@@ -243,13 +257,29 @@ public class TicketsDao implements TicketsDaoInt {
 			//Get Ticket List by Customer Name and Status
 			else if (customer.length() >= 3 && status.length() >= 3) {
 				ticketList = getAllLoggedTickets();
-				for (Tickets ticket : ticketList)
+				boolean isAllCustomers = false;
+				isAllCustomers = customer.equalsIgnoreCase("All Customers");
+				
+				if (isAllCustomers == false)
 				{
-					if (ticket.getStatus().equalsIgnoreCase(status)
-							&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)) {
-						aList.add(ticket);
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)) {
+							aList.add(ticket);
+						}
 					}
 				}
+				else if (isAllCustomers == true)
+				{
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)) {
+							aList.add(ticket);
+						}
+					}
+				}
+				
 			}
 				//Get Ticket List by status
 			else {
@@ -264,6 +294,101 @@ public class TicketsDao implements TicketsDaoInt {
 			}	
 			
 				
+			
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	@Override
+	public List<Tickets> getTicketListByCustomerName(String customer) {
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+			boolean isAllCustomers = false;
+			isAllCustomers = customer.equalsIgnoreCase("All Customers");
+			//Get Ticket List by Customer Name 
+			if (isAllCustomers == false){
+				if (customer.length() >= 2) {
+					ticketList = getAllLoggedTickets();
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)) {
+							aList.add(ticket);
+						}
+					}
+				}
+			}
+			else if (isAllCustomers ==  true)
+			{
+				ticketList =  getLastFourteenDaysTickets();
+				for (Tickets ticket : ticketList)
+				{
+					aList.add(ticket);
+				}
+			}
+			
+			
+			
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	@Override
+	public List<Tickets> getTicketListByDateRange(String dateRange) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+			if (dateRange.length() >= 3) {
+				if (dateRange.equalsIgnoreCase("Last 24 Hours")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 1);
+				} else if (dateRange.equalsIgnoreCase("Last 7 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 6);
+				} else if (dateRange.equalsIgnoreCase("Last 14 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 13);
+				} else if (dateRange.equalsIgnoreCase("Last 30 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 30);
+				}
+				Date myDate = cal.getTime();
+
+				String date1 = myFormat.format(myDate);
+				String Date2 = myFormat.format(currentDate);
+				Date current = new Date();
+				Date previous = new Date();
+				Date dateData = new Date();
+
+				current = myFormat.parse(date1);
+				previous = myFormat.parse(Date2);
+
+				ticketList = getAllLoggedTickets();
+				for (Tickets ticket : ticketList)
+				{
+					String convDate = ticket.getDateTime().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					dateData = myFormat.parse(normalDate);
+					if (current.compareTo(dateData) <= 0) {
+						aList.add(ticket);
+					}
+				}
+
+			}		
+			
+			
 			
 		} catch (Exception exception) {
 			exception.getMessage();

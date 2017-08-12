@@ -74,6 +74,8 @@ public interface TicketsDaoInt {
 			String customer);
 	List<Tickets> getTicketListByStatus(String status, String dateRange,
 			String technicianEmail, String customer);
+	List<Tickets> getTicketListByCustomerName(String customer);
+	List<Tickets> getTicketListByDateRange(String dateRange);
 	
 	
 	/*void calculateSLAHours();

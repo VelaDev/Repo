@@ -89,7 +89,7 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public int getTicketCount(String status, String dateRange,
-			String technicianEmail, String customer) {
+			String technicianEmail, String customer, String ticketNumber) {
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date currentDate = new Date();
 		// get Calendar instance
@@ -194,6 +194,20 @@ public class TicketsDao implements TicketsDaoInt {
 				
 			}	
 			
+			else if (ticketNumber.length() >= 3 && status.length() >= 3) {
+				ticketList = getAllLoggedTickets();
+				if (ticketNumber != null){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getTicketNumber().equalsIgnoreCase(ticketNumber)) {
+							tempCount++;
+						}
+					}
+				}
+				
+			}
+			
 				
 			
 		} catch (Exception exception) {
@@ -204,9 +218,12 @@ public class TicketsDao implements TicketsDaoInt {
 	}
 	
 	
+	
+	
+	
 	@Override
 	public List<Tickets> getTicketListByStatus(String status, String dateRange,
-			String technicianEmail, String customer) {
+			String technicianEmail, String customer, String ticketNumber) {
 		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
 		Date currentDate = new Date();
 		// get Calendar instance
@@ -307,6 +324,21 @@ public class TicketsDao implements TicketsDaoInt {
 					for (Tickets ticket : ticketList)
 					{
 						if (ticket.getStatus().equalsIgnoreCase(status)) {
+							aList.add(ticket);
+						}
+					}
+				}
+				
+			}
+			
+			
+			else if (ticketNumber.length() >= 3 && status.length() >= 3) {
+				ticketList = getAllLoggedTickets();
+				if (ticketNumber != null){
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getTicketNumber().equalsIgnoreCase(ticketNumber)) {
 							aList.add(ticket);
 						}
 					}

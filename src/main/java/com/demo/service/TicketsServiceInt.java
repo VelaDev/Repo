@@ -98,9 +98,9 @@ public interface TicketsServiceInt {
 	List<Tickets> getLastFourteenDaysTickets();
 	
 	int getTicketCount(String status, String dateRange, String technicianEmail,
-			String customer);
+			String customer, String ticketNumber);
 	List<Tickets> getTicketListByStatus(String status, String dateRange,
-			String technicianEmail, String customer);
+			String technicianEmail, String customer, String ticketNumber);
 	List<Tickets> getTicketListByCustomerName(String customer);
 	List<Tickets> getTicketListByDateRange(String dateRange);
 	List<Tickets> getTicketListByTechnicianEmail(String technicianEmail);

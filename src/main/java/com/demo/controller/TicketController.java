@@ -1419,7 +1419,7 @@ public class TicketController {
 			model.addObject("countEscalatedTickets", ticketsServiceInt
 					.getTicketCount("Escalated", "Last 14 Days", "", ""));
 			model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-					.getTicketCount("AwaitingSpares", "Last 14 Days", "", ""));
+					.getTicketCount("Awaiting Spares", "Last 14 Days", "", ""));
 			model.addObject("countBridgedTickets", ticketsServiceInt
 					.getTicketCount("SLA Bridged", "Last 14 Days", "", ""));
 			model.addObject("countResolvedTickets", ticketsServiceInt
@@ -1714,7 +1714,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -1739,7 +1739,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -1763,7 +1763,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -1787,7 +1787,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -1934,7 +1934,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -1959,7 +1959,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -1983,7 +1983,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -2007,7 +2007,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -2155,7 +2155,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -2180,7 +2180,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -2204,7 +2204,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -2228,7 +2228,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -2364,7 +2364,7 @@ public class TicketController {
 					if (customerName.length() > 3) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("AwaitingSpares", "", "", customerName));
+								.getTicketListByStatus("Awaiting Spares", "", "", customerName));
 						model.addObject("countOpenTickets", ticketsServiceInt
 								.getTicketCount("Open", "", "", customerName));
 						model.addObject("countAcknowledgedTickets",
@@ -2376,7 +2376,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -2389,7 +2389,7 @@ public class TicketController {
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("AwaitingSpares", selectedDateRange, "", ""));
+							.getTicketListByStatus("Awaiting Spares", selectedDateRange, "", ""));
 					model.addObject("countOpenTickets", ticketsServiceInt
 							.getTicketCount("Open", selectedDateRange, "", ""));
 					model.addObject("countAcknowledgedTickets",
@@ -2401,7 +2401,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -2413,7 +2413,7 @@ public class TicketController {
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("AwaitingSpares", "", tempEmployee.getEmail(), ""));
+							.getTicketListByStatus("Awaiting Spares", "", tempEmployee.getEmail(), ""));
 					model.addObject("countOpenTickets", ticketsServiceInt
 							.getTicketCount("Open", "", tempEmployee.getEmail(), ""));
 					model.addObject("countAcknowledgedTickets",
@@ -2425,7 +2425,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -2437,7 +2437,7 @@ public class TicketController {
 				} else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("AwaitingSpares", "Last 14 Days", "", ""));
+							.getTicketListByStatus("Awaiting Spares", "Last 14 Days", "", ""));
 					model.addObject("countOpenTickets", ticketsServiceInt
 							.getTicketCount("Open", "Last 14 Days", "", ""));
 					model.addObject("countAcknowledgedTickets",
@@ -2449,7 +2449,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -2596,7 +2596,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -2621,7 +2621,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -2645,7 +2645,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -2669,7 +2669,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -2816,7 +2816,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -2841,7 +2841,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -2865,7 +2865,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -2889,7 +2889,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -3037,7 +3037,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -3062,7 +3062,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -3086,7 +3086,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -3110,7 +3110,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -3258,7 +3258,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -3283,7 +3283,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -3307,7 +3307,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -3331,7 +3331,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -3478,7 +3478,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -3503,7 +3503,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -3527,7 +3527,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -3551,7 +3551,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
@@ -3752,7 +3752,7 @@ public class TicketController {
 								ticketsServiceInt.getTicketCount("Escalated",
 										"", "", customerName));
 						model.addObject("countAwaitingSparesTickets",
-								ticketsServiceInt.getTicketCount("AwaitingSpares",
+								ticketsServiceInt.getTicketCount("Awaiting Spares",
 										"", "", customerName));
 						model.addObject("countBridgedTickets", ticketsServiceInt
 								.getTicketCount("SLA Bridged", "", "", customerName));
@@ -3777,7 +3777,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									 selectedDateRange, "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									 selectedDateRange, "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", selectedDateRange, "", ""));
@@ -3801,7 +3801,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"", tempEmployee.getEmail(), ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), ""));
@@ -3825,7 +3825,7 @@ public class TicketController {
 							ticketsServiceInt.getTicketCount("Escalated",
 									"Last 14 Days", "", ""));
 					model.addObject("countAwaitingSparesTickets",
-							ticketsServiceInt.getTicketCount("AwaitingSpares",
+							ticketsServiceInt.getTicketCount("Awaiting Spares",
 									"Last 14 Days", "", ""));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",

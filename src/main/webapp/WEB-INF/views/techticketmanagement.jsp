@@ -198,7 +198,7 @@ input#selectDateRange {
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<c:if test="${empty ticketNumbers}">
+						<c:if test="${empty ticketNumber}">
 						
 						<div class="ticket-summary row-fluid">
 

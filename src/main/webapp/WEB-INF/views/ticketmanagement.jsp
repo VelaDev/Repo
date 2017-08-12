@@ -203,7 +203,7 @@ input#selectDateRange {
 							<datalist id="ticketNumbers"> 
 								<c:forEach var="list"
 									items="${ticketNumbers}">
-									<option value="${list} }">
+									<option value="${list}">
 								</c:forEach>
 							 </datalist>
 
@@ -228,8 +228,10 @@ input#selectDateRange {
 
 				<div class="panel-body">
 					<div class="tab-content">
-						
-					<c:if test="${empty ticketNumber}">
+					
+					<input type="hidden" id="ticketNumber" name="tickectNumber" value="${ticketObject.ticketNumber}"> 
+					
+					<c:if test="${not empty ${ticketObject.ticketNumber}">
 						
 						
 						<div class="ticket-summary row-fluid">
@@ -360,6 +362,10 @@ input#selectDateRange {
 							</ul>
 						</div>
 						
+						</c:if>
+						
+						<c:if test="${empty ticketObject.ticketNumber}">
+								
 						</c:if>
 						
 						<form:form class="well form-horizontal" method="post"

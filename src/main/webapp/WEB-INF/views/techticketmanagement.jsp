@@ -118,9 +118,9 @@ input#selectDateRange {
 									<c:if test="${not empty selectedName }">
 									   <option value="${ selectedName}">${ selectedName}</option>
 									</c:if>
-									<option value="getCustomerName?customerName=<c:out value="All Customers"/>">All Customers</option>
+									<option value="getTicketByCustomer?customerName=<c:out value="All Customers"/>">All Customers</option>
 									<c:forEach items="${customers}" var="customer">
-										<option value="getCustomerName?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
+										<option value="getTicketByCustomer?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -141,7 +141,7 @@ input#selectDateRange {
 									   <option value="${ newDate}">${ newDate}</option>
 									</c:if>
 									     <c:forEach items="${dates}" var="date">
-										   <option value="getUserSelectedDate?selectedDate=<c:out value='${date}'/>">${date}</option>
+										   <option value="getTicketBySelectedDate?selectedDate=<c:out value='${date}'/>">${date}</option>
 									 </c:forEach>		
 								</select>
 

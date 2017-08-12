@@ -186,7 +186,7 @@ input#selectDateRange {
 						<div class="form-group">
 							<div class="col-md-3 inputGroupContainer">
 								<div class="input-group">
-									<input name="ticketNumbers" list="ticketNumbers"
+									<input name="ticketNumber" list="ticketNumbers"
 													class="form-control" type="text"
 													onkeydown="upperCaseF(this)"
 													placeholder='Enter Ticket Number' /> <span
@@ -202,8 +202,8 @@ input#selectDateRange {
 							<!-- Iterating over the list sent from Controller -->
 							<datalist id="ticketNumbers"> 
 								<c:forEach var="list"
-									items="">
-									<option value="">
+									items="${ticketNumbers}">
+									<option value="${list} }">
 								</c:forEach>
 							 </datalist>
 

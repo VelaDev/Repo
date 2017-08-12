@@ -312,5 +312,17 @@ public class TicketsService implements TicketsServiceInt{
 		return logTicketsDAO.countTakenTickets(technicianEmail);
 	}
 
+	@Override
+	public int getTicketCount(String status, String dateRange,
+			String technicianEmail, String customer) {
+		return logTicketsDAO.getTicketCount(status, dateRange, technicianEmail, customer);
+	}
+
+	@Override
+	public List<Tickets> getTicketListByStatus(String status, String dateRange,
+			String technicianEmail, String customer) {
+		return logTicketsDAO.getTicketListByStatus(status, dateRange, technicianEmail, customer);
+	}
+
 
 }

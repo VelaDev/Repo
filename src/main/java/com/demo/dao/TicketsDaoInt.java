@@ -70,6 +70,10 @@ public interface TicketsDaoInt {
 	List<Tickets> getAllTakenTickets(String technicianEmail);	
 	List<Tickets> getAwaitingSparesTickets();
 	List<Tickets> getLastFourteenDaysTickets();
+	int getTicketCount(String status, String dateRange, String technicianEmail,
+			String customer);
+	List<Tickets> getTicketListByStatus(String status, String dateRange,
+			String technicianEmail, String customer);
 	
 	
 	/*void calculateSLAHours();

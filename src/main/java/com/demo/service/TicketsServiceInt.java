@@ -96,5 +96,10 @@ public interface TicketsServiceInt {
 	List<Tickets> getAllAwaitingSparesTickets(String startDate,String endDate,String technicianEmail);
 	List<Tickets> getAllOpenTickets(String startDate,String endDate,String technicianEmail);
 	List<Tickets> getLastFourteenDaysTickets();
+	
+	int getTicketCount(String status, String dateRange, String technicianEmail,
+			String customer);
+	List<Tickets> getTicketListByStatus(String status, String dateRange,
+			String technicianEmail, String customer);
 
 }

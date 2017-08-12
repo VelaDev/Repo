@@ -334,5 +334,22 @@ public class TicketsService implements TicketsServiceInt{
 		return logTicketsDAO.getTicketListByDateRange(dateRange);
 	}
 
+	@Override
+	public List<Tickets> getTicketListByTechnicianEmail(String technicianEmail) {
+		return logTicketsDAO.getTicketListByTechnicianEmail(technicianEmail);
+	}
+
+	@Override
+	public String[] getTicketNumbers() {
+		// TODO Auto-generated method stub
+		return logTicketsDAO.getTicketNumbers();
+	}
+
+	@Override
+	public List<Tickets> searchTicketByTicketNumber(String ticketNumber) {
+		return logTicketsDAO.searchTicketByTicketNumber(ticketNumber);
+	}
+	
+	
 
 }

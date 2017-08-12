@@ -141,13 +141,29 @@ public class TicketsDao implements TicketsDaoInt {
 			//Get Count by Technician and Status
 			else if (technicianEmail.length() >= 3 && status.length() >= 3) {
 				ticketList = getAllLoggedTickets();
-				for (Tickets ticket : ticketList)
+				boolean isAllTechnicians = false;
+				isAllTechnicians = technicianEmail.equalsIgnoreCase("All Technicians");
+				
+				if (isAllTechnicians == false)
 				{
-					if (ticket.getStatus().equalsIgnoreCase(status)
-							&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
-						tempCount++;
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							tempCount++;
+						}
 					}
 				}
+				else if (isAllTechnicians == true)
+				{
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)) {
+							tempCount++;
+						}
+					}
+				}
+				
 
 			}	
 			
@@ -243,13 +259,29 @@ public class TicketsDao implements TicketsDaoInt {
 			//Get Ticket List by Technician and Status
 			else if (technicianEmail.length() >= 3 && status.length() >= 3) {
 				ticketList = getAllLoggedTickets();
-				for (Tickets ticket : ticketList)
+				boolean isAllTechnicians = false;
+				isAllTechnicians = technicianEmail.equalsIgnoreCase("All Technicians");
+				
+				if (isAllTechnicians == false)
 				{
-					if (ticket.getStatus().equalsIgnoreCase(status)
-							&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
-						aList.add(ticket);
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)
+								&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							aList.add(ticket);
+						}
 					}
 				}
+				else if (isAllTechnicians == true)
+				{
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getStatus().equalsIgnoreCase(status)) {
+							aList.add(ticket);
+						}
+					}
+				}
+				
 
 			}	
 			
@@ -397,7 +429,92 @@ public class TicketsDao implements TicketsDaoInt {
 		return aList;
 	}
 	
+	
+	@Override
+	public List<Tickets> getTicketListByTechnicianEmail(String technicianEmail) {
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+			boolean isAllTechnicians = false;
+			isAllTechnicians = technicianEmail.equalsIgnoreCase("All Technicians");
+			//Get Ticket List by Customer Name 
+			if (isAllTechnicians == false){
+				if (technicianEmail.length() >= 2) {
+					ticketList = getAllLoggedTickets();
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							aList.add(ticket);
+						}
+					}
+				}
+			}
+			else if (isAllTechnicians ==  true)
+			{
+				ticketList = getAllLoggedTickets();
+				for (Tickets ticket : ticketList)
+				{
+					aList.add(ticket);
+				}
+			}
+			
+			
+			
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
 
+		return aList;
+	}
+
+	@Override
+	public List<Tickets> searchTicketByTicketNumber(String ticketNumber) {
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+			
+				if (ticketNumber.length() >= 2) {
+					ticketList = getAllLoggedTickets();
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getTicketNumber().equalsIgnoreCase(ticketNumber)) {
+							aList.add(ticket);
+						}
+					}
+
+				}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+
+	@Override
+	public String[] getTicketNumbers() {
+		List<Tickets> list = null;
+		ArrayList<String> newList = null;
+		String array[] = null;
+		try {
+			list = getAllLoggedTickets();
+			newList = new ArrayList<String>();
+
+			for (Tickets ticket : list) {
+				newList.add(ticket.getTicketNumber());
+			}
+
+			array = new String[newList.size()];
+
+			for (int i = 0; i < newList.size(); i++) {
+				array[i] = newList.get(i);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return array;
+	}
+	
 	@Transactional
 	@SuppressWarnings("unchecked")
 	@Override

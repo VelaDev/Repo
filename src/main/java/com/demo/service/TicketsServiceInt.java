@@ -103,5 +103,8 @@ public interface TicketsServiceInt {
 			String technicianEmail, String customer);
 	List<Tickets> getTicketListByCustomerName(String customer);
 	List<Tickets> getTicketListByDateRange(String dateRange);
+	List<Tickets> getTicketListByTechnicianEmail(String technicianEmail);
+	String[] getTicketNumbers();
+	List<Tickets> searchTicketByTicketNumber(String ticketNumber);
 
 }

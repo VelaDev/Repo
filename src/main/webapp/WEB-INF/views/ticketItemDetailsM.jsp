@@ -114,7 +114,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="reOpen?=<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
+											<li><a href="reOpenTicket?=<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
 										</ul></li>
 								</c:when>
 								
@@ -283,8 +283,7 @@ table#orderDetails {
 												<td>${ticketObject.priority}</td>
 												<td>${ticketObject.employee.email}</td>
 												<td>${ticketObject.comments}</td>
-												<%-- <td>${list.technician}</td>
-															<td>${list.quantity}</td> --%>
+												
 											</tr>
 
 										</tbody>
@@ -315,9 +314,9 @@ table#orderDetails {
 												<thead>
 													<tr>
 														<th>Ticket No</th>
+														<th>Date</th>
 														<th>Ticket Status</th>
 														<th>Action Taken</th>
-														<th>Date</th>
 														<th>Assigned To</th>
 														<th>Colour Reading</th>
 														<th>Mono Reading</th>
@@ -329,6 +328,7 @@ table#orderDetails {
 													<c:forEach items="${ticketHistoryList}" var="history">
 														<tr>
 															<td><c:out value="${history.ticketNumber}" /></td>
+															<td><c:out value="${history.escalatedDate}" /></td>
 															<td><c:out value="${history.status}" /></td>
 															<c:choose>
 																<c:when test="${history.status =='Open'}">
@@ -359,8 +359,7 @@ table#orderDetails {
 																<c:otherwise>
 																	<td><c:out value="${history.actionTaken}" /></td>
 																</c:otherwise>
-															</c:choose>
-															<td><c:out value="${history.escalatedDate}" /></td>
+															</c:choose>															
 															<td><c:out
 																	value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 															<td><c:out value="${history.colourReading }" /></td>
@@ -701,7 +700,7 @@ table#orderDetails {
 
 										<!-- ticketReassign Details -->
 										<form:form action="updateTicket" modelAttribute="updateTicket"
-											method="post" id="updateResolved"
+											method="post" id="ticketAcknowledgedReassign"
 											class="well form-horizontal">
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
@@ -767,7 +766,7 @@ table#orderDetails {
 
 										<!-- ticketReassign Details -->
 										<form:form action="updateTicket" modelAttribute="updateTicket"
-											method="post" id="updateResolved"
+											method="post" id="ticketEscalatedReassign"
 											class="well form-horizontal">
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
@@ -834,7 +833,7 @@ table#orderDetails {
 
 										<!-- ticketReassign Details -->
 										<form:form action="updateTicket" modelAttribute="updateTicket"
-											method="post" id="updateResolved"
+											method="post" id="ticketOpenReassign"
 											class="well form-horizontal">
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
@@ -902,12 +901,12 @@ table#orderDetails {
 
 										<!-- mTicketTakenEscalate Details -->
 										<form:form action="updateTicket" modelAttribute="updateTicket"
-											method="post" id="updateResolved"
+											method="post" id="ticketTakenEscalate"
 											class="well form-horizontal">
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
 												align="center">
-												<b>Escalate Ticket</b>
+												<b>Escalate</b>
 											</legend>
 											
 												
@@ -978,7 +977,7 @@ table#orderDetails {
 									  <div class="panel-body">
 									
 										<!-- mTicketTakenEscalate Details -->
-										<form:form id="updateResolved" class="well form-horizontal" action="updateTicket" modelAttribute="updateTicket"
+										<form:form id="ticketTakenAwaiting" class="well form-horizontal" action="updateTicket" modelAttribute="updateTicket"
 											method="post"  >
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
@@ -1272,7 +1271,7 @@ table#orderDetails {
 															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
 															class="form-control" readonly="readonly"
 															onkeypress="return isNumber(event)"
-															placeholder="Enter Colour Reading" id="colour"
+															id="colour"
 															name="colourReading"
 															value="${ticketObject.getDevice().getColourReading() }"
 															name="colourReading">
@@ -1288,7 +1287,7 @@ table#orderDetails {
 															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
 															class="form-control" onkeypress="return isNumber(event)"
 															id="mono" readonly="readonly" name="monoReading"
-															placeholder="Enter Mono Reading" name="monoReading"
+															name="monoReading"
 															value="${ticketObject.getDevice().getMonoReading() }">
 													</div>
 												</div>
@@ -1366,7 +1365,8 @@ table#orderDetails {
 		$('#ticketInfo').DataTable({
 			"jQueryUI" : true,
 			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+			"order": [[1 , "desc" ]]
 		/* few more options are available to use */
 		});
 	});
@@ -1376,7 +1376,8 @@ table#orderDetails {
 		$('#tckHistory').DataTable({
 			"jQueryUI" : true,
 			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+			"order": [[1 , "desc" ]]
 		/* few more options are available to use */
 		});
 	});

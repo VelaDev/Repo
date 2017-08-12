@@ -73,19 +73,10 @@ input#selectDateRange {
 	cursor: pointer;
 }
 
-.db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) 
-	~ li {
-	width: 12%;
-}
-
 .db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(8) ~ li {
-    width: 13%;
+    width: 11%;
 }
 
-.db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
-	 ~ li {
-	width: 10%;
-}
 
 .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
 	{
@@ -112,8 +103,8 @@ input#selectDateRange {
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
-			<form:form action="searchOrderNumber" method="post"
-				id="searchOrderNumber" modelAttribute="searchOrderNumber">
+			<form:form action="searchByTicketNumber" method="post"
+				id="searchByTicketNumber" modelAttribute="searchByTicketNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
 					<!-- Select type customers-->
@@ -207,21 +198,24 @@ input#selectDateRange {
 				<div class="panel-body">
 					<div class="tab-content">
 
+						<c:if test="${empty ticketNumbers}">
+						
 						<div class="ticket-summary row-fluid">
 
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
 
 								
-								<li><a href='<c:url value="openTickets"/>'
+								<li style="margin-left:5%;"><a href='<c:url value="openTickets"/>'
 									class="summery-filter clearfix"
 									data-parallel-url="openTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
-										<div class="summary-count pull-left"
-											style="margin-left: -16%;">
+
+										<div class="summary-count pull-left" 
+										style="margin-left: -158%;margin-right: -8%;">
 											<h4 align="center" style="color:#01960C;">${countOpenTickets}</h4>
-											<p align="center">Open Tickets</p>
+											<p align="center">Open</p>
 										</div>
 								</a></li>
 								
@@ -231,9 +225,9 @@ input#selectDateRange {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 3%">
+											style="margin-left: 10%;">
 											<h4 align="center">${countAcknowledgedTickets}</h4>
-											<p align="center">Acknowledged Tickets</p>
+											<p align="center">Acknowledged</p>
 										</div>
 								</a></li>
 
@@ -244,9 +238,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 19%">
+											style="margin-left: 26%;">
 											<h4 align="center">${countTakenTickets}</h4>
-											<p align="center">Taken Tickets</p>
+											<p align="center">Taken</p>
 										</div>
 								</a></li>
 
@@ -256,9 +250,9 @@ input#selectDateRange {
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 										<div class="summary-count pull-left"
-											style="margin-left: -2%">
+											style="margin-left: 1%">
 											<h4 align="center">${countAwaitingSparesTickets}</h4>
-											<p align="center">Tickets Awaiting Spares</p>
+											<p align="center">Awaiting Spares</p>
 										</div>
 								</a></li>
 								
@@ -269,9 +263,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 12%">
+											style="margin-left: 17%;">
 											<h4 align="center">${countEscalatedTickets}</h4>
-											<p align="center">Escalated Tickets</p>
+											<p align="center">Escalated</p>
 										</div>
 								</a>
 								</li>
@@ -283,9 +277,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 2%;">
+											style="margin-left: 10%;">
 											<h4 align="center" style="color:red;">${countBridgedTickets}</h4>
-											<p align="center">SLA Bridged Tickets</p>
+											<p align="center">SLA Bridged</p>
 										</div>
 								</a>
 								</li>
@@ -297,9 +291,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 12%">
+											style="margin-left: 18%;">
 											<h4 align="center">${countResolvedTickets}</h4>
-											<p align="center">Resolved Tickets</p>
+											<p align="center">Resolved</p>
 										</div>
 								</a>
 								</li>								
@@ -311,9 +305,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 4%">
+											style="margin-left: 12%">
 											<h4 align="center">${countClosedTickets}</h4>
-											<p align="center">Closed Tickets</p>
+											<p align="center">Closed</p>
 										</div>
 								</a>
 								</li>
@@ -321,18 +315,20 @@ input#selectDateRange {
 							
 							</ul>
 						</div>
+						
+					</c:if>
 
 						<form:form class="well form-horizontal" method="post"
-							action="orderManage" id="orderManage"
-							modelAttribute="orderManage">
+							action="ticketManage" id="ticketManage"
+							modelAttribute="ticketManage">
 
 							<!-- tab nav -->
 							<div class="tab-content">
 
-								<div class="tab-pane active" id="createOrder">
+								<div class="tab-pane active" id="createTicket">
 
 									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
+										action="ticketHistory" id="ticketHistory" name="ticketHistory">
 
 										<!-- Below table will be displayed as Data table -->
 										<table id="displayTicketDetails" class="display datatable">
@@ -355,10 +351,10 @@ input#selectDateRange {
 													<tr>
 														<td><a
 															href="ticketItemDetailsT?recordID=<c:out value='${list.recordID}'/>">${list.ticketNumber}</a></td>
+														<td>${list.dateTime}</td>														<
 														<td>${list.description}</td>
 														<td>${list.status}</td>
-														<td>${list.dateTime}</td>
-														<td>${list.device.customerDevice.customerName}</td>
+														td>${list.device.customerDevice.customerName}</td>
 														<td>${list.device.serialNumber}</td>
 														<td>${list.device.modelNumber}</td>
 														<td>${list.employee.firstName}
@@ -367,95 +363,12 @@ input#selectDateRange {
 												</c:forEach>
 											</tbody>
 										</table>
-										<!-- table order -->
+										<!-- table ticket -->
 									</form:form>
-									<!-- form order -->
+									<!-- form ticket -->
 
 								</div>
-
-								<div class="tab-pane" id="shippedOrders">
-									<legend align=center>Shipped Orders</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="shippedOrdersDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Order No</th>
-													<th>Order Status</th>
-													<th>Customer</th>
-													<th>Approved Date</th>
-													<th>Stock Type</th>
-													<th>Ordered By</th>
-													<th>Order Details</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${orderList}">
-													<tr>
-														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-														<td>${list.status}</td>
-														<td></td>
-														<td>${list.dateOrdered}</td>
-														<td>${list.stockType}</td>
-														<td>Ordered By</td>
-														<td><a
-															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-								</div>
-
-								<div class="tab-pane" id="closedOrder">
-									<legend align=center>Closed Order</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="closedOrderDatatable" class="display datatable">
-											<thead>
-												<tr>
-													<th>Order No</th>
-													<th>Order Status</th>
-													<th>Customer</th>
-													<th>Approved Date</th>
-													<th>Stock Type</th>
-													<th>Ordered By</th>
-													<th>Order Details</th>
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach var="list" items="${orderList}">
-													<tr>
-														<td><a href="=<c:out value='${list.recordID}'/>">${list.orderNum}</a></td>
-														<td>${list.status}</td>
-														<td></td>
-														<td>${list.dateOrdered}</td>
-														<td>${list.stockType}</td>
-														<td>Ordered By</td>
-														<td><a
-															href="orderItemHistory?recordID=<c:out value='${list.recordID}'/>">Details</a></td>
-
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-
-								</div>
-
+								
 							</div>
 							<!-- /tab-content -->
 
@@ -503,51 +416,7 @@ input#selectDateRange {
 			});
 		</script>
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#OrderToApproveDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#closedOrderDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#OrderToShipDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#shippedOrdersDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-		
+	
 	<!-- Create datalist to populate search -->
 	<script type="text/javascript">
 		// Get the <datalist> and <input> elements.

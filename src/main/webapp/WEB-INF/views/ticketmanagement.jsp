@@ -114,8 +114,8 @@ input#selectDateRange {
 	<div class="velaphanda_containter">
 		<c:import url="templates/navbar.jsp"></c:import>
 		<div class="container">
-			<form:form action="searchOrderNumber" method="post"
-				id="searchOrderNumber" modelAttribute="searchOrderNumber">
+			<form:form action="searchByTicketNumber" method="post"
+				id="searchByTicketNumber" modelAttribute="searchByTicketNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
 					<!-- Select type customers-->
@@ -228,19 +228,22 @@ input#selectDateRange {
 
 				<div class="panel-body">
 					<div class="tab-content">
-
+						
+					<c:if test="${empty ticketNumbers}">
+						
+						
 						<div class="ticket-summary row-fluid">
 
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
 
-								<li><a href='logTicket.html'
+								<li ><a href='logTicket.html'
 									data-parallel-url=""
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: -10%;padding-right: 17%;">
+											style="margin-left: -5%;padding-right: 37%;">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Create Ticket</p>
@@ -254,9 +257,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 7%;">
+											style="margin-left: 25%;">
 											<h4 align="center" style="color:#01960C;">${countOpenTickets}</h4>
-											<p align="center">Open Tickets</p>
+											<p align="center">Open</p>
 										</div>
 								</a></li>
 								
@@ -266,9 +269,9 @@ input#selectDateRange {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: -11%;">
+											style="margin-left: 5%;">
 											<h4 align="center">${countAcknowledgedTickets}</h4>
-											<p align="center">Acknowledged Tickets</p>
+											<p align="center">Acknowledged</p>
 										</div>
 								</a></li>								
 								
@@ -279,9 +282,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 8%;">
+											style="margin-left: 28%;">
 											<h4 align="center">${countTakenTickets}</h4>
-											<p align="center">Taken Tickets</p>
+											<p align="center">Taken</p>
 										</div>
 								</a></li>
 
@@ -291,9 +294,9 @@ input#selectDateRange {
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 										<div class="summary-count pull-left"
-											style="margin-left: -16%;">
+											style="margin-left: 3%;">
 											<h4 align="center">${countAwaitingSparesTickets}</h4>
-											<p align="center">Tickets Awaiting Spares</p>
+											<p align="center">Tickets Awaiting</p>
 										</div>
 								</a></li>
 																
@@ -304,9 +307,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 2%;">
+											style="margin-left: 13%;">
 											<h4 align="center">${countEscalatedTickets}</h4>
-											<p align="center">Escalated Tickets</p>
+											<p align="center">Escalated</p>
 										</div>
 								</a>
 								</li>
@@ -318,9 +321,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: -5%;">
+											style="margin-left: 14%;">
 											<h4 align="center" style="color:red;">${countBridgedTickets}</h4>
-											<p align="center">SLA Bridged Tickets</p>
+											<p align="center">SLA Bridged</p>
 										</div>
 								</a>
 								</li>
@@ -332,9 +335,9 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: 2%;">
+											style="margin-left: 13%;">
 											<h4 align="center">${countResolvedTickets}</h4>
-											<p align="center">Resolved Tickets</p>
+											<p align="center">Resolved</p>
 										</div>
 								</a>
 								</li>								
@@ -348,7 +351,7 @@ input#selectDateRange {
 										<div class="summary-count pull-left"
 											style="margin-left: 4%">
 											<h4 align="center">${countClosedTickets}</h4>
-											<p align="center">Closed Tickets</p>
+											<p align="center">Closed</p>
 										</div>
 								</a>
 								</li>
@@ -356,6 +359,8 @@ input#selectDateRange {
 							
 							</ul>
 						</div>
+						
+						</c:if>
 						
 						<form:form class="well form-horizontal" method="post"
 							action="ticketManage" id="ticketManage"

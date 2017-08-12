@@ -199,8 +199,6 @@ input#selectDateRange {
 					<div class="tab-content">
 
 						
-						<c:if test="${empty $ticketObject.ticketNumber}">
-						
 						<div class="ticket-summary row-fluid">
 
 							<ul class="db-summary clearfix pb20 pt20 clear"
@@ -317,11 +315,6 @@ input#selectDateRange {
 							</ul>
 						</div>
 						
-					</c:if>
-					
-					<input type="hidden" id="ticketNumber" name="tickectNumber" value="${ticketObject.ticketNumber}"/> 
-						
-
 						<form:form class="well form-horizontal" method="post"
 							action="ticketManage" id="ticketManage"
 							modelAttribute="ticketManage">

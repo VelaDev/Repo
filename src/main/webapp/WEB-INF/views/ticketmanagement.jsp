@@ -191,7 +191,7 @@ input#selectDateRange {
 													onkeydown="upperCaseF(this)"
 													placeholder='Enter Ticket Number' /> <span
 										class="input-group-btn">
-										<button class="btn btn-success" type="submit">
+										<button class="btn btn-success"  type="submit">
 											<div class="up" style="margin-top: -8%; color: white;">Search</div>
 										</button>
 									</span>
@@ -210,11 +210,9 @@ input#selectDateRange {
 						</div>
 					</div>
 					
-					<input type="hidden" id="ticketNumber" name="ticketNumber" value="${ticketObject.ticketNumber}"> 
-					
-					
 				</div>
-
+				  
+				 
 			</form:form>
 
 			<div class="panel panel-success">
@@ -232,8 +230,6 @@ input#selectDateRange {
 					<div class="tab-content">
 					
 				    
-					<c:if test="${empty $ticketObject.ticketNumber}">
-					 
 						
 						<div class="ticket-summary row-fluid">
 
@@ -357,18 +353,12 @@ input#selectDateRange {
 											<p align="center">Closed</p>
 										</div>
 								</a>
-								</li>
-								
+								</li>							
 							
 							</ul>
 						</div>
-						</c:if>
 						
-						<c:if test="${not empty $ticketObject.ticketNumber}">
-						
-						</c:if>
-						
-						
+																		
 						<form:form class="well form-horizontal" method="post"
 							action="ticketManage" id="ticketManage"
 							modelAttribute="ticketManage">

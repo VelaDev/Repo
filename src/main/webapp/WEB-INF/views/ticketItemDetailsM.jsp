@@ -156,14 +156,12 @@ table#orderDetails {
 							  <li><a href="#mTicketTakenAwaiting" data-toggle="tab">Awaiting Spares</a></li>
 						</c:when>
 						</c:choose>
-						
-						
+												
 						<c:choose>
 							<c:when test="${ticketObject.status =='Resolved'}">
 							 <li><a href="#mTicketReopenResolved" data-toggle="tab">Resolved Ticket Details</a></li>							  
 						</c:when>						
 						</c:choose>
-						
 						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Closed'}">
@@ -171,8 +169,6 @@ table#orderDetails {
 						</c:when>						
 						</c:choose>
 						
-						
-
 					</ul>
 
 					<div class="tab-content">

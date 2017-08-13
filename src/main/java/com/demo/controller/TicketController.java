@@ -286,13 +286,12 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			
-			
-
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
 				
 				
-				model.addObject("managerUpdateTicket", managerUpdateTicket);
+				model.addObject("managerUpdateTicket",
+						ticketsServiceInt.performTicketAction(updateTicket));
 				
 				model.setViewName("confirmations");
 			}
@@ -313,20 +312,19 @@ public class TicketController {
 
 	@RequestMapping("updateTicket")
 	public ModelAndView updateTicket(
-			@ModelAttribute("updateTicket") TicketsBean updateTicket) {
+			@ModelAttribute("performTicketAction") TicketsBean updateTicket) {
 		String managerUpdateTicket = "managerUpdateTicket";
 		String techUpdateTicket = "techUpdateTicket";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			
-			
-
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
 				
 				
-				model.addObject("managerUpdateTicket", managerUpdateTicket);
+				model.addObject("managerUpdateTicket",
+						ticketsServiceInt.performTicketAction(updateTicket));
 				
 				model.setViewName("confirmations");
 			}
@@ -1413,14 +1411,12 @@ public class TicketController {
 	// ticket management details
 	@RequestMapping(value = { "ticketItemDetailsM", "ticketItemDetailsT" }, method = RequestMethod.GET)
 	public ModelAndView ticketItemDetailsM(
-			@RequestParam("ticketNumber") String localTicketNumber,
+			@RequestParam("recordID") int recordID,
 			@ModelAttribute Tickets ticket) {
-		ticketNumber = localTicketNumber;
 		model = new ModelAndView();
-		int recordID = 9;
+	
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			
 			
 			
 			String technician = userName.getFirstName() + " "

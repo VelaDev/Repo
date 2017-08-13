@@ -870,7 +870,7 @@ public class TicketsDao implements TicketsDaoInt {
 		try {
 			
 			 if (action != null && action.length() >= 2){
-				 if (action.equalsIgnoreCase("Re-Assing"))
+				 if (action.equalsIgnoreCase("Reassign"))
 				 {
 					 List<Tickets> ticketList = getAllLoggedTickets();
 						for(Tickets ticket:ticketList)

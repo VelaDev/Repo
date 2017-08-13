@@ -90,6 +90,7 @@ public interface TicketsDaoInt {
 			String technicianEmail);
 	String[] getTicketNumbersForTech(String technicianEmail);
 	String performTicketAction(TicketsBean ticketsBean);
+
 	
 	
 	/*void calculateSLAHours();

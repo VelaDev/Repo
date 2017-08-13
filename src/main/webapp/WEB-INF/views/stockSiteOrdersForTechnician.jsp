@@ -6,56 +6,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<!-- Little Dash-board -->
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/ticketoverview.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/common-9a01e5a5a5a2f97d04552fa65cc3846b.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/fonts/sprites-b23bb97cb281c684a70d957ed91664df.css" />" />
-<link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/app-310c175202e0f34694cea021357db448.css" />" />
-<!-- //Little Dash-board -->
-
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-
-
-
-<style>
-
-
-.db-summary li:first-child:nth-last-child(2), .db-summary li:first-child:nth-last-child(2) 
-	~ li {
-	width: 10%;
-}
-
-.db-summary li a {
-	padding-top: 15px;
-	padding-left: 59px;
-	display: block;
-}
-
-
-.db-summary li:first-child {
-	border-right: 1px #dfdfdf solid;
-}
-
-.db-summary li {
-	float: left;
-	box-sizing: border-box;
-	border-right: 1px #dfdfdf solid;
-}
-</style>
-
-
-<!--/style-->
-
 
 </head>
 <body>
@@ -75,41 +33,9 @@
 				<div class="panel-body">
 
 					<div class="tab-content">
-					
-						<div class="ticket-summary row-fluid">
 
-							<ul class="db-summary clearfix pb20 pt20 clear"
-								id="ticket-summary" class="nav nav-tabs">
+						<!--  <h4 align="center">Site Stock</h4> -->
 
-								<li><a href='numberOfPartsForTech'
-									data-parallel-url="'numberOfPartsForTech'"
-									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20"
-											style="margin-left: 28%">
-											<h4 align="center">${countPartForCustomer}</h4>
-											<p align="center">Parts</p>
-										</div>
-								</a></li>
-
-								<li><a href='numberOfTonersForTech'
-									class="summery-filter clearfix"
-									data-parallel-url="numberOfTonersForTech"
-									data-parallel-placeholder="#ticket-leftFilter"
-									data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20"
-											style="margin-left: 4%">
-											<h4 align="center">${countTonerForCustomer}</h4>
-											<p align="center">Toners</p>
-										</div>
-								</a></li>
-							</ul>
-						</div>
-						
-						<div class="tab-pane active" id="numberOfParts'"></div>
-							
 
 						<form action="">
 							<!-- Below table will be displayed as Data table -->
@@ -139,9 +65,6 @@
 								</tbody>
 							</table>
 						</form>
-						
-						</div>
-						
 					</div>
 					<!-- /tab-content -->
 				</div>

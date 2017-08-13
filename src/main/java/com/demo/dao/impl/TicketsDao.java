@@ -827,111 +827,124 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public String performTicketAction(TicketsBean ticketsBean) {
-		String action = ticketsBean.getActionTaken();
-		technician = employeeDaoInt.getEmployeeByEmpNum(ticketsBean
-				.getTechnicianUserName());
-		ticketNumber = ticketsBean.getTicketNumber();
-		try {
 
-			if (action != null && action.length() >= 2) {
-				if (action.equalsIgnoreCase("Reassign")) {
-					List<Tickets> ticketList = getAllLoggedTickets();
-					for (Tickets ticket : ticketList) {
-						if (ticketNumber != null && ticketNumber.length() >= 2) {
-							if (ticket.getTicketNumber().equalsIgnoreCase(
-									ticketNumber)) {
-								if (technician != null) {
-									String technicianName = technician
-											.getFirstName()
-											+ " "
-											+ technician.getLastName();
-									ticket.setEmployee(technician);
-									sessionFactory.getCurrentSession().update(
-											ticket);
-									// ticketHistoryDaoInt.insertTicketHistory(tick);
-									retMessage = "Ticket " + ticketNumber
-											+ " re-assigned to "
-											+ technicianName;
+		try {
+			if (ticketsBean != null) {
+
+				String action = ticketsBean.getTicketAction();
+				if (ticketsBean.getTechnicianUserName() != null && ticketsBean.getTechnicianUserName().length() > 2)
+				{
+					technician = employeeDaoInt.getEmployeeByEmpNum(ticketsBean
+							.getTechnicianUserName());
+				}				
+				ticketNumber = ticketsBean.getTicketNumber();
+				
+				if (action != null && action.length() >= 2) {
+					if (action.equalsIgnoreCase("Reassign")) {
+						List<Tickets> ticketList = getAllLoggedTickets();
+						for (Tickets ticket : ticketList) {
+							if (ticketNumber != null
+									&& ticketNumber.length() >= 2) {
+								if (ticket.getTicketNumber().equalsIgnoreCase(
+										ticketNumber)) {
+									if (technician != null) {
+										String technicianName = technician
+												.getFirstName()
+												+ " "
+												+ technician.getLastName();
+										ticket.setEmployee(technician);
+										sessionFactory.getCurrentSession()
+												.update(ticket);
+										// ticketHistoryDaoInt.insertTicketHistory(tick);
+										retMessage = "Ticket " + ticketNumber
+												+ " re-assigned to "
+												+ technicianName;
+									}
 								}
 							}
 						}
 					}
-				}
 
-				else if (action.equalsIgnoreCase("Reopen")) {
-					List<Tickets> ticketList = getAllLoggedTickets();
-					for (Tickets ticket : ticketList) {
-						if (ticketNumber != null && ticketNumber.length() >= 2) {
-							if (ticket.getTicketNumber().equalsIgnoreCase(
-									ticketNumber)) {
-								ticket.setStatus("Open");
-								sessionFactory.getCurrentSession().update(
-										ticket);
-								// ticketHistoryDaoInt.insertTicketHistory(tick);
-								retMessage = "Ticket " + ticketNumber
-										+ " successfully re-opened";
+					else if (action.equalsIgnoreCase("Reopen")) {
+						List<Tickets> ticketList = getAllLoggedTickets();
+						for (Tickets ticket : ticketList) {
+							if (ticketNumber != null
+									&& ticketNumber.length() >= 2) {
+								if (ticket.getTicketNumber().equalsIgnoreCase(
+										ticketNumber)) {
+									ticket.setStatus("Open");
+									sessionFactory.getCurrentSession().update(
+											ticket);
+									// ticketHistoryDaoInt.insertTicketHistory(tick);
+									retMessage = "Ticket " + ticketNumber
+											+ " successfully re-opened";
 
+								}
 							}
 						}
 					}
-				}
-				
-				else if (action.equalsIgnoreCase("acknowledge")) {
-					List<Tickets> ticketList = getAllLoggedTickets();
-					for (Tickets ticket : ticketList) {
-						if (ticketNumber != null && ticketNumber.length() >= 2) {
-							if (ticket.getTicketNumber().equalsIgnoreCase(
-									ticketNumber)) {
-								ticket.setStatus("Acknowledged");
-								sessionFactory.getCurrentSession().update(
-										ticket);
-								// ticketHistoryDaoInt.insertTicketHistory(tick);
-								retMessage = "Ticket " + ticketNumber
-										+ " successfully Acknowledged";
 
+					else if (action.equalsIgnoreCase("acknowledge")) {
+						List<Tickets> ticketList = getAllLoggedTickets();
+						for (Tickets ticket : ticketList) {
+							if (ticketNumber != null
+									&& ticketNumber.length() >= 2) {
+								if (ticket.getTicketNumber().equalsIgnoreCase(
+										ticketNumber)) {
+									ticket.setStatus("Acknowledged");
+									sessionFactory.getCurrentSession().update(
+											ticket);
+									// ticketHistoryDaoInt.insertTicketHistory(tick);
+									retMessage = "Ticket " + ticketNumber
+											+ " successfully Acknowledged";
+
+								}
 							}
 						}
 					}
-				}
-				
-				else if (action.equalsIgnoreCase("taketicket")) {
-					List<Tickets> ticketList = getAllLoggedTickets();
-					for (Tickets ticket : ticketList) {
-						if (ticketNumber != null && ticketNumber.length() >= 2) {
-							if (ticket.getTicketNumber().equalsIgnoreCase(
-									ticketNumber)) {
-								ticket.setStatus("Taken");
-								sessionFactory.getCurrentSession().update(
-										ticket);
-								// ticketHistoryDaoInt.insertTicketHistory(tick);
-								retMessage = "Ticket " + ticketNumber
-										+ " successfully Taken";
 
+					else if (action.equalsIgnoreCase("taketicket")) {
+						List<Tickets> ticketList = getAllLoggedTickets();
+						for (Tickets ticket : ticketList) {
+							if (ticketNumber != null
+									&& ticketNumber.length() >= 2) {
+								if (ticket.getTicketNumber().equalsIgnoreCase(
+										ticketNumber)) {
+									ticket.setStatus("Taken");
+									sessionFactory.getCurrentSession().update(
+											ticket);
+									// ticketHistoryDaoInt.insertTicketHistory(tick);
+									retMessage = "Ticket " + ticketNumber
+											+ " successfully Taken";
+
+								}
 							}
 						}
 					}
-				}
-				
-				else if (action.equalsIgnoreCase("escalate")) {
-					List<Tickets> ticketList = getAllLoggedTickets();
-					for (Tickets ticket : ticketList) {
-						if (ticketNumber != null && ticketNumber.length() >= 2) {
-							if (ticket.getTicketNumber().equalsIgnoreCase(
-									ticketNumber)) {
-								ticket.setStatus("Escalated");
-								sessionFactory.getCurrentSession().update(
-										ticket);
-								// ticketHistoryDaoInt.insertTicketHistory(tick);
-								retMessage = "Ticket " + ticketNumber
-										+ " successfully Escalated to" + technician.getFirstName() + " " +  technician.getLastName();
 
+					else if (action.equalsIgnoreCase("escalate")) {
+						List<Tickets> ticketList = getAllLoggedTickets();
+						for (Tickets ticket : ticketList) {
+							if (ticketNumber != null
+									&& ticketNumber.length() >= 2) {
+								if (ticket.getTicketNumber().equalsIgnoreCase(
+										ticketNumber)) {
+									ticket.setStatus("Escalated");
+									sessionFactory.getCurrentSession().update(
+											ticket);
+									// ticketHistoryDaoInt.insertTicketHistory(tick);
+									retMessage = "Ticket " + ticketNumber
+											+ " successfully Escalated to"
+											+ technician.getFirstName() + " "
+											+ technician.getLastName();
+
+								}
 							}
 						}
 					}
+
+					// Close the big iff
 				}
-				
-				
-			// Close the big iff	
 			}
 
 		} catch (Exception e) {

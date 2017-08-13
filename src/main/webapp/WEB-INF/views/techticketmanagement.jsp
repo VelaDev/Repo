@@ -147,8 +147,7 @@ input#selectDateRange {
 
 							</div>
 						</div>
-					</div>
-					
+					</div>					
 					
 					<div align=right>
 						<!-- Text input Search-->

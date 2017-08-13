@@ -56,14 +56,13 @@ table#orderDetails {
 						</div>
 					</h3>
 				</div>
+				<!-- panel body -->
 				<div class="panel-body">
-
-					<div id="navbar" class="navbar-collapse collapse"
-						style="margin-left: -2%">
+				
+					<!-- navigation for action taken -->
+					<div id="navbar" class="navbar-collapse collapse" style="margin-left: -2%">
 						<ul class="nav navbar-nav navbar-left">
-
 							<c:choose>
-								
 								<c:when test="${ticketObject.status =='Open'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -132,9 +131,11 @@ table#orderDetails {
 									PDF </a></li> --%>
 
 						</ul>
-					</div>
+					</div><!-- //navigation for action taken -->
+					
 					<legend></legend>
 					
+					<!-- nav sub menu tabs  -->
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>
 						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
@@ -169,96 +170,83 @@ table#orderDetails {
 						</c:when>						
 						</c:choose>
 						
-					</ul>
-
+					</ul><!-- // nav sub menu tabs-->
+					
+					<!-- tab content -->
 					<div class="tab-content">
 
-						<!--#ticketDetails tab-->
+						<!--Ticket Details tab-->
 						<div class="tab-pane active" id="ticketDetails">
 							<br /> <br />
+							
+							<!-- page wrap -->
 							<div id="pagewrap">
-
+								<!-- section content -->
 								<section id="content" style="width:35%;">
-								<div class="groupclientdetails">
-									<legend style="font-size: 12px; line-height: 1.42857143;">Device</legend>
-
-									<div class="machinedetailsdetailsfloatleft">
-
-										<label id="serialNumber" name="serialNumber"><b>Serial
-												Number: ${ticketObject.device.serialNumber} </b></label> <br>
-										<li id="modelNumber" name="modelNumber">Model:
-											${ticketObject.device.modelNumber}</li>
-										<li id="brand" name="brand">Device Brand:
-											${ticketObject.device.modelBrand}</li> <br> <label
-											id="location" name=""location""><b>Location</b></label>
-										<li id="building" name="building">Floor
-											${ticketObject.device.floorNumber}
-											${ticketObject.device.buildingName}</li>
-										<li id="street" name="street">${ticketObject.device.streetNumber}
-											${ticketObject.device.streetName}</li>
-										<li id="city" name="city">${ticketObject.device.city_town}</li>
-										<li id="province" name=""province"">${ticketObject.device.province}</li>
-										<li id="areaCode" name="areaCode">${ticketObject.device.areaCode}</li>
-
+									<div class="groupclientdetails">
+										<legend style="font-size: 12px; line-height: 1.42857143;">Device</legend>
+	
+										<div class="machinedetailsdetailsfloatleft">
+	
+											<label id="serialNumber" name="serialNumber"><b>Serial
+													Number: ${ticketObject.device.serialNumber} </b></label> <br>
+											<li id="modelNumber" name="modelNumber">Model:
+												${ticketObject.device.modelNumber}</li>
+											<li id="brand" name="brand">Device Brand:
+												${ticketObject.device.modelBrand}</li> <br> <label
+												id="location" name=""location""><b>Location</b></label>
+											<li id="building" name="building">Floor
+												${ticketObject.device.floorNumber}
+												${ticketObject.device.buildingName}</li>
+											<li id="street" name="street">${ticketObject.device.streetNumber}
+												${ticketObject.device.streetName}</li>
+											<li id="city" name="city">${ticketObject.device.city_town}</li>
+											<li id="province" name=""province"">${ticketObject.device.province}</li>
+											<li id="areaCode" name="areaCode">${ticketObject.device.areaCode}</li>
+	
+										</div>
+	
 									</div>
-
-								</div>
-								</section>
-
+								</section><!-- //section content -->
+								<!-- section middle -->
 								<section id="middle">
-
-								<div class="groupclientaddress">
-									<legend style="font-size: 12px; line-height: 1.42857143;">Ticket
-										Contacts</legend>
-
-									<div class="machinedetailsfloatright ">
-
-										<div class="orderDetails">
-											<li id="contactName"><b>${ticketObject.firstName}
-													${ticketObject.lastName}</b></li>
-											<li id="cell">Cell No: ${ticketObject.contactCellNumber}</li>
-											<li id="telephone">Telephone No:
-												${ticketObject.contactTelephoneNumber}</li>
-											<li id="email">E-Mail: ${ticketObject.contactEmail}</li>
-										</div>
-										<br>
+									<div class="groupclientaddress">
+										<legend style="font-size: 12px; line-height: 1.42857143;">Ticket Contacts</legend>
+											<div class="machinedetailsfloatright ">
+												<div class="orderDetails">
+													<li id="contactName"><b>${ticketObject.firstName} ${ticketObject.lastName}</b></li>
+													<li id="cell">Cell No: ${ticketObject.contactCellNumber}</li>
+													<li id="telephone">Telephone No: ${ticketObject.contactTelephoneNumber}</li>
+													<li id="email">E-Mail: ${ticketObject.contactEmail}</li>
+												</div>
+												<br>
+											</div>
 									</div>
-
-								</div>
-
-								</section>
-
+								</section><!-- //section middle -->
+								
+								<!-- aside sidebar -->
 								<aside id="sidebar">
-
-								<div class="groupproductdetails">
-									<legend style="font-size: 12px; line-height: 1.42857143;">Ticket</legend>
-									<div class="machinedetailsfloatright ">
-										<div class="orderDetails">
-											<li style="font-size: 15px;" id="ticketNum"><b>${ticketObject.ticketNumber}</b></li>
-											<li id="customer">Customer:
-												${ticketObject.device.customerDevice.customerName}</li>
-											<li id=tcketStatus>Status: ${ticketObject.status}</li>
-											<li id=ticketDate>Date: ${ticketObject.dateTime}</li>
-											<li id=assignedTo>Assigned To:
-												${ticketObject.employee.firstName}
-												${ticketObject.employee.lastName}</li> <br>
-											<li id="ticket_Description"><b>Description</b></li>
-											<li id="ticketDescription">${ticketObject.description}</li>
-
-										</div>
-										<br>
-
+									<div class="groupproductdetails">
+										<legend style="font-size: 12px; line-height: 1.42857143;">Ticket</legend>
+										<div class="machinedetailsfloatright ">
+											<div class="orderDetails">
+												<li style="font-size: 15px;" id="ticketNum"><b>${ticketObject.ticketNumber}</b></li>
+												<li id="customer">Customer: ${ticketObject.device.customerDevice.customerName}</li>
+												<li id=tcketStatus>Status: ${ticketObject.status}</li>
+												<li id=ticketDate>Date: ${ticketObject.dateTime}</li>
+												<li id=assignedTo>Assigned To: ${ticketObject.employee.firstName} ${ticketObject.employee.lastName}</li> <br>
+												<li id="ticket_Description"><b>Description</b></li>
+												<li id="ticketDescription">${ticketObject.description}</li>
+											</div>
+											<br>
+										</div>								
 									</div>
+								</aside><!-- //aside sidebar -->
 
-								</div>
-								</aside>
-
-								<div class="limeItems" style="margin-left: 1%;">
-
-									<legend style="font-size: 15px; line-height: 1.42857143;"
-										align="center">
-										<b>Ticket Details </b>
-									</legend>
+								<!-- Lineitems -->
+								<div class="lineItems" style="margin-left: 1%;">								
+									<legend style="font-size: 15px; line-height: 1.42857143;" align="center"><b>Ticket Details </b></legend>
+									<!-- table ticket info -->
 									<table id="ticketInfo" class="display datatable">
 										<thead>
 											<tr>
@@ -272,40 +260,27 @@ table#orderDetails {
 										</thead>
 										<tbody>
 											<!-- Iterating over the list sent from Controller -->
-
 											<tr>
 												<td>${ticketObject.ticketNumber}</td>
 												<td>${ticketObject.status}</td>
 												<td>${ticketObject.priority}</td>
 												<td>${ticketObject.employee.email}</td>
-												<td>${ticketObject.comments}</td>
-												
+												<td>${ticketObject.comments}</td>												
 											</tr>
-
 										</tbody>
-									</table>
+									</table><!-- //Table ticket Info -->
+								</div><!-- Line Item -->
+							</div><!-- page wrap -->
+						</div><!-- tab for Ticket Details -->
 
-								</div>
-
-							</div>
-
-
-						</div>
-
-						<!--#ticketHistoryDetails tab-->
+						<!--Ticket History Details tab-->
 						<div class="tab-pane" id="ticketHistoryDetails">
-
 							<div class="groupdetails-row-padding">
-
-								<div class="groupclientdetails">
-									<br />
-									<legend style="font-size: 15px; line-height: 1.42857143;"
-										align="center">
-										<b>Ticket History </b>
-									</legend>
+								<div class="groupclientdetails"><br />
+									<legend style="font-size: 15px; line-height: 1.42857143;" align="center"><b>Ticket History </b></legend>									
 									<form:form class="well form-horizontal">
 										<div class="panel-body">
-											<!-- Below table will be displayed as Data table -->
+											<!-- table tckHistory -->
 											<table id="tckHistory" class="display datatable">
 												<thead>
 													<tr>
@@ -328,26 +303,25 @@ table#orderDetails {
 															<td><c:out value="${history.status}" /></td>
 															<c:choose>
 																<c:when test="${history.status =='Open'}">
-																	<td><c:out value="${history.actionTaken}" />Log
-																		Ticket</td>
+																	<td><c:out value="${history.actionTaken}" />Log Ticket</td>
 																</c:when>
 																<c:when test="${history.status =='Awaiting Spares'}">
-																	<td>Waiting for Order: <c:out
-																			value="${orders.orderNum}" /></td>
+																	<td>Waiting for Order: <c:out value="${orders.orderNum}" /></td>
 																</c:when>
 																<c:when test="${history.status =='Escalated'}">
 																	<td>Ticket Escalated to Manager</td>
 																</c:when>
 																<c:when test="${history.status =='SLA Bridged'}">
-																	<td><c:out value="${history.actionTaken}" />System
-																		update</td>
+																	<td><c:out value="${history.actionTaken}" />System update</td>
 																</c:when>
 																<c:when test="${history.status =='Re-Opened'}">
 																	<td>Ticket Re-Opened</td>
 																</c:when>
+																<%-- <c:when test="${history.status =='Re-assign'}">
+																	<td>Ticket Re-assign</td>
+																</c:when> --%>
 																<c:when test="${history.status =='Acknowledged'}">
-																	<td><c:out value="${history.actionTaken}" />Tickets
-																		Acknowledged</td>
+																	<td><c:out value="${history.actionTaken}" />Tickets Acknowledged</td>
 																</c:when>
 																<c:when test="${history.status =='Taken'}">
 																	<td>Ticket Taken</td>
@@ -356,34 +330,31 @@ table#orderDetails {
 																	<td><c:out value="${history.actionTaken}" /></td>
 																</c:otherwise>
 															</c:choose>															
-															<td><c:out
-																	value="${history.employee.firstName} ${history.employee.lastName}" /></td>
+															<td><c:out value="${history.employee.firstName} ${history.employee.lastName}" /></td>
 															<td><c:out value="${history.colourReading }" /></td>
 															<td><c:out value="${history.monoReading }" /></td>
 															<td><c:out value="${history.comment}" /></td>
 														</tr>
 													</c:forEach>
 												</tbody>
-											</table>
+											</table><!--// ticket history details -->
 
-										</div>
+										</div><!--// panel body -->
 									</form:form>
-
 								</div>
-								<!-- group client details -->
-
+								<!--// group ticket details -->
 							</div>
-
-						</div>
+						</div><!-- 	//Ticket History Details tab -->
 						
+						<!-- Details for Resolving ticket if status is Escalated  -->
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
-
+								
 								<div class="tab-pane" id="mTicketEscalatedResolvedDetails">
 
 									<div class="panel-body">
 
-										<!-- resolvedSolution Details -->
+										<!-- resolved details -->
 										<form:form action="updateTicket" modelAttribute="updateTicket"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
@@ -458,9 +429,7 @@ table#orderDetails {
 
 											</div>
 											<!-- HideMonoAndColour if no action is selscted -->
-
-
-
+											
 											<!-- group Used Part Numbers -->
 											<div class="groupsearchdetails">
 
@@ -517,10 +486,7 @@ table#orderDetails {
 												<!-- // end hideIfIsNotPartToner -->
 
 												<!-- display Comments-->
-												<div class="hideComent" id="hideComent"
-													style="display: none">
-													<!-- display Comments-->
-												
+												<div class="hideComent" id="hideComent" style="display: none">													
 													<div class="form-group">
 														<label class="col-md-3 control-label">Comment</label>
 														<div class="col-md-6 inputGroupContainer">
@@ -533,8 +499,6 @@ table#orderDetails {
 															</div>
 														</div>
 													</div>
-													
-												<!--// display Comments-->
 												</div>
 												<!--// display Comments-->
 
@@ -557,7 +521,7 @@ table#orderDetails {
 											<!-- //actionTakenSubmit -->
 
 										</form:form>
-										<!-- resolvedSolution Details -->
+										<!-- resolved details -->
 
 
 										<!--Boot Stock-->
@@ -680,16 +644,13 @@ table#orderDetails {
 								<!-- //resolvedSolution  -->
 
 							</c:when>
-						</c:choose>
+						</c:choose><!-- // Details for Resolving ticket if status is Escalated  -->
+									
 						
+						<!-- Re-assign ticket if status is Acknowledged -->
 						<c:choose>
 							<c:when test="${ticketObject.status =='Acknowledged'}">
-							</c:when>
-						</c:choose>
-						
-						<c:choose>
-							<c:when test="${ticketObject.status =='Acknowledged'}">
-
+								
 								<div class="tab-pane" id="mTicketAcknowledgedReassign">
 
 									<div class="panel-body">
@@ -749,10 +710,9 @@ table#orderDetails {
 								</div>
 								<!-- /re-assign ticket -->
 							</c:when>
-						</c:choose>
-
-
-						<!-- mTicketEscalatedReassign -->
+						</c:choose>	<!--// Re-assign ticket if status is Acknowledged -->						
+						
+						<!-- Re-assign ticket if status is Escalated -->						 
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
 
@@ -818,8 +778,10 @@ table#orderDetails {
 								<!-- /re-assign ticket -->
 
 							</c:when>
-						</c:choose>
+						</c:choose><!-- //Re-assign ticket if status is Escalated -->						 
 						
+						
+						<!-- Re-assign ticket if status is Open -->						 
 						<c:choose>
 							<c:when test="${ticketObject.status =='Open'}">
 
@@ -884,10 +846,9 @@ table#orderDetails {
 								<!-- /re-assign ticket -->
 
 							</c:when>
-						</c:choose>
+						</c:choose><!-- //Re-assign ticket if status is Open -->						 
 						
-						
-							<!--mTicketTakenEscalate -->
+						<!-- Escalate ticket if status is Taken -->						 
 						<c:choose>
 							<c:when test="${ticketObject.status =='Taken'}">
 
@@ -962,9 +923,9 @@ table#orderDetails {
 								<!-- /escalate ticket -->
 
 							</c:when>
-						</c:choose>	
+						</c:choose>	<!-- // Escalate ticket if status is Taken -->	
 						
-						<!-- mTicketTakenAwaiting -->
+						<!-- Ticket Awaiting Spare if status is Taken -->	
 						<c:choose>
 							<c:when test="${ticketObject.status =='Taken'}">
 							
@@ -1034,9 +995,9 @@ table#orderDetails {
 									 </div>
 								</div>
 							</c:when>
-						</c:choose>
+						</c:choose><!-- //Ticket Awaiting Spare if status is Taken -->	
 						
-						
+						<!-- Re-open ticket if status is Resolved and display resolved details -->
 						<c:choose>
 							<c:when test="${ticketObject.status =='Resolved'}">
 						
@@ -1065,7 +1026,11 @@ table#orderDetails {
 												</div>
 											</div>
 										</div>
-	
+										
+										<c:if test="${empty ticketObject.actionTaken}">
+										</c:if>
+										<c:if test="${not empty ticketObject.actionTaken}">
+										
 										<!-- Text area Action Taken-->
 											<div class="actionTaken">
 												<div class="form-group">
@@ -1080,6 +1045,7 @@ table#orderDetails {
 													</div>
 												</div>
 											</div>
+										</c:if>
 										
 									<c:if test="${empty ticketObject.comments}">
 									</c:if>
@@ -1116,7 +1082,11 @@ table#orderDetails {
 												</div>
 											</div>
 										</div>
-									</c:if>	
+									</c:if>
+									<c:if test="${empty $ticketObject.getDevice().getColourReading()}">
+									</c:if>
+									<c:if test="${not empty $ticketObject.getDevice().getColourReading()}">
+										
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
@@ -1133,7 +1103,12 @@ table#orderDetails {
 												</div>
 											</div>
 										</div>
-	
+									</c:if>
+									
+									<c:if test="${empty $ticketObject.getDevice().getMonoReading()}">
+									</c:if>
+									<c:if test="${not empty $ticketObject.getDevice().getMonoReading()}">
+									
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -1147,7 +1122,7 @@ table#orderDetails {
 												</div>
 											</div>
 										</div>
-	
+									</c:if>
 										<div class="diplayNone" id="getPartTonerResolved"
 											style="display: none">
 	
@@ -1168,18 +1143,14 @@ table#orderDetails {
 	
 										</div>
 										<!-- displayNone for getPartToner -->
-
-
 									</form:form>
-									
 									</div>
-								<!-- pane body -->									
-						      
-						      </div>						
-						
+								<!-- pane body -->
+						      </div>
 						   </c:when>
-						</c:choose><!-- ticketReopenResolved -->
+						</c:choose><!-- //Re-open ticket if status is Resolved and display resolved details -->
 						
+						<!-- Show ticket details if status is closed with no action and display resolved details -->
 						<c:choose>
 							<c:when test="${ticketObject.status =='Closed'}">
 						
@@ -1207,7 +1178,11 @@ table#orderDetails {
 												</div>
 											</div>
 											
-											<!-- Text area Action Taken-->
+											<c:if test="${empty ticketObject.actionTaken}">
+										</c:if>
+										<c:if test="${not empty ticketObject.actionTaken}">
+										
+										<!-- Text area Action Taken-->
 											<div class="actionTaken">
 												<div class="form-group">
 													<label class="col-md-3 control-label">Action Taken</label>
@@ -1221,94 +1196,103 @@ table#orderDetails {
 													</div>
 												</div>
 											</div>
-											
-										<c:if test="${empty ticketObject.comments}">
-										</c:if>
-										<c:if test="${not empty ticketObject.comments}">					
-												 <!-- Text area Comment-->
-												<div class="form-group">
-														<label class="col-md-3 control-label">Comments</label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-pencil"></i></span>
-																<textarea class="form-control" name="comments" id="comment"readonly="readonly"
-																 style="height: 100px;">${ticketObject.comments}</textarea>
-															</div>
-														</div>
-												</div>
 										</c:if>
 										
-										<c:if test="${empty ticketObject.usedPartNumbers}">
-										</c:if>
-										<c:if test="${not empty ticketObject.usedPartNumbers}">
-																	
-											<!-- Text area Used Spare Part-->
-											<div class="usedPartNumbersDetails">
-												<div class="form-group">
-													<label class="col-md-3 control-label">Used Spare/Part</label>
+									<c:if test="${empty ticketObject.comments}">
+									</c:if>
+									<c:if test="${not empty ticketObject.comments}">					
+											 <!-- Text area Comment-->
+											<div class="form-group">
+													<label class="col-md-3 control-label">Comments</label>
 													<div class="col-md-6 inputGroupContainer">
 														<div class="input-group">
 															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-barcode"></i></span> <input id="usedPartNumbers"
-																class="form-control" type="text" name="usedPartNumbers"
-																value="${ticketObject.usedPartNumbers}" readonly="readonly">
+																class="glyphicon glyphicon-pencil"></i></span>
+															<textarea class="form-control" name="comments" id="comment"readonly="readonly"
+															 style="height: 100px;">${ticketObject.comments}</textarea>
 														</div>
 													</div>
-												</div>
 											</div>
-										</c:if>	
-											<!-- Text checkbox Colour Reading-->
+									</c:if>
+									
+									<c:if test="${empty ticketObject.usedPartNumbers}">
+									</c:if>
+									<c:if test="${not empty ticketObject.usedPartNumbers}">
+																
+										<!-- Text area Used Spare Part-->
+										<div class="usedPartNumbersDetails">
 											<div class="form-group">
-												<label class="col-md-3 control-label">Colour Reading</label>
+												<label class="col-md-3 control-label">Used Spare/Part</label>
 												<div class="col-md-6 inputGroupContainer">
 													<div class="input-group">
 														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-															class="form-control" readonly="readonly"
-															onkeypress="return isNumber(event)"
-															id="colour"
-															name="colourReading"
-															value="${ticketObject.getDevice().getColourReading() }"
-															name="colourReading">
+															class="glyphicon glyphicon-barcode"></i></span> <input id="usedPartNumbers"
+															class="form-control" type="text" name="usedPartNumbers"
+															value="${ticketObject.usedPartNumbers}" readonly="readonly">
 													</div>
 												</div>
 											</div>
-		
-											<div class="form-group">
-												<label class="col-md-3 control-label">Mono Reading</label>
-												<div class="col-md-6 inputGroupContainer">
-													<div class="input-group">
-														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-															class="form-control" onkeypress="return isNumber(event)"
-															id="mono" readonly="readonly" name="monoReading"
-															name="monoReading"
-															value="${ticketObject.getDevice().getMonoReading() }">
-													</div>
+										</div>
+									</c:if>
+									<c:if test="${empty $ticketObject.getDevice().getColourReading()}">
+									</c:if>
+									<c:if test="${not empty $ticketObject.getDevice().getColourReading()}">
+										
+										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+														class="form-control" readonly="readonly"
+														onkeypress="return isNumber(event)"
+														placeholder="Enter Colour Reading" id="colour"
+														name="colourReading"
+														value="${ticketObject.getDevice().getColourReading() }"
+														name="colourReading">
 												</div>
 											</div>
+										</div>
+									</c:if>
+									
+									<c:if test="${empty $ticketObject.getDevice().getMonoReading()}">
+									</c:if>
+									<c:if test="${not empty $ticketObject.getDevice().getMonoReading()}">
+									
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+														class="form-control" onkeypress="return isNumber(event)"
+														id="mono" readonly="readonly" name="monoReading"
+														placeholder="Enter Mono Reading" name="monoReading"
+														value="${ticketObject.getDevice().getMonoReading() }">
+												</div>
+											</div>
+										</div>
+									</c:if>
 		
-											<div class="diplayNone" id="getPartTonerResolved"
+									<div class="diplayNone" id="getPartTonerResolved"
 												style="display: none">
 		
-												<!-- display ticked Used Part Numbers-->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Used Part
-														Numbers</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
+									<!-- display ticked Used Part Numbers-->
+									<div class="form-group">
+											<label class="col-md-3 control-label">Used Part Numbers</label>
+											  <div class="col-md-6 inputGroupContainer">
+												 <div class="input-group">
+												  	<span class="input-group-addon"><i
 																class="glyphicon glyphicon-barcode"></i></span>
 															<textarea id="tickedUsedPartNumbers" class="form-control"
-																readonly="readonly" name="usedPartNumbers"></textarea>
-														</div>
+															readonly="readonly" name="usedPartNumbers"></textarea>
 													</div>
-												</div>
-												<!--// display ticked Used Part Numbers-->
-		
-											</div>
-											<!-- displayNone for getPartToner -->
+												 </div>
+											  </div>
+										 <!--// display ticked Used Part Numbers-->
+		    						</div>
+									<!-- displayNone for getPartToner -->
 		
 									</form:form>
 								</div>
@@ -1317,7 +1301,8 @@ table#orderDetails {
 							</div>
 							
 						   </c:when>
-						</c:choose><!-- ticketClosedNoAction -->
+						</c:choose> <!-- //Show ticket details if status is closed with no action and display resolved details -->
+						
 
 					</div>
 					<!-- group details-row-padding -->
@@ -1355,27 +1340,4 @@ table#orderDetails {
 <script type="text/javascript"
 	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
-<!-- Paging the table -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#ticketInfo').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
-			"order": [[1 , "desc" ]]
-		/* few more options are available to use */
-		});
-	});
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tckHistory').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
-			"order": [[1 , "desc" ]]
-		/* few more options are available to use */
-		});
-	});
-</script>
 </html>

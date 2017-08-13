@@ -100,17 +100,8 @@ input#selectDateRange {
 	cursor: pointer;
 }
 
-.db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) 
-	 ~ li {
-	width: 12%;
-}
 
-.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(6) 
-	 ~ li {
-	width: 11%;
-}
-
-.db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
+.db-summary li:first-child:nth-last-child(2), .db-summary li:first-child:nth-last-child(2) 
 	 ~ li {
 	width: 10%;
 }
@@ -164,7 +155,7 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 4%">
+											style="margin-left: 17%;">
 											<h4 align="center">${siteCount}</h4>
 											<p align="center">Site Stock</p>
 										</div>

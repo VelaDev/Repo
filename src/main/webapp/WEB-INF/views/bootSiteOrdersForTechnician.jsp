@@ -2,10 +2,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 <head>
-<title>Site Stock | Velaphanda Trading & Projects</title>
+<title>Boot Stock | Velaphanda Trading & Projects</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<link type="text/css" rel="stylesheet"
+	href="<c:url value="/resources/custom/css/vela_custom.css" />">
 
 <!-- Little Dash-board -->
 <link rel="stylesheet" type="text/css"
@@ -24,14 +26,12 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
-
+<!--/style-->
 
 
 <style>
-
-
 .db-summary li:first-child:nth-last-child(2), .db-summary li:first-child:nth-last-child(2) 
-	~ li {
+	 ~ li {
 	width: 10%;
 }
 
@@ -40,7 +40,6 @@
 	padding-left: 59px;
 	display: block;
 }
-
 
 .db-summary li:first-child {
 	border-right: 1px #dfdfdf solid;
@@ -52,11 +51,6 @@
 	border-right: 1px #dfdfdf solid;
 }
 </style>
-
-
-<!--/style-->
-
-
 </head>
 <body>
 	<div class="velaphanda_containter">
@@ -67,7 +61,7 @@
 					<h3 class="panel-title">
 						<div align="center">
 							<b>
-								<!-- Available Spares -->Site Stock
+								<!-- Available Spares on  -->Boot Stock
 							</b>
 						</div>
 					</h3>
@@ -75,7 +69,8 @@
 				<div class="panel-body">
 
 					<div class="tab-content">
-					
+
+
 						<div class="ticket-summary row-fluid">
 
 							<ul class="db-summary clearfix pb20 pt20 clear"
@@ -88,12 +83,12 @@
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 28%">
-											<h4 align="center">${countPartForCustomer}</h4>
+											<h4 align="center">${countPartForTech}</h4>
 											<p align="center">Parts</p>
 										</div>
 								</a></li>
 
-								<li><a href='numberOfToners'
+								<li><a href='numberOfToners' 
 									class="summery-filter clearfix"
 									data-parallel-url="numberOfToners"
 									data-parallel-placeholder="#ticket-leftFilter"
@@ -101,55 +96,58 @@
 
 										<div class="summary-count pull-left ml20"
 											style="margin-left: 4%">
-											<h4 align="center">${countTonerForCustomer}</h4>
+											<h4 align="center">${countTonerForTech}</h4>
 											<p align="center">Toners</p>
 										</div>
 								</a></li>
 							</ul>
 						</div>
-						
-						<div class="tab-pane active" id="numberOfParts'"></div>
-							
 
-						<form action="">
-							<!-- Below table will be displayed as Data table -->
-							<table id="myDatatable" class="display datatable">
-								<thead>
-									<tr>
-										<th>Part No</th>
-										<th>Compatible Devices</th>
-										<th>Description</th>
-										<th>Quantity</th>
-										<th>Stock Type</th>
-										<th>Customer</th>
-									</tr>
-								</thead>
-								<tbody>
-									<!-- Iterating over the list sent from Controller -->
-									<c:forEach var="list" items="${orders}">
-										<tr>
-											<td>${list.partNumber}</td>
-											<td>${list.compatibleDevice}</td>
-											<td>${list.itemDescription}</td>
-											<td>${list.quantity}</td>
-											<td>${list.itemType}</td>
-											<td>${list.customerName}</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-						</form>
-						
+
+						<!-- tab nav -->
+						<div class="tab-content">
+
+							<div class="tab-pane active" id="numberOfParts'">
+
+								<form action="">
+									
+									<!-- Below table will be displayed as Data table -->
+									<table id="myDatatable" class="display datatable">
+										<thead>
+											<tr>
+												<th>Part No</th>
+												<th>Compatible Devices</th>
+												<th>Description</th>
+												<th>Quantity</th>
+												<th>Item type</th>
+											</tr>
+										</thead>
+										<tbody>
+											<!-- Iterating over the list sent from Controller -->
+											<c:forEach var="list" items="${orders}">
+												<tr>
+													<td>${list.partNumber}</td>
+													<td>${list.compatibleDevice}</td>
+													<td>${list.itemDescription}</td>
+													<td>${list.quantity}</td>
+													<td>${list.itemType}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+								</form>
+
+							</div>
+
 						</div>
-						
+
+						<!-- /tab-content -->
 					</div>
-					<!-- /tab-content -->
 				</div>
 			</div>
+			<!-- /panel body -->
 		</div>
-		<!-- /panel body -->
-	</div>
-	<!--/panel success class-->
+		<!--/panel success class-->
 	</div>
 	<!-- /Container -->
 	<!-- Footer -->
@@ -164,7 +162,7 @@
 	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
 <script type="text/javascript"
 	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-<!-- Paging the table -->
+
 <script type="text/javascript">
 		$(document).ready(function() {
 			$('#myDatatable').DataTable({

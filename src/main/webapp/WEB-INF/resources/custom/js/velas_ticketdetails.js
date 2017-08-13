@@ -2,9 +2,31 @@
  * Purpose: Interact with the html pages and create communication between server and client side 
  * Author : Fenya Tlala
  * Company: Velaphanda 
- * Last Date Modified:09-06-2017
+ * Last Date Modified:12-008-2017
  */
 /*Data tables on the system*/
+
+//ticket info
+$(document).ready(function() {
+	$('#ticketInfo').DataTable({
+			"jQueryUI" : true,
+			"pagingType" : "full_numbers",
+			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+			"order": [[1 , "desc" ]]
+		/* few more options are available to use */
+	});
+});
+
+//ticket History 
+$(document).ready(function() {
+	$('#tckHistory').DataTable({
+		"jQueryUI" : true,
+		"pagingType" : "full_numbers",
+		"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+		"order": [[1 , "desc" ]]
+	/* few more options are available to use */
+	});
+});
 
 // myDatatable table -->
 $(document).ready(function() {

@@ -56,8 +56,7 @@ table#orderDetails {
 
 					<div id="navbar" class="navbar-collapse collapse"
 						style="margin-left: -2%">
-						<ul class="nav navbar-nav navbar-left">
-							
+						<ul class="nav navbar-nav navbar-left">							
 							
 							  <c:choose>
 								<c:when test="${ticketObject.status =='Open'}">
@@ -65,7 +64,7 @@ table#orderDetails {
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="acknowledgedTicket?acknowledged=<c:out value='${ticketObject.ticketNumber}'/>">Acknowledged</a></li>
+										<li><a href="acknowledgedTicket?acknowledged=<c:out value='${ticketObject.ticketNumber}'/>">Acknowledge</a></li>
 									</ul>
 								</li>				
 								</c:when>
@@ -155,8 +154,6 @@ table#orderDetails {
 							 <li><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a>							  
 						</c:when>						
 						</c:choose>
-						
-						
 						
 					</ul>
 
@@ -1888,27 +1885,4 @@ table#orderDetails {
 <script type="text/javascript"
 	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
-<!-- Paging the table -->
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#ticketInfo').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
-			"order": [[1 , "desc" ]]
-		/* few more options are available to use */
-		});
-	});
-</script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('#tckHistory').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
-			"order": [[1 , "desc" ]]
-		/* few more options are available to use */
-		});
-	});
-</script>
 </html>

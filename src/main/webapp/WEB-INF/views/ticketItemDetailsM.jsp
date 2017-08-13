@@ -115,7 +115,6 @@ table#orderDetails {
 											<li><a href="reOpenTicket?=reOpen<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
 										</ul></li>
 								</c:when>
-								
 								<c:otherwise>
 									<c:out value="${ticketObject.status}" />
 								</c:otherwise>

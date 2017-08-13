@@ -125,8 +125,7 @@ a.confirmtions {
 				 	    	<!-- Update Ticket -->
 				 	    		<c:choose>
 					 	    <c:when test="${techUpdateTicket =='techUpdateTicket' }">
-					 	       <c:out value="${retErrorMessage}"></c:out> 
-					 	                      
+					 	       <c:out value="${retErrorMessage}"></c:out> 					 	                      
 					 	    </c:when>
 				 	    	</c:choose>
 				 	  

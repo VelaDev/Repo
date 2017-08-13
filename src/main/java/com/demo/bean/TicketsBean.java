@@ -39,6 +39,7 @@ public class TicketsBean {
 	private String colourReading;
 	private String monoReading;
 	private String actionTaken;
+	private String ticketAction;
 	private int recordID;
 	private String firstName;
 	private String lastName;

@@ -73,7 +73,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#mTicketOpenReassign" data-toggle="tab">Re-assign</a></li>
+											<li><a href="#mTicketOpenReassign"  data-toggle="tab">Re-assign</a></li>
 										</ul>
 									</li>
 								</c:when>
@@ -93,7 +93,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#mTicketAcknowledgedReassign" data-toggle="tab">Re-assign</a></li>
+											<li><a href="#mTicketAcknowledgedReassign"  data-toggle="tab">Re-assign</a></li>
 										</ul></li>
 								</c:when>
 								
@@ -112,7 +112,7 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="reOpenTicket?=open<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
+											<li><a href="reOpenTicket?=reOpen<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
 										</ul></li>
 								</c:when>
 								
@@ -144,7 +144,7 @@ table#orderDetails {
 								<li><a href="#mTicketAcknowledgedReassign" class="disableLinks" data-toggle="tab">Re-assign</a></li>
 							</c:when>
 							<c:when test="${ticketObject.status =='Open'}">
-								<li><a href="#mTicketOpenReassign" class="disableLinks" data-toggle="tab">Re-assign</a></li>
+								<li><a href="#mTicketOpenReassign"  data-toggle="tab">Re-assign</a></li>
 							</c:when>							
 						</c:choose>						
 						<c:choose>
@@ -155,7 +155,7 @@ table#orderDetails {
 						</c:choose>												
 						<c:choose>
 							<c:when test="${ticketObject.status =='Resolved'}">
-							 <li><a href="#mTicketReopenResolved" class="disableLinks" data-toggle="tab">Resolved Ticket Details</a></li>							  
+							 <li><a href="#mTicketReopenResolved" data-toggle="tab">Resolved Ticket Details</a></li>							  
 						</c:when>						
 						</c:choose>						
 						<c:choose>
@@ -357,6 +357,20 @@ table#orderDetails {
 												align="center">
 												<b>Resolve</b>
 											</legend>
+											
+												
+												<!-- Text input Ticket Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Ticket Number</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="ticketNumber" id="ticketNumber" class="form-control"
+																type="text" value="${ticketObject.ticketNumber}" readonly>
+														</div>
+													</div>
+												</div>  
 
 
 											<!-- Text area Action Taken-->
@@ -659,7 +673,7 @@ table#orderDetails {
 											</legend>
 												
 												<!-- Action Action -->
-												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+												<input  type="hidden" id="ticketAction" name="ticketAction" class="form-control selectpicker" value="Reassign">
 												
 												<!-- Text input Ticket Number-->
 												<div class="form-group">
@@ -742,7 +756,7 @@ table#orderDetails {
 											</legend>
 											
 												<!-- Action Action -->
-												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+												<input  type="hidden" id="ticketAction" name="ticketAction" class="form-control selectpicker" value="Reassign">
 												
 												<!-- Text input Ticket Number-->
 												<div class="form-group">
@@ -826,7 +840,7 @@ table#orderDetails {
 											</legend>
 											
 												<!-- Action Action -->
-												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+												<input  type="hidden" id="ticketAction" name="ticketAction" class="form-control selectpicker" value="Reassign">
 												
 												<!-- Text input Ticket Number-->
 												<div class="form-group">
@@ -908,8 +922,8 @@ table#orderDetails {
 												<b>Escalate</b>
 											</legend>
 											
-											  <!-- Action Action -->
-												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Escalate">
+											 	 <!-- Action Action -->
+												<input  type="hidden" id="ticketAction" name="ticketAction" class="form-control selectpicker" value="Escalate">
 												
 												<!-- Text input Ticket Number-->
 												<div class="form-group">
@@ -999,6 +1013,21 @@ table#orderDetails {
 												<b>Awaiting Spares</b>
 											</legend>
 											
+												<!-- Action Action -->
+												<input  type="hidden" id="ticketAction" name="ticketAction" class="form-control selectpicker" value="Awaiting Spares">
+												
+												<!-- Text input Ticket Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Ticket Number</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="ticketNumber" id="ticketNumber" class="form-control"
+																type="text" value="${ticketObject.ticketNumber}" readonly>
+														</div>
+													</div>
+												</div>  
 												
 											  <!-- Text input Order No-->
 												<div class="form-group">

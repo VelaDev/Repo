@@ -146,7 +146,7 @@ table#orderDetails {
 						<li><a href="#ticketHistoryDetails"  data-toggle="tab">Ticket History</a></li>
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
-								<li><a <c:if></c:if> href="#mTicketEscalatedResolvedDetails" class="disableLinks" data-toggle="tab">Resolve</a></li>
+								<li><a href="#mTicketEscalatedResolvedDetails" class="disableLinks" data-toggle="tab">Resolve</a></li>
 								<li><a href="#mTicketEscalatedReassign" class="disableLinks" data-toggle="tab">Re-assign</a></li>
 							</c:when>
 							<c:when test="${ticketObject.status =='Acknowledged'}">

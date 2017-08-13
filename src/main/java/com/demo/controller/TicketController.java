@@ -380,6 +380,66 @@ public class TicketController {
 
 		return model;
 	}
+	
+	@RequestMapping("taketicket")
+	public ModelAndView taketicket(
+			@ModelAttribute("performTicketAction") TicketsBean updateTicket) {
+		String performTicketAction = "performTicketAction";
+		String techUpdateTicket = "techUpdateTicket";
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			
+			if (userName.getRole().equalsIgnoreCase("Technician"))
+					 {		
+				retMessage = ticketsServiceInt.performTicketAction(updateTicket);
+				if (retMessage.startsWith("K")) {
+					String message = retMessage;
+					model.addObject("retMessage", retMessage);
+				} else {
+					model.addObject("retMessage", retMessage);
+							
+				model.addObject("performTicketAction", performTicketAction);
+				model.setViewName("confirmations");
+			}
+				}
+
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+
+	@RequestMapping("escalateticket")
+	public ModelAndView escalateticket(
+			@ModelAttribute("performTicketAction") TicketsBean updateTicket) {
+		String performTicketAction = "performTicketAction";
+		String techUpdateTicket = "techUpdateTicket";
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			
+			if (userName.getRole().equalsIgnoreCase("Technician"))
+					 {		
+				retMessage = ticketsServiceInt.performTicketAction(updateTicket);
+				if (retMessage.startsWith("K")) {
+					String message = retMessage;
+					model.addObject("retMessage", retMessage);
+				} else {
+					model.addObject("retMessage", retMessage);
+							
+				model.addObject("performTicketAction", performTicketAction);
+				model.setViewName("confirmations");
+			}
+				}
+
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
 
 	
 

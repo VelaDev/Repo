@@ -930,6 +930,7 @@ public class TicketsDao implements TicketsDaoInt {
 								if (ticket.getTicketNumber().equalsIgnoreCase(
 										ticketNumber)) {
 									ticket.setStatus("Escalated");
+									ticket.setEmployee(technician);
 									sessionFactory.getCurrentSession().update(
 											ticket);
 									// ticketHistoryDaoInt.insertTicketHistory(tick);

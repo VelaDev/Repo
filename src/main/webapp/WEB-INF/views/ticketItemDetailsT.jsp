@@ -64,7 +64,7 @@ table#orderDetails {
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="acknowledgedTicket?acknowledged=<c:out value='${ticketObject.ticketNumber}'/>">Acknowledge</a></li>
+										<li><a href="#tAcknowledgedTicket" data-toggle="tab" ">Acknowledge</a></li>
 									</ul>
 								</li>				
 								</c:when>
@@ -152,6 +152,12 @@ table#orderDetails {
 							<c:when test="${ticketObject.status =='SLA Bridged'}">
 							 <li><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
 							 <li><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a>							  
+						</c:when>						
+						</c:choose>
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Open'}">
+							 <li><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
 						</c:when>						
 						</c:choose>
 						
@@ -358,6 +364,61 @@ table#orderDetails {
 							
 						</div>
 						
+						<!--tAcknowledgedTicket -->						
+						<c:choose>
+							 <c:when test="${ticketObject.status =='Open'}">				
+									
+									
+									<div class="tab-pane" id="tAcknowledgedTicket">
+
+										<div class="panel-body">
+	
+											<!-- tTicketTakenAwaitingSpares Details -->
+											<form:form action="performTicketAction" modelAttribute="performTicketAction"
+												method="post" id="updateResolved"
+												class="well form-horizontal">
+	
+												<legend style="font-size: 15px; line-height: 1.42857143;"
+													align="center">
+													<b>Acknowledge</b>
+												</legend>
+												
+												<!-- Action Action -->
+												<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="Acknowledge">
+												
+												
+												<!-- Text input Ticket Number-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Ticket Number</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="ticketNumber" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.ticketNumber}" readonly>
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Acknowledge Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+												
+											</form:form>
+											
+										</div>
+									
+									</div>									
+									
+							</c:when>
+						</c:choose>
 						
 						<!--tTicketTakenAwaitingSpares -->
 						<c:choose>

@@ -72,22 +72,8 @@ i.glyphicon.glyphicon-calendar.col-sm-pull-2 {
 input#selectDateRange {
 	cursor: pointer;
 }
-
-.db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) 
-	~ li {
-	width: 12%;
-}
-
 .db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(9) ~ li {
     width: 11%;
-}
-
-.db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
-	 ~ li {
-	width: 10%;
-}
-.db-summary li:first-child a {
-    padding-left: 23px;
 }
 .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
 	{

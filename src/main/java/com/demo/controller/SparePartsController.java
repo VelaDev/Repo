@@ -354,32 +354,24 @@ public class SparePartsController {
 		}
 		return model;
 	}
-	
-	//Load data for site stock	
-	@RequestMapping(value="loadStockSite")
-	public ModelAndView loadStockSite(@RequestParam("customerName") String customerName){
+	@RequestMapping(value="loadBootStock")
+	public ModelAndView loadBootStock(@RequestParam("technician") String technician){
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
-		globalTechnicianName = null;
-		globalCustomerName = customerName;
-		
+		globalTechnicianName = technician;
 		if(userName != null){
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
+			model.addObject("countPartForTech",bootStock.countPartsForTechnician(technician));
+			model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
+			model.addObject("orders",bootStock.getAllOrders(technician));
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
+			model.setViewName("bootSiteOrders");
 			
-			
-			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
-				
-				model.addObject("orders", siteStock.getOrdersForCustomer(globalCustomerName));
-				model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
-				model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));				
-				
-				model.setViewName("stockSiteOrders");
-			}
-			if(userName.getRole().equalsIgnoreCase("Technician")){
-				
-				model.addObject("orders", siteStock.getOrdersForCustomer(globalCustomerName));
-				model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
-				model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
-				
+		}else if (userName.getRole().equalsIgnoreCase("Technician")){
+				model.addObject("countPartForTech",bootStock.countPartsForTechnician(technician));
+				model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
+				model.addObject("orders",bootStock.getAllOrders(technician));
+				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 				model.setViewName("stockSiteOrdersForTechnician");
 			}
 		}
@@ -388,139 +380,134 @@ public class SparePartsController {
 		}
 		return model;
 	}
-	//Load data for boot stock
-	@RequestMapping(value="loadBootStock")
-	public ModelAndView loadBootStock(@RequestParam("technician") String technician){
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		globalTechnicianName = technician;
-		if(userName != null){		
-			
-			
-			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
-				
-				model.addObject("countPartForTech",bootStock.countPartsForTechnician(technician));
-				model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
-				model.addObject("orders",bootStock.getAllOrders(technician));
-				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-				
-				model.setViewName("bootSiteOrders");
-			}
-			if(userName.getRole().equalsIgnoreCase("Technician")){
-				
-				
-				model.addObject("countPartForTech",bootStock.countPartsForTechnician(technician));
-				model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
-				model.addObject("orders",bootStock.getAllOrders(technician));
-				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());				
-				
-				model.setViewName("bootSiteOrdersForTechnician");
-			}
-		}
-		else{
-			model.setViewName("login");
-		}
-		return model;
-	}
 	
-	//Number of parts
-	@RequestMapping(value="numberOfParts", method=RequestMethod.GET)
-	public ModelAndView getNumberOfSpareParts(){
-		model = new ModelAndView();
-				
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-			
-			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
-				
-				if (globalTechnicianName != null){
-					model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
-					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
-					model.addObject("orders", bootStock.getPartsForTechnician(globalTechnicianName));
+	//Number of parts for Manager
+		@RequestMapping(value="numberOfParts", method=RequestMethod.GET)
+		public ModelAndView getNumberOfSpareParts(){
+			model = new ModelAndView();
 					
-					model.setViewName("bootSiteOrders");	
-				}
-				else if (globalCustomerName != null){
-					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
-					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
-					model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));
-					
-					
-					model.setViewName("stockSiteOrders");
-				}
-			}
-			
-			if (userName.getRole().equalsIgnoreCase("Technician")){
-				
-				if (globalTechnicianName != null){
-					model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
-					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
-					model.addObject("orders", bootStock.getPartsForTechnician(globalTechnicianName));
-					
-					model.setViewName("stockSiteOrdersForTechnician");	
-				}
-				else if (globalCustomerName != null){
-					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
-					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
-					model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));
-										
-					model.setViewName("stockSiteOrdersForTechnician");
-				}
-				
-			}
-			
-		}
-		else{
-			model.setViewName("login");
-		}
-		return model;
-	}
-	//Number of toner
-	@RequestMapping(value="numberOfToners", method=RequestMethod.GET)
-	public ModelAndView getNumberOfToners(){
-	model = new ModelAndView();
 			userName = (Employee) session.getAttribute("loggedInUser");
-			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+			if(userName != null){
 				
 				if (globalTechnicianName != null){
 					model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
 					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
-					model.addObject("orders", bootStock.getTonerForTechnician(globalTechnicianName));
+					model.addObject("orders", bootStock.getPartsForTechnician(globalTechnicianName));
 					
 					model.setViewName("bootSiteOrders");	
 				}
 				else if (globalCustomerName != null){
-					
 					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
 					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
-					model.addObject("orders", siteStock.getTonerForCustomer(globalCustomerName));
+					model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));
 					
 					model.setViewName("stockSiteOrders");
 				}
-			}
-			if (userName.getRole().equalsIgnoreCase("Technician")){
 				
-					model.addObject("countPartForTech",bootStock.countPartsForTechnician(userName.getEmail()));
-					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(userName.getEmail()));
-					model.addObject("orders", bootStock.getTonerForTechnician(userName.getEmail()));
-				
-					model.setViewName("bootSiteOrdersForTechnician");
-				
-			if (globalCustomerName != null){
-				
-					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
-					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
-					model.addObject("orders", siteStock.getTonerForCustomer(globalCustomerName));
-					model.setViewName("stockSiteOrdersForTechnician");
-				}
 			}
 			else{
 				model.setViewName("login");
 			}
 			return model;
-	}
+		}		
+		
+		//Number of toner and part for Manager
+		@RequestMapping(value="numberOfToners", method=RequestMethod.GET)
+		public ModelAndView getNumberOfToners(){
+		model = new ModelAndView();
+						
+				userName = (Employee) session.getAttribute("loggedInUser");
+				if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+					if (globalTechnicianName != null){
+						model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
+						model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
+						model.addObject("orders", bootStock.getTonerForTechnician(globalTechnicianName));
+						
+						model.setViewName("bootSiteOrders");	
+					}
+					else if (globalCustomerName != null){
+						
+						model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+						model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+						model.addObject("orders", siteStock.getTonerForCustomer(globalCustomerName));
+						
+						model.setViewName("stockSiteOrders");
+					}
+				}
+				else if (userName.getRole().equalsIgnoreCase("Technician"))
+						{
+					model.addObject("countPartForTech",bootStock.countPartsForTechnician(userName.getEmail()));
+					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(userName.getEmail()));
+					model.addObject("orders", bootStock.getTonerForTechnician(userName.getEmail()));
+					
+				}
+				else{
+					model.setViewName("login");
+				}
+				return model;
+			}
+		
+			
+		//Number of parts for Technician
+		@RequestMapping(value="numberOfPartsForTech", method=RequestMethod.GET)
+		public ModelAndView getNumberOfSparePartsForTech(){
+			model = new ModelAndView();
+					
+			userName = (Employee) session.getAttribute("loggedInUser");
+			if(userName != null){
+				
+				if (globalTechnicianName != null){
+					model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
+					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
+					model.addObject("orders", bootStock.getPartsForTechnician(globalTechnicianName));
+					
+					model.setViewName("bootSiteOrdersForTechnician");
+								
+				}
+				else if (globalCustomerName != null){
+					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+					model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));
+					
+					model.setViewName("stockSiteOrdersForTechnician");
+				}
+				
+			}
+			else{
+				model.setViewName("login");
+			}
+			return model;
+		}		
+		
+		//Number of toner for Technician
+		@RequestMapping(value="numberOfTonersForTech", method=RequestMethod.GET)
+		public ModelAndView getNumberOfTonersForTech(){
+		model = new ModelAndView();
+						
+				userName = (Employee) session.getAttribute("loggedInUser");
+				if (userName.getRole().equalsIgnoreCase("Technician")) {
+					if (globalTechnicianName != null){
+						model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
+						model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
+						model.addObject("orders", bootStock.getTonerForTechnician(globalTechnicianName));
+						
+						model.setViewName("bootSiteOrdersForTechnician");
+					}
+					else if (globalCustomerName != null){
+						
+						model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+						model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+						model.addObject("orders", siteStock.getTonerForCustomer(globalCustomerName));
+						
+						model.setViewName("stockSiteOrdersForTechnician");
+					}
+				}
+				else{
+					model.setViewName("login");
+				}
+				return model;
+			}	
+			
 	
 }
 	

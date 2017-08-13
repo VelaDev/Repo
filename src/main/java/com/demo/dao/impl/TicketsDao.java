@@ -531,7 +531,8 @@ public class TicketsDao implements TicketsDaoInt {
 					for (Tickets ticket : ticketList)
 					{
 						if (ticket.getStatus().equalsIgnoreCase(status)
-								&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)) {
+								&& ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer)
+								&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 							aList.add(ticket);
 						}
 					}
@@ -540,7 +541,8 @@ public class TicketsDao implements TicketsDaoInt {
 				{
 					for (Tickets ticket : ticketList)
 					{
-						if (ticket.getStatus().equalsIgnoreCase(status) && ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+						if (ticket.getStatus().equalsIgnoreCase(status) 
+								&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
 							aList.add(ticket);
 						}
 					}
@@ -610,6 +612,47 @@ public class TicketsDao implements TicketsDaoInt {
 				for (Tickets ticket : ticketList)
 				{
 					aList.add(ticket);
+				}
+			}
+			
+			
+			
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
+	@Override
+	public List<Tickets> getTicketListByCustomerNameForTech(String customer, String technicianEmail) {
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+			boolean isAllCustomers = false;
+			isAllCustomers = customer.equalsIgnoreCase("All Customers");
+			//Get Ticket List by Customer Name 
+			if (isAllCustomers == false){
+				if (customer.length() >= 2) {
+					ticketList = getAllLoggedTickets();
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getDevice().getCustomerDevice().getCustomerName().equalsIgnoreCase(customer) && 
+								ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail))  {
+							aList.add(ticket);
+						}
+					}
+				}
+			}
+			else if (isAllCustomers ==  true)
+			{
+				ticketList =  getLastFourteenDaysTickets();
+				for (Tickets ticket : ticketList)
+				{
+					if (ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail))
+					{
+					aList.add(ticket);
+					}
 				}
 			}
 			
@@ -741,6 +784,30 @@ public class TicketsDao implements TicketsDaoInt {
 		return aList;
 	}
 	
+	@Override
+	public List<Tickets> searchByTicketNumberForTech(String ticketNumber, String technicianEmail) {
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+			
+				if (ticketNumber.length() >= 2) {
+					ticketList = getAllLoggedTickets();
+					for (Tickets ticket : ticketList)
+					{
+						if (ticket.getTicketNumber().equalsIgnoreCase(ticketNumber)
+								&& ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+							aList.add(ticket);
+						}
+					}
+
+				}
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
+	}
+	
 
 	@Override
 	public String[] getTicketNumbers() {
@@ -764,6 +831,74 @@ public class TicketsDao implements TicketsDaoInt {
 			e.getMessage();
 		}
 		return array;
+	}
+	
+	@Override
+	public String[] getTicketNumbersForTech(String technicianEmail) {
+		List<Tickets> list = null;
+		ArrayList<String> newList = null;
+		String array[] = null;
+		try {
+			list = getAllLoggedTickets();
+			newList = new ArrayList<String>();
+
+			for (Tickets ticket : list) {
+				
+				if (ticket.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)) {
+					newList.add(ticket.getTicketNumber());
+				}
+			
+			}
+
+			array = new String[newList.size()];
+
+			for (int i = 0; i < newList.size(); i++) {
+				array[i] = newList.get(i);
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return array;
+	}
+	
+	@Override
+	public String performTicketAction(TicketsBean ticketsBean)
+	{
+		String action = ticketsBean.getActionTaken();
+		technician = employeeDaoInt.getEmployeeByEmpNum(ticketsBean.getTechnicianUserName());
+		ticketNumber = ticketsBean.getTicketNumber();
+		try {
+			
+			 if (action != null && action.length() >= 2){
+				 if (action.equalsIgnoreCase("Re-Assing"))
+				 {
+					 List<Tickets> ticketList = getAllLoggedTickets();
+						for(Tickets ticket:ticketList)
+						{
+							if (ticketNumber != null && ticketNumber.length() >= 2)
+							{
+								if (ticket.getTicketNumber().equalsIgnoreCase(ticketNumber))
+								{
+									if (technician != null)
+									{
+										ticket.setEmployee(technician);
+										sessionFactory.getCurrentSession().update(ticket);
+										//ticketHistoryDaoInt.insertTicketHistory(tick);
+									}
+								}
+							}
+						}
+				 }
+				 
+				 
+			 }
+			
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		
+		
+		return retMessage;
 	}
 	
 	@Transactional

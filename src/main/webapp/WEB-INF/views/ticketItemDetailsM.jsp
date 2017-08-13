@@ -690,7 +690,6 @@ table#orderDetails {
 										<!--/site stock-->
 
 									</div>
-									<!-- /panel body -->
 								</div>
 								<!-- //resolvedSolution  -->
 
@@ -762,9 +761,6 @@ table#orderDetails {
 													</div>
 												</div>
 											</div>
-
-
-
 											<div class="form-group row">
 												<div class="col-sm col-sm-8"
 													style="margin-left: 26%; width: 48%;">

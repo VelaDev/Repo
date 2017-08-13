@@ -280,7 +280,7 @@ public class TicketController {
 	@RequestMapping("performTicketAction")
 	public ModelAndView performTicketAction(
 			@ModelAttribute("performTicketAction") TicketsBean updateTicket) {
-		String managerUpdateTicket = "managerUpdateTicket";
+		String performTicketAction = "performTicketAction";
 		String techUpdateTicket = "techUpdateTicket";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -288,13 +288,19 @@ public class TicketController {
 			
 			if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
+	
 				
-				
-				model.addObject("managerUpdateTicket",
-						ticketsServiceInt.performTicketAction(updateTicket));
-				
+				retMessage = ticketsServiceInt.performTicketAction(updateTicket);
+				if (retMessage.startsWith("K")) {
+					String message = retMessage;
+					model.addObject("retMessage", retMessage);
+				} else {
+					model.addObject("retMessage", retMessage);
+							
+				model.addObject("performTicketAction", performTicketAction);
 				model.setViewName("confirmations");
 			}
+				}
 
 			else if (userName.getRole().equalsIgnoreCase("Technician")) {
 				model.addObject("techUpdateTicket", techUpdateTicket);
@@ -307,39 +313,46 @@ public class TicketController {
 
 		return model;
 	}
+
+	@RequestMapping("reOpenTicket")
+	public ModelAndView reOpenTicket(
+			@ModelAttribute("performTicketAction") TicketsBean updateTicket) {
+		String performTicketAction = "performTicketAction";
+		String techUpdateTicket = "techUpdateTicket";
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			
+			if (userName.getRole().equalsIgnoreCase("Manager")
+					|| userName.getRole().equalsIgnoreCase("Admin")) {
+	
+				
+				retMessage = ticketsServiceInt.performTicketAction(updateTicket);
+				if (retMessage.startsWith("K")) {
+					String message = retMessage;
+					model.addObject("retMessage", retMessage);
+				} else {
+					model.addObject("retMessage", retMessage);
+							
+				model.addObject("performTicketAction", performTicketAction);
+				model.setViewName("confirmations");
+			}
+				}
+
+			else if (userName.getRole().equalsIgnoreCase("Technician")) {
+				model.addObject("techUpdateTicket", techUpdateTicket);
+				model.setViewName("confirmation");
+			}
+
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+
 
 	
-
-	@RequestMapping("updateTicket")
-	public ModelAndView updateTicket(
-			@ModelAttribute("performTicketAction") TicketsBean updateTicket) {
-		String managerUpdateTicket = "managerUpdateTicket";
-		String techUpdateTicket = "techUpdateTicket";
-		model = new ModelAndView();
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-			
-			if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
-				
-				
-				model.addObject("managerUpdateTicket",
-						ticketsServiceInt.performTicketAction(updateTicket));
-				
-				model.setViewName("confirmations");
-			}
-
-			else if (userName.getRole().equalsIgnoreCase("Technician")) {
-				model.addObject("techUpdateTicket", techUpdateTicket);
-				model.setViewName("confirmation");
-			}
-
-		} else {
-			model.setViewName("login");
-		}
-
-		return model;
-	}
 
 	@RequestMapping("updateTicketUser")
 	public ModelAndView userUpdateTicket(
@@ -1316,6 +1329,7 @@ public class TicketController {
 		technicianName = null;
 		tempEmployee = null; 
 		ticketNumber = null;
+		selectedDateRange = null;
 		
 		model = new ModelAndView();
 

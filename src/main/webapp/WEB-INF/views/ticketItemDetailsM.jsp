@@ -741,7 +741,7 @@ table#orderDetails {
 												<b>Re-assign</b>
 											</legend>
 											
-											<!-- Action Action -->
+												<!-- Action Action -->
 												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
 												
 												<!-- Text input Ticket Number-->
@@ -908,7 +908,22 @@ table#orderDetails {
 												<b>Escalate</b>
 											</legend>
 											
+											  <!-- Action Action -->
+												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Escalate">
 												
+												<!-- Text input Ticket Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Ticket Number</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="ticketNumber" id="ticketNumber" class="form-control"
+																type="text" value="${ticketObject.ticketNumber}" readonly>
+														</div>
+													</div>
+												</div>  
+											  	
 											  <!-- Text input Manager-->
 												<div class="form-group">
 														<label class="col-md-3 control-label"> Manager</label>

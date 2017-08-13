@@ -48,8 +48,7 @@ a.confirmtions {
 				 	    <c:when test="${addEmployee =='addEmployee' }">
 				 	       <c:out value="${retMessage}"></c:out> Click<a href="displayEmployees.html" class="confirmtions"><b> here</b></a> to view list of employees or 
                             Click <a href="registerEmployee.html" class="confirmtions"> <b> here</b></a> to add another Employee.
-                           
-				 	    </c:when>
+                        </c:when>
 				 	    </c:choose>
 				 	     <!-- Update employee -->
 				 	    <c:choose>
@@ -197,6 +196,12 @@ a.confirmtions {
 					 	       <c:out value="${retMessage}"></c:out> Click<a href="receiveParts.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO.                            
 					 	    </c:when>
 				 	    </c:choose>
+				 	    <!-- performTicketAction -->
+				 	    <c:choose>
+				 	    	<c:when test="${performTicketAction == 'performTicketAction'}">
+				 	    		<c:out value="${retMessage}"> Click<a href="ticketmanagement.html" class="confirmtions"><b> here</b></a> to go to order management.</c:out>
+				 	    	</c:when>
+				 	    </c:choose>
 				 	    
 				 	    </div>
 				 	</c:if><!-- Successful message -->
@@ -320,6 +325,12 @@ a.confirmtions {
 					 	    <c:when test="${receiveSpareParts =='receiveSpareParts' }">
 					 	       <c:out value="${retErrorMessage}"></c:out> Click<a href="receiveParts.html" class="confirmtions"><b> here</b></a> to add another Spare/Part or Click <a href="availableSpareParts.html" class="confirmtions"><b> here</b></a> to view available stock in HO.                          
 					 	    </c:when>
+				 	    </c:choose>
+				 	    <!-- performTicketAciton -->
+				 	    <c:choose>
+				 	    	<c:when test="${performTicketAction == 'performTicketAction'}">
+				 	    		<c:out value="${retErrorMessage}"> Click<a href="ticketmanagement.html" class="confirmtions"><b> here</b></a> to go to order management.</c:out>
+				 	    	</c:when>
 				 	    </c:choose>
 				 	    
 				 	    </div>

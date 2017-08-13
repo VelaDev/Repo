@@ -92,7 +92,14 @@ a.confirmtions {
 					 	       <c:out value="${retMessage}"></c:out> 
 					 	           Click<a href="techleavemanagement.html" class="confirmtions"  ><b> here</b></a> to go to leave management.                         
 					 	    </c:when>
-				 	    </c:choose>		 	    	
+				 	    </c:choose>					 	    
+				 	    
+				 	    <!-- performTicketAciton -->
+				 	    <c:choose>
+				 	    	<c:when test="${performTicketAction == 'performTicketAction'}">
+				 	    		<c:out value="${retMessage}"> Click<a href="ticketmanagement.html" class="confirmtions"><b> here</b></a> to go to order management.</c:out>
+				 	    	</c:when>
+				 	    </c:choose>
 				 	    </div>
 				 	</c:if><!-- Successful message -->
 				 	

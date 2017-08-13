@@ -78,9 +78,6 @@ table#orderDetails {
 									</li>
 								</c:when>
 								
-								<c:when test="${ticketObject.status =='SLA Bridged'}">
-								</c:when>
-								
 								<c:when test="${ticketObject.status =='Taken'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -109,10 +106,7 @@ table#orderDetails {
 											<li><a href="#mTicketEscalatedResolvedDetails" data-toggle="tab">Resolve</a></li>
 										</ul></li>
 								</c:when>
-								
-								<c:when test="${ticketObject.status =='Awaiting Spares'}">
-								</c:when>
-								
+																	
 								<c:when test="${ticketObject.status =='Resolved'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -120,9 +114,6 @@ table#orderDetails {
 										<ul class="dropdown-menu">
 											<li><a href="reOpenTicket?=open<c:out value='${ticketObject.ticketNumber}'/>">Re-open</a></li>
 										</ul></li>
-								</c:when>
-								
-								<c:when test="${ticketObject.status =='Closed'}">
 								</c:when>
 								
 								<c:otherwise>
@@ -670,6 +661,18 @@ table#orderDetails {
 												<!-- Action Action -->
 												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
 												
+												<!-- Text input Ticket Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Ticket Number</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="ticketNumber" id="ticketNumber" class="form-control"
+																type="text" value="${ticketObject.ticketNumber}" readonly>
+														</div>
+													</div>
+												</div>
 												
 												<!-- Assign Technician -->
 												<div class="form-group">
@@ -741,7 +744,18 @@ table#orderDetails {
 											<!-- Action Action -->
 												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
 												
-											
+												<!-- Text input Ticket Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Ticket Number</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="ticketNumber" id="ticketNumber" class="form-control"
+																type="text" value="${ticketObject.ticketNumber}" readonly>
+														</div>
+													</div>
+												</div>
 												<!-- Assign Technician -->
 												<div class="form-group">
 													<label class="col-md-3 control-label">Assign
@@ -811,9 +825,21 @@ table#orderDetails {
 												<b>Re-assign</b>
 											</legend>
 											
-											<!-- Action Action -->
+												<!-- Action Action -->
 												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
 												
+												<!-- Text input Ticket Number-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Ticket Number</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-barcode"></i></span> <input
+																name="ticketNumber" id="ticketNumber" class="form-control"
+																type="text" value="${ticketObject.ticketNumber}" readonly>
+														</div>
+													</div>
+												</div>
 											
 												<!-- Assign Technician -->
 												<div class="form-group">

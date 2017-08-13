@@ -387,8 +387,7 @@ input#selectDateRange {
 												<!-- Iterating over the list sent from Controller -->
 												<c:forEach var="list" items="${lastForteenList}">
 													<tr>
-													
-														<td><a href="ticketItemDetailsM?ticketNumber=<c:out value='${list.ticketNumber}'/>">${list.ticketNumber}</a></td>
+														<td><a href="ticketItemDetailsM??recordID=<c:out value='${list.recordID}'/>">${list.ticketNumber}</a></td>
 														<td>${list.dateTime}</td>
 														<td>${list.description}</td>
 														<td>${list.status}</td>

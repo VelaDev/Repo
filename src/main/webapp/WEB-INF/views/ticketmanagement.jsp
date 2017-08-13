@@ -229,8 +229,6 @@ input#selectDateRange {
 				<div class="panel-body">
 					<div class="tab-content">
 					
-				    
-						
 						<div class="ticket-summary row-fluid">
 
 							<ul class="db-summary clearfix pb20 pt20 clear"

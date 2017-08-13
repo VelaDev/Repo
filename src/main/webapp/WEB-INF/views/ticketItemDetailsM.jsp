@@ -358,7 +358,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- resolved details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
 
@@ -659,8 +659,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- ticketReassign Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
-											method="post" id="ticketAcknowledgedReassign"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction" method="post" id="ticketAcknowledgedReassign"
 											class="well form-horizontal">
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"
@@ -669,17 +668,9 @@ table#orderDetails {
 											</legend>
 												
 												<!-- Action Action -->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Action Taken</label>
-													<div class="col-md-6 selectContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-list"></i></span> 
-																<input id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
-														</div>
-													</div>
-												</div>
-
+												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+												
+												
 												<!-- Assign Technician -->
 												<div class="form-group">
 													<label class="col-md-3 control-label">Assign
@@ -738,7 +729,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- ticketReassign Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketEscalatedReassign"
 											class="well form-horizontal">
 
@@ -747,17 +738,9 @@ table#orderDetails {
 												<b>Re-assign</b>
 											</legend>
 											
-												<!-- Action Action -->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Action Taken</label>
-													<div class="col-md-6 selectContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-list"></i></span> 
-																<input id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
-														</div>
-													</div>
-												</div>
+											<!-- Action Action -->
+												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+												
 											
 												<!-- Assign Technician -->
 												<div class="form-group">
@@ -819,7 +802,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- ticketReassign Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketOpenReassign"
 											class="well form-horizontal">
 
@@ -828,17 +811,9 @@ table#orderDetails {
 												<b>Re-assign</b>
 											</legend>
 											
-												<!-- Action Action -->
-												<div class="form-group">
-													<label class="col-md-3 control-label">Action Taken</label>
-													<div class="col-md-6 selectContainer">
-														<div class="input-group">
-															<span class="input-group-addon"><i
-																class="glyphicon glyphicon-list"></i></span> 
-																<input id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
-														</div>
-													</div>
-												</div>
+											<!-- Action Action -->
+												<input  type="hidden" id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+												
 											
 												<!-- Assign Technician -->
 												<div class="form-group">
@@ -898,7 +873,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- mTicketTakenEscalate Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketTakenEscalate"
 											class="well form-horizontal">
 
@@ -975,7 +950,7 @@ table#orderDetails {
 									  <div class="panel-body">
 									
 										<!-- mTicketTakenEscalate Details -->
-										<form:form id="ticketTakenAwaiting" class="well form-horizontal" action="updateTicket" modelAttribute="updateTicket"
+										<form:form id="ticketTakenAwaiting" class="well form-horizontal" action="performTicketAction" modelAttribute="performTicketAction"
 											method="post"  >
 
 											<legend style="font-size: 15px; line-height: 1.42857143;"

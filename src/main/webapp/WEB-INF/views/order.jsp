@@ -254,36 +254,31 @@ table#toOrder thead {
       </div>
       <!-- / velaphanda_containter -->
 
-      <!-- Scripts -->
-      <script type="text/javascript"
-            src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-      <script type="text/javascript"
-            src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-      <script type="text/javascript"
-            src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+     <!--  -->
+    <script type="text/javascript"
+		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		<script type="text/javascript"
+	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+	<script type="text/javascript"
+		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
 
-      <script type="text/javascript"
-            src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
-      <script type="text/javascript"
-            src="<c:url value="/resources/datatables/1.10.13/js/jquery-ui.js" />"></script>
-      <script type="text/javascript"
-            src="<c:url value="/resources/datatables/1.10.13/js/dataTables.buttons.js" />"></script>
-      <script type="text/javascript"
-            src="<c:url value="/resources/datatables/1.10.13/js/dataTables.jqueryui.js" />"></script>
-      <script type="text/javascript"
-            src="<c:url value="/resources/datatables/1.10.13/js/dataTables.select.js" />"></script>
-      <!-- //Datatables -->
-
-      <script type="text/javascript"
-            src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
-      <!-- /Scripts -->
-
+	<!-- Datatables -->
+	<script type="text/javascript"
+		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
+	<!-- //Datatables -->
+	
+	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
 
     <!--Order avalialable head office stock-->
     <script type="text/javascript">
       
     $(document).ready(function() {
             $('#stockForOrder').DataTable({
+            	 "jQueryUI" : true,
                   info: true, 
                   searching:true, 
                   scrollY: "200px",

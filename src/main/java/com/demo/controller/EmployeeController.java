@@ -218,13 +218,22 @@ public class EmployeeController {
 			
 			beanList = ticketsServiceInt.ticketsResults();
 			model.addObject("ticketResults",beanList);
-			model.addObject("openTickets", ticketsServiceInt.countOpenTickets());
-			model.addObject("closedTickets", ticketsServiceInt.countClosedTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("bridgedTickets", ticketsServiceInt.countBridgedTickets());
-			model.addObject("resolvedTickets",ticketsServiceInt.countResolvedTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("openTickets", ticketsServiceInt
+					.getTicketCount("Open", "Last 14 Days", "", "", ""));
+			model.addObject("countAcknowledgedTickets", ticketsServiceInt
+					.getTicketCount("Acknowledged", "Last 14 Days", "", "",""));
+			model.addObject("countTakenTickets", ticketsServiceInt
+					.getTicketCount("Taken", "Last 14 Days", "", "",""));
+			model.addObject("escalatedTickets", ticketsServiceInt
+					.getTicketCount("Escalated", "Last 14 Days", "", "", ""));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt
+					.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", ""));
+			model.addObject("bridgedTickets", ticketsServiceInt
+					.getTicketCount("SLA Bridged", "Last 14 Days", "", "", ""));
+			model.addObject("resolvedTickets", ticketsServiceInt
+					.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+			model.addObject("closedTickets", ticketsServiceInt
+					.getTicketCount("Closed", "Last 14 Days", "", "", ""));
 			model.setViewName("home");
 		}
 		else{

@@ -354,6 +354,36 @@ public class SparePartsController {
 		}
 		return model;
 	}
+	
+	@RequestMapping(value="loadStockSite")
+	public ModelAndView loadStockSite(@RequestParam("customerName") String customerName){
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		globalTechnicianName = null;
+		globalCustomerName = customerName;
+		
+		if(userName != null){
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
+				
+				model.addObject("orders", siteStock.getOrdersForCustomer(globalCustomerName));
+				model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+				model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+				model.setViewName("stockSiteOrders");
+			
+			}else if(userName.getRole().equalsIgnoreCase("Technicain")){
+				
+				model.addObject("orders", siteStock.getOrdersForCustomer(globalCustomerName));
+				model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+				model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+				model.setViewName("stockSiteOrdersForTechnician");
+			}
+		}
+		else{
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
 	@RequestMapping(value="loadBootStock")
 	public ModelAndView loadBootStock(@RequestParam("technician") String technician){
 		model = new ModelAndView();
@@ -382,8 +412,8 @@ public class SparePartsController {
 	}
 	
 	//Number of parts for Manager
-		@RequestMapping(value="numberOfParts", method=RequestMethod.GET)
-		public ModelAndView getNumberOfSpareParts(){
+	@RequestMapping(value="numberOfParts", method=RequestMethod.GET)
+	public ModelAndView getNumberOfSpareParts(){
 			model = new ModelAndView();
 					
 			userName = (Employee) session.getAttribute("loggedInUser");

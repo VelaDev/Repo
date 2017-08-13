@@ -30,6 +30,11 @@
 .orderDetails {
     margin-left: -22px;
 }
+.disableLinks{
+	
+   pointer-events: none;
+   cursor: default;
+}
 
 table#orderDetails {
 	margin-left: 14%;
@@ -138,35 +143,33 @@ table#orderDetails {
 					<!-- nav sub menu tabs  -->
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>
-						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
+						<li><a href="#ticketHistoryDetails"  data-toggle="tab">Ticket History</a></li>
 						<c:choose>
 							<c:when test="${ticketObject.status =='Escalated'}">
-								<li><a href="#mTicketEscalatedResolvedDetails" data-toggle="tab">Resolve</a></li>
-								<li><a href="#mTicketEscalatedReassign" data-toggle="tab">Re-assign</a></li>
+								<li><a <c:if></c:if> href="#mTicketEscalatedResolvedDetails" class="disableLinks" data-toggle="tab">Resolve</a></li>
+								<li><a href="#mTicketEscalatedReassign" class="disableLinks" data-toggle="tab">Re-assign</a></li>
 							</c:when>
 							<c:when test="${ticketObject.status =='Acknowledged'}">
-								<li><a href="#mTicketAcknowledgedReassign" data-toggle="tab">Re-assign</a></li>
+								<li><a href="#mTicketAcknowledgedReassign" class="disableLinks" data-toggle="tab">Re-assign</a></li>
 							</c:when>
 							<c:when test="${ticketObject.status =='Open'}">
-								<li><a href="#mTicketOpenReassign" data-toggle="tab">Re-assign</a></li>
+								<li><a href="#mTicketOpenReassign" class="disableLinks" data-toggle="tab">Re-assign</a></li>
 							</c:when>							
 						</c:choose>						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Taken'}">
-							 <li><a href="#mTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
-							  <li><a href="#mTicketTakenAwaiting" data-toggle="tab">Awaiting Spares</a></li>
+							 <li><a href="#mTicketTakenEscalate" class="disableLinks" data-toggle="tab">Escalate</a></li>
+							 <li><a href="#mTicketTakenAwaiting" class="disableLinks" data-toggle="tab">Awaiting Spares</a></li>
 						</c:when>
-						</c:choose>
-												
+						</c:choose>												
 						<c:choose>
 							<c:when test="${ticketObject.status =='Resolved'}">
-							 <li><a href="#mTicketReopenResolved" data-toggle="tab">Resolved Ticket Details</a></li>							  
+							 <li><a href="#mTicketReopenResolved" class="disableLinks" data-toggle="tab">Resolved Ticket Details</a></li>							  
 						</c:when>						
-						</c:choose>
-						
+						</c:choose>						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Closed'}">
-							 <li><a href="#mTicketClosedNoAction" data-toggle="tab">Closed Ticket Details</a></li>							  
+							 <li><a href="#mTicketClosedNoAction" class="disableLinks" data-toggle="tab">Closed Ticket Details</a></li>							  
 						</c:when>						
 						</c:choose>
 						
@@ -664,6 +667,18 @@ table#orderDetails {
 												align="center">
 												<b>Re-assign</b>
 											</legend>
+												
+												<!-- Action Action -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Action Taken</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> 
+																<input id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+														</div>
+													</div>
+												</div>
 
 												<!-- Assign Technician -->
 												<div class="form-group">
@@ -692,6 +707,8 @@ table#orderDetails {
 														</div>
 													</div>
 												</div>
+												
+												
 
 											<div class="form-group row">
 												<div class="col-sm col-sm-8"
@@ -729,6 +746,18 @@ table#orderDetails {
 												align="center">
 												<b>Re-assign</b>
 											</legend>
+											
+												<!-- Action Action -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Action Taken</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> 
+																<input id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+														</div>
+													</div>
+												</div>
 											
 												<!-- Assign Technician -->
 												<div class="form-group">
@@ -798,6 +827,18 @@ table#orderDetails {
 												align="center">
 												<b>Re-assign</b>
 											</legend>
+											
+												<!-- Action Action -->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Action Taken</label>
+													<div class="col-md-6 selectContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> 
+																<input id="actionTaken" name="actionTaken" class="form-control selectpicker" value="Reassign">
+														</div>
+													</div>
+												</div>
 											
 												<!-- Assign Technician -->
 												<div class="form-group">
@@ -1191,7 +1232,7 @@ table#orderDetails {
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-barcode"></i></span> <input id="actionTaken"
 																class="form-control" type="text" name="actionTaken"
-																value="${ticketObject.actionTaken }" readonly="readonly">
+																value="${ticketObject.actionTaken}" readonly="readonly">
 														</div>
 													</div>
 												</div>

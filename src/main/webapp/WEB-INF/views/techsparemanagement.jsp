@@ -170,7 +170,7 @@ input#selectDateRange {
 											style="margin-left: 28%">
 
 											<h4 align="center">${bootCount}</h4>
-											<p align="center">Boot Stocko</p>
+											<p align="center">Boot Stock</p>
 										</div>
 								</a></li>
 

@@ -4,6 +4,13 @@
 	padding:0px;
 	box-sizing: border-box;
 }
+
+.disableLinks{
+	
+   pointer-events: none;
+   cursor: default;
+}
+
 .orderDetails {
     margin-left: 15px;
 }

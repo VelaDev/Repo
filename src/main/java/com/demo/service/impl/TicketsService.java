@@ -389,8 +389,9 @@ public class TicketsService implements TicketsServiceInt{
 
 	@Override
 	public String performTicketAction(TicketsBean ticketsBean) {
-		// TODO Auto-generated method stub
-		return logTicketsDAO.performTicketAction(ticketsBean);
+		retMessage =logTicketsDAO.performTicketAction(ticketsBean);
+		return retMessage;
+		
 	}
 	
 	

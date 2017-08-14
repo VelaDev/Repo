@@ -2281,7 +2281,7 @@ public class OrderDao implements OrdersDaoInt {
 				String convDate = order.getDateOrdered().substring(0, 10);
 				String normalDate = convDate.replace("/", "-");
 				dateData = myFormat.parse(normalDate);
-				if (current.compareTo(dateData) <= 0 && order.getEmployee().getEmail().equalsIgnoreCase(lastFourteenDays)) {
+				if (current.compareTo(dateData) <= 0) {
 					tempCount++;
 				}
 			}

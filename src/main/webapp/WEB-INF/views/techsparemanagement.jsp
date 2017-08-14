@@ -276,6 +276,8 @@ input#selectDateRange {
 					<!--/panel success class-->
 				</div>
 			</div>
+			
+		</div>
 			<!-- /Container -->
 			<!-- Footer -->
 			<c:import url="templates/footer.jsp"></c:import>

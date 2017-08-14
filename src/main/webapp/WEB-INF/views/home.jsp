@@ -52,7 +52,7 @@
 					<ul class="db-summary clearfix pb20 pt20 clear" id="ticket-summary">
 
 
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="openTickets"/>'
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
@@ -65,7 +65,7 @@
 								</div>
 						</a></li>
 
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="acknowledgedTickets"/>'
 							data-parallel-url="AcknowledgedTickets"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
@@ -78,7 +78,7 @@
 								</div>
 						</a></li>
 
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="takenTickets"/>'
 							class="summery-filter clearfix" data-parallel-url="TakenTickets"
 							data-parallel-placeholder="#ticket-leftFilter"
 							data-pjax="#body-container">
@@ -91,7 +91,7 @@
 								</div>
 						</a></li>
 
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="ticketsAwaitingSpares"/>'
 							class="summery-filter clearfix" data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							data-pjax="#body-container">
@@ -106,7 +106,7 @@
 
 						
 
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="escalatedTickets"/>'
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
@@ -119,7 +119,7 @@
 								</div>
 						</a></li>
 						
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="sLABridgedTickets"/>'
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-pjax="#body-container">
@@ -133,7 +133,7 @@
 
 						</a></li>
 
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="resolvedTickets"/>'
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-orig-name="new"
@@ -146,8 +146,7 @@
 									<p>Resolved</p>
 								</div>
 						</a></li>
-
-						<li><a href='<c:url value="ticketmanagement.html"/>'
+						<li><a href='<c:url value="closedTickets"/>'
 							data-parallel-url="#"
 							data-parallel-placeholder="#ticket-leftFilter"
 							class="summery-filter clearfix" data-orig-name="new"

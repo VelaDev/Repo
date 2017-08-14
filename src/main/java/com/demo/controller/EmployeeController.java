@@ -130,22 +130,14 @@ public class EmployeeController {
 						if(details !=null){
 							userLogDetailsServiceInt.saveUserLogDetails(details);
 						}
-						model.addObject("openTickets", ticketsServiceInt
-								.getTicketCount("Open", "Last 14 Days", "", "", ""));
-						model.addObject("countAcknowledgedTickets", ticketsServiceInt
-								.getTicketCount("Acknowledged", "Last 14 Days", "", "",""));
-						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken", "Last 14 Days", "", "",""));
-						model.addObject("escalatedTickets", ticketsServiceInt
-								.getTicketCount("Escalated", "Last 14 Days", "", "", ""));
-						model.addObject("awaitingSparesTickets", ticketsServiceInt
-								.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", ""));
-						model.addObject("bridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "Last 14 Days", "", "", ""));
-						model.addObject("resolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
-						model.addObject("closedTickets", ticketsServiceInt
-								.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+						model.addObject("openTickets", ticketsServiceInt.getTicketCount("Open", "Last 14 Days", "", "", ""));
+						model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCount("Acknowledged", "Last 14 Days", "", "",""));
+						model.addObject("countTakenTickets", ticketsServiceInt.getTicketCount("Taken", "Last 14 Days", "", "",""));
+						model.addObject("escalatedTickets", ticketsServiceInt.getTicketCount("Escalated", "Last 14 Days", "", "", ""));
+						model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", ""));
+						model.addObject("bridgedTickets", ticketsServiceInt.getTicketCount("SLA Bridged", "Last 14 Days", "", "", ""));
+						model.addObject("resolvedTickets", ticketsServiceInt.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+						model.addObject("closedTickets", ticketsServiceInt.getTicketCount("Closed", "Last 14 Days", "", "", ""));
 						serviceInt.userLoggeIn(employee);
 						model.setViewName("home");
 					}
@@ -158,12 +150,18 @@ public class EmployeeController {
 							userLogDetailsServiceInt.saveUserLogDetails(details);
 						}
 						serviceInt.userLoggeIn(employee);
-						model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(employee.getEmail()));
-						model.addObject("shipment",	ordersServiceInt.shippedOrders(employee.getEmail()));						   
-						model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(employee.getEmail()));
-						model.addObject("technicianTickets", ticketsServiceInt.getOpenTicketsForTechnician(employee.getEmail()));
-						model.setViewName("technicianHome");
 						
+							
+						model.addObject("openTickets", ticketsServiceInt.getTicketCountForTechnician("Open", "Last 14 Days", employee.getEmail() , "", ""));
+						model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCountForTechnician("Acknowledged", "Last 14 Days", employee.getEmail(), "",""));
+						model.addObject("countTakenTickets", ticketsServiceInt.getTicketCountForTechnician("Taken", "Last 14 Days", employee.getEmail() , "",""));
+						model.addObject("escalatedTickets", ticketsServiceInt.getTicketCountForTechnician("Escalated", "Last 14 Days", employee.getEmail(), "", ""));
+						model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", employee.getEmail(), "", ""));
+						model.addObject("bridgedTickets", ticketsServiceInt.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", employee.getEmail(), "", ""));
+						model.addObject("resolvedTickets", ticketsServiceInt.getTicketCountForTechnician("Resolved", "Last 14 Days", employee.getEmail(), "", ""));
+						model.addObject("closedTickets", ticketsServiceInt.getTicketCountForTechnician("Closed", "Last 14 Days", employee.getEmail(), "", ""));
+						model.setViewName("technicianHome");
+												
 					}
 					else if(employee.getRole().equalsIgnoreCase("USER") && employee.getEmail().equals(userName)&& employee.getPassword().equals(password))
 					{
@@ -227,22 +225,15 @@ public class EmployeeController {
 			
 			beanList = ticketsServiceInt.ticketsResults();
 			model.addObject("ticketResults",beanList);
-			model.addObject("openTickets", ticketsServiceInt
-					.getTicketCount("Open", "Last 14 Days", "", "", ""));
-			model.addObject("countAcknowledgedTickets", ticketsServiceInt
-					.getTicketCount("Acknowledged", "Last 14 Days", "", "",""));
-			model.addObject("countTakenTickets", ticketsServiceInt
-					.getTicketCount("Taken", "Last 14 Days", "", "",""));
-			model.addObject("escalatedTickets", ticketsServiceInt
-					.getTicketCount("Escalated", "Last 14 Days", "", "", ""));
-			model.addObject("awaitingSparesTickets", ticketsServiceInt
-					.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", ""));
-			model.addObject("bridgedTickets", ticketsServiceInt
-					.getTicketCount("SLA Bridged", "Last 14 Days", "", "", ""));
-			model.addObject("resolvedTickets", ticketsServiceInt
-					.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
-			model.addObject("closedTickets", ticketsServiceInt
-					.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+			model.addObject("openTickets", ticketsServiceInt.getTicketCount("Open", "Last 14 Days", "", "", ""));
+			model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCount("Acknowledged", "Last 14 Days", "", "",""));
+			model.addObject("countTakenTickets", ticketsServiceInt.getTicketCount("Taken", "Last 14 Days", "", "",""));
+			model.addObject("escalatedTickets", ticketsServiceInt.getTicketCount("Escalated", "Last 14 Days", "", "", ""));
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", ""));
+			model.addObject("bridgedTickets", ticketsServiceInt.getTicketCount("SLA Bridged", "Last 14 Days", "", "", ""));
+			model.addObject("resolvedTickets", ticketsServiceInt.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+			model.addObject("closedTickets", ticketsServiceInt.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+		
 			model.setViewName("home");
 		}
 		else{
@@ -257,9 +248,6 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			if(techName !=null){
 				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 				
@@ -283,9 +271,6 @@ public class EmployeeController {
 		if(userName !=null){
 			
 			model.addObject("addEmployee", new EmployeeBean());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("registerEmployee");
 		}
 		else{
@@ -313,9 +298,6 @@ public class EmployeeController {
 				model.addObject("retMessage", retMessage);
 			}
 			model.addObject("addEmployee", addEmployee);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("confirmations");
 		}
 		else{
@@ -331,12 +313,15 @@ public class EmployeeController {
 		 model = new ModelAndView();
 		 userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("technicianTickets", ticketsServiceInt.getOpenTicketsForTechnician(userName.getEmail()));
-			model.addObject("ticketCount",ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
-			model.addObject("inboxCount",ordersServiceInt.technicianOrdersCount(userName.getEmail()));
-			model.setViewName("technicianHome");
+				model.addObject("openTickets", ticketsServiceInt.getTicketCountForTechnician("Open", "Last 14 Days", userName.getEmail(), "", ""));
+				model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail(), "",""));
+				model.addObject("countTakenTickets", ticketsServiceInt.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail(), "",""));
+				model.addObject("escalatedTickets", ticketsServiceInt.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail(), "", ""));
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail(), "", ""));
+				model.addObject("bridgedTickets", ticketsServiceInt.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail(), "", ""));
+				model.addObject("resolvedTickets", ticketsServiceInt.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail(), "", ""));
+				model.addObject("closedTickets", ticketsServiceInt.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail(), "", ""));
+				model.setViewName("technicianHome");
 			}
 			else{
 				model.setViewName("login");
@@ -368,10 +353,7 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		
 		if(userName != null){
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
 			model.addObject("displayEmployees", employeeService.getAllEmployees());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("displayEmployees");
 		}
 		else{
@@ -385,11 +367,8 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model = new ModelAndView("registerEmployee");
 		if(userName !=null){
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			
 			model.addObject("updateEmployee", new EmployeeBean());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("updateEmployee");
 		}
 		else{
@@ -406,10 +385,7 @@ public class EmployeeController {
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		}
+			}
 		else{
 			model.addObject("", null);
 		}
@@ -432,9 +408,6 @@ public class EmployeeController {
 		
 			retMessage = employeeService.updateEmployee(employee);
 			model.addObject("retMessage", retMessage);
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
 			model.addObject("updateEmployee", updateEmployee);
 			model.setViewName("confirmations");
 		}
@@ -457,9 +430,6 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
-		model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-		model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-		model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());		
 		model.setViewName("changePassword");
 		
 		return model;
@@ -469,13 +439,9 @@ public class EmployeeController {
 		model = new ModelAndView();
 		retMessage = employeeService.changePassword(email, newpassword);
 		
-		
 		if(retMessage.equalsIgnoreCase("OK")){
 			retMessage = "Password successfully changed";
 			model.addObject("retMessage", retMessage);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.setViewName("passwordchanged");
 		}
 		else{
@@ -497,9 +463,6 @@ public class EmployeeController {
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		}
 		else{
 			model.addObject("", null);
@@ -521,9 +484,6 @@ public class EmployeeController {
 			
 			retMessage = employeeService.changePassword(email);
 			model.addObject("retMessage", retMessage);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());			
 			model.addObject("resetPassword", resetPassword);
 			model.setViewName("confirmations");
 		}
@@ -538,9 +498,6 @@ public class EmployeeController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		model.addObject("employee", userName);
-		model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-		model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-		model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		model.setViewName("deactivateEmployee");
 		
 		return model;
@@ -551,9 +508,6 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			employee = employeeService.getEmployeeByEmpNumber(empName);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		if(employee != null){
 			
 			model.addObject("employeeObject", employee);
@@ -579,9 +533,6 @@ public class EmployeeController {
 			
 			retMessage = employeeService.deactivateEmployee(email);
 			model.addObject("retMessage", retMessage);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("deactivateEmployee", deactivateEmployee);
 			model.setViewName("confirmations");
 		}
@@ -603,9 +554,6 @@ public class EmployeeController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			employee = employeeService.getEmployeeByEmpNumber(email);
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 		if(employee != null){
 			
 			model.addObject("loginUsers", userLogDetailsServiceInt.userActivities(email));

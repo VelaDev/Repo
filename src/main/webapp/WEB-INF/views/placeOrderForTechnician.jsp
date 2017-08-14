@@ -188,7 +188,7 @@ table#toOrder thead {
                                                                                                 name="avaliableQuantity" class="form-control"
                                                                                                 readonly="readonly" value="${list.quantity}"></td>
                                                                                           <td><input type="text"
-                                                                                                id="${list.partNumber}_quantity" name="quantity"
+                                                                                                id="${list.partNumber}_quantity" name="quantity" 
                                                                                                 class="form-control" onkeypress="return isNumber(event)"
                                                                                                 onblur="compareQuantity(this, ${list.quantity})"
                                                                                                 value="" /></td>
@@ -241,15 +241,17 @@ table#toOrder thead {
 
                                           </div>
                                           <!-- //make order -->
-
-                                          <div class="form-group row">
-                                                <div class="col-sm-offset-2 col-sm-8">
-                                                      <br> <br> <input type="submit" value="Place Order"
-                                                            class="btn btn-primary btn-block btn-lg" tabindex="9"
-                                                            id="putorder" name="putorder">
-                                                </div>
-                                          </div>
-
+                                          
+										  <div class="orderSubmit" id="orderSubmit" style="display:none;">											
+	                                          <div class="form-group row">
+	                                                <div class="col-sm-offset-2 col-sm-8">
+	                                                      <br> <br> <input type="submit" value="Place Order"
+	                                                            class="btn btn-primary btn-block btn-lg" tabindex="9"
+	                                                            id="putorder" name="putorder">
+	                                                </div>
+	                                          </div>
+										  </div>
+											
                                     </form:form>
 
                               </div>
@@ -329,18 +331,20 @@ table#toOrder thead {
                                     
             items.push(row);
             row.appendTo($("#toOrder"));
+            debugger;
             $(this).closest('tr').remove();
             $('input[type="button"]', row).removeClass('AddNew').addClass('RemoveRow').val('Remove');
         }
      });
-
     //remove selected line items from table 1 to table 2
     $('#toOrder').on('click', '.RemoveRow', function(){
-    
+    	 debugger;
     	row = $(this).closest("tr").clone();
         row.appendTo($("#stockForOrder"));
-        $(this).closest('tr').remove();
+         $(this).closest('tr').remove();
         $('input[type="button"]', row).removeClass('RemoveRow').addClass('addLineItem').val('Add');
+         //hide the all of the element class oderSumbmit
+        
     });
      
     //send selected items when user clicks submit button
@@ -355,8 +359,29 @@ table#toOrder thead {
       document.getElementById("quantityList").value = quantityList;
       document.getElementById("partNumberList").value = partNumberList;
     }); 
-         
+           
 </script>
+
+<!-- Hide element of orderSubmit if quantity is empty  -->
+<script type="text/javascript">
+
+//Bind the keyup event on quantity input 
+$('input[name$=quantity]').keyup(function() {
+
+    // If value is not empty
+	if ($(this).val().length == 0) {
+    // Hide the element
+ 	$('.orderSubmit').hide();
+     console.log("Hide the submit button if quantity is not entered");
+	} else {
+    // Otherwise show it
+ 	$('.orderSubmit').show();
+ 	 console.log("Show the submit button if quantity is entered");
+	}
+}).keyup(); // Trigger the keyup event, thus running the handler on page load
+	
+</script>
+
 
 
 </body>

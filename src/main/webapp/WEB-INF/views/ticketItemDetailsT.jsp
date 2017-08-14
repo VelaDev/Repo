@@ -103,14 +103,7 @@ table#orderDetails {
 								</c:when>
 								
 								
-								<c:when test="${ticketObject.status =='Escalated'}">
-								</c:when>
-								<c:when test="${ticketObject.status =='SLA Bridged'}">
-								</c:when>
-								<c:when test="${ticketObject.status =='Resolved'}">										
-								</c:when>
-								<c:when test="${ticketObject.status =='Closed'}">
-								</c:when>
+								
 								<c:otherwise>
 									<c:out value="${ticketObject.status}" />
 								</c:otherwise>
@@ -385,7 +378,7 @@ table#orderDetails {
 										<div class="panel-body">
 	
 											<!-- tTicketTakenAwaitingSpares Details -->
-											<form:form action="performTicketAction" modelAttribute="performTicketAction"
+											<form:form action="taketicket" modelAttribute="performTicketAction"
 												method="post" id="updateResolved"
 												class="well form-horizontal">
 	
@@ -442,7 +435,7 @@ table#orderDetails {
 										<div class="panel-body">
 	
 											<!-- tTicketTakenAwaitingSpares Details -->
-											<form:form action="performTicketAction" modelAttribute="performTicketAction"
+											<form:form action="acknowledgedTicket" modelAttribute="performTicketAction"
 												method="post" id="updateResolved"
 												class="well form-horizontal">
 	
@@ -506,6 +499,24 @@ table#orderDetails {
 												<b>Awaiting Spares</b>
 											</legend>
 											
+											<!-- Action Action -->
+												<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="Awaiting Spares">												
+												
+												<!-- Text input Ticket Number-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Ticket Number</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="ticketNumber" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.ticketNumber}" readonly>
+															</div>
+														</div>
+													</div>
+											
 											<!-- Text input Order No-->
 												<div class="form-group">
 														<label class="col-md-3 control-label"> Order No</label>
@@ -568,8 +579,8 @@ table#orderDetails {
 
 									<div class="panel-body">
 
-										<!-- tTicketTakenEscalate Details -->
-										<form:form action="performTicketAction" modelAttribute="performTicketAction"
+										<!-- If ticket is taken, action available is Escalate -->
+										<form:form action="escalateticket" modelAttribute="performTicketAction"
 											method="post" id="ticketTakenEscalate"
 											class="well form-horizontal">
 
@@ -577,6 +588,24 @@ table#orderDetails {
 												align="center">
 												<b>Escalate</b>
 											</legend>
+											
+											<!-- Action Action -->
+												<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="escalate">												
+												
+												<!-- Text input Ticket Number-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Ticket Number</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="ticketNumber" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.ticketNumber}" readonly>
+															</div>
+														</div>
+													</div>
 											
 											  <!-- Text input Manager-->
 												<div class="form-group">
@@ -641,7 +670,7 @@ table#orderDetails {
 
 									<div class="panel-body">
 
-										<!-- tTicketTakenResolve Details -->
+										<!-- If ticket is taken, action available is Resolve -->										
 										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketTakenResolve"
 											class="well form-horizontal">
@@ -650,6 +679,23 @@ table#orderDetails {
 												align="center">
 												<b>Resolve</b>
 											</legend>
+											
+											<!-- Action Action -->
+											<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="Resolve">												
+												
+											<!-- Text input Ticket Number-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Ticket Number</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group"><span class="input-group-addon"><i
+													   class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="ticketNumber" id="ticketNumber"
+																	class="form-control" type="text"
+																value="${ticketObject.ticketNumber}" readonly>
+													</div>
+												</div>
+											</div>
 											
 											
 											<!-- Text area Action Taken-->
@@ -932,6 +978,7 @@ table#orderDetails {
 					            </div>
 					           </c:when>
 						</c:choose><!--tTicketTakenResolve -->
+						
 						
 						<!--tTicketAwaitingSparesEscalate -->
 						<c:choose>

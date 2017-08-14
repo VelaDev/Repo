@@ -223,13 +223,15 @@ table#toOrder thead {
                                           </div>
                                           <!-- //make order -->
 
-                                          <div class="form-group row">
-                                                <div class="col-sm-offset-2 col-sm-8">
-                                                      <br> <br> <input type="submit" value="Place Order"
-                                                            class="btn btn-primary btn-block btn-lg" tabindex="9"
-                                                            id="putorder" name="putorder">
-                                                </div>
-                                          </div>
+                                         <div class="orderSubmit" id="orderSubmit" style="display:none;">											
+	                                          <div class="form-group row">
+	                                                <div class="col-sm-offset-2 col-sm-8">
+	                                                      <br> <br> <input type="submit" value="Place Order"
+	                                                            class="btn btn-primary btn-block btn-lg" tabindex="9"
+	                                                            id="putorder" name="putorder">
+	                                                </div>
+	                                          </div>
+										  </div>
 
                                     </form:form>
 
@@ -339,6 +341,27 @@ table#toOrder thead {
     
     
                
+</script>
+
+
+<!-- Hide element of orderSubmit if quantity is empty  -->
+<script type="text/javascript">
+
+//Bind the keyup event on quantity input 
+$('input[name=quantity]').keyup(function() {
+
+    // If value is not empty
+	if ($(this).val().length == 0) {
+    // Hide the element
+ 	$('.orderSubmit').hide();
+     console.log("Hide the submit button if quantity is not entered");
+	} else {
+    // Otherwise show it
+ 	$('.orderSubmit').show();
+ 	 console.log("Show the submit button if quantity is entered");
+	}
+}).keyup(); // Trigger the keyup event, thus running the handler on page load
+	
 </script>
 
 

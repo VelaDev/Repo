@@ -370,7 +370,7 @@ public class TicketController {
 					model.addObject("retMessage", retMessage);
 							
 				model.addObject("performTicketAction", performTicketAction);
-				model.setViewName("confirmations");
+				model.setViewName("confirmation");
 			}
 				}
 
@@ -400,7 +400,7 @@ public class TicketController {
 					model.addObject("retMessage", retMessage);
 							
 				model.addObject("performTicketAction", performTicketAction);
-				model.setViewName("confirmations");
+				model.setViewName("confirmation");
 			}
 				}
 
@@ -430,7 +430,7 @@ public class TicketController {
 					model.addObject("retMessage", retMessage);
 							
 				model.addObject("performTicketAction", performTicketAction);
-				model.setViewName("confirmations");
+				model.setViewName("confirmation");
 			}
 				}
 

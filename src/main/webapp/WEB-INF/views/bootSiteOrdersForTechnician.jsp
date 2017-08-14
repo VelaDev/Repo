@@ -76,7 +76,7 @@
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
 
-								<li><a href='numberOfPartsForTech'
+								<li><a href='numberOfParts'
 									data-parallel-url="'numberOfPartsForTech'"
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
@@ -88,7 +88,7 @@
 										</div>
 								</a></li>
 
-								<li><a href='numberOfTonersForTech' 
+								<li><a href='numberOfToners' 
 									class="summery-filter clearfix"
 									data-parallel-url="numberOfTonersForTech"
 									data-parallel-placeholder="#ticket-leftFilter"
@@ -107,7 +107,7 @@
 						<!-- tab nav -->
 						<div class="tab-content">
 
-							<div class="tab-pane active" id="numberOfParts'">
+							<div class="tab-pane active" id="numberOfTonersForTech">
 
 								<form action="">
 									

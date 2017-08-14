@@ -233,8 +233,9 @@ input#selectDateRange {
 										<c:forEach var="list" items="${customer}">
 											<tr>
 												<td><a
-													href="loadStockSite?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
-
+													href="loadStockSiteForTechnician?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
+														 
+														 
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -253,11 +254,11 @@ input#selectDateRange {
 									</thead>
 									<tbody>
 										<!-- Iterating over the list sent from Controller -->
-							
+											
 											<tr>
 
 												<td><a
-													href="loadBootStock?technician=<c:out value='${email}'/>">${firstName}
+													href="loadBootStockForTechnician?technician=<c:out value='${email}'/>">${firstName}
 														${lastName}</a></td>
 											</tr>
 									

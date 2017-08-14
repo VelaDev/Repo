@@ -48,6 +48,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 		      siteStock = getSiteStock(stock.getPartNumber());
 				 if(siteStock != null && stock.getPartNumber().equalsIgnoreCase(siteStock.getPartNumber())){
 					 int incrementQuantity = stock.getQuantity() + siteStock.getQuantity();
+					 siteStock.setCompatibleDevice(stock.getCompatibleDevice());
 					 siteStock.setQuantity(incrementQuantity);
 					 sessionFactory.getCurrentSession().update(siteStock);
 		

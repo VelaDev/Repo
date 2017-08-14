@@ -25,8 +25,8 @@
 <!-- //Little Dash-board -->
 <style type="text/css">
 	
-	.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(8) ~ li {
-    width: 13%;
+	.db-summary li:first-child:nth-last-child(8), .db-summary li:first-child:nth-last-child(8) ~ li {
+    width: 12%;
 }
 
 </style>
@@ -61,7 +61,7 @@
 								</div>
 								<div class="summary-count pull-left">
 									<h4 style="color: #01960C;">${openTickets}</h4>
-									<p>Open Tickets</p>
+									<p>Open</p>
 								</div>
 						</a></li>
 
@@ -74,7 +74,7 @@
 								</div>
 								<div class="summary-count pull-left" >
 									<h4 align="center">${countAcknowledgedTickets}</h4>
-									<p align="center">Acknowledged Tickets</p>
+									<p align="center">Acknowledged</p>
 								</div>
 						</a></li>
 
@@ -87,7 +87,7 @@
 								</div>
 								<div class="summary-count pull-left">
 									<h4 align="center">${countTakenTickets}</h4>
-									<p align="center">Taken Tickets</p>
+									<p align="center">Taken</p>
 								</div>
 						</a></li>
 
@@ -115,7 +115,7 @@
 								</div>
 								<div class="summary-count pull-left">
 									<h4>${escalatedTickets}</h4>
-									<p>Escalated Tickets</p>
+									<p>Escalated</p>
 								</div>
 						</a></li>
 						
@@ -143,7 +143,7 @@
 								</div>
 								<div class="summary-count pull-left ml20">
 									<h4>${resolvedTickets}</h4>
-									<p>Resolved Tickets</p>
+									<p>Resolved</p>
 								</div>
 						</a></li>
 
@@ -157,7 +157,7 @@
 								</div>
 								<div class="summary-count pull-left ml20">
 									<h4>${closedTickets}</h4>
-									<p>Closed Tickets</p>
+									<p>Closed</p>
 								</div>
 						</a></li>
 

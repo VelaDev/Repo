@@ -155,7 +155,7 @@ table#toOrder thead {
                                           </div>
 
                                  
-                                         <div id="makeOrders">
+                                          <div id="makeOrders">
 
                                                 <div class="groupdetails-row-padding">
 
@@ -189,7 +189,7 @@ table#toOrder thead {
                                                                                                 readonly="readonly" value="${list.quantity}"></td>
                                                                                           <td><input type="text"
                                                                                                 id="${list.partNumber}_quantity" name="quantity"
-                                                                                                class="form-control" required="required" onkeypress="return isNumber(event)"
+                                                                                                class="form-control" onkeypress="return isNumber(event)"
                                                                                                 onblur="compareQuantity(this, ${list.quantity})"
                                                                                                 value="" /></td>
                                                                                           <td><input class="addLineItem" type="button"
@@ -206,6 +206,7 @@ table#toOrder thead {
                                                             <div class="groupproductdetails">
                                                             	</br>
                                                             	<h5 align="center"><b>Selected Order Line Items</b></h5>
+                                                            	<div class="dataTables_scroll">
                                                                   <table id="toOrder" class="display toOrder">
                                                                         <thead>
                                                                               <tr>
@@ -217,8 +218,11 @@ table#toOrder thead {
                                                                                     <th>Action</th>
                                                                               </tr>
                                                                         </thead>
-                                                                        <tbody></tbody>
-                                                                  </table>
+													                     <tbody >
+		                                                                 </tbody>
+	                                                                   
+	                                                              </table>
+                                                                  </div>
                                                             </div>
                                                             <!-- //groupproductdetails --> 
                                                             </div><!-- //sidebar -->
@@ -263,9 +267,8 @@ table#toOrder thead {
       <!-- / velaphanda_containter -->
 
       <!-- Scripts -->
-    
-    <script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
       <script type="text/javascript"
             src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
       <script type="text/javascript"
@@ -354,6 +357,7 @@ table#toOrder thead {
     }); 
          
 </script>
+
 
 </body>
 </html>

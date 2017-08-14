@@ -346,9 +346,9 @@ table#orderDetails {
 																<c:when test="${history.status =='Re-Opened'}">
 																	<td>Ticket Re-Opened</td>
 																</c:when>
-																<%-- <c:when test="${history.status =='Re-assign'}">
-																	<td>Ticket Re-assign</td>
-																</c:when> --%>
+																<c:when test="${history.status =='Re-assign'}">
+																	<td>Ticket Re-assigned</td>
+																</c:when>
 																<c:when test="${history.status =='Acknowledged'}">
 																	<td><c:out value="${history.actionTaken}" />Tickets
 																		Acknowledged</td>

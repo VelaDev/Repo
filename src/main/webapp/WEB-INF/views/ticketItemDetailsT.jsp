@@ -64,16 +64,17 @@ table#orderDetails {
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="#tAcknowledgedTicket" data-toggle="tab" ">Acknowledge</a></li>
+										<li><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledge</a></li>
 									</ul>
 								</li>				
 								</c:when>
+								
 								<c:when test="${ticketObject.status =='Acknowledged'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="takeTicket?take=<c:out value='${ticketObject.ticketNumber}'/>">Take Ticket</a></li>
+										<li><a href="#tTakeTicket" data-toggle="tab">Take Ticket</a></li>
 									</ul>
 									</li>								
 								</c:when>
@@ -119,6 +120,7 @@ table#orderDetails {
 					</div>
 					<legend></legend>
 					<ul class="nav nav-tabs">
+						
 						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>
 						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
 						<c:choose>
@@ -160,6 +162,13 @@ table#orderDetails {
 							 <li><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
 						</c:when>						
 						</c:choose>
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Acknowledged'}">
+							 <li><a href="#tTakeTicket" data-toggle="tab">Take Ticket</a>							  
+						</c:when>						
+						</c:choose>
+						
 						
 					</ul>
 
@@ -364,6 +373,65 @@ table#orderDetails {
 							
 						</div>
 						
+						
+						
+						<!--tTakeTicket -->						
+						<c:choose>
+							 <c:when test="${ticketObject.status =='Acknowledged'}">				
+									
+									
+									<div class="tab-pane" id="tTakeTicket">
+
+										<div class="panel-body">
+	
+											<!-- tTicketTakenAwaitingSpares Details -->
+											<form:form action="performTicketAction" modelAttribute="performTicketAction"
+												method="post" id="updateResolved"
+												class="well form-horizontal">
+	
+												<legend style="font-size: 15px; line-height: 1.42857143;"
+													align="center">
+													<b>Take Ticket</b>
+												</legend>
+												
+												<!-- Action Action -->
+												<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="taketicket">
+												
+												
+												<!-- Text input Ticket Number-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Ticket Number</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="ticketNumber" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.ticketNumber}" readonly>
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Take Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+												
+											</form:form>
+											
+										</div>
+									
+									</div>									
+									
+							</c:when>
+						</c:choose>
+						
+						
 						<!--tAcknowledgedTicket -->						
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Open'}">				
@@ -429,7 +497,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- tTicketTakenAwaitingSpares Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
 
@@ -501,7 +569,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- tTicketTakenEscalate Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketTakenEscalate"
 											class="well form-horizontal">
 
@@ -574,7 +642,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- tTicketTakenResolve Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketTakenResolve"
 											class="well form-horizontal">
 
@@ -865,8 +933,6 @@ table#orderDetails {
 					           </c:when>
 						</c:choose><!--tTicketTakenResolve -->
 						
-						
-						
 						<!--tTicketAwaitingSparesEscalate -->
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Awaiting Spares'}">
@@ -876,7 +942,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- tTicketTakenResolve Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
 
@@ -947,7 +1013,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- tTicketTakenResolve Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
 
@@ -1247,7 +1313,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- tTicketTakenEscalate Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketTakenEscalate"
 											class="well form-horizontal">
 
@@ -1321,7 +1387,7 @@ table#orderDetails {
 									<div class="panel-body">
 
 										<!-- tTicketTakenResolve Details -->
-										<form:form action="updateTicket" modelAttribute="updateTicket"
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
 

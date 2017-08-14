@@ -8,29 +8,30 @@
 
 <!--style-->
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
+      href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
+      href="<c:url value="/resources/bootstrap-3.3.7/fonts/font-awesome.min.css" />" />
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
+      href="<c:url value="/resources/bootstrap-3.3.7/css/bootstrap.min.css" />" />
 <link rel="stylesheet" type="text/css"
-	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+      href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
+<link rel="stylesheet" type="text/css"
+      href="<c:url value="/resources/bootstrap-3.3.7/css/datepicker.min.css" />">
 
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/custom/css/vela_details.css" />">
+      href="<c:url value="/resources/custom/css/vela_details.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
+      href="<c:url value="/resources/datatables/1.10.13/css/db_site_ui.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
+      href="<c:url value="/resources/datatables/1.10.13/css/demo_table_jui.css" />">
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
+      href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/buttons.dataTables.css" />">
+      href="<c:url value="/resources/datatables/1.10.13/css/buttons.dataTables.css" />">
 
 <link type="text/css" rel="stylesheet"
-	href="<c:url value="/resources/datatables/1.10.13/css/scroller.dataTables.css" />">
-
+      href="<c:url value="/resources/datatables/1.10.13/css/scroller.dataTables.css" />">
 <style>
 
 table#toOrder thead {
@@ -43,111 +44,99 @@ table#toOrder thead {
 <!--/style-->
 </head>
 <body>
-	<div class="velaphanda_containter">
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
-		<div class="container">
 
-			<c:if test="${not empty retMessage }">
-				<div class="alert alert-info" role="alert">
+      <div class="velaphanda_containter">
+            <c:import url="templates/techniciannavbar.jsp"></c:import>
+            <div class="container">
 
-					<c:out value="${ retMessage}">
-					</c:out>
-				</div>
-			</c:if>
-			<c:if test="${not empty retErrorMessage }">
-				<div class="alert alert-info" role="alert">
+                  <c:if test="${not empty retMessage }">
+                        <div class="alert alert-info" role="alert">
 
-					<c:out value="${ retErrorMessage}">
-					</c:out>
-				</div>
-			</c:if>
-			<div class="panel panel-success">
-				<div class="panel-heading">
-					<h3 class="panel-title">
-						<div align="center">
-							<b>New Order</b>
-						</div>
-					</h3>
-				</div>
-				<div class="panel-body">
-					<div class="tab-content">
+                              <c:out value="${ retMessage}">
+                              </c:out>
+                        </div>
+                  </c:if>
+                  <c:if test="${not empty retErrorMessage }">
+                        <div class="alert alert-info" role="alert">
 
-						<form:form class="well form-horizontal" modelAttribute="makeOrder"
-							method="post" action="makeOrder" id="putInOrder">
+                              <c:out value="${ retErrorMessage}">
+                              </c:out>
+                        </div>
+                  </c:if>
+                  <div class="panel panel-success">
+                        <div class="panel-heading">
+                              <h3 class="panel-title">
+                                    <div align="center">
+                                          <b>New Order</b>
+                                    </div>
+                              </h3>
+                        </div>
+                        <div class="panel-body">
+                              <div class="tab-content">
 
-
-							<!-- Select type Stock Type-->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Stock Type</label>
-								<div class="col-md-6 selectContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-list"></i></span><select id="stockType"
-											name="stockType" class="form-control"
-											onchange='CheckStockType(this.value);'
-											class="form-control selectpicker">
-											<option value="">Select Stock Type</option>
-											<option value="Boot">Boot</option>
-											<option value="Site">Site</option>
-										</select>
-									</div>
-								</div>
-							</div>
-
-							<div id="Site" style='display: none;'>
-
-								<!-- Text input Customer Name-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Customer Name</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-user"></i></span><select id="Site"
-												name="customer" class="form-control selectpicker">
-												<option value="">Customer Name</option>
-												<c:forEach items="${customerList}" var="customer">
-													<option value="${customer.customerName}">${customer.customerName}</option>
-												</c:forEach>
-											</select>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<!-- Text input Technician name-->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Technician</label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <input readOnly
-											id="technician" name="technician" placeholder="Technicain"
-											class="form-control" type="text"
-											value="${loggedInUser.firstName} ${loggedInUser.lastName}">
-									</div>
-								</div>
-							</div>
+                                    <form:form class="well form-horizontal" modelAttribute="makeOrder"
+                                          method="post" action="makeOrder" id="putInOrder">
 
 
-							<!-- Text input Approver-->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Approver</label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-user"></i></span> <select id="approver"
-											name="approver" class="form-control selectpicker">
-											<option value="">Select Approver</option>
-											<c:forEach items="${managersList}" var="manager">
-												<option value="${manager.email}">${manager.firstName}
-													${manager.lastName}</option>
-											</c:forEach>
-										</select>
-									</div>
-								</div>
-							</div>
+                                          <!-- Select type Stock Type-->
+                                          <div class="form-group">
+                                                <label class="col-md-3 control-label">Stock Type</label>
+                                                <div class="col-md-6 selectContainer">
+                                                      <div class="input-group">
+                                                            <span class="input-group-addon"><i
+                                                                  class="glyphicon glyphicon-list"></i></span><select id="stockType"
+                                                                  name="stockType" class="form-control"
+                                                                  onchange='CheckStockType(this.value);'
+                                                                  class="form-control selectpicker">
+                                                                  <option value="">Select Stock Type</option>
+                                                                  <option value="Boot">Boot</option>
+                                                                  <option value="Site">Site</option>
+                                                            </select>
+                                                      </div>
+                                                </div>
+                                          </div>
 
-							 <div id="makeOrders">
+                                          <div id="Site" style='display: none;'>
+
+                                                <!-- Text input Customer Name-->
+                                                <div class="form-group">
+                                                      <label class="col-md-3 control-label">Customer Name</label>
+                                                      <div class="col-md-6 inputGroupContainer">
+                                                            <div class="input-group">
+                                                                  <span class="input-group-addon"><i
+                                                                        class="glyphicon glyphicon-user"></i></span><select id="Site"
+                                                                        name="customer" class="form-control selectpicker">
+                                                                        <option value="">Customer Name</option>
+                                                                        <c:forEach items="${customerList}" var="customer">
+                                                                              <option value="${customer.customerName}">${customer.customerName}</option>
+                                                                        </c:forEach>
+                                                                  </select>
+                                                            </div>
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                          <!-- Text input Approver-->
+                                          <div class="form-group">
+                                                <label class="col-md-3 control-label">Approver</label>
+                                                <div class="col-md-6 inputGroupContainer">
+                                                      <div class="input-group">
+                                                            <span class="input-group-addon"><i
+                                                                  class="glyphicon glyphicon-user"></i></span><select name="approver"
+                                                                  id="approver" class="form-control selectpicker">
+                                                                  <option value="">Select Manager</option>
+                                                                  <c:forEach items="${managersList}" var="approver">
+                                                                        <option value="${approver.email}">${approver.firstName}
+                                                                              ${approver.lastName}</option>
+                                                                  </c:forEach>
+                                                            </select>
+
+                                                      </div>
+                                                </div>
+                                          </div>
+
+                                 
+                                          <div id="makeOrders">
 
                                                 <div class="groupdetails-row-padding">
 
@@ -181,7 +170,7 @@ table#toOrder thead {
                                                                                                 readonly="readonly" value="${list.quantity}"></td>
                                                                                           <td><input type="text"
                                                                                                 id="${list.partNumber}_quantity" name="quantity"
-                                                                                                class="form-control" required="required" onkeypress="return isNumber(event)"
+                                                                                                class="form-control" onkeypress="return isNumber(event)"
                                                                                                 onblur="compareQuantity(this, ${list.quantity})"
                                                                                                 value="" /></td>
                                                                                           <td><input class="addLineItem" type="button"
@@ -198,6 +187,7 @@ table#toOrder thead {
                                                             <div class="groupproductdetails">
                                                             	</br>
                                                             	<h5 align="center"><b>Selected Order Line Items</b></h5>
+                                                            	<div class="dataTables_scroll">
                                                                   <table id="toOrder" class="display toOrder">
                                                                         <thead>
                                                                               <tr>
@@ -209,8 +199,11 @@ table#toOrder thead {
                                                                                     <th>Action</th>
                                                                               </tr>
                                                                         </thead>
-                                                                        <tbody></tbody>
-                                                                  </table>
+													                     <tbody >
+		                                                                 </tbody>
+	                                                                   
+	                                                              </table>
+                                                                  </div>
                                                             </div>
                                                             <!-- //groupproductdetails --> 
                                                             </div><!-- //sidebar -->
@@ -254,31 +247,36 @@ table#toOrder thead {
       </div>
       <!-- / velaphanda_containter -->
 
-     <!--  -->
-    <script type="text/javascript"
-		src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-		<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-	<script type="text/javascript"
-		src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap-datepicker.min.js" />"></script>
+      <!-- Scripts -->
+      <script type="text/javascript"
+            src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
 
-	<!-- Datatables -->
-	<script type="text/javascript"
-		src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
-	<!-- //Datatables -->
-	
-	<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/datatables/1.10.13/js/jquery-ui.js" />"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/datatables/1.10.13/js/dataTables.buttons.js" />"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/datatables/1.10.13/js/dataTables.jqueryui.js" />"></script>
+      <script type="text/javascript"
+            src="<c:url value="/resources/datatables/1.10.13/js/dataTables.select.js" />"></script>
+      <!-- //Datatables -->
+
+      <script type="text/javascript"
+            src="<c:url value="/resources/custom/js/velas_validations.js"/>"></script>
+      <!-- /Scripts -->
+
 
     <!--Order avalialable head office stock-->
     <script type="text/javascript">
       
     $(document).ready(function() {
             $('#stockForOrder').DataTable({
-            	 "jQueryUI" : true,
                   info: true, 
                   searching:true, 
                   scrollY: "200px",
@@ -342,6 +340,7 @@ table#toOrder thead {
     
                
 </script>
+
 
 </body>
 </html>

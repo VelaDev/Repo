@@ -18,5 +18,6 @@ public interface EmployeeServiceInt {
 	String deactivateEmployee(String email);
 	Integer count();
 	List<Employee> getAllManagers();
+	List<Employee> reassignTechnicianList(String technicianName);
 
 }

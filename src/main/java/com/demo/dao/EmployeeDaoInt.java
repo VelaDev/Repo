@@ -22,5 +22,6 @@ public interface EmployeeDaoInt {
 	List<Employee> getAllManagers();
 	String returnManagerEmail();
 	String[] managersEmails();
+	List<Employee> reassignTechnicianList(String technicianName);
 
 }

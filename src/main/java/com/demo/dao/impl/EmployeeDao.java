@@ -113,6 +113,28 @@ public class EmployeeDao implements EmployeeDaoInt{
 		 }
 		return empList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Employee> reassignTechnicianList(String technicianName) {
+		@SuppressWarnings("rawtypes")
+		ArrayList<?> aList = new ArrayList();
+		List<Employee> empList = new ArrayList<Employee>();
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Employee.class);
+		 
+		 aList.addAll(criteria.list());
+		 List<Leave> tempTechList = leaveDao.getActiveLeave();
+		 for(Object emp:aList)
+		 {
+				 if(emp instanceof Employee){
+					 if(((Employee) emp).getRole().equalsIgnoreCase("Technician") 
+							 && ((Employee) emp).getEmail().equalsIgnoreCase(technicianName)){
+						 empList.add((Employee) emp);
+					 }
+				 }
+		 }
+		return empList;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

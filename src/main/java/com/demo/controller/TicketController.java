@@ -1549,8 +1549,13 @@ public class TicketController {
 					ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.addObject("onLeaveTechnicians", leaveInt.techniciansOnLeave());
 			model.addObject("serialNumbers", getSerialNumbers);
+			
 			model.addObject("technicians",
 					employeeServiceInt.getAllTechnicians());
+			model.addObject("reassignToTechnician",
+					employeeServiceInt.reassignTechnicianList(ticket.getEmployee().getEmail()));
+			
+			
 			model.addObject("countOpenTickets",
 					ticketsServiceInt.countOpenTickets());
 			model.addObject("countEscalatedTickets",

@@ -89,4 +89,10 @@ public class EmployeeService implements EmployeeServiceInt {
 		return employeeDAO.getAllManagers();
 	}
 
+	@Override
+	public List<Employee> reassignTechnicianList(String technicianName) {
+		// TODO Auto-generated method stub
+		return employeeDAO.reassignTechnicianList(technicianName);
+	}
+
 }

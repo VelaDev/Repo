@@ -827,7 +827,10 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public String performTicketAction(TicketsBean ticketsBean) {
+		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		date = new Date();
 
+		retMessage = null;
 		try {
 			if (ticketsBean != null) {
 
@@ -852,10 +855,16 @@ public class TicketsDao implements TicketsDaoInt {
 												.getFirstName()
 												+ " "
 												+ technician.getLastName();
+										String currentTechnicianName = ticket.getEmployee().getFirstName() + " " + 
+												ticket.getEmployee().getLastName(); 
 										ticket.setEmployee(technician);
 										sessionFactory.getCurrentSession()
-												.update(ticket);
-										// ticketHistoryDaoInt.insertTicketHistory(tick);
+										.update(ticket);
+										
+										ticket.setComments("Ticket re-assigned from" + " " + currentTechnicianName + " to " 
+										+ technicianName);
+										historyDaoInt.insertTicketHistory(ticket);
+										
 										retMessage = "Ticket " + ticketNumber
 												+ " re-assigned to "
 												+ technicianName;
@@ -873,11 +882,18 @@ public class TicketsDao implements TicketsDaoInt {
 								if (ticket.getTicketNumber().equalsIgnoreCase(
 										ticketNumber)) {
 									ticket.setStatus("Open");
+									ticket.setDateTime(dateFormat.format(date));
 									sessionFactory.getCurrentSession().update(
 											ticket);
+									
+									ticket.setComments("Ticket Re-opened");
+											historyDaoInt.insertTicketHistory(ticket);
+											
 									// ticketHistoryDaoInt.insertTicketHistory(tick);
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully re-opened";
+									
+
 
 								}
 							}
@@ -895,9 +911,13 @@ public class TicketsDao implements TicketsDaoInt {
 									sessionFactory.getCurrentSession().update(
 											ticket);
 									// ticketHistoryDaoInt.insertTicketHistory(tick);
+
+									ticket.setComments("Ticket Acknowledged by " + ticket.getFirstName() + " " + ticket.getLastName());
+											historyDaoInt.insertTicketHistory(ticket);
+											
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully Acknowledged";
-
+									
 								}
 							}
 						}
@@ -913,7 +933,11 @@ public class TicketsDao implements TicketsDaoInt {
 									ticket.setStatus("Taken");
 									sessionFactory.getCurrentSession().update(
 											ticket);
-									// ticketHistoryDaoInt.insertTicketHistory(tick);
+									
+									ticket.setComments("Ticket Take by " + ticket.getFirstName() + " " + ticket.getLastName());
+									historyDaoInt.insertTicketHistory(ticket);
+									
+									
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully Taken";
 
@@ -933,7 +957,11 @@ public class TicketsDao implements TicketsDaoInt {
 									ticket.setEmployee(technician);
 									sessionFactory.getCurrentSession().update(
 											ticket);
-									// ticketHistoryDaoInt.insertTicketHistory(tick);
+									
+
+									ticket.setComments("Ticket Escalated to  " + ticket.getFirstName() + " " + ticket.getLastName());
+									historyDaoInt.insertTicketHistory(ticket);
+									
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully Escalated to"
 											+ technician.getFirstName() + " "

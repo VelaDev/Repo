@@ -112,7 +112,15 @@ table#orderDetails {
 												data-toggle="tab">Resolve</a></li>
 										</ul></li>
 								</c:when>
-
+								<c:when test="${ticketObject.status =='SLA Bridged'}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Ticket Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="#mTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
+											
+										</ul></li>									
+								</c:when>
 								<c:when test="${ticketObject.status =='Resolved'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 										data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -121,10 +129,7 @@ table#orderDetails {
 											<li><a href="#mTicketReopenResolved" data-toggle="tab">Re-open</a></li>
 										</ul></li>
 								</c:when>
-								<c:otherwise>
-									<c:out value="${ticketObject.status}" />
-								</c:otherwise>
-
+								
 							</c:choose>
 
 
@@ -161,6 +166,11 @@ table#orderDetails {
 								<li><a href="#mTicketTakenAwaiting" class="disableLinks"
 									data-toggle="tab">Awaiting Spares</a></li>
 							</c:when>
+						</c:choose>
+						<c:choose>
+							<c:when test="${ticketObject.status =='SLA Bridged'}">
+							 <li><a href="#mTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
+						</c:when>						
 						</c:choose>
 						<c:choose>
 							<c:when test="${ticketObject.status =='Resolved'}">
@@ -546,7 +556,7 @@ table#orderDetails {
 																<textarea class="form-control" id="comments"
 																	name="comments" maxlength="150"
 																	onkeydown="upperCaseF(this)"
-																	placeholder="Please enter comment"></textarea>
+																	placeholder="Please enter comment" style="margin: 0px; height: 129px; width: 551px;"></textarea>
 															</div>
 														</div>
 													</div>
@@ -736,8 +746,7 @@ table#orderDetails {
 
 											<!-- Assign Technician -->
 											<div class="form-group">
-												<label class="col-md-3 control-label">Assign
-													Technician</label>
+												<label class="col-md-3 control-label">Assign Technician</label>
 												<div class="col-md-6 selectContainer">
 													<div class="input-group">
 														<span class="input-group-addon"><i
@@ -827,7 +836,7 @@ table#orderDetails {
 															id="technicianUserName" name="technicianUserName"
 															class="form-control selectpicker">
 															<option value="">Select Technician</option>
-															<c:forEach items="${technicians}" var="technician">
+															<c:forEach items="${reassignToTechnician}" var="technician">
 																<c:choose>
 																	<c:when test="${technician.leaveStatus =='Active'}">
 																		<option class="onleave" value="${technician.email}">${technician.firstName}
@@ -838,7 +847,8 @@ table#orderDetails {
 																			${technician.lastName}</option>
 																	</c:when>
 																</c:choose>
-															</c:forEach>
+															</c:forEach>															
+															
 														</select>
 													</div>
 												</div>
@@ -1020,7 +1030,7 @@ table#orderDetails {
 														<textarea class="form-control" id="comments"
 															name="comments" maxlength="150"
 															onkeydown="upperCaseF(this)"
-															placeholder="Please enter comment"></textarea>
+															placeholder="Please enter comment" style="margin: 0px; height: 129px; width: 551px;"></textarea>
 													</div>
 												</div>
 											</div>
@@ -1116,7 +1126,7 @@ table#orderDetails {
 														<textarea class="form-control" id="comments"
 															name="comments" maxlength="150"
 															onkeydown="upperCaseF(this)"
-															placeholder="Please enter comment"></textarea>
+															placeholder="Please enter comment" style="margin: 0px; height: 129px; width: 551px;"></textarea>
 													</div>
 												</div>
 											</div>
@@ -1141,7 +1151,327 @@ table#orderDetails {
 							</c:when>
 						</c:choose>
 						<!-- //Ticket Awaiting Spare if status is Taken -->
+						
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='SLA Bridged'}">
+							 
+							 <div class="tab-pane" id="mTicketSLABridgedResolved">
 
+									<div class="panel-body">
+
+										<!-- tTicketTakenResolve Details -->
+										<form:form action="performTicketAction" modelAttribute="performTicketAction"
+											method="post" id="updateResolved"
+											class="well form-horizontal">
+
+											<legend style="font-size: 15px; line-height: 1.42857143;"
+												align="center">
+												<b>Resolve</b>
+											</legend>
+											
+											
+											<!-- Text area Action Taken-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Action Taken</label>
+												<div class="col-md-6 selectContainer">
+													<div class="input-group">
+														<span class="input-group-addon"><i
+															class="glyphicon glyphicon-list"></i></span><select
+															name="actionTaken" id="actionTaken"
+															class="form-control selectpicker"
+															onchange="Faulty(this.value);">
+															<option value="">Please select Action Taken for
+																Repair</option>
+															<option value="Replaced Part/Toner">Replaced
+																Part/Toner</option>
+															<option value="Cleared Paper Jam">Cleared Paper
+																Jam</option>
+															<option value="Installed Drivers">Installed
+																Drivers</option>
+															<option value="Configured Drivers">Configured
+																Drivers</option>
+															<option value="Configured Printer">Configured
+																Printer</option>
+															<option value="User Error">User Error</option>
+															<option value="No fault Found">No fault Found</option>
+														</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="hideMonoAndColour" id="hideMonoAndColour"
+												style="display: none">
+
+												<c:if test="${not empty ticketObject.device.colourReading}">
+													<!-- Text checkbox Colour Reading-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Colour
+															Reading</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span> <input
+																	type="text" class="form-control"
+																	onkeypress="return isNumber(event)"
+																	placeholder="Enter Colour Reading" id="colourReading"
+																	name="colourReading">
+															</div>
+														</div>
+													</div>
+												</c:if>
+												<div class="form-group">
+													<label class="col-md-3 control-label">Mono Reading</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-list"></i></span> <input type="text"
+																class="form-control" onkeypress="return isNumber(event)"
+																id="mono" name="monoReading"
+																placeholder="Enter Mono Reading">
+														</div>
+													</div>
+												</div>
+
+											</div>
+											<!-- HideMonoAndColour if no action is selscted -->
+											
+											<!-- group Used Part Numbers -->
+											<div class="groupsearchdetails">
+
+												<legend id="hideUsedPartNumbersHidding"
+													style="display: none; width: 50%; margin-left: 25%;">Used
+													Part Numbers </legend>
+
+												<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
+													style="display: none">
+
+													<fieldset id="groupstock" style="margin-left: -1%">
+
+														<!-- group Boot Stock -->
+														<div class="form-group">
+															<label class="col-xs-3 control-label">Boot Stock</label>
+															<div class="col-md-6 inputGroupContainer">
+																<input type="radio" value="bootType" name="groupboot"
+																	data-toggle="modal" data-target="#bootStock"
+																	readonly="readonly" id="BootStocked">
+															</div>
+														</div>
+
+														<!-- group Site Stock -->
+														<div class="form-group">
+															<label class="col-xs-3 control-label">Site Stock</label>
+															<div class="col-md-6 inputGroupContainer">
+																<input type="radio" value="siteType" name="groupboot"
+																	data-toggle="modal" data-target="#siteStock"
+																	disabled="disabled" id="SiteStocked">
+															</div>
+														</div>
+
+													</fieldset>
+
+
+													<!-- display ticked Used Part Numbers-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Used Part
+															Numbers</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-list"></i></span>
+																<textarea id="usedPartNumbers" name="usedPartNumbers"
+																	readonly="readonly" class="form-control"
+																	style="height: 60px; font-size: 11px;">
+													 </textarea>
+															</div>
+														</div>
+													</div>
+													<!--// display ticked Used Part Numbers-->
+
+												</div>
+												<!-- // end hideIfIsNotPartToner -->
+
+												<!-- hideComent-->
+												<div class="hideComent" id="hideComent"
+													style="display: none">
+													
+													<!-- display Comments-->												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comment</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment" style="margin: 0px; height: 129px; width: 551px;"
+																	></textarea>
+															</div>
+														</div>
+													</div><!--// display Comments-->													
+												
+												</div><!-- //hideComent -->
+												
+												</div>
+											<!-- // group used part numbers -->
+													
+												<!-- display resean for bridged-->												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Reason Why Bridged</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" id="reasonBridge" name="reasonBridge" maxlength="150"
+																	 onkeydown="upperCaseF(this)" style="margin: 0px; height: 129px; width: 551px;" placeholder="Please enter reason why ticket Bridged"
+																	></textarea>
+															</div>
+														</div>
+													</div><!--// display Bridged-->													
+												
+												
+											
+
+											<div class="actionTakenSubmit" id="actionTakenSubmit"
+												style="display: none;">
+
+												<div class="form-group row">
+													<div class="col-sm col-sm-8"
+														style="margin-left: 26%; width: 48%;">
+														<input type="submit" name=resolve value="Resolve Ticket"
+															class="btn btn-primary btn-block btn-lg" tabindex="9"
+															id="resolve">
+													</div>
+												</div>
+
+											</div>
+											<!-- //actionTakenSubmit -->
+											
+											
+											<!--Boot Stock-->
+										<div id="bootStock" class="modal fade" role="dialog"
+											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+											<div class="modal-dialog">
+												<!-- Modal content-->
+												<div class="modal-content" id="botStock">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">×</button>
+														<h3 class="modal-title">Boot Stock</h3>
+													</div>
+													<div class="modal-body">
+														<table id="bStock" class="display datatable">
+															<thead>
+																<tr>
+																	<th>Part No</th>
+																	<th>Description</th>
+																	<th>Item Type</th>
+																	<th>Quantity</th>
+																	<th>Tick</th>
+
+																</tr>
+															</thead>
+															<tbody>
+																<!-- Iterating over the list sent from Controller -->
+																<c:forEach var="list" items="${bootStock}">
+
+																	<tr>
+																		<td>${list.partNumber}</td>
+																		<td>${list.itemDescription}</td>
+																		<td>${list.itemType}</td>
+																		<td>${list.quantity}</td>
+																		<td><input type="checkbox"
+																			id="${list.partNumber}_selectedItem"
+																			name="selectedItem" class="form-group"
+																			onClick="checkUsedPartNumbers();"
+																			value="${list.partNumber}"></td>
+																	</tr>
+
+																</c:forEach>
+															</tbody>
+														</table>
+														<input type="hidden" class="form-control" id="setStock"
+															name="bootType" value="Boot">
+
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">Close</button>
+														<button id="save" type="button" class="btn btn-primary"
+															data-dismiss="modal">Save</button>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--/Boot Stock-->
+
+										<!--Site Stock-->
+										<div id="siteStock" class="modal fade" role="dialog"
+											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
+											<div class="modal-dialog">
+												<!-- Modal content-->
+												<div class="modal-content" id="siStock">
+													<div class="modal-header">
+														<button type="button" class="close" data-dismiss="modal"
+															aria-hidden="true">×</button>
+														<h3 class="modal-title">Site Stock</h3>
+													</div>
+													<div class="modal-body">
+														<table id="sStock" class="display datatable">
+															<thead>
+																<tr>
+																	<th>Part No</th>
+																	<th>Description</th>
+																	<th>Model No</th>
+																	<th>Quantity</th>
+																	<th>Tick</th>
+																</tr>
+															</thead>
+															<tbody>
+																<!-- Iterating over the list sent from Controller -->
+																<c:forEach var="list" items="${siteStock}">
+
+																	<tr>
+																		<td>${list.partNumber}</td>
+																		<td>${list.itemDescription}</td>
+																		<td>${list.itemType}</td>
+																		<td>${list.quantity}</td>
+																		<td><input type="checkbox"
+																			id="${list.partNumber}_selectedItem"
+																			name="selectedItem" class="form-group"
+																			onClick="checkUsedPartNumbers();"
+																			value="${list.partNumber}"></td>
+																	</tr>
+																</c:forEach>
+															</tbody>
+														</table>
+														<input type="hidden" class="form-control" id="botStock"
+															name="bootType" value="Site">
+
+														<div class="modal-footer">
+															<button type="button" class="btn btn-default"
+																data-dismiss="modal">Close</button>
+															<button id="save" type="button" class="btn btn-primary"
+																data-dismiss="modal">Save</button>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!--/site stock-->
+											
+					                   </form:form>
+					                   
+					                   </div>
+					                   
+					                  </div>
+							 
+							 
+							 </c:when>						
+						</c:choose>
+						
+						
+						
 						<!-- Re-open ticket if status is Resolved and display resolved details -->
 						<c:choose>
 							<c:when test="${ticketObject.status =='Resolved'}">
@@ -1226,7 +1556,7 @@ table#orderDetails {
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-pencil"></i></span>
 															<textarea class="form-control" name="comments"
-																id="comment" readonly="readonly" style="height: 100px;">${ticketObject.comments}</textarea>
+																id="comments" readonly="readonly" style="margin: 0px; height: 129px; width: 551px;">${ticketObject.comments}</textarea>
 														</div>
 													</div>
 												</div>
@@ -1398,7 +1728,7 @@ table#orderDetails {
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-pencil"></i></span>
 															<textarea class="form-control" name="comments"
-																id="comment" readonly="readonly" style="height: 100px;">${ticketObject.comments}</textarea>
+																id="comment" readonly="readonly" style="margin: 0px; height: 129px; width: 551px;">${ticketObject.comments}</textarea>
 														</div>
 													</div>
 												</div>

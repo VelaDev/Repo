@@ -102,11 +102,22 @@ table#orderDetails {
 										</ul></li>									
 								</c:when>
 								
+								<c:when test="${ticketObject.status =='SLA Bridged'}">
+									<li class="dropdown"><a href="#" class="dropdown-toggle"
+										data-toggle="dropdown" role="button" aria-haspopup="true"
+										aria-expanded="false">Ticket Action<span class="caret"></span></a>
+										<ul class="dropdown-menu">
+											<li><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a></li>
+											<li><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
+											
+										</ul></li>									
+								</c:when>
 								
-								
+								<%-- 
 								<c:otherwise>
 									<c:out value="${ticketObject.status}" />
-								</c:otherwise>
+								</c:otherwise> --%>
+								
 							 </c:choose>
 						  	
 						</ul>
@@ -114,8 +125,15 @@ table#orderDetails {
 					<legend></legend>
 					<ul class="nav nav-tabs">
 						
-						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>
+						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>						
 						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
+						
+						<c:choose>
+							<c:when test="${ticketObject.status =='Open'}">
+							 <li><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
+						</c:when>						
+						</c:choose>
+						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Taken'}">
 								<li><a href="#tTicketTakenAwaitingSpares" data-toggle="tab">Awaiting Spares</a></li>
@@ -147,12 +165,6 @@ table#orderDetails {
 							<c:when test="${ticketObject.status =='SLA Bridged'}">
 							 <li><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
 							 <li><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a>							  
-						</c:when>						
-						</c:choose>
-						
-						<c:choose>
-							<c:when test="${ticketObject.status =='Open'}">
-							 <li><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
 						</c:when>						
 						</c:choose>
 						
@@ -361,20 +373,12 @@ table#orderDetails {
 
 							</div>
 							<!-- group details-row-padding -->
-							
-							
-							
 						</div>
-						
-						
 						
 						<!--tTakeTicket -->						
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Acknowledged'}">				
-									
-									
 									<div class="tab-pane" id="tTakeTicket">
-
 										<div class="panel-body">
 	
 											<!-- tTicketTakenAwaitingSpares Details -->
@@ -546,7 +550,7 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
 																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	 onkeydown="upperCaseF(this)" style="margin: 0px; height: 129px; width: 551px;" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
@@ -635,7 +639,7 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" id="comments" name="comments" style="margin: 0px; height: 129px; width: 551px;" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -829,7 +833,7 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
 																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment" style="margin: 0px; height: 129px; width: 551px;"
 																	></textarea>
 															</div>
 														</div>
@@ -1027,7 +1031,7 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
 																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	 onkeydown="upperCaseF(this)" style="margin: 0px; height: 129px; width: 551px;" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
@@ -1201,7 +1205,7 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -1397,7 +1401,7 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -1575,7 +1579,7 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -1743,11 +1747,6 @@ table#orderDetails {
 							 </c:when>						
 						</c:choose>
 						
-						
-						
-						
-						
-						
 						<c:choose>
 							<c:when test="${ticketObject.status =='Resolved'}">
 						
@@ -1802,7 +1801,7 @@ table#orderDetails {
 														<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-pencil"></i></span>
-															<textarea class="form-control" name="comments" id="comment"readonly="readonly"
+															<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" name="comments" id="comment"readonly="readonly"
 															 style="height: 100px;">${ticketObject.comments}</textarea>
 														</div>
 													</div>
@@ -1944,7 +1943,7 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-pencil"></i></span>
 																<textarea class="form-control" name="comments" id="comment"readonly="readonly"
-																 style="height: 100px;">${ticketObject.comments}</textarea>
+																 style="margin: 0px; height: 129px; width: 551px;">${ticketObject.comments}</textarea>
 															</div>
 														</div>
 												</div>
@@ -2058,5 +2057,19 @@ table#orderDetails {
 
 <script type="text/javascript"
 	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
+
+<!-- Set active to selected tab -->
+<script type="text/javascript">
+			$("#ticketDetails").click(function(){
+				 $('.active').removeClass('active');
+				 $(this).addClass('active');
+			});
+			$("#ticketHistoryDetails").click(function() {
+				$(".active").removeClass("active");
+				$(this).addClass("active");					
+	});
+			
+</script>
+
 
 </html>

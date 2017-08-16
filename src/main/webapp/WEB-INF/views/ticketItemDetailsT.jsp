@@ -112,7 +112,6 @@ table#orderDetails {
 											
 										</ul></li>									
 								</c:when>
-								
 								<%-- 
 								<c:otherwise>
 									<c:out value="${ticketObject.status}" />

@@ -128,7 +128,7 @@ public class EmployeeDao implements EmployeeDaoInt{
 		 {
 				 if(emp instanceof Employee){
 					 if(((Employee) emp).getRole().equalsIgnoreCase("Technician") 
-							 && ((Employee) emp).getEmail().equalsIgnoreCase(technicianName)){
+							 && ((Employee) emp).getEmail().equalsIgnoreCase(technicianName) == false){
 						 empList.add((Employee) emp);
 					 }
 				 }

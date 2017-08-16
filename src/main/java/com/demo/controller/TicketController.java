@@ -1552,8 +1552,7 @@ public class TicketController {
 			
 			model.addObject("technicians",
 					employeeServiceInt.getAllTechnicians());
-			model.addObject("reassignToTechnician",
-					employeeServiceInt.reassignTechnicianList(ticket.getEmployee().getEmail()));
+			model.addObject("reassignToTechnician",	employeeServiceInt.reassignTechnicianList(ticket.getEmployee().getEmail()));
 			
 			
 			model.addObject("countOpenTickets",

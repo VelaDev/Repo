@@ -768,15 +768,11 @@ public class OrdersController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			retMessage = ordersServiceInt.declineOrder(order.getOrderNum(),
-					order.getComments());
+			retMessage = ordersServiceInt.declineOrder(order.getOrderNum(),order.getComments());
 			model.addObject("retMessage", retMessage);
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",
-					ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets",
-					ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("declineOrder", declineOrder);
 			model.setViewName("confirmations");
 		} else {

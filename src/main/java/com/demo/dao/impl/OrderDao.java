@@ -612,10 +612,11 @@ public class OrderDao implements OrdersDaoInt {
 			historyDaoInt.insetOrderHistory(cusOrder);
 			List<Tickets> ticketList = ticketsDaoInt.getAwaitingSparesTickets();
 			for(Tickets tick:ticketList){
-				String trmpOrderNum = tick.getOrderHeader().getOrderNum();
-				int result = Integer.parseInt(trmpOrderNum.substring(5));
+				
 				if(tick.getOrderHeader()!= null){
-					System.err.println("Inside ");
+					String trmpOrderNum = tick.getOrderHeader().getOrderNum();
+					int result = Integer.parseInt(trmpOrderNum.substring(5));
+					
 					if(result == cusOrder.getRecordID()){
 						tick.setStatus("Re-Open");
 						tick.setDateTime(dateFormat.format(date));

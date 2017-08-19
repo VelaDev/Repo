@@ -88,7 +88,6 @@
 				 <value>com.demo.model.VelaphandaProfile</value>
 				 <value>com.demo.model.DeliveryNoteHeader</value>
 				 <value>com.demo.model.DeliveryNoteLineItem</value>
-				  
 			</list>
 		</property>
 		<property name="hibernateProperties">

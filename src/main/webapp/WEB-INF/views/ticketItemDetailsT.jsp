@@ -8,6 +8,10 @@
 
 <link type="text/css" rel="stylesheet"
 	href="<c:url value="/resources/custom/css/orderhistory.css"/>">
+
+<link type="text/css" rel="stylesheet"
+      href="<c:url value="/resources/custom/css/vela_details.css" />">
+
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
 <link rel="stylesheet" type="text/css"
@@ -27,11 +31,21 @@
     margin-left: -22px;
 }
 
+.displayNone {
+    display:none;
+}
+.showDIV { display:block; } 
 table#orderDetails {
 	margin-left: 14%;
 	/* margin-right: -9%; */
 	width: 73%;
 }
+table#toOrder thead {
+    background-color: #CCCCCC;
+    height: 112%;
+}
+
+
 </style>
 </head>
 <body>
@@ -59,12 +73,13 @@ table#orderDetails {
 						<ul class="nav navbar-nav navbar-left">							
 							
 							  <c:choose>
+							  
 								<c:when test="${ticketObject.status =='Open'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledge</a></li>
+										<li><a id="tAcknowledgedTicketLink" href="javascript:;" data-toggle="tab">Acknowledge</a></li>
 									</ul>
 								</li>				
 								</c:when>
@@ -74,7 +89,7 @@ table#orderDetails {
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="#tTakeTicket" data-toggle="tab">Take Ticket</a></li>
+										<li><a id="tTakeTicketLink" href="javascript:;" data-toggle="tab">Take Ticket</a></li>
 									</ul>
 									</li>								
 								</c:when>
@@ -84,9 +99,9 @@ table#orderDetails {
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li><a href="#tTicketTakenAwaitingSpares" data-toggle="tab">Awaiting Spares</a></li>
-										<li><a href="#tTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
-										<li><a href="#tTicketTakenResolve" data-toggle="tab">Resolve</a></li>		
+										<li><a id="tTicketTakenAwaitingSparesLink" href="javascript:;" data-toggle="tab">Awaiting Spares</a></li>
+										<li><a id="tTicketTakenEscalateLink" href="javascript:;" data-toggle="tab">Escalate</a></li>
+										<li><a id="tTicketTakenResolveLink" href="javascript:;" data-toggle="tab">Resolve</a></li>		
 									</ul>
 								</li>				
 								</c:when>
@@ -96,8 +111,8 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#tTicketAwaitingSparesEscalate" data-toggle="tab">Escalate</a></li>
-											<li><a href="#tTicketAwaitingSparesResolve" data-toggle="tab">Resolve</a></li>
+											<li><a id="tTicketAwaitingSparesEscalateLink" href="javascript:;" data-toggle="tab">Escalate</a></li>
+											<li><a id="tTicketAwaitingSparesResolveLink" href="javascript:;" data-toggle="tab">Resolve</a></li>
 											
 										</ul></li>									
 								</c:when>
@@ -107,11 +122,12 @@ table#orderDetails {
 										data-toggle="dropdown" role="button" aria-haspopup="true"
 										aria-expanded="false">Ticket Action<span class="caret"></span></a>
 										<ul class="dropdown-menu">
-											<li><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a></li>
-											<li><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
+											<li><a id="tTicketSLABridgedEscalateLink" href="javascript:;" data-toggle="tab">Escalate</a></li>
+											<li><a id="tTicketSLABridgedResolvedLink" href="javascript:;" data-toggle="tab">Resolve</a></li>
 											
 										</ul></li>									
 								</c:when>
+								
 								<%-- 
 								<c:otherwise>
 									<c:out value="${ticketObject.status}" />
@@ -124,56 +140,44 @@ table#orderDetails {
 					<legend></legend>
 					<ul class="nav nav-tabs">
 						
-						<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>						
-						<li><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
-						
+								<li class="active"><a href="#ticketDetails" data-toggle="tab">Ticket Details</a></li>						
+								<li ><a href="#ticketHistoryDetails" data-toggle="tab">Ticket History</a></li>
+								
 						<c:choose>
+						
 							<c:when test="${ticketObject.status =='Open'}">
-							 <li><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
-						</c:when>						
-						</c:choose>
-						
-						<c:choose>
-							<c:when test="${ticketObject.status =='Taken'}">
-								<li><a href="#tTicketTakenAwaitingSpares" data-toggle="tab">Awaiting Spares</a></li>
-								<li><a href="#tTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
-								<li><a href="#tTicketTakenResolve" data-toggle="tab">Resolve</a></li>	
+							 	<li class="tAcknowledgedTicket"><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
 							</c:when>
-						</c:choose>
-						<c:choose>
-							<c:when test="${ticketObject.status == 'Awaiting Spares' }">
-								<li><a href="#tTicketAwaitingSparesResolve" data-toggle="tab">Resolve</a></li>
-								<li><a href="#tTicketAwaitingSparesEscalate" data-toggle="tab">Escalate</a></li>									
-							</c:when>
-						</c:choose>					
-						
-						<c:choose>
-							<c:when test="${ticketObject.status =='Resolved'}">
-							 <li><a href="#tTicketReopenResolved" data-toggle="tab">Resolved Ticket Details</a></li>							  
-						</c:when>						
-						</c:choose>
-						
-						
-						<c:choose>
-							<c:when test="${ticketObject.status =='Closed'}">
-							 <li><a href="#tTicketClosedNoAction" data-toggle="tab">Closed Ticket Details</a></li>							  
-						</c:when>						
-						</c:choose>
-						
-						<c:choose>
-							<c:when test="${ticketObject.status =='SLA Bridged'}">
-							 <li><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
-							 <li><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a>							  
-						</c:when>						
-						</c:choose>
-						
-						<c:choose>
+													
 							<c:when test="${ticketObject.status =='Acknowledged'}">
-							 <li><a href="#tTakeTicket" data-toggle="tab">Take Ticket</a>							  
-						</c:when>						
+							 	<li class="tTakeTicket"><a href="#tTakeTicket" data-toggle="tab">Take Ticket</a>							  
+							</c:when>
+								
+							<c:when test="${ticketObject.status =='Taken'}">
+								<li class="tTicketTakenAwaitingSpares"><a href="#tTicketTakenAwaitingSpares" data-toggle="tab">Awaiting Spares</a></li>
+								<li class="tTicketTakenEscalate"><a href="#tTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
+								<li class="tTicketTakenResolve"><a href="#tTicketTakenResolve" data-toggle="tab">Resolve</a></li>	
+							</c:when>
+							
+							<c:when test="${ticketObject.status == 'Awaiting Spares' }">
+								<li class="tTicketAwaitingSparesResolve"><a href="#tTicketAwaitingSparesResolve" data-toggle="tab">Resolve</a></li>
+								<li class="tTicketAwaitingSparesEscalate"><a href="#tTicketAwaitingSparesEscalate" data-toggle="tab">Escalate</a></li>									
+							</c:when>
+							
+							<c:when test="${ticketObject.status =='SLA Bridged'}">
+								<li class="tTicketSLABridgedResolved"><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
+							 	<li class="tTicketSLABridgedEscalate"><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a>	
+							 </c:when>
+													
+							<c:when test="${ticketObject.status =='Resolved'}">
+								<li><a href="#tTicketReopenResolved" data-toggle="tab">Resolved Ticket Details</a></li>							  
+							</c:when>
+							
+							<c:when test="${ticketObject.status =='Closed'}">
+								<li><a href="#tTicketClosedNoAction" data-toggle="tab">Closed Ticket Details</a></li>							  
+							</c:when>						
 						</c:choose>
-						
-						
+												
 					</ul>
 
 					<div class="tab-content">
@@ -374,61 +378,7 @@ table#orderDetails {
 							<!-- group details-row-padding -->
 						</div>
 						
-						<!--tTakeTicket -->						
-						<c:choose>
-							 <c:when test="${ticketObject.status =='Acknowledged'}">				
-									<div class="tab-pane" id="tTakeTicket">
-										<div class="panel-body">
-	
-											<!-- tTicketTakenAwaitingSpares Details -->
-											<form:form action="taketicket" modelAttribute="performTicketAction"
-												method="post" id="updateResolved"
-												class="well form-horizontal">
-	
-												<legend style="font-size: 15px; line-height: 1.42857143;"
-													align="center">
-													<b>Take Ticket</b>
-												</legend>
-												
-												<!-- Action Action -->
-												<input type="hidden" id="ticketAction" name="ticketAction"
-												class="form-control selectpicker" value="taketicket">
-												
-												
-												<!-- Text input Ticket Number-->
-													<div class="form-group">
-														<label class="col-md-3 control-label">Ticket Number</label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-barcode"></i></span> <input
-																	name="ticketNumber" id="ticketNumber"
-																	class="form-control" type="text"
-																	value="${ticketObject.ticketNumber}" readonly>
-															</div>
-														</div>
-													</div>
-													
-													<div class="form-group row">
-												<div class="col-sm col-sm-8"
-													style="margin-left: 26%; width: 48%;">
-													<input type="submit" name=resolve value="Take Ticket"
-														class="btn btn-primary btn-block btn-lg" tabindex="9"
-														id="resolve">
-												</div>
-											</div>
-												
-											</form:form>
-											
-										</div>
-									
-									</div>									
-									
-							</c:when>
-						</c:choose>
-						
-						
-						<!--tAcknowledgedTicket -->						
+						<!--Acknowledged Ticket when is open-->						
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Open'}">				
 									
@@ -484,7 +434,61 @@ table#orderDetails {
 							</c:when>
 						</c:choose>
 						
-						<!--tTicketTakenAwaitingSpares -->
+						
+						<!--Take ticket when is  Acknowledged-->						
+						<c:choose>
+							 <c:when test="${ticketObject.status =='Acknowledged'}">				
+									<div class="tab-pane" id="tTakeTicket">
+										<div class="panel-body">
+	
+											<!-- tTicketTakenAwaitingSpares Details -->
+											<form:form action="taketicket" modelAttribute="performTicketAction"
+												method="post" id="updateResolved"
+												class="well form-horizontal">
+	
+												<legend style="font-size: 15px; line-height: 1.42857143;"
+													align="center">
+													<b>Take Ticket</b>
+												</legend>
+												
+												<!-- Ticket Action -->
+												<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="taketicket">
+												
+												
+												<!-- Text input Ticket Number-->
+													<div class="form-group">
+														<label class="col-md-3 control-label">Ticket Number</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="ticketNumber" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.ticketNumber}" readonly>
+															</div>
+														</div>
+													</div>
+													
+													<div class="form-group row">
+												<div class="col-sm col-sm-8"
+													style="margin-left: 26%; width: 48%;">
+													<input type="submit" name=resolve value="Take Ticket"
+														class="btn btn-primary btn-block btn-lg" tabindex="9"
+														id="resolve">
+												</div>
+											</div>
+												
+											</form:form>
+											
+										</div>
+									
+									</div>									
+									
+							</c:when>
+						</c:choose><!--// End Take ticket when is  Acknowledged-->
+						
+						<!--Taken and Awaiting spares -->
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Taken'}">
 							
@@ -571,10 +575,10 @@ table#orderDetails {
 					            	</div>
 					            </div>
 					           </c:when>
-						</c:choose><!--tTicketTakenAwaitingSpares -->
+						</c:choose><!--// End Taken and Awaiting spares -->
 						
 						
-						<!--tTicketTakenEscalate -->
+						<!--Taken and Escalate to manager -->
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Taken'}">
 							
@@ -662,10 +666,10 @@ table#orderDetails {
 					            	</div>
 					            </div>
 					           </c:when>
-						</c:choose><!--tTicketTakenEscalate -->
+						</c:choose><!--//End Taken and Escalate to manager --> 
 						
 						
-						<!--tTicketTakenResolve -->
+						<!--Ticket Taken and must be Resolve -->
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Taken'}">
 							
@@ -832,7 +836,7 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
 																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment" style="margin: 0px; height: 129px; width: 551px;"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment" style="width: 517px; height: 120px;"
 																	></textarea>
 															</div>
 														</div>
@@ -973,14 +977,12 @@ table#orderDetails {
 										</div>
 										<!--/site stock-->
 											
-											
-											
 					                   </form:form>
 					            	
 					            	</div>
 					            </div>
 					           </c:when>
-						</c:choose><!--tTicketTakenResolve -->
+						</c:choose><!--Ticket Taken and must be Resolve -->
 						
 						
 						<!--tTicketAwaitingSparesEscalate -->
@@ -1030,7 +1032,7 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
 																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" style="margin: 0px; height: 129px; width: 551px;" placeholder="Please enter comment"
+																	 onkeydown="upperCaseF(this)" style="width: 517px; height: 120px;" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
@@ -1204,7 +1206,7 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -1400,7 +1402,7 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -1522,31 +1524,90 @@ table#orderDetails {
 												<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
 													style="display: none">
 
-													<fieldset id="groupstock" style="margin-left: -1%">
+													<fieldset id="groupstock" style="margin-left: 0%">
 
 														<!-- group Boot Stock -->
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Boot Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" value="bootType" name="groupboot"
-																	data-toggle="modal" data-target="#bootStock"
-																	readonly="readonly" id="BootStocked">
+																<input type="radio" name="stockType" required id="checkBootStock" onclick="BootStockChecked()" value="Boot Stock" tittle="You must check Boot Stock or Site Stock to get Used Part Numbers">
 															</div>
-														</div>
+														</div>														
+														<div class="displayNone" id="bootStockItems" style="margin-left: 25.5%;margin-right: 26%;" >
+															<table id="bStock" class="display datatable">
+																		<thead>
+																			<tr>
+																				<th>Part No</th>
+																				<th>Description</th>
+																				<th>Item Type</th>
+																				<th>Quantity</th>
+																				<th>Tick Used Parts</th>
+			
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<!-- Iterating over the list sent from Controller -->
+																			<c:forEach var="list" items="${bootStock}">
+			
+																				<tr>
+																					<td>${list.partNumber}</td>
+																					<td>${list.itemDescription}</td>
+																					<td>${list.itemType}</td>
+																					<td>${list.quantity}</td>
+																					<td><input type="checkbox"
+																						id="${list.partNumber}_selectedItem"
+																						name="selectedItem"	onClick="checkUsedPartNumbers();"
+																						value="${list.partNumber}"></td>
+																				</tr>
+			
+																			</c:forEach>
+																		</tbody>
+																</table>
+														 </div>
+														 <input type="hidden" class="form-control" id="bootStockType"
+															name="bootStockType" value="Boot Stock">
 
 														<!-- group Site Stock -->
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Site Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" value="siteType" name="groupboot"
-																	data-toggle="modal" data-target="#siteStock"
-																	disabled="disabled" id="SiteStocked">
+																<input type="radio" name="stockType" required id="checkSiteStock" onclick="SiteStockChecked()" value="Site Stock" >
 															</div>
 														</div>
+														<div class="displayNone" id="siteStockItems" style="margin-left: 25.5%;margin-right: 26%;">
+															<table id="sStock" class="display datatable">
+																<thead>
+																	<tr>
+																		<th>Part No</th>
+																		<th>Description</th>
+																		<th>Model No</th>
+																		<th>Quantity</th>
+																		<th>Tick Used Parts</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<!-- Iterating over the list sent from Controller -->
+																	<c:forEach var="list" items="${siteStock}">	
+																		<tr>
+																			<td>${list.partNumber}</td>
+																			<td>${list.itemDescription}</td>
+																			<td>${list.itemType}</td>
+																			<td>${list.quantity}</td>
+																			<td><input type="checkbox"
+																				id="${list.partNumber}_selectedItem"
+																				name="selectedItem" onClick="checkUsedPartNumbers();"
+																				value="${list.partNumber}"></td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</div></br>
+														<input type="hidden" class="form-control" id="siteStockType"
+															name="siteStockType" value="Site Stock">
 
 													</fieldset>
-
-
+													
+													
 													<!-- display ticked Used Part Numbers-->
 													<div class="form-group">
 														<label class="col-md-3 control-label">Used Part
@@ -1556,57 +1617,72 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-list"></i></span>
 																<textarea id="usedPartNumbers" name="usedPartNumbers"
-																	readonly="readonly" class="form-control"
+																	 class="form-control" readonly="readonly"
 																	style="height: 60px; font-size: 11px;">
 													 </textarea>
 															</div>
 														</div>
 													</div>
 													<!--// display ticked Used Part Numbers-->
-
+                                                    
+                                                    <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->	
+                                                    
+                                                    
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
 
 												<!-- hideComent-->
-												<div class="hideComent" id="hideComent"
-													style="display: none">
+												<div class="hideComent" id="hideComent" style="display: none">
 													
-													<!-- display Comments-->												
+													<!-- Text area comments-->												
 													<div class="form-group">
 														<label class="col-md-3 control-label">Comment</label>
 														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
-													</div><!--// display Comments-->													
+													</div><!--// text area comments-->	
+													
+													 <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->													
 												
-												</div><!-- //hideComent -->
+												</div><!-- //hideComent -->												
 												
 												</div>
-											<!-- // group used part numbers -->
-													
-												<!-- display resean for bridged-->												
-													<div class="form-group">
-														<label class="col-md-3 control-label">Reason Why Bridged</label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="reasonBridge" name="reasonBridge" maxlength="150"
-																	 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
-																	></textarea>
-															</div>
-														</div>
-													</div><!--// display Bridged-->													
-												
-												
-											
-
+												<!-- // group used part numbers -->
+										
 											<div class="actionTakenSubmit" id="actionTakenSubmit"
 												style="display: none;">
 
@@ -1621,120 +1697,6 @@ table#orderDetails {
 
 											</div>
 											<!-- //actionTakenSubmit -->
-											
-											
-											<!--Boot Stock-->
-										<div id="bootStock" class="modal fade" role="dialog"
-											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-											<div class="modal-dialog">
-												<!-- Modal content-->
-												<div class="modal-content" id="botStock">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">×</button>
-														<h3 class="modal-title">Boot Stock</h3>
-													</div>
-													<div class="modal-body">
-														<table id="bStock" class="display datatable">
-															<thead>
-																<tr>
-																	<th>Part No</th>
-																	<th>Description</th>
-																	<th>Item Type</th>
-																	<th>Quantity</th>
-																	<th>Tick</th>
-
-																</tr>
-															</thead>
-															<tbody>
-																<!-- Iterating over the list sent from Controller -->
-																<c:forEach var="list" items="${bootStock}">
-
-																	<tr>
-																		<td>${list.partNumber}</td>
-																		<td>${list.itemDescription}</td>
-																		<td>${list.itemType}</td>
-																		<td>${list.quantity}</td>
-																		<td><input type="checkbox"
-																			id="${list.partNumber}_selectedItem"
-																			name="selectedItem" class="form-group"
-																			onClick="checkUsedPartNumbers();"
-																			value="${list.partNumber}"></td>
-																	</tr>
-
-																</c:forEach>
-															</tbody>
-														</table>
-														<input type="hidden" class="form-control" id="setStock"
-															name="bootType" value="Boot">
-
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">Close</button>
-														<button id="save" type="button" class="btn btn-primary"
-															data-dismiss="modal">Save</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--/Boot Stock-->
-
-										<!--Site Stock-->
-										<div id="siteStock" class="modal fade" role="dialog"
-											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-											<div class="modal-dialog">
-												<!-- Modal content-->
-												<div class="modal-content" id="siStock">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">×</button>
-														<h3 class="modal-title">Site Stock</h3>
-													</div>
-													<div class="modal-body">
-														<table id="sStock" class="display datatable">
-															<thead>
-																<tr>
-																	<th>Part No</th>
-																	<th>Description</th>
-																	<th>Model No</th>
-																	<th>Quantity</th>
-																	<th>Tick</th>
-																</tr>
-															</thead>
-															<tbody>
-																<!-- Iterating over the list sent from Controller -->
-																<c:forEach var="list" items="${siteStock}">
-
-																	<tr>
-																		<td>${list.partNumber}</td>
-																		<td>${list.itemDescription}</td>
-																		<td>${list.itemType}</td>
-																		<td>${list.quantity}</td>
-																		<td><input type="checkbox"
-																			id="${list.partNumber}_selectedItem"
-																			name="selectedItem" class="form-group"
-																			onClick="checkUsedPartNumbers();"
-																			value="${list.partNumber}"></td>
-																	</tr>
-																</c:forEach>
-															</tbody>
-														</table>
-														<input type="hidden" class="form-control" id="botStock"
-															name="bootType" value="Site">
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Close</button>
-															<button id="save" type="button" class="btn btn-primary"
-																data-dismiss="modal">Save</button>
-
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--/site stock-->
 											
 					                   </form:form>
 					                   
@@ -1800,7 +1762,7 @@ table#orderDetails {
 														<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-pencil"></i></span>
-															<textarea class="form-control" style="margin: 0px; height: 129px; width: 551px;" name="comments" id="comment"readonly="readonly"
+															<textarea class="form-control" style="width: 517px; height: 120px;" name="comments" id="comment"readonly="readonly"
 															 style="height: 100px;">${ticketObject.comments}</textarea>
 														</div>
 													</div>
@@ -1942,7 +1904,7 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-pencil"></i></span>
 																<textarea class="form-control" name="comments" id="comment"readonly="readonly"
-																 style="margin: 0px; height: 129px; width: 551px;">${ticketObject.comments}</textarea>
+																 style="width: 517px; height: 120px;">${ticketObject.comments}</textarea>
 															</div>
 														</div>
 												</div>
@@ -2043,32 +2005,157 @@ table#orderDetails {
 	<!-- / velaphanda_containter -->
 
 </body>
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-<script type="text/javascript"
-	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+
+<!-- Datatables -->
+<script type="text/javascript" src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery-ui.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.buttons.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.jqueryui.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.select.js" />"></script>
+<!-- //Datatables -->
+
+<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
 <!-- Set active to selected tab -->
 <script type="text/javascript">
-			$("#ticketDetails").click(function(){
-				 $('.active').removeClass('active');
-				 $(this).addClass('active');
-			});
-			$("#ticketHistoryDetails").click(function() {
-				$(".active").removeClass("active");
-				$(this).addClass("active");					
-	});
-			
-</script>
 
+	//hide tabs of actions on page load
+	
+	//Do not shw tabs for status that is Take, up until user click on action
+	$('.tTakeTicket').hide();
+	//end hide of Take tabs 
+	
+	//Do not shw tabs for status that is Acknowledged, up until user click on action
+	$('.tAcknowledgedTicket').hide();
+	//end hide of Acknowledged tabs 
+	
+	//Do not shw tabs for status that is Taken, up until user click on action 
+	$('.tTicketTakenAwaitingSpares').hide();
+	$('.tTicketTakenEscalate').hide();
+	$('.tTicketTakenResolve').hide();
+	//end hide of taken tabs 
+	
+	//Do not shw tabs for status that is Awaitng Spares, up until user click on action
+	$('.tTicketAwaitingSparesEscalate').hide();
+	$('.tTicketAwaitingSparesResolve').hide();
+	//end hide of awaiting Spares tabs
+	
+	//Do not shw tabs for status that is SLA Bridge, up until user click on action
+	 $('.tTicketSLABridgedEscalate').hide();
+	 $('.tTicketSLABridgedResolved').hide();
+	//end hide of SLA Bridge tabs
+	
+	//end hide of tabs actions on page load
+	
+	//Acknowledged Ticket
+	$("#tAcknowledgedTicketLink").click(function(){
+	     $('.nav-tabs li').removeClass('active');
+	     $('.tAcknowledgedTicket').addClass('active');
+	     $('.tAcknowledgedTicket').show();
+	     $('.tab-pane').removeClass('in active');
+	     $('.tab-content div#tAcknowledgedTicket').addClass('in active');
+	     console.log("Acknowledged Ticket Active");
+	 });//end Acknowledged
+	
+	//Take ticket
+	$("#tTakeTicketLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTakeTicket').addClass('active');
+		 $('.tTakeTicket').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTakeTicket').addClass('in active');
+		 console.log("Take Ticket Active");
+	});//end Take Tickit
+	
+	//Taken Tickets
+	$("#tTicketTakenAwaitingSparesLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTicketTakenAwaitingSpares').addClass('active');
+		 $('.tTicketTakenAwaitingSpares').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTicketTakenAwaitingSpares').addClass('in active');
+		 console.log("Status is Taken: Ticket can be on Awaiting Spares if no order is recived");
+	});	
+	$("#tTicketTakenEscalateLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTicketTakenEscalate').addClass('active');
+		 $('.tTicketTakenEscalate').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTicketTakenEscalate').addClass('in active');
+		 console.log("Status is Taken: Ticket can be Escalated");
+	});	
+	$("#tTicketTakenResolveLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTicketTakenResolve').addClass('active');
+		 $('.tTicketTakenResolve').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTicketTakenResolve').addClass('in active');
+		 console.log("Status is Taken: Ticket can be Resolved");
+	});//end Taken tickets
+	
+	//Awaitng Spares tickets
+	$("#tTicketAwaitingSparesEscalateLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTicketAwaitingSparesEscalate').addClass('active');
+		 $('.tTicketAwaitingSparesEscalate').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTicketAwaitingSparesEscalate').addClass('in active');
+		 console.log("Status is Awaiting Spare: Ticket can be Escalated");
+	});	
+	$("#tTicketAwaitingSparesResolveLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTicketAwaitingSparesResolve').addClass('active');
+		 $('.tTicketAwaitingSparesResolve').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTicketAwaitingSparesResolve').addClass('in active');
+		 console.log("Status is Awaiting Spare: Resolved");
+	});//end Awaitng Spares tickets
+	
+	//SLA Bridged Tickets
+	$("#tTicketSLABridgedEscalateLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTicketSLABridgedEscalate').addClass('active');
+		 $('.tTicketSLABridgedEscalate').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTicketSLABridgedEscalate').addClass('in active');
+		 console.log("Status is SLA Bridge: Ticket can be Ticket must can be Escalated");
+	});	
+	$("#tTicketSLABridgedResolvedLink").click(function(){
+		 $('.nav-tabs li').removeClass('active');
+		 $('.tTicketSLABridgedResolved').addClass('active');
+		 $('.tTicketSLABridgedResolved').show();
+		 $('.tab-pane').removeClass('in active');
+		 $('.tab-content div#tTicketSLABridgedResolved').addClass('in active');
+		 console.log("Status is SLA Bridge: Ticket must be Resolved");
+	});//end SLA Bridged Tickets
+		
+	
+	function BootStockChecked(){
+				
+	  $("#bootStockItems").removeClass("displayBone");
+	  $("#bootStockItems").addClass("showDIV");
+	
+		//Make sure siteStockItems is not visible
+		$("#siteStockItems").removeClass("showDIV");
+		$("#siteStockItems").addClass("displayBone");
+	}
+
+	function SiteStockChecked(){
+	
+	  $("#siteStockItems").removeClass("displayBone");
+	  $("#siteStockItems").addClass("showDIV");
+	
+	  //Make sure bootStockItems is not visible
+	   $("#bootStockItems").removeClass("showDIV");
+       $("#bootStockItems").addClass("displayBone");
+	}
+	
+	
+</script>
 
 </html>

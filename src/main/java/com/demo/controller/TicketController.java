@@ -1476,9 +1476,8 @@ public class TicketController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			model.addObject("lastForteenList",
-					ticketsServiceInt.getFourteenDaysTicketsForTech(userName.getEmail()));
-
+				
+			model.addObject("lastForteenList", ticketsServiceInt.getTicketListByTechnicianEmail(userName.getEmail()));
 			model.addObject("customers", customerServiceInt.getClientList());
 			model.addObject("dates", ordersServiceInt.getDates());
 			model.addObject("ticketNumbers", ticketsServiceInt
@@ -1500,9 +1499,6 @@ public class TicketController {
 					.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
 			model.addObject("countClosedTickets", ticketsServiceInt
 					.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
-
-			
-			
 			model.setViewName("techticketmanagement");
 			
 		} else {
@@ -1691,7 +1687,7 @@ public class TicketController {
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Open", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Open", "Last 14 ", userName.getEmail(), "", ""));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());

@@ -954,18 +954,18 @@ public class TicketsDao implements TicketsDaoInt {
 								if (ticket.getTicketNumber().equalsIgnoreCase(
 										ticketNumber)) {
 									ticket.setStatus("Escalated");
-									ticket.setEmployee(technician);
+									ticket.setEscalateReason(ticketsBean.getEscalateReason());
+									ticket.setEscalatedTo(ticketsBean.getEscalatedTo());
 									sessionFactory.getCurrentSession().update(
 											ticket);
 									
 
-									ticket.setComments("Ticket Escalated to  " + ticket.getFirstName() + " " + ticket.getLastName());
+									ticket.setComments("Ticket Escalated");
 									historyDaoInt.insertTicketHistory(ticket);
 									
 									retMessage = "Ticket " + ticketNumber
-											+ " successfully Escalated to"
-											+ technician.getFirstName() + " "
-											+ technician.getLastName();
+											+ " successfully Escalated to";
+											
 
 								}
 							}

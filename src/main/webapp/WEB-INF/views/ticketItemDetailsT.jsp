@@ -147,27 +147,27 @@ table#toOrder thead {
 						<c:choose>
 						
 							<c:when test="${ticketObject.status =='Open'}">
-							 	<li class="tAcknowledgedTicket" style="dispaly:none;"><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
+							 	<li class="tAcknowledgedTicket" style="display:none;"><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
 							</c:when>
 													
 							<c:when test="${ticketObject.status =='Acknowledged'}">
-							 	<li class="tTakeTicket"><a href="#tTakeTicket" data-toggle="tab">Take Ticket</a>							  
+							 	<li class="tTakeTicket" style="display:none;"><a href="#tTakeTicket" data-toggle="tab">Take Ticket</a>							  
 							</c:when>
 								
 							<c:when test="${ticketObject.status =='Taken'}">
-								<li class="tTicketTakenAwaitingSpares"><a href="#tTicketTakenAwaitingSpares" data-toggle="tab">Awaiting Spares</a></li>
-								<li class="tTicketTakenEscalate"><a href="#tTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
-								<li class="tTicketTakenResolve"><a href="#tTicketTakenResolve" data-toggle="tab">Resolve</a></li>	
+								<li class="tTicketTakenAwaitingSpares" style="display:none;"><a href="#tTicketTakenAwaitingSpares" data-toggle="tab">Awaiting Spares</a></li>
+								<li class="tTicketTakenEscalate" style="display:none;"><a href="#tTicketTakenEscalate" data-toggle="tab">Escalate</a></li>
+								<li class="tTicketTakenResolve" style="display:none;"><a href="#tTicketTakenResolve" data-toggle="tab">Resolve</a></li>	
 							</c:when>
 							
 							<c:when test="${ticketObject.status == 'Awaiting Spares' }">
-								<li class="tTicketAwaitingSparesResolve"><a href="#tTicketAwaitingSparesResolve" data-toggle="tab">Resolve</a></li>
-								<li class="tTicketAwaitingSparesEscalate"><a href="#tTicketAwaitingSparesEscalate" data-toggle="tab">Escalate</a></li>									
+								<li class="tTicketAwaitingSparesResolve" style="display:none;"><a href="#tTicketAwaitingSparesResolve" data-toggle="tab">Resolve</a></li>
+								<li class="tTicketAwaitingSparesEscalate" style="display:none;"><a href="#tTicketAwaitingSparesEscalate" data-toggle="tab">Escalate</a></li>									
 							</c:when>
 							
 							<c:when test="${ticketObject.status =='SLA Bridged'}">
-								<li class="tTicketSLABridgedResolved"><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
-							 	<li class="tTicketSLABridgedEscalate"><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a>	
+								<li class="tTicketSLABridgedResolved" style="display:none;"><a href="#tTicketSLABridgedResolved" data-toggle="tab">Resolve</a></li>
+							 	<li class="tTicketSLABridgedEscalate" style="display:none;"><a href="#tTicketSLABridgedEscalate" data-toggle="tab">Escalate</a>	
 							 </c:when>
 													
 							<c:when test="${ticketObject.status =='Resolved'}">
@@ -952,10 +952,6 @@ table#toOrder thead {
 											</div>
 											<!-- //actionTakenSubmit -->
 											
-											
-											
-											
-											
 					                   </form:form>
 					            	
 					            	</div>
@@ -981,6 +977,21 @@ table#toOrder thead {
 												align="center">
 												<b>Escalate</b>
 											</legend>
+											
+											<!-- Action Action -->
+											<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="Escalate">												
+												
+											<!-- Text input Ticket Number-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Ticket Number</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group"><span class="input-group-addon"><i
+													   class="glyphicon glyphicon-barcode"></i></span>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													</div>
+												</div>
+											</div>
 											
 											 	 <!-- Text input Manager-->
 												<div class="form-group">
@@ -1052,6 +1063,21 @@ table#toOrder thead {
 												<b>Resolve</b>
 											</legend>
 											
+											
+												<!-- Action Action -->
+											<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="Resolve">												
+												
+											<!-- Text input Ticket Number-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Ticket Number</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group"><span class="input-group-addon"><i
+													   class="glyphicon glyphicon-barcode"></i></span>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													</div>
+												</div>
+											</div>
 											
 											<!-- Text area Action Taken-->
 											<div class="form-group">
@@ -1331,6 +1357,21 @@ table#toOrder thead {
 												<b>Escalate</b>
 											</legend>
 											
+											<!-- Action Action -->
+											<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="Escalate">												
+												
+											<!-- Text input Ticket Number-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Ticket Number</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group"><span class="input-group-addon"><i
+													   class="glyphicon glyphicon-barcode"></i></span>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													</div>
+												</div>
+											</div>
+											
 											  <!-- Text input Manager-->
 												<div class="form-group">
 														<label class="col-md-3 control-label"> Manager</label>
@@ -1403,6 +1444,21 @@ table#toOrder thead {
 												align="center">
 												<b>Resolve</b>
 											</legend>
+											
+											<!-- Action Action -->
+											<input type="hidden" id="ticketAction" name="ticketAction"
+												class="form-control selectpicker" value="Resolve">												
+												
+											<!-- Text input Ticket Number-->
+											<div class="form-group">
+												<label class="col-md-3 control-label">Ticket Number</label>
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group"><span class="input-group-addon"><i
+													   class="glyphicon glyphicon-barcode"></i></span>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													</div>
+												</div>
+											</div>
 											
 											
 											<!-- Text area Action Taken-->

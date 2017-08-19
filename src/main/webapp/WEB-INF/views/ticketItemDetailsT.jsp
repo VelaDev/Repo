@@ -554,7 +554,7 @@ table#toOrder thead {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
 																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" style="margin: 0px; height: 129px; width: 551px;" placeholder="Please enter comment"
+																	 onkeydown="upperCaseF(this)" style="margin: 0px; height: 129px; width: 536px;" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
@@ -642,7 +642,7 @@ table#toOrder thead {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" style="margin: 0px; height: 129px; width: 551px;" maxlength="150"
+																<textarea class="form-control" id="comments" name="comments" style="margin: 0px; height: 129px; width: 536px;" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -767,7 +767,7 @@ table#toOrder thead {
 
 											</div>
 											<!-- HideMonoAndColour if no action is selscted -->
-
+											
 											<!-- group Used Part Numbers -->
 											<div class="groupsearchdetails">
 
@@ -778,30 +778,90 @@ table#toOrder thead {
 												<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
 													style="display: none">
 
-													<fieldset id="groupstock" style="margin-left: -1%">
+													<fieldset id="groupstock" style="margin-left: 0%">
 
 														<!-- group Boot Stock -->
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Boot Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" value="bootType" name="groupboot"
-																	data-toggle="modal" data-target="#bootStock"
-																	readonly="readonly" id="BootStocked">
+																<input type="radio" name="stockType" required id="checkBootStock" onclick="BootStockChecked()" value="Boot Stock" tittle="You must check Boot Stock or Site Stock to get Used Part Numbers">
 															</div>
-														</div>
+														</div>														
+														<div class="displayNone" id="bootStockItems" style="margin-left: 25.5%;margin-right: 26%;" >
+															<table id="bStock" class="display datatable">
+																		<thead>
+																			<tr>
+																				<th>Part No</th>
+																				<th>Description</th>
+																				<th>Item Type</th>
+																				<th>Quantity</th>
+																				<th>Tick Used Parts</th>
+			
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<!-- Iterating over the list sent from Controller -->
+																			<c:forEach var="list" items="${bootStock}">
+			
+																				<tr>
+																					<td>${list.partNumber}</td>
+																					<td>${list.itemDescription}</td>
+																					<td>${list.itemType}</td>
+																					<td>${list.quantity}</td>
+																					<td><input type="checkbox"
+																						id="${list.partNumber}_selectedItem"
+																						name="selectedItem"	onClick="checkUsedPartNumbers();"
+																						value="${list.partNumber}"></td>
+																				</tr>
+			
+																			</c:forEach>
+																		</tbody>
+																</table>
+														 </div>
+														 <input type="hidden" class="form-control" id="bootStockType"
+															name="bootStockType" value="Boot Stock">
 
 														<!-- group Site Stock -->
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Site Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" value="siteType" name="groupboot"
-																	data-toggle="modal" data-target="#siteStock"
-																	disabled="disabled" id="SiteStocked">
+																<input type="radio" name="stockType" required id="checkSiteStock" onclick="SiteStockChecked()" value="Site Stock" >
 															</div>
 														</div>
+														<div class="displayNone" id="siteStockItems" style="margin-left: 25.5%;margin-right: 26%;">
+															<table id="sStock" class="display datatable">
+																<thead>
+																	<tr>
+																		<th>Part No</th>
+																		<th>Description</th>
+																		<th>Model No</th>
+																		<th>Quantity</th>
+																		<th>Tick Used Parts</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<!-- Iterating over the list sent from Controller -->
+																	<c:forEach var="list" items="${siteStock}">	
+																		<tr>
+																			<td>${list.partNumber}</td>
+																			<td>${list.itemDescription}</td>
+																			<td>${list.itemType}</td>
+																			<td>${list.quantity}</td>
+																			<td><input type="checkbox"
+																				id="${list.partNumber}_selectedItem"
+																				name="selectedItem" onClick="checkUsedPartNumbers();"
+																				value="${list.partNumber}"></td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</div></br>
+														<input type="hidden" class="form-control" id="siteStockType"
+															name="siteStockType" value="Site Stock">
 
 													</fieldset>
-
+													
+													
 													<!-- display ticked Used Part Numbers-->
 													<div class="form-group">
 														<label class="col-md-3 control-label">Used Part
@@ -811,41 +871,72 @@ table#toOrder thead {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-list"></i></span>
 																<textarea id="usedPartNumbers" name="usedPartNumbers"
-																	readonly="readonly" class="form-control"
+																	 class="form-control" readonly="readonly"
 																	style="height: 60px; font-size: 11px;">
 													 </textarea>
 															</div>
 														</div>
 													</div>
 													<!--// display ticked Used Part Numbers-->
-
+                                                    
+                                                    <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->	
+                                                    
+                                                    
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
 
 												<!-- hideComent-->
-												<div class="hideComent" id="hideComent"
-													style="display: none">
+												<div class="hideComent" id="hideComent" style="display: none">
 													
-													<!-- display Comments-->												
+													<!-- Text area comments-->												
 													<div class="form-group">
 														<label class="col-md-3 control-label">Comment</label>
 														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment" style="width: 517px; height: 120px;"
+																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
-													</div><!--// display Comments-->													
+													</div><!--// text area comments-->	
+													
+													 <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->													
 												
-												</div><!-- //hideComent -->
+												</div><!-- //hideComent -->												
 												
-
-											</div>
-											<!-- // group used part numbers -->
-
+												</div>
+												<!-- // group used part numbers -->
+										
 											<div class="actionTakenSubmit" id="actionTakenSubmit"
 												style="display: none;">
 
@@ -862,118 +953,8 @@ table#toOrder thead {
 											<!-- //actionTakenSubmit -->
 											
 											
-											<!--Boot Stock-->
-										<div id="bootStock" class="modal fade" role="dialog"
-											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-											<div class="modal-dialog">
-												<!-- Modal content-->
-												<div class="modal-content" id="botStock">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">×</button>
-														<h3 class="modal-title">Boot Stock</h3>
-													</div>
-													<div class="modal-body">
-														<table id="bStock" class="display datatable">
-															<thead>
-																<tr>
-																	<th>Part No</th>
-																	<th>Description</th>
-																	<th>Item Type</th>
-																	<th>Quantity</th>
-																	<th>Tick</th>
-
-																</tr>
-															</thead>
-															<tbody>
-																<!-- Iterating over the list sent from Controller -->
-																<c:forEach var="list" items="${bootStock}">
-
-																	<tr>
-																		<td>${list.partNumber}</td>
-																		<td>${list.itemDescription}</td>
-																		<td>${list.itemType}</td>
-																		<td>${list.quantity}</td>
-																		<td><input type="checkbox"
-																			id="${list.partNumber}_selectedItem"
-																			name="selectedItem" class="form-group"
-																			onClick="checkUsedPartNumbers();"
-																			value="${list.partNumber}"></td>
-																	</tr>
-
-																</c:forEach>
-															</tbody>
-														</table>
-														<input type="hidden" class="form-control" id="setStock"
-															name="bootType" value="Boot">
-
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">Close</button>
-														<button id="save" type="button" class="btn btn-primary"
-															data-dismiss="modal">Save</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--/Boot Stock-->
-
-										<!--Site Stock-->
-										<div id="siteStock" class="modal fade" role="dialog"
-											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-											<div class="modal-dialog">
-												<!-- Modal content-->
-												<div class="modal-content" id="siStock">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">×</button>
-														<h3 class="modal-title">Site Stock</h3>
-													</div>
-													<div class="modal-body">
-														<table id="sStock" class="display datatable">
-															<thead>
-																<tr>
-																	<th>Part No</th>
-																	<th>Description</th>
-																	<th>Model No</th>
-																	<th>Quantity</th>
-																	<th>Tick</th>
-																</tr>
-															</thead>
-															<tbody>
-																<!-- Iterating over the list sent from Controller -->
-																<c:forEach var="list" items="${siteStock}">
-
-																	<tr>
-																		<td>${list.partNumber}</td>
-																		<td>${list.itemDescription}</td>
-																		<td>${list.itemType}</td>
-																		<td>${list.quantity}</td>
-																		<td><input type="checkbox"
-																			id="${list.partNumber}_selectedItem"
-																			name="selectedItem" class="form-group"
-																			onClick="checkUsedPartNumbers();"
-																			value="${list.partNumber}"></td>
-																	</tr>
-																</c:forEach>
-															</tbody>
-														</table>
-														<input type="hidden" class="form-control" id="botStock"
-															name="bootType" value="Site">
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Close</button>
-															<button id="save" type="button" class="btn btn-primary"
-																data-dismiss="modal">Save</button>
-
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--/site stock-->
+											
+											
 											
 					                   </form:form>
 					            	
@@ -1147,31 +1128,90 @@ table#toOrder thead {
 												<div class="hideIfIsNotPartToner" id="hideIfIsNotPartToner"
 													style="display: none">
 
-													<fieldset id="groupstock" style="margin-left: -1%">
+													<fieldset id="groupstock" style="margin-left: 0%">
 
 														<!-- group Boot Stock -->
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Boot Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" value="bootType" name="groupboot"
-																	data-toggle="modal" data-target="#bootStock"
-																	readonly="readonly" id="BootStocked">
+																<input type="radio" name="stockType" required id="checkBootStock" onclick="BootStockChecked()" value="Boot Stock" tittle="You must check Boot Stock or Site Stock to get Used Part Numbers">
 															</div>
-														</div>
+														</div>														
+														<div class="displayNone" id="bootStockItems" style="margin-left: 25.5%;margin-right: 26%;" >
+															<table id="bStock" class="display datatable">
+																		<thead>
+																			<tr>
+																				<th>Part No</th>
+																				<th>Description</th>
+																				<th>Item Type</th>
+																				<th>Quantity</th>
+																				<th>Tick Used Parts</th>
+			
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<!-- Iterating over the list sent from Controller -->
+																			<c:forEach var="list" items="${bootStock}">
+			
+																				<tr>
+																					<td>${list.partNumber}</td>
+																					<td>${list.itemDescription}</td>
+																					<td>${list.itemType}</td>
+																					<td>${list.quantity}</td>
+																					<td><input type="checkbox"
+																						id="${list.partNumber}_selectedItem"
+																						name="selectedItem"	onClick="checkUsedPartNumbers();"
+																						value="${list.partNumber}"></td>
+																				</tr>
+			
+																			</c:forEach>
+																		</tbody>
+																</table>
+														 </div>
+														 <input type="hidden" class="form-control" id="bootStockType"
+															name="bootStockType" value="Boot Stock">
 
 														<!-- group Site Stock -->
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Site Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" value="siteType" name="groupboot"
-																	data-toggle="modal" data-target="#siteStock"
-																	disabled="disabled" id="SiteStocked">
+																<input type="radio" name="stockType" required id="checkSiteStock" onclick="SiteStockChecked()" value="Site Stock" >
 															</div>
 														</div>
+														<div class="displayNone" id="siteStockItems" style="margin-left: 25.5%;margin-right: 26%;">
+															<table id="sStock" class="display datatable">
+																<thead>
+																	<tr>
+																		<th>Part No</th>
+																		<th>Description</th>
+																		<th>Model No</th>
+																		<th>Quantity</th>
+																		<th>Tick Used Parts</th>
+																	</tr>
+																</thead>
+																<tbody>
+																	<!-- Iterating over the list sent from Controller -->
+																	<c:forEach var="list" items="${siteStock}">	
+																		<tr>
+																			<td>${list.partNumber}</td>
+																			<td>${list.itemDescription}</td>
+																			<td>${list.itemType}</td>
+																			<td>${list.quantity}</td>
+																			<td><input type="checkbox"
+																				id="${list.partNumber}_selectedItem"
+																				name="selectedItem" onClick="checkUsedPartNumbers();"
+																				value="${list.partNumber}"></td>
+																		</tr>
+																	</c:forEach>
+																</tbody>
+															</table>
+														</div></br>
+														<input type="hidden" class="form-control" id="siteStockType"
+															name="siteStockType" value="Site Stock">
 
 													</fieldset>
-
-
+													
+													
 													<!-- display ticked Used Part Numbers-->
 													<div class="form-group">
 														<label class="col-md-3 control-label">Used Part
@@ -1181,22 +1221,38 @@ table#toOrder thead {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-list"></i></span>
 																<textarea id="usedPartNumbers" name="usedPartNumbers"
-																	readonly="readonly" class="form-control"
+																	 class="form-control" readonly="readonly"
 																	style="height: 60px; font-size: 11px;">
 													 </textarea>
 															</div>
 														</div>
 													</div>
 													<!--// display ticked Used Part Numbers-->
-
+                                                    
+                                                    <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->	
+                                                    
+                                                    
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
 
 												<!-- hideComent-->
-												<div class="hideComent" id="hideComent"
-													style="display: none">
+												<div class="hideComent" id="hideComent" style="display: none">
 													
-													<!-- display Comments-->												
+													<!-- Text area comments-->												
 													<div class="form-group">
 														<label class="col-md-3 control-label">Comment</label>
 														<div class="col-md-6 inputGroupContainer">
@@ -1208,13 +1264,29 @@ table#toOrder thead {
 																	></textarea>
 															</div>
 														</div>
-													</div><!--// display Comments-->													
+													</div><!--// text area comments-->	
+													
+													 <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->													
 												
-												</div><!-- //hideComent -->
+												</div><!-- //hideComent -->												
 												
-											</div>
-											<!-- // group used part numbers -->
-
+												</div>
+												<!-- // group used part numbers -->
+										
 											<div class="actionTakenSubmit" id="actionTakenSubmit"
 												style="display: none;">
 
@@ -1230,119 +1302,7 @@ table#toOrder thead {
 											</div>
 											<!-- //actionTakenSubmit -->
 											
-											
-											<!--Boot Stock-->
-										<div id="bootStock" class="modal fade" role="dialog"
-											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-											<div class="modal-dialog">
-												<!-- Modal content-->
-												<div class="modal-content" id="botStock">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">×</button>
-														<h3 class="modal-title">Boot Stock</h3>
-													</div>
-													<div class="modal-body">
-														<table id="bStock" class="display datatable">
-															<thead>
-																<tr>
-																	<th>Part No</th>
-																	<th>Description</th>
-																	<th>Item Type</th>
-																	<th>Quantity</th>
-																	<th>Tick</th>
-
-																</tr>
-															</thead>
-															<tbody>
-																<!-- Iterating over the list sent from Controller -->
-																<c:forEach var="list" items="${bootStock}">
-
-																	<tr>
-																		<td>${list.partNumber}</td>
-																		<td>${list.itemDescription}</td>
-																		<td>${list.itemType}</td>
-																		<td>${list.quantity}</td>
-																		<td><input type="checkbox"
-																			id="${list.partNumber}_selectedItem"
-																			name="selectedItem" class="form-group"
-																			onClick="checkUsedPartNumbers();"
-																			value="${list.partNumber}"></td>
-																	</tr>
-
-																</c:forEach>
-															</tbody>
-														</table>
-														<input type="hidden" class="form-control" id="setStock"
-															name="bootType" value="Boot">
-
-													</div>
-													<div class="modal-footer">
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">Close</button>
-														<button id="save" type="button" class="btn btn-primary"
-															data-dismiss="modal">Save</button>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--/Boot Stock-->
-
-										<!--Site Stock-->
-										<div id="siteStock" class="modal fade" role="dialog"
-											style="z-index: 1400; padding-top: 5%; padding-left: 17px;">
-											<div class="modal-dialog">
-												<!-- Modal content-->
-												<div class="modal-content" id="siStock">
-													<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">×</button>
-														<h3 class="modal-title">Site Stock</h3>
-													</div>
-													<div class="modal-body">
-														<table id="sStock" class="display datatable">
-															<thead>
-																<tr>
-																	<th>Part No</th>
-																	<th>Description</th>
-																	<th>Model No</th>
-																	<th>Quantity</th>
-																	<th>Tick</th>
-																</tr>
-															</thead>
-															<tbody>
-																<!-- Iterating over the list sent from Controller -->
-																<c:forEach var="list" items="${siteStock}">
-
-																	<tr>
-																		<td>${list.partNumber}</td>
-																		<td>${list.itemDescription}</td>
-																		<td>${list.itemType}</td>
-																		<td>${list.quantity}</td>
-																		<td><input type="checkbox"
-																			id="${list.partNumber}_selectedItem"
-																			name="selectedItem" class="form-group"
-																			onClick="checkUsedPartNumbers();"
-																			value="${list.partNumber}"></td>
-																	</tr>
-																</c:forEach>
-															</tbody>
-														</table>
-														<input type="hidden" class="form-control" id="botStock"
-															name="bootType" value="Site">
-
-														<div class="modal-footer">
-															<button type="button" class="btn btn-default"
-																data-dismiss="modal">Close</button>
-															<button id="save" type="button" class="btn btn-primary"
-																data-dismiss="modal">Save</button>
-
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<!--/site stock-->
+										
 											
 					                   </form:form>
 					            	

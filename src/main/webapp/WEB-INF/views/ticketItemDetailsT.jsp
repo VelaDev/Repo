@@ -1573,7 +1573,7 @@ table#toOrder thead {
                                                     <!-- display Bridged-->	
 													<div class="reseanBridged" id="reseanBridged">
 														<div class="form-group">
-															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<label class="col-md-3 control-label">Bridged Reason</label>
 															<div class="col-md-6 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i
@@ -1610,7 +1610,7 @@ table#toOrder thead {
 													 <!-- display Bridged-->	
 													<div class="reseanBridged" id="reseanBridged">
 														<div class="form-group">
-															<label class="col-md-3 control-label">Reason Why Bridged</label>
+															<label class="col-md-3 control-label">Bridged Reason</label>
 															<div class="col-md-6 inputGroupContainer">
 																<div class="input-group">
 																	<span class="input-group-addon"><i

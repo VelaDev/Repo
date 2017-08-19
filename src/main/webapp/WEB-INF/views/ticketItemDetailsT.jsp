@@ -626,8 +626,7 @@ table#toOrder thead {
 																	class="form-control selectpicker" >
 																	<option value="">Select Manager</option>
 																	<c:forEach items="${managersList}" var="manager">
-																		<option value="${manager.email}">${manager.firstName}
-																			${manager.lastName}</option>
+																		<option value="${manager.email}">${manager.email}</option>
 																	</c:forEach>
 
 																</select>
@@ -1012,13 +1011,14 @@ table#toOrder thead {
 																	class="form-control selectpicker" >
 																	<option value="">Select Manager</option>
 																	<c:forEach items="${managersList}" var="manager">
-																		<option value="${manager.email}">${manager.firstName} ${manager.lastName}</option>
+																		<option value="${manager.email}">${manager.email}</option>
 																	</c:forEach>
 
 																</select>
 															</div>
 														</div>
 												</div>
+												
 													
 												<!-- display Comments-->
 												
@@ -1382,8 +1382,7 @@ table#toOrder thead {
 																	class="form-control selectpicker" >
 																	<option value="">Select Manager</option>
 																	<c:forEach items="${managersList}" var="manager">
-																		<option value="${manager.email}">${manager.firstName}
-																			${manager.lastName}</option>
+																		<option value="${manager.email}">${manager.email}</option>
 																	</c:forEach>
 
 																</select>

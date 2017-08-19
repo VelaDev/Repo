@@ -43,7 +43,7 @@ public class DeliveryNoteHeaderDao implements DeliveryNoteHeaderDaoInt{
 				deliveryNoteHeader.setCompanyFax(companyProfile.getFaxNumber());
 				deliveryNoteHeader.setCompanyName(companyProfile.getCompanyName());
 				//deliveryNoteHeader.setCompanyProvince(companyProfile.get);
-				//deliveryNoteHeader.setCompanyRegistration(companyProfile.get);
+				deliveryNoteHeader.setCompanyRegistration(companyProfile.getCompanyRegistration());
 				deliveryNoteHeader.setCompanyStreet(companyProfile.getStreetNumber()+" "+companyProfile.getStreetName());
 				deliveryNoteHeader.setCompanyTelephone(companyProfile.getTelephoneNumber());
 			}

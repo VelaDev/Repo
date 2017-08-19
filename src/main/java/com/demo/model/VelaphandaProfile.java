@@ -39,5 +39,11 @@ public class VelaphandaProfile implements Serializable{/**
 	private String faxNumber;
 	@Column(name="Email_Address")
 	private String emailAdress;
+	@Column(name="Company_Registration")
+	private String companyRegistration;
+	@Column(name="Remit_Email")
+	private String remitEmail;
+	@Column(name="Company_Province")
+	private String companyProvince;
 
 }

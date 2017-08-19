@@ -28,7 +28,7 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 <style type="text/css">
 .orderDetails {
-    margin-left: -22px;
+    margin-left: -15px;
 }
 
 .displayNone, .tTakeTicket {
@@ -536,7 +536,7 @@ table#toOrder thead {
 																	class="form-control selectpicker" >
 																	<option value="">Select Order No</option>
 																	<c:forEach items="${OrderNumber}" var="orders">
-																		<option value="${orders.recordID}">${order.recordID}
+																		<option value="${orders.orderNum}">${orders.orderNum}
 																			</option>
 																	</c:forEach>
 
@@ -879,23 +879,6 @@ table#toOrder thead {
 													</div>
 													<!--// display ticked Used Part Numbers-->
                                                     
-                                                    <!-- display Bridged-->	
-													<div class="reseanBridged" id="reseanBridged">
-														<div class="form-group">
-															<label class="col-md-3 control-label">Reason Why Bridged</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
-																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
-																		></textarea>
-																</div>
-															</div>
-														</div>												
-													</div><!-- //End display Bridged-->	
-                                                    
-                                                    
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
 
@@ -909,28 +892,12 @@ table#toOrder thead {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
 													</div><!--// text area comments-->	
-													
-													 <!-- display Bridged-->	
-													<div class="reseanBridged" id="reseanBridged">
-														<div class="form-group">
-															<label class="col-md-3 control-label">Reason Why Bridged</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
-																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
-																		></textarea>
-																</div>
-															</div>
-														</div>												
-													</div><!-- //End display Bridged-->													
 												
 												</div><!-- //hideComent -->												
 												
@@ -1021,7 +988,7 @@ table#toOrder thead {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
 																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" style="width: 517px; height: 120px;" placeholder="Please enter comment"
+																	 onkeydown="upperCaseF(this)" style="height: 120px;" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
@@ -1063,8 +1030,7 @@ table#toOrder thead {
 												<b>Resolve</b>
 											</legend>
 											
-											
-												<!-- Action Action -->
+											<!-- Action Action -->
 											<input type="hidden" id="ticketAction" name="ticketAction"
 												class="form-control selectpicker" value="Resolve">												
 												
@@ -1255,23 +1221,6 @@ table#toOrder thead {
 													</div>
 													<!--// display ticked Used Part Numbers-->
                                                     
-                                                    <!-- display Bridged-->	
-													<div class="reseanBridged" id="reseanBridged">
-														<div class="form-group">
-															<label class="col-md-3 control-label">Reason Why Bridged</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
-																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
-																		></textarea>
-																</div>
-															</div>
-														</div>												
-													</div><!-- //End display Bridged-->	
-                                                    
-                                                    
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
 
@@ -1285,29 +1234,13 @@ table#toOrder thead {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
 														</div>
 													</div><!--// text area comments-->	
 													
-													 <!-- display Bridged-->	
-													<div class="reseanBridged" id="reseanBridged">
-														<div class="form-group">
-															<label class="col-md-3 control-label">Reason Why Bridged</label>
-															<div class="col-md-6 inputGroupContainer">
-																<div class="input-group">
-																	<span class="input-group-addon"><i
-																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
-																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
-																		></textarea>
-																</div>
-															</div>
-														</div>												
-													</div><!-- //End display Bridged-->													
-												
 												</div><!-- //hideComent -->												
 												
 												</div>
@@ -1321,7 +1254,7 @@ table#toOrder thead {
 														style="margin-left: 26%; width: 48%;">
 														<input type="submit" name=resolve value="Resolve Ticket"
 															class="btn btn-primary btn-block btn-lg" tabindex="9"
-															id="resolve">
+															id=2>
 													</div>
 												</div>
 
@@ -1399,7 +1332,7 @@ table#toOrder thead {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -1645,7 +1578,7 @@ table#toOrder thead {
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																	<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
 																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
 																		></textarea>
 																</div>
@@ -1667,7 +1600,7 @@ table#toOrder thead {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="width: 517px; height: 120px;" id="comments" name="comments" maxlength="150"
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>
@@ -1682,7 +1615,7 @@ table#toOrder thead {
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="width: 517px; height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																	<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
 																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
 																		></textarea>
 																</div>
@@ -1712,11 +1645,8 @@ table#toOrder thead {
 											
 					                   </form:form>
 					                   
-					                   </div>
-					                   
-					                  </div>
-							 
-							 
+					                   </div>					                   
+					               </div>
 							 </c:when>						
 						</c:choose>
 						
@@ -1774,7 +1704,7 @@ table#toOrder thead {
 														<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-pencil"></i></span>
-															<textarea class="form-control" style="width: 517px; height: 120px;" name="comments" id="comment"readonly="readonly"
+															<textarea class="form-control" style="height: 120px;" name="comments" id="comment"readonly="readonly"
 															 style="height: 100px;">${ticketObject.comments}</textarea>
 														</div>
 													</div>
@@ -1916,7 +1846,7 @@ table#toOrder thead {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-pencil"></i></span>
 																<textarea class="form-control" name="comments" id="comment"readonly="readonly"
-																 style="width: 517px; height: 120px;">${ticketObject.comments}</textarea>
+																 style="height: 120px;">${ticketObject.comments}</textarea>
 															</div>
 														</div>
 												</div>

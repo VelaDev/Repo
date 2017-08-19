@@ -24,7 +24,6 @@ import com.demo.bean.OrdersBean;
 import com.demo.dao.ApprovedOrderStockDaoInt;
 import com.demo.dao.BootStockDaoInt;
 import com.demo.dao.CustomerDaoInt;
-import com.demo.dao.DeliveryNoteLineItemsDaoInt;
 import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.OrderDetailsDaoInt;
 import com.demo.dao.OrderHistoryDaoInt;
@@ -74,8 +73,6 @@ public class OrderDao implements OrdersDaoInt {
 	private TicketsDaoInt ticketsDaoInt;
 	@Autowired
 	private TicketHistoryDaoInt ticketHistoryDaoInt;
-	@Autowired
-	private DeliveryNoteLineItemsDaoInt deliveryLineItem;
 	private OrderHeader orderHeader = null;
 	
 
@@ -283,6 +280,8 @@ public class OrderDao implements OrdersDaoInt {
 		String[] quantityArray = quantity(orderBean.getQuantityList(),
 				orderBean.getPartNumberList().length);
 		
+		System.err.println("Partnumber " + " " + orderBean.getPartNumberList().length);
+		
 		try {
 
 			Employee user = (Employee) session.getAttribute("loggedInUser");
@@ -357,12 +356,34 @@ public class OrderDao implements OrdersDaoInt {
 					orderDetails.setOrderHeader(cusOrder);
 					orderDetails.setDateTime(dateFormat.format(date));
 					orderDetailList.add(orderDetails);
-				}	
+				}
+				
+				//store Delivery Report Header Details
+				/*
+				deliveryNoteHeader.setOrderNum(orderNumber);
+				deliveryNoteHeader.setDateOrdered(dateFormat.format(date));
+				deliveryNoteHeader.setContactPerson(emp.getFirstName() + " " + emp.getLastName());
+				deliveryNoteHeader.setContactNumber(emp.getCellNumber());
+				deliveryNoteHeader.setContactEmail(emp.getEmail());
+				deliveryNoteHeader.setCustomerName(cus.getCustomerName());
+				deliveryNoteHeader.setCustomerStreet(cus.getStreetNumber() + " " + cus.getStreetName());
+				deliveryNoteHeader.setCustomerCity(cus.getCity_town());
+				deliveryNoteHeader.setCustomerAreaCode(cus.getZipcode());
+				deliveryNoteHeader.setCustomerProvince(cus.getProvince());
+				
+				deliveryNoteHeader.setCompanyName("VELAPHANDA TRADING & PROJECTS");
+				deliveryNoteHeader.setCompanyStreet("POSTNET SUITE 357, PRIVATE BAG X1028");
+				deliveryNoteHeader.setCompanyCity("LYTTLETON 0140");
+				deliveryNoteHeader.setCompanyProvince("Gauteng");
+				deliveryNoteHeader.setCompanyRegistration("REG NO:2008/164490/23");
+				deliveryNoteHeader.setCompanyTelephone("012 765 0200");
+				deliveryNoteHeader.setCompanyFax("012 765 0200");
+				deliveryNoteHeader.setCompanyEmail("sales@velaphanda.co.za");
+					*/		
 				
             }
 			retMessage = makeOrder(cusOrder);
 			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
-			deliveryLineItem.saveDeliveryNoteLineItems(orderDetailList);
 		} catch (Exception ex) {
 			retMessage = "Order cannot be proccessed.";
 		}
@@ -4865,7 +4886,7 @@ public class OrderDao implements OrdersDaoInt {
 			newList = new ArrayList<String>();
 
 			for (OrderHeader order : list) {
-				if(order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
+				if(order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)&& order.getStatus().equalsIgnoreCase("Pending")){
 					newList.add(order.getOrderNum());
 				}
 			}

@@ -260,11 +260,26 @@ $(document)
 														message:'Reason is required and can not be empty'
 													}
 												}
+											},
+											usedPartNumbers:{
+												validators:{
+													notEmpty:{
+														message:'Used part numbers is required check boot or site stock for used part numbers'
+													}
+												}
 											}
 
 										}
 									});
 				});
+
+$(document).on("focusin", "#usedPartNumbers", function() {
+	   $(this).prop('readonly', true);  
+	});
+
+	$(document).on("focusout", "#usedPartNumbers", function() {
+	   $(this).prop('readonly', false); 
+	});
 
 $(document).ready(function() {
 	$('#updataTckt').bootstrapValidator({
@@ -292,8 +307,6 @@ $("#actionTaken").on(
 		function() {
 
 			if ($(this).val() == "Replaced Part/Toner") {
-				$('input[type="radio"]:enabled').attr('disabled', true);
-				$('#BootStocked, #SiteStocked').attr('disabled', false);
 				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',
 						false);
 				$('#usedPartNumbers').attr('disabled', false);
@@ -305,14 +318,13 @@ $("#actionTaken").on(
 					|| $(this).val() == "Configured Printer"
 					|| $(this).val() == "User Error"
 					|| $(this).val() == "No fault Found") {
-				$('input[type="radio"]:enabled').attr('disabled', true);
-				$('#BootStocked, #SiteStocked').attr('disabled', true);
 				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',
 						false);
 				$('#usedPartNumbers').attr('disabled', false);
 				console.log($(this).val());
 			}
 		});
+
 
 //Select hideComent before -->
 function Faulty(val) {
@@ -341,7 +353,20 @@ function Faulty(val) {
 		element.style.display = 'none';
 	console
 			.log('Other Action Taken, beside Replace Part or Toner:  Add Comment on Solution Modal ticket, is resolved remove comment');
-
+	
+	var element = document.getElementById('reseanBridged');
+	if (val == 'pick a Any action taken' || val == 'Cleared Paper Jam'
+			|| val == 'Installed Drivers' || val == 'Configured Drivers'
+			|| val == 'Configured Printer' || val == 'User Error'
+			|| val == 'No fault Found' || val == 'Replaced Part/Toner')
+		element.style.display = 'block';
+	else
+		element.style.display = 'none';
+	console
+			.log('Any action taken if ticket is bridged provige a reason why is brigde');
+	
+	
+	
 	var element = document.getElementById('actionTakenSubmit');
 	if (val == 'pick a show submit' || val == 'Cleared Paper Jam'
 			|| val == 'Installed Drivers' || val == 'Configured Drivers'

@@ -31,7 +31,7 @@
     margin-left: -22px;
 }
 
-.displayNone {
+.displayNone, .tTakeTicket {
     display:none;
 }
 .showDIV { display:block; } 
@@ -49,6 +49,7 @@ table#toOrder thead {
 </style>
 </head>
 <body>
+
 	<div class="velaphanda_containter">
 		<c:import url="templates/techniciannavbar.jsp"></c:import>
 		<div class="container">
@@ -146,7 +147,7 @@ table#toOrder thead {
 						<c:choose>
 						
 							<c:when test="${ticketObject.status =='Open'}">
-							 	<li class="tAcknowledgedTicket"><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
+							 	<li class="tAcknowledgedTicket" style="dispaly:none;"><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
 							</c:when>
 													
 							<c:when test="${ticketObject.status =='Acknowledged'}">
@@ -696,10 +697,8 @@ table#toOrder thead {
 												<label class="col-md-3 control-label">Ticket Number</label>
 												<div class="col-md-6 inputGroupContainer">
 													<div class="input-group"><span class="input-group-addon"><i
-													   class="glyphicon glyphicon-barcode"></i></span> <input
-																	name="ticketNumber" id="ticketNumber"
-																	class="form-control" type="text"
-																value="${ticketObject.ticketNumber}" readonly>
+													   class="glyphicon glyphicon-barcode"></i></span>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
 													</div>
 												</div>
 											</div>
@@ -1003,25 +1002,23 @@ table#toOrder thead {
 												<b>Escalate</b>
 											</legend>
 											
-											  <!-- Text input Manager-->
+											 	 <!-- Text input Manager-->
 												<div class="form-group">
-														<label class="col-md-3 control-label"> Manager</label>
+													<label class="col-md-3 control-label"> Manager</label>
 														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-user"></i></span> <select
+																<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span> <select
 																	id="escalatedTo" name="escalatedTo"
 																	class="form-control selectpicker" >
 																	<option value="">Select Manager</option>
 																	<c:forEach items="${managersList}" var="manager">
-																		<option value="${manager.email}">${manager.firstName}
-																			${manager.lastName}</option>
+																		<option value="${manager.email}">${manager.firstName} ${manager.lastName}</option>
 																	</c:forEach>
 
 																</select>
 															</div>
 														</div>
-													</div>
+												</div>
 													
 												<!-- display Comments-->
 												
@@ -2024,6 +2021,7 @@ table#toOrder thead {
 <!-- Set active to selected tab -->
 <script type="text/javascript">
 
+
 	//hide tabs of actions on page load
 	
 	//Do not shw tabs for status that is Take, up until user click on action
@@ -2051,6 +2049,7 @@ table#toOrder thead {
 	//end hide of SLA Bridge tabs
 	
 	//end hide of tabs actions on page load
+	
 	
 	//Acknowledged Ticket
 	$("#tAcknowledgedTicketLink").click(function(){
@@ -2141,8 +2140,9 @@ table#toOrder thead {
 	  $("#bootStockItems").addClass("showDIV");
 	
 		//Make sure siteStockItems is not visible
-		$("#siteStockItems").removeClass("showDIV");
-		$("#siteStockItems").addClass("displayBone");
+	  $("#siteStockItems").removeClass("showDIV");
+	  $("#siteStockItems").addClass("displayBone");
+	  
 	}
 
 	function SiteStockChecked(){
@@ -2151,8 +2151,9 @@ table#toOrder thead {
 	  $("#siteStockItems").addClass("showDIV");
 	
 	  //Make sure bootStockItems is not visible
-	   $("#bootStockItems").removeClass("showDIV");
-       $("#bootStockItems").addClass("displayBone");
+	  $("#bootStockItems").removeClass("showDIV");
+      $("#bootStockItems").addClass("displayBone");
+      
 	}
 	
 	

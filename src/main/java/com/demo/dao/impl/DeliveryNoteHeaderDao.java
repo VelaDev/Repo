@@ -65,7 +65,6 @@ public class DeliveryNoteHeaderDao implements DeliveryNoteHeaderDaoInt{
 				deliveryNoteHeader.setContactNumber(orderHeader.getEmployee().getCellNumber());
 				deliveryNoteHeader.setContactPerson(orderHeader.getEmployee().getFirstName()+" "+orderHeader.getEmployee().getLastName());
 				
-				
 				sessionFactory.getCurrentSession().save(deliveryNoteHeader);
 				
 		

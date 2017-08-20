@@ -85,7 +85,11 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 					historyDaoInt.insertTicketHistory(openTicket);
 					/*JavaMail.fourHourReminder(openTicket,mails
 							);*/
-				}
+				}else if(hour>=8 && openTicket.getStatus().equalsIgnoreCase("Escalated")){
+				// Send emails here
+			   }else if(hour>=24 && openTicket.getStatus().equalsIgnoreCase("Awaiting Spares")){
+				// Send emails here
+			     }
 			}
 		} catch (Exception e) {
 			e.getMessage();

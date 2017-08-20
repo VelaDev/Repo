@@ -1744,6 +1744,10 @@ table#toOrder thead {
 										</div>
 									</c:if>	
 									
+									<c:if test="${ticketObject.getDevice().getColourReading() }">
+									</c:if>
+									<c:if test="${not empty ticketObject.getDevice().getColourReading() }">
+										
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
@@ -1760,7 +1764,14 @@ table#toOrder thead {
 												</div>
 											</div>
 										</div>
-	
+									
+									</c:if>
+										
+									
+									<c:if test="${ticketObject.getDevice().getColourReading() }">
+									</c:if>
+									<c:if test="${not empty ticketObject.getDevice().getMonoReading() }">
+									
 										<div class="form-group">
 											<label class="col-md-3 control-label">Mono Reading</label>
 											<div class="col-md-6 inputGroupContainer">
@@ -1774,6 +1785,9 @@ table#toOrder thead {
 												</div>
 											</div>
 										</div>
+									</c:if>
+									
+										
 	
 										<div class="diplayNone" id="getPartTonerResolved"
 											style="display: none">
@@ -1906,35 +1920,48 @@ table#toOrder thead {
 												</div>
 											</div>
 										</c:if>	
-											<!-- Text checkbox Colour Reading-->
-											<div class="form-group">
-												<label class="col-md-3 control-label">Colour Reading</label>
-												<div class="col-md-6 inputGroupContainer">
-													<div class="input-group">
-														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-															class="form-control" readonly="readonly"
-															onkeypress="return isNumber(event)"
-															 id="colour" name="colourReading"
-															value="${ticketObject.getDevice().getColourReading() }"
-															name="colourReading">
-													</div>
+											<c:if test="${ticketObject.getDevice().getColourReading() }">
+									</c:if>
+									<c:if test="${not empty ticketObject.getDevice().getColourReading() }">
+										
+										<!-- Text checkbox Colour Reading-->
+										<div class="form-group">
+											<label class="col-md-3 control-label">Colour Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+														class="form-control" readonly="readonly"
+														onkeypress="return isNumber(event)"
+														placeholder="Enter Colour Reading" id="colour"
+														name="colourReading"
+														value="${ticketObject.getDevice().getColourReading() }"
+														name="colourReading">
 												</div>
 											</div>
-		
-											<div class="form-group">
-												<label class="col-md-3 control-label">Mono Reading</label>
-												<div class="col-md-6 inputGroupContainer">
-													<div class="input-group">
-														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-barcode"></i></span> <input type="text"
-															class="form-control" onkeypress="return isNumber(event)"
-															id="mono" readonly="readonly" name="monoReading"
-															name="monoReading"
-															value="${ticketObject.getDevice().getMonoReading() }">
-													</div>
+										</div>
+									
+									</c:if>
+										
+									
+									<c:if test="${ticketObject.getDevice().getColourReading() }">
+									</c:if>
+									<c:if test="${not empty ticketObject.getDevice().getMonoReading() }">
+									
+										<div class="form-group">
+											<label class="col-md-3 control-label">Mono Reading</label>
+											<div class="col-md-6 inputGroupContainer">
+												<div class="input-group">
+													<span class="input-group-addon"><i
+														class="glyphicon glyphicon-barcode"></i></span> <input type="text"
+														class="form-control" onkeypress="return isNumber(event)"
+														id="mono" readonly="readonly" name="monoReading"
+														placeholder="Enter Mono Reading" name="monoReading"
+														value="${ticketObject.getDevice().getMonoReading() }">
 												</div>
 											</div>
+										</div>
+									</c:if>
 		
 											<div class="diplayNone" id="getPartTonerResolved"
 												style="display: none">

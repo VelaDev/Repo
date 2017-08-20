@@ -279,7 +279,7 @@ input#selectDateRange {
 										<div class="summary-count pull-left"
 											style="margin-left: 3%;">
 											<h4 align="center">${countAwaitingSparesTickets}</h4>
-											<p align="center">Tickets Awaiting</p>
+											<p align="center">Awaiting Spares</p>
 										</div>
 								</a></li>
 																

@@ -1043,10 +1043,10 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-list"></i></span>
-																<textarea id="usedPartNumbers" name="usedPartNumbers"
+																<input id="usedPartNumbers" name="usedPartNumbers"
 																	 class="form-control" readonly="readonly"
 																	style="height: 60px; font-size: 11px;">
-													 </textarea>
+													 
 															</div>
 														</div>
 													</div>
@@ -1303,10 +1303,10 @@ table#orderDetails {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-list"></i></span>
-																<textarea id="usedPartNumbers" name="usedPartNumbers"
+																<input id="usedPartNumbers" name="usedPartNumbers"
 																	 class="form-control" readonly="readonly"
 																	style="height: 60px; font-size: 11px;">
-													 </textarea>
+													
 															</div>
 														</div>
 													</div>
@@ -1465,7 +1465,7 @@ table#orderDetails {
 																	id="usedPartNumbers" class="form-control" type="text"
 																	name="usedPartNumbers"
 																	value="${ticketObject.usedPartNumbers}"
-																	readonly="readonly">
+																	readonly="readonly" style="height: 60px; font-size: 11px;">
 															</div>
 														</div>
 													</div>
@@ -1528,8 +1528,8 @@ table#orderDetails {
 														<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-barcode"></i></span>
-															<textarea id="tickedUsedPartNumbers" class="form-control"
-																readonly="readonly" name="usedPartNumbers"></textarea>
+															<input id="tickedUsedPartNumbers" class="form-control"
+																readonly="readonly" style="height: 60px; font-size: 11px;" name="usedPartNumbers">
 														</div>
 													</div>
 												</div>
@@ -1635,9 +1635,8 @@ table#orderDetails {
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-barcode"></i></span> <input
 																	id="usedPartNumbers" class="form-control" type="text"
-																	name="usedPartNumbers"
-																	value="${ticketObject.usedPartNumbers}"
-																	readonly="readonly">
+																	name="usedPartNumbers" value="${ticketObject.usedPartNumbers}"
+																	readonly="readonly" style="height: 60px; font-size: 11px;">
 															</div>
 														</div>
 													</div>
@@ -1701,8 +1700,8 @@ table#orderDetails {
 														<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-barcode"></i></span>
-															<textarea id="tickedUsedPartNumbers" class="form-control"
-																readonly="readonly" name="usedPartNumbers"></textarea>
+															<input id="tickedUsedPartNumbers" class="form-control"
+																readonly="readonly" name="usedPartNumbers" style="height: 60px; font-size: 11px;">
 														</div>
 													</div>
 												</div>

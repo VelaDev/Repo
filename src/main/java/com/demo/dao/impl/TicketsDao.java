@@ -990,6 +990,7 @@ public class TicketsDao implements TicketsDaoInt {
 									
 									ticket.setStatus("Resolved");
 									ticket.setUsedPartNumbers(ticketsBean.getUsedPartNumbers());
+									ticket.setBridgedReason(ticketsBean.getBridgedReason());
 									ticket.setDateResolved(dateFormat.format(date));
 									ticket.setComments(ticketsBean.getComments());
 									device = deviceDaoInt.getDeviceBySerialNumbuer(ticket

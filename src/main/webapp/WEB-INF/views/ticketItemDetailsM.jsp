@@ -1298,20 +1298,6 @@ table#toOrder thead {
 												<!-- hideComent-->
 												<div class="hideComent" id="hideComent" style="display: none">
 													
-													<!-- Text area comments-->												
-													<div class="form-group">
-														<label class="col-md-3 control-label">Comment</label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
-																	></textarea>
-															</div>
-														</div>
-													</div><!--// text area comments-->	
-													
 													 <!-- display Bridged-->	
 													<div class="reseanBridged" id="reseanBridged">
 														<div class="form-group">
@@ -1320,7 +1306,7 @@ table#toOrder thead {
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																	<textarea class="form-control" style="height: 120px;" id="bridgedReason" name="bridgedReason" maxlength="150"
 																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
 																		></textarea>
 																</div>
@@ -1439,6 +1425,25 @@ table#toOrder thead {
 														</div>
 													</div>
 												</div>
+												
+										<c:if test="${empty ticketObject.bridgedReason}">
+									</c:if>
+									<c:if test="${not empty ticketObject.bridgedReason}">
+									 <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Bridged Reason</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="height: 120px;" id="bridgedReason" readonly="readonly" name="bridgedReason" maxlength="150"
+																		 onkeydown="upperCaseF(this)">${ticketObject.bridgedReason}</textarea>
+																</div>
+															</div>
+														</div>												
+									  </div><!-- //End display Bridged-->		
+									</c:if> 
 											
 
 											<c:if test="${empty ticketObject.usedPartNumbers}">
@@ -1613,6 +1618,25 @@ table#toOrder thead {
 													</div>
 												</div>
 											</c:if>
+											
+											<c:if test="${empty ticketObject.bridgedReason}">
+									</c:if>
+									<c:if test="${not empty ticketObject.bridgedReason}">
+									 <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Bridged Reason</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="height: 120px;" id="bridgedReason" readonly="readonly" name="bridgedReason" maxlength="150"
+																		 onkeydown="upperCaseF(this)">${ticketObject.bridgedReason}</textarea>
+																</div>
+															</div>
+														</div>												
+									  </div><!-- //End display Bridged-->		
+									</c:if> 
 
 											<c:if test="${empty ticketObject.usedPartNumbers}">
 											</c:if>

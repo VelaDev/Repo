@@ -927,11 +927,9 @@ table#toOrder thead {
 					            </div>
 					           </c:when>
 						</c:choose><!--Ticket Taken and must be Resolve -->						
-						
 						<!--tTicketAwaitingSparesEscalate -->
 						<c:choose>
 							 <c:when test="${ticketObject.status =='Awaiting Spares'}">
-							
 								<div class="tab-pane" id="tTicketAwaitingSparesEscalate">
 
 									<div class="panel-body">

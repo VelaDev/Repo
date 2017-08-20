@@ -927,8 +927,7 @@ table#toOrder thead {
 					            	</div>
 					            </div>
 					           </c:when>
-						</c:choose><!--Ticket Taken and must be Resolve -->
-						
+						</c:choose><!--Ticket Taken and must be Resolve -->						
 						
 						<!--tTicketAwaitingSparesEscalate -->
 						<c:choose>

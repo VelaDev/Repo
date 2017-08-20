@@ -827,6 +827,7 @@ public class TicketsDao implements TicketsDaoInt {
 
 	@Override
 	public String performTicketAction(TicketsBean ticketsBean) {
+		order = new OrderHeader();
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 
@@ -953,7 +954,36 @@ public class TicketsDao implements TicketsDaoInt {
 							}
 						}
 					}
+					
+					else if (action.equalsIgnoreCase("awaitingspares")) {
+						List<Tickets> ticketList = getAllLoggedTickets();
+						for (Tickets ticket : ticketList) {
+							if (ticketNumber != null
+									&& ticketNumber.length() >= 2) {
+								if (ticket.getTicketNumber().equalsIgnoreCase(
+										ticketNumber)) {
+									
+									order = ordersDaoInt.getOrder(ticketsBean.getOrderNum());
+									ticket.setStatus("Awaiting Spares");
+									retMessage = "Ticket " + ticket.getTicketNumber()
+											+ " awaiting for order no " + order.getOrderNum()
+											+ ".";
+									if (order != null) {
+										ticket.setOrderHeader(order);
+									}
+									
+									sessionFactory.getCurrentSession().update(
+											ticket);
 
+									ticket.setComments("Ticket Awaiting Spares");
+									historyDaoInt.insertTicketHistory(ticket);
+
+								}
+							}
+						}
+					}
+
+					
 					else if (action.equalsIgnoreCase("Resolve")) {
 						List<Tickets> ticketList = getAllLoggedTickets();
 						for (Tickets ticket : ticketList) {

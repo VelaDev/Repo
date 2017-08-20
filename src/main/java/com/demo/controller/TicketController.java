@@ -303,8 +303,17 @@ public class TicketController {
 				}
 
 			else if (userName.getRole().equalsIgnoreCase("Technician")) {
-				model.addObject("techUpdateTicket", techUpdateTicket);
+
+				retMessage = ticketsServiceInt.performTicketAction(updateTicket);
+				if (retMessage.startsWith("K")) {
+					String message = retMessage;
+					model.addObject("retMessage", retMessage);
+				} else {
+					model.addObject("retMessage", retMessage);
+							
+				model.addObject("performTicketAction", performTicketAction);
 				model.setViewName("confirmation");
+			}
 			}
 
 		} else {

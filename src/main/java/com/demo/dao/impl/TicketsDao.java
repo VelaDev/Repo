@@ -835,13 +835,13 @@ public class TicketsDao implements TicketsDaoInt {
 			if (ticketsBean != null) {
 
 				String action = ticketsBean.getTicketAction();
-				if (ticketsBean.getTechnicianUserName() != null && ticketsBean.getTechnicianUserName().length() > 2)
-				{
+				if (ticketsBean.getTechnicianUserName() != null
+						&& ticketsBean.getTechnicianUserName().length() > 2) {
 					technician = employeeDaoInt.getEmployeeByEmpNum(ticketsBean
 							.getTechnicianUserName());
-				}				
+				}
 				ticketNumber = ticketsBean.getTicketNumber();
-				
+
 				if (action != null && action.length() >= 2) {
 					if (action.equalsIgnoreCase("Reassign")) {
 						List<Tickets> ticketList = getAllLoggedTickets();
@@ -855,16 +855,22 @@ public class TicketsDao implements TicketsDaoInt {
 												.getFirstName()
 												+ " "
 												+ technician.getLastName();
-										String currentTechnicianName = ticket.getEmployee().getFirstName() + " " + 
-												ticket.getEmployee().getLastName(); 
+										String currentTechnicianName = ticket
+												.getEmployee().getFirstName()
+												+ " "
+												+ ticket.getEmployee()
+														.getLastName();
 										ticket.setEmployee(technician);
 										sessionFactory.getCurrentSession()
-										.update(ticket);
-										
-										ticket.setComments("Ticket re-assigned from" + " " + currentTechnicianName + " to " 
-										+ technicianName);
-										historyDaoInt.insertTicketHistory(ticket);
-										
+												.update(ticket);
+
+										ticket.setComments("Ticket re-assigned from"
+												+ " "
+												+ currentTechnicianName
+												+ " to " + technicianName);
+										historyDaoInt
+												.insertTicketHistory(ticket);
+
 										retMessage = "Ticket " + ticketNumber
 												+ " re-assigned to "
 												+ technicianName;
@@ -885,15 +891,13 @@ public class TicketsDao implements TicketsDaoInt {
 									ticket.setDateTime(dateFormat.format(date));
 									sessionFactory.getCurrentSession().update(
 											ticket);
-									
+
 									ticket.setComments("Ticket Re-opened");
-											historyDaoInt.insertTicketHistory(ticket);
-											
+									historyDaoInt.insertTicketHistory(ticket);
+
 									// ticketHistoryDaoInt.insertTicketHistory(tick);
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully re-opened";
-									
-
 
 								}
 							}
@@ -912,12 +916,15 @@ public class TicketsDao implements TicketsDaoInt {
 											ticket);
 									// ticketHistoryDaoInt.insertTicketHistory(tick);
 
-									ticket.setComments("Ticket Acknowledged by " + ticket.getFirstName() + " " + ticket.getLastName());
-											historyDaoInt.insertTicketHistory(ticket);
-											
+									ticket.setComments("Ticket Acknowledged by "
+											+ ticket.getFirstName()
+											+ " "
+											+ ticket.getLastName());
+									historyDaoInt.insertTicketHistory(ticket);
+
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully Acknowledged";
-									
+
 								}
 							}
 						}
@@ -933,11 +940,12 @@ public class TicketsDao implements TicketsDaoInt {
 									ticket.setStatus("Taken");
 									sessionFactory.getCurrentSession().update(
 											ticket);
-									
-									ticket.setComments("Ticket Take by " + ticket.getFirstName() + " " + ticket.getLastName());
+
+									ticket.setComments("Ticket Take by "
+											+ ticket.getFirstName() + " "
+											+ ticket.getLastName());
 									historyDaoInt.insertTicketHistory(ticket);
-									
-									
+
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully Taken";
 
@@ -946,7 +954,61 @@ public class TicketsDao implements TicketsDaoInt {
 						}
 					}
 
-					else if (action.equalsIgnoreCase("escalate")) {
+					else if (action.equalsIgnoreCase("Resolve")) {
+						List<Tickets> ticketList = getAllLoggedTickets();
+						for (Tickets ticket : ticketList) {
+							if (ticketNumber != null
+									&& ticketNumber.length() >= 2) {
+								if (ticket.getTicketNumber().equalsIgnoreCase(
+										ticketNumber)) {
+									
+									ticket.setStatus("Resolved");
+									ticket.setUsedPartNumbers(ticketsBean.getUsedPartNumbers());
+									ticket.setDateResolved(dateFormat.format(date));
+									ticket.setComments(ticketsBean.getComments());
+									device = deviceDaoInt.getDeviceBySerialNumbuer(ticket
+											.getDevice().getSerialNumber());
+									device.setMonoReading(ticketsBean.getMonoReading());
+									device.setColourReading(ticketsBean.getColourReading());
+
+									if (ticketsBean.getUsedPartNumbers() != null) {
+										if (ticket.getUsedPartNumbers().length() > 4) {
+											ticket.setActionTaken(ticketsBean.getActionTaken());
+											retMessage = subractUsedSpares(
+													ticketsBean.getUsedPartNumbers(), ticket
+															.getDevice().getCustomerDevice()
+															.getCustomerName(),
+															ticketsBean.getGroupboot());
+
+											if (retMessage.equalsIgnoreCase("OK")) {
+												sessionFactory.getCurrentSession().update(
+														device);
+												sessionFactory.getCurrentSession()
+														.saveOrUpdate(ticket);
+												historyDaoInt.insertTicketHistory(ticket);
+
+												retMessage = "Ticket "
+														+ ticket.getTicketNumber()
+														+ " successfully resolved.";
+											}
+										}
+
+									} else {
+
+										ticket.setActionTaken(ticketsBean.getActionTaken());
+										sessionFactory.getCurrentSession().update(device);
+										sessionFactory.getCurrentSession().saveOrUpdate(ticket);
+
+										historyDaoInt.insertTicketHistory(ticket);
+										retMessage = "Ticket " + ticket.getTicketNumber()
+												+ " successfully resolved.";
+									}
+								}
+							}
+						}
+						
+
+					} else if (action.equalsIgnoreCase("escalate")) {
 						List<Tickets> ticketList = getAllLoggedTickets();
 						for (Tickets ticket : ticketList) {
 							if (ticketNumber != null
@@ -954,18 +1016,18 @@ public class TicketsDao implements TicketsDaoInt {
 								if (ticket.getTicketNumber().equalsIgnoreCase(
 										ticketNumber)) {
 									ticket.setStatus("Escalated");
-									ticket.setEscalateReason(ticketsBean.getEscalateReason());
-									ticket.setEscalatedTo(ticketsBean.getEscalatedTo());
+									ticket.setEscalateReason(ticketsBean
+											.getEscalateReason());
+									ticket.setEscalatedTo(ticketsBean
+											.getEscalatedTo());
 									sessionFactory.getCurrentSession().update(
 											ticket);
-									
 
 									ticket.setComments("Ticket Escalated");
 									historyDaoInt.insertTicketHistory(ticket);
-									
+
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully Escalated to";
-											
 
 								}
 							}

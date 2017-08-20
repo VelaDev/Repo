@@ -103,28 +103,7 @@
 								</ul></li>
 						</ul>
 					</li>
-				<%--
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Spare Parts<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href='<c:url value="receiveParts.html"/>'>Receive
-									Spares</a></li>
-							<li class="dropdown dropdown-submenu"><a href="#"
-								class="dropdown-toggle" data-toggle="dropdown">Available
-									Spares</a>
-								<ul class="dropdown-menu">
-									<li><a href='<c:url value="availableSpareParts.html"/>'>Head
-											Office</a></li>
-									<li><a href='<c:url value="bootSite.html"/>'>Boot Stock</a></li>
-									<li><a href='<c:url value="stockSite.html"/>'>Site Stock</a></li>
-									
-
-								</ul></li>
-						</ul>
-					</li>
-					**/
-					 --%>
+				
 					
 					<li>
 					    <a href='<c:url value="sparemanagement.html"/>' role="button" aria-haspopup="true"
@@ -146,51 +125,6 @@
 								aria-expanded="false">Leave Management</a>
 					</li>
 					
-					<%-- <li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" role="button" aria-haspopup="true"
-						aria-expanded="false">Orders<span class="caret"></span></a>
-						<ul class="dropdown-menu">
-							<li><a href='<c:url value="placeOrderForTechnician.html"/>'>Place
-									Order</a></li>
-							<li><a href='<c:url value="viewAllOrders.html"/>'>View
-									Orders</a></li> --%><%-- 
-							<li><a href='<c:url value="pendingOrders.html"/>'>Pending
-									Orders</a></li>
-							<li><a href='<c:url value="approvedOrders.html"/>'>Approved
-									Orders</a></li>
-							<li><a href='<c:url value="shippedOrders.html"/>'>Shipped
-									Orders</a></li>
-							<li><a href='<c:url value="orderHistory.html"/>'>Order History</a></li>
-						</ul>
-					</li> --%>
-					<%--	
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Tickets<span class="caret"></span></a>
-							<ul class="dropdown-menu">							
-								<li><a href='<c:url value="logTicket.html"/>'>Log Ticket</a></li>
-							</ul>
-					</li> 
-						
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
-							data-toggle="dropdown" role="button" aria-haspopup="true"
-							aria-expanded="false">Leave<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href='<c:url value="requestLeave.html"/>'>Request Leave</a></li>
-								
-								<li><a href='<c:url value="viewRequestedLeave.html"/>'>View Requested Leave</a></li>
-							</ul>
-					</li>					
-					<li>
-					    <a href='<c:url value="pendingOrders.html"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Order Inbox <span class="ourbadge" class="btn-btn-danger">${inboxCount}</span></a>
-					</li>
-				
-					<li>
-					    <a href='<c:url value="escalatedTickes.html"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Escalated Tickets Inbox <span class="ourbadge" class="btn-btn-danger">${escalatedTickets}</span></a>
-					</li>
-					--%>
 				</ul>
 
 			</div>

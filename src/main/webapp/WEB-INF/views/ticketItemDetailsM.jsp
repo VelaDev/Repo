@@ -43,8 +43,6 @@ table#toOrder thead {
     background-color: #CCCCCC;
     height: 112%;
 }
-
-
 </style>
 </head>
 <body>
@@ -351,7 +349,7 @@ table#toOrder thead {
 																	<td>Ticket Re-assigned</td>
 																</c:when>
 																<c:when test="${history.status =='Acknowledged'}">
-																	<td><c:out value="${history.actionTaken}" />Tickets Acknowledged</td>
+																	<td><c:out value="${history.actionTaken}" />Ticket Acknowledged</td>
 																</c:when>
 																<c:when test="${history.status =='Taken'}">
 																	<td>Ticket Taken</td>

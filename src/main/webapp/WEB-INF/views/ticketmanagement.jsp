@@ -359,8 +359,8 @@ input#selectDateRange {
 												<tr>
 													<th>Ticket Number</th>
 													<th>Ticket Date</th>
-													<th>Description</th>
 													<th>Status</th>
+													<th>Description</th>													
 													<th>Customer</th>
 													<th>Serial Number</th>
 													<th>Model</th>
@@ -373,8 +373,8 @@ input#selectDateRange {
 													<tr>
 														<td><a href="ticketItemDetailsM?recordID=<c:out value='${list.recordID}'/>">${list.ticketNumber}</a></td>
 														<td>${list.dateTime}</td>
-														<td>${list.description}</td>
 														<td>${list.status}</td>
+														<td>${list.description}</td>														
 														<td>${list.device.customerDevice.customerName}</td>
 														<td>${list.device.serialNumber}</td>
 														<td>${list.device.modelNumber}</td>

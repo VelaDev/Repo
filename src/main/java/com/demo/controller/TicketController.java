@@ -1532,12 +1532,6 @@ public class TicketController {
 			ticket = logTicketService.getLoggedTicketByTicketNumber(recordID);
 
 			model.addObject("ticketObject", ticket);
-
-			OrderHeader ord = ordersServiceInt.getOrder(recordID);
-			Employee appoer = employeeServiceInt.getEmployeeByEmpNumber(ord
-					.getApprover());
-			String approverName = appoer.getFirstName() + " "
-					+ appoer.getLastName();
 			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
 			model.addObject("status",
 					historyInt.getAllOrderHistoryByOrderNumber(recordID));
@@ -1589,8 +1583,7 @@ public class TicketController {
 					siteStock.getOrdersForCustomer(ticket.getDevice()
 							.getCustomerDevice().getCustomerName(), recordID));
 
-			model.addObject("approver", approverName);
-
+			
 			if (userName.getRole().equalsIgnoreCase("Technician")) {
 
 				model.setViewName("ticketItemDetailsT");

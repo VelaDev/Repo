@@ -96,10 +96,13 @@ a.confirmtions {
 				 	    
 				 	    <!-- performTicketAciton -->
 				 	    <c:choose>
-				 	    	<c:when test="${performTicketAction == 'performTicketAction'}">
-				 	    		<c:out value="${retMessage}"> Click<a href="techticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.</c:out>
-				 	    	</c:when>
+				 	    
+				 	    	 <c:when test="${performTicketAction =='performTicketAction' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	          or Click<a href="techticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
+					 	    </c:when>
 				 	    </c:choose>
+				 	    
 				 	    </div>
 				 	</c:if><!-- Successful message -->
 				 	

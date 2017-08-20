@@ -543,23 +543,6 @@ table#toOrder thead {
 														</div>
 													</div>
 													
-												<!-- display Comments-->
-												
-													<div class="form-group">
-														<label class="col-md-3 control-label">Comment</label>
-														<div class="col-md-6 inputGroupContainer">
-															<div class="input-group">
-																<span class="input-group-addon"><i
-																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" maxlength="150"
-																	 onkeydown="upperCaseF(this)" style="margin: 0px; height: 129px; width: 536px;" placeholder="Please enter comment"
-																	></textarea>
-															</div>
-														</div>
-													</div>
-													
-												<!--// display Comments-->
-
 											<div class="form-group row">
 												<div class="col-sm col-sm-8"
 													style="margin-left: 26%; width: 48%;">

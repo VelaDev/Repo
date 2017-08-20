@@ -198,9 +198,10 @@ a.confirmtions {
 				 	    </c:choose>
 				 	    <!-- performTicketAction -->
 				 	    <c:choose>
-				 	    	<c:when test="${performTicketAction == 'performTicketAction'}">
-				 	    		<c:out value="${retMessage}"> Click<a href="ticketmanagement.html" class="confirmtions"><b> here</b></a> to go to order management.</c:out>
-				 	    	</c:when>
+				 	    	<c:when test="${performTicketAction =='performTicketAction' }">
+					 	       <c:out value="${retMessage}"></c:out> 
+					 	          or Click<a href="ticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
+					 	    </c:when>
 				 	    </c:choose>
 				 	    
 				 	    </div>

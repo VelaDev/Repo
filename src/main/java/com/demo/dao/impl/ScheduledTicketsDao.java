@@ -69,7 +69,7 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	           
 	              long hour = TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
 
-				if(hour >=1 && hour< 4){
+				if((hour >=1 && hour< 4) &&( openTicket.getStatus().equalsIgnoreCase("Open")||openTicket.getStatus().equalsIgnoreCase("Re-Open")||openTicket.getStatus().equalsIgnoreCase("Taken")||openTicket.getStatus().equalsIgnoreCase("Acknowledged"))){
 					
 					openTicket.setComments("System update");
 					openTicket.setOneHourFlag(true);
@@ -85,6 +85,10 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 					historyDaoInt.insertTicketHistory(openTicket);
 					/*JavaMail.fourHourReminder(openTicket,mails
 							);*/
+				}else if(hour>=8 && openTicket.getStatus().equalsIgnoreCase("Escalated")){
+					
+				}else if(hour>=24 && openTicket.getStatus().equalsIgnoreCase("Awaiting Spares")){
+					
 				}
 			}
 		} catch (Exception e) {
@@ -96,9 +100,9 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 		try{
 			ticketList = getAllLoggedTickets();
 			for(Tickets ticket:ticketList){
-				if((ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Re-Open")&& ticket.isOneHourFlag()==false)){
+				if((ticket.getStatus().equalsIgnoreCase("SLA Bridged")||ticket.getStatus().equalsIgnoreCase("Escalated")||ticket.getStatus().equalsIgnoreCase("Awaiting Spares")||ticket.getStatus().equalsIgnoreCase("Taken")||ticket.getStatus().equalsIgnoreCase("Acknowledged")||ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Re-Open")&& ticket.isOneHourFlag()==false)){
 					aList.add(ticket);
-				}else if((ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Re-Open")&& ticket.isOneHourFlag()==true && ticket.isFourHourFlag()==false)){
+				}else if((ticket.getStatus().equalsIgnoreCase("SLA Bridged")||ticket.getStatus().equalsIgnoreCase("Escalated")||ticket.getStatus().equalsIgnoreCase("Awaiting Spares")||ticket.getStatus().equalsIgnoreCase("Taken")||ticket.getStatus().equalsIgnoreCase("Acknowledged")||ticket.getStatus().equalsIgnoreCase("Open")|| ticket.getStatus().equalsIgnoreCase("Re-Open")&& ticket.isOneHourFlag()==true && ticket.isFourHourFlag()==false)){
 					aList.add(ticket);
 				}
 			}

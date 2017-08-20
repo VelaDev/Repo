@@ -7,7 +7,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +16,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -2039,9 +2037,10 @@ public class TicketsDao implements TicketsDaoInt {
 				for (int i = 0; i < spare.size(); i++) {
 					SiteStock siteStock = siteStockDaoInt.getSiteStock(
 							spare.get(i), customerName);
-					if (siteStock != null) {
-						tempCount = siteStock.getQuantity() - 1;
-						if (tempCount > 0) {
+					if (siteStock != null && siteStock.getQuantity()>0) {
+						
+						if (siteStock.getQuantity()>0) {
+							tempCount = siteStock.getQuantity() - 1;
 							siteStock.setQuantity(tempCount);
 							sessionFactory.getCurrentSession()
 									.update(siteStock);
@@ -2061,9 +2060,10 @@ public class TicketsDao implements TicketsDaoInt {
 							spare.get(i),
 							technician.getFirstName() + " "
 									+ technician.getLastName());
-					if (boot != null) {
-						tempCount = boot.getQuantity() - 1;
-						if (tempCount > 0) {
+					if (boot != null && boot.getQuantity()>0) {
+						
+						if (boot.getQuantity()> 0) {
+							tempCount = boot.getQuantity() - 1;
 							boot.setQuantity(tempCount);
 							bootStockDaoIn.updateBootStock(boot);
 							retMessage = "OK";

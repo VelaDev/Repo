@@ -40,7 +40,7 @@ public class TicketsBean {
 	private String monoReading;
 	private String actionTaken;
 	private String ticketAction;
-	private String reasonBridge;
+	private String bridgedReason;
 	private int recordID;
 	private String firstName;
 	private String lastName;

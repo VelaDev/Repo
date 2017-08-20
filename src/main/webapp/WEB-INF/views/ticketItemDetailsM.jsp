@@ -1283,7 +1283,7 @@ table#toOrder thead {
 																<div class="input-group">
 																	<span class="input-group-addon"><i
 																		class="glyphicon glyphicon-edit"></i></span>
-																	<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																	<textarea class="form-control" style="height: 120px;" id="bridgedReason" name="bridgedReason" maxlength="150"
 																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
 																		></textarea>
 																</div>

@@ -85,6 +85,8 @@ public class Tickets implements Serializable{
 	private String contactCellNumber;
 	@Column(name="ContactTelephoneNumber")
 	private String contactTelephoneNumber;
+	@Column(name="BridgedReason")
+	private String bridgedReason;
 	
 	
 	

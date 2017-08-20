@@ -42,6 +42,8 @@ public class TicketHistory implements Serializable{
 	private int ticketNo;
 	@Column(name="EscalatedResoan")
 	private String escalatedReason;
+	@Column(name="BridgedResoan")
+	private String bridgedReason;
 	@Column(name="EscalatedDate")
 	private String escalatedDate;
 	@Column(name="Solution")

@@ -30,16 +30,21 @@
     margin-left: -15px;
 }
 
-.disableLinks {
-	pointer-events: none;
-	cursor: default;
+.displayNone, .tTakeTicket {
+    display:none;
 }
-
+.showDIV { display:block; } 
 table#orderDetails {
 	margin-left: 14%;
 	/* margin-right: -9%; */
 	width: 73%;
 }
+table#toOrder thead {
+    background-color: #CCCCCC;
+    height: 112%;
+}
+
+
 </style>
 </head>
 <body>
@@ -845,26 +850,6 @@ table#orderDetails {
 											<input type="hidden" id="ticketAction" name="ticketAction"
 												class="form-control selectpicker" value="Resolve">	
 
-
-											<!-- Text input Ticket Number-->
-											<div class="form-group">
-												<label class="col-md-3 control-label">Ticket Number</label>
-												<div class="col-md-6 inputGroupContainer">
-													<div class="input-group">
-														<span class="input-group-addon"><i
-															class="glyphicon glyphicon-barcode"></i></span> <input
-															name="ticketNumber" id="ticketNumber"
-															class="form-control" type="text"
-															value="${ticketObject.ticketNumber}" readonly>
-													</div>
-												</div>
-											</div>
-											
-											
-											<!-- Action Action -->
-											<input type="hidden" id="ticketAction" name="ticketAction"
-												class="form-control selectpicker" value="Resolve">												
-												
 											<!-- Text input Ticket Number-->
 											<div class="form-group">
 												<label class="col-md-3 control-label">Ticket Number</label>
@@ -1111,7 +1096,7 @@ table#orderDetails {
 
 									<div class="panel-body">
 
-										<!-- mTicketTakenResolve Details -->
+										<!-- tTicketTakenResolve Details -->
 										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="updateResolved"
 											class="well form-horizontal">
@@ -1135,6 +1120,7 @@ table#orderDetails {
 													</div>
 												</div>
 											</div>
+											
 											
 											<!-- Text area Action Taken-->
 											<div class="form-group">
@@ -1306,11 +1292,27 @@ table#orderDetails {
 																<input id="usedPartNumbers" name="usedPartNumbers"
 																	 class="form-control" readonly="readonly"
 																	style="height: 60px; font-size: 11px;">
-													
 															</div>
 														</div>
 													</div>
 													<!--// display ticked Used Part Numbers-->
+                                                    
+                                                    <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Bridged Reason</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->	
+                                                    
                                                     
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
@@ -1332,6 +1334,22 @@ table#orderDetails {
 														</div>
 													</div><!--// text area comments-->	
 													
+													 <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Bridged Reason</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		></textarea>
+																</div>
+															</div>
+														</div>												
+													</div><!-- //End display Bridged-->													
+												
 												</div><!-- //hideComent -->												
 												
 												</div>
@@ -1345,17 +1363,16 @@ table#orderDetails {
 														style="margin-left: 26%; width: 48%;">
 														<input type="submit" name=resolve value="Resolve Ticket"
 															class="btn btn-primary btn-block btn-lg" tabindex="9"
-															id=2>
+															id="resolve">
 													</div>
 												</div>
 
 											</div>
 											<!-- //actionTakenSubmit -->
 											
-											
 					                   </form:form>
 					                   
-					                   </div>					                   
+					                   </div>				                   
 					              </div>
 							 </c:when>						
 						</c:choose>
@@ -1411,30 +1428,27 @@ table#orderDetails {
 												</div>
 											</div>
 
-											<c:if test="${empty ticketObject.actionTaken}">
-											</c:if>
-											<c:if test="${not empty ticketObject.actionTaken}">
-
-												<!-- Text area Action Taken-->
-												<div class="actionTaken">
-													<div class="form-group">
-														<label class="col-md-3 control-label">Action Taken</label>
+											<!-- Text area Action Taken-->
+											<div class="actionTaken">
+												<div class="form-group">
+												  <label class="col-md-3 control-label">Action Taken</label>
 														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-barcode"></i></span> <input
 																	id="actionTaken" class="form-control" type="text"
-																	name="actionTaken" value="${ticketObject.actionTaken }"
+																	name="actionTaken" value="${ticketObject.actionTaken}"
 																	readonly="readonly">
-															</div>
 														</div>
 													</div>
 												</div>
-											</c:if>
+											</div>
+										
 
-											<c:if test="${empty ticketObject.comments}">
+											<%-- <c:if test="${empty ticketObject.comments}">
 											</c:if>
 											<c:if test="${not empty ticketObject.comments}">
+											</c:if> --%>
 												<!-- Text area Comment-->
 												<div class="form-group">
 													<label class="col-md-3 control-label">Comments</label>
@@ -1447,7 +1461,7 @@ table#orderDetails {
 														</div>
 													</div>
 												</div>
-											</c:if>
+											
 
 											<c:if test="${empty ticketObject.usedPartNumbers}">
 											</c:if>
@@ -1471,6 +1485,7 @@ table#orderDetails {
 													</div>
 												</div>
 											</c:if>
+											
 											<c:if
 												test="${empty $ticketObject.getDevice().getColourReading()}">
 											</c:if>
@@ -1734,19 +1749,21 @@ table#orderDetails {
 	<!--/panel success class-->
 
 </body>
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
-<script type="text/javascript"
-	src="<c:url value="/resources/datatables/1.10.13/js/jquery.dataTables.min.js" />"></script>
 
-<script type="text/javascript"
-	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/jquery/1.13.1/jquery.validate.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrapValidator-0.5.3/js/bootstrapValidator.min.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/resources/bootstrap-3.3.7/js/bootstrap.min.js"/>"></script>
+
+<!-- Datatables -->
+<script type="text/javascript" src="<c:url value="/resources/datatables/datatables.min.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/jquery-ui.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.buttons.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.jqueryui.js" />"></script>
+<script type="text/javascript" src="<c:url value="/resources/datatables/1.10.13/js/dataTables.select.js" />"></script>
+<!-- //Datatables -->
+
+<script type="text/javascript" src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
 <!-- Set active to selected tab -->
 <script type="text/javascript">

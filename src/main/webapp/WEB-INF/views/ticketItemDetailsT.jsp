@@ -1640,7 +1640,8 @@ table#toOrder thead {
 											
 					                   </form:form>
 					                   
-					                   </div>					                   
+					                   </div>	
+					                   				                   
 					               </div>
 							 </c:when>						
 						</c:choose>
@@ -1675,19 +1676,19 @@ table#toOrder thead {
 										</div>
 	
 										<!-- Text area Action Taken-->
-											<div class="actionTaken">
-												<div class="form-group">
+										<div class="actionTaken">
+											<div class="form-group">
 													<label class="col-md-3 control-label">Action Taken</label>
-													<div class="col-md-6 inputGroupContainer">
-														<div class="input-group">
+												<div class="col-md-6 inputGroupContainer">
+													<div class="input-group">
 															<span class="input-group-addon"><i
 																class="glyphicon glyphicon-barcode"></i></span> <input id="actionTaken"
 																class="form-control" type="text" name="actionTaken"
-																value="${ticketObject.actionTaken }" readonly="readonly">
-														</div>
+																value="${ticketObject.actionTaken}" readonly="readonly">
 													</div>
 												</div>
 											</div>
+										</div>
 										
 									<c:if test="${empty ticketObject.comments}">
 									</c:if>
@@ -1705,6 +1706,25 @@ table#toOrder thead {
 													</div>
 											</div>
 									</c:if>
+									<%-- <c:if test="${empty ticketObject.reasonBridge}">
+									</c:if>
+									<c:if test="${not empty ticketObject.reasonBridge}">
+									 <!-- display Bridged-->	
+													<div class="reseanBridged" id="reseanBridged">
+														<div class="form-group">
+															<label class="col-md-3 control-label">Bridged Reason</label>
+															<div class="col-md-6 inputGroupContainer">
+																<div class="input-group">
+																	<span class="input-group-addon"><i
+																		class="glyphicon glyphicon-edit"></i></span>
+																	<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																		 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																		>${ticketObject.reasonBridge}</textarea>
+																</div>
+															</div>
+														</div>												
+									  </div><!-- //End display Bridged-->		
+									</c:if> --%>
 									
 									<c:if test="${empty ticketObject.usedPartNumbers}">
 									</c:if>
@@ -1725,6 +1745,7 @@ table#toOrder thead {
 											</div>
 										</div>
 									</c:if>	
+									
 										<!-- Text checkbox Colour Reading-->
 										<div class="form-group">
 											<label class="col-md-3 control-label">Colour Reading</label>
@@ -1846,6 +1867,27 @@ table#toOrder thead {
 														</div>
 												</div>
 										</c:if>
+										
+										<%-- <c:if test="${empty ticketObject.reasonBridge}">
+										</c:if>
+										<c:if test="${not empty ticketObject.reasonBridge}">
+										 <!-- display Bridged-->	
+														<div class="reseanBridged" id="reseanBridged">
+															<div class="form-group">
+																<label class="col-md-3 control-label">Bridged Reason</label>
+																<div class="col-md-6 inputGroupContainer">
+																	<div class="input-group">
+																		<span class="input-group-addon"><i
+																			class="glyphicon glyphicon-edit"></i></span>
+																		<textarea class="form-control" style="height: 120px;" id="reasonBridge" name="reasonBridge" maxlength="150"
+																			 onkeydown="upperCaseF(this)" placeholder="Please enter reason why ticket Bridged"
+																			>${ticketObject.reasonBridge}</textarea>
+																	</div>
+																</div>
+															</div>												
+										  </div><!-- //End display Bridged-->		
+										</c:if> --%>
+									
 										
 										<c:if test="${empty ticketObject.usedPartNumbers}">
 										</c:if>

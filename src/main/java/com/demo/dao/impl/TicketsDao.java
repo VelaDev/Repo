@@ -978,8 +978,6 @@ public class TicketsDao implements TicketsDaoInt {
 							}
 						}
 					}
-
-					
 					else if (action.equalsIgnoreCase("Resolve")) {
 						List<Tickets> ticketList = getAllLoggedTickets();
 						for (Tickets ticket : ticketList) {

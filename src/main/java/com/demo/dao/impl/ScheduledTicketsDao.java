@@ -69,7 +69,7 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	           
 	              long hour = TimeUnit.HOURS.convert(diff, TimeUnit.MILLISECONDS);
 
-				if((hour >=1 && hour< 4) &&( openTicket.getStatus().equalsIgnoreCase("Open")||openTicket.getStatus().equalsIgnoreCase("Re-Open")||openTicket.getStatus().equalsIgnoreCase("Taken")||openTicket.getStatus().equalsIgnoreCase("Acknowledged"))){
+				if(hour >=1 && hour< 4){
 					
 					openTicket.setComments("System update");
 					openTicket.setOneHourFlag(true);
@@ -77,7 +77,7 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 					/*JavaMail.oneHourReminder(openTicket,
 							mails);*/
 					
-				} else if (hour>=4) {
+				} else if (hour>=4 && !openTicket.getStatus().equalsIgnoreCase("SLA Bridged")) {
 					openTicket.setStatus("SLA Bridged");
 					openTicket.setFourHourFlag(true);
 					openTicket.setComments("System update");
@@ -85,10 +85,6 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 					historyDaoInt.insertTicketHistory(openTicket);
 					/*JavaMail.fourHourReminder(openTicket,mails
 							);*/
-				}else if(hour>=8 && openTicket.getStatus().equalsIgnoreCase("Escalated")){
-					
-				}else if(hour>=24 && openTicket.getStatus().equalsIgnoreCase("Awaiting Spares")){
-					
 				}
 			}
 		} catch (Exception e) {

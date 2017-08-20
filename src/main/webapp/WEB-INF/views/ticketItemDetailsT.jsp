@@ -681,7 +681,7 @@ table#toOrder thead {
 										<form:form action="performTicketAction" modelAttribute="performTicketAction"
 											method="post" id="ticketTakenResolve"
 											class="well form-horizontal">
-
+																						
 											<legend style="font-size: 15px; line-height: 1.42857143;"
 												align="center">
 												<b>Resolve</b>
@@ -878,7 +878,8 @@ table#toOrder thead {
 														</div>
 													</div>
 													<!--// display ticked Used Part Numbers-->
-                                                    
+                                                   
+                                                   
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
 
@@ -898,6 +899,8 @@ table#toOrder thead {
 															</div>
 														</div>
 													</div><!--// text area comments-->	
+													
+																									
 												
 												</div><!-- //hideComent -->												
 												
@@ -1269,8 +1272,6 @@ table#toOrder thead {
 					            </div>
 					           </c:when>
 						</c:choose><!--tTicketAwaitingSparesResolve -->
-						
-						
 						
 						<c:choose>
 							<c:when test="${ticketObject.status =='SLA Bridged'}">							

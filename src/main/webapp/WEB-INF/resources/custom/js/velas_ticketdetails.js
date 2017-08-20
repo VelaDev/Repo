@@ -354,19 +354,6 @@ function Faulty(val) {
 	console
 			.log('Other Action Taken, beside Replace Part or Toner:  Add Comment on Solution Modal ticket, is resolved remove comment');
 	
-	var element = document.getElementById('reseanBridged');
-	if (val == 'pick a Any action taken' || val == 'Cleared Paper Jam'
-			|| val == 'Installed Drivers' || val == 'Configured Drivers'
-			|| val == 'Configured Printer' || val == 'User Error'
-			|| val == 'No fault Found' || val == 'Replaced Part/Toner')
-		element.style.display = 'block';
-	else
-		element.style.display = 'none';
-	console
-			.log('Any action taken if ticket is bridged provige a reason why is brigde');
-	
-	
-	
 	var element = document.getElementById('actionTakenSubmit');
 	if (val == 'pick a show submit' || val == 'Cleared Paper Jam'
 			|| val == 'Installed Drivers' || val == 'Configured Drivers'
@@ -375,8 +362,7 @@ function Faulty(val) {
 		element.style.display = 'block';
 	else
 		element.style.display = 'none';
-	console
-			.log('Submit Hidden:  Hide submit buttons if nothing was selected from Acton Taken');
+	console.log('Submit Hidden:  Hide submit buttons if nothing was selected from Acton Taken');
 
 	var element = document.getElementById('hideMonoAndColour');
 	if (val == 'pick a show submit' || val == 'Cleared Paper Jam'

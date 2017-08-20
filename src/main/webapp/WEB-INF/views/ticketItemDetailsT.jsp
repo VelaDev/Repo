@@ -507,7 +507,7 @@ table#toOrder thead {
 											
 											<!-- Action Action -->
 												<input type="hidden" id="ticketAction" name="ticketAction"
-												class="form-control selectpicker" value="Awaiting Spares">												
+												class="form-control selectpicker" value="awaitingspares">												
 												
 												<!-- Text input Ticket Number-->
 													<div class="form-group">

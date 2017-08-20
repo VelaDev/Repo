@@ -923,7 +923,6 @@ table#toOrder thead {
 											<!-- //actionTakenSubmit -->
 											
 					                   </form:form>
-					            	
 					            	</div>
 					            </div>
 					           </c:when>

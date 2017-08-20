@@ -45,5 +45,4 @@ public class VelaphandaProfile implements Serializable{/**
 	private String remitEmail;
 	@Column(name="Company_Province")
 	private String companyProvince;
-
 }

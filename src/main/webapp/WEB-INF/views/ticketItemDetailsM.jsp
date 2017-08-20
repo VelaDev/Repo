@@ -922,7 +922,7 @@ table#toOrder thead {
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Boot Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" name="stockType" required id="checkBootStock" onclick="BootStockChecked()" value="Boot Stock" tittle="You must check Boot Stock or Site Stock to get Used Part Numbers">
+																<input type="radio" name="groupboot" required id="checkBootStock" onclick="BootStockChecked()" value="Boot Stock" tittle="You must check Boot Stock or Site Stock to get Used Part Numbers">
 															</div>
 														</div>														
 														<div class="displayNone" id="bootStockItems" style="margin-left: 25.5%;margin-right: 26%;" >
@@ -963,7 +963,7 @@ table#toOrder thead {
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Site Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" name="stockType" required id="checkSiteStock" onclick="SiteStockChecked()" value="Site Stock" >
+																<input type="radio" name="groupboot" required id="checkSiteStock" onclick="SiteStockChecked()" value="Site Stock" >
 															</div>
 														</div>
 														<div class="displayNone" id="siteStockItems" style="margin-left: 25.5%;margin-right: 26%;">
@@ -1183,7 +1183,7 @@ table#toOrder thead {
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Boot Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" name="stockType" required id="checkBootStock" onclick="BootStockChecked()" value="Boot Stock" tittle="You must check Boot Stock or Site Stock to get Used Part Numbers">
+																<input type="radio" name="groupboot" required id="checkBootStock" onclick="BootStockChecked()" value="Boot Stock" tittle="You must check Boot Stock or Site Stock to get Used Part Numbers">
 															</div>
 														</div>														
 														<div class="displayNone" id="bootStockItems" style="margin-left: 25.5%;margin-right: 26%;" >
@@ -1224,7 +1224,7 @@ table#toOrder thead {
 														<div class="form-group">
 															<label class="col-xs-3 control-label">Site Stock</label>
 															<div class="col-md-6 inputGroupContainer">
-																<input type="radio" name="stockType" required id="checkSiteStock" onclick="SiteStockChecked()" value="Site Stock" >
+																<input type="radio" name="groupboot" required id="checkSiteStock" onclick="SiteStockChecked()" value="Site Stock" >
 															</div>
 														</div>
 														<div class="displayNone" id="siteStockItems" style="margin-left: 25.5%;margin-right: 26%;">

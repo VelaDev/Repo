@@ -2036,7 +2036,7 @@ public class TicketsDao implements TicketsDaoInt {
 			List<String> spare = new ArrayList<String>(Arrays.asList(usedSpares
 					.split(",")));
 
-			if (groupBoot.equalsIgnoreCase("siteType")) {
+			if (groupBoot.equalsIgnoreCase("Site Stock")) {
 				for (int i = 0; i < spare.size(); i++) {
 					SiteStock siteStock = siteStockDaoInt.getSiteStock(
 							spare.get(i), customerName);
@@ -2056,7 +2056,7 @@ public class TicketsDao implements TicketsDaoInt {
 						}
 					}
 				}
-			} else if (groupBoot.equalsIgnoreCase("bootType")) {
+			} else if (groupBoot.equalsIgnoreCase("Boot Stock")) {
 				for (int i = 0; i < spare.size(); i++) {
 					BootStock boot = bootStockDaoIn.getBootStock(
 							spare.get(i),

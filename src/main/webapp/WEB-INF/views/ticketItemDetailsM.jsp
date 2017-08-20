@@ -956,8 +956,7 @@ table#toOrder thead {
 																		</tbody>
 																</table>
 														 </div>
-														 <input type="hidden" class="form-control" id="bootStockType"
-															name="bootStockType" value="Boot Stock">
+														 <input type="hidden" class="form-control" id="bootStockType" name="bootStockType" value="Boot Stock">
 
 														<!-- group Site Stock -->
 														<div class="form-group">
@@ -1217,8 +1216,7 @@ table#toOrder thead {
 																		</tbody>
 																</table>
 														 </div>
-														 <input type="hidden" class="form-control" id="bootStockType"
-															name="bootStockType" value="Boot Stock">
+														 <input type="hidden" class="form-control" id="bootStockType" name="bootStockType" value="Boot Stock">
 
 														<!-- group Site Stock -->
 														<div class="form-group">

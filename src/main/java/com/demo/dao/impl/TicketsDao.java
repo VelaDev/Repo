@@ -896,7 +896,6 @@ public class TicketsDao implements TicketsDaoInt {
 									ticket.setComments("Ticket Re-opened");
 									historyDaoInt.insertTicketHistory(ticket);
 
-									// ticketHistoryDaoInt.insertTicketHistory(tick);
 									retMessage = "Ticket " + ticketNumber
 											+ " successfully re-opened";
 
@@ -915,7 +914,6 @@ public class TicketsDao implements TicketsDaoInt {
 									ticket.setStatus("Acknowledged");
 									sessionFactory.getCurrentSession().update(
 											ticket);
-									// ticketHistoryDaoInt.insertTicketHistory(tick);
 
 									ticket.setComments("Ticket Acknowledged by "
 											+ ticket.getFirstName()
@@ -1056,7 +1054,8 @@ public class TicketsDao implements TicketsDaoInt {
 									historyDaoInt.insertTicketHistory(ticket);
 
 									retMessage = "Ticket " + ticketNumber
-											+ " successfully Escalated to";
+											+ " successfully Escalated to "+ ticketsBean
+											.getEscalatedTo() ;
 
 								}
 							}

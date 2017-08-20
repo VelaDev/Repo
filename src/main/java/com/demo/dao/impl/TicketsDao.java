@@ -971,8 +971,8 @@ public class TicketsDao implements TicketsDaoInt {
 									device.setMonoReading(ticketsBean.getMonoReading());
 									device.setColourReading(ticketsBean.getColourReading());
 
-									if (ticketsBean.getUsedPartNumbers() != null) {
-										if (ticket.getUsedPartNumbers().length() > 4) {
+									if (ticketsBean.getUsedPartNumbers() != null && ticket.getUsedPartNumbers().length() > 4) {
+									
 											ticket.setActionTaken(ticketsBean.getActionTaken());
 											retMessage = subractUsedSpares(
 													ticketsBean.getUsedPartNumbers(), ticket
@@ -991,7 +991,6 @@ public class TicketsDao implements TicketsDaoInt {
 														+ ticket.getTicketNumber()
 														+ " successfully resolved.";
 											}
-										}
 
 									} else {
 

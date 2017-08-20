@@ -534,7 +534,7 @@ table#toOrder thead {
 																	class="form-control selectpicker" >
 																	<option value="">Select Order No</option>
 																	<c:forEach items="${OrderNumber}" var="orders">
-																		<option value="${orders.orderNum}">${orders.orderNum}
+																		<option value="${orders.recordID}">${orders.orderNum}
 																			</option>
 																	</c:forEach>
 

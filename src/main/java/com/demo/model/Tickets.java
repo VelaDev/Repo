@@ -91,15 +91,15 @@ public class Tickets implements Serializable{
 	
 	
 	
-	@ManyToOne(cascade= {CascadeType.DETACH})
+	@ManyToOne
 	@JoinColumn(name="AssignedTechnician")
 	private Employee employee;
 	
-	@ManyToOne(cascade= {CascadeType.DETACH})
+	@ManyToOne
 	@JoinColumn(name="Serial_Number")
 	private Device device;
 	
-	@ManyToOne(cascade= {CascadeType.DETACH})
+	@ManyToOne
 	@JoinColumn(name="Order_Number")
 	private OrderHeader orderHeader;
 	

@@ -914,9 +914,9 @@ public class TicketsDao implements TicketsDaoInt {
 											ticket);
 
 									ticket.setComments("Ticket Acknowledged by "
-											+ ticket.getFirstName()
+											+ technician.getFirstName()
 											+ " "
-											+ ticket.getLastName());
+											+ technician.getLastName());
 									historyDaoInt.insertTicketHistory(ticket);
 
 									retMessage = "Ticket " + ticketNumber
@@ -938,9 +938,9 @@ public class TicketsDao implements TicketsDaoInt {
 									sessionFactory.getCurrentSession().update(
 											ticket);
 
-									ticket.setComments("Ticket Take by "
-											+ ticket.getFirstName() + " "
-											+ ticket.getLastName());
+									ticket.setComments("Ticket Taken by "
+											+ technician.getFirstName() + " "
+											+ technician.getLastName());
 									historyDaoInt.insertTicketHistory(ticket);
 
 									retMessage = "Ticket " + ticketNumber

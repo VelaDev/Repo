@@ -73,7 +73,7 @@ input#selectDateRange {
 	cursor: pointer;
 }
 
-.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(8) ~ li {
+.db-summary li:first-child:nth-last-child(8), .db-summary li:first-child:nth-last-child(8) ~ li {
     width: 11%;
 }
 
@@ -203,14 +203,14 @@ input#selectDateRange {
 								id="ticket-summary" class="nav nav-tabs">
 
 								
-								<li style="margin-left:5%;"><a href='<c:url value="openTickets"/>'
+								<li ><a href='<c:url value="openTickets"/>'
 									class="summery-filter clearfix"
 									data-parallel-url="openTickets"
 									data-parallel-placeholder="#ticket-leftFilter"
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left" 
-										style="margin-left: -158%;margin-right: -8%;">
+										style="margin-left: 35%;">
 											<h4 align="center" style="color:#01960C;">${countOpenTickets}</h4>
 											<p align="center">Open</p>
 										</div>

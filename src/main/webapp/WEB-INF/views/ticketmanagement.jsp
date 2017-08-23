@@ -72,7 +72,7 @@ i.glyphicon.glyphicon-calendar.col-sm-pull-2 {
 input#selectDateRange {
 	cursor: pointer;
 }
-.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(9) ~ li {
+.db-summary li:first-child:nth-last-child(9), .db-summary li:first-child:nth-last-child(9) ~ li {
     width: 11%;
 }
 .input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
@@ -226,7 +226,7 @@ input#selectDateRange {
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left"
-											style="margin-left: -5%;padding-right: 37%;">
+											style="margin-left: 19%;">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Create Ticket</p>

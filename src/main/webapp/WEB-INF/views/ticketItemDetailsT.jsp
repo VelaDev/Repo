@@ -66,8 +66,13 @@ table#toOrder thead {
 					</h3>
 				</div>
 				<div class="panel-body">
+				
+					 <!-- Hidden Mono Reading  -->
+					 <input type="hidden" id="availableMonoReading" name="availableMonoReading" class="form-control selectpicker" value="${ticketObject.getDevice().getMonoReading()}">
+					 <!-- Hidden Colour Reading  -->
+					 <input type="hidden" id="availableColourReading" name="availableColourReading" class="form-control selectpicker" value="${ticketObject.getDevice().getColourReading()}">
 
-					<div id="navbar" class="navbar-collapse collapse"
+					 <div id="navbar" class="navbar-collapse collapse"
 						style="margin-left: -2%">
 						<ul class="nav navbar-nav navbar-left">							
 							
@@ -615,7 +620,7 @@ table#toOrder thead {
 														</div>
 													</div>
 													
-												<!-- display Comments-->
+													<!-- display Comments-->
 												
 													<div class="form-group">
 														<label class="col-md-3 control-label">Comment</label>
@@ -708,6 +713,11 @@ table#toOrder thead {
 																Printer</option>
 															<option value="User Error">User Error</option>
 															<option value="No fault Found">No fault Found</option>
+															<option value="Cleaned Mirrors">Cleaned Mirrors</option>
+															<option value="Cleaned Laser Unit">Cleaned Laser Unit</option>
+															<option value="Cleaned Charge Rollers">Cleaned Charge Rollers</option>
+															<option value="Cleaned ADF Class">Cleaned ADF Class</option>
+															<option value="Cleaned Rollers">Cleaned Rollers</option>
 														</select>
 													</div>
 												</div>
@@ -728,7 +738,7 @@ table#toOrder thead {
 																	type="text" class="form-control"
 																	onkeypress="return isNumber(event)"
 																	placeholder="Enter Colour Reading" id="colourReading"
-																	name="colourReading">
+																	name="colourReading"  onblur="compareColourReading(this, ${ticketObject.device.colourReading})">
 															</div>
 														</div>
 													</div>
@@ -741,7 +751,7 @@ table#toOrder thead {
 																class="glyphicon glyphicon-list"></i></span> <input type="text"
 																class="form-control" onkeypress="return isNumber(event)"
 																id="mono" name="monoReading"
-																placeholder="Enter Mono Reading">
+																placeholder="Enter Mono Reading" onblur="compareMonoReading(this, ${ticketObject.device.monoReading})">
 														</div>
 													</div>
 												</div>
@@ -859,6 +869,20 @@ table#toOrder thead {
 														</div>
 													</div>
 													<!--// display ticked Used Part Numbers-->
+                                                   
+                                                   <!-- Text area comments-->												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comment</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	></textarea>
+															</div>
+														</div>
+													</div><!--// text area comments-->	
                                                    
                                                    
 												</div>
@@ -1049,6 +1073,11 @@ table#toOrder thead {
 																Printer</option>
 															<option value="User Error">User Error</option>
 															<option value="No fault Found">No fault Found</option>
+															<option value="Cleaned Mirrors">Cleaned Mirrors</option>
+															<option value="Cleaned Laser Unit">Cleaned Laser Unit</option>
+															<option value="Cleaned Charge Rollers">Cleaned Charge Rollers</option>
+															<option value="Cleaned ADF Class">Cleaned ADF Class</option>
+															<option value="Cleaned Rollers">Cleaned Rollers</option>
 														</select>
 													</div>
 												</div>
@@ -1069,7 +1098,7 @@ table#toOrder thead {
 																	type="text" class="form-control"
 																	onkeypress="return isNumber(event)"
 																	placeholder="Enter Colour Reading" id="colourReading"
-																	name="colourReading">
+																	name="colourReading"  onblur="compareColourReading(this, ${ticketObject.device.colourReading})">
 															</div>
 														</div>
 													</div>
@@ -1082,7 +1111,7 @@ table#toOrder thead {
 																class="glyphicon glyphicon-list"></i></span> <input type="text"
 																class="form-control" onkeypress="return isNumber(event)"
 																id="mono" name="monoReading"
-																placeholder="Enter Mono Reading">
+																placeholder="Enter Mono Reading" onblur="compareMonoReading(this, ${ticketObject.device.monoReading})">
 														</div>
 													</div>
 												</div>
@@ -1199,6 +1228,20 @@ table#toOrder thead {
 														</div>
 													</div>
 													<!--// display ticked Used Part Numbers-->
+													
+													<!-- Text area comments-->												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comment</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	></textarea>
+															</div>
+														</div>
+													</div><!--// text area comments-->	
                                                     
 												</div>
 												<!-- // end hideIfIsNotPartToner -->
@@ -1395,6 +1438,11 @@ table#toOrder thead {
 																Printer</option>
 															<option value="User Error">User Error</option>
 															<option value="No fault Found">No fault Found</option>
+															<option value="Cleaned Mirrors">Cleaned Mirrors</option>
+															<option value="Cleaned Laser Unit">Cleaned Laser Unit</option>
+															<option value="Cleaned Charge Rollers">Cleaned Charge Rollers</option>
+															<option value="Cleaned ADF Class">Cleaned ADF Class</option>
+															<option value="Cleaned Rollers">Cleaned Rollers</option>
 														</select>
 													</div>
 												</div>
@@ -1415,7 +1463,7 @@ table#toOrder thead {
 																	type="text" class="form-control"
 																	onkeypress="return isNumber(event)"
 																	placeholder="Enter Colour Reading" id="colourReading"
-																	name="colourReading">
+																	name="colourReading"  onblur="compareColourReading(this, ${ticketObject.device.colourReading})">
 															</div>
 														</div>
 													</div>
@@ -1428,7 +1476,7 @@ table#toOrder thead {
 																class="glyphicon glyphicon-list"></i></span> <input type="text"
 																class="form-control" onkeypress="return isNumber(event)"
 																id="mono" name="monoReading"
-																placeholder="Enter Mono Reading">
+																placeholder="Enter Mono Reading" onblur="compareMonoReading(this, ${ticketObject.device.monoReading})">
 														</div>
 													</div>
 												</div>
@@ -1546,6 +1594,20 @@ table#toOrder thead {
 													</div>
 													<!--// display ticked Used Part Numbers-->
                                                     
+                                                    <!-- Text area comments-->												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comment</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	></textarea>
+															</div>
+														</div>
+													</div><!--// text area comments-->	
+                                                    
                                                     <!-- display Bridged-->	
 													<div class="reseanBridged" id="reseanBridged">
 														<div class="form-group">
@@ -1568,6 +1630,20 @@ table#toOrder thead {
 
 												<!-- hideComent-->
 												<div class="hideComent" id="hideComent" style="display: none">
+													
+													<!-- Text area comments-->												
+													<div class="form-group">
+														<label class="col-md-3 control-label">Comment</label>
+														<div class="col-md-6 inputGroupContainer">
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-edit"></i></span>
+																<textarea class="form-control" style="height: 120px;" id="comments" name="comments" maxlength="150"
+																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
+																	></textarea>
+															</div>
+														</div>
+													</div><!--// text area comments-->	
 													
 													 <!-- display Bridged-->	
 													<div class="reseanBridged" id="reseanBridged">
@@ -2130,6 +2206,42 @@ table#toOrder thead {
       
 	}
 	
+	
+	//Compare available mono reading with updated mono reading
+	function compareMonoReading(element, availableMonoReading){				
+			
+		if (availableMonoReading < element.value ){		
+			console.log("True,",element.value + " is more than " + availableMonoReading);
+				}
+		if (element.value == ''){
+			alert("Mono reading can not be empty");
+			console.log(element.value);
+			element.value = null;
+		}		
+		else if(availableMonoReading > element.value) {
+			alert("Entered mono reading "+ element.value +", must be greater than available mono reading "+ availableMonoReading +"");
+			element.value = null;		
+		}
+	}
+	//End Compare available mono reading with updated mono reading
+	
+	//Compare available colour reading with updated colour reading
+	function compareColourReading(element, availableColourReading){				
+			
+		if (availableColourReading < element.value ){		
+			console.log("True,",element.value + " is more than " + availableColourReading);
+		}
+		if (element.value == ''){
+			alert("Colour reading cant not be empty");
+		}
+		else if(availableColourReading > element.value  ) {
+			alert("Entered colour reading "+ element.value +", must be greater than available colour reading "+ availableColourReading +"");
+			element.value = null;		
+		}
+	}
+	//End Compare available colour reading with updated colour reading	
+
+
 	
 </script>
 

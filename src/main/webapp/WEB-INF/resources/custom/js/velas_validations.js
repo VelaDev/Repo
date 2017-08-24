@@ -1184,7 +1184,6 @@ function compareQuantity(element, availableQuantity) {
 //End Compare available quantity with entered quantity	
 
 
-
 /* --Stock type Selection-- */
 function CheckStockType(val){
  var element=document.getElementById('Site');

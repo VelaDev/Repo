@@ -1,29 +1,28 @@
 /**
- * Purpose: Interact with the html pages and create communication between server and client side 
- * Author : Fenya Tlala
- * Company: Velaphanda 
- * Last Date Modified:20-08-2017
+ * Purpose: Interact with the html pages and create communication between server
+ * and client side Author : Fenya Tlala Company: Velaphanda Last Date
+ * Modified:20-08-2017
  */
-/*Data tables on the system*/
+/* Data tables on the system */
 
-//ticket info
+// ticket info
 $(document).ready(function() {
 	$('#ticketInfo').DataTable({
-			"jQueryUI" : true,
-			"pagingType" : "full_numbers",
-			"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
-			"order": [[1 , "desc" ]]
-		/* few more options are available to use */
+		"jQueryUI" : true,
+		"pagingType" : "full_numbers",
+		"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+		"order" : [ [ 1, "desc" ] ]
+	/* few more options are available to use */
 	});
 });
 
-//ticket History 
+// ticket History
 $(document).ready(function() {
 	$('#tckHistory').DataTable({
 		"jQueryUI" : true,
 		"pagingType" : "full_numbers",
 		"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
-		"order": [[1 , "desc" ]]
+		"order" : [ [ 1, "desc" ] ]
 	/* few more options are available to use */
 	});
 });
@@ -90,7 +89,7 @@ $('#status').change(function() {
 	}
 });
 
-//"order Status" Table -->
+// "order Status" Table -->
 $(document).ready(function() {
 	$('#orderSts').DataTable({
 		"jQueryUI" : true,
@@ -110,7 +109,7 @@ $(function() {
 
 });
 
-/* End Data tables on the system*/
+/* End Data tables on the system */
 
 // Take selected used part numbers only -->
 function checkUsedPartNumbers() {
@@ -175,7 +174,22 @@ $(document)
 																		.val() == "User Error"
 																|| $(
 																		"#actionTaken")
-																		.val() == "No fault Found")
+																		.val() == "No fault Found"
+																|| $(
+																		"#actionTaken")
+																		.val() == "Cleaned Mirrors"
+																|| $(
+																		"#actionTaken")
+																		.val() == "Cleaned Laser Unit"
+																|| $(
+																		"#actionTaken")
+																		.val() == "Cleaned Charge Rollers"
+																|| $(
+																		"#actionTaken")
+																		.val() == "Cleaned ADF Class"
+																|| $(
+																		"#actionTaken")
+																		.val() == "Cleaned Rollers")
 
 														{
 															return true;
@@ -192,7 +206,8 @@ $(document)
 											usedPartNumbers : 'Used part numbers is required check boot or site stock for used part numbers',
 											actionTaken : 'Action taken is required and can not be empty',
 											comment : 'Please provide comments on what solution you provided',
-										//technicianUserName : 'Technician is required and can not be empty'
+										// technicianUserName : 'Technician is
+										// required and can not be empty'
 
 										}
 									});
@@ -254,17 +269,17 @@ $(document)
 													}
 												}
 											},
-											bridgedReason:{
-												validators:{
-													notEmpty:{
-														message:'Reason is required and can not be empty'
+											bridgedReason : {
+												validators : {
+													notEmpty : {
+														message : 'Reason is required and can not be empty'
 													}
 												}
 											},
-											usedPartNumbers:{
-												validators:{
-													notEmpty:{
-														message:'Used part numbers is required check boot or site stock for used part numbers'
+											usedPartNumbers : {
+												validators : {
+													notEmpty : {
+														message : 'Used part numbers is required check boot or site stock for used part numbers'
 													}
 												}
 											}
@@ -274,12 +289,12 @@ $(document)
 				});
 
 $(document).on("focusin", "#usedPartNumbers", function() {
-	   $(this).prop('readonly', true);  
-	});
+	$(this).prop('readonly', true);
+});
 
-	$(document).on("focusout", "#usedPartNumbers", function() {
-	   $(this).prop('readonly', false); 
-	});
+$(document).on("focusout", "#usedPartNumbers", function() {
+	$(this).prop('readonly', false);
+});
 
 $(document).ready(function() {
 	$('#updataTckt').bootstrapValidator({
@@ -317,16 +332,20 @@ $("#actionTaken").on(
 					|| $(this).val() == "Configured Drivers"
 					|| $(this).val() == "Configured Printer"
 					|| $(this).val() == "User Error"
-					|| $(this).val() == "No fault Found") {
+					|| $(this).val() == "No fault Found"
+					|| $(this).val() == "Cleaned Mirrors"
+					|| $(this).val() == "Cleaned Laser Unit"
+					|| $(this).val() == "Cleaned Charge Rollers"
+					|| $(this).val() == "Cleaned ADF Class"
+					|| $(this).val() == "Cleaned Rollers") {
 				$('textarea[name="usedPartNumbers"]:enabled').attr('disabled',
 						false);
 				$('#usedPartNumbers').attr('disabled', false);
-				console.log($(this).val());
+				console.log($(this).val(), "see");
 			}
 		});
 
-
-//Select hideComent before -->
+// Select hideComent before -->
 function Faulty(val) {
 
 	var element = document.getElementById('hideUsedPartNumbersHidding');
@@ -347,34 +366,67 @@ function Faulty(val) {
 	if (val == 'pick a fualty options' || val == 'Cleared Paper Jam'
 			|| val == 'Installed Drivers' || val == 'Configured Drivers'
 			|| val == 'Configured Printer' || val == 'User Error'
-			|| val == 'No fault Found')
+			|| val == 'No fault Found' || val == 'Cleaned Mirrors'
+			|| val == 'Cleaned Laser Unit' || val == 'Cleaned Charge Rollers'
+			|| val == 'Cleaned ADF Class' || val == 'Cleaned Rollers')
+
 		element.style.display = 'block';
 	else
 		element.style.display = 'none';
 	console
 			.log('Other Action Taken, beside Replace Part or Toner:  Add Comment on Solution Modal ticket, is resolved remove comment');
-	
+
 	var element = document.getElementById('actionTakenSubmit');
 	if (val == 'pick a show submit' || val == 'Cleared Paper Jam'
 			|| val == 'Installed Drivers' || val == 'Configured Drivers'
 			|| val == 'Configured Printer' || val == 'User Error'
-			|| val == 'No fault Found' || val == 'Replaced Part/Toner')
+			|| val == 'No fault Found' || val == 'Replaced Part/Toner'
+			|| val == 'Cleaned Mirrors' || val == 'Cleaned Laser Unit'
+			|| val == 'Cleaned Charge Rollers' || val == 'Cleaned ADF Class'
+			|| val == 'Cleaned Rollers')
 		element.style.display = 'block';
 	else
 		element.style.display = 'none';
-	console.log('Submit Hidden:  Hide submit buttons if nothing was selected from Acton Taken');
+	console
+			.log('Submit Hidden:  Hide submit buttons if nothing was selected from Action Taken');
 
 	var element = document.getElementById('hideMonoAndColour');
 	if (val == 'pick a show submit' || val == 'Cleared Paper Jam'
 			|| val == 'Installed Drivers' || val == 'Configured Drivers'
 			|| val == 'Configured Printer' || val == 'User Error'
-			|| val == 'No fault Found' || val == 'Replaced Part/Toner')
+			|| val == 'No fault Found' || val == 'Replaced Part/Toner'
+			|| val == 'Cleaned Mirrors' || val == 'Cleaned Laser Unit'
+			|| val == 'Cleaned Charge Rollers' || val == 'Cleaned ADF Class'
+			|| val == 'Cleaned Rollers')
 		element.style.display = 'block';
 	else
 		element.style.display = 'none';
 	console
 			.log('hide Mono And Colour:  Hide Mono and Colour Reading if action ');
 }
+
+function BootStockChecked(){
+	
+	  $("#bootStockItems").removeClass("displayBone");
+	  $("#bootStockItems").addClass("showDIV");
+	
+		//Make sure siteStockItems is not visible
+	  $("#siteStockItems").removeClass("showDIV");
+	  $("#siteStockItems").addClass("displayBone");
+	  
+	}
+
+	function SiteStockChecked(){
+	
+	  $("#siteStockItems").removeClass("displayBone");
+	  $("#siteStockItems").addClass("showDIV");
+	
+	  //Make sure bootStockItems is not visible
+	  $("#bootStockItems").removeClass("showDIV");
+    $("#bootStockItems").addClass("displayBone");
+}
+	
+
 
 // Select Open before showing comment-->
 function CheckStatus(val) {
@@ -402,7 +454,7 @@ function upperCaseF(a) {
 	}, 1);
 }
 
-//hide the all of the element class usedPartNumbersDetails
+// hide the all of the element class usedPartNumbersDetails
 $(".usedPartNumbersDetails").each(function(i) {
 	if ($('input[name$=usedPartNumbers][value=""]', this).length == 1) {
 		$(this).hide();
@@ -413,7 +465,8 @@ $(".usedPartNumbersDetails").each(function(i) {
 	}
 });
 
-//if action taken is not Replace part or toner, show the all of the element class showComment
+// if action taken is not Replace part or toner, show the all of the element
+// class showComment
 $(".actionTaken").each(
 		function(i) {
 			if ($("#status").val() == "Installed Drivers"
@@ -421,7 +474,12 @@ $(".actionTaken").each(
 					|| $("#status").val() == 'Configured Drivers'
 					|| $("#status").val() == 'Configured Printer'
 					|| $("#status").val() == 'User Error'
-					|| $("#status").val() == 'No fault Found') {
+					|| $("#status").val() == 'No fault Found'
+					|| $("#status").val() == 'Cleaned Mirrors'
+					|| $("#status").val() == 'Cleaned Laser Unit'
+					|| $("#status").val() == 'Cleaned Charge Rollers'
+					|| $("#status").val() == 'Cleaned ADF Class'
+					|| $("#status").val() == 'Cleaned Rollers') {
 				$('.showComment').hide();
 				console.log('hiding comment');
 			} else {
@@ -431,6 +489,254 @@ $(".actionTaken").each(
 			var getComment = document.getElementById('status').value;
 			if (getComment = "Installed Drivers") {
 				console.log('show comment');
-				console.log(getComment);
+				console.log(getComment, "se");
 			}
 		});
+
+//Compare available mono reading with updated mono reading
+function compareMonoReading(element, availableMonoReading){				
+		
+	if (availableMonoReading < element.value ){		
+		console.log("True,",element.value + " is more than " + availableMonoReading);
+			}
+	if (element.value == ''){
+		alert("Mono reading can not be empty");
+		console.log(element.value);
+		element.value = null;
+	}		
+	else if(availableMonoReading > element.value) {
+		alert("Entered mono reading "+ element.value +", must be greater than available mono reading "+ availableMonoReading +"");
+		element.value = null;		
+	}
+}
+//End Compare available mono reading with updated mono reading
+
+//Compare available colour reading with updated colour reading
+function compareColourReading(element, availableColourReading){				
+		
+	if (availableColourReading < element.value ){		
+		console.log("True,",element.value + " is more than " + availableColourReading);
+	}
+	if (element.value == ''){
+		alert("Colour reading cant not be empty");
+	}
+	else if(availableColourReading > element.value  ) {
+		alert("Entered colour reading "+ element.value +", must be greater than available colour reading "+ availableColourReading +"");
+		element.value = null;		
+	}
+}
+//End Compare available colour reading with updated colour reading	
+
+
+//--------------end Admin and Manager Tabs-----------------
+//hide tabs of actions on page load
+
+//Do not show tabs, up until user click on action
+$('.mTicketOpenReassign').hide();
+//end hide of Take tabs 
+
+//Do not shw tabs for status that is Acknowledged, up until user click on action
+$('.mTicketAcknowledgedReassign').hide();
+//end hide of Acknowledged tabs 
+
+//Do not shw tabs for status that is Taken, up until user click on action 
+$('.mTicketTakenAwaiting').hide();
+$('.mTicketTakenEscalate').hide();
+$('.mTicketEscalatedReassign').hide();
+//end hide of taken tabs 
+
+//Do not shw tabs for status that is Awaitng Spares, up until user click on action
+$('.mTicketReopenResolved').hide();
+//end hide of awaiting Spares tabs
+
+//end hide of tabs actions on page load	
+
+//Open Ticket
+$("#mTicketOpenReassignLink").click(function(){
+     $('.nav-tabs li').removeClass('active');
+     $('.mTicketOpenReassign').addClass('active');
+     $('.mTicketOpenReassign').show();
+     $('.tab-pane').removeClass('in active');
+     $('.tab-content div#mTicketOpenReassign').addClass('in active');
+     console.log("Status is Acknowledged: Ticket can be reassign");
+ });//end Open ticket
+
+//Acknowledged ticket
+$("#mTicketAcknowledgedReassignLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.mTicketAcknowledgedReassign').addClass('active');
+	 $('.mTicketAcknowledgedReassign').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#mTicketAcknowledgedReassign').addClass('in active');
+	 console.log("Status is Acknowledged: Ticket can be reassign");
+});//end Acknowledged Tickit
+
+//Taken Tickets
+$("#mTicketTakenAwaitingLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.mTicketTakenAwaiting').addClass('active');
+	 $('.mTicketTakenAwaiting').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#mTicketTakenAwaiting').addClass('in active');
+	 console.log("Status is Taken: Ticket can be on Awaiting Spares if no order is recived");
+});	
+$("#mTicketTakenEscalateLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.mTicketTakenEscalate').addClass('active');
+	 $('.mTicketTakenEscalate').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#mTicketTakenEscalate').addClass('in active');
+	 console.log("Status is Taken: Ticket can be Escalated");
+});//end Taken Tickets
+
+
+$("#mTicketEscalatedReassignLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.mTicketEscalatedReassign').addClass('active');
+	 $('.mTicketEscalatedReassign').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#mTicketEscalatedReassign').addClass('in active');
+	 console.log("Status is Taken: Ticket can be Resolved");
+});
+$("#mTicketEscalatedResolvedDetailsLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.mTicketEscalatedResolvedDetails').addClass('active');
+	 $('.mTicketEscalatedResolvedDetails').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#mTicketEscalatedResolvedDetails').addClass('in active');
+	 console.log("Status is Escalated: Ticket can be Escalated");
+});	
+
+$("#mTicketSLABridgedResolvedLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.mTicketSLABridgedResolved').addClass('active');
+	 $('.mTicketSLABridgedResolved').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#mTicketSLABridgedResolved').addClass('in active');
+	 console.log("Status is SLABridged: Ticket can be Resolved");
+});
+
+$("#mTicketReopenResolvedLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.mTicketReopenResolved').addClass('active');
+	 $('.mTicketReopenResolved').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#mTicketReopenResolved').addClass('in active');
+	 console.log("Status is Resolved: Ticket can be Re-Open");
+});	
+//end Escalated tickets
+//--------------end Admin and Manager Tabs-----------------
+
+
+//--------------Techinician Tabs--------------------------
+//hide tabs of actions on page load
+
+//Do not shw tabs for status that is Take, up until user click on action
+$('.tTakeTicket').hide();
+//end hide of Take tabs 
+
+//Do not shw tabs for status that is Acknowledged, up until user click on action
+$('.tAcknowledgedTicket').hide();
+//end hide of Acknowledged tabs 
+
+//Do not shw tabs for status that is Taken, up until user click on action 
+$('.tTicketTakenAwaitingSpares').hide();
+$('.tTicketTakenEscalate').hide();
+$('.tTicketTakenResolve').hide();
+//end hide of taken tabs 
+
+//Do not shw tabs for status that is Awaitng Spares, up until user click on action
+$('.tTicketAwaitingSparesEscalate').hide();
+$('.tTicketAwaitingSparesResolve').hide();
+//end hide of awaiting Spares tabs
+
+//Do not shw tabs for status that is SLA Bridge, up until user click on action
+ $('.tTicketSLABridgedEscalate').hide();
+ $('.tTicketSLABridgedResolved').hide();
+//end hide of SLA Bridge tabs
+
+//end hide of tabs actions on page load
+
+//Acknowledged Ticket
+$("#tAcknowledgedTicketLink").click(function(){
+     $('.nav-tabs li').removeClass('active');
+     $('.tAcknowledgedTicket').addClass('active');
+     $('.tAcknowledgedTicket').show();
+     $('.tab-pane').removeClass('in active');
+     $('.tab-content div#tAcknowledgedTicket').addClass('in active');
+     console.log("Acknowledged Ticket Active");
+ });//end Acknowledged
+
+//Take ticket
+$("#tTakeTicketLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTakeTicket').addClass('active');
+	 $('.tTakeTicket').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTakeTicket').addClass('in active');
+	 console.log("Take Ticket Active");
+});//end Take Tickit
+
+//Taken Tickets
+$("#tTicketTakenAwaitingSparesLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTicketTakenAwaitingSpares').addClass('active');
+	 $('.tTicketTakenAwaitingSpares').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTicketTakenAwaitingSpares').addClass('in active');
+	 console.log("Status is Taken: Ticket can be on Awaiting Spares if no order is recived");
+});	
+$("#tTicketTakenEscalateLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTicketTakenEscalate').addClass('active');
+	 $('.tTicketTakenEscalate').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTicketTakenEscalate').addClass('in active');
+	 console.log("Status is Taken: Ticket can be Escalated");
+});	
+$("#tTicketTakenResolveLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTicketTakenResolve').addClass('active');
+	 $('.tTicketTakenResolve').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTicketTakenResolve').addClass('in active');
+	 console.log("Status is Taken: Ticket can be Resolved");
+});//end Taken tickets
+
+//Awaitng Spares tickets
+$("#tTicketAwaitingSparesEscalateLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTicketAwaitingSparesEscalate').addClass('active');
+	 $('.tTicketAwaitingSparesEscalate').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTicketAwaitingSparesEscalate').addClass('in active');
+	 console.log("Status is Awaiting Spare: Ticket can be Escalated");
+});	
+$("#tTicketAwaitingSparesResolveLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTicketAwaitingSparesResolve').addClass('active');
+	 $('.tTicketAwaitingSparesResolve').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTicketAwaitingSparesResolve').addClass('in active');
+	 console.log("Status is Awaiting Spare: Resolved");
+});//end Awaitng Spares tickets
+
+//SLA Bridged Tickets
+$("#tTicketSLABridgedEscalateLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTicketSLABridgedEscalate').addClass('active');
+	 $('.tTicketSLABridgedEscalate').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTicketSLABridgedEscalate').addClass('in active');
+	 console.log("Status is SLA Bridge: Ticket can be Ticket must can be Escalated");
+});	
+$("#tTicketSLABridgedResolvedLink").click(function(){
+	 $('.nav-tabs li').removeClass('active');
+	 $('.tTicketSLABridgedResolved').addClass('active');
+	 $('.tTicketSLABridgedResolved').show();
+	 $('.tab-pane').removeClass('in active');
+	 $('.tab-content div#tTicketSLABridgedResolved').addClass('in active');
+	 console.log("Status is SLA Bridge: Ticket must be Resolved");
+});//end SLA Bridged Tickets
+
+//--------------Techinician Tabs--------------------------

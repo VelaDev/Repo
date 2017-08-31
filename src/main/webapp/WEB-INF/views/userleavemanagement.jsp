@@ -36,50 +36,50 @@
 <!--/style-->
 
 <style type="text/css">
+
 .selectDate {
-	position: relative;
+    position: relative;
 	display: inline-block;
 	height: 28px;
 	width: 48%;
-	margin-left: 25%;
+	margin-left: 25%;    
 }
-
 .selectDate input {
-	width: 100%; /* Arbitrary number */
-	height: 100%;
-	padding-right: 40px;
-	box-sizing: border-box;
+    width: 100%; /* Arbitrary number */
+    height: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+#calendar {
+    height: 100%;
+    width: 40px; 
+    background-image: url(resources/images/calendar.png),url(resources/images/down_arrow.png);
+	background-repeat: no-repeat;
+    background-position: 50% 50%;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%); /* OR margin-top: -20px (Half of the container's height) if you're supporting older browsers */
 }
 
-#calendar {
-	height: 100%;
-	width: 40px;
-	background-image: url(resources/images/calendar.png),
-		url(resources/images/down_arrow.png);
-	background-repeat: no-repeat;
-	background-position: 50% 50%;
-	border: none;
-	background-color: transparent;
-	position: absolute;
-	top: 50%;
-	right: 0;
-	transform: translateY(-50%);
-}
 
 i.glyphicon.glyphicon-calendar.col-sm-pull-2 {
-	right: -29%;
+    right: -29%;
 }
 
-input#selectDateRange {
-	cursor: pointer;
+input#selectDateRange{
+   
+  cursor: pointer; 
+  
 }
-
-.db-summary li:first-child:nth-last-child(4),.db-summary li:first-child:nth-last-child(4) 
+.db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
 	 ~ li {
 	width: 10%;
 }
 
-.input-group-btn:last-child>.btn,.input-group-btn:last-child>.btn-group
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group
 	{
 	z-index: 2;
 	height: 26px;
@@ -102,33 +102,12 @@ input#selectDateRange {
 <body>
 
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
 			<form:form action="searchOrderNumber" method="post"
 				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
-
-					<!-- Select type Technician-->
-					<div class="form-group ">
-						<div class="col-md-3 selectContainer">
-							<div class="input-group">
-								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									name="technicianName" id="technicianName"
-									class="form-control selectpicker" onchange="location = this.value;">
-									<c:if test="${not empty selectedTechnician }">
-									   <option >${ selectedTechnician.firstName} ${ selectedTechnician.lastName}</option>
-									</c:if>
-									   <option value="getTechnicianName1?technicianName=<c:out value="All Technicians"/>">All Technicians</option>
-									<c:forEach items="${technicians}" var="technician">
-												<option value="getTechnicianName1?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>	
-										</c:forEach>
-																	
-								</select>
-							</div>
-						</div>
-					</div>
 
 					<!-- Select type selectDateRange-->
 				   					<!-- Select type selectDateRange-->
@@ -176,7 +155,7 @@ input#selectDateRange {
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
 
-								<li><a href='requestLeave.html' data-parallel-url=""
+								<li><a href='userMakeLeave.html' data-parallel-url=""
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
@@ -263,7 +242,7 @@ input#selectDateRange {
 												<c:forEach items="${leaveList}" var="leave" varStatus="itr">
 													<tr>
 														<td><a
-															href="leaveDetailsAdmin?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
+															href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
 														<td><c:out
 																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
 														<td><c:out value="${leave.employee.email}" /></td>
@@ -448,6 +427,7 @@ input#selectDateRange {
 		<!-- Script -->
 		<script type="text/javascript"
 			src="<c:url value="/resources/jquery/1.12.4/jquery.min.js" />"></script>
+		
 		<script type="text/javascript"
 			src="<c:url value="/resources/bootstrap-3.3.7/js/daterangepicker.js"/>"></script>
 

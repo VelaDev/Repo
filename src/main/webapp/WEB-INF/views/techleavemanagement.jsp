@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Order Management</title>
+<title>Leave Management</title>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
@@ -73,12 +73,6 @@ input#selectDateRange{
    
   cursor: pointer; 
   
-}
-.db-summary li:first-child:nth-last-child(3), .db-summary li:first-child:nth-last-child(3) ~ li {
-    width: 10.33333%;
-}
-.db-summary li:first-child:nth-last-child(5), .db-summary li:first-child:nth-last-child(5) ~ li {
-    width: 12%;
 }
 .db-summary li:first-child:nth-last-child(4), .db-summary li:first-child:nth-last-child(4) 
 	 ~ li {

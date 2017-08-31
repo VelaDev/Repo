@@ -64,7 +64,14 @@
 				      		 </ul>
 				    	</li>
 				    	
-				    	<%-- <li><a href='<c:url value="userResolvedTickets.html"/>'>Resolved Tickets</a></li> --%> 
+				    <%-- 	<li>
+					    <a href='<c:url value="ordertechmanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Order Management</a>
+					</li> --%>
+					<li>
+					    <a href='<c:url value="userleavemanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Leave Management</a>
+					</li>
 				    	
 					</ul>
 			</div>

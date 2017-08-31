@@ -242,7 +242,7 @@ input#selectDateRange{
 												<c:forEach items="${leaveList}" var="leave" varStatus="itr">
 													<tr>
 														<td><a
-															href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
+															href="leaveDetailsTechnician?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
 														<td><c:out
 																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
 														<td><c:out value="${leave.employee.email}" /></td>

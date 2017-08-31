@@ -340,7 +340,7 @@ table#toOrder thead {
 																</c:when>
 																<c:when test="${history.status =='Awaiting Spares'}">
 																	<td>Waiting for Order: <c:out
-																			value="${orders.orderNum}" /></td>
+																			value="${orders.recordID}" /></td>
 																</c:when>
 																<c:when test="${history.status =='Escalated'}">
 																	<td>Ticket Escalated to Manager</td>
@@ -841,7 +841,7 @@ table#toOrder thead {
 															class="form-control selectpicker">
 															<option value="">Select Order No</option>
 															<c:forEach items="${OrderNumber}" var="orders">
-																<option value="${orders.recordID}">${orders.orderNum}
+																<option value="${orders.recordID}">ORD00${orders.recordID}
 																</option>
 															</c:forEach>
 

@@ -342,7 +342,7 @@ table#toOrder thead {
 																	<td><c:out value="${history.actionTaken}" />Log Ticket</td>
 																</c:when>																
 																<c:when test="${history.status =='Awaiting Spares'}">
-																	<td>Waiting for Order: <c:out value="${orders.orderNum}" /></td>
+																	<td>Waiting for Order: <c:out value="${orders.recordID}" /></td>
 																</c:when>
 																<c:when test="${history.status =='Escalated'}">
 																	<td>Ticket Escalated to Manager</td>
@@ -561,7 +561,7 @@ table#toOrder thead {
 																	class="form-control selectpicker" >
 																	<option value="">Select Order No</option>
 																	<c:forEach items="${OrderNumber}" var="orders">
-																		<option value="${orders.recordID}">${orders.orderNum}
+																		<option value="${orders.recordID}">ORD00${orders.recordID}
 																			</option>
 																	</c:forEach>
 
@@ -622,7 +622,7 @@ table#toOrder thead {
 															</div>
 														</div>
 													</div>
-											<!-- Text input Ticket Number-->
+													<!-- Text input Ticket Number-->
 													<div class="form-group" style="display:none">
 														<div class="col-md-6 inputGroupContainer" >
 															<div class="input-group">
@@ -634,8 +634,8 @@ table#toOrder thead {
 															</div>
 														</div>
 													</div>
-											  <!-- Text input Manager-->
-												<div class="form-group">
+											 		 <!-- Text input Manager-->
+													<div class="form-group">
 														<label class="col-md-3 control-label"> Manager</label>
 														<div class="col-md-6 inputGroupContainer">
 															<div class="input-group">
@@ -661,7 +661,7 @@ table#toOrder thead {
 															<div class="input-group">
 																<span class="input-group-addon"><i
 																	class="glyphicon glyphicon-edit"></i></span>
-																<textarea class="form-control" id="comments" name="comments" style="margin: 0px; height: 129px; width: 536px;" maxlength="150"
+																<textarea class="form-control" id="comments" name="comments" style="margin: 0px; height: 129px; maxlength="150"
 																	 onkeydown="upperCaseF(this)" placeholder="Please enter comment"
 																	></textarea>
 															</div>

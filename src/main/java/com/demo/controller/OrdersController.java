@@ -153,7 +153,7 @@ public class OrdersController {
 	}
 
 	@RequestMapping("approveOrder")
-	public ModelAndView getOrderDetails(@RequestParam Integer recordID,
+	public ModelAndView getOrderDetails(@RequestParam Long recordID,
 			@ModelAttribute OrderHeader orderHeader) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -266,7 +266,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "approveOrder", method = RequestMethod.GET)
 	public ModelAndView approveOrder(
-			@RequestParam("recordID") Integer recordID,
+			@RequestParam("recordID") Long recordID,
 			@ModelAttribute OrderDetails orderDetails) {
 		model = new ModelAndView();
 
@@ -291,7 +291,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "approveOrderItems")
 	public ModelAndView approveOrderItems(
-			@RequestParam("recordID") Integer recordID) {
+			@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 		String approverOrders = "approverOrders";
 
@@ -318,7 +318,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "detailedOrders", method = RequestMethod.GET)
 	public ModelAndView detailedOrders(
-			@RequestParam("recordID") Integer recordID) {
+			@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -342,7 +342,7 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = "deliveryNote", method = RequestMethod.GET)
-	public ModelAndView f(@RequestParam("recordID") Integer recordID) {
+	public ModelAndView f(@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -372,7 +372,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "printdeliveryNote", method = RequestMethod.GET)
 	public ModelAndView deliveriesNote(
-			@RequestParam("recordID") Integer recordID) throws ParserConfigurationException, SAXException, TransformerException, IOException, DocumentException, XMPException, ParseException, DataIncompleteException, InvalidCodeException {
+			@RequestParam("recordID") Long recordID) throws ParserConfigurationException, SAXException, TransformerException, IOException, DocumentException, XMPException, ParseException, DataIncompleteException, InvalidCodeException {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -585,7 +585,7 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = "shipment")
-	public ModelAndView shipment(@RequestParam("recordID") int recordID) {
+	public ModelAndView shipment(@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 		String shipOrder = "shipOrder";
 
@@ -609,7 +609,7 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = "receive")
-	public ModelAndView receive(@RequestParam("recordID") int recordID) {
+	public ModelAndView receive(@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 
 		String receiveOrder = "receiveOrder";
@@ -654,7 +654,7 @@ public class OrdersController {
 	 */
 
 	@RequestMapping(value = "shipmentReceived")
-	public ModelAndView shipmentReceived(@RequestParam("recordID") int recordID) {
+	public ModelAndView shipmentReceived(@RequestParam("recordID") Long recordID) {
 		String receiveOrder = "receiveOrder";
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -680,7 +680,7 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = { "orderItemHistory", "ordersItemHistory" }, method = RequestMethod.GET)
-	public ModelAndView orderHistory(@RequestParam("recordID") Integer recordID) {
+	public ModelAndView orderHistory(@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -741,7 +741,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "declineOrder", method = RequestMethod.GET)
 	public ModelAndView displayDeclineOrders(
-			@RequestParam("recordID") Integer recordID) {
+			@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -768,7 +768,7 @@ public class OrdersController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			retMessage = ordersServiceInt.declineOrder(order.getOrderNum(),order.getComments());
+			retMessage = ordersServiceInt.declineOrder(order.getRecordID(),order.getComments());
 			model.addObject("retMessage", retMessage);
 			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
@@ -872,7 +872,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "viewAllOrderDetails", method = RequestMethod.GET)
 	public ModelAndView displayOrderDeails(
-			@RequestParam("recordID") Integer recordID,
+			@RequestParam("recordID") Long recordID,
 			@ModelAttribute OrderDetails orderDetails) {
 		model = new ModelAndView();
 
@@ -897,7 +897,7 @@ public class OrdersController {
 
 	@RequestMapping(value = "viewAllUserOrderDetails", method = RequestMethod.GET)
 	public ModelAndView displayUserOrderDeails(
-			@RequestParam("recordID") Integer recordID,
+			@RequestParam("recordID") Long recordID,
 			@ModelAttribute OrderDetails orderDetails) {
 		model = new ModelAndView();
 

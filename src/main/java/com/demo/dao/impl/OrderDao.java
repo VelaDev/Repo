@@ -80,10 +80,11 @@ public class OrderDao implements OrdersDaoInt {
 	private DeliveryNoteLineItemsDaoInt deliveryLineItem;
 	@Autowired
 	private DeliveryNoteHeaderDaoInt deliveryNoteHeaderInt;
-	private OrderHeader orderHeader = null;
+	private OrderHeader orderHeader,tempOrderHeader = null;
 	
 
 	private String retMessage = null;
+	private String orderNumber = "ORD000";
 	private Customer cus;
 	private Employee emp = null;
 	private HOStock part = null;
@@ -92,10 +93,12 @@ public class OrderDao implements OrdersDaoInt {
 	private DateFormat dateFormat = null;
 	private Date date = null;
 	private List<OrderDetails> orderDetailList = null;
+	private Set<OrderDetails> orderDetailsList= null;
 	private OrderDetails orderDetails = null;
 	private DeliveryNoteHeader deliveryNoteHeader = null;
 	private List<OrderHeader> pendingOrders;
 	private List<OrderDetails> listOrders;
+	private Long retRecordID = 0L;
 
 	@Override
 	public String makeOrder(OrderHeader orderHeader) {
@@ -108,10 +111,10 @@ public class OrderDao implements OrdersDaoInt {
 			
 			historyDaoInt.insetOrderHistory(orderHeader);
 			deliveryNoteHeaderInt.saveDeliveryNoteHeader(orderHeader);
-			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
+			retMessage = "Order : " + " " + orderNumber + orderHeader.getRecordID() + " "
 					+ "successfuly placed.";
 		} catch (Exception e) {
-			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
+			retMessage = "Order : " + " " + orderNumber + orderHeader.getRecordID() + " "
 					+ "not placed " + e.getMessage()+".";
 		}
 		return retMessage;
@@ -124,7 +127,7 @@ public class OrderDao implements OrdersDaoInt {
 			sessionFactory.getCurrentSession().save(deliveryNote);
 			
 		} catch (Exception e) {
-			retMessage = "Order : " + " " + orderHeader.getOrderNum() + " "
+			retMessage = "Order : " + " " + orderNumber+orderHeader.getRecordID() + " "
 					+ "not placed " + e.getMessage()+".";
 		}
 	}
@@ -152,10 +155,10 @@ public class OrderDao implements OrdersDaoInt {
 
 				sessionFactory.getCurrentSession().update(cusOrder);
 				historyDaoInt.insetOrderHistory(cusOrder);
-				retMessage = "Order " + " " + cusOrder.getOrderNum() + " "
+				retMessage = "Order " + " " + orderNumber +cusOrder.getRecordID() + " "
 						+ "is approved.";
 			} else {
-				retMessage = "Order " + " " + n + cusOrder.getOrderNum() + " "
+				retMessage = "Order " + " " + n + orderNumber +cusOrder.getRecordID() + " "
 						+ "not approved because it"
 						+ " is not available in store.";
 			}
@@ -218,40 +221,10 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public OrderHeader getOrder(Integer recordID) {
+	public OrderHeader getOrder(Long recordID) {
 
 		return (OrderHeader) sessionFactory.getCurrentSession().get(
 				OrderHeader.class, recordID);
-	}
-
-	private Integer getRecordID() {
-
-		session2 = sessionFactory.openSession();
-		Integer result = (int) 1L;
-		Query query = session2
-				.createQuery("from OrderHeader order by recordID DESC");
-		query.setMaxResults(1);
-		OrderHeader orderNumber = (OrderHeader) query.uniqueResult();
-
-		if (orderNumber != null) {
-			result = orderNumber.getRecordID();
-		} else {
-			result = null;
-		}
-		return result;
-	}
-
-	private Integer newRecordID() {
-		int tempOrderNum = 0;
-		Integer newOrderNum = getRecordID();
-
-		if (newOrderNum != null) {
-			tempOrderNum = newOrderNum + 1;
-		} else {
-			tempOrderNum = 1;
-		}
-
-		return tempOrderNum;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -272,106 +245,109 @@ public class OrderDao implements OrdersDaoInt {
 	@Override
 	public String prepareOrderMaking(OrdersBean orderBean) {
 		
+      synchronized(this){
+    	  cusOrder = new OrderHeader();
+  		String orderNumber = null;
+  		Integer recordID = 1;
+  		String[] split;
+  		String partNumber,splitString = null;
+  		int quatity = 0;
+  		String tempString = null;
 
-		cusOrder = new OrderHeader();
-		String orderNumber = null;
-		Integer recordID = 1;
-		String[] split;
-		String partNumber,splitString = null;
-		int quatity = 0;
-		String tempString = null;
+  		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+  		date = new Date();
+  		//String[] quantityArray = quantity(orderBean.getQuantity(), orderBean.getSelectedItem().length);
+  		
+  		String[] quantityArray = quantity(orderBean.getQuantityList(),
+  				orderBean.getPartNumberList().length);
+  		
+  		try {
 
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-		date = new Date();
-		//String[] quantityArray = quantity(orderBean.getQuantity(), orderBean.getSelectedItem().length);
+  			Employee user = (Employee) session.getAttribute("loggedInUser");
+  			emp = employeeDaoInt.getEmployeeByEmpNum(user.getEmail());
+  			String customer = orderBean.getCustomer();
+  			if(customer !=null){
+  				cus = customerDaoInt.getClientByClientName(customer);
+  				cusOrder.setCustomer(cus);
+  			}else{
+  				cusOrder.setCustomer(null);
+  			}
+  			if(emp.getRole().equalsIgnoreCase("Manager")){
+  				cusOrder.setApprover(emp.getEmail());
+  				
+  				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
+  				cusOrder.setEmployee(emp);
+  				String tempTechnician = emp.getFirstName() + " " +emp.getLastName();
+  			}
+  			else{
+  				cusOrder.setEmployee(emp);
+  				cusOrder.setApprover(orderBean.getApprover());
+  			}
+  			cusOrder.setStockType(orderBean.getStockType());
+  			cusOrder.setStatus("Pending");
+  			
+  			cusOrder.setApproved(false);
+  			cusOrder.setDateOrdered(dateFormat.format(date));
+
+  			ArrayList< String> tempList = new ArrayList<String>();
+  			for (int i = 0; i < orderBean.getPartNumberList().length; i++) {
+  				splitString = orderBean.getPartNumberList()[i];
+  				split = splitString.split(",");
+  				partNumber = split[0];
+  				
+  				part = hOStockDaoInt.getSparePartBySerial(partNumber);
+  				if(part != null){
+  					quatity = Integer.parseInt(quantityArray[i]);
+  					tempString = partNumber+":"+ quatity;
+  					tempList.add(tempString);
+  				}
+  			}
+  			
+  			orderDetailList = new ArrayList<OrderDetails>();
+  			orderDetailsList = new HashSet<OrderDetails>();
+              Set<String> uniqueParts = removeDuplicates(tempList);
+              
+              for(String ord:uniqueParts){
+              	split = ord.split(":");
+  				partNumber = split[0];
+  				quatity = Integer.parseInt(split[1]);
+  				orderDetails = new OrderDetails();
+              	part = hOStockDaoInt.getSparePartBySerial(partNumber);
+  				if(part != null){
+  					orderDetails.setPartNumber(partNumber);
+  					orderDetails.setCompatibleDevice(part.getCompitableDevice());
+  					orderDetails.setItemDescription(part.getItemDescription());
+  					orderDetails.setModel(part.getCompitableDevice());
+  					orderDetails.setQuantity(quatity);
+  					orderDetails.setLocation(orderBean.getLocation());
+  					orderDetails.setStockType(cusOrder.getStockType());
+  					orderDetails.setItemType(part.getItemType());
+  					if(orderBean.getTechnician()!= null){
+  						orderDetails.setTechnician(orderBean.getTechnician());
+  					}
+  					else{
+  						orderDetails.setTechnician(emp.getFirstName()+" " +emp.getLastName());
+  					}
+  					
+  					orderDetails.setOrderHeader(cusOrder);
+  					
+  					orderDetails.setDateTime(dateFormat.format(date));
+  					orderDetailList.add(orderDetails);
+  					orderDetailsList.add(orderDetails);
+  					
+  				}	
+  				
+              }
+              cusOrder.setOrderDetails(orderDetailsList);
+  			retMessage = makeOrder(cusOrder);
+  			//String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
+  			deliveryLineItem.saveDeliveryNoteLineItems(orderDetailList);
+  		} catch (Exception ex) {
+  			retMessage = "Order cannot be proccessed.";
+  		}
+  		return retMessage;
+      }
 		
-		String[] quantityArray = quantity(orderBean.getQuantityList(),
-				orderBean.getPartNumberList().length);
-		
-		try {
-
-			Employee user = (Employee) session.getAttribute("loggedInUser");
-			emp = employeeDaoInt.getEmployeeByEmpNum(user.getEmail());
-			String customer = orderBean.getCustomer();
-			if(customer !=null){
-				cus = customerDaoInt.getClientByClientName(customer);
-				cusOrder.setCustomer(cus);
-			}else{
-				cusOrder.setCustomer(null);
-			}
-			if(emp.getRole().equalsIgnoreCase("Manager")){
-				cusOrder.setApprover(emp.getEmail());
-				
-				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
-				cusOrder.setEmployee(emp);
-				String tempTechnician = emp.getFirstName() + " " +emp.getLastName();
-			}
-			else{
-				cusOrder.setEmployee(emp);
-				cusOrder.setApprover(orderBean.getApprover());
-			}
-			cusOrder.setStockType(orderBean.getStockType());
-			cusOrder.setStatus("Pending");
-			
-			recordID = newRecordID();
-			orderNumber = "ORD00" + recordID;
-			cusOrder.setRecordID(recordID);
-			cusOrder.setOrderNum(orderNumber);
-			
-			cusOrder.setApproved(false);
-			cusOrder.setDateOrdered(dateFormat.format(date));
-
-			ArrayList< String> tempList = new ArrayList<String>();
-			for (int i = 0; i < orderBean.getPartNumberList().length; i++) {
-				splitString = orderBean.getPartNumberList()[i];
-				split = splitString.split(",");
-				partNumber = split[0];
-				
-				part = hOStockDaoInt.getSparePartBySerial(partNumber);
-				if(part != null){
-					quatity = Integer.parseInt(quantityArray[i]);
-					tempString = partNumber+":"+ quatity;
-					tempList.add(tempString);
-				}
-			}
-			orderDetailList = new ArrayList<OrderDetails>();
-            Set<String> uniqueParts = removeDuplicates(tempList);
-            
-            for(String ord:uniqueParts){
-            	split = ord.split(":");
-				partNumber = split[0];
-				quatity = Integer.parseInt(split[1]);
-				orderDetails = new OrderDetails();
-            	part = hOStockDaoInt.getSparePartBySerial(partNumber);
-            	System.err.println("Partnumber values " + " " + partNumber);
-				if(part != null){
-					orderDetails.setPartNumber(partNumber);
-					orderDetails.setCompatibleDevice(part.getCompitableDevice());
-					orderDetails.setItemDescription(part.getItemDescription());
-					orderDetails.setModel(part.getCompitableDevice());
-					orderDetails.setQuantity(quatity);
-					orderDetails.setLocation(orderBean.getLocation());
-					orderDetails.setStockType(cusOrder.getStockType());
-					orderDetails.setItemType(part.getItemType());
-					if(orderBean.getTechnician()!= null){
-						orderDetails.setTechnician(orderBean.getTechnician());
-					}
-					else{
-						orderDetails.setTechnician(emp.getFirstName()+" " +emp.getLastName());
-					}
-					orderDetails.setOrderHeader(cusOrder);
-					orderDetails.setDateTime(dateFormat.format(date));
-					orderDetailList.add(orderDetails);
-				}	
-				
-            }
-			retMessage = makeOrder(cusOrder);
-			String retMsg = detailsDaoInt.saveOrderDetails(orderDetailList);
-			deliveryLineItem.saveDeliveryNoteLineItems(orderDetailList);
-		} catch (Exception ex) {
-			retMessage = "Order cannot be proccessed.";
-		}
-		return retMessage;
 	}
 
 	private Set<String> removeDuplicates(ArrayList<String> tempList){
@@ -423,7 +399,7 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public String approveOrder(Integer recordID) {
+	public String approveOrder(Long recordID) {
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
 		
@@ -447,13 +423,13 @@ public class OrderDao implements OrdersDaoInt {
 				emp = employeeDaoInt.getEmployeeByEmpNum(cusOrder.getApprover());
 				JavaMail.sendEmailForOrderApproved(cusOrder.getEmployee().getEmail(), cusOrder.getApprover(), emp.getFirstName(), cusOrder.getEmployee().getFirstName(), cusOrder);
 				historyDaoInt.insetOrderHistory(cusOrder);
-				retMessage = "Order " + cusOrder.getOrderNum() + " approved.";
+				retMessage = "Order " + orderNumber+cusOrder.getRecordID() + " approved.";
 			} else {
 				retMessage = "Order cannot be approved because ordered items are more that available items.";
 			}
 
 		} catch (Exception e) {
-			retMessage = "Order " + cusOrder.getOrderNum() + " not approved.";
+			retMessage = "Order " + orderNumber+cusOrder.getRecordID() + " not approved.";
 		}
 		return retMessage;
 	}
@@ -503,7 +479,7 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public String approveShipment(Integer recordID) {
+	public String approveShipment(Long recordID) {
 		
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
@@ -516,7 +492,7 @@ public class OrderDao implements OrdersDaoInt {
 			sessionFactory.getCurrentSession().update(orderHeader);
 			JavaMail.sendEmailForShipment(orderHeader.getApprover(),orderHeader);
 			historyDaoInt.insetOrderHistory(orderHeader);
-			retMessage = "Order Number "+ orderHeader.getOrderNum()+" shipped to "+ orderHeader.getEmployee().getFirstName()+ " "+orderHeader.getEmployee().getLastName()+".";
+			retMessage = "Order Number "+ orderNumber+orderHeader.getRecordID()+" shipped to "+ orderHeader.getEmployee().getFirstName()+ " "+orderHeader.getEmployee().getLastName()+".";
 		}
 		else if (orderHeader!=null && orderHeader.getStatus().equalsIgnoreCase("Shipped")){
 			orderHeader.setStatus("Received");
@@ -527,7 +503,7 @@ public class OrderDao implements OrdersDaoInt {
 			List<Tickets> ticketList = ticketsDaoInt.getAwaitingSparesTickets();
 			for(Tickets tick:ticketList){
 				if(tick.getOrderHeader()!=null){
-					if(tick.getOrderHeader().getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
+					if(tick.getOrderHeader().getRecordID()==orderHeader.getRecordID()){
 						
 						tick.setStatus("Re-Open");
 						tick.setDateTime(dateFormat.format(date));
@@ -541,12 +517,12 @@ public class OrderDao implements OrdersDaoInt {
 			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				siteStocDaoInt.saveSiteStock(orderDetailList);
-				retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available for site "+ orderHeader.getCustomer().getCustomerName()+".";
+				retMessage = "Order Number "+ orderNumber+orderHeader.getRecordID()+" now available for site "+ orderHeader.getCustomer().getCustomerName()+".";
 			}
 			else{
 				orderDetailList = detailsDaoInt.getOrderDetailsByOrderNum(recordID);
 				 bootStockDaoInt.saveBootStock(orderDetailList);;
-				 retMessage = "Order Number "+ orderHeader.getOrderNum()+" now available in boot stock for "+ orderHeader.getEmployee().getFirstName() +" "+ orderHeader.getEmployee().getLastName()+".";
+				 retMessage = "Order Number "+ orderNumber+orderHeader.getRecordID()+" now available in boot stock for "+ orderHeader.getEmployee().getFirstName() +" "+ orderHeader.getEmployee().getLastName()+".";
 			}
 		}
 		return retMessage;
@@ -583,12 +559,12 @@ public class OrderDao implements OrdersDaoInt {
 	}
 
 	@Override
-	public String declineOrder(String orderNum,String reasonForeclined) {
+	public String declineOrder(Long recordID,String reasonForeclined) {
 		
 		date = new Date();
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		try{
-			cusOrder = declineOrder(orderNum);
+			cusOrder = declineOrder(recordID);
 			
 			cusOrder.setComments(reasonForeclined);
 			cusOrder.setStatus("Declined");
@@ -598,11 +574,11 @@ public class OrderDao implements OrdersDaoInt {
 			for(Tickets tick:ticketList){
 				
 				if(tick.getOrderHeader()!= null){
-					String trmpOrderNum = tick.getOrderHeader().getOrderNum();
-					int result = Integer.parseInt(trmpOrderNum.substring(5));
+					String trmpOrderNum = "ORD000"+tick.getOrderHeader().getRecordID();
+					Long result = (long) Integer.parseInt(trmpOrderNum.substring(5));
 					
 					if(result == cusOrder.getRecordID()){
-						tick.setStatus("Re-Open");
+						tick.setStatus("Taken");
 						tick.setDateTime(dateFormat.format(date));
 						sessionFactory.getCurrentSession().update(tick);
 						ticketHistoryDaoInt.insertTicketHistory(tick);
@@ -610,19 +586,19 @@ public class OrderDao implements OrdersDaoInt {
 				}
 				
 			}
-			retMessage = "Order " + cusOrder.getOrderNum()+ " Rejected";
+			retMessage = "Order " + orderNumber+cusOrder.getRecordID()+ " Rejected";
 		}catch(Exception e){
 			retMessage = e.getMessage();
 		}
 		return retMessage;
 	}
-	private OrderHeader declineOrder(String orderNum){
+	private OrderHeader declineOrder(Long recordID){
 		OrderHeader order = null;
 		try{
 			order = new OrderHeader();
 			pendingOrders = getAllOrders();
 			for(OrderHeader tempOrder:pendingOrders){
-				if(tempOrder.getOrderNum().equalsIgnoreCase(orderNum)){
+				if(tempOrder.getRecordID()==recordID){
 					order = tempOrder;
 				}
 			}
@@ -4486,7 +4462,7 @@ public class OrderDao implements OrdersDaoInt {
 			newList = new ArrayList<String>();
 
 			for (OrderHeader order : list) {
-				newList.add(order.getOrderNum());
+				newList.add("ORD000"+order.getRecordID());
 			}
 
 			array = new String[newList.size()];
@@ -4513,9 +4489,9 @@ public class OrderDao implements OrdersDaoInt {
 		try {
 			ticketList = getAllOrders();
 			for (OrderHeader order : ticketList) {
-				if (order.getOrderNum().equalsIgnoreCase(technicianName)) {
+				/*if (order.getOrderNum().equalsIgnoreCase(technicianName)) {
 					aList.add(order);
-				}
+				}*/
 			}
 		} catch (Exception exception) {
 			exception.getMessage();
@@ -4871,7 +4847,7 @@ public class OrderDao implements OrdersDaoInt {
 
 			for (OrderHeader order : list) {
 				if(order.getEmployee().getEmail().equalsIgnoreCase(technicianEmail)){
-					newList.add(order.getOrderNum());
+					newList.add("ORD000"+order.getRecordID());
 				}
 			}
 

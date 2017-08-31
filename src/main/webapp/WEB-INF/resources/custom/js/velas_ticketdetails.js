@@ -282,6 +282,13 @@ $(document)
 														message : 'Used part numbers is required check boot or site stock for used part numbers'
 													}
 												}
+											},
+											reopenReason: {
+												validators : {
+													notEmpty : {
+														message : 'Reason for Re-Opening ticket is required and cant not be empty'
+													}
+												}
 											}
 
 										}
@@ -465,34 +472,6 @@ $(".usedPartNumbersDetails").each(function(i) {
 	}
 });
 
-// if action taken is not Replace part or toner, show the all of the element
-// class showComment
-$(".actionTaken").each(
-		function(i) {
-			if ($("#status").val() == "Installed Drivers"
-					|| $("#status").val() == 'Cleared Paper Jam'
-					|| $("#status").val() == 'Configured Drivers'
-					|| $("#status").val() == 'Configured Printer'
-					|| $("#status").val() == 'User Error'
-					|| $("#status").val() == 'No fault Found'
-					|| $("#status").val() == 'Cleaned Mirrors'
-					|| $("#status").val() == 'Cleaned Laser Unit'
-					|| $("#status").val() == 'Cleaned Charge Rollers'
-					|| $("#status").val() == 'Cleaned ADF Class'
-					|| $("#status").val() == 'Cleaned Rollers') {
-				$('.showComment').hide();
-				console.log('hiding comment');
-			} else {
-				$('.showComment').show();
-				console.log('show comment');
-			}
-			var getComment = document.getElementById('status').value;
-			if (getComment = "Installed Drivers") {
-				console.log('show comment');
-				console.log(getComment, "se");
-			}
-		});
-
 //Compare available mono reading with updated mono reading
 function compareMonoReading(element, availableMonoReading){				
 		
@@ -545,9 +524,9 @@ $('.mTicketTakenEscalate').hide();
 $('.mTicketEscalatedReassign').hide();
 //end hide of taken tabs 
 
-//Do not shw tabs for status that is Awaitng Spares, up until user click on action
+//Do not shw tabs for status that is Resolved, up until user click on action
 $('.mTicketReopenResolved').hide();
-//end hide of awaiting Spares tabs
+//end hide of Resolved tabs
 
 //end hide of tabs actions on page load	
 
@@ -624,7 +603,7 @@ $("#mTicketReopenResolvedLink").click(function(){
 	 $('.tab-content div#mTicketReopenResolved').addClass('in active');
 	 console.log("Status is Resolved: Ticket can be Re-Open");
 });	
-//end Escalated tickets
+//end Reopen Resolved tickets
 //--------------end Admin and Manager Tabs-----------------
 
 

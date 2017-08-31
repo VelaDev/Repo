@@ -34,7 +34,7 @@ public class DeliveryNoteHeader implements Serializable{
 	
 	@Id
 	@Column(name="RecordID")
-	private Integer recordID;
+	private Long recordID;
 	@Column(name="Order_Number")
 	private String orderNum;
 	@Column(name="Date_Ordered")

@@ -116,7 +116,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 
 	@Override
 	public List<SiteStock> getOrdersForCustomer(String customerName,
-			int ticketID) {
+			Long ticketID) {
 		Tickets ticket = ticketsDaoInt.getLoggedTicketsByTicketNumber(ticketID);
 		
 		String tempDeviceModelNumber = ticket.getDevice().getModelNumber();

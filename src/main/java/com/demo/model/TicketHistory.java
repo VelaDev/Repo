@@ -35,15 +35,17 @@ public class TicketHistory implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	@Column(name="TicketHistoryID")
-	private int historyId;
+	private Long historyId;
 	@Column(name="TicketNumber")
 	private String ticketNumber;
 	@Column(name="TicketNo")
-	private int ticketNo;
+	private Long ticketNo;
 	@Column(name="EscalatedResoan")
 	private String escalatedReason;
 	@Column(name="BridgedResoan")
 	private String bridgedReason;
+	@Column (name="ReopenReason")
+	private String reopenReason;
 	@Column(name="EscalatedDate")
 	private String escalatedDate;
 	@Column(name="Solution")

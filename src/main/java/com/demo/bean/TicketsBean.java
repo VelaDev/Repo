@@ -2,6 +2,8 @@ package com.demo.bean;
 
 import java.util.Calendar;
 
+import javax.persistence.Column;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,7 +43,8 @@ public class TicketsBean {
 	private String actionTaken;
 	private String ticketAction;
 	private String bridgedReason;
-	private int recordID;
+	private String reopenReason;
+	private Long recordID;
 	private String firstName;
 	private String lastName;
 	private String contactEmail;

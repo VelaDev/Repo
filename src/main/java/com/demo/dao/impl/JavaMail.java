@@ -19,17 +19,20 @@ public class JavaMail {
 	private static String emailFrom = "helpdesk@velaphanda.co.za";
 	private static String password = "@Vela1357";
 	
+	private static String newTicketNum = "VTC000";
+	private static String newOrderNum = "ORD000";
+	
 
 	public static void sendFromGMail(Tickets ticket) {
 		String[] to = { ticket.getEmployee().getEmail() };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + ticket.getEmployee().getFirstName() + ","
-				+ "\n\nTicket " + ticket.getTicketNumber()
+				+ "\n\nTicket " + newTicketNum+ticket.getRecordID()
 				+ " is assigned to you.\n\nDevice "
 				+ ticket.getDevice().getSerialNumber() + " with description "
 				+ ticket.getDescription() + "\n\nKind Regards\nVelaphanda Team";
-		String subject = "Ticket No " + ticket.getTicketNumber();
+		String subject = "Ticket No " + newTicketNum+ticket.getRecordID();
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
@@ -127,10 +130,10 @@ public class JavaMail {
 				+ ticket.getEmployee().getFirstName()
 				+ ","
 				+ "\n\nKindly note that ticket "
-				+ ticket.getTicketNumber()
+				+ newTicketNum+ticket.getRecordID()
 				+ " is assigned to you and it needs to be closed within three hours from now."
 				+ "\n\nKind Regards\nVelaphanda Team";
-		String subject = "Ticket No " + ticket.getTicketNumber() + " Reminder";
+		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + " Reminder";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
@@ -222,9 +225,9 @@ public class JavaMail {
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + ticket.getEmployee().getFirstName() + ","
-				+ "\n\nSLA for ticket " + ticket.getTicketNumber()
+				+ "\n\nSLA for ticket " + newTicketNum+ticket.getRecordID()
 				+ " is bridged." + "\n\nKind Regards\nVelaphanda Team";
-		String subject = "Ticket No " + ticket.getTicketNumber()
+		String subject = "Ticket No " + newTicketNum+ticket.getRecordID()
 				+ " SLA Bridged";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -272,8 +275,8 @@ public class JavaMail {
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + technicianFirstName
-				+ ",\n\nOrder : "+ order.getOrderNum()+ "is approved by "+  managerFirstName + ".\n\nKind Regards\nVelaphanda Team";
-		String subject = "Order Approval " + order.getOrderNum();
+				+ ",\n\nOrder : "+ newOrderNum+order.getRecordID()+ "is approved by "+  managerFirstName + ".\n\nKind Regards\nVelaphanda Team";
+		String subject = "Order Approval " + newOrderNum+order.getRecordID();
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
@@ -320,8 +323,8 @@ public class JavaMail {
 		String pass = password;
 		String body = "Hi " + managerFirstName
 				+ ",\n\nPlease review and approve order number : "
-				+ order.getOrderNum() + ".\n\nKind Regards\nVelaphanda Team";
-		String subject = "New Order " + order.getOrderNum();
+				+ newOrderNum+order.getRecordID() + ".\n\nKind Regards\nVelaphanda Team";
+		String subject = "New Order " + newOrderNum+order.getRecordID();
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");
@@ -368,8 +371,8 @@ public class JavaMail {
 		String pass = password;
 		String body = "Hi " + order.getEmployee().getFirstName()
 				+ ",\n\nYou order is shipped please confirm if you received the order : "
-				+ order.getOrderNum() + ".\n\nKind Regards\nVelaphanda Team";
-		String subject = "Order " + order.getOrderNum()+ " Shipment";
+				+ newOrderNum+order.getRecordID() + ".\n\nKind Regards\nVelaphanda Team";
+		String subject = "Order " + newOrderNum+order.getRecordID()+ " Shipment";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");

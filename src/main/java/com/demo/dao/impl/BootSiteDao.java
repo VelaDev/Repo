@@ -105,7 +105,7 @@ public class BootSiteDao implements BootStockDaoInt{
 		
 	}
 	@Override
-	public List<BootStock> getAllOrders(String technician, int ticketRecordID) {
+	public List<BootStock> getAllOrders(String technician, Long ticketRecordID) {
 		Tickets ticket = ticketsDaoInt
 				.getLoggedTicketsByTicketNumber(ticketRecordID);
 		String tempDeviceModelNumber = ticket.getDevice().getModelNumber();

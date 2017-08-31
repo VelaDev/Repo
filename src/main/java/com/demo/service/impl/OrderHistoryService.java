@@ -19,13 +19,13 @@ public class OrderHistoryService implements OrderHistoryInt{
 	private OrderHistoryDaoInt orderHistory;
 	
 	@Override
-	public List<OrderHistory> getAllOrderHistoryByOrderNumber(int orderNumber) {
+	public List<OrderHistory> getAllOrderHistoryByOrderNumber(Long orderNumber) {
 		
 		return orderHistory.getAllOrderHistoryByOrderNumber(orderNumber);
 	}
 
 	@Override
-	public List<OrderHistory> getAllOrderHistoryTicketNumber(int ticketNumber) {
+	public List<OrderHistory> getAllOrderHistoryTicketNumber(Long ticketNumber) {
 		
 		return orderHistory.getAllOrderHistoryTicketNumber(ticketNumber);
 	}

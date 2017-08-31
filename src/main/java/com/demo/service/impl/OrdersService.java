@@ -18,6 +18,7 @@ public class OrdersService implements OrdersServiceInt{
 	@Autowired
 	private OrdersDaoInt ordersDAO;
 	private String retMessage = null;
+	private Long retrecordID = 0L;
 
 	@Override
 	public String makeOrder(OrderHeader orderHeader) {
@@ -51,7 +52,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public OrderHeader getOrder(Integer recordID) {
+	public OrderHeader getOrder(Long recordID) {
 	
 		return ordersDAO.getOrder(recordID);
 	}
@@ -72,7 +73,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public String approveOrder(Integer recordID) {
+	public String approveOrder(Long recordID) {
 		return ordersDAO.approveOrder(recordID);
 	}
 
@@ -82,7 +83,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public String approveShipment(Integer recordID) {
+	public String approveShipment(Long recordID) {
 		return ordersDAO.approveShipment(recordID);
 		
 	}
@@ -99,7 +100,7 @@ public class OrdersService implements OrdersServiceInt{
 	}
 
 	@Override
-	public String declineOrder(String orderNum,String reasonForeclined) {
+	public String declineOrder(Long orderNum,String reasonForeclined) {
 		return ordersDAO.declineOrder(orderNum,reasonForeclined);
 	}
 

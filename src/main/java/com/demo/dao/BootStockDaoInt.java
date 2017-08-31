@@ -11,7 +11,7 @@ public interface BootStockDaoInt {
 	List<BootStock> getAllOrders();
 	List<BootStock> getAllOrders(String technician);
 	void updateBootStock(BootStock bootStock);
-	List<BootStock> getAllOrders(String technician, int ticketRecordID);
+	List<BootStock> getAllOrders(String technician, Long ticketRecordID);
 	BootStock getBootStock(String partNumber);
 	BootStock getBootStock(String partNumber, String technicianName);
 	int countBootStock();

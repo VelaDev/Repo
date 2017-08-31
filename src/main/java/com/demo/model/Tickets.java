@@ -8,6 +8,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,10 +39,10 @@ public class Tickets implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="RecordID")
-	private int recordID;
-	@Column(name="Ticket_Number")
-	private String ticketNumber;
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
+	@Column(name="RecordID", unique = true, nullable = false, precision = 15, scale = 0)
+	private Long recordID;
 	@Column(name="Comments")
 	private String comments;
 	@Column(name="Status")
@@ -87,6 +90,8 @@ public class Tickets implements Serializable{
 	private String contactTelephoneNumber;
 	@Column(name="BridgedReason")
 	private String bridgedReason;
+	@Column (name="ReopenReason")
+	private String reopenReason;
 	
 	
 	

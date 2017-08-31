@@ -61,7 +61,7 @@ table#toOrder thead {
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Ticket No : ${ticketObject.ticketNumber}</b>
+							<b>Ticket No : VTC000${ticketObject.recordID}</b>
 						</div>
 					</h3>
 				</div>
@@ -78,7 +78,7 @@ table#toOrder thead {
 							
 							  <c:choose>
 							  
-								<c:when test="${ticketObject.status =='Open'}">
+								<c:when test="${ticketObject.status =='Open' || ticketObject.status == 'Re-Open'}">
 									<li class="dropdown"><a href="#" class="dropdown-toggle"
 									data-toggle="dropdown" role="button" aria-haspopup="true"
 									aria-expanded="false">Ticket Action<span class="caret"></span></a>
@@ -149,7 +149,7 @@ table#toOrder thead {
 								
 						<c:choose>
 						
-							<c:when test="${ticketObject.status =='Open'}">
+							<c:when test="${ticketObject.status =='Open' || ticketObject.status == 'Re-Open'}">
 							 	<li class="tAcknowledgedTicket" style="display:none;"><a href="#tAcknowledgedTicket" data-toggle="tab">Acknowledged</a>							  
 							</c:when>
 													
@@ -248,7 +248,7 @@ table#toOrder thead {
 									<legend style="font-size: 12px; line-height: 1.42857143;">Ticket</legend>
 									<div class="machinedetailsfloatright ">
 										<div class="orderDetails">
-											<li style="font-size: 15px;" id="ticketNum"><b>${ticketObject.ticketNumber}</b></li>
+											<li style="font-size: 15px;" id="ticketNum"><b>VTC000${ticketObject.recordID}</b></li>
 											<li id="customer">Customer:
 												${ticketObject.device.customerDevice.customerName}</li>
 											<li id=tcketStatus>Status: ${ticketObject.status}</li>
@@ -287,7 +287,7 @@ table#toOrder thead {
 											<!-- Iterating over the list sent from Controller -->
 
 											<tr>
-												<td>${ticketObject.ticketNumber}</td>
+												<td>VTC000${ticketObject.recordID}</td>
 												<td>${ticketObject.status}</td>
 												<td>${ticketObject.priority}</td>
 												<td>${ticketObject.employee.email}</td>
@@ -334,7 +334,7 @@ table#toOrder thead {
 													<c:forEach items="${ticketHistoryList}" var="history">
 													
 														<tr>
-															<td><c:out value="${history.ticketNumber}" /></td>
+															<td><c:out value="VTC000${history.ticketNo}" /></td>
 															<td><c:out value="${history.escalatedDate}" /></td>
 															<td><c:out value="${history.status}" /></td>
 															<c:choose>
@@ -350,7 +350,7 @@ table#toOrder thead {
 																<c:when test="${history.status =='SLA Bridged'}">
 																	<td><c:out value="${history.actionTaken}" />System update</td>
 																</c:when>
-																<c:when test="${history.status =='Re-Opened'}">
+																<c:when test="${history.status =='Re-Open'}">
 																	<td>Ticket Re-Opened</td>
 																</c:when>
 																<c:when test="${history.status =='Acknowledged'}">
@@ -384,7 +384,7 @@ table#toOrder thead {
 						
 						<!--Acknowledged Ticket when is open-->						
 						<c:choose>
-							 <c:when test="${ticketObject.status =='Open'}">				
+							 <c:when test="${ticketObject.status =='Open' || ticketObject.status == 'Re-Open'}">				
 									
 									
 									<div class="tab-pane" id="tAcknowledgedTicket">
@@ -415,11 +415,22 @@ table#toOrder thead {
 																	class="glyphicon glyphicon-barcode"></i></span> <input
 																	name="ticketNumber" id="ticketNumber"
 																	class="form-control" type="text"
-																	value="${ticketObject.ticketNumber}" readonly>
+																	value="VTC000${ticketObject.recordID}" readonly>
 															</div>
 														</div>
 													</div>
-													
+													<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 													<div class="form-group row">
 												<div class="col-sm col-sm-8"
 													style="margin-left: 26%; width: 48%;">
@@ -469,11 +480,22 @@ table#toOrder thead {
 																	class="glyphicon glyphicon-barcode"></i></span> <input
 																	name="ticketNumber" id="ticketNumber"
 																	class="form-control" type="text"
-																	value="${ticketObject.ticketNumber}" readonly>
+																	value="VTC000${ticketObject.recordID}" readonly>
 															</div>
 														</div>
 													</div>
-													
+													<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 													<div class="form-group row">
 												<div class="col-sm col-sm-8"
 													style="margin-left: 26%; width: 48%;">
@@ -523,7 +545,7 @@ table#toOrder thead {
 																	class="glyphicon glyphicon-barcode"></i></span> <input
 																	name="ticketNumber" id="ticketNumber"
 																	class="form-control" type="text"
-																	value="${ticketObject.ticketNumber}" readonly>
+																	value="VTC000${ticketObject.recordID}" readonly>
 															</div>
 														</div>
 													</div>
@@ -585,7 +607,7 @@ table#toOrder thead {
 											
 											<!-- Action Action -->
 												<input type="hidden" id="ticketAction" name="ticketAction"
-												class="form-control selectpicker" value="escalate">												
+												class="form-control selectpicker" value="escalate">							
 												
 												<!-- Text input Ticket Number-->
 													<div class="form-group">
@@ -596,11 +618,22 @@ table#toOrder thead {
 																	class="glyphicon glyphicon-barcode"></i></span> <input
 																	name="ticketNumber" id="ticketNumber"
 																	class="form-control" type="text"
-																	value="${ticketObject.ticketNumber}" readonly>
+																	value="VTC000${ticketObject.recordID}" readonly>
 															</div>
 														</div>
 													</div>
-											
+											<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 											  <!-- Text input Manager-->
 												<div class="form-group">
 														<label class="col-md-3 control-label"> Manager</label>
@@ -683,12 +716,23 @@ table#toOrder thead {
 												<div class="col-md-6 inputGroupContainer">
 													<div class="input-group"><span class="input-group-addon"><i
 													   class="glyphicon glyphicon-barcode"></i></span>
-													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="VTC000${ticketObject.recordID}" readonly>
 													</div>
 												</div>
 											</div>
 											
-											
+											<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 											<!-- Text area Action Taken-->
 											<div class="form-group">
 												<label class="col-md-3 control-label">Action Taken</label>
@@ -959,11 +1003,22 @@ table#toOrder thead {
 												<div class="col-md-6 inputGroupContainer">
 													<div class="input-group"><span class="input-group-addon"><i
 													   class="glyphicon glyphicon-barcode"></i></span>
-													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="VTC000${ticketObject.recordID}" readonly>
 													</div>
 												</div>
 											</div>
-											
+											<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 											 	 <!-- Text input Manager-->
 												<div class="form-group">
 													<label class="col-md-3 control-label"> Manager</label>
@@ -1044,11 +1099,22 @@ table#toOrder thead {
 												<div class="col-md-6 inputGroupContainer">
 													<div class="input-group"><span class="input-group-addon"><i
 													   class="glyphicon glyphicon-barcode"></i></span>
-													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="VTC000${ticketObject.recordID}" readonly>
 													</div>
 												</div>
 											</div>
-											
+											<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 											<!-- Text area Action Taken-->
 											<div class="form-group">
 												<label class="col-md-3 control-label">Action Taken</label>
@@ -1320,11 +1386,22 @@ table#toOrder thead {
 												<div class="col-md-6 inputGroupContainer">
 													<div class="input-group"><span class="input-group-addon"><i
 													   class="glyphicon glyphicon-barcode"></i></span>
-													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="VTC000${ticketObject.recordID}" readonly>
 													</div>
 												</div>
 											</div>
-											
+											<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 											  <!-- Text input Manager-->
 												<div class="form-group">
 														<label class="col-md-3 control-label"> Manager</label>
@@ -1408,12 +1485,23 @@ table#toOrder thead {
 												<div class="col-md-6 inputGroupContainer">
 													<div class="input-group"><span class="input-group-addon"><i
 													   class="glyphicon glyphicon-barcode"></i></span>
-													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="${ticketObject.ticketNumber}" readonly>
+													   	<input name="ticketNumber" id="ticketNumber" class="form-control" type="text" value="VTC000${ticketObject.recordID}" readonly>
 													</div>
 												</div>
 											</div>
 											
-											
+											<!-- Text input Ticket Number-->
+													<div class="form-group" style="display:none">
+														<div class="col-md-6 inputGroupContainer" >
+															<div class="input-group">
+																<span class="input-group-addon"><i
+																	class="glyphicon glyphicon-barcode"></i></span> <input
+																	name="recordID" id="ticketNumber"
+																	class="form-control" type="text"
+																	value="${ticketObject.recordID}">
+															</div>
+														</div>
+													</div>
 											<!-- Text area Action Taken-->
 											<div class="form-group">
 												<label class="col-md-3 control-label">Action Taken</label>
@@ -2026,6 +2114,23 @@ table#toOrder thead {
 		
 											</div>
 											<!-- displayNone for getPartToner -->
+											
+											<c:if test="${empty ticketObject.reopenReason}">
+											</c:if>
+											<c:if test="${not empty ticketObject.reopenReason}">
+											<!-- Text area reopenReason-->
+												<div class="form-group">
+													<label class="col-md-3 control-label">Re-Open Reason</label>
+													<div class="col-md-6 inputGroupContainer">
+														<div class="input-group">
+															<span class="input-group-addon"><i
+																class="glyphicon glyphicon-pencil"></i></span>
+															<textarea class="form-control" readonly="readonly" name="reopenReason"
+																id="reopenReason"  onkeydown="upperCaseF(this)" style="height: 120px;">${ticketObject.reopenReason}</textarea>
+														</div>
+													</div>
+												</div><!-- Text area reopenReason-->
+											</c:if>
 		
 									</form:form>
 								</div>

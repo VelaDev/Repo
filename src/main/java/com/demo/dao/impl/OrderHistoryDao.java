@@ -37,6 +37,7 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 	
 	private DateFormat dateFormat = null;
 	private Date date = null;
+	private String orderNumber ="ORD000";
 	
 	
 	@Override
@@ -46,7 +47,7 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 		orderHistory = new OrderHistory();
 		try{
 			
-			orderHistory.setOrderNum(order.getOrderNum());
+			orderHistory.setOrderNum(orderNumber+ order.getRecordID());
 			orderHistory.setOrderStatus(order.getStatus());
 			
 			if(order.getStatus().equalsIgnoreCase("Approved") ){
@@ -71,14 +72,14 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 		
 	}
 	@Override
-	public List<OrderHistory> getAllOrderHistoryByOrderNumber(int recordID) {
+	public List<OrderHistory> getAllOrderHistoryByOrderNumber(Long recordID) {
 		List<OrderHistory> newList = null;
 		try{
 			orderHeader = daoInt.getOrder(recordID);
 			List<OrderHistory> list = getAllOrderHistoryByOrderNumber();
 			 newList = new ArrayList<OrderHistory>();
 			for(OrderHistory orderHistory:list){
-				if(orderHistory.getOrderNum().equalsIgnoreCase(orderHeader.getOrderNum())){
+				if(orderHistory.getOrderNum().equalsIgnoreCase(orderNumber+orderHeader.getRecordID())){
 					newList.add(orderHistory);
 				}
 			}
@@ -98,13 +99,13 @@ public class OrderHistoryDao implements OrderHistoryDaoInt{
 		return (List<OrderHistory>) criteria.list();
 	}
 	@Override
-	public List<OrderHistory> getAllOrderHistoryTicketNumber(int ticketNumber) {
+	public List<OrderHistory> getAllOrderHistoryTicketNumber(Long ticketNumber) {
 		Tickets ticket = ticketsDaoInt.getLoggedTicketsByTicketNumber(ticketNumber);
 		
 		List<OrderHistory> list = new ArrayList<OrderHistory>();
 		List<OrderHistory> listOrders =getAllOrderHistoryByOrderNumber();
 		for(OrderHistory order:listOrders){
-			if(order.getOrderNum().equalsIgnoreCase(ticket.getOrderHeader().getOrderNum())){
+			if(order.getOrderNum().equalsIgnoreCase(orderNumber+ticket.getOrderHeader().getRecordID())){
 				list.add(order);
 			}
 		}

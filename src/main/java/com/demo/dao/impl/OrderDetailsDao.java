@@ -40,7 +40,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt {
 	}
 
 	@Override
-	public List<OrderDetails> getOrderDetailsByOrderNum(Integer recordID) {
+	public List<OrderDetails> getOrderDetailsByOrderNum(Long recordID) {
 
 		ArrayList<OrderDetails> pendingList = new ArrayList<OrderDetails>();
 		try {
@@ -134,7 +134,7 @@ public class OrderDetailsDao implements OrderDetailsDaoInt {
 
 	@Override
 	public List<OrderDetails> getOrderDetailsByOrderNum(String key,
-			Integer recordID) {
+			Long recordID) {
 
 		ArrayList<OrderDetails> pendingList = new ArrayList<OrderDetails>();
 		try {

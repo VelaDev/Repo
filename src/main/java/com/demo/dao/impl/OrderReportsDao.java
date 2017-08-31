@@ -95,10 +95,11 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 	private OrderHeader orderHeader;
 	private CustomerContactDetails customerContact;
 	private VelaphandaProfile profile;
+	private String orderNumber = "ORD000";
 	
 	
 	@Override
-	public void createPdf(Integer recordID)throws ParserConfigurationException, SAXException,
+	public void createPdf(Long recordID)throws ParserConfigurationException, SAXException,
 	TransformerException, IOException, DocumentException, XMPException,
 	ParseException, DataIncompleteException, InvalidCodeException {
 
@@ -116,11 +117,11 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 		boolean file = new File(folderName).mkdir(); 
 		if(!file){
 			writer = PdfWriter.getInstance(document,
-					new FileOutputStream(folderName+"/"+orderHeader.getOrderNum()+".pdf"));
+					new FileOutputStream(folderName+"/"+orderNumber+orderHeader.getRecordID()+".pdf"));
 			writer.setPdfVersion(PdfWriter.VERSION_1_7);
 		}else{  
 			writer = PdfWriter.getInstance(document,
-					new FileOutputStream(folderName+"/"+orderHeader.getOrderNum()+".pdf"));
+					new FileOutputStream(folderName+"/"+orderNumber+orderHeader.getRecordID()+".pdf"));
 			writer.setPdfVersion(PdfWriter.VERSION_1_7);
 		}
 		//Get payment information from order table
@@ -182,7 +183,7 @@ public class OrderReportsDao implements OrderReportsDaoInt {
 
 		PdfPCell paymentInformation = getPaymentInformation(
 				"PAYMENT INFORMATION", "DATE OF DELIVERY: 10 OCTOBER 2016",
-				"DELIVERY NOTE NO: Mad/OCT/01", "ORDER NO: "+orderHeader.getOrderNum(),
+				"DELIVERY NOTE NO: Mad/OCT/01", "ORDER NO: "+orderNumber+orderHeader.getRecordID(),
 				"CUSTOMER VAT NO:", "CONTRACT NO:", "WAYBILL NO:",
 				"PLEASE REMIT TO admin@velaphanda.co.za");
 

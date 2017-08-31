@@ -29,7 +29,7 @@ public class TicketsService implements TicketsServiceInt{
 	}
 
 	@Override
-	public Tickets getLoggedTicketByTicketNumber(int ticketNumber) {
+	public Tickets getLoggedTicketByTicketNumber(Long ticketNumber) {
 		
 		return logTicketsDAO.getLoggedTicketsByTicketNumber(ticketNumber);
 	}
@@ -314,13 +314,13 @@ public class TicketsService implements TicketsServiceInt{
 
 	@Override
 	public int getTicketCount(String status, String dateRange,
-			String technicianEmail, String customer, String ticketNumber) {
+			String technicianEmail, String customer, Long ticketNumber) {
 		return logTicketsDAO.getTicketCount(status, dateRange, technicianEmail, customer, ticketNumber);
 	}
 
 	@Override
 	public List<Tickets> getTicketListByStatus(String status, String dateRange,
-			String technicianEmail, String customer, String ticketNumber) {
+			String technicianEmail, String customer, Long ticketNumber) {
 		return logTicketsDAO.getTicketListByStatus(status, dateRange, technicianEmail, customer, ticketNumber);
 	}
 
@@ -346,7 +346,7 @@ public class TicketsService implements TicketsServiceInt{
 	}
 
 	@Override
-	public List<Tickets> searchTicketByTicketNumber(String ticketNumber) {
+	public List<Tickets> searchTicketByTicketNumber(Long ticketNumber) {
 		return logTicketsDAO.searchTicketByTicketNumber(ticketNumber);
 	}
 
@@ -357,15 +357,14 @@ public class TicketsService implements TicketsServiceInt{
 
 	@Override
 	public int getTicketCountForTechnician(String status, String dateRange,
-			String technicianEmail, String customer, String ticketNumber) {
+			String technicianEmail, String customer, Long ticketNumber) {
 		return logTicketsDAO.getTicketCountForTechnician(status, dateRange, technicianEmail, customer, ticketNumber);
 	}
 
 	@Override
 	public List<Tickets> getTicketListByStatusForTech(String status,
 			String dateRange, String technicianEmail, String customer,
-			String ticketNumber) {
-		// TODO Auto-generated method stub
+			Long ticketNumber) {
 		return logTicketsDAO.getTicketListByStatusForTech(status, dateRange, technicianEmail, customer, ticketNumber);
 	}
 
@@ -376,7 +375,7 @@ public class TicketsService implements TicketsServiceInt{
 	}
 
 	@Override
-	public List<Tickets> searchByTicketNumberForTech(String ticketNumber,
+	public List<Tickets> searchByTicketNumberForTech(Long ticketNumber,
 			String technicianEmail) {
 		return logTicketsDAO.searchByTicketNumberForTech(ticketNumber, technicianEmail);
 	}

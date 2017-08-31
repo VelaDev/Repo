@@ -10,7 +10,7 @@ import com.demo.model.Tickets;
 public interface TicketsDaoInt {
 	
 	String logTicket(TicketsBean tickets);
-	Tickets getLoggedTicketsByTicketNumber(int ticketNumber);
+	Tickets getLoggedTicketsByTicketNumber(Long ticketNumber);
 	List<Tickets> getAllLoggedTickets();
 	List<Tickets> getAllLoggedTickets(String startDate);
 	List<Tickets> getAllLoggedTickets(String startDate, String endDate);
@@ -71,22 +71,22 @@ public interface TicketsDaoInt {
 	List<Tickets> getAwaitingSparesTickets();
 	List<Tickets> getLastFourteenDaysTickets();
 	int getTicketCount(String status, String dateRange, String technicianEmail,
-			String customer, String ticketNumber);
+			String customer, Long ticketNumber);
 	List<Tickets> getTicketListByStatus(String status, String dateRange,
-			String technicianEmail, String customer, String ticketNumber);
+			String technicianEmail, String customer, Long ticketNumber);
 	List<Tickets> getTicketListByCustomerName(String customer);
 	List<Tickets> getTicketListByDateRange(String dateRange);
 	List<Tickets> getTicketListByTechnicianEmail(String technicianEmail);
 	String[] getTicketNumbers();
-	List<Tickets> searchTicketByTicketNumber(String ticketNumber);
+	List<Tickets> searchTicketByTicketNumber(Long ticketNumber);
 	List<Tickets> getFourteenDaysTicketsForTech(String technicianEmail);
 	int getTicketCountForTechnician(String status, String dateRange,
-			String technicianEmail, String customer, String ticketNumber);
+			String technicianEmail, String customer, Long ticketNumber);
 	List<Tickets> getTicketListByStatusForTech(String status, String dateRange,
-			String technicianEmail, String customer, String ticketNumber);
+			String technicianEmail, String customer, Long ticketNumber);
 	List<Tickets> getTicketListByCustomerNameForTech(String customer,
 			String technicianEmail);
-	List<Tickets> searchByTicketNumberForTech(String ticketNumber,
+	List<Tickets> searchByTicketNumberForTech(Long ticketNumber,
 			String technicianEmail);
 	String[] getTicketNumbersForTech(String technicianEmail);
 	String performTicketAction(TicketsBean ticketsBean);

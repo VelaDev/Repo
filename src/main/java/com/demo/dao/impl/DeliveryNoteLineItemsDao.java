@@ -19,7 +19,7 @@ public class DeliveryNoteLineItemsDao implements DeliveryNoteLineItemsDaoInt{
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+	private String orderNumber = "ORD000";
 	@Override
 	public void saveDeliveryNoteLineItems(List<OrderDetails> orderDetails) {
 		
@@ -28,7 +28,7 @@ public class DeliveryNoteLineItemsDao implements DeliveryNoteLineItemsDaoInt{
 				DeliveryNoteLineItem lineItems = new DeliveryNoteLineItem();
 				lineItems.setItemDescription(items.getItemDescription());
 				lineItems.setModel(items.getModel());
-				lineItems.setOrderNum(items.getOrderHeader().getOrderNum());
+				lineItems.setOrderNum(orderNumber+items.getOrderHeader().getRecordID());
 				lineItems.setQuantity(items.getQuantity());
 				lineItems.setRecordID(items.getOrderDertailNumber());
 				lineItems.setPartNumber(items.getPartNumber());

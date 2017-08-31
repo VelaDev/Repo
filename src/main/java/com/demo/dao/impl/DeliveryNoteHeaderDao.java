@@ -23,6 +23,8 @@ public class DeliveryNoteHeaderDao implements DeliveryNoteHeaderDaoInt{
 	@Autowired
 	private VelaphandaProfileDaoInt companyProfileInt;
 	
+	private String orderNumber = "ORD000";
+	
 	@Override
 	public DeliveryNoteHeader getDeliveryNoteHeader(Integer recordID) {
 		// Get delivery note by recordID
@@ -58,8 +60,8 @@ public class DeliveryNoteHeaderDao implements DeliveryNoteHeaderDaoInt{
 				}
 				// Set delivery info
 				deliveryNoteHeader.setDateOrdered(orderHeader.getDateOrdered());
-				deliveryNoteHeader.setOrderNum(orderHeader.getOrderNum());
-				deliveryNoteHeader.setRecordID(orderHeader.getRecordID());
+				deliveryNoteHeader.setOrderNum(orderNumber+orderHeader.getRecordID());
+				//deliveryNoteHeader.setRecordID(orderHeader.getRecordID());
 				// Set technician info
 				deliveryNoteHeader.setContactEmail(orderHeader.getEmployee().getEmail());
 				deliveryNoteHeader.setContactNumber(orderHeader.getEmployee().getCellNumber());

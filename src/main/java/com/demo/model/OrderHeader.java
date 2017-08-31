@@ -1,17 +1,21 @@
 package com.demo.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -33,10 +37,10 @@ public class OrderHeader implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name="RecordID")
-	private Integer recordID;
-	@Column(name="Order_Number")
-	private String orderNum;
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
+	@Column(name="RecordID", unique = true, nullable = false, precision = 15, scale = 0)
+	private Long recordID;
 	@Column(name="Delivered")
 	private boolean delivered;
 	@Column(name="Date_Orderd")
@@ -63,18 +67,13 @@ public class OrderHeader implements Serializable{
 	@JoinColumn(name="OrderBy")
 	private Employee employee;
 	
-	/*@ManyToOne
-	@JoinColumn(name="Spare_Part")
-	private HOStock spare;*/
 	@ManyToOne
 	@JoinColumn(name="Customer_Name")
 	private Customer customer;
-	/*@ManyToOne
-	@JoinColumn(name="Serial_Number")
-	private Device device;*/
+	
 	
 	@OneToMany(mappedBy ="orderHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
-	private Set<OrderDetails> orderDetails;
+	private Set<OrderDetails> orderDetails = new HashSet<OrderDetails>();
 	
 	@OneToMany(mappedBy ="orderHeader", cascade= CascadeType.ALL,fetch=FetchType.LAZY)
 	private Set<Tickets> tickets;

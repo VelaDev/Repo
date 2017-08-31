@@ -32,6 +32,8 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 	DateFormat dateFormat = null;
 	Date date = null;
 	
+	
+	private String newTicketNum = "VTC000";
 	List<TicketHistory> ticketHistoryList = null;
 	ArrayList<?> aList = null;
 	ArrayList list = null;
@@ -46,7 +48,6 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 		try{
 			
 			  ticketHistory.setTicketNo(ticket.getRecordID());
-			  ticketHistory.setTicketNumber(ticket.getTicketNumber());
 			  ticketHistory.setComment(ticket.getComments());
 			  ticketHistory.setEscalatedDate(dateFormat.format(date));
 			  ticketHistory.setEmployee(ticket.getEmployee());
@@ -74,7 +75,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 	}
 
 	@Override
-	public List<TicketHistory> getHistoryByTicketNumber(int ticketNumber) {
+	public List<TicketHistory> getHistoryByTicketNumber(Long ticketNumber) {
 		
 	try{
 			
@@ -84,7 +85,7 @@ public class TicketHistoryDao implements TicketHistoryDaoInt{
 			aList.addAll(criteria.list());
 			for (Object ticket : aList) {
 				if (ticket instanceof TicketHistory) {
-					if (((TicketHistory)ticket).getTicketNo()==ticketNumber) {
+					if (((TicketHistory)ticket).getTicketNo().equals(ticketNumber)) {
 						ticketHistoryList.add((TicketHistory) ticket);
 						
 					}

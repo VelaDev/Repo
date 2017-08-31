@@ -55,7 +55,7 @@ table#orderDetails {
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Order No : ${OrderNum.orderNum}</b>
+							<b>Order No : ORD00${OrderNum.recordID}</b>
 						</div>
 					</h3>
 				</div>
@@ -97,9 +97,9 @@ table#orderDetails {
 
 											</ul></li>
 									</c:if>
-							<li><a
+							<%-- <li><a
 								href="printdeliveryNote?recordID=<c:out value='${OrderNum.recordID}'/>">Download
-									PDF </a></li>
+									PDF </a></li> --%>
 						</ul>
 					</div>
 					<legend></legend>
@@ -192,7 +192,7 @@ table#orderDetails {
 									<legend style="font-size: 12px; line-height: 1.42857143;">Order</legend>
 									<div class="machinedetailsfloatright ">
 										<div class="orderDetails">
-											<li style="font-size: 15px;" id="orderNum"><b>${OrderNum.orderNum}</b></li>
+											<li style="font-size: 15px;" id="orderNum"><b> ORD00${OrderNum.recordID}</b></li>
 											<li id="status">Order Status: ${OrderNum.status}</li>
 											<li id="dateOrdered">Stock Type: ${OrderNum.stockType}</li>
 											<li id="dateOrdered">Ordered Date:
@@ -262,9 +262,9 @@ table#orderDetails {
 
 										<div class="groupproductdetails">
 											<div class="machinedetailsfloatright ">
-												<div class="orderDetails">
+												<div class="orderDetails" style="margin-left: 1px;">
 													<li style="font-size: 15px;" id="orderNum"><b>Order
-															No: ${OrderNum.orderNum}</b></li>
+															No: ORD00${OrderNum.recordID}</b></li>
 												</div>
 												<br>
 											</div>

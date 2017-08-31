@@ -28,7 +28,7 @@ public class SitStockService implements SiteStockInt{
 	}
 	@Override
 	public List<SiteStock> getOrdersForCustomer(String customerName,
-			int ticketID) {
+			Long ticketID) {
 		
 		return siteStock.getOrdersForCustomer(customerName, ticketID);
 	}

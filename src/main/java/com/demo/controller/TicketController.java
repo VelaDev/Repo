@@ -82,7 +82,7 @@ public class TicketController {
 	public String[] getOrdersNumbers = null;
 	// Retrive String All technicians if selected on front end
 	public String allTechniciansSelected = null;
-	public String ticketNumber;
+	public Long ticketNumber;
 	private Employee tempEmployee = null;
 	
 
@@ -206,7 +206,7 @@ public class TicketController {
 	}
 
 	@RequestMapping("ticketDetails")
-	public ModelAndView loadTicketdetails(@RequestParam int id,
+	public ModelAndView loadTicketdetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -306,7 +306,7 @@ public class TicketController {
 
 				retMessage = ticketsServiceInt.performTicketAction(updateTicket);
 				if (retMessage.startsWith("K")) {
-					String message = retMessage;
+					//String message = retMessage;
 					model.addObject("retMessage", retMessage);
 				} else {
 					model.addObject("retMessage", retMessage);
@@ -537,7 +537,7 @@ public class TicketController {
 
 	@RequestMapping("AssignTicketToOtherTechnician")
 	public ModelAndView assignTicketToAnotherTechnicia(
-			@RequestParam int ticketNumber, @ModelAttribute Tickets ticket) {
+			@RequestParam Long ticketNumber, @ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -562,7 +562,7 @@ public class TicketController {
 
 	@RequestMapping("userAssignTicketToOtherTechnician")
 	public ModelAndView userAssignTicketToAnotherTechnicia(
-			@RequestParam int ticketNumber, @ModelAttribute Tickets ticket) {
+			@RequestParam Long ticketNumber, @ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -641,7 +641,7 @@ public class TicketController {
 
 	@RequestMapping(value = { "closedTicketsDetails",
 			"closedTechTicketsDetails" })
-	public ModelAndView loadClosedTicketsDetails(@RequestParam int id,
+	public ModelAndView loadClosedTicketsDetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -711,7 +711,7 @@ public class TicketController {
 	}
 
 	@RequestMapping("awaitingSparesDetails")
-	public ModelAndView loadAwaitingSparesTicketdetails(@RequestParam int id,
+	public ModelAndView loadAwaitingSparesTicketdetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -783,21 +783,21 @@ public class TicketController {
 	}
 
 	@RequestMapping("awaitingSparesTechDetails")
-	public ModelAndView loadAwaitingSparesTechdetails(@RequestParam int id,
+	public ModelAndView loadAwaitingSparesTechdetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 
-			ticket = logTicketService.getLoggedTicketByTicketNumber(id);
+			ticket = logTicketService.getLoggedTicketByTicketNumber(ticket.getRecordID());
 			model.addObject("ticketObject", ticket);
 			model.addObject(
 					"contactPerson",
 					contactDetailsServiceInt.getContactPerson(ticket
 							.getDevice().getCustomerDevice().getCustomerName()));
 			model.addObject("ticketHistoryList",
-					ticketHistoryInt.getHistoryByTicketNumber(id));
+					ticketHistoryInt.getHistoryByTicketNumber(ticket.getRecordID()));
 			model.addObject("OrderNumber",
 					ordersServiceInt.getAllOrders(userName.getEmail()));
 			model.addObject("escalatedTickets",
@@ -842,7 +842,7 @@ public class TicketController {
 	}
 
 	@RequestMapping("bridgedTicketsDetails")
-	public ModelAndView loadBridgedTicketsDetails(@RequestParam int id,
+	public ModelAndView loadBridgedTicketsDetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -901,7 +901,7 @@ public class TicketController {
 	}
 
 	@RequestMapping("bridgedTechDetails")
-	public ModelAndView loadBridgedTechDetails(@RequestParam int id,
+	public ModelAndView loadBridgedTechDetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -964,7 +964,7 @@ public class TicketController {
 	}
 
 	@RequestMapping("escalatedTickesDetails")
-	public ModelAndView loadEscalatedTickesDetails(@RequestParam int id,
+	public ModelAndView loadEscalatedTickesDetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -1021,7 +1021,7 @@ public class TicketController {
 	}
 
 	@RequestMapping("escalatedTechDetails")
-	public ModelAndView loadEscalatedTechDetails(@RequestParam int id,
+	public ModelAndView loadEscalatedTechDetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -1091,7 +1091,7 @@ public class TicketController {
 
 	@RequestMapping(value = { "resolvedTickectDetails",
 			"userResolvedTickectDetails" })
-	public ModelAndView loadResolvedTicketDetails(@RequestParam int id,
+	public ModelAndView loadResolvedTicketDetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -1157,7 +1157,7 @@ public class TicketController {
 	}
 
 	@RequestMapping("resolvedTechTicketsDetails")
-	public ModelAndView loadResolvedTechTicketsDetails(@RequestParam int id,
+	public ModelAndView loadResolvedTechTicketsDetails(@RequestParam Long id,
 			@ModelAttribute Tickets ticket) {
 
 		model = new ModelAndView();
@@ -1447,21 +1447,21 @@ public class TicketController {
 			model.addObject("dates", ordersServiceInt.getDates());
 
 			model.addObject("countOpenTickets", ticketsServiceInt
-					.getTicketCount("Open", "Last 14 Days", "", "", ""));
+					.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 			model.addObject("countAcknowledgedTickets", ticketsServiceInt
-					.getTicketCount("Acknowledged", "Last 14 Days", "", "",""));
+					.getTicketCount("Acknowledged", "Last 14 Days", "", "",0L));
 			model.addObject("countTakenTickets", ticketsServiceInt
-					.getTicketCount("Taken", "Last 14 Days", "", "",""));
+					.getTicketCount("Taken", "Last 14 Days", "", "",0L));
 			model.addObject("countEscalatedTickets", ticketsServiceInt
-					.getTicketCount("Escalated", "Last 14 Days", "", "", ""));
+					.getTicketCount("Escalated", "Last 14 Days", "", "", 0L));
 			model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-					.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", ""));
+					.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", 0L));
 			model.addObject("countBridgedTickets", ticketsServiceInt
-					.getTicketCount("SLA Bridged", "Last 14 Days", "", "", ""));
+					.getTicketCount("SLA Bridged", "Last 14 Days", "", "", 0L));
 			model.addObject("countResolvedTickets", ticketsServiceInt
-					.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+					.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 			model.addObject("countClosedTickets", ticketsServiceInt
-					.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+					.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 			model.addObject("ticketNumbers", ticketsServiceInt
 					.getTicketNumbers());
@@ -1493,21 +1493,21 @@ public class TicketController {
 					.getTicketNumbersForTech(userName.getEmail()));
 
 			model.addObject("countOpenTickets", ticketsServiceInt
-					.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 			model.addObject("countAcknowledgedTickets", ticketsServiceInt
-					.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 			model.addObject("countTakenTickets", ticketsServiceInt
-					.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 			model.addObject("countEscalatedTickets", ticketsServiceInt
-					.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 			model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-					.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 			model.addObject("countBridgedTickets", ticketsServiceInt
-					.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 			model.addObject("countResolvedTickets", ticketsServiceInt
-					.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 			model.addObject("countClosedTickets", ticketsServiceInt
-					.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+					.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 			model.setViewName("techticketmanagement");
 			
 		} else {
@@ -1519,7 +1519,7 @@ public class TicketController {
 	// ticket management details
 	@RequestMapping(value = { "ticketItemDetailsM", "ticketItemDetailsT" }, method = RequestMethod.GET)
 	public ModelAndView ticketItemDetailsM(
-			@RequestParam("recordID") int recordID,
+			@RequestParam("recordID") Long recordID,
 			@ModelAttribute Tickets ticket) {
 		model = new ModelAndView();
 	
@@ -1638,78 +1638,78 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Open", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Open", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Open", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Open", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Open", "Last 14 ", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Open", "Last 14 ", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 
@@ -1727,75 +1727,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("Open", "", "", customerName,""));
+								.getTicketListByStatus("Open", "", "", customerName, 0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName, 0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName, 0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName, 0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName, 0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName, 0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Open", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				} 
 				
@@ -1804,27 +1804,27 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("Open", "", "All Technicians", "", ""));
+									.getTicketListByStatus("Open", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
@@ -1832,7 +1832,7 @@ public class TicketController {
 				
 					else if (ticketNumber != null) {
 					 	
-						 if (ticketNumber.length()>= 3)
+						 if (ticketNumber.SIZE>= 3)
 							{
 								model.addObject("lastForteenList", ticketsServiceInt
 										.getTicketListByStatus("Open", "", "", "", ticketNumber));
@@ -1865,27 +1865,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Open", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -1921,78 +1921,78 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Acknowledged", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Acknowledged", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Acknowledged", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Acknowledged", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Acknowledged", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Acknowledged", "Last 14 Days", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 
@@ -2010,75 +2010,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("Acknowledged", "", "", customerName,""));
+								.getTicketListByStatus("Acknowledged", "", "", customerName, 0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName, 0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName, 0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName,0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName,0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName,0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Acknowledged", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("Acknowledged", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Acknowledged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("Acknowledged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				}
 				 else if (allTechniciansSelected != null) {
@@ -2086,27 +2086,27 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("Acknowledged", "", "All Technicians", "", ""));
+									.getTicketListByStatus("Acknowledged", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
@@ -2114,7 +2114,7 @@ public class TicketController {
 				
 					else if (ticketNumber != null) {
 					 	
-						 if (ticketNumber.length()>= 3)
+						 if (ticketNumber.SIZE>= 3)
 							{
 								model.addObject("lastForteenList", ticketsServiceInt
 										.getTicketListByStatus("Acknowledged", "", "", "", ticketNumber));
@@ -2146,27 +2146,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Acknowledged", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("Acknowledged", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -2205,78 +2205,78 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Taken", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Taken", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Taken", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Taken", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Taken", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Taken", "Last 14 Days", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 
@@ -2294,75 +2294,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("Taken", "", "", customerName,""));
+								.getTicketListByStatus("Taken", "", "", customerName, 0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName, 0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName, 0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName, 0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName, 0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName, 0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Taken", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("Taken", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				} 
 				
@@ -2371,27 +2371,27 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("Taken", "", "All Technicians", "", ""));
+									.getTicketListByStatus("Taken", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
@@ -2399,7 +2399,7 @@ public class TicketController {
 				
 				else if (ticketNumber != null) {
 				 	
-					 if (ticketNumber.length()>= 3)
+					 if (ticketNumber.SIZE>= 3)
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
 									.getTicketListByStatus("Taken", "", "", "", ticketNumber));
@@ -2431,27 +2431,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Taken", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -2490,78 +2490,78 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Awaiting Spares", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Awaiting Spares", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Awaiting Spares", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Awaiting Spares", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Awaiting Spares", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Awaiting Spares", "Last 14 Days", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 
@@ -2579,75 +2579,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("Awaiting Spares", "", "", customerName,""));
+								.getTicketListByStatus("Awaiting Spares", "", "", customerName, 0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName, 0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName, 0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName, 0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName, 0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName, 0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName, 0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Awaiting Spares", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("Awaiting Spares", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Awaiting Spares", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("Awaiting Spares", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				} 
 				
@@ -2656,27 +2656,27 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("AwaitingSpares", "", "All Technicians", "", ""));
+									.getTicketListByStatus("AwaitingSpares", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
@@ -2684,7 +2684,7 @@ public class TicketController {
 				
 				else if (ticketNumber != null) {
 				 	
-					 if (ticketNumber.length()>= 3)
+					 if (ticketNumber.SIZE>= 3)
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
 									.getTicketListByStatus("Awaiting Spares", "", "", "", ticketNumber));
@@ -2716,27 +2716,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Awaiting Spares", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("Awaiting Spares", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -2774,78 +2774,78 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Escalated", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Escalated", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Escalated", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Escalated", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Escalated", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Escalated", "Last 14 Days", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 
@@ -2863,75 +2863,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("Escalated", "", "", customerName,""));
+								.getTicketListByStatus("Escalated", "", "", customerName,0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName,0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName,0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName,0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName,0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName,0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Escalated", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("Escalated", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Escalated", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("Escalated", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "",0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				} 
 				
@@ -2940,27 +2940,27 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("Taken", "", "All Technicians", "", ""));
+									.getTicketListByStatus("Taken", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
@@ -2968,7 +2968,7 @@ public class TicketController {
 				
 				else if (ticketNumber != null) {
 				 	
-					 if (ticketNumber.length()>= 3)
+					 if (ticketNumber.SIZE>= 3)
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
 									.getTicketListByStatus("Escalated", "", "", "", ticketNumber));
@@ -3000,27 +3000,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Escalated", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("Escalated", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -3057,78 +3057,78 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Resolved", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Resolved", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Resolved", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Resolved", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCount("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Resolved", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Resolved", "Last 14 Days", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 				model.addObject("ticketNumbers", ticketsServiceInt
@@ -3145,75 +3145,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("Resolved", "", "", customerName,""));
+								.getTicketListByStatus("Resolved", "", "", customerName,0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName,0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName,0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName,0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName,0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName,0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Resolved", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("Resolved", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				} 
 				
@@ -3222,34 +3222,34 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("Resolved", "", "All Technicians", "", ""));
+									.getTicketListByStatus("Resolved", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
 					}
 				else if (ticketNumber != null) {
 				 	
-					 if (ticketNumber.length()>= 3)
+					 if (ticketNumber.SIZE>0)
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
 									.getTicketListByStatus("Resolved", "", "", "", ticketNumber));
@@ -3282,27 +3282,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -3340,78 +3340,78 @@ public class TicketController {
 				if (customerName != null) {
 					
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", "Last 14 Days", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 				model.addObject("ticketNumbers", ticketsServiceInt
@@ -3428,75 +3428,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("SLA Bridged", "", "", customerName,""));
+								.getTicketListByStatus("SLA Bridged", "", "", customerName,0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName,0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName,0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName,0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName,0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName,0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				} 
 				
@@ -3505,27 +3505,27 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketListByStatus("SLA Bridged", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
@@ -3533,7 +3533,7 @@ public class TicketController {
 				
 				else if (ticketNumber != null) {
 				 	
-					 if (ticketNumber.length()>= 3)
+					 if (ticketNumber.SIZE>0)
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
 									.getTicketListByStatus("SLA Bridged", "", "", "", ticketNumber));
@@ -3565,27 +3565,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("SLA Bridged", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("SLA Bridged", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -3623,78 +3623,78 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Closed", "", userName.getEmail(), customerName, ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Closed", "", userName.getEmail(), customerName, 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Closed", selectedDateRange, userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Closed", selectedDateRange, userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "",0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				} else {
 
 					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByStatusForTech("Closed", "Last 14 Days", userName.getEmail(), "", ""));
+							ticketsServiceInt.getTicketListByStatusForTech("Closed", "Last 14 Days", userName.getEmail(), "", 0L));
 
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Open", "Last 14 Days",userName.getEmail() , "", 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail() , "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", ""));
+							.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail() , "", 0L));
 				}
 				
 				model.addObject("ticketNumbers", ticketsServiceInt
@@ -3710,75 +3710,75 @@ public class TicketController {
 					if (customerName.length() >= 2) {
 						model.addObject("selectedName", customerName);
 						model.addObject("lastForteenList", ticketsServiceInt
-								.getTicketListByStatus("Closed", "", "", customerName,""));
+								.getTicketListByStatus("Closed", "", "", customerName,0L));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName,0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName,0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName,0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName,0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName,0L));
 					
 					}
 				} else if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Closed", selectedDateRange, "", "", ""));
+							.getTicketListByStatus("Closed", selectedDateRange, "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 					
 				} else if (tempEmployee != null) {
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketListByStatus("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				} 
 				
@@ -3787,27 +3787,27 @@ public class TicketController {
 					 if (allTechniciansSelected.equalsIgnoreCase("All Technicians"))
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
-									.getTicketListByStatus("Closed", "", "All Technicians", "", ""));
+									.getTicketListByStatus("Closed", "", "All Technicians", "", 0L));
 							
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 						}
 						
@@ -3815,7 +3815,7 @@ public class TicketController {
 				
 				else if (ticketNumber != null) {
 				 	
-					 if (ticketNumber.length()>= 3)
+					 if (ticketNumber.SIZE> 0)
 						{
 							model.addObject("lastForteenList", ticketsServiceInt
 									.getTicketListByStatus("Closed", "", "", "", ticketNumber));
@@ -3848,27 +3848,27 @@ public class TicketController {
 				else {
 
 					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByStatus("Closed", "Last 14 Days", "", "", ""));
+							.getTicketListByStatus("Closed", "Last 14 Days", "", "", 0L));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "Last 14 Days", "", "", ""));
+							.getTicketCount("Open", "Last 14 Days", "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "Last 14 Days", "", "", ""));
+							.getTicketCount("Taken", "Last 14 Days", "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("Awaiting Spares",
-									"Last 14 Days", "", "", ""));
+									"Last 14 Days", "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
 							.getTicketCount("SLA Bridged", "Last 14 Days", "",
-									"", ""));
+									"", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "Last 14 Days", "", "", ""));
+							.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "Last 14 Days", "", "", ""));
+							.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 
 				}
 				model.addObject("pendingOrderList",
@@ -3897,7 +3897,7 @@ public class TicketController {
 
 	// Re-assign ticket
 	@RequestMapping(value = "reAssign")
-	public ModelAndView reAssign(@RequestParam("recordID") int recordID) {
+	public ModelAndView reAssign(@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 
 		String reAssign = "reAssign";
@@ -3922,7 +3922,7 @@ public class TicketController {
 
 	// Re-open
 	@RequestMapping(value = "reOpen")
-	public ModelAndView reOpen(@RequestParam("recordID") int recordID) {
+	public ModelAndView reOpen(@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 
 		String reOpen = "reOpen";
@@ -3965,21 +3965,21 @@ public class TicketController {
 					model.addObject("dates", ordersServiceInt.getDates());
 
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Open", "",userName.getEmail() , customerName, 0L));
 					model.addObject("countAcknowledgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Acknowledged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Taken", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countEscalatedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Escalated", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Awaiting Spares", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("SLA Bridged", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Resolved", "", userName.getEmail() , customerName, 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, ""));
+							.getTicketCountForTechnician("Closed", "", userName.getEmail() , customerName, 0L));
 
 				} 
 
@@ -3999,24 +3999,24 @@ public class TicketController {
 						model.addObject("lastForteenList", ticketsServiceInt
 								.getTicketListByCustomerName(customerName));
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCount("Open", "", "", customerName,""));
+								.getTicketCount("Open", "", "", customerName,0L));
 						model.addObject("countAcknowledgedTickets",
 								ticketsServiceInt.getTicketCount("Acknowledged",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCount("Taken",  "", "", customerName,""));
+								.getTicketCount("Taken",  "", "", customerName,0L));
 						model.addObject("countEscalatedTickets",
 								ticketsServiceInt.getTicketCount("Escalated",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countAwaitingSparesTickets",
 								ticketsServiceInt.getTicketCount("Awaiting Spares",
-										"", "", customerName,""));
+										"", "", customerName,0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCount("SLA Bridged", "", "", customerName,""));
+								.getTicketCount("SLA Bridged", "", "", customerName,0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCount("Resolved",  "", "", customerName,""));
+								.getTicketCount("Resolved",  "", "", customerName,0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCount("Closed",  "", "", customerName,""));
+								.getTicketCount("Closed",  "", "", customerName,0L));
 					
 					}
 				} 
@@ -4052,27 +4052,27 @@ public class TicketController {
 				 if (selectedDateRange != null) {
 					 model.addObject("newDate", selectedDateRange);
 						model.addObject("lastForteenList",
-								ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", selectedDateRange, userName.getEmail(), "", ""));
+								ticketsServiceInt.getTicketListByStatusForTech("SLA Bridged", selectedDateRange, userName.getEmail(), "", 0L));
 
 						model.addObject("customers", customerServiceInt.getClientList());
 						model.addObject("dates", ordersServiceInt.getDates());
 
 						model.addObject("countOpenTickets", ticketsServiceInt
-								.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("Open",selectedDateRange,userName.getEmail() , "", 0L));
 						model.addObject("countAcknowledgedTickets", ticketsServiceInt
-								.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("Acknowledged", selectedDateRange, userName.getEmail() , "", 0L));
 						model.addObject("countTakenTickets", ticketsServiceInt
-								.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("Taken", selectedDateRange, userName.getEmail() , "", 0L));
 						model.addObject("countEscalatedTickets", ticketsServiceInt
-								.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("Escalated", selectedDateRange, userName.getEmail() , "", 0L));
 						model.addObject("countAwaitingSparesTickets", ticketsServiceInt
-								.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("Awaiting Spares", selectedDateRange, userName.getEmail() , "", 0L));
 						model.addObject("countBridgedTickets", ticketsServiceInt
-								.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("SLA Bridged", selectedDateRange, userName.getEmail() , "", 0L));
 						model.addObject("countResolvedTickets", ticketsServiceInt
-								.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("Resolved", selectedDateRange, userName.getEmail() , "", 0L));
 						model.addObject("countClosedTickets", ticketsServiceInt
-								.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", ""));
+								.getTicketCountForTechnician("Closed", selectedDateRange, userName.getEmail() , "", 0L));
 
 				}
 
@@ -4091,24 +4091,24 @@ public class TicketController {
 					model.addObject("lastForteenList", ticketsServiceInt
 							.getTicketListByDateRange(selectedDateRange));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", selectedDateRange, "", "", ""));
+							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken",  selectedDateRange, "", "", ""));
+							.getTicketCount("Taken",  selectedDateRange, "", "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("AwaitingSpares",
-									 selectedDateRange, "", "", ""));
+									 selectedDateRange, "", "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", selectedDateRange, "", "", ""));
+							.getTicketCount("SLA Bridged", selectedDateRange, "", "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved",  selectedDateRange, "", "", ""));
+							.getTicketCount("Resolved",  selectedDateRange, "", "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed",  selectedDateRange, "", "", ""));
+							.getTicketCount("Closed",  selectedDateRange, "", "", 0L));
 				
 				} 
 				model.addObject("newDate", selectedDateRange);
@@ -4144,24 +4144,24 @@ public class TicketController {
 					model.addObject("lastForteenList", ticketsServiceInt
 							.getTicketListByTechnicianEmail(tempEmployee.getEmail()));
 					model.addObject("countOpenTickets", ticketsServiceInt
-							.getTicketCount("Open", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",
 							ticketsServiceInt.getTicketCount("Acknowledged",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countTakenTickets", ticketsServiceInt
-							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Taken", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countEscalatedTickets",
 							ticketsServiceInt.getTicketCount("Escalated",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAwaitingSparesTickets",
 							ticketsServiceInt.getTicketCount("AwaitingSpares",
-									"", tempEmployee.getEmail(), "", ""));
+									"", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countBridgedTickets", ticketsServiceInt
-							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("SLA Bridged", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countResolvedTickets", ticketsServiceInt
-							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Resolved", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countClosedTickets", ticketsServiceInt
-							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", ""));
+							.getTicketCount("Closed", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("selectedTechnician", tempEmployee);
 				}
 				 
@@ -4172,24 +4172,24 @@ public class TicketController {
 							model.addObject("lastForteenList", ticketsServiceInt
 									.getTicketListByTechnicianEmail("All Technicians"));
 							model.addObject("countOpenTickets", ticketsServiceInt
-									.getTicketCount("Open", "", "All Technicians", "", ""));
+									.getTicketCount("Open", "", "All Technicians", "", 0L));
 							model.addObject("countAcknowledgedTickets",
 									ticketsServiceInt.getTicketCount("Acknowledged",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countTakenTickets", ticketsServiceInt
-									.getTicketCount("Taken", "", "All Technicians", "", ""));
+									.getTicketCount("Taken", "", "All Technicians", "", 0L));
 							model.addObject("countEscalatedTickets",
 									ticketsServiceInt.getTicketCount("Escalated",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countAwaitingSparesTickets",
 									ticketsServiceInt.getTicketCount("AwaitingSpares",
-											"", "All Technicians", "", ""));
+											"", "All Technicians", "", 0L));
 							model.addObject("countBridgedTickets", ticketsServiceInt
-									.getTicketCount("SLA Bridged", "", "All Technicians", "", ""));
+									.getTicketCount("SLA Bridged", "", "All Technicians", "", 0L));
 							model.addObject("countResolvedTickets", ticketsServiceInt
-									.getTicketCount("Resolved", "", "All Technicians", "", ""));
+									.getTicketCount("Resolved", "", "All Technicians", "", 0L));
 							model.addObject("countClosedTickets", ticketsServiceInt
-									.getTicketCount("Closed", "", "All Technicians", "", ""));
+									.getTicketCount("Closed", "", "All Technicians", "", 0L));
 							
 							// Get the value "All Technicians"
 							allTechniciansSelected = localTechnicianName;
@@ -4218,7 +4218,7 @@ public class TicketController {
 	
 	@RequestMapping(value = "searchByTicketNumber", method = RequestMethod.POST)
 	public ModelAndView searchByTicketNumber(
-			@RequestParam("ticketNumber") String localTicketNumber) {
+			@RequestParam("ticketNumber") Long localTicketNumber) {
 		ticketNumber = localTicketNumber;
 		selectedDateRange = null;
 		customerName = null;

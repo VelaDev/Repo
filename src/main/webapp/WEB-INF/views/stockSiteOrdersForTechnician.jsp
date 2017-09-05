@@ -132,7 +132,7 @@
 												<tr>
 													<td>${list.partNumber}</td>
 													<td>${list.compatibleDevice}</td>
-													<td><%-- ${list.modelBrand} --%></td>
+													<td>${list.modelBrand}</td>
 													<td>${list.itemDescription}</td>
 													<td>${list.quantity}</td>
 													<td>${list.itemType}</td>

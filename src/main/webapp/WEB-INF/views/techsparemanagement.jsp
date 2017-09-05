@@ -206,7 +206,7 @@ input#selectDateRange {
 
 													<td>${list.partNumber}</td>
 													<td>${list.compatibleDevice}</td>
-													<td><%-- ${list.modelBrand} --%></td>
+													<td>${list.modelBrand}</td>
 													<td>${list.itemDescription}</td>
 													<td>${list.itemType}</td>
 													<td>${list.quantity}</td>

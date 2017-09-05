@@ -50,6 +50,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 					 int incrementQuantity = stock.getQuantity() + siteStock.getQuantity();
 					 siteStock.setCompatibleDevice(stock.getCompatibleDevice());
 					 siteStock.setQuantity(incrementQuantity);
+					 siteStock.setModelBrand(stock.getModelBrand());
 					 sessionFactory.getCurrentSession().update(siteStock);
 		
 					 
@@ -64,6 +65,7 @@ public class SiteStockDao implements SiteStocDaoInt {
 						siteStock.setCompatibleDevice(stock.getCompatibleDevice());
 						siteStock.setTechnicianEmail(stock.getTechnician());
 						siteStock.setTechnicianName(stock.getTechnician());
+						siteStock.setModelBrand(stock.getModelBrand());
 						
 						sessionFactory.getCurrentSession().saveOrUpdate(siteStock);
 				 }

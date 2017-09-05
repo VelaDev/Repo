@@ -4,9 +4,7 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
 import javax.persistence.Id;
-
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -41,5 +39,7 @@ public class BootStock implements Serializable{
 	private int quantity;
 	@Column(name="Compatible_Device")
 	private String compatibleDevice;
+	@Column(name="Model_Brand")
+	private String modelBrand;
 
 }

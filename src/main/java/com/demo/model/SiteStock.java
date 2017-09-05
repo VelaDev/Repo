@@ -43,5 +43,7 @@ public class SiteStock implements Serializable{
 	private String location;
 	@Column(name="Compatible_Device")
 	private String compatibleDevice;
+	@Column(name="Model_Brand")
+	private String modelBrand;
 	
 }

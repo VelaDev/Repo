@@ -53,6 +53,8 @@ public class OrderDetails implements Serializable{/**
 	private String technician;
 	@Column(name="Compatible_Device")
 	private String compatibleDevice;
+	@Column(name="Model_Brand")
+	private String modelBrand;
 	@ManyToOne
 	@JoinColumn(name="Order_Number")
 	private OrderHeader orderHeader;

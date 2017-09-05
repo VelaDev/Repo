@@ -51,6 +51,7 @@ public class BootSiteDao implements BootStockDaoInt{
 					if(bootStock !=null && stock.getPartNumber().equalsIgnoreCase(bootStock.getPartNumber())){
 						int incrementQuantity = stock.getQuantity()+ bootStock.getQuantity();
 						bootStock.setQuantity(incrementQuantity);
+						bootStock.setModelBrand(stock.getModelBrand());
 						sessionFactory.getCurrentSession().update(bootStock);
 					}else{
 						bootStock = new BootStock();
@@ -61,6 +62,7 @@ public class BootSiteDao implements BootStockDaoInt{
 						bootStock.setTechnicianEmail(stock.getTechnician());
 						bootStock.setTechnicianName(stock.getTechnician());
 						bootStock.setCompatibleDevice(stock.getCompatibleDevice());
+						bootStock.setModelBrand(stock.getModelBrand());
 						
 						sessionFactory.getCurrentSession().saveOrUpdate(bootStock);
 					}

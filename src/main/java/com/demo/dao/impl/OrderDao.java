@@ -156,7 +156,7 @@ public class OrderDao implements OrdersDaoInt {
 				sessionFactory.getCurrentSession().update(cusOrder);
 				historyDaoInt.insetOrderHistory(cusOrder);
 				retMessage = "Order " + " " + orderNumber +cusOrder.getRecordID() + " "
-						+ "is approved.";
+						+ " is approved.";
 			} else {
 				retMessage = "Order " + " " + n + orderNumber +cusOrder.getRecordID() + " "
 						+ "not approved because it"
@@ -316,6 +316,7 @@ public class OrderDao implements OrdersDaoInt {
   				if(part != null){
   					orderDetails.setPartNumber(partNumber);
   					orderDetails.setCompatibleDevice(part.getCompitableDevice());
+  					orderDetails.setModelBrand(part.getModelBrand());
   					orderDetails.setItemDescription(part.getItemDescription());
   					orderDetails.setModel(part.getCompitableDevice());
   					orderDetails.setQuantity(quatity);

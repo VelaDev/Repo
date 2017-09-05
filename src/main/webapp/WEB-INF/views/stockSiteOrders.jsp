@@ -119,6 +119,7 @@
 											<tr>
 												<th>Part No</th>
 												<th>Compatible Devices</th>
+												<th>Model Brand</th>
 												<th>Description</th>
 												<th>Quantity</th>
 												<th>Stock Type</th>
@@ -131,6 +132,7 @@
 												<tr>
 													<td>${list.partNumber}</td>
 													<td>${list.compatibleDevice}</td>
+													<td><%-- ${list.modelBrand} --%></td>
 													<td>${list.itemDescription}</td>
 													<td>${list.quantity}</td>
 													<td>${list.itemType}</td>

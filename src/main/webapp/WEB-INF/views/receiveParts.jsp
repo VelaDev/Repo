@@ -158,6 +158,22 @@
 											</div>
 										</div>
 									</div>
+									
+									<!-- Select type Brand-->
+									<div class="form-group">
+										<label class="col-md-3 control-label">Model Brand</label>
+										<div class="col-md-6 selectContainer">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="glyphicon glyphicon-list"></i></span>
+													<input
+													id="modelBrand" readOnly name="modelBrand"
+													type="text" class="form-control"
+													value="<%-- ${sparePart.modelBrand} --%>">
+												
+											</div>
+										</div>
+									</div>
 
 									<!-- Text input Description-->
 									<div class="form-group">

@@ -230,6 +230,8 @@ input#selectDateRange {
 											<tr>
 												<th>Part No</th>
 												<th>Compatible Devices</th>
+												<th>Model Brand</th>
+												<th>Model Brand</th>
 												<th>Description</th>
 												<th>Item Type</th>
 												<th>QTY</th>
@@ -242,6 +244,7 @@ input#selectDateRange {
 
 													<td>${list.partNumber}</td>
 													<td>${list.compitableDevice}</td>
+													<td></td>
 													<td>${list.itemDescription}</td>
 													<td>${list.itemType}</td>
 													<td>${list.quantity}</td>

@@ -16,4 +16,5 @@ public class SparePartsBean {
 	private String itemDescription;
 	private int quantity;
 	private Calendar arrivedDate;
+	private String modelBrand;
 }

@@ -63,6 +63,7 @@ public class HOStockDao implements HOStockDaoInt {
 					spareParts.setItemDescription(spareMaster.getItemDescription());
 					spareParts.setItemType(spareMaster.getItemType());
 					spareParts.setDateTime(dateFormat.format(date));
+					spareParts.setModelBrand(spareMaster.getModelBrand());
 					sessionFactory.getCurrentSession().save(spareParts);
 					retMessage = spareParts.getQuantity() +" Items added for PartNumber:  "
 							+ spareParts.getPartNumber()+".";
@@ -86,6 +87,7 @@ public class HOStockDao implements HOStockDaoInt {
 					spareParts.setItemDescription(spareMaster.getItemDescription());
 					spareParts.setItemType(spareMaster.getItemType());
 					spareParts.setDateTime(dateFormat.format(date));
+					spareParts.setModelBrand(spareMaster.getModelBrand());
 					sessionFactory.getCurrentSession().save(spareParts);
 
 					retMessage = spareParts.getQuantity()+" Items added for PartNumber: "+ spareParts.getPartNumber()+".";

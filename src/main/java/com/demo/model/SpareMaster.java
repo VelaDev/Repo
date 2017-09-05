@@ -42,5 +42,7 @@ public class SpareMaster implements Serializable{/**
 	@Column(name="Date_Captured")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCaptured;
+	@Column(name="Model_Brand")
+	private String modelBrand;
 
 }

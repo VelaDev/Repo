@@ -41,6 +41,7 @@ public class HOStock implements Serializable{
 	private String receivedBy;
 	@Column(name="Date_Arrived")
 	private String dateTime;
+	@Column(name="Model_Brand")
+	private String modelBrand;
 	
-
 }

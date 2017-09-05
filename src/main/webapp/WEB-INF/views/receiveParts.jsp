@@ -169,7 +169,7 @@
 													<input
 													id="modelBrand" readOnly name="modelBrand"
 													type="text" class="form-control"
-													value="<%-- ${sparePart.modelBrand} --%>">
+													value="${sparePart.modelBrand}">
 												
 											</div>
 										</div>

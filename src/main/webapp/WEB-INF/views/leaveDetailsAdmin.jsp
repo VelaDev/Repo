@@ -66,25 +66,12 @@ input#cancelLeave {
 												<c:choose>
 													<c:when test="${leave.status == 'Pending'}">
 														<li><a href="approveLeave?leaveID= <c:out value='${leave.leaveID}'/>">Approve Leave</a></li>
-														<li><a href="declineOrder?leaveID= <c:out value='${leave.leaveID}'/>">Reject Leave</a></li>
+														<li><a href="declineLeave?leaveID= <c:out value='${leave.leaveID}'/>">Reject Leave</a></li>
 													</c:when>
 												</c:choose>
 
 											</ul></li>
-									</c:if>
-									<c:if test="${leave.status == 'Approved'}">
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-haspopup="true"
-											aria-expanded="false">Leave Action<span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<c:choose>
-													<c:when test="${leave.status == 'Approved'}">
-														<li><a href="shipment?recordID=<c:out value='${leave.leaveID}'/>">Ship Order</a></li>
-													</c:when>
-												</c:choose>
-
-											</ul></li>
-									</c:if>
+									</c:if>									
 							
 						</ul>
 					</div>

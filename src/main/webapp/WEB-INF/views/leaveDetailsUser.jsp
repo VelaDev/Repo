@@ -44,6 +44,15 @@ table#toOrder thead {
     background-color: #CCCCCC;
     height: 112%;
 }
+
+input#updateLeave {
+	width: 57%;
+}
+
+input#cancelLeave {
+	width: 57%;
+}
+
 </style>
 </head>
 <body>
@@ -63,51 +72,7 @@ table#toOrder thead {
 				<!-- panel body -->
 				<div class="panel-body">
 
-						
-					<!-- navigation for action taken -->
-					<div id="navbar" class="navbar-collapse collapse"
-						style="margin-left: -2%">
-						<ul class="nav navbar-nav navbar-left">
-
-									<c:if test="${leave.status == 'Cancelled'}">
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-haspopup="true"
-											aria-expanded="false">Leave Action<span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<c:choose>
-													<c:when test="${leave.status == 'Cancelled'}">
-														<li><a
-															href="approveLeaveItems?leaveID= <c:out value='${leave.leaveID}'/>">Approve
-																Leave</a></li>
-														<li><a
-															href="declineOrder?leaveID= <c:out value='${leave.leaveID}'/>">Reject
-																Leave</a></li>
-													</c:when>
-												</c:choose>
-
-											</ul></li>
-									</c:if>
-									<c:if test="${OrderNum.status == 'Approved'}">
-										<li class="dropdown"><a href="#" class="dropdown-toggle"
-											data-toggle="dropdown" role="button" aria-haspopup="true"
-											aria-expanded="false">Order Action<span class="caret"></span></a>
-											<ul class="dropdown-menu">
-												<c:choose>
-													<c:when test="${OrderNum.status == 'Approved'}">
-														<li><a
-															href="shipment?recordID=<c:out value='${OrderNum.recordID}'/>">Ship
-																Order</a></li>
-													</c:when>
-												</c:choose>
-
-											</ul></li>
-									</c:if>
-							
-						</ul>
-					</div>
-					<!-- //navigation for action taken -->
-
-					<legend></legend>
+					
 					<!-- nav sub menu tabs  -->
 					<ul class="nav nav-tabs">
 						<li class="active"><a href="#LeaveDetails" data-toggle="tab">Leave Details</a></li>
@@ -176,10 +141,11 @@ table#toOrder thead {
 												<input type="submit" value="Update Leave"
 													class="btn btn-primary btn-block btn-sm" tabindex="9"
 													id="updateLeave">
-											</div>											
+											</div>
 											<div class="col-sm-2">												
 												<a href="leaveCancellation?leaveID=<c:out value='${leave.leaveID}'/>" class="btn btn-danger btn-block btn-sm" tabindex id="cancelUpdate" style="width:54%;margin-left: -36%;">Cancel Leave</a>	
 											</div>
+											
 
 										</div>
 							</c:if>

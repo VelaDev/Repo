@@ -84,7 +84,6 @@ input#cancelLeave {
 						<li><a href="#updateLeave" data-toggle="tab">Update Leave</a></li>
 					</ul>
 					<!-- // nav sub menu tabs-->
-
 					<!-- tab content -->
 					<div class="tab-content">
 

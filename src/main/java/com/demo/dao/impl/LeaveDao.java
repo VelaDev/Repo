@@ -913,11 +913,8 @@ public class LeaveDao implements LeaveDaoInt {
 		cal.setTime(new Date());
 
 		currentDate = cal.getTime();
-
-	    
-	    
+		
 		try {
-			int newrecordID = 0;
 			if (leave.getTechnicianUserName() != null) {
 				employee = employeeDaoInt.getEmployeeByEmpNum(leave.getTechnicianUserName());
 				globalLeave.setEmployee(employee);
@@ -937,9 +934,7 @@ public class LeaveDao implements LeaveDaoInt {
 						+ " " + emp.getLastName();
 			} else {
 
-				String leaveStatus = getLeaveStatus(leave.getStartDate(),
-						leave.getEndDate());
-				globalLeave.setStatus(leaveStatus);
+				
 
 				globalLeave.setAddress(leave.getAddress());
 				globalLeave.setContactNumber(leave.getContactNumber());
@@ -947,14 +942,9 @@ public class LeaveDao implements LeaveDaoInt {
 				globalLeave.setLeaveType(leave.getLeaveType());
 				globalLeave.setStartDate(leave.getStartDate());
 			    globalLeave.setLeaveDate(myFormat.format(currentDate));
-				recordID = newRecordID();
-				newrecordID = recordID;
+			    globalLeave.setStatus("Pending");
 
-				globalLeave.setLeaveID(newrecordID);
 				sessionFactory.getCurrentSession().save(globalLeave);
-				emp.setLeaveStatus(leaveStatus);
-				sessionFactory.getCurrentSession().update(emp);
-
 				retMessage = "Leave successfully submited.";
 			}
 
@@ -972,7 +962,6 @@ public class LeaveDao implements LeaveDaoInt {
 			globalLeave.setAddress(leave.getAddress());
 			globalLeave.setContactNumber(leave.getContactNumber());
 			globalLeave.setEndDate(leave.getEndDate());
-			globalLeave.setLeaveID(leave.getLeaveID());
 			globalLeave.setLeaveType(leave.getLeaveType());
 			globalLeave.setStartDate(leave.getStartDate());
 			globalLeave.setStatus("Pending");
@@ -1181,40 +1170,11 @@ public class LeaveDao implements LeaveDaoInt {
 	}
 
 	@Override
-	public Leave getLeave(int leaveID) {
+	public Leave getLeave(Long leaveID) {
 		return (Leave) sessionFactory.getCurrentSession().get(Leave.class,
 				leaveID);
 	}
 
-	private Integer newRecordID() {
-
-		int tempOrderNum = 0;
-		Integer newOrderNum = getRecordID();
-
-		if (newOrderNum != null) {
-			tempOrderNum = newOrderNum + 1;
-		} else {
-			tempOrderNum = 1;
-		}
-
-		return tempOrderNum;
-	}
-
-	private Integer getRecordID() {
-
-		session2 = sessionFactory.openSession();
-		Integer result = 0;
-		Query query = session2.createQuery("from Leave order by leaveID DESC");
-		query.setMaxResults(1);
-		Leave leaveNumber = (Leave) query.uniqueResult();
-
-		if (leaveNumber != null) {
-			result = leaveNumber.getLeaveID();
-		} else {
-			result = null;
-		}
-		return result;
-	}
 
 	@Override
 	public Boolean isTechnicianOnLeave(String technicianEmail) {
@@ -1420,11 +1380,60 @@ public class LeaveDao implements LeaveDaoInt {
 		}
 	}
 	@Override
-	public String cancelLeave(int leaveID) {
+	public String cancelLeave(Long leaveID) {
 		try{
 			Leave leave = getLeave(leaveID);
 			if(leave!= null){
 				leave.setStatus("Cancelled");
+				emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
+				emp.setLeaveStatus("Cancelled");
+				sessionFactory.getCurrentSession().update(emp);
+				retMessage ="Leave cancelled";
+			}
+		}catch(Exception e){
+			e.getMessage();
+		}
+		return retMessage;
+	}
+
+	@Override
+	public String approveLeave(Long leaveID) {
+		try{
+			Leave tempLeave = getLeave(leaveID);
+			if(tempLeave !=null){
+				String leaveStatus = getLeaveStatus(tempLeave.getStartDate(),tempLeave.getEndDate());
+				Employee approvedBy = (Employee) session.getAttribute("loggedInUser");
+				String approverName= approvedBy.getFirstName()+" "+approvedBy.getLastName();
+				
+				emp= employeeDaoInt.getEmployeeByEmpNum(tempLeave.getEmployee().getEmail());
+				if(emp !=null){
+					
+					tempLeave.setApprovedBy(approverName);
+					tempLeave.setLeaveApproval("Approved");
+					tempLeave.setStatus(leaveStatus);
+					
+					emp.setLeaveStatus(leaveStatus);
+					sessionFactory.getCurrentSession().update(emp);
+					retMessage= "Leave LV0000000"+ tempLeave.getLeaveID()+" approved";
+				}
+				
+			}
+			
+		}catch(Exception ex){
+			retMessage = ex.getMessage();
+		}
+		return retMessage;
+	}
+
+	@Override
+	public String declineLeave(Long leaveID) {
+		try{
+			Leave leave = getLeave(leaveID);
+			Employee approvedBy = (Employee) session.getAttribute("loggedInUser");
+			String approverName= approvedBy.getFirstName()+" "+approvedBy.getLastName();
+			if(leave!= null){
+				leave.setStatus("Cancelled");
+				leave.setLeaveApproval(approverName);
 				emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
 				emp.setLeaveStatus("Cancelled");
 				sessionFactory.getCurrentSession().update(emp);

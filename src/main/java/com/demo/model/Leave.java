@@ -5,10 +5,13 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.GenericGenerator;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,8 +31,10 @@ public class Leave implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name="Leave_ID")
-	private int leaveID;
+	@GenericGenerator(name="gen",strategy="increment")
+	@GeneratedValue(generator="gen")
+	@Column(name="Leave_ID", unique = true, nullable = false, precision = 15, scale = 0)
+	private Long leaveID;
 	@Column(name="Leave_Type")
 	private String leaveType;
 	@Column(name="First_Leave_Date")
@@ -44,6 +49,11 @@ public class Leave implements Serializable{
 	private String status;
 	@Column(name="LeaveDate")
 	private String leaveDate;
+	@Column(name="Leave_Approval")
+	private String leaveApproval;
+	@Column(name="Approved_By")
+	private String approvedBy;
+	
 	
 	@ManyToOne
 	@JoinColumn(name="Requested_By")

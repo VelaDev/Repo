@@ -11,7 +11,7 @@ public interface LeaveDaoInt {
 	String updateLeaveRequest(LeaveBean leave);
 	List<Leave> leaveRequests(String email);
 	List<Leave> leaveRequests();
-	Leave getLeave(int leaveID);
+	Leave getLeave(Long leaveID);
 	Boolean isTechnicianOnLeave(String technicianEmail);
 	String onLeaveTechnician(String technicianEmail);
 	String [] techniciansOnLeave();
@@ -49,6 +49,7 @@ public interface LeaveDaoInt {
 			String technicianEmail);
 	
 	void scheduledLeaveStatus();
-	String cancelLeave(int leaveID);
-	
+	String cancelLeave(Long leaveID);
+	String approveLeave(Long leaveID);
+	String declineLeave(Long LeaveID);
 }

@@ -66,7 +66,7 @@ input#cancelLeave {
 												<c:choose>
 													<c:when test="${leave.status == 'Pending'}">
 														<li><a href="approveLeave?leaveID= <c:out value='${leave.leaveID}'/>">Approve Leave</a></li>
-														<li><a href="declineOrder?leaveID= <c:out value='${leave.leaveID}'/>">Reject Leave</a></li>
+														<li><a href="declineLeave?leaveID= <c:out value='${leave.leaveID}'/>">Reject Leave</a></li>
 													</c:when>
 												</c:choose>
 

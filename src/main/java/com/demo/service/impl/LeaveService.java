@@ -47,11 +47,6 @@ public class LeaveService implements LeaveInt{
 	}
 
 	@Override
-	public Leave getLeave(int leaveID) {
-		return leaveDaoInt.getLeave(leaveID);
-	}
-
-	@Override
 	public Boolean isTechnicianOnLeave(String technicianEmail) {
 		return leaveDaoInt.isTechnicianOnLeave(technicianEmail);
 	}
@@ -199,8 +194,23 @@ public class LeaveService implements LeaveInt{
 	}
 
 	@Override
-	public String cancelLeave(int leaveID) {
+	public String cancelLeave(Long leaveID) {
 		return leaveDaoInt.cancelLeave(leaveID);
+	}
+
+	@Override
+	public Leave getLeave(Long leaveID) {
+		return leaveDaoInt.getLeave(leaveID);
+	}
+
+	@Override
+	public String approveLeave(Long leaveID) {
+		return leaveDaoInt.approveLeave(leaveID);
+	}
+
+	@Override
+	public String declineLeave(Long LeaveID) {
+		return leaveDaoInt.declineLeave(LeaveID);
 	}
 
 }

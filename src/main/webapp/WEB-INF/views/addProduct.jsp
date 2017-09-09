@@ -499,7 +499,7 @@ input.currency {
 													<option value="">Select Province</option>
 													<option value="Gauteng">Gauteng</option>
 													<option value="Limpopo">Limpopo</option>
-													<option value="Nort West">North West</option>
+													<option value="North West">North West</option>
 													<option value="Free State">Free State</option>
 													<option value="Mpumalanga">Mpumalanga</option>
 													<option value="KwaZulu Natal">KwaZulu Natal</option>

@@ -105,7 +105,8 @@ input.currency {
 							<fieldset><!-- Customer Details  -->
 								<legend>Customer Details</legend>
 								<!--First column-->
-								<div class="col-sm-6">
+								<div class="col-sm-6">								
+									
 									<!-- Text input Client Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Customer Name</label>
@@ -120,7 +121,7 @@ input.currency {
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<%-- <div class="col-sm-6">
 									<!-- Text input Company Email-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Company Email</label>
@@ -135,7 +136,7 @@ input.currency {
 											</div>
 										</div>
 									</div>
-								</div>
+								</div> --%>
 
 								<div class="col-sm-6">
 
@@ -489,7 +490,7 @@ input.currency {
 													<option value="${productObject.province}">${productObject.province}</option>
 													<option value="Gauteng">Gauteng</option>
 													<option value="Limpopo">Limpopo</option>
-													<option value="Nort West">North West</option>
+													<option value="North West">North West</option>
 													<option value="Free State">Free State</option>
 													<option value="Mpumalanga">Mpumalanga</option>
 													<option value="KwaZulu Natal">KwaZulu Natal</option>

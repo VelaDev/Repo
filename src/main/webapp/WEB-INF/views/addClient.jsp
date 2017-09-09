@@ -83,7 +83,7 @@
 								</div>
 								
 								
-								<!-- Text input Email-->
+								 <!-- Text input Email
 								<div class="form-group">
 									<label class="col-md-3 control-label">Company Email</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -95,15 +95,7 @@
 												type="text">
 										</div>
 									</div>
-								</div>
-								
-								
-								
-							</div>
-							<!-- / F Customer Fields -->
-
-							<!--Second column Customer Fields-->
-							<div class="col-sm-6">
+								</div> -->
 								
 								<!-- Text input Street Number-->								
 								<div class="form-group">
@@ -116,7 +108,17 @@
 												placeholder="Street No" class="form-control" onkeypress="return isNumber(event)"  type="text">
 										</div>
 									</div>
-								</div>								
+								</div>		
+								
+								
+								
+							</div>
+							<!-- / F Customer Fields -->
+
+							<!--Second column Customer Fields-->
+							<div class="col-sm-6">
+								
+														
 								
 								<!-- Text input Street Name-->
 								<div class="form-group">

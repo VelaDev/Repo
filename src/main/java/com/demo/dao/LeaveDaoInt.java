@@ -18,14 +18,18 @@ public interface LeaveDaoInt {
 	void isTechnicianOnLeaveDate();
 	int countAllPendingLeave();
 	int countAllActiveLeave();
+	
 	List<Leave> getPendingLeaves();
+	List<Leave> getApprovedLeave();
 	List<Leave> getActiveLeave();
+	List<Leave> getCancelledLeave();
 	List<Leave> leaveHistory();
 	List<Leave> getPendingLeaveByTechnician(String technicianEmail);
 	int getPendingLeaveCountByTechnician(String technicianEmail);
-	int getActiveLeaveCountByTechnician(String technicianEmail);
+	int getActiveLeaveCountByTechnician(String technicianEmail);	
 	List<Leave> getActiveLeaveByTechnician(String technicianEmail);
 	List<Leave> getAllActiveAndPendingLeave();
+	List<Leave> getAllPendingActiveApprovedAndCancelledLeave();
 	List<Leave> activeAndPendingLeaveByTechnician(String technicianEmail);
 	List<Leave> getLeaveHistoryByTechician(String technicianEmail);
 	int countpendingLeaveForSelectedDate(String dateRange);
@@ -35,21 +39,22 @@ public interface LeaveDaoInt {
 	List<Leave> getPendingLeaveForSelectedRange(String dateRange);
 	List<Leave> getActiveLeaveForSelectedRange(String dateRange);
 	List<Leave> getLeaveHistoryForSelectedRange(String dateRange);
-	int countTechpendingLeaveForSelectedDate(String dateRange,
-			String technicianEmail);
-	int countTechActiveLeaveForSelectedDate(String dateRange,
-			String technicianEmail);
-	List<Leave> getAllTechLeaveForSelectedRange(String dateRange,
-			String technicianEmail);
-	List<Leave> getTechPendingLeaveForSelectedRange(String dateRange,
-			String technicianEmail);
-	List<Leave> getTechActiveLeaveForSelectedRange(String dateRange,
-			String technicianEmail);
-	List<Leave> getTechLeaveHistoryForSelectedRange(String dateRange,
-			String technicianEmail);
+	int countTechpendingLeaveForSelectedDate(String dateRange, String technicianEmail);
+	int countTechActiveLeaveForSelectedDate(String dateRange,String technicianEmail);
+	List<Leave> getAllTechLeaveForSelectedRange(String dateRange,String technicianEmail);
+	List<Leave> getTechPendingLeaveForSelectedRange(String dateRange,String technicianEmail);
+	List<Leave> getTechActiveLeaveForSelectedRange(String dateRange,String technicianEmail);
+	List<Leave> getTechLeaveHistoryForSelectedRange(String dateRange,String technicianEmail);
 	
 	void scheduledLeaveStatus();
 	String cancelLeave(Long leaveID);
 	String approveLeave(Long leaveID);
 	String declineLeave(Long LeaveID);
+	
+	List<Leave> getApprovedLeaveByTechnician(String technicianEmail);
+	List<Leave> getCancelledLeaveByTechnician(String technicianEmail);
+	List<Leave> getApprovedLeaveForSelectedRange(String dateRange);
+	List<Leave> getCancelledLeaveForSelectedRange(String dateRange);	
+	int countAllApprovedLeave();
+	int countAllCancelledLeave();
 }

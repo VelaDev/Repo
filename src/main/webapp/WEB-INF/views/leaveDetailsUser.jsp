@@ -122,8 +122,7 @@ input#cancelLeave {
 										</div>
 									</div>
 								</section>
-								<!-- //section middle -->
-								
+								<!-- //section middle -->								
 								
 							</div>
 							<!-- page wrap -->
@@ -146,7 +145,6 @@ input#cancelLeave {
 												<a href="leaveCancellation?leaveID=<c:out value='${leave.leaveID}'/>" class="btn btn-danger btn-block btn-sm" tabindex id="cancelUpdate" style="width:54%;margin-left: -36%;">Cancel Leave</a>	
 											</div>
 											
-
 										</div>
 							</c:if>
 							  <input type="hidden"
@@ -235,7 +233,6 @@ input#cancelLeave {
 							
 						</div>
 						<!--//updateLeave Details tab-->
-
 						
 					</div>
 					<!-- group details-row-padding -->

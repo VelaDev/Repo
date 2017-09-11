@@ -799,7 +799,8 @@ public class LeaveDao implements LeaveDaoInt {
 		}
 		return currentList;
 	}
-
+	
+	
 	@Override
 	public int getActiveLeaveCountByTechnician(String technicianEmail) {
 		List<Leave> pendingLeave = null;
@@ -1066,7 +1067,7 @@ public class LeaveDao implements LeaveDaoInt {
     		List<Leave> activeLeave = getAllActiveAndPendingLeave();
     		tempList = new ArrayList<Leave>();
     		for(Leave leave: activeLeave){
-    			if(leave.getStatus().equalsIgnoreCase("Panding")){
+    			if(leave.getStatus().equalsIgnoreCase("Pending")){
     				tempList.add(leave);
     			}
     		}
@@ -1075,6 +1076,7 @@ public class LeaveDao implements LeaveDaoInt {
     	}
     	return tempList;
     }
+    
 	private List<Leave> getCurrentLeaves() {
 		List<Leave> currentList = new ArrayList<Leave>();
 		try {
@@ -1362,7 +1364,7 @@ public class LeaveDao implements LeaveDaoInt {
 				}
 			}
 			//Update active status
-			List <Leave> getAllPandingDates = getPendingLeave();
+			List <Leave> getAllPandingDates = getApprovedLeave();
 			for(Leave leave:getAllPandingDates){
 				start = sdf.parse(leave.getStartDate());
 				end = sdf.parse(leave.getLeaveDate());
@@ -1444,4 +1446,148 @@ public class LeaveDao implements LeaveDaoInt {
 		}
 		return retMessage;
 	}
+
+	@Override
+	public List<Leave> getApprovedLeaveByTechnician(String technicianEmail) {
+		List<Leave> currentList = new ArrayList<Leave>();
+
+		try {
+			leaveList = getApprovedLeave();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+					currentList.add(leave);
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
+					currentList.add(leave);
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+	
+
+	@Override
+	public List<Leave> getCancelledLeaveByTechnician(String technicianEmail) {
+		List<Leave> currentList = new ArrayList<Leave>();
+
+		try {
+			leaveList = getCancelledLeave();
+
+			for (Leave leave : leaveList) {
+				if (leave.getEmployee().getEmail()
+						.equalsIgnoreCase(technicianEmail)) {
+					currentList.add(leave);
+				} else if (technicianEmail.equalsIgnoreCase("All Technicians")) {
+					currentList.add(leave);
+				}
+			}
+
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return currentList;
+	}
+	
+
+	@Override
+	public int countAllApprovedLeave() {
+		int tempCount = 0;
+		List<Leave> approvedLeave = null;
+		try {
+
+			approvedLeave = getApprovedLeave();
+			for (Leave leave :approvedLeave) {
+
+				if (leave.getStatus().equalsIgnoreCase("Approved")) {
+					tempCount++;
+				}
+
+			}
+			System.err.println("Count for Approved leave is " + tempCount);
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+
+	@Override
+	public int countAllCancelledLeave() {
+		int tempCount = 0;
+		List<Leave> cancelledLeave = null;
+		try {
+
+			cancelledLeave = getCancelledLeave();
+			for (Leave leave : cancelledLeave) {
+
+				if (leave.getStatus().equalsIgnoreCase("Cancelled")) {
+					tempCount++;
+				}
+
+			}
+			System.err.println("Count for Cancelled leave is " + tempCount);
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+		return tempCount;
+	}
+	
+	@Override
+	public List<Leave> getApprovedLeave() {
+		List<Leave> tempList = null;
+    	try{
+    		List<Leave> approvedLeave = getAllActiveAndPendingLeave();
+    		tempList = new ArrayList<Leave>();
+    		for(Leave leave: approvedLeave){
+    			if(leave.getStatus().equalsIgnoreCase("Approved")){
+    				tempList.add(leave);
+    			}
+    		}
+    	}catch(Exception e){
+    		e.getMessage();
+    	}
+    	return tempList;
+	}
+
+	@Override
+	public List<Leave> getCancelledLeave() {
+		List<Leave> tempList = null;
+    	try{
+    		List<Leave> cancelledLeave = getAllActiveAndPendingLeave();
+    		tempList = new ArrayList<Leave>();
+    		for(Leave leave: cancelledLeave){
+    			if(leave.getStatus().equalsIgnoreCase("Cancelled")){
+    				tempList.add(leave);
+    			}
+    		}
+    	}catch(Exception e){
+    		e.getMessage();
+    	}
+    	return tempList;
+	}
+
+	@Override
+	public List<Leave> getAllPendingActiveApprovedAndCancelledLeave() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Leave> getApprovedLeaveForSelectedRange(String dateRange) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Leave> getCancelledLeaveForSelectedRange(String dateRange) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+	
 }

@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/bootstrapValidator-0.5.3/css/bootstrapValidator.min.css" />" />
 
-<title>Decline Order</title>
+<title>Decline Leave</title>
 <style type="text/css">
 .declineButton {
 	margin-left: 25%;
@@ -36,7 +36,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Decline Order</b>
+							<b>Decline Leave</b>
 						</div>
 					</h3>
 				</div>
@@ -45,17 +45,17 @@
 					<div class="tab-content">
 
 						<form:form class="well form-horizontal" method="post"
-							action="declinedOrder" id="decline" modelAttribute="declinedOrder">
+							action="declineLeave" id="decline" modelAttribute="declineLeave">
 
 
-							<!-- Text input Order Number-->
+							<!-- Text input Leave ID -->
 							<div class="form-group">
 								<label class="col-md-3 control-label">Order Number</label>
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-barcode"></i></span> <input id="orderNum"
-											name="orderNum" class="form-control" type="text" value='ORD00${OrderNum.recordID}'
+											class="glyphicon glyphicon-barcode"></i></span> <input id="leaveID"
+											name="leaveID" class="form-control" type="text" value='LV0000000${leave.leaveID}'
 											readonly="readonly">
 									</div>
 								</div>
@@ -80,9 +80,9 @@
 							<div class="declineButton">
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-md-5">
-										<input type="submit" value="Decline Order"
+										<input type="submit" value="Decline Leave"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="declineOrder" name="declineOrder">
+											id="declineLeave" name="declineOrder">
 									</div>
 								</div>
 							</div>

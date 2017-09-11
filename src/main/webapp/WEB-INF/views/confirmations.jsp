@@ -200,7 +200,7 @@ a.confirmtions {
 				 	    <c:choose>
 				 	    	<c:when test="${performTicketAction =='performTicketAction' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	          or Click<a href="ticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
+					 	          Click<a href="ticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -212,7 +212,7 @@ a.confirmtions {
 				 	<c:if test="${not empty retErrorMessage}">
 				 	    <!-- Add employee -->
 				 	    <div class="alert alert-danger" role="alert">
-				 	  <c:choose>
+				 	    <c:choose>
 				 	    <c:when test="${addEmployee =='addEmployee' }">
 				 	       <c:out value="${retErrorMessage}"></c:out> 
 				 	        Click<a href="displayEmployees.html" class="confirmtions"> <b> here</b></a> to view list of Employees or 

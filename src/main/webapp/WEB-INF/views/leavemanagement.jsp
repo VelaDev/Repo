@@ -74,7 +74,7 @@ input#selectDateRange {
 	cursor: pointer;
 }
 
-.db-summary li:first-child:nth-last-child(4),.db-summary li:first-child:nth-last-child(4) 
+.db-summary li:first-child:nth-last-child(6),.db-summary li:first-child:nth-last-child(6) 
 	 ~ li {
 	width: 10%;
 }
@@ -195,9 +195,22 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 4%">
+											>
 											<h4 align="center">${countPendingLeave}</h4>
 											<p align="center">Pending Leave</p>
+										</div>
+								</a></li>
+								
+								<li><a href='<c:url value="approvedLeave"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="ActiveLeave"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
+
+										<div class="summary-count pull-left ml20"
+											>
+											<h4 align="center">${countApprovedLeave}</h4>
+											<p align="center">Approved Leave</p>
 										</div>
 								</a></li>
 
@@ -208,24 +221,37 @@ input#selectDateRange {
 									data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 4%">
+											>
 											<h4 align="center">${countActiveLeave}</h4>
 											<p align="center">Active Leave</p>
 										</div>
 								</a></li>
+								
+								<li><a href='<c:url value="cancelledLeave"/>'
+									class="summery-filter clearfix"
+									data-parallel-url="ActiveLeave"
+									data-parallel-placeholder="#ticket-leftFilter"
+									data-pjax="#body-container">
 
+										<div class="summary-count pull-left ml20">
+											<h4 align="center">${countCancelledLeave}</h4>
+											<p align="center">Cancelled Leave</p>
+										</div>
+								</a></li>															
+								
 								<li><a href='leaveHistory'
 									data-parallel-url="LeaveHistory"
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
 										<div class="summary-count pull-left ml20"
-											style="margin-left: 9%">
+											>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
 											<p align="center">Leave History</p>
 										</div>
 								</a></li>
+								
 
 							</ul>
 						</div>

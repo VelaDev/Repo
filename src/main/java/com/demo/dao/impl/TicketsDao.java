@@ -876,9 +876,8 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setReopenReason(ticketsBean.getReopenReason());
 						historyDaoInt.insertTicketHistory(ticket);
 
-						retMessage = "Ticket " + ticketNumber
-								+ ticket.getRecordID()
-								+ " successfully re-opened";
+						retMessage = "Ticket " + tempTicketNum + ticket.getRecordID()
+								+ " successfully re-opened.";
 
 					}
 
@@ -994,7 +993,7 @@ public class TicketsDao implements TicketsDaoInt {
 								+ ticketsBean.getEscalatedTo();
 
 					}
-					// Close the big iff
+					// Close the big if
 				}
 			}
 
@@ -1334,8 +1333,7 @@ public class TicketsDao implements TicketsDaoInt {
 						sessionFactory.getCurrentSession().update(device);
 					}
 					historyDaoInt.insertTicketHistory(ticket);
-					retMessage = "Ticket " + tempTicketNum
-							+ ticket.getRecordID() + " successfully re-opened.";
+					retMessage = "Ticket " + tempTicketNum	+ ticket.getRecordID() + " successfully re-opened.";
 				}
 			}
 		} catch (Exception e) {

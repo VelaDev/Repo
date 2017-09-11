@@ -18,7 +18,9 @@ public interface LeaveInt {
 	int countAllPendingLeave();
 	int countAllActiveLeave();
 	List<Leave> getPendingLeaves();
+	List<Leave> getApprovedLeave();
 	List<Leave> getActiveLeave();
+	List<Leave> getCancelledLeave();
 	List<Leave> leaveHistory();
 	List<Leave> getPendingLeaveByTechnician(String technicianEmail);
 	int getPendingLeaveCountByTechnician(String technicianEmail);
@@ -49,4 +51,11 @@ public interface LeaveInt {
 	String cancelLeave(Long leaveID);
 	String approveLeave(Long leaveID);
 	String declineLeave(Long LeaveID);
+	
+	List<Leave> getApprovedLeaveByTechnician(String technicianEmail);
+	List<Leave> getCancelledLeaveByTechnician(String technicianEmail);
+	List<Leave> getApprovedLeaveForSelectedRange(String dateRange);
+	List<Leave> getCancelledLeaveForSelectedRange(String dateRange);	
+	int countAllApprovedLeave();
+	int countAllCancelledLeave();
 }

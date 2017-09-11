@@ -110,8 +110,7 @@ input#cancelLeave {
 								</div>
 								</section>
 								<!-- //section content -->
-								
-												
+																				
 								<!-- section middle -->
 								<section id="middle">
 									<div class="groupclientaddress">
@@ -152,80 +151,84 @@ input#cancelLeave {
 
 										</div>
 							</c:if>
-							  <input type="hidden"
-										id="leaveID" name="leaveID"
-										value="${leave.leaveID}" >
-						<!-- Select type Leave Type-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Type of Leave</label>
-							<div class="col-md-6 selectContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-list"></i></span> <select name="leaveType"
-										id="leaveID" class="form-control selectpicker">
-										<option value="${leave.leaveType}">${leave.leaveType}</option>
-										<option value="Annual Vacation Leave">Annual Vacation
-											Leave</option>
-										<option value="Sick Leave">Sick Leave</option>
-										<option value="Emergency Leave">Emergency Leave</option>
-									</select>
+							
+							<input type="hidden" id="leaveID" name="leaveID" value="${leave.leaveID}" >
+							  
+							<!-- Select type Leave Type-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Type of Leave</label>
+								<div class="col-md-6 selectContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-list"></i></span> <select name="leaveType"
+											id="leaveID" class="form-control selectpicker">
+											<option value="${leave.leaveType}">${leave.leaveType}</option>
+											<option value="Annual Vacation Leave">Annual Vacation
+												Leave</option>
+											<option value="Sick Leave">Sick Leave</option>
+											<option value="Emergency Leave">Emergency Leave</option>
+										</select>
+									</div>
 								</div>
 							</div>
-						</div>
-
-						<!-- Text input First Date Leave-->
-						<div class="form-group">
-							<label class="col-xs-3 control-label">Leave Start Date</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group input-append date" id="startDatePicker">
-									<input type='text' class="form-control" name="startDate"
-										id="startDate" placeholder="YYYY-MM-DD"
-										value="${leave.startDate}" /> <span class="input-group-addon">
-										<span class="glyphicon glyphicon-calendar"></span>
-									</span>
+							
+							<!-- Text input First Date Leave-->
+							<div class="form-group">
+								<label class="col-xs-3 control-label">Leave Start Date</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group input-append date" id="startDatePicker">
+										<input type='text' class="form-control" name="startDate"
+											id="startDate" placeholder="YYYY-MM-DD"
+											value="${leave.startDate}" /> <span class="input-group-addon">
+											<span class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Text input Last Date Leave-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Leave End Date</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group input-append date" id="endDatePicker">
-									<input type='text' class="form-control" name="endDate"
-										id="endDate" placeholder="YYYY-MM-DD" value="${leave.endDate}" />
-									<span class="input-group-addon"> <span
-										class="glyphicon glyphicon-calendar"></span>
-									</span>
+							
+							<!-- Text input Last Date Leave-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Leave End Date</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group input-append date" id="endDatePicker">
+										<input type='text' class="form-control" name="endDate"
+											id="endDate" placeholder="YYYY-MM-DD" value="${leave.endDate}" />
+										<span class="input-group-addon"> <span
+											class="glyphicon glyphicon-calendar"></span>
+										</span>
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Text input Contact Number well on leave-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Contact Number</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-earphone"></i></span> <input
-										id="contactNumber" name="contactNumber"
-										placeholder="Contact Number during absence"
-										class="form-control" type="text"
-										onkeypress="return isNumber(event)"
-										value="${leave.contactNumber}">
+							
+							<!-- Text input Contact Number well on leave-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Contact Number</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-earphone"></i></span> <input
+											id="contactNumber" name="contactNumber"
+											placeholder="Contact Number during absence"
+											class="form-control" type="text"
+											onkeypress="return isNumber(event)"
+											value="${leave.contactNumber}">
+									</div>
 								</div>
 							</div>
-						</div>
-						<!-- Text input Address well on leave-->
-						<div class="form-group">
-							<label class="col-md-3 control-label">Address</label>
-							<div class="col-md-6 inputGroupContainer">
-								<div class="input-group">
-									<span class="input-group-addon"><i
-										class="glyphicon glyphicon-home"></i></span> <input id="address"
-										name="address" placeholder="Address during absence"
-										class="form-control" type="text" value="${leave.address}">
+							
+							<!-- Text input Address well on leave-->
+							<div class="form-group">
+								<label class="col-md-3 control-label">Address</label>
+								<div class="col-md-6 inputGroupContainer">
+									<div class="input-group">
+										<span class="input-group-addon"><i
+											class="glyphicon glyphicon-home"></i></span> <input id="address"
+											name="address" placeholder="Address during absence"
+											class="form-control" type="text" value="${leave.address}">
+									</div>
 								</div>
 							</div>
-						</div>
+							
 						<br>
 						<!-- <div class="form-group row">
 							<div class="col-sm-offset-3 col-sm-6">
@@ -234,11 +237,11 @@ input#cancelLeave {
 									id="updateLeave">
 							</div>
 						</div> -->
+						
 					</form:form>
 							
 						</div>
 						<!--//updateLeave Details tab-->
-
 						
 					</div>
 					<!-- group details-row-padding -->

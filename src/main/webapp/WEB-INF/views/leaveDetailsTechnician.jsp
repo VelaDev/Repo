@@ -149,9 +149,8 @@ input#cancelLeave {
 
 										</div>
 							</c:if>
-							  <input type="hidden"
-										id="leaveID" name="leaveID"
-										value="${leave.leaveID}" >
+							  <input type="hidden" id="leaveID" name="leaveID"	value="${leave.leaveID}" >
+							  
 						<!-- Select type Leave Type-->
 						<div class="form-group">
 							<label class="col-md-3 control-label">Type of Leave</label>

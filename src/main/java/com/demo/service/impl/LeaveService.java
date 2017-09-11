@@ -213,4 +213,51 @@ public class LeaveService implements LeaveInt{
 		return leaveDaoInt.declineLeave(LeaveID);
 	}
 
+	@Override
+	public List<Leave> getApprovedLeave() {	
+		return leaveDaoInt.getApprovedLeave();
+	}
+
+	@Override
+	public List<Leave> getCancelledLeave() {
+		
+		return leaveDaoInt.getCancelledLeave();
+	}
+
+	@Override
+	public List<Leave> getApprovedLeaveByTechnician(String technicianEmail) {
+		
+		return leaveDaoInt.getApprovedLeaveByTechnician(technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getCancelledLeaveByTechnician(String technicianEmail) {
+		
+		return leaveDaoInt.getCancelledLeaveByTechnician(technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getApprovedLeaveForSelectedRange(String dateRange) {
+		
+		return leaveDaoInt.getApprovedLeaveForSelectedRange(dateRange);
+	}
+
+	@Override
+	public List<Leave> getCancelledLeaveForSelectedRange(String dateRange) {
+		
+		return leaveDaoInt.getCancelledLeaveForSelectedRange(dateRange);
+	}
+
+	@Override
+	public int countAllApprovedLeave() {
+		
+		return leaveDaoInt.countAllApprovedLeave();
+	}
+
+	@Override
+	public int countAllCancelledLeave() {
+		
+		return leaveDaoInt.countAllCancelledLeave();
+	}
+
 }

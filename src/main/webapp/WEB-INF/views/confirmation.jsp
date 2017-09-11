@@ -99,7 +99,7 @@ a.confirmtions {
 				 	    
 				 	    	 <c:when test="${performTicketAction =='performTicketAction' }">
 					 	       <c:out value="${retMessage}"></c:out> 
-					 	          or Click<a href="techticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
+					 	          Click<a href="techticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
 					 	    </c:when>
 				 	    </c:choose>
 				 	    
@@ -167,10 +167,5 @@ a.confirmtions {
 <script type="text/javascript"
 	src="<c:url value="/resources/custom/js/velas_ticketdetails.js" />"></script>
 
-
 </html>
 
-
-
-</body>
-</html>

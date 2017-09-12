@@ -260,4 +260,58 @@ public class LeaveService implements LeaveInt{
 		return leaveDaoInt.countAllCancelledLeave();
 	}
 
+	@Override
+	public int countApprovedLeaveForSelectedDate(String dateRange) {
+		return leaveDaoInt.countApprovedLeaveForSelectedDate(dateRange);
+	}
+
+	@Override
+	public int countCancelledLeaveForSelectedDate(String dateRange) {
+		return leaveDaoInt.countCancelledLeaveForSelectedDate(dateRange);
+	}
+
+	@Override
+	public int countTechApprovedLeaveForSelectedDate(String dateRange,
+			String technicianEmail) {		
+		return leaveDaoInt.countTechApprovedLeaveForSelectedDate(dateRange,technicianEmail);
+	}
+
+	@Override
+	public int countTechCancelledLeaveForSelectedDate(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.countTechCancelledLeaveForSelectedDate(dateRange,technicianEmail);
+	}
+
+	@Override
+	public int getApprovedLeaveCountByTechnician(String technicianEmail) {
+		return leaveDaoInt.getActiveLeaveCountByTechnician(technicianEmail);
+	}
+
+	@Override
+	public int getCancelledLeaveCountByTechnician(String technicianEmail) {
+		return leaveDaoInt.getCancelledLeaveCountByTechnician(technicianEmail);
+	}	
+
+	@Override
+	public List<Leave> getTechApprovedLeaveForSelectedRange(String dateRange,
+			String technicianEmail) {
+		return leaveDaoInt.getTechApprovedLeaveForSelectedRange(dateRange,technicianEmail);
+	}
+
+	@Override
+	public List<Leave> getTechCancelledLeaveForSelectedRange(String dateRange,
+			String technicianEmail) {		
+		return leaveDaoInt.getTechCancelledLeaveForSelectedRange(dateRange,technicianEmail);
+	}
+	
+	@Override
+	public List<Leave> getAllPendingActiveApprovedAndCancelledLeave() {		
+		return leaveDaoInt.getAllPendingActiveApprovedAndCancelledLeave();
+	}
+
+	@Override
+	public List<Leave> pendingActiveApprovedAndCancelledLeaveByTechnician(
+			String technicianEmail) {		
+		return leaveDaoInt.pendingActiveApprovedAndCancelledLeaveByTechnician(technicianEmail);
+	}
 }

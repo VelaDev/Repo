@@ -3949,8 +3949,8 @@ public class TicketController {
 	@RequestMapping(value = "getTicketByCustomer", method = RequestMethod.GET)
 	public ModelAndView getCustomerName(@RequestParam("customerName") String localCustomerName) {
 		customerName = localCustomerName;
-		selectedDateRange = null;
-		tempEmployee = null;
+		/*selectedDateRange = null;
+		tempEmployee = null;*/
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -3959,8 +3959,14 @@ public class TicketController {
 				if (customerName != null) {
 
 					model.addObject("selectedName", customerName);
-					model.addObject("lastForteenList",
-							ticketsServiceInt.getTicketListByCustomerNameForTech(customerName, userName.getEmail()));
+					if(selectedDateRange!=null && technicianName!=null){
+						model.addObject("lastForteenList",
+								ticketsServiceInt.getTicketByDateAndCustomerForManager(selectedDateRange, localCustomerName, technicianName));
+					}else{
+						model.addObject("lastForteenList",
+								ticketsServiceInt.getTicketListByCustomerNameForTech(customerName, userName.getEmail()));
+					}
+					
 					model.addObject("customers", customerServiceInt.getClientList());
 					model.addObject("dates", ordersServiceInt.getDates());
 
@@ -4042,8 +4048,8 @@ public class TicketController {
 	@RequestMapping(value = "getTicketBySelectedDate", method = RequestMethod.GET)
 	public ModelAndView getTicketBySelectedDate(@RequestParam("selectedDate") String localSelectedDate) {
 		selectedDateRange = localSelectedDate;
-		customerName = null;
-		tempEmployee = null;
+		//customerName = null;
+		//tempEmployee = null;
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -4088,8 +4094,15 @@ public class TicketController {
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
 				if (selectedDateRange != null) {
 					model.addObject("newDate", selectedDateRange);
-					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByDateRange(selectedDateRange));
+					
+					if(customerName!=null && technicianName!=null){
+						model.addObject("lastForteenList",
+								ticketsServiceInt.getTicketByDateAndCustomerForManager(selectedDateRange, customerName, technicianName));
+					}else{
+						model.addObject("lastForteenList", ticketsServiceInt
+								.getTicketListByDateRange(selectedDateRange));
+					}
+					
 					model.addObject("countOpenTickets", ticketsServiceInt
 							.getTicketCount("Open", selectedDateRange, "", "", 0L));
 					model.addObject("countAcknowledgedTickets",
@@ -4132,6 +4145,7 @@ public class TicketController {
 	@RequestMapping(value = "getTicketByTechnician", method = RequestMethod.GET)
 	public ModelAndView getTicketByTechnician(
 			@RequestParam("technicianName") String localTechnicianName) {
+		technicianName = localTechnicianName;
 		tempEmployee = employeeServiceInt.getEmployeeByEmpNumber(localTechnicianName);
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -4141,8 +4155,14 @@ public class TicketController {
 			 if (userName.getRole().equalsIgnoreCase("Manager")
 					|| userName.getRole().equalsIgnoreCase("Admin")) {
 				 if (tempEmployee != null) {
-					model.addObject("lastForteenList", ticketsServiceInt
-							.getTicketListByTechnicianEmail(tempEmployee.getEmail()));
+					 if(selectedDateRange!=null && technicianName!=null){
+							model.addObject("lastForteenList",
+									ticketsServiceInt.getTicketByDateAndCustomerForManager(selectedDateRange, customerName, tempEmployee.getEmail()));
+						}else{
+							model.addObject("lastForteenList", ticketsServiceInt
+									.getTicketListByTechnicianEmail(tempEmployee.getEmail()));
+						}
+					
 					model.addObject("countOpenTickets", ticketsServiceInt
 							.getTicketCount("Open", "", tempEmployee.getEmail(), "", 0L));
 					model.addObject("countAcknowledgedTickets",

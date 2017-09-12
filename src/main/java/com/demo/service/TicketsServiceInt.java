@@ -118,5 +118,8 @@ public interface TicketsServiceInt {
 			String technicianEmail);
 	String[] getTicketNumbersForTech(String technicianEmail);
 	String performTicketAction(TicketsBean ticketsBean);
+	List<Tickets> getTicketByDateAndCustomer(String selecteDate,String customerName,String technicianEmai);
+	List<Tickets> getTicketByDateAndCustomerForManager(String selecteDate,String customerName,String technicianEmai);
+	
 
 }

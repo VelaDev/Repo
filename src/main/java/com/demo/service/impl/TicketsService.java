@@ -382,7 +382,6 @@ public class TicketsService implements TicketsServiceInt{
 
 	@Override
 	public String[] getTicketNumbersForTech(String technicianEmail) {
-		// TODO Auto-generated method stub
 		return logTicketsDAO.getTicketNumbersForTech(technicianEmail);
 	}
 
@@ -391,6 +390,19 @@ public class TicketsService implements TicketsServiceInt{
 		retMessage =logTicketsDAO.performTicketAction(ticketsBean);
 		return retMessage;
 		
+	}
+
+	@Override
+	public List<Tickets> getTicketByDateAndCustomer(String selecteDate,
+			String customerName, String technicianEmai) {
+		return logTicketsDAO.getTicketByDateAndCustomer(selecteDate, customerName, technicianEmai);
+	}
+
+	@Override
+	public List<Tickets> getTicketByDateAndCustomerForManager(
+			String selecteDate, String customerName, String technicianEmai) {
+	
+		return logTicketsDAO.getTicketByDateAndCustomerForManager(selecteDate, customerName, technicianEmai);
 	}
 	
 	

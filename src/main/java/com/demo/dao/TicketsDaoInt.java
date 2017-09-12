@@ -1,7 +1,6 @@
 package com.demo.dao;
 
 import java.util.List;
-import java.util.Set;
 
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
@@ -91,14 +90,6 @@ public interface TicketsDaoInt {
 	String[] getTicketNumbersForTech(String technicianEmail);
 	String performTicketAction(TicketsBean ticketsBean);
 
-	
-	
-	/*void calculateSLAHours();
-	void resolveToClosedTicketUpdate();
-	void updateSLA(Tickets tickets);*/
-	
-	
-    
-	
-
+	List<Tickets> getTicketByDateAndCustomer(String selecteDate,String customerName,String technicianEmai);
+	List<Tickets> getTicketByDateAndCustomerForManager(String selecteDate,String customerName,String technicianEmai);
 }

@@ -71,8 +71,8 @@ public class TicketsDao implements TicketsDaoInt {
 	DateFormat dateFormat = null;
 	Date date = null;
 	private String retMessage = "";
-	private String tempTicketNum = "VTC0000";
-	private String tempOrderNum = "ORD0000";
+	private String tempTicketNum = "VTC000";
+	private String tempOrderNum = "ORD00";
 	private List<Tickets> ticketList = null;
 	private List<PieChart> beanList = null;
 
@@ -825,7 +825,7 @@ public class TicketsDao implements TicketsDaoInt {
 	@Override
 	public String performTicketAction(TicketsBean ticketsBean) {
 		order = new OrderHeader();
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		date = new Date();
 
 		retMessage = null;
@@ -854,7 +854,9 @@ public class TicketsDao implements TicketsDaoInt {
 								.getFirstName()
 								+ " "
 								+ ticket.getEmployee().getLastName();
-						Employee newAssignedTech = employeeDaoInt.getEmployeeByEmpNum(ticketsBean.getTechnicianUserName());
+						Employee newAssignedTech = employeeDaoInt
+								.getEmployeeByEmpNum(ticketsBean
+										.getTechnicianUserName());
 						ticket.setEmployee(newAssignedTech);
 						sessionFactory.getCurrentSession().update(ticket);
 
@@ -864,7 +866,9 @@ public class TicketsDao implements TicketsDaoInt {
 						historyDaoInt.insertTicketHistory(ticket);
 
 						retMessage = "Ticket " + ticketNumber
-								+ " re-assigned to " + newAssignedTech.getFirstName()+" "+newAssignedTech.getLastName();
+								+ " re-assigned to "
+								+ newAssignedTech.getFirstName() + " "
+								+ newAssignedTech.getLastName();
 					}
 
 					else if (action.equalsIgnoreCase("Reopen")) {
@@ -876,7 +880,8 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setReopenReason(ticketsBean.getReopenReason());
 						historyDaoInt.insertTicketHistory(ticket);
 
-						retMessage = "Ticket " + tempTicketNum + ticket.getRecordID()
+						retMessage = "Ticket " + tempTicketNum
+								+ ticket.getRecordID()
 								+ " successfully re-opened.";
 
 					}
@@ -935,7 +940,7 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setUsedPartNumbers(ticketsBean
 								.getUsedPartNumbers());
 						ticket.setBridgedReason(ticketsBean.getBridgedReason());
-						ticket.setReopenReason(ticketsBean.getReopenReason());						
+						ticket.setReopenReason(ticketsBean.getReopenReason());
 						ticket.setDateResolved(dateFormat.format(date));
 						ticket.setComments(ticketsBean.getComments());
 						device = deviceDaoInt.getDeviceBySerialNumbuer(ticket
@@ -1333,7 +1338,8 @@ public class TicketsDao implements TicketsDaoInt {
 						sessionFactory.getCurrentSession().update(device);
 					}
 					historyDaoInt.insertTicketHistory(ticket);
-					retMessage = "Ticket " + tempTicketNum	+ ticket.getRecordID() + " successfully re-opened.";
+					retMessage = "Ticket " + tempTicketNum
+							+ ticket.getRecordID() + " successfully re-opened.";
 				}
 			}
 		} catch (Exception e) {
@@ -2617,30 +2623,6 @@ public class TicketsDao implements TicketsDaoInt {
 		return aList;
 	}
 
-	/*
-	 * @Transactional
-	 * 
-	 * @Scheduled(fixedRate = 60000)
-	 */
-	/*
-	 * @Override public void resolveToClosedTicketUpdate() { myFormat = new
-	 * SimpleDateFormat("yyyy-MM-dd"); currentDate = new Date(); Calendar cal =
-	 * Calendar.getInstance(); String date1 = myFormat.format(cal.getTime());
-	 * String date2= null; Date secondDate =null; try{ List<Tickets> ticketList
-	 * = getResolvedTickets(); currentDate = myFormat.parse(date1);
-	 * 
-	 * for(Tickets ticket:ticketList){ date2 = ticket.getDateResolved();
-	 * currentDate= myFormat.parse(date1); secondDate= myFormat.parse(date2);
-	 * long difference = currentDate.getTime()- secondDate.getTime(); // 86400
-	 * is equal to 24 hrs if(difference > 86400){
-	 * 
-	 * ticket.setStatus("Closed");
-	 * sessionFactory.getCurrentSession().update(ticket); }
-	 * 
-	 * }
-	 * 
-	 * }catch(Exception e){ e.getMessage(); } }
-	 */
 
 	@SuppressWarnings("unused")
 	private List<Tickets> getResolvedTickets() {
@@ -3276,6 +3258,76 @@ public class TicketsDao implements TicketsDaoInt {
 		}
 
 		return tempCount;
+	}
+
+	@Override
+	public List<Tickets> getTicketByDateAndCustomer(String selecteDate,
+			String customerName, String technicianEmai) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Tickets> getTicketByDateAndCustomerForManager(
+			String selecteDate, String customerName, String technicianEmai) {
+		SimpleDateFormat myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		Date currentDate = new Date();
+		// get Calendar instance
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		int tempCount = 0;
+		List<Tickets> ticketList = null;
+		aList = new ArrayList<Tickets>();
+		try {
+
+			// Get Ticket List by Date Range and Status
+			if (selecteDate.length() >= 3) {
+				if (selecteDate.equalsIgnoreCase("Last 24 Hours")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 1);
+				} else if (selecteDate.equalsIgnoreCase("Last 7 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 6);
+				} else if (selecteDate.equalsIgnoreCase("Last 14 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 13);
+				} else if (selecteDate.equalsIgnoreCase("Last 30 Days")) {
+					cal.set(Calendar.DAY_OF_MONTH,
+							cal.get(Calendar.DAY_OF_MONTH) - 30);
+				}
+				Date myDate = cal.getTime();
+
+				String date1 = myFormat.format(myDate);
+				String Date2 = myFormat.format(currentDate);
+				Date current = new Date();
+				Date previous = new Date();
+				Date dateData = new Date();
+
+				current = myFormat.parse(date1);
+				previous = myFormat.parse(Date2);
+
+				ticketList = getAllLoggedTickets();
+				for (Tickets ticket : ticketList) {
+					String convDate = ticket.getDateTime().substring(0, 10);
+					String normalDate = convDate.replace("/", "-");
+					dateData = myFormat.parse(normalDate);
+					if (current.compareTo(dateData) <= 0
+							&& ticket.getEmployee().getEmail()
+									.equalsIgnoreCase(technicianEmai)
+							&& ticket.getDevice().getCustomerDevice()
+									.getCustomerName()
+									.equalsIgnoreCase(customerName)) {
+						aList.add(ticket);
+					}
+				}
+
+			}
+
+		} catch (Exception exception) {
+			exception.getMessage();
+		}
+
+		return aList;
 	}
 
 }

@@ -112,11 +112,11 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 		
 		return aList;
 	}
-	@Transactional
+	@Transactional(propagation=Propagation.REQUIRED)
 	@Scheduled(fixedRate = 60000)
 	@Override
 	public void resolveToClosedTicketUpdate() {
-		myFormat = new SimpleDateFormat("yyyy-MM-dd");
+		myFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		currentDate = new Date();
 		Calendar cal = Calendar.getInstance();
 	    String date1 =  myFormat.format(cal.getTime());

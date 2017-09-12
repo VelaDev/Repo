@@ -45,12 +45,12 @@
 					<div class="tab-content">
 
 						<form:form class="well form-horizontal" method="post"
-							action="declineLeave" id="decline" modelAttribute="declineLeave">
+							action="declinedLeave" id="decline" modelAttribute="declinedLeave">
 
 
 							<!-- Text input Leave ID -->
 							<div class="form-group">
-								<label class="col-md-3 control-label">Order Number</label>
+								<label class="col-md-3 control-label">Leave ID</label>
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
@@ -64,14 +64,13 @@
 
 							<!-- Text area Decline Reason-->
 							<div class="form-group">
-								<label class="col-md-3 control-label">Reason for
-									Declining</label>
+								<label class="col-md-3 control-label">Reason Decline</label>
 								<div class="col-md-6 inputGroupContainer">
 									<div class="input-group">
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-pencil"></i></span>
 										<textarea cols="10" rows="10" class="form-control"
-											id="comments" name="comments" required="required"></textarea>
+											id="reasonDeclined" name="reasonDeclined" required="required"></textarea>
 									</div>
 								</div>
 							</div>
@@ -82,7 +81,7 @@
 									<div class="col-sm-offset-2 col-md-5">
 										<input type="submit" value="Decline Leave"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="declineLeave" name="declineOrder">
+											id="declineLeave" name="declineLeave">
 									</div>
 								</div>
 							</div>
@@ -131,18 +130,14 @@
 													validating : 'glyphicon glyphicon-refresh'
 												},
 												fields : {
-													customerName : {
+													reasonDeclined : {
 														validators : {
 															stringLength : {
 																min : 2,
 
 															},
 															notEmpty : {
-																message : 'Customer name is required and cannot be empty'
-															},
-															regexp : {
-																regexp : /^[-_ a-zA-Z0-9]+$/,
-																message : 'Customer name can consist of only alphabetical characters'
+																message : 'Decline reason is required and cannot be empty'
 															}
 														}
 													}

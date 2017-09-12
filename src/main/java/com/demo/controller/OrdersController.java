@@ -746,13 +746,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			model.addObject("declinedOrder", new OrdersBean());
-			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",
-					ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets",
-					ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));			
 			model.setViewName("declineOrder");
 		} else {
 			model.setViewName("login");

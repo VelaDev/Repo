@@ -74,6 +74,6 @@ public interface LeaveDaoInt {
 	void scheduledLeaveStatus();
 	String cancelLeave(Long leaveID);
 	String approveLeave(Long leaveID);
-	String declineLeave(Long LeaveID);	
+	String declineLeave(Long LeaveID,String reasonDeclined);	
 	
 }

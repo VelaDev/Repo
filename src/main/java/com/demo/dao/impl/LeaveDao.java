@@ -1365,8 +1365,8 @@ public class LeaveDao implements LeaveDaoInt {
 			Leave leave = getLeave(leaveID);
 			if(leave!= null){
 				leave.setStatus("Cancelled");
-				emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
-				emp.setLeaveStatus("Cancelled");
+				emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());			
+				emp.setLeaveStatus("Cancelled");				
 				sessionFactory.getCurrentSession().update(emp);
 				retMessage ="Leave cancelled";
 			}
@@ -1406,7 +1406,7 @@ public class LeaveDao implements LeaveDaoInt {
 	}
 
 	@Override
-	public String declineLeave(Long leaveID) {
+	public String declineLeave(Long leaveID,String reasonDeclined) {
 		try{
 			Leave leave = getLeave(leaveID);
 			Employee approvedBy = (Employee) session.getAttribute("loggedInUser");
@@ -1416,8 +1416,9 @@ public class LeaveDao implements LeaveDaoInt {
 				leave.setLeaveApproval(approverName);
 				emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
 				emp.setLeaveStatus("Cancelled");
+				leave.setReasonDeclined(leave.getReasonDeclined());
 				sessionFactory.getCurrentSession().update(emp);
-				retMessage ="Leave cancelled";
+				retMessage ="Leave declined";
 			}
 		}catch(Exception e){
 			e.getMessage();

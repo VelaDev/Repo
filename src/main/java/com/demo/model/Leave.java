@@ -53,6 +53,8 @@ public class Leave implements Serializable{
 	private String leaveApproval;
 	@Column(name="Approved_By")
 	private String approvedBy;
+	@Column(name="Reason_Declined")
+	private String reasonDeclined;
 	
 	
 	@ManyToOne

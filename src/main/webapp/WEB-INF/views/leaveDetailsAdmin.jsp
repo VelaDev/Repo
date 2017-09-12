@@ -104,7 +104,13 @@ input#cancelLeave {
 										<li id="leaveType" name="leaveType"><b>Leave Type: ${leave.leaveType} </b></li>
 										<li id="startDate" name="startDate">Leave Start Date: ${leave.startDate}</li>
 										<li id="endDate" name="endDate">Leave End Date: ${leave.endDate}</li>
-										<li id="status" name="status">Leave Status: ${leave.status}</li>										
+										<li id="status" name="status">Leave Status: ${leave.status}</li>
+											<%-- <c:if test="${leave.status == 'Cancelled'}">
+												<p id="lebaka">
+													<span style="font-weight: bolder">Reason for Decline</span>:
+													<span style="color: red">${leave.reasonDeclined}</span>
+												</p>
+											</c:if>	 --%>									
 									</div>
 
 								</div>
@@ -140,15 +146,19 @@ input#cancelLeave {
 
 							<c:if test="${leave.status != 'Active'}">
 										<div class="form-group row">
-											<div class="col-sm-offset-3 col-sm-2">
-												<input type="submit" value="Update Leave"
-													class="btn btn-primary btn-block btn-sm" tabindex="9"
-													id="updateLeave">
-											</div>											
-											<div class="col-sm-2">												
-												<a href="leaveCancellation?leaveID=<c:out value='${leave.leaveID}'/>" class="btn btn-danger btn-block btn-sm" tabindex id="cancelUpdate" style="width:54%;margin-left: -36%;">Cancel Leave</a>	
-											</div>
-
+											<c:if test="${leave.status != 'Cancelled'}">
+											
+												<div class="col-sm-offset-3 col-sm-2">
+													<input type="submit" value="Update Leave"
+														class="btn btn-primary btn-block btn-sm" tabindex="9"
+														id="updateLeave">
+												</div>												
+																							
+												<div class="col-sm-2">												
+													<a href="leaveCancellation?leaveID=<c:out value='${leave.leaveID}'/>" class="btn btn-danger btn-block btn-sm" tabindex id="cancelUpdate" style="width:54%;margin-left: -36%;">Cancel Leave</a>	
+												</div>
+												
+											</c:if>
 										</div>
 							</c:if>
 							

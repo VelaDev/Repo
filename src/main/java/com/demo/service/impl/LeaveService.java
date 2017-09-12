@@ -209,8 +209,8 @@ public class LeaveService implements LeaveInt{
 	}
 
 	@Override
-	public String declineLeave(Long LeaveID) {
-		return leaveDaoInt.declineLeave(LeaveID);
+	public String declineLeave(Long LeaveID,String reasonDeclined) {
+		return leaveDaoInt.declineLeave(LeaveID,reasonDeclined);
 	}
 
 	@Override

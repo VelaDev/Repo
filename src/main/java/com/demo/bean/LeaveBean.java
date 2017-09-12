@@ -22,5 +22,6 @@ public class LeaveBean {
 	private String technicianUserName;
 	private int leaveID;
 	private String leaveDate;
+	private String reasonDeclined;
 
 }

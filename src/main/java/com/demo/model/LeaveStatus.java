@@ -3,9 +3,7 @@ package com.demo.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
-
 import javax.persistence.Entity;
-
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -37,6 +35,8 @@ public class LeaveStatus implements Serializable{
 	private String endDate;
 	@Column(name="Status")
 	private String status;
+	@Column(name="Reason_Declined")
+	private String reasonDeclined;
 	
 	@ManyToOne
 	@JoinColumn(name="Requested_By")

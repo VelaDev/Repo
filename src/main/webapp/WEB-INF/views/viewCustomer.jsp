@@ -82,8 +82,22 @@
 										</div>
 									</div>
 								</div>
+								
+								<!-- Text input Street Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Street No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="streetNumber" id="streetNumber"
+												placeholder="Street No" class="form-control" readonly="readonly" onkeypress="return isNumber(event)"  type="text" value="${customer.streetNumber}" >
+										</div>
+									</div>
+								</div>
+								
 
-								<!-- Text input Email-->
+								<%-- <!-- Text input Email-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Company Email</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -95,7 +109,7 @@
 												type="text" value="${customer.email}" >
 										</div>
 									</div>
-								</div>
+								</div> --%>
 
 								
 							</div>

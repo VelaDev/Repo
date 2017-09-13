@@ -565,7 +565,7 @@ input.currency {
 														<div id="removeAccessory" class="form-group row">
 															<div class="col-sm-offset col-sm-8">
 																<br> <br> <input type="submit" id="removeAccessory" name="removeAccessory"
-																	value="Remove Accessory" class="btn btn-danger">
+																	value="Remove Accessory" class="btn btn-danger" onclick="return confirm('Are you sure you want to do delete this?');">
 															</div>
 														</div>														
 													</div>
@@ -696,7 +696,7 @@ input.currency {
 										<br> <br> <input type="submit" id="updateProduct"
 											name="updateProduct" value="Update Device"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="updateProduct">
+											id="updateProduct" onclick="return confirm('Are you sure you want to do update device?');">
 									</div>
 								</div>
 							</div>

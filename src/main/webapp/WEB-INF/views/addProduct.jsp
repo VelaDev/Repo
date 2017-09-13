@@ -106,7 +106,7 @@ input.currency {
 										</div>
 									</div>
 								</div>
-								<div class="col-sm-6">
+								<%-- <div class="col-sm-6">
 									<!-- Text input Street Name-->
 									<div class="form-group">
 										<label class="col-md-3 control-label">Company Email</label>
@@ -121,7 +121,7 @@ input.currency {
 										</div>
 									</div>
 								</div>
-
+ --%>
 								<div class="col-sm-6">
 
 									<div id="customerDeviceContainer"

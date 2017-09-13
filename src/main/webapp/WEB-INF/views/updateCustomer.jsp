@@ -83,29 +83,7 @@
 										</div>
 									</div>
 								</div>
-									
-								<!-- Text input Email-->
-								<div class="form-group">
-									<label class="col-md-3 control-label">Company Email</label>
-									<div class="col-md-6 inputGroupContainer">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="glyphicon glyphicon-envelope"></i></span> <input
-												name="email" id="email"
-												placeholder="Company Email Address" class="form-control"
-												type="text" value="${customer.email}" >
-										</div>
-									</div>
-								</div>
 								
-								
-								
-							</div>
-							<!-- / F Customer Fields -->
-
-							<!--Second column Customer Fields-->
-							<div class="col-sm-6">
-							
 								<!-- Text input Street Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street No</label>
@@ -118,6 +96,28 @@
 										</div>
 									</div>
 								</div>
+								
+								<%-- <!-- Text input Email-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Company Email</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-envelope"></i></span> <input
+												name="email" id="email"
+												placeholder="Company Email Address" class="form-control"
+												type="text" value="${customer.email}" >
+										</div>
+									</div>
+								</div>
+								 --%>
+								
+								
+							</div>
+							<!-- / F Customer Fields -->
+
+							<!--Second column Customer Fields-->
+							<div class="col-sm-6">
 							
 								<!-- Text input Street Name-->
 								<div class="form-group">

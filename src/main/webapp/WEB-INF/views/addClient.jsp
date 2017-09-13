@@ -105,7 +105,7 @@
 											<span class="input-group-addon"><i
 												class="glyphicon glyphicon-home"></i></span> <input
 												name="streetNumber" id="streetNumber"
-												placeholder="Street No" class="form-control" onkeypress="return isNumber(event)"  type="text">
+												placeholder="Street No" class="form-control"  type="text">
 										</div>
 									</div>
 								</div>		

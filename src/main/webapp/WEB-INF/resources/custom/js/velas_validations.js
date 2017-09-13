@@ -611,11 +611,11 @@ $(document)
 													},
 													notEmpty : {
 														message : 'Street number is required and cannot be empty'
-													},
+													}/*,
 													regexp : {
 														regexp : /^[0-9]+$/,
 														message : 'The Street number can only consist of numbers '
-													}
+													}*/
 												}
 											},
 											buildingName : {
@@ -636,11 +636,11 @@ $(document)
 													},
 													notEmpty : {
 														message : 'Floor number is required and cannot be empty'
-													},
+													}/*,
 													regexp : {
 														regexp : /^[0-9]+$/,
 														message : 'Floor number can only consist of numbers '
-													}
+													}*/
 												}
 											},
 											streetName : {

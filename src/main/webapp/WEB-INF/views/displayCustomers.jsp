@@ -41,8 +41,7 @@
 										<tbody>
 											<!-- Iterating over the list sent from Controller -->
 											<c:forEach var="list" items="${displayCustomers}">
-												<tr>
-													
+												<tr>													
 													<td><a href="viewCustomer?customerName=<c:out value='${list.customerName}'/>">${list.customerName}</a></td>
                                                    	<td>${list.email}</td>
 													<td>${list.telephoneNumber}</td>

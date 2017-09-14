@@ -565,7 +565,7 @@ input.currency {
 														<div id="removeAccessory" class="form-group row">
 															<div class="col-sm-offset col-sm-8">
 																<br> <br> <input type="submit" id="removeAccessory" name="removeAccessory"
-																	value="Remove Accessory" class="btn btn-danger" onclick="return confirm('Are you sure you want to do delete this?');">
+																	value="Remove Accessory" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this?');">
 															</div>
 														</div>														
 													</div>

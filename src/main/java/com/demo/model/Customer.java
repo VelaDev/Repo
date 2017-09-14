@@ -41,6 +41,8 @@ public class Customer implements Serializable{
 	private String telephoneNumber;
 	@Column(name="Emal")
 	private String email;
+	@Column(name="Contact_Email")
+	private String contactEmail;
 	@Column(name="Street_Name")
 	private String streetName;
 	@Column(name="City_Town")
@@ -56,6 +58,7 @@ public class Customer implements Serializable{
 	@Column(name="DateTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateTime;
+	
 	
 	
 	@OneToMany(mappedBy ="customerContactDetails", cascade= CascadeType.ALL,fetch=FetchType.LAZY)

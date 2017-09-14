@@ -67,6 +67,8 @@ public class CustomerDao implements CustomerDaoInt {
 				tempCustomer.setProvince(customerBean.getProvince());
 				tempCustomer.setStreetName(customerBean.getStreetName());
 				tempCustomer.setStreetNumber(customerBean.getStreetNumber());
+				tempCustomer.setContactEmail(customerBean.getContactEmail());
+				
 				tempCustomer.setTelephoneNumber(customerBean
 						.getTelephoneNumber());
 				tempCustomer.setZipcode(customerBean.getZipcode());
@@ -134,6 +136,7 @@ public class CustomerDao implements CustomerDaoInt {
 			tempCustomer.setStreetName(customerBean.getStreetName());
 			tempCustomer.setStreetNumber(customerBean.getStreetNumber());
 			tempCustomer.setTelephoneNumber(customerBean.getTelephoneNumber());
+			tempCustomer.setContactEmail(customerBean.getContactEmail());			
 			tempCustomer.setZipcode(customerBean.getZipcode());
 
 			list = new ArrayList<CustomerContactDetails>();

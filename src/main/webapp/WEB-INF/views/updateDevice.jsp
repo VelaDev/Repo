@@ -696,7 +696,7 @@ input.currency {
 										<br> <br> <input type="submit" id="updateProduct"
 											name="updateProduct" value="Update Device"
 											class="btn btn-primary btn-block btn-lg" tabindex="9"
-											id="updateProduct" onclick="return confirm('Are you sure you want to do update device?');">
+											id="updateProduct" onclick="return confirm('Are you sure you want to update device?');">
 									</div>
 								</div>
 							</div>

@@ -554,7 +554,7 @@ input.currency {
 																		<td>${list.accessotyType}</td>
 																		<td>${list.serial}</td>
 																		<td><input type="checkbox" class="chkAccessories" id="${list.accessotyType}"
-																			name="chkAccessories" value="${list.serial}" /></td>
+																			name="chkAccessories" value="${list.recordID}" /></td>
 																	</tr>
 																</c:forEach>
 
@@ -612,8 +612,7 @@ input.currency {
 																					<!-- Iterating over the list sent from Controller -->
 																					<datalist id="addAccessory"> <c:forEach
 																						var="list" items="${addAccessory}">
-																						<option value="${list}">${list}</option>
-																						
+																						<option value="${list}">${list}</option>																						
 																					</c:forEach>
 																						<option value="Others Accessories">Others</option> 
 																					</datalist>																					

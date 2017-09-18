@@ -306,21 +306,19 @@ public class DeviceDao implements DeviceDaoInt {
 		} catch (Exception e) {
 			retMessage = e.getMessage();
 		}
-        System.err.println("Karabo "+retMessage);
 		return retMessage;
 	}
 
 	@Override
-	public DeviceBean getAccessoriesForUpdate(String serialNumber) {
+	public DeviceBean getAccessoriesForUpdate(Long recordID) {
 
 		deviceBean = new DeviceBean();
 		try {
 
-			accessoryList = accessoriesDaoInt
+			/*accessoryList = accessoriesDaoInt
 					.getAccessoriesByDeviceSerial(serialNumber);
 			for (Accessories access : accessoryList) {
-				if (access.getDevice().getSerialNumber()
-						.equalsIgnoreCase(serialNumber)) {
+				if (access.getDevice().getSerialNumber().equalsIgnoreCase(serialNumber)) {
 					if (access.getAccessotyType().equalsIgnoreCase(
 							"Bridge Unit")) {
 						deviceBean.setBridgeUnitSerialTypeSerialNo(access
@@ -349,7 +347,7 @@ public class DeviceDao implements DeviceDaoInt {
 					}
 				}
 			}
-		} catch (Exception e) {
+		*/} catch (Exception e) {
 			return null;
 		}
 		return deviceBean;

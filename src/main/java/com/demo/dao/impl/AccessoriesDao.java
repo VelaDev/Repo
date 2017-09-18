@@ -66,7 +66,7 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Accessories> getAccessoriesByDeviceSerial(String serialNo) {
+	public List<Accessories> getAccessoriesByDeviceSerial(String serialNumber) {
 		aList = new ArrayList<Accessories>();
 		accessoriesList = new ArrayList<Accessories>();
 		try {
@@ -74,7 +74,7 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 					.createCriteria(Accessories.class);
 			aList.addAll(criteria.list());
 			for (Accessories access : aList) {
-				if(access.getDevice().getSerialNumber().equalsIgnoreCase(serialNo) && access.getDevice().getSerialNumber()!=null){
+				if(access.getDevice().getSerialNumber().equalsIgnoreCase(serialNumber) && access.getDevice().getSerialNumber()!=null){
 					accessoriesList.add(access);
 				}
 			}
@@ -91,8 +91,8 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 			
 			for(int i=0;i < serialNumbers.length; i++){
 				serialNo = serialNumbers[i];
-				
-				Accessories accessories = getAccessories(serialNo);
+				Long serialNUmber = Long.parseLong(serialNo);
+				Accessories accessories = getAccessories(serialNUmber);
 				sessionFactory.getCurrentSession().delete(accessories);
 			}
 			retMessage = "Accessories removed,";
@@ -103,10 +103,10 @@ public class AccessoriesDao implements AccessoriesDaoInt {
 	}
 
 	@Override
-	public Accessories getAccessories(String serialNo) {
+	public Accessories getAccessories(Long recordID) {
 
 		return (Accessories) sessionFactory.getCurrentSession().get(
-				Accessories.class, serialNo);
+				Accessories.class, recordID);
 	}
 
 	@Override

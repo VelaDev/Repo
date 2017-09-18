@@ -80,8 +80,7 @@ public class Device implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="Device_Contact")
-	private DeviceContactPerson contactPerson;
-	
+	private DeviceContactPerson contactPerson;	
 	
 	@ManyToOne
 	@JoinColumn(name="Customer")

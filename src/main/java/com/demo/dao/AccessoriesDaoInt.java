@@ -9,8 +9,8 @@ public interface AccessoriesDaoInt {
 	
 	String saveAccessories(List<Accessories> accessories);
 	String updateAccessories(List<Accessories> accessories);
-	List<Accessories> getAccessoriesByDeviceSerial(String serialNo);
+	List<Accessories> getAccessoriesByDeviceSerial(String serialNumber);
 	String removeAccessory(String[] strings);
-	Accessories getAccessories(String serialNo);
+	Accessories getAccessories(Long recordID);
 	List<String> getAccessoriesList(String deviceSerialNumber);
 }

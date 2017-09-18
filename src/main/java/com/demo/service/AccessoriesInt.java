@@ -8,8 +8,8 @@ import com.demo.model.Accessories;
 public interface AccessoriesInt {
 	String saveAccessories(List<Accessories> accessories);
 	String updateAccessories(List<Accessories> accessories);
-	List<Accessories> getAccessoriesByDeviceSerial(String serialNo);
-	Accessories getAccessories(String serialNo);
+	List<Accessories> getAccessoriesByDeviceSerial(String serialNumber);
+	Accessories getAccessories(Long recordID);
 	List<String> getAccessoriesList(String deviceSerialNumber);
 	String removeAccessory(String []serialNumbers);
 

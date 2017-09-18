@@ -64,8 +64,8 @@ public class DeviceService implements DeviceServiceInt {
 
 	@Override
 	public DeviceBean getAccessoriesForUpdate(String serialNumber) {
-		
-		return deviceDAO.getAccessoriesForUpdate(serialNumber);
+		return null;
+		//return deviceDAO.getAccessoriesForUpdate(serialNumber);
 	}
 
 	@Override

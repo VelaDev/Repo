@@ -32,15 +32,15 @@ public class AccessoriesService implements AccessoriesInt{
 	}
 
 	@Override
-	public List<Accessories> getAccessoriesByDeviceSerial(String serialNo) {
+	public List<Accessories> getAccessoriesByDeviceSerial(String recordID) {
 		
-		return accessoriesDaoInt.getAccessoriesByDeviceSerial(serialNo);
+		return accessoriesDaoInt.getAccessoriesByDeviceSerial(recordID);
 	}
 
 	@Override
-	public Accessories getAccessories(String serialNo) {
+	public Accessories getAccessories(Long recordID) {
 		// TODO Auto-generated method stub
-		return accessoriesDaoInt.getAccessories(serialNo);
+		return accessoriesDaoInt.getAccessories(recordID);
 	}
 
 	@Override

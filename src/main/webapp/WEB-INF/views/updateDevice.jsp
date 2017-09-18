@@ -541,7 +541,6 @@ input.currency {
 														<table id="myDatatable" class="display datatable">
 															<thead>
 																<tr>
-
 																	<th>Machine Type</th>
 																	<th>Serial Number</th>
 																	<th>Remove Accessory</th>

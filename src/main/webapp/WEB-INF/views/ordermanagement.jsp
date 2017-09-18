@@ -401,8 +401,7 @@ input#selectDateRange {
 		<!-- Paging the table -->
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('#createOrderDatatable').DataTable({
-					
+				$('#createOrderDatatable').DataTable({					
 					
 					"jQueryUI" : true,
 					"pagingType" : "full_numbers",
@@ -414,50 +413,7 @@ input#selectDateRange {
 			});
 		</script>
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#OrderToApproveDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#closedOrderDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#OrderToShipDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#shippedOrdersDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
+		
 		
 	<!-- Create datalist to populate search -->
 	<script type="text/javascript">

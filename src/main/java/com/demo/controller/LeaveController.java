@@ -882,27 +882,38 @@ public class LeaveController {
 		}
 
 		return model;
-	}
-
+	}	
+	
 	@RequestMapping(value = "declineLeave", method = RequestMethod.GET)
-	public ModelAndView declineLeave(@RequestParam("leaveID") Long leaveID) {
-
+	public ModelAndView displayDeclineLeave(@RequestParam("leaveID") Long leaveID) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
-			retMessage = leaveInt.cancelLeave(leaveID);
-			if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
-				String managerCancel = "managerCancel";
-				model.addObject("managerCancel", managerCancel);
-				model.addObject("retMessage", retMessage);
-				model.setViewName("confirmations");
-
-			}
+			model.addObject("managerCancel", new LeaveBean());
+			model.addObject("leave", leaveInt.getLeave(leaveID));			
+			model.setViewName("declineLeave");
 		} else {
 			model.setViewName("login");
 		}
 
 		return model;
 	}
+	@RequestMapping(value = "declinedLeave", method = RequestMethod.POST)
+	public ModelAndView declinedLeave(@ModelAttribute("declinedLeave") LeaveBean leave) {
+		String managerCancel = "managerCancel";
+		model = new ModelAndView();
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			retMessage = leaveInt.declineLeave(leave.getLeaveID(),leave.getComments());
+			model.addObject("retMessage", retMessage);			
+			model.addObject("managerCancel", managerCancel);
+			model.setViewName("confirmations");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
+	
 }

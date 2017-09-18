@@ -100,7 +100,13 @@ input#cancelLeave {
 										<li id="leaveType" name="leaveType"><b>Leave Type: ${leave.leaveType} </b></li>
 										<li id="startDate" name="startDate">Leave Start Date: ${leave.startDate}</li>
 										<li id="endDate" name="endDate">Leave End Date: ${leave.endDate}</li>
-										<li id="status" name="status">Leave Status: ${leave.status}</li>										
+										<li id="status" name="status">Leave Status: ${leave.status}</li>
+										<c:if test="${leave.status == 'Cancelled'}">
+												<p id="lebaka">
+													<span style="font-weight: bolder">Reason Declined</span>:
+													<span style="color: red">${leave.comments}</span>
+												</p>
+											</c:if>												
 									</div>
 
 								</div>

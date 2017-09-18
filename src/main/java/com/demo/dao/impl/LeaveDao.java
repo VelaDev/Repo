@@ -1410,15 +1410,15 @@ public class LeaveDao implements LeaveDaoInt {
 		try{
 			Leave leave = getLeave(leaveID);
 			Employee approvedBy = (Employee) session.getAttribute("loggedInUser");
-			String approverName= approvedBy.getFirstName()+" "+approvedBy.getLastName();
+			String declineName = approvedBy.getFirstName()+" "+approvedBy.getLastName();
 			if(leave!= null){
-				leave.setStatus("Cancelled");
-				leave.setLeaveApproval(approverName);
+				leave.setComments(reasonDeclined);;
+				leave.setStatus("Cancelled");				
+				leave.setLeaveApproval(declineName);
 				emp = employeeDaoInt.getEmployeeByEmpNum(leave.getEmployee().getEmail());
-				emp.setLeaveStatus("Cancelled");
-				leave.setReasonDeclined(leave.getReasonDeclined());
+				emp.setLeaveStatus("Cancelled");				
 				sessionFactory.getCurrentSession().update(emp);
-				retMessage ="Leave declined";
+				retMessage ="Leave LV0000000"+ leave.getLeaveID()+" declined";
 			}
 		}catch(Exception e){
 			e.getMessage();

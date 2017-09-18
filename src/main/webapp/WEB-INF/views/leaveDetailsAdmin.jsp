@@ -105,12 +105,12 @@ input#cancelLeave {
 										<li id="startDate" name="startDate">Leave Start Date: ${leave.startDate}</li>
 										<li id="endDate" name="endDate">Leave End Date: ${leave.endDate}</li>
 										<li id="status" name="status">Leave Status: ${leave.status}</li>
-											<%-- <c:if test="${leave.status == 'Cancelled'}">
+											<c:if test="${leave.status == 'Cancelled'}">
 												<p id="lebaka">
 													<span style="font-weight: bolder">Reason for Decline</span>:
-													<span style="color: red">${leave.reasonDeclined}</span>
+													<span style="color: red">${leave.comments}</span>
 												</p>
-											</c:if>	 --%>									
+											</c:if>								
 									</div>
 
 								</div>

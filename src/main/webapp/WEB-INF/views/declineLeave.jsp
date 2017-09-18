@@ -36,7 +36,7 @@
 				<div class="panel-heading">
 					<h3 class="panel-title">
 						<div align="center">
-							<b>Decline Leave</b>
+							<b>Decline Leave LV0000000${leave.leaveID}</b>
 						</div>
 					</h3>
 				</div>
@@ -44,24 +44,11 @@
 				<div class="panel-body">
 					<div class="tab-content">
 
-						<form:form class="well form-horizontal" method="post"
-							action="declinedLeave" id="decline" modelAttribute="declinedLeave">
+						<form:form class="well form-horizontal" method="post" action="declinedLeave" id="decline" modelAttribute="declinedLeave">
 
 
-							<!-- Text input Leave ID -->
-							<div class="form-group">
-								<label class="col-md-3 control-label">Leave ID</label>
-								<div class="col-md-6 inputGroupContainer">
-									<div class="input-group">
-										<span class="input-group-addon"><i
-											class="glyphicon glyphicon-barcode"></i></span> <input id="leaveID"
-											name="leaveID" class="form-control" type="text" value='LV0000000${leave.leaveID}'
-											readonly="readonly">
-									</div>
-								</div>
-							</div>
-
-
+							<input id="leaveID" name="leaveID" class="form-control" type="hidden" value='${leave.leaveID}' readonly="readonly">
+							
 							<!-- Text area Decline Reason-->
 							<div class="form-group">
 								<label class="col-md-3 control-label">Reason Decline</label>
@@ -70,11 +57,10 @@
 										<span class="input-group-addon"><i
 											class="glyphicon glyphicon-pencil"></i></span>
 										<textarea cols="10" rows="10" class="form-control"
-											id="reasonDeclined" name="reasonDeclined" required="required"></textarea>
+											id="comments" name="comments" required="required"></textarea>
 									</div>
 								</div>
 							</div>
-
 							<br>
 							<div class="declineButton">
 								<div class="form-group row">

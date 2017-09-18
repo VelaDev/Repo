@@ -226,12 +226,13 @@ input#selectDateRange{
 											<thead>
 												<tr>
 													<th>Leave Number</th>
+													<th>Start Date</th>
+													<th>End Date</th>
 													<th>Full Name</th>
 													<th>Email</th>
 													<th>Leave Status</th>
 													<th>Leave Type</th>
-													<th>Start Date</th>
-													<th>End Date</th>
+													
 													<th>Contact</th>
 													<th>Address During Leave</th>
 													<!-- <th>Order Details</th> -->
@@ -243,13 +244,14 @@ input#selectDateRange{
 													<tr>
 														<td><a
 															href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
+														<td><c:out value="${leave.startDate}" /></td>
+														<td><c:out value="${leave.endDate}" /></td>
 														<td><c:out
 																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
 														<td><c:out value="${leave.employee.email}" /></td>
 														<td><c:out value="${leave.status}" /></td>
 														<td><c:out value="${leave.leaveType}" /></td>
-														<td><c:out value="${leave.startDate}" /></td>
-														<td><c:out value="${leave.endDate}" /></td>
+														
 														<td><c:out value="${leave.contactNumber}" /></td>
 														<td><c:out value="${leave.address}" /></td>
 														
@@ -257,156 +259,11 @@ input#selectDateRange{
 												</c:forEach>
 											</tbody>
 										</table>
-										<!-- table order -->
+										<!-- table leave -->
 									</form:form>
-									<!-- form order -->
+									<!-- form leave -->
 
 								</div>
-
-								<div class="tab-pane" id="pendingLeave">
-									<legend align=center>Pending Leave</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="pendingLeaveDatatable" class="display datatable">
-												<thead>
-												<tr>
-													<th>Leave Number</th>
-													<th>Full Name</th>
-													<th>Email</th>
-													<th>Leave Status</th>
-													<th>Leave Type</th>
-													<th>Start Date</th>
-													<th>End Date</th>
-													<th>Contact</th>
-													<th>Address During Leave</th>
-													<!-- <th>Order Details</th> -->
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach items="${leaveList}" var="leave" varStatus="itr">
-													<tr>
-														<td><a
-															href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
-														<td><c:out
-																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
-														<td><c:out value="${leave.employee.email}" /></td>
-														<td><c:out value="${leave.status}" /></td>
-														<td><c:out value="${leave.leaveType}" /></td>
-														<td><c:out value="${leave.startDate}" /></td>
-														<td><c:out value="${leave.endDate}" /></td>
-														<td><c:out value="${leave.contactNumber}" /></td>
-														<td><c:out value="${leave.address}" /></td>
-														
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-								</div>
-								
-								<div class="tab-pane" id="activeLeave">
-									<legend align=center>Active Leave</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="pendingLeaveDatatable" class="display datatable">
-												<thead>
-												<tr>
-													<th>Leave Number</th>
-													<th>Full Name</th>
-													<th>Email</th>
-													<th>Leave Status</th>
-													<th>Leave Type</th>
-													<th>Start Date</th>
-													<th>End Date</th>
-													<th>Contact</th>
-													<th>Address During Leave</th>
-													<!-- <th>Order Details</th> -->
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach items="${leaveList}" var="leave" varStatus="itr">
-													<tr>
-														<td><a
-															href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
-														<td><c:out
-																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
-														<td><c:out value="${leave.employee.email}" /></td>
-														<td><c:out value="${leave.status}" /></td>
-														<td><c:out value="${leave.leaveType}" /></td>
-														<td><c:out value="${leave.startDate}" /></td>
-														<td><c:out value="${leave.endDate}" /></td>
-														<td><c:out value="${leave.contactNumber}" /></td>
-														<td><c:out value="${leave.address}" /></td>
-														
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-								</div>
-
-								<div class="tab-pane" id="leaveHistory">
-									<legend align=center>Active Leave</legend>
-									<form:form modelAttribute="orderHistory" method="post"
-										action="orderHistory" id="orderHistory" name="orderHistory">
-
-										<!-- Below table will be displayed as Data table -->
-										<table id="pendingLeaveDatatable" class="display datatable">
-												<thead>
-												<tr>
-													<th>Leave Number</th>
-													<th>Full Name</th>
-													<th>Email</th>
-													<th>Leave Status</th>
-													<th>Leave Type</th>
-													<th>Start Date</th>
-													<th>End Date</th>
-													<th>Contact</th>
-													<th>Address During Leave</th>
-													<!-- <th>Order Details</th> -->
-												</tr>
-											</thead>
-											<tbody>
-												<!-- Iterating over the list sent from Controller -->
-												<c:forEach items="${leaveList}" var="leave" varStatus="itr">
-													<tr>
-														<td><a
-															href="updateLeave?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
-														<td><c:out
-																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
-														<td><c:out value="${leave.employee.email}" /></td>
-														<td><c:out value="${leave.status}" /></td>
-														<td><c:out value="${leave.leaveType}" /></td>
-														<td><c:out value="${leave.startDate}" /></td>
-														<td><c:out value="${leave.endDate}" /></td>
-														<td><c:out value="${leave.contactNumber}" /></td>
-														<td><c:out value="${leave.address}" /></td>
-														
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-										<!-- table order -->
-									</form:form>
-									<!-- form order -->
-
-								</div>
-								
-								
-								</div>
-
 							</div>
 							<!-- /tab-content -->
 
@@ -446,55 +303,13 @@ input#selectDateRange{
 				$('#createLeaveDatatable').DataTable({
 					"jQueryUI" : true,
 					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
+					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
+					"order": [[1 , "desc" ]]
 				/* few more options are available to use */
 				});
 			});
 		</script>
 
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#OrderToApproveDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#closedOrderDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#OrderToShipDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
-
-
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#pendingLeaveDatatable').DataTable({
-					"jQueryUI" : true,
-					"pagingType" : "full_numbers",
-					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ]
-				/* few more options are available to use */
-				});
-			});
-		</script>
+		
 </body>
 </html>

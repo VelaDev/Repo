@@ -28,7 +28,7 @@ public class LeaveStatus implements Serializable{
 	private static final long serialVersionUID = 1L;
 	@Id
 	@Column(name="Leave_ID")
-	private int leaveID;
+	private Long leaveID;
 	@Column(name="First_Leave_Date")
 	private String startDate;
 	@Column(name="Last_Leave_Date")

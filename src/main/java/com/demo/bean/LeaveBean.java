@@ -1,13 +1,8 @@
 package com.demo.bean;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 
 @NoArgsConstructor
 @Getter
@@ -20,7 +15,8 @@ public class LeaveBean {
 	private String contactNumber;
 	private String address;
 	private String technicianUserName;
-	private int leaveID;
+	private Long leaveID;
+	private String comments;
 	private String leaveDate;
 	private String reasonDeclined;
 

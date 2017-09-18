@@ -740,8 +740,7 @@ public class OrdersController {
 	}
 
 	@RequestMapping(value = "declineOrder", method = RequestMethod.GET)
-	public ModelAndView displayDeclineOrders(
-			@RequestParam("recordID") Long recordID) {
+	public ModelAndView displayDeclineOrders(@RequestParam("recordID") Long recordID) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
@@ -763,10 +762,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			retMessage = ordersServiceInt.declineOrder(order.getRecordID(),order.getComments());
-			model.addObject("retMessage", retMessage);
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("retMessage", retMessage);			
 			model.addObject("declineOrder", declineOrder);
 			model.setViewName("confirmations");
 		} else {

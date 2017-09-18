@@ -120,7 +120,7 @@
 													class="glyphicon glyphicon-barcode"></i></span> <input
 													value="${product.customerDevice.customerName }"
 													class="form-control" id="customerName" name="customerName"
-													type="text" required="required" readonly="readonly">
+													type="text" readonly="readonly">
 											</div>
 										</div>
 									</div>

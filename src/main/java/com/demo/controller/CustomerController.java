@@ -59,11 +59,7 @@ public class CustomerController {
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 			model.addObject("saveClient", new CustomerBean());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("addClient");
-		
+			model.setViewName("addClient");		
 		}
 		else{
 			model.setViewName("login");
@@ -78,10 +74,7 @@ public class CustomerController {
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("retMessage",customerServiceInt.saveCustomer(customerBean));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("retMessage",customerServiceInt.saveCustomer(customerBean));			
 			model.addObject("addCustomer", addCustomer);
 			model.setViewName("confirmations");
 		}else{
@@ -95,10 +88,7 @@ public class CustomerController {
 		
 	    model = new ModelAndView();
 	    userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+		if(userName != null){		
 			model.setViewName("clientInformation");
 		}else{
 			model.setViewName("login");
@@ -120,9 +110,6 @@ public class CustomerController {
 		
 		        model.addObject("clientInformation",deviceList );
 				model.addObject("customer", customer);
-				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
 				model.setViewName("clientInformation");
 		}
 		else{
@@ -222,17 +209,22 @@ public class CustomerController {
 		return model;
 	}
 	
-	@RequestMapping(value="viewCustomer")
+	@RequestMapping(value={"viewCustomer","userViewCustomer"})
 	public ModelAndView viewCustomer(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("customer", customerServiceInt.contactDetails(customerName));
-			model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("viewCustomer");
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+				model.addObject("customer", customerServiceInt.contactDetails(customerName));
+				model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));			
+				model.setViewName("viewCustomer");
+			}
+			else if (userName.getRole().equalsIgnoreCase("User")){
+				model.addObject("customer", customerServiceInt.contactDetails(customerName));
+				model.addObject("customerDetails", contactDetailsServiceInt.contactDetails(customerName));				
+				model.setViewName("userViewCustomer");	
+			}
+			
 		}
 		else{
 			model.setViewName("login");
@@ -256,41 +248,48 @@ public class CustomerController {
 		
 		return model;
 	}
-	*/
+	*/	
 	
-	@RequestMapping(value="displayCustomers",method=RequestMethod.GET)
+	@RequestMapping(value={"displayCustomers","userDisplayCustomers"},method=RequestMethod.GET)
 	public ModelAndView displayCustomers(Integer offset,Integer maxResults){
 		model= new ModelAndView();
 		Integer count =0;
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
 		
-			count = customerServiceInt.count();
-			model.addObject("count",count);
-			model.addObject("offset", offset);
-			model.addObject("displayCustomers", customerServiceInt.getClientList());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("displayCustomers");
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+				count = customerServiceInt.count();
+				model.addObject("count",count);
+				model.addObject("offset", offset);
+				model.addObject("displayCustomers", customerServiceInt.getClientList());			
+				model.setViewName("displayCustomers");
+			
+		   }else if(userName.getRole().equalsIgnoreCase("User")){			   
+			   count = customerServiceInt.count();
+			   model.addObject("count",count);
+			   model.addObject("offset", offset);
+			   model.addObject("displayCustomers", customerServiceInt.getClientList());				
+			   model.setViewName("userDisplayCustomers"); 
+			   
+		   }
 		}
 		else{
 			model.setViewName("login");
 		}
 		return model;
 	}
-	@RequestMapping(value="searchCustomerdevices")
+	@RequestMapping(value={"searchCustomerdevices", "userSearchCustomerDevices"})
 	public ModelAndView searchCustomerDevices(@RequestParam("customerName") String customerName,@ModelAttribute Customer customer) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-		
-			
-			model.addObject("deviceList",deviceServiceInt.getDeviceListByClientName(customerName));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("customerListDevices");
+		if(userName != null){		
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+				model.addObject("deviceList",deviceServiceInt.getDeviceListByClientName(customerName));				
+				model.setViewName("customerListDevices");
+		   }else if(userName.getRole().equalsIgnoreCase("User")){			   
+			   model.addObject("deviceList",deviceServiceInt.getDeviceListByClientName(customerName));			  
+			   model.setViewName("userViewCustomerListDevices");
+		   }
 		}
 		else{
 			model.setViewName("login");

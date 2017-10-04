@@ -40,9 +40,39 @@
 				      
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav">					
+				<ul class="nav navbar-nav">
+				
+						<li class="dropdown"><a href="#" class="dropdown-toggle"
+						data-toggle="dropdown">Customers <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li class="dropdown dropdown-submenu"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown">Customer
+									Management</a>
+								<ul class="dropdown-menu">									
+									<li><a href='<c:url value="userDisplayCustomers.html"/>'>View
+											Customers</a></li>
+								</ul></li>
+								
+								<li class="dropdown dropdown-submenu"><a href="#"
+									class="dropdown-toggle" data-toggle="dropdown">Device
+										Management</a>
+									<ul class="dropdown-menu">
+										<li><a href='<c:url value="searchDevice.html"/>'>View
+												Devices</a></li>
+									</ul>
+								</li>
+								
+							</ul>
+						</li>
+						
+						<li>
+					    <a href='<c:url value="#"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Spares Management</a>
+						</li>
+							
 				      			        
-				        <li class="dropdown">
+				       <%--  <li class="dropdown">
+				       			sparemanagement.html
 				        	<a href="#" class="dropdown-toggle"
 							 	data-toggle="dropdown" role="button" aria-haspopup="true"
 								aria-expanded="false">Orders<span class="caret"></span>
@@ -51,9 +81,9 @@
 								<li><a href='<c:url value="userPlaceOrder.html"/>'>Place Order</a></li>
 								<li><a href='<c:url value="viewAllUserOrders.html"/>'>View Orders</a></li>
 							</ul>
-						</li>
+						</li> --%>
 						
-						<li class="dropdown">
+						<%-- <li class="dropdown">
 							<a href="#" class="dropdown-toggle"
 							 	data-toggle="dropdown" role="button" aria-haspopup="true"
 							 	aria-expanded="false">Leave<span class="caret"></span>
@@ -62,12 +92,13 @@
 								<li><a href='<c:url value="userMakeLeave.html"/>'>Make Leave</a></li>
 								<li><a href='<c:url value="viewRequestedUserLeave.html"/>'>View Requested Leave</a></li>
 				      		 </ul>
-				    	</li>
+				      		 ordertechmanagement.html
+				    	</li> --%>
 				    	
-				    <%-- 	<li>
-					    <a href='<c:url value="ordertechmanagement.html"/>' role="button" aria-haspopup="true"
+				   	<li>
+					    <a href='<c:url value="#"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Order Management</a>
-					</li> --%>
+					</li> 
 					<li>
 					    <a href='<c:url value="userleavemanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Leave Management</a>

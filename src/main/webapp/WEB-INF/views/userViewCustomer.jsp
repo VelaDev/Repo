@@ -18,10 +18,15 @@
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/techniciannavbar.jsp"></c:import>
+		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
 
-		
+			<%-- <c:if test="${not empty retMessage }">
+				<div class="alert alert-info" role="alert">
+					<c:out value="${ retMessage}">
+					</c:out>
+				</div>
+			</c:if> --%>
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<h3 class="panel-title">
@@ -33,13 +38,14 @@
 				<div class="panel-body">
 					<div class="tab-content">
 					 
-						<form:form class="well form-horizontal" method="post" action="viewCustomerDetails" modelAttribute="viewCustomerDetails" id="viewCustomerDetails">
-							
-							   <!--First column Customer Fields-->
-							   <div class="col-sm-6">
-									<!-- Text input Client Name-->
-									<div class="form-group">
-										<label class="col-md-3 control-label">Customer Name</label>
+						<form:form class="well form-horizontal" method="post"
+							action="viewCustomerData" modelAttribute="viewCustomerData"
+							id="updateClient">
+							<!--First column Customer Fields-->
+							<div class="col-sm-6">
+								<!-- Text input Client Name-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Customer Name</label>
 									<div class="col-md-6 inputGroupContainer">
 										<div class="input-group">
 											<span class="input-group-addon"><i
@@ -49,7 +55,7 @@
 										</div>
 									</div>
 								</div>
-								
+
 								<!-- Text input Tellphone Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Telephone No</label>
@@ -77,7 +83,7 @@
 									</div>
 								</div>
 								
-									<!-- Text input Street Number-->
+								<!-- Text input Street Number-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street No</label>
 									<div class="col-md-6 inputGroupContainer">
@@ -90,6 +96,7 @@
 									</div>
 								</div>
 								
+
 								<%-- <!-- Text input Email-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Company Email</label>
@@ -111,6 +118,19 @@
 							<!--Second column Customer Fields-->
 							<div class="col-sm-6">
 							
+							<!-- Text input Street Number-->
+								<div class="form-group">
+									<label class="col-md-3 control-label">Street No</label>
+									<div class="col-md-6 inputGroupContainer">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="glyphicon glyphicon-home"></i></span> <input
+												name="streetNumber" id="streetNumber"
+												placeholder="Street No" class="form-control" readonly="readonly" onkeypress="return isNumber(event)"  type="text" value="${customer.streetNumber}" >
+										</div>
+									</div>
+								</div>
+								
 								<!-- Text input Street Name-->
 								<div class="form-group">
 									<label class="col-md-3 control-label">Street Name</label>
@@ -431,7 +451,7 @@ function isNumber(evt) {
 		$(document)
 				.ready(
 						function() {
-							$('#viewCustomerDetails')
+							$('#updateClient')
 									.bootstrapValidator(
 											{
 												feedbackIcons : {

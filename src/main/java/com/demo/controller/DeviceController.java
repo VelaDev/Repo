@@ -117,23 +117,22 @@ public class DeviceController {
 		return model;
        
     } 
-	@RequestMapping(value="detailedProduct")
+	@RequestMapping(value={"detailedProduct","userDetailedProduct"})
 	public ModelAndView detailedProduct(@RequestParam("serialNumber")String serialNumber,@ModelAttribute Accessories accessory){
 	   model = new ModelAndView();
 	   userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			
-			accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
-			/*for(Accessories devices:accessories){
-				device = devices.getDevice();
-				break;
-			}*/
-	        model.addObject("accessories", accessories);
-	        model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-	        model.addObject("device",deviceServiceInt.getDeviceBySerialNumber(serialNumber) );
-	        model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-	        model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-	        model.setViewName("detailedProduct");
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {				
+				accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
+				model.addObject("accessories", accessories);
+		        model.addObject("device",deviceServiceInt.getDeviceBySerialNumber(serialNumber) );
+		        model.setViewName("detailedProduct");
+			}else if(userName.getRole().equalsIgnoreCase("User")){
+				accessories = accessoriesInt.getAccessoriesByDeviceSerial(serialNumber);
+				model.addObject("accessories", accessories);
+		        model.addObject("device",deviceServiceInt.getDeviceBySerialNumber(serialNumber) );
+		        model.setViewName("userDetailedProduct");
+			}
 	   }else{
 		   model.setViewName("login");
 	   }

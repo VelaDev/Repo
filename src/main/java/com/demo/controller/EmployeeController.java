@@ -83,8 +83,7 @@ public class EmployeeController {
 		model.setViewName("login");
 		return model;
 	}
-	
-	
+		
 	@RequestMapping(value="authenticate",method={ RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView authenticateLogin(@ModelAttribute("authenticate")Employee employee,@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout)

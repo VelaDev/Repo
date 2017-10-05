@@ -22,17 +22,237 @@ public class JavaMail {
 	private static String newTicketNum = "VTC000";
 	private static String newOrderNum = "ORD000";
 	
-
-	public static void sendFromGMail(Tickets ticket) {
+	//Email message details to technician
+	public static void sendEmailMessageDetailsToTechnician(Tickets ticket) {
 		String[] to = { ticket.getEmployee().getEmail() };
 		String from = emailFrom;
 		String pass = password;
-		String body = "Hi " + ticket.getEmployee().getFirstName() + ","
-				+ "\n\nTicket " + newTicketNum+ticket.getRecordID()
-				+ " is assigned to you.\n\nDevice "
-				+ ticket.getDevice().getSerialNumber() + " with description "
-				+ ticket.getDescription() + "\n\nKind Regards\nVelaphanda Team";
+		String body = "Hi " + ticket.getEmployee().getFirstName() + " " + ticket.getEmployee().getLastName() + " please attend to the following service call:"
+				
+				+ "\n\nYour Ticket Details are as follows:" +"\n\n"
+				
+				+ "Ticket Number: " + newTicketNum+ticket.getRecordID() + "\n"
+				+ "Device Model: " + ticket.getDevice().getModelNumber() + "\n"
+				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
+				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"				
+				+ "Problem Description: " + ticket.getDescription() + "\n"
+				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
+				
+				+ "User Contact Details:\n\n"
+				
+				+ "Name & Surname: " +ticket.getFirstName()+" "+ticket.getLastName() +"\n"
+				+ "Email: " +ticket.getContactEmail()+ "\n" 
+				+ "Contact Number: " + ticket.getContactCellNumber()+ "\n"
+				
+				+ "\n\nKind Regards,\nVelaphanda Team"
+		        + "\nWebsite: www.velaphanda.com";
+				
 		String subject = "Ticket No " + newTicketNum+ticket.getRecordID();
+		
+		Properties props = System.getProperties();
+		String host = "smtp.mweb.co.za";
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.user", from);
+		props.put("mail.smtp.password", pass);
+		props.put("mail.smtp.port", "25");
+		props.put("mail.smtp.auth", "true");
+
+		Session session = Session.getDefaultInstance(props);
+		MimeMessage message = new MimeMessage(session);
+
+		try {
+			message.setFrom(new InternetAddress(from));
+			InternetAddress[] toAddress = new InternetAddress[to.length];
+
+			// To get the array of addresses
+			for (int i = 0; i < to.length; i++) {
+				toAddress[i] = new InternetAddress(to[i]);
+			}
+
+			for (int i = 0; i < toAddress.length; i++) {
+				message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+			}
+
+			message.setSubject(subject);
+			message.setText(body);
+			Transport transport = session.getTransport("smtp");
+			transport.connect(host, from, pass);
+			transport.sendMessage(message, message.getAllRecipients());
+			transport.close();
+		} catch (AddressException ae) {
+			ae.printStackTrace();
+		} catch (MessagingException me) {
+			me.printStackTrace();
+		}
+	}	
+	//User feedback from system to client
+	public static void sendMailFeedBackFromSystemToClient(Tickets ticket,Employee employee) {
+		String userEmail = employee.getEmail();
+		String[] to = { userEmail };
+		String from = emailFrom;
+		String pass = password;
+		String body = "Hi " + ticket.getEmployee().getFirstName() + " " + ticket.getEmployee().getLastName()
+				
+				+ "\n\nYour Ticket Details are as follows:" +"\n\n"
+				+ "Ticket Number: " + newTicketNum+ticket.getRecordID() + "\n"
+				+ "Device Model: " + ticket.getDevice().getModelNumber() + "\n"
+				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
+				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"
+				+ "Time Logged: " + ticket.getDateTime() + "\n"
+				+ "SLA End Time: " + ticket.getSlaStart() +"\n"	
+				
+				+ "Heldesk Agent Details:\n\n"
+				
+				+ "Name & Surname: " +employee.getFirstName()+" "+employee.getLastName() +"\n"
+				+ "Email: " +employee.getEmail()+ "\n" 
+				+ "Contact Number: " + employee.getCellNumber()+ "\n"
+				+ "Assigned Technician Details:\n\n"
+				+ "Name & Surname: " +ticket.getFirstName()+" "+ticket.getLastName() +"\n"
+				+ "Email: " +ticket.getContactEmail()+ "\n" 
+				+ "Contact Number: " + ticket.getContactCellNumber()+ "\n"
+				
+				+ "\n\nKind Regards,\nVelaphanda Team"
+				+ "\nWebsite: www.velaphanda.com";
+				
+		String subject = "Ticket No " + newTicketNum+ticket.getRecordID();
+		
+		Properties props = System.getProperties();
+		String host = "smtp.mweb.co.za";
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.user", from);
+		props.put("mail.smtp.password", pass);
+		props.put("mail.smtp.port", "25");
+		props.put("mail.smtp.auth", "true");
+
+		Session session = Session.getDefaultInstance(props);
+		MimeMessage message = new MimeMessage(session);
+
+		try {
+			message.setFrom(new InternetAddress(from));
+			InternetAddress[] toAddress = new InternetAddress[to.length];
+
+			// To get the array of addresses
+			for (int i = 0; i < to.length; i++) {
+				toAddress[i] = new InternetAddress(to[i]);
+			}
+
+			for (int i = 0; i < toAddress.length; i++) {
+				message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+			}
+
+			message.setSubject(subject);
+			message.setText(body);
+			Transport transport = session.getTransport("smtp");
+			transport.connect(host, from, pass);
+			transport.sendMessage(message, message.getAllRecipients());
+			transport.close();
+		} catch (AddressException ae) {
+			ae.printStackTrace();
+		} catch (MessagingException me) {
+			me.printStackTrace();
+		}
+	}
+	
+	//Email message details to technician for escalation
+	public static void sendMailDetailsToTechnicianForEscalation(Tickets ticket) {
+		
+		String[] to = { ticket.getEmployee().getEmail() };
+		String from = emailFrom;
+		String pass = password;
+		String body = "Hi " + ticket.getEmployee().getFirstName() + " " + ticket.getEmployee().getLastName() + " The following service call has been escalated to you:"
+				
+				+ "\n\nTicket Details are as follows:" +"\n\n"
+				
+				+ "Ticket Number: " + newTicketNum+ticket.getRecordID() + "\n"
+				+ "Device Model: " + ticket.getDevice().getModelNumber() + "\n"
+				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
+				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"				
+				+ "Problem Description: " + ticket.getDescription() + "\n"
+				+ "Reason for Escalation: " + ticket.getEscalateReason() + "\n"
+				+ "Previous technician: " + "technicianName"+ "\n"			 	
+				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
+				
+				+ "User Contact Details:\n\n"
+				
+				+ "Name & Surname: " +ticket.getFirstName()+" "+ticket.getLastName() +"\n"
+				+ "Email: " +ticket.getContactEmail()+ "\n" 
+				+ "Contact Number: " + ticket.getContactCellNumber()+ "\n"
+				
+				+ "\n\nKind Regards,\nVelaphanda Team"
+				+ "\nWebsite: www.velaphanda.com";
+		
+		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + "Escalated To You";
+		
+		Properties props = System.getProperties();
+		String host = "smtp.mweb.co.za";
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", host);
+		props.put("mail.smtp.user", from);
+		props.put("mail.smtp.password", pass);
+		props.put("mail.smtp.port", "25");
+		props.put("mail.smtp.auth", "true");
+
+		Session session = Session.getDefaultInstance(props);
+		MimeMessage message = new MimeMessage(session);
+
+		try {
+			message.setFrom(new InternetAddress(from));
+			InternetAddress[] toAddress = new InternetAddress[to.length];
+
+			// To get the array of addresses
+			for (int i = 0; i < to.length; i++) {
+				toAddress[i] = new InternetAddress(to[i]);
+			}
+
+			for (int i = 0; i < toAddress.length; i++) {
+				message.addRecipient(Message.RecipientType.TO, toAddress[i]);
+			}
+
+			message.setSubject(subject);
+			message.setText(body);
+			Transport transport = session.getTransport("smtp");
+			transport.connect(host, from, pass);
+			transport.sendMessage(message, message.getAllRecipients());
+			transport.close();
+		} catch (AddressException ae) {
+			ae.printStackTrace();
+		} catch (MessagingException me) {
+			me.printStackTrace();
+		}
+	}
+	
+	//Escalation Notification to manager
+	public static void sendMailEscalationNotificationToManager(Tickets ticket,String managerEmails) {
+		
+		String[] to = { ticket.getEmployee().getEmail(), managerEmails };
+		String from = emailFrom;
+		String pass = password;
+		String body = "Hi " + ticket.getEmployee().getFirstName() + " " + ticket.getEmployee().getLastName() + " The following service call has been escalated to you:"
+				
+				+ "Ticket Details are as follows:" +"\n\n"
+				
+				+ "Ticket Number: " + newTicketNum+ticket.getRecordID() + "\n"
+				+ "Device Model: " + ticket.getDevice().getModelNumber() + "\n"
+				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
+				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"				
+				+ "Problem Description: " + ticket.getDescription() + "\n"
+				+ "Reason for Escalation: " + ticket.getEscalateReason() + "\n"
+				+ "Previous technician: " + "technicianName"+ "\n"			 	
+				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
+				
+				+ "User Contact Details:\n\n"
+				
+				+ "Name & Surname: " +ticket.getFirstName()+" "+ticket.getLastName() +"\n"
+				+ "Email: " +ticket.getContactEmail()+ "\n" 
+				+ "Contact Number: " + ticket.getContactCellNumber()+ "\n"
+				
+				+ "\n\nKind Regards,\nVelaphanda Team"
+				+ "\nWebsite: www.velaphanda.com";
+		
+		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + "Escalated To Senior Technician";
+		
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
 		props.put("mail.smtp.starttls.enable", "true");

@@ -66,43 +66,18 @@
 						</li>
 						
 						<li>
-					    <a href='<c:url value="#"/>' role="button" aria-haspopup="true"
+					    <a href='<c:url value="usersparemanagement.html"/>' role="button" aria-haspopup="true"
 								aria-expanded="false">Spares Management</a>
+						</li>   
+				       						
+					   	<li>
+						    <a href='<c:url value="userordermanagement.html"/>' role="button" aria-haspopup="true"
+									aria-expanded="false">Order Management</a>
+						</li> 
+						<li>
+						    <a href='<c:url value="userleavemanagement.html"/>' role="button" aria-haspopup="true"
+									aria-expanded="false">Leave Management</a>
 						</li>
-							
-				      			        
-				       <%--  <li class="dropdown">
-				       			sparemanagement.html
-				        	<a href="#" class="dropdown-toggle"
-							 	data-toggle="dropdown" role="button" aria-haspopup="true"
-								aria-expanded="false">Orders<span class="caret"></span>
-							 </a>
-							<ul class="dropdown-menu">
-								<li><a href='<c:url value="userPlaceOrder.html"/>'>Place Order</a></li>
-								<li><a href='<c:url value="viewAllUserOrders.html"/>'>View Orders</a></li>
-							</ul>
-						</li> --%>
-						
-						<%-- <li class="dropdown">
-							<a href="#" class="dropdown-toggle"
-							 	data-toggle="dropdown" role="button" aria-haspopup="true"
-							 	aria-expanded="false">Leave<span class="caret"></span>
-							 </a>
-							 <ul class="dropdown-menu">
-								<li><a href='<c:url value="userMakeLeave.html"/>'>Make Leave</a></li>
-								<li><a href='<c:url value="viewRequestedUserLeave.html"/>'>View Requested Leave</a></li>
-				      		 </ul>
-				      		 ordertechmanagement.html
-				    	</li> --%>
-				    	
-				   	<li>
-					    <a href='<c:url value="#"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Order Management</a>
-					</li> 
-					<li>
-					    <a href='<c:url value="userleavemanagement.html"/>' role="button" aria-haspopup="true"
-								aria-expanded="false">Leave Management</a>
-					</li>
 				    	
 					</ul>
 			</div>

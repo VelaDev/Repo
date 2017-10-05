@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Leave Management</title>
+<title>Order Management</title>
 
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="/resources/custom/css/vela_custom.css" />" />
@@ -36,45 +36,44 @@
 <!--/style-->
 
 <style type="text/css">
-
 .selectDate {
     position: relative;
-	display: inline-block;
-	height: 28px;
-	width: 48%;
-	margin-left: 25%;    
-}
-.selectDate input {
-    width: 100%; /* Arbitrary number */
-    height: 100%;
-    padding-right: 40px;
-    box-sizing: border-box;
-}
-#calendar {
-    height: 100%;
-    width: 40px; 
-    background-image: url(resources/images/calendar.png),url(resources/images/down_arrow.png);
-	background-repeat: no-repeat;
-    background-position: 50% 50%;
-    border: none;
-    background-color: transparent;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%); /* OR margin-top: -20px (Half of the container's height) if you're supporting older browsers */
+    display: inline-block;
+    height: 28px;
+    width: 48%;
+    margin-left: 25%; 
 }
 
+.selectDate input {
+	width: 100%; /* Arbitrary number */
+	height: 100%;
+	padding-right: 40px;
+	box-sizing: border-box;
+}
+
+#calendar {
+	height: 100%;
+	width: 40px;
+	background-image: url(resources/images/calendar.png),url(resources/images/down_arrow.png);
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	border: none;
+	background-color: transparent;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+}
 
 i.glyphicon.glyphicon-calendar.col-sm-pull-2 {
-    right: -29%;
+	right: -29%;
 }
 
-input#selectDateRange{
-   
-  cursor: pointer; 
-  
+input#selectDateRange {
+	cursor: pointer;
 }
-.db-summary li:first-child:nth-last-child(6), .db-summary li:first-child:nth-last-child(6) 
+
+.db-summary li:first-child:nth-last-child(1), .db-summary li:first-child:nth-last-child(1) 
 	 ~ li {
 	width: 10%;
 }
@@ -108,30 +107,50 @@ input#selectDateRange{
 				id="searchOrderNumber" modelAttribute="searchOrderNumber">
 
 				<div style="margin-bottom: -3px; margin-left: -1px;" align=left>
-
-					<!-- Select type selectDateRange-->
-				   					<!-- Select type selectDateRange-->
+					<!-- Select type customers-->
 					<div class="form-group ">
 						<div class="col-md-3 selectContainer">
 							<div class="input-group">
 								<span class="input-group-addon"><i
-									class="glyphicon glyphicon-list"></i></span> <select
-									name="selectDateRange" id="selectDateRange"
-									class="form-control selectpicker" onchange="location = this.value;">
-									<c:if test="${empty newDate }">
-									   <option>Select a date</option>
-									</c:if>
-									<c:if test="${not empty newDate }">
-									   <option value="${ newDate}">${ newDate}</option>
-									</c:if>
-									     <c:forEach items="${dates}" var="date">
-										   <option value="getUserSelectedLeaveDate?selectedDate=<c:out value='${date}'/>">${date}</option>
-									 </c:forEach>		
+									class="glyphicon glyphicon-list"></i></span> 
+								<select
+									name="customerName" id="customerName"
+									class="form-control selectpicker" onchange="location=this.value;">
+									<%-- <c:if test="${not empty selectedName }">
+									   <option value="${selectedName}">${selectedName}</option>
+									</c:if> --%>
+									<option value="getCustomerName?customerName=<c:out value="All Customers"/>">All Customers</option>
+									<c:forEach items="${customers}" var="customer">
+										<option value="getCustomerName?customerName=<c:out value='${customer.customerName}'/>">${customer.customerName}</option>
+									</c:forEach>
 								</select>
 
 							</div>
 						</div>
 					</div>
+								
+					<!-- Select type selectTehnnician-->
+					<div class="form-group ">
+						<div class="col-md-3 selectContainer">
+							<div class="input-group">
+								<span class="input-group-addon"><i
+									class="glyphicon glyphicon-list"></i></span> <select
+									name="technicianName" id="technicianName"
+									class="form-control selectpicker" onchange="location = this.value;">
+									<c:if test="${not empty selectedTechnician }">
+									   <option >${ selectedTechnician.firstName} ${ selectedTechnician.lastName}</option>
+									</c:if>
+									   <option value="getTechnicianName?technicianName=<c:out value="All Technicians"/>">All Technicians</option>
+									<c:forEach items="${technicians}" var="technician">
+												<option value="getTechnicianName?technicianName=<c:out value='${technician.email}'/>">${technician.firstName} ${technician.lastName}</option>	
+										</c:forEach>
+																	
+								</select>
+							</div>
+						</div>
+					</div>
+					
+
 				</div>
 
 			</form:form>
@@ -142,7 +161,7 @@ input#selectDateRange{
 					<h3 class="panel-title">
 						<br /> <br />
 						<div align="left">
-							<b>Leave Management</b>
+							<b>Orders</b>
 						</div>
 					</h3>
 				</div>
@@ -155,7 +174,8 @@ input#selectDateRange{
 							<ul class="db-summary clearfix pb20 pt20 clear"
 								id="ticket-summary" class="nav nav-tabs">
 
-								<li><a href='userMakeLeave.html' data-parallel-url=""
+								<li><a href='userPlaceOrder.html'
+									data-parallel-url=""
 									data-parallel-placeholder="#ticket-leftFilter"
 									class="summery-filter clearfix" data-pjax="#body-container">
 
@@ -163,74 +183,10 @@ input#selectDateRange{
 											style="margin-left: 28%">
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
 											<br /> <br />
-											<p align="center">Create Leave</p>
-										</div>
-								</a></li>
-
-								<li><a href='<c:url value="pendingLeave"/>'
-									class="summery-filter clearfix"
-									data-parallel-url="PendingLeave"
-									data-parallel-placeholder="#ticket-leftFilter"
-									data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20"
-											>
-											<h4 align="center">${countPendingLeave}</h4>
-											<p align="center">Pending Leave</p>
+											<p align="center">Create Order</p>
 										</div>
 								</a></li>
 								
-								<li><a href='<c:url value="approvedLeave"/>'
-									class="summery-filter clearfix"
-									data-parallel-url="ActiveLeave"
-									data-parallel-placeholder="#ticket-leftFilter"
-									data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20"
-											>
-											<h4 align="center">${countApprovedLeave}</h4>
-											<p align="center">Approved Leave</p>
-										</div>
-								</a></li>
-
-								<li><a href='<c:url value="activeLeave"/>'
-									class="summery-filter clearfix"
-									data-parallel-url="ActiveLeave"
-									data-parallel-placeholder="#ticket-leftFilter"
-									data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20"
-											>
-											<h4 align="center">${countActiveLeave}</h4>
-											<p align="center">Active Leave</p>
-										</div>
-								</a></li>
-								
-								<li><a href='<c:url value="cancelledLeave"/>'
-									class="summery-filter clearfix"
-									data-parallel-url="ActiveLeave"
-									data-parallel-placeholder="#ticket-leftFilter"
-									data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20">
-											<h4 align="center">${countCancelledLeave}</h4>
-											<p align="center">Cancelled Leave</p>
-										</div>
-								</a></li>															
-								
-								<li><a href='leaveHistory'
-									data-parallel-url="LeaveHistory"
-									data-parallel-placeholder="#ticket-leftFilter"
-									class="summery-filter clearfix" data-pjax="#body-container">
-
-										<div class="summary-count pull-left ml20"
-											>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
-											<br /> <br />
-											<p align="center">Leave History</p>
-										</div>
-								</a></li>								
-
 							</ul>
 						</div>
 
@@ -241,54 +197,52 @@ input#selectDateRange{
 							<!-- tab nav -->
 							<div class="tab-content">
 
-								<div class="tab-pane active" id="createLeave">
+								<div class="tab-pane active" id="createOrder">
 
-									<form:form modelAttribute="createLeave" method="post"
-										action="createLeave" id="createLeave" name="createLeave">
+									<form:form modelAttribute="orderHistory" method="post"
+										action="orderHistory" id="orderHistory" name="orderHistory">
 
 										<!-- Below table will be displayed as Data table -->
-										<table id="createLeaveDatatable" class="display datatable">
+										<table id="createOrderDatatable" class="display datatable">
 											<thead>
 												<tr>
-													<th>Leave Number</th>
-													<th>Start Date</th>
-													<th>End Date</th>
-													<th>Full Name</th>
-													<th>Email</th>
-													<th>Leave Status</th>
-													<th>Leave Type</th>
-													
-													<th>Contact</th>
-													<th>Address During Leave</th>
+													<th>Order No</th>
+													<th>Date Ordered</th>
+													<th>Order Status</th>
+													<th>Customer</th>
+													<th>Stock Type</th>
+													<th>Ordered By</th>
 													<!-- <th>Order Details</th> -->
 												</tr>
 											</thead>
 											<tbody>
 												<!-- Iterating over the list sent from Controller -->
-												<c:forEach items="${leaveList}" var="leave" varStatus="itr">
+												<c:forEach var="list" items="${orderList}">
 													<tr>
 														<td><a
-															href="leaveDetailsUser?leaveID=<c:out value='${leave.leaveID}'/>">LV0000000${leave.leaveID}</a></td>
-														<td><c:out value="${leave.startDate}" /></td>
-														<td><c:out value="${leave.endDate}" /></td>
-														<td><c:out
-																value="${leave.employee.firstName} ${leave.employee.lastName}" /></td>
-														<td><c:out value="${leave.employee.email}" /></td>
-														<td><c:out value="${leave.status}" /></td>
-														<td><c:out value="${leave.leaveType}" /></td>
-														
-														<td><c:out value="${leave.contactNumber}" /></td>
-														<td><c:out value="${leave.address}" /></td>
-														
+															href="userOrderItemHistory?recordID=<c:out value='${list.recordID}'/>">ORD00${list.recordID}</a></td>
+														<td>${list.dateOrdered}</td>
+														<td>${list.status}</td>
+														<c:if test="${empty list.customer.customerName }">
+															<td>N/A</td>
+														</c:if>
+														<c:if test="${not empty list.customer.customerName }">
+															<td>${list.customer.customerName }</td>
+														</c:if>
+														<td>${list.stockType}</td>
+														<td>${list.employee.firstName}
+															${list.employee.lastName}</td>
 													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
-										<!-- table leave -->
+										<!-- table order -->
 									</form:form>
-									<!-- form leave -->
+									<!-- form order -->
 
 								</div>
+
+							
 							</div>
 							<!-- /tab-content -->
 
@@ -325,16 +279,66 @@ input#selectDateRange{
 		<!-- Paging the table -->
 		<script type="text/javascript">
 			$(document).ready(function() {
-				$('#createLeaveDatatable').DataTable({
+				$('#createOrderDatatable').DataTable({					
+					
 					"jQueryUI" : true,
 					"pagingType" : "full_numbers",
 					"lengthMenu" : [ [ 10, 50, -1 ], [ 10, 50, "All" ] ],
 					"order": [[1 , "desc" ]]
+				
 				/* few more options are available to use */
 				});
 			});
 		</script>
 
+		
+		
+	<!-- Create datalist to populate search -->
+	<script type="text/javascript">
+		// Get the <datalist> and <input> elements.
+		var dataList = document.getElementById('json-datalist');
+		var input = document.getElementById('ajax');
+
+		// Create a new XMLHttpRequest.
+		var request = new XMLHttpRequest();
+
+		// Handle state changes for the request.
+		request.onreadystatechange = function(response) {
+			if (request.readyState === 4) {
+				if (request.status === 200) {
+					// Parse the JSON
+					var jsonOptions = JSON.parse(request.responseText);
+
+					// Loop over the JSON array.
+					jsonOptions.forEach(function(item) {
+						// Create a new <option> element.
+						var option = document.createElement('option');
+						// Set the value using the item in the JSON array.
+						option.value = item;
+						// Add the <option> element to the <datalist>.
+						dataList.appendChild(option);
+					});
+
+					// Update the placeholder text.
+					input.placeholder = "e.g. datalist";
+				} else {
+					// An error occured :(
+					input.placeholder = "Couldn't load datalist options :(";
+				}
+			}
+		};
+
+		// Update the placeholder text.
+		input.placeholder = "Loading options...";
+
+		// Set up and make the request.
+		request
+				.open(
+						'GET',
+						'https://s3-us-west-2.amazonaws.com/s.cdpn.io/4621/html-elements.json',
+						true);
+		request.send();
+	</script>
 		
 </body>
 </html>

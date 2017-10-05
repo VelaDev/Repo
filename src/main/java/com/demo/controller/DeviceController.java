@@ -168,6 +168,7 @@ public class DeviceController {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			
 			model.addObject("updateDevice", new DeviceBean());
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
@@ -180,18 +181,20 @@ public class DeviceController {
 		return model;
 		
 	}
-	@RequestMapping(value="searchDevice",method=RequestMethod.GET)
+	@RequestMapping(value={"searchDevice","userSearchDevice"},method=RequestMethod.GET)
 	public ModelAndView searchDevice()
 	{
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		
 		if(userName != null){
-			model.addObject("deviceList", deviceServiceInt.getDeviceList());
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("searchDevice");
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+				model.addObject("deviceList", deviceServiceInt.getDeviceList());
+				model.setViewName("searchDevice");
+			}else if(userName.getRole().equalsIgnoreCase("User")){
+				model.addObject("deviceList", deviceServiceInt.getDeviceList());
+				model.setViewName("userSearchDevice");
+			}
 		}
 		else{
 			model.setViewName("login");

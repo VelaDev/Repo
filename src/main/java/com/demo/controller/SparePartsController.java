@@ -63,6 +63,69 @@ public class SparePartsController {
 	private String globalTechnicianName = null;
 	private String globalCustomerName = null;
 	
+	//spare management
+		@RequestMapping(value = {"sparemanagement","techsparemanagement","usersparemanagement"}, method = RequestMethod.GET)
+		public ModelAndView displayOrderTechManagement() {
+			
+			model = new ModelAndView();
+			globalCustomerName = null;
+			globalTechnicianName = null;
+		
+			userName = (Employee) session.getAttribute("loggedInUser");
+			if (userName != null) {
+				if(userName.getRole().equalsIgnoreCase("Manager") || (userName.getRole().equalsIgnoreCase("Admin"))){
+				//HO Count
+				model.addObject("hoCount", hOStockServeceInt.countHeadOfficeStock());
+				//Site Count
+				model.addObject("siteCount", siteStock.countSiteStock());
+				//Boot Count
+				model.addObject("bootCount", bootStock.countBootStock());			
+				//Load Data of HO 
+				model.addObject("spareParts", hOStockServeceInt.getAllSparePartsWithoutZero());			
+				//Load Data Boot Site
+				model.addObject("employees",employeeService.getAllTechnicians());			
+				//Load data of bootSite
+				model.addObject("customer",customerServiceInt.getClientList());			
+				model.setViewName("sparemanagement");
+				
+			}else if (userName.getRole().equalsIgnoreCase("Technician")){
+				//HO Count
+				model.addObject("hoCount", hOStockServeceInt.countHeadOfficeStock());
+				//Site Count
+				model.addObject("siteCount", siteStock.countSiteStock());
+				//Boot Count
+				model.addObject("bootCount", bootStock.countBootStock());
+				//Load Data of HO 
+				model.addObject("firstName", userName.getFirstName());
+				model.addObject("lastName", userName.getLastName());
+				model.addObject("email", userName.getEmail());
+				//Load Data Boot Site
+				model.addObject("employees",employeeService.getAllTechnicians());
+				//Load data of bootSite
+				model.addObject("customer",customerServiceInt.getClientList());			
+				model.setViewName("techsparemanagement");
+				
+			}else if(userName.getRole().equalsIgnoreCase("User")){		
+				//Site Count
+				model.addObject("siteCount", siteStock.countSiteStock());
+				//Boot Count
+				model.addObject("bootCount", bootStock.countBootStock());
+				//Load Data of HO 
+				model.addObject("firstName", userName.getFirstName());
+				model.addObject("lastName", userName.getLastName());
+				model.addObject("email", userName.getEmail());						
+				//Load Data Boot Site
+				model.addObject("employees",employeeService.getAllTechnicians());
+				//Load data of bootSite
+				model.addObject("customer",customerServiceInt.getClientList());
+				model.setViewName("usersparemanagement");
+			}
+				
+			}else {
+				model.setViewName("login");
+			}
+			return model;
+		}
 	
 	@RequestMapping(value="addSpares", method=RequestMethod.GET)
 	public ModelAndView loadAddSpares()
@@ -104,19 +167,30 @@ public class SparePartsController {
 		return model;
 	}
 	
-	@RequestMapping(value="receiveParts", method=RequestMethod.GET)
+	@RequestMapping(value={"receiveParts","userRecieveParts"}, method=RequestMethod.GET)
 	public ModelAndView loadSaveSpareParts()
 	{
 	    model = new ModelAndView("receiveParts");
 	    userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
-			model.addObject("saveSpareParts", new SparePartsBean());
-			getSerials = spareMasterServiceInt.getSerials();
-			model.addObject("spareParts",getSerials);
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
-			model.setViewName("receiveParts");
+			if(userName.getRole().equalsIgnoreCase("Manager") || (userName.getRole().equalsIgnoreCase("Admin"))){
+				model.addObject("saveSpareParts", new SparePartsBean());
+				getSerials = spareMasterServiceInt.getSerials();
+				model.addObject("spareParts",getSerials);
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+				model.setViewName("receiveParts");
+				
+			}else if (userName.getRole().equalsIgnoreCase("User")){
+				model.addObject("saveSpareParts", new SparePartsBean());
+				getSerials = spareMasterServiceInt.getSerials();
+				model.addObject("spareParts",getSerials);
+				model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+				model.setViewName("userReceiveParts");
+			}
 		}
 		else{
 			model.setViewName("login");
@@ -198,8 +272,7 @@ public class SparePartsController {
 		}
 		return model;
 	}	
-	
-	
+		
 	@RequestMapping(value="availableSites", method=RequestMethod.GET)
 	public ModelAndView getSparePartSite(){
 		model = new ModelAndView();
@@ -295,11 +368,12 @@ public class SparePartsController {
 		return model;
 	}
 	
-	@RequestMapping(value="searchpartNumber")
+	@RequestMapping(value={"searchpartNumber","userSearchPartNumber"})
 	public ModelAndView searchPartNumber(@RequestParam("partNumber") String partNumber) {
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName != null){
+			if(userName.getRole().equalsIgnoreCase("Manager") || (userName.getRole().equalsIgnoreCase("Admin"))){
 			master =spareMasterServiceInt.getSpareMaster(partNumber);
 			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
 			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
@@ -311,7 +385,23 @@ public class SparePartsController {
 			}else{
 				model.addObject("errorRetMessage", "Part Number does not exist.");
 			}
-		model.setViewName("receiveParts");
+			model.setViewName("receiveParts");
+		}else if(userName.getRole().equalsIgnoreCase("User")){
+			
+			master =spareMasterServiceInt.getSpareMaster(partNumber);
+			model.addObject("awaitingSparesTickets", ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("escalatedTickets", ticketsServiceInt.countEscalatedTickets());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if(master !=null){
+				model.addObject("sparePart", master);
+				model.addObject("models", spareMasterServiceInt.getModelDevice(partNumber));
+				
+			}else{
+				model.addObject("errorRetMessage", "Part Number does not exist.");
+			}
+			model.setViewName("userReceiveParts");
+		}
+		
 		}
 		else{
 			model.setViewName("login");
@@ -344,76 +434,7 @@ public class SparePartsController {
 		return model;
 	}
 		
-	//spare management
-	@RequestMapping(value = "sparemanagement", method = RequestMethod.GET)
-	public ModelAndView displayOrderTechManagement() {
-		
-		model = new ModelAndView();
-
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-			//HO Count
-			model.addObject("hoCount", hOStockServeceInt.countHeadOfficeStock());
-			//Site Count
-			model.addObject("siteCount", siteStock.countSiteStock());
-			//Boot Count
-			model.addObject("bootCount", bootStock.countBootStock());
-			
-			
-			//Load Data of HO 
-			model.addObject("spareParts", hOStockServeceInt.getAllSparePartsWithoutZero());
-			
-			//Load Data Boot Site
-			model.addObject("employees",employeeService.getAllTechnicians());
-			
-			//Load data of bootSite
-			model.addObject("customer",customerServiceInt.getClientList());			
-		
-			
-			model.setViewName("sparemanagement");
-		} else {
-			model.setViewName("login");
-		}
-		return model;
-	}
 	
-	//spare management
-		@RequestMapping(value = "techsparemanagement", method = RequestMethod.GET)
-		public ModelAndView displayTechSpareManagement() {
-			
-			model = new ModelAndView();
-			globalCustomerName = null;
-			globalTechnicianName = null;
-		
-
-			userName = (Employee) session.getAttribute("loggedInUser");
-			if (userName != null) {
-				//HO Count
-				model.addObject("hoCount", hOStockServeceInt.countHeadOfficeStock());
-				//Site Count
-				model.addObject("siteCount", siteStock.countSiteStock());
-				//Boot Count
-				model.addObject("bootCount", bootStock.countBootStock());
-				
-				
-				//Load Data of HO 
-				model.addObject("firstName", userName.getFirstName());
-				model.addObject("lastName", userName.getLastName());
-				model.addObject("email", userName.getEmail());
-							
-				//Load Data Boot Site
-				model.addObject("employees",employeeService.getAllTechnicians());
-				
-				//Load data of bootSite
-				model.addObject("customer",customerServiceInt.getClientList());			
-			
-				
-				model.setViewName("techsparemanagement");
-			} else {
-				model.setViewName("login");
-			}
-			return model;
-		}
 	
 	//Number of parts
 	@RequestMapping(value="numberOfParts", method=RequestMethod.GET)
@@ -525,7 +546,6 @@ public class SparePartsController {
 			return model;
 		}	
 		
-	
 
 }
 	

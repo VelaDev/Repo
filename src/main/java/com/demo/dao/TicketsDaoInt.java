@@ -2,6 +2,7 @@ package com.demo.dao;
 
 import java.util.List;
 
+import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Tickets;
@@ -92,4 +93,5 @@ public interface TicketsDaoInt {
 
 	List<Tickets> getTicketByDateAndCustomer(String selecteDate,String customerName,String technicianEmai);
 	List<Tickets> getTicketByDateAndCustomerForManager(String selecteDate,String customerName,String technicianEmai);
+	
 }

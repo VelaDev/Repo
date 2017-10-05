@@ -2,6 +2,7 @@ package com.demo.service;
 
 import java.util.List;
 
+import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.model.Tickets;
@@ -120,6 +121,8 @@ public interface TicketsServiceInt {
 	String performTicketAction(TicketsBean ticketsBean);
 	List<Tickets> getTicketByDateAndCustomer(String selecteDate,String customerName,String technicianEmai);
 	List<Tickets> getTicketByDateAndCustomerForManager(String selecteDate,String customerName,String technicianEmai);
+
+
 	
 
 }

@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.dao.BootStockDaoInt;
@@ -80,6 +81,7 @@ public class TicketsDao implements TicketsDaoInt {
 	private SimpleDateFormat myFormat = null;
 
 	ArrayList<Tickets> aList = null;
+	
 
 	Long ticketNumber = null;
 	Integer recordID = 1;
@@ -1110,6 +1112,7 @@ public class TicketsDao implements TicketsDaoInt {
 	public String logTicket(TicketsBean tickets) {
 		String ticketNumber = "";
 		Boolean isValied = false;
+		//String userName = employee.getEmail();
 		ticket = new Tickets();
 		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 		date = new Date();
@@ -1151,7 +1154,9 @@ public class TicketsDao implements TicketsDaoInt {
 								+ ticket.getRecordID()
 								+ " is assigned to technician "
 								+ ticket.getEmployee().getFirstName() + ".";
-						JavaMail.sendFromGMail(ticket);
+						JavaMail.sendEmailMessageDetailsToTechnician(ticket);
+						//JavaMail.sendMailFeedBackFromSystemToClient(ticket, employee);
+						
 					} else {
 						retMessage = "Contract for device "
 								+ device.getSerialNumber()
@@ -3329,5 +3334,6 @@ public class TicketsDao implements TicketsDaoInt {
 
 		return aList;
 	}
+
 
 }

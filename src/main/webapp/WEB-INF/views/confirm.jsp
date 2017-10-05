@@ -60,6 +60,14 @@ a.confirmtions {
 						 	        Click<a href="userPlaceOrder.html" class="confirmtions"><b> here</b></a> to place another Order.                             
 						 	    </c:when>
 					 	    	</c:choose>
+					 	    	
+					 	    	 <!-- create leave -->
+						 	  	 <c:choose>
+							 	    <c:when test="${techAddLeave =='techAddLeave' }">
+							 	    <c:out value="${retMessage}"></c:out> 
+							 	           Click<a href="userleavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+							 	    </c:when>
+						 	    </c:choose>
 						 					 	     
 					 	    </div>
 					 	    
@@ -84,16 +92,15 @@ a.confirmtions {
 							 	   </c:when>
 							 	</c:choose>
 							 	 <!-- create leave -->
-				 	  	    <c:choose>
-					 	    <c:when test="${addLeave =='addLeave' }">
-					 	     <%--  <c:out value="${retMessage}"></c:out> 
-					 	           Click<a href="leavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.  --%>                        
-					 	    </c:when>
-				 	    </c:choose>
+						 	  	 <c:choose>
+							 	    <c:when test="${techAddLeave =='techAddLeave' }">
+							 	    <c:out value="${retMessage}"></c:out> 
+							 	           Click<a href="userleavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+							 	    </c:when>
+						 	    </c:choose>
 					 	  
 					 	    </div>
-					 	</c:if><!-- On failure returned message -->'
-					 	
+					 	</c:if><!-- On failure returned message -->					 	
 					 	<a href="ticket.html" class="confirmtions"><img src="resources/images/ic_home.png" /></a>
 					 	
 					</div>

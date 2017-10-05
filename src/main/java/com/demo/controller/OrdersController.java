@@ -81,6 +81,74 @@ public class OrdersController {
 	public String[] getOrdersNumbers = null;
 	private Employee tempEmployee = null;
 
+	@RequestMapping(value = {"ordermanagement","ordertechmanagement","userordermanagement"}, method = RequestMethod.GET)
+	public ModelAndView displayOrderManagement() {
+		model = new ModelAndView();
+		customerName = null;
+		selectedDateRange = null;
+		userName = (Employee) session.getAttribute("loggedInUser");		
+		
+		if (userName != null) {
+			
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+			
+				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));			
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+				model.addObject("customers", customerServiceInt.getClientList());
+				model.addObject("dates", ordersServiceInt.getDates());
+				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+				model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrders(""));
+				model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers());
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				model.setViewName("ordermanagement");
+				
+			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
+				
+				System.err.println("Count New Orders " + ordersServiceInt.countNewOrders("", userName.getEmail()));
+				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));		
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders(userName.getEmail()));
+				model.addObject("customers",customerServiceInt.getClientList());
+				model.addObject("dates", ordersServiceInt.getDates());
+				model.addObject("countNewOrders",ordersServiceInt.countNewOrders("", userName.getEmail()));
+				model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive("", userName.getEmail()));
+				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+				model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrder("",userName.getEmail()));
+				model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician(userName.getEmail()));
+				model.addObject("ticketCount", ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers(userName.getEmail()));
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				model.setViewName("ordertechmanagement");
+				
+			} else if (userName.getRole().equalsIgnoreCase("User")) {
+				
+				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));			
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
+				model.addObject("customers", customerServiceInt.getClientList());
+				model.addObject("dates", ordersServiceInt.getDates());
+				model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
+				model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
+				model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
+				model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
+				model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrders(""));
+				model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers());
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				model.setViewName("userordermanagement");
+			}		
+		}
+		
+		else {
+			model.setViewName("login");
+		}
+		return model;
+	}
+	
 	@RequestMapping(value = "order", method = RequestMethod.GET)
 	public ModelAndView loadOrder() {
 
@@ -123,32 +191,155 @@ public class OrdersController {
 				model.addObject("retMessage", retMessage);
 
 			}
-			model.addObject("ticketCount", ticketsServiceInt
-					.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("escalatedTickets",
-					ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets",
-					ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
+			model.addObject("ticketCount", ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("escalatedTickets",	ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			if (userName.getRole().equalsIgnoreCase("Manager")|| userName.getRole().equalsIgnoreCase("Admin")) {
 				model.addObject("orders", orders);
-				model.setViewName("confirmations");
-				// model.setViewName("placeOrderForTechnician");
+				model.setViewName("confirmations");				
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
 				model.addObject("orders", orders);
-				model.setViewName("confirmation");
-				// model.setViewName("order");
+				model.setViewName("confirmation");				
 			} else if(userName.getRole().equalsIgnoreCase("User")){
-				model.setViewName("confirm");
 				model.addObject("orders", orders);
-				// model.setViewName("userPlaceOrder");
+				model.setViewName("confirm");
+				
 			}
 
 		} else {
 			model.setViewName("login");
 		}
+		return model;
+	}
+	
+	@RequestMapping(value = "placeOrderForTechnician", method = RequestMethod.GET)
+	public ModelAndView loadMakeOrder() {
+
+		model = new ModelAndView("placeOrderForTechnician");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.addObject("placeOrderForTechnician", new OrdersBean());
+			model.addObject("compatibility",
+					spareParts.getAllSparePartsWithoutZero());
+			model.addObject("technicianList",
+					employeeServiceInt.getAllTechnicians());
+			model.addObject("escalatedTickets",
+					ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets",
+					ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("managersList", employeeServiceInt.getAllManagers());
+			model.addObject("customerList", customerServiceInt.getClientList());
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("placeOrderForTechnician");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+
+	@RequestMapping(value = "userPlaceOrder", method = RequestMethod.GET)
+	public ModelAndView loaduserMakeOrder() {
+
+		model = new ModelAndView("userPlaceOrder");
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+
+			model.addObject("placeOrderForTechnician", new OrdersBean());
+			model.addObject("compatibility",spareParts.getAllSparePartsWithoutZero());
+			model.addObject("technicianList",employeeServiceInt.getAllTechnicians());
+			model.addObject("escalatedTickets",	ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("managersList", employeeServiceInt.getAllManagers());
+			model.addObject("customerList", customerServiceInt.getClientList());
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.setViewName("userPlaceOrder");
+		} else {
+			model.setViewName("login");
+		}
+
+		return model;
+	}
+	
+	@RequestMapping(value = { "orderItemHistory", "ordersItemHistory", "userOrderItemHistory"}, method = RequestMethod.GET)
+	public ModelAndView orderHistory(@RequestParam("recordID") Long recordID) {
+		model = new ModelAndView();
+
+		userName = (Employee) session.getAttribute("loggedInUser");
+		if (userName != null) {
+			OrderHeader ord = ordersServiceInt.getOrder(recordID);
+			Employee appoer = employeeServiceInt.getEmployeeByEmpNumber(ord
+					.getApprover());
+			String approverName = appoer.getFirstName() + " "
+					+ appoer.getLastName();
+			model.addObject("pendingOrderList",
+					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+			model.addObject("status",
+					historyInt.getAllOrderHistoryByOrderNumber(recordID));
+			model.addObject("inboxCount",
+					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+			model.addObject("escalatedTickets",
+					ticketsServiceInt.countEscalatedTickets());
+			model.addObject("awaitingSparesTickets",
+					ticketsServiceInt.countAwaitingSparesTickets());
+			model.addObject("ticketCount", ticketsServiceInt
+					.ticketCountForTechnician(userName.getEmail()));
+			model.addObject("velaphandaAddres", profile
+					.getVelaphandaAddress("Velaphanda Trading & Projects"));
+			model.addObject("approver", approverName);
+
+			if (userName.getRole().equalsIgnoreCase("Technician")) {
+
+				model.setViewName("orderItemHistory");
+			} else if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
+
+				model.addObject("pendingOrderList",
+						orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+				model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+				model.addObject("inboxCount", ordersServiceInt
+						.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",
+						ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets",
+						ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("ticketCount", ticketsServiceInt
+						.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("velaphandaAddres", profile
+						.getVelaphandaAddress("Velaphanda Trading & Projects"));
+				model.addObject("status",
+						historyInt.getAllOrderHistoryByOrderNumber(recordID));
+
+				model.setViewName("ordersItemHistory");
+			}else if(userName.getRole().equalsIgnoreCase("User")){
+				
+				model.addObject("pendingOrderList",
+						orderDetailsInt.getOrderDetailsByOrderNum(recordID));
+				model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
+				model.addObject("inboxCount", ordersServiceInt
+						.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",
+						ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets",
+						ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("ticketCount", ticketsServiceInt
+						.ticketCountForTechnician(userName.getEmail()));
+				model.addObject("velaphandaAddres", profile
+						.getVelaphandaAddress("Velaphanda Trading & Projects"));
+				model.addObject("status",
+						historyInt.getAllOrderHistoryByOrderNumber(recordID));
+				
+				model.setViewName("userOrderItemHistory");
+			}
+
+		} else {
+			model.setViewName("login");
+		}
+
 		return model;
 	}
 
@@ -635,23 +826,6 @@ public class OrdersController {
 		return model;
 	}
 
-	/*
-	 * @RequestMapping("shippedOrders") public ModelAndView shippedOrders() {
-	 * model = new ModelAndView();
-	 * 
-	 * userName = (Employee) session.getAttribute("loggedInUser"); if (userName
-	 * != null) { model.addObject("pendingOrderList",
-	 * ordersServiceInt.shippedOrders()); model.addObject("inboxCount",
-	 * ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-	 * model.addObject("escalatedTickets",
-	 * ticketsServiceInt.countEscalatedTickets());
-	 * model.addObject("awaitingSparesTickets",
-	 * ticketsServiceInt.countAwaitingSparesTickets());
-	 * model.setViewName("shippedOrders"); } else { model.setViewName("login");
-	 * }
-	 * 
-	 * return model; }
-	 */
 
 	@RequestMapping(value = "shipmentReceived")
 	public ModelAndView shipmentReceived(@RequestParam("recordID") Long recordID) {
@@ -679,65 +853,7 @@ public class OrdersController {
 		return model;
 	}
 
-	@RequestMapping(value = { "orderItemHistory", "ordersItemHistory" }, method = RequestMethod.GET)
-	public ModelAndView orderHistory(@RequestParam("recordID") Long recordID) {
-		model = new ModelAndView();
-
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-			OrderHeader ord = ordersServiceInt.getOrder(recordID);
-			Employee appoer = employeeServiceInt.getEmployeeByEmpNumber(ord
-					.getApprover());
-			String approverName = appoer.getFirstName() + " "
-					+ appoer.getLastName();
-			model.addObject("pendingOrderList",
-					orderDetailsInt.getOrderDetailsByOrderNum(recordID));
-			model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
-			model.addObject("status",
-					historyInt.getAllOrderHistoryByOrderNumber(recordID));
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",
-					ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets",
-					ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("ticketCount", ticketsServiceInt
-					.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("velaphandaAddres", profile
-					.getVelaphandaAddress("Velaphanda Trading & Projects"));
-			model.addObject("approver", approverName);
-
-			if (userName.getRole().equalsIgnoreCase("Technician")) {
-
-				model.setViewName("orderItemHistory");
-			} else if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
-
-				model.addObject("pendingOrderList",
-						orderDetailsInt.getOrderDetailsByOrderNum(recordID));
-				model.addObject("OrderNum", ordersServiceInt.getOrder(recordID));
-				model.addObject("inboxCount", ordersServiceInt
-						.pendingOrdersCount(userName.getEmail()));
-				model.addObject("escalatedTickets",
-						ticketsServiceInt.countEscalatedTickets());
-				model.addObject("awaitingSparesTickets",
-						ticketsServiceInt.countAwaitingSparesTickets());
-				model.addObject("ticketCount", ticketsServiceInt
-						.ticketCountForTechnician(userName.getEmail()));
-				model.addObject("velaphandaAddres", profile
-						.getVelaphandaAddress("Velaphanda Trading & Projects"));
-				model.addObject("status",
-						historyInt.getAllOrderHistoryByOrderNumber(recordID));
-
-				model.setViewName("ordersItemHistory");
-			}
-
-		} else {
-			model.setViewName("login");
-		}
-
-		return model;
-	}
+	
 
 	@RequestMapping(value = "declineOrder", method = RequestMethod.GET)
 	public ModelAndView displayDeclineOrders(@RequestParam("recordID") Long recordID) {
@@ -806,59 +922,7 @@ public class OrdersController {
 		return model;
 	}
 
-	@RequestMapping(value = "placeOrderForTechnician", method = RequestMethod.GET)
-	public ModelAndView loadMakeOrder() {
-
-		model = new ModelAndView("placeOrderForTechnician");
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-
-			model.addObject("placeOrderForTechnician", new OrdersBean());
-			model.addObject("compatibility",
-					spareParts.getAllSparePartsWithoutZero());
-			model.addObject("technicianList",
-					employeeServiceInt.getAllTechnicians());
-			model.addObject("escalatedTickets",
-					ticketsServiceInt.countEscalatedTickets());
-			model.addObject("awaitingSparesTickets",
-					ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("managersList", employeeServiceInt.getAllManagers());
-			model.addObject("customerList", customerServiceInt.getClientList());
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("placeOrderForTechnician");
-		} else {
-			model.setViewName("login");
-		}
-
-		return model;
-	}
-
-	@RequestMapping(value = "userPlaceOrder", method = RequestMethod.GET)
-	public ModelAndView loaduserMakeOrder() {
-
-		model = new ModelAndView("userPlaceOrder");
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-
-			model.addObject("placeOrderForTechnician", new OrdersBean());
-			model.addObject("compatibility",
-					spareParts.getAllSparePartsWithoutZero());
-			model.addObject("technicianList",
-					employeeServiceInt.getAllTechnicians());
-			model.addObject("managersList", employeeServiceInt.getAllManagers());
-			model.addObject("awaitingSparesTickets",
-					ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("customerList", customerServiceInt.getClientList());
-			model.addObject("inboxCount",
-					ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.setViewName("userPlaceOrder");
-		} else {
-			model.setViewName("login");
-		}
-
-		return model;
-	}
+	
 
 	@RequestMapping(value = "viewAllOrderDetails", method = RequestMethod.GET)
 	public ModelAndView displayOrderDeails(
@@ -905,65 +969,8 @@ public class OrdersController {
 
 		return model;
 	}
-	@RequestMapping(value = "ordermanagement", method = RequestMethod.GET)
-	public ModelAndView displayOrderManagement() {
-		model = new ModelAndView();
-		customerName = null;
-		selectedDateRange = null;
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-			model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders());
-			model.addObject("customers", customerServiceInt.getClientList());
-			model.addObject("dates", ordersServiceInt.getDates());
-			model.addObject("countNewOrders",ordersServiceInt.countNewOrders(""));
-			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
-			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-			model.addObject("countClosedOrder",ordersServiceInt.countClosedOrder(""));
-			model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrders(""));
-			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers());
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-			model.setViewName("ordermanagement");
-		} else {
-			model.setViewName("login");
-		}
-		return model;
-	}
-	@RequestMapping(value = "ordertechmanagement", method = RequestMethod.GET)
-	public ModelAndView displayOrderTechManagement() {
-		customerName = null;
-		selectedDateRange = null;
-		model = new ModelAndView();
+	
 
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if (userName != null) {
-			System.err.println("Jwale hee " + ordersServiceInt.countNewOrders("", userName.getEmail()));
-			model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
-			model.addObject("inboxCount",ordersServiceInt.pendingOrdersCount(userName.getEmail()));
-			model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
-			model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrders(userName.getEmail()));
-			model.addObject("customers",customerServiceInt.getClientList());
-			model.addObject("dates", ordersServiceInt.getDates());
-			model.addObject("countNewOrders",ordersServiceInt.countNewOrders("", userName.getEmail()));
-			model.addObject("countOrdersReceive",ordersServiceInt.countOrdersReceive("", userName.getEmail()));
-			model.addObject("countApprovedOrder",ordersServiceInt.countApprovedOrders(""));
-			model.addObject("countShippedOrder",ordersServiceInt.countShippedOrders(""));
-			model.addObject("countRejectedOrder",ordersServiceInt.countRejectedOrder("",userName.getEmail()));
-			// model.addObject("countClosedOrder",ordersServiceInt.countClosedOrderForCustomer(userName.getEmail()));
-			model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForTechnician(userName.getEmail()));
-			model.addObject("ticketCount", ticketsServiceInt.ticketCountForTechnician(userName.getEmail()));
-			model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
-			model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers(userName.getEmail()));
-			model.addObject("technicians",employeeServiceInt.getAllTechnicians());
-			model.setViewName("ordertechmanagement");
-		} else {
-			model.setViewName("login");
-		}
-		return model;
-	}
 	@RequestMapping(value = "searchOrderNumber")
 	public ModelAndView searchOrderNumber(
 			@RequestParam("orderNumber") String localOrderNum) {
@@ -1663,6 +1670,27 @@ public class OrdersController {
                 model.addObject("orderList", ordersServiceInt.getLastFourteenDaysOrdersForTechnicianCustomer(userName.getEmail(), customerName));
 
 				model.setViewName("ordertechmanagement");
+			}else if (userName.getRole().equalsIgnoreCase("User")) {
+
+				model.addObject("countNewOrders", ordersServiceInt.countNewOrdersForCustomer(customerName));
+				model.addObject("countApprovedOrder", ordersServiceInt.countApprovedOrdersForCustomer(customerName));
+				model.addObject("countShippedOrder", ordersServiceInt.countShippedOrdersForCustomer(customerName));
+				model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForCustomer(customerName));
+				model.addObject("countRejectedOrder", ordersServiceInt.countRejectedOrderForCustomer(customerName));
+
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrdersForCustomer(localCustomerName));
+				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
+				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
+				model.addObject("customers", customerServiceInt.getClientList());
+				model.addObject("dates", ordersServiceInt.getDates());
+				model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("customers",customerServiceInt.getClientList());
+				model.addObject("dates", ordersServiceInt.getDates());
+				model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers());
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				model.addObject("selectedName", customerName);
+				model.setViewName("userordermanagement");
 			}
 		} else {
 			model.setViewName("login");
@@ -1698,6 +1726,23 @@ public class OrdersController {
 				model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
 				model.addObject("selectedTechnician", tempEmployee);
 				model.setViewName("ordermanagement");
+			}else if (userName.getRole().equalsIgnoreCase("User")){
+				model.addObject("countNewOrders", ordersServiceInt.countNewOrdersForCustomerNewSearch(localTechnicianName));
+				model.addObject("countApprovedOrder", ordersServiceInt.countApprovedOrdersForCustomerNewSearch(localTechnicianName));
+				model.addObject("countShippedOrder", ordersServiceInt.countShippedOrdersForCustomerNewSearch(localTechnicianName));
+				model.addObject("countClosedOrder", ordersServiceInt.countClosedOrderForCustomerNewSearch(localTechnicianName));
+				model.addObject("countRejectedOrder", ordersServiceInt.countRejectedOrderForCustomerNewSearch(localTechnicianName));
+				model.addObject("customers",customerServiceInt.getClientList());
+				model.addObject("orderNumbers", ordersServiceInt.getOrderNumbers());
+				model.addObject("dates", ordersServiceInt.getDates());
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+				model.addObject("orderList",ordersServiceInt.getLastFourteenDaysOrdersForCustomerNewSearch(localTechnicianName));
+				model.addObject("pendingOrderList",ordersServiceInt.pendingOrders(userName.getEmail()));
+				model.addObject("inboxCount", ordersServiceInt.pendingOrdersCount(userName.getEmail()));
+				model.addObject("escalatedTickets",ticketsServiceInt.countEscalatedTickets());
+				model.addObject("awaitingSparesTickets",ticketsServiceInt.countAwaitingSparesTickets());
+				model.addObject("selectedTechnician", tempEmployee);
+				model.setViewName("userordermanagement");
 			}
 		} else {
 			model.setViewName("login");

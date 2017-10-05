@@ -107,8 +107,7 @@ public class LeaveController {
 				model.addObject("leave", leaveInt.getLeave(leaveID));
 				model.setViewName("leaveDetailsTechnician");
 
-			} else if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
+			} else if (userName.getRole().equalsIgnoreCase("Manager")|| userName.getRole().equalsIgnoreCase("Admin")) {
 
 				model.addObject("leave", leaveInt.getLeave(leaveID));
 				model.setViewName("leaveDetailsAdmin");
@@ -229,12 +228,36 @@ public class LeaveController {
 					model.addObject("countCancelledLeave", leaveInt.getCancelledLeaveCountByTechnician(userName.getEmail()));
 					
 					model.addObject("dates", leaveInt.getLeaveDates());
-					model.addObject("leaveList", leaveInt
-							.getActiveLeaveByTechnician(userName.getEmail()));
-
+					model.addObject("leaveList", leaveInt.getActiveLeaveByTechnician(userName.getEmail()));
 					model.setViewName("techleavemanagement");
 				}
+			}else if (userName.getRole().equalsIgnoreCase("User")) {
+				
+				if (selectedDateRange != null) {
+					model.addObject("countPendingLeave", leaveInt.countTechpendingLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.countTechApprovedLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.countTechActiveLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.countTechCancelledLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					
+					model.addObject("leaveList", leaveInt.getTechActiveLeaveForSelectedRange(selectedDateRange, userName.getEmail()));
+					model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("newDate", selectedDateRange);
+					model.setViewName("userleavemanagement");
+				} else {
+					model.addObject("countPendingLeave", leaveInt.getPendingLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.getApprovedLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.getActiveLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.getCancelledLeaveCountByTechnician(userName.getEmail()));
+					
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("leaveList", leaveInt.getActiveLeaveByTechnician(userName.getEmail()));
+					model.setViewName("userleavemanagement");
+				}
+				
 			}
+			
+			
 		} else {
 			model.setViewName("login");
 		}
@@ -322,9 +345,33 @@ public class LeaveController {
 					model.addObject("dates", leaveInt.getLeaveDates());
 
 					model.setViewName("techleavemanagement");
+				}				
+			}else if (userName.getRole().equalsIgnoreCase("User")) {
+				
+				if (selectedDateRange != null) {
+					model.addObject("countPendingLeave", leaveInt.countTechpendingLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.countTechApprovedLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.countTechActiveLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.countTechCancelledLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					
+					model.addObject("leaveList", leaveInt.getTechApprovedLeaveForSelectedRange(selectedDateRange, userName.getEmail()));
+					model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("newDate", selectedDateRange);
+					model.setViewName("userleavemanagement");
+				} else {
+					model.addObject("countPendingLeave", leaveInt.getPendingLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.getApprovedLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.getActiveLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.getCancelledLeaveCountByTechnician(userName.getEmail()));
+					
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("leaveList", leaveInt.getApprovedLeaveByTechnician(userName.getEmail()));
+					model.setViewName("userleavemanagement");
 				}
-
-			}
+				
+			}		
+			
 		} else {
 			model.setViewName("login");
 		}
@@ -411,8 +458,32 @@ public class LeaveController {
 
 					model.setViewName("techleavemanagement");
 				}
-
-			}
+			}else if (userName.getRole().equalsIgnoreCase("User")) {
+				
+				if (selectedDateRange != null) {
+					model.addObject("countPendingLeave", leaveInt.countTechpendingLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.countTechApprovedLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.countTechActiveLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.countTechCancelledLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					
+					model.addObject("leaveList", leaveInt.getTechPendingLeaveForSelectedRange(selectedDateRange, userName.getEmail()));
+					model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("newDate", selectedDateRange);
+					model.setViewName("userleavemanagement");
+				} else {
+					model.addObject("countPendingLeave", leaveInt.getPendingLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.getApprovedLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.getActiveLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.getCancelledLeaveCountByTechnician(userName.getEmail()));
+					
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("leaveList", leaveInt.getPendingLeaveByTechnician(userName.getEmail()));
+					model.setViewName("userleavemanagement");
+				}
+				
+			}	
+			
 		} else {
 			model.setViewName("login");
 		}
@@ -496,6 +567,33 @@ public class LeaveController {
 					model.setViewName("techleavemanagement");
 				}
 			}
+			else if (userName.getRole().equalsIgnoreCase("User")) {
+				
+				if (selectedDateRange != null) {
+					model.addObject("countPendingLeave", leaveInt.countTechpendingLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.countTechApprovedLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.countTechActiveLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.countTechCancelledLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					
+					model.addObject("leaveList", leaveInt.getTechCancelledLeaveForSelectedRange(selectedDateRange, userName.getEmail()));
+					model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("newDate", selectedDateRange);
+					model.setViewName("userleavemanagement");
+				} else {
+					model.addObject("countPendingLeave", leaveInt.getPendingLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.getApprovedLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.getActiveLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.getCancelledLeaveCountByTechnician(userName.getEmail()));
+					
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("leaveList", leaveInt.getCancelledLeaveByTechnician(userName.getEmail()));
+					model.setViewName("userleavemanagement");
+				}
+				
+			}	
+			
+			
 		} else {
 			model.setViewName("login");
 		}
@@ -576,7 +674,31 @@ public class LeaveController {
 					model.setViewName("techleavemanagement");
 				}
 
-			}
+			}else if (userName.getRole().equalsIgnoreCase("User")) {
+				
+				if (selectedDateRange != null) {
+					model.addObject("countPendingLeave", leaveInt.countTechpendingLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.countTechApprovedLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.countTechActiveLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.countTechCancelledLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					
+					model.addObject("leaveList", leaveInt.getTechLeaveHistoryForSelectedRange(selectedDateRange, userName.getEmail()));
+					model.addObject("technicians",employeeServiceInt.getAllTechnicians());
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("newDate", selectedDateRange);
+					model.setViewName("userleavemanagement");
+				} else {
+					model.addObject("countPendingLeave", leaveInt.getPendingLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.getApprovedLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.getActiveLeaveCountByTechnician(userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.getCancelledLeaveCountByTechnician(userName.getEmail()));
+					
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("leaveList", leaveInt.getLeaveHistoryByTechician(userName.getEmail()));
+					model.setViewName("userleavemanagement");
+				}
+				
+			}	
 
 		} else {
 			model.setViewName("login");
@@ -595,21 +717,15 @@ public class LeaveController {
 
 			model.addObject("makeLeave", new LeaveBean());
 
-			if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 
-				model.addObject("technicians",
-						employeeServiceInt.getAllTechnicians());
+				model.addObject("technicians",employeeServiceInt.getAllTechnicians());
 				model.setViewName("requestLeave");
 
 			} else if (userName.getRole().equalsIgnoreCase("Technician")) {
-
 				model.setViewName("leave");
 
-			} else if (userName.getRole().equalsIgnoreCase("User")) {
-
-				model.addObject("technicians",
-						employeeServiceInt.getAllTechnicians());
+			} else if (userName.getRole().equalsIgnoreCase("User")) {				
 				model.setViewName("userMakeLeave");
 			}
 
@@ -688,7 +804,7 @@ public class LeaveController {
 	}
 
 	@RequestMapping(value = { "makeLeave", "userMakeLeave" }, method = RequestMethod.POST)
-	public ModelAndView submitLeave(@ModelAttribute("makeLeave") LeaveBean leave) {
+	public ModelAndView submitLeave(@ModelAttribute("makeLeave") LeaveBean leave,@ModelAttribute("userMakeLeave") LeaveBean userleave) {
 		model = new ModelAndView();
 		;
 		userName = (Employee) session.getAttribute("loggedInUser");
@@ -701,8 +817,7 @@ public class LeaveController {
 			} else {
 				model.addObject("retMessage", retMessage);
 			}
-			if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 
 				if (retMessage.startsWith("Leave already exist")) {
 					String managerOnLeave = "managerOnLeave";
@@ -731,9 +846,17 @@ public class LeaveController {
 				model.setViewName("confirmation");
 
 			} else if (userName.getRole().equalsIgnoreCase("User")) {
-
-				String addLeave = "addLeave";
-				model.addObject("addLeave", addLeave);
+				
+				if (retMessage.startsWith("Leave already exist")) {
+					String techOnLeave = "techOnLeave";
+					System.err.println(techOnLeave);
+					model.addObject("retMessage", retMessage);
+					model.addObject("techOnLeave", techOnLeave);
+				} else {
+					String techAddLeave = "techAddLeave";
+					model.addObject("retMessage", retMessage);
+					model.addObject("techAddLeave", techAddLeave);
+				}
 				model.setViewName("confirm");
 			}
 		} else {
@@ -742,10 +865,8 @@ public class LeaveController {
 		return model;
 	}
 
-	@RequestMapping(value = { "updateLeave", "updateMakeLeave",
-			"updateUserMakeLeave" }, method = RequestMethod.POST)
-	public ModelAndView updateLeave(
-			@ModelAttribute("updateLeave") LeaveBean leave) {
+	@RequestMapping(value = { "updateLeave", "updateMakeLeave","updateUserMakeLeave" }, method = RequestMethod.POST)
+	public ModelAndView updateLeave(@ModelAttribute("updateLeave") LeaveBean leave) {
 
 		model = new ModelAndView();
 
@@ -754,8 +875,7 @@ public class LeaveController {
 
 			retMessage = leaveInt.updateLeaveRequest(leave);
 
-			if (userName.getRole().equalsIgnoreCase("Manager")
-					|| userName.getRole().equalsIgnoreCase("Admin")) {
+			if (userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")) {
 				String updateLeave = "updateLeave";
 				model.addObject("updateLeave", updateLeave);
 				model.addObject("retMessage", retMessage);
@@ -819,6 +939,24 @@ public class LeaveController {
 				}
 				model.setViewName("techleavemanagement");
 			}
+			else if (userName.getRole().equalsIgnoreCase("User")) {
+				
+				if (selectedDateRange != null) {
+					model.addObject("countPendingLeave", leaveInt.countTechpendingLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countApprovedLeave", leaveInt.countTechApprovedLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+					model.addObject("countActiveLeave", leaveInt.countTechActiveLeaveForSelectedDate(selectedDateRange, userName.getEmail()));
+					model.addObject("countCancelledLeave", leaveInt.countTechCancelledLeaveForSelectedDate(selectedDateRange,userName.getEmail()));
+				
+					model.addObject("leaveList", leaveInt.getAllTechLeaveForSelectedRange(selectedDateRange,userName.getEmail()));
+					model.addObject("technicians",
+							employeeServiceInt.getAllTechnicians());
+					model.addObject("dates", leaveInt.getLeaveDates());
+					model.addObject("newDate", selectedDateRange);
+					model.setViewName("leavemanagement");
+				}
+				model.setViewName("userleavemanagement");
+			}	
+			
 		} else {
 			model.setViewName("login");
 		}

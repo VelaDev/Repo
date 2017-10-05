@@ -13,6 +13,9 @@ import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.demo.model.Employee;
 import com.demo.model.OrderHeader;
@@ -26,6 +29,8 @@ public class JavaMail {
 	private static String newTicketNum = "VTC000";
 	private static String newOrderNum = "ORD000";
 	
+	@Autowired
+	private HttpSession session = null;
 	//Email message details to technician
 	public static void sendEmailMessageDetailsToTechnician(Tickets ticket) {
 		String[] to = { ticket.getEmployee().getEmail() };
@@ -92,27 +97,28 @@ public class JavaMail {
 	}	
 	//User feedback from system to client
 	public static void sendMailFeedBackFromSystemToClient(Tickets ticket,Employee employee) throws ParseException {
-		String userEmail = employee.getEmail();
+		String userEmail = ticket.getTicketLoggedBy();
 		String[] to = { userEmail };
 		String from = emailFrom;
 		String pass = password;
-		String slaFourHours = slaEndTime(ticket.getSlaStart());
+		String slaFourHours = slaEndTime(ticket.getDateTime());
+		
 		String body = "Hi " + ticket.getFirstName() + " " + ticket.getLastName()
 				
 				+ "\n\nYour Ticket Details are as follows:" +"\n\n"
 				+ "Ticket Number: " + newTicketNum+ticket.getRecordID() + "\n"
 				+ "Time Logged: " + ticket.getDateTime() + "\n"
-				+ "SLA End Time: " + slaFourHours +"\n"	
+				+ "SLA End Time: " + slaFourHours +"\n\n"	
 				
 				+ "Heldesk Agent Details:\n\n"
 				
 				+ "Name & Surname: " +employee.getFirstName()+" "+employee.getLastName() +"\n"
 				+ "Email: " +employee.getEmail()+ "\n" 
-				+ "Contact Number: " + employee.getCellNumber()+ "\n"
+				+ "Contact Number: " + employee.getCellNumber()+ "\n\n"
 				+ "Assigned Technician Details:\n\n"
-				+ "Name & Surname: " +ticket.getFirstName()+" "+ticket.getLastName() +"\n"
-				+ "Email: " +ticket.getContactEmail()+ "\n" 
-				+ "Contact Number: " + ticket.getContactCellNumber()+ "\n"
+				+ "Name & Surname: " +ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() +"\n"
+				+ "Email: " +ticket.getEmployee().getEmail()+ "\n" 
+				+ "Contact Number: " + ticket.getEmployee().getCellNumber()+ "\n"
 				
 				+ "\n\nKind Regards,\nVelaphanda Team"
 				+ "\nWebsite: www.velaphanda.com";
@@ -158,12 +164,12 @@ public class JavaMail {
 	}
 	
 	//Email message details to technician for escalation
-	public static void sendMailDetailsToTechnicianForEscalation(Tickets ticket) {
+	public static void sendMailDetailsToTechnicianForEscalation(Tickets ticket,Employee manager) {
 		
-		String[] to = { ticket.getEmployee().getEmail() };
+		String[] to = { ticket.getEscalatedTo(),ticket.getEmployee().getEmail() };
 		String from = emailFrom;
 		String pass = password;
-		String body = "Hi " + ticket.getEmployee().getFirstName() + " " + ticket.getEmployee().getLastName() + " The following service call has been escalated to you:"
+		String body = "Hi " + manager.getFirstName() + " " + manager.getLastName() + " The following service call has been escalated to you:"
 				
 				+ "\n\nTicket Details are as follows:" +"\n\n"
 				
@@ -633,7 +639,7 @@ public class JavaMail {
 		}
 	}
 	private static String slaEndTime(String slaStart) throws ParseException{
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Date currentDate =formatter.parse(slaStart);
 		Calendar cal = Calendar.getInstance();
 		// remove next line if you're always using the current time.

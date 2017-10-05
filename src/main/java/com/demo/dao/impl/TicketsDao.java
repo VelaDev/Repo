@@ -64,7 +64,7 @@ public class TicketsDao implements TicketsDaoInt {
 	private HttpSession session = null;
 	private Session session2;
 
-	private Employee technician,ticketLoggedBy = null;
+	private Employee technician,ticketLoggedBy,emp= null;
 	private OrderHeader order = null;
 	private Device device = null;
 	private Tickets ticket = null;
@@ -1114,7 +1114,7 @@ public class TicketsDao implements TicketsDaoInt {
 		Boolean isValied = false;
 		//String userName = employee.getEmail();
 		ticket = new Tickets();
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		date = new Date();
 		try {
 
@@ -1156,7 +1156,9 @@ public class TicketsDao implements TicketsDaoInt {
 								+ " is assigned to technician "
 								+ ticket.getEmployee().getFirstName() + ".";
 						JavaMail.sendEmailMessageDetailsToTechnician(ticket);
+						emp = (Employee) session.getAttribute("loggedInUser");
 						//JavaMail.sendMailFeedBackFromSystemToClient(ticket, employee)
+						JavaMail.sendMailFeedBackFromSystemToClient(ticket, emp);
 						
 					} else {
 						retMessage = "Contract for device "
@@ -1254,7 +1256,7 @@ public class TicketsDao implements TicketsDaoInt {
 		String date1 = myFormat.format(cal.getTime());
 		date = new Date();
 
-		dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		date = new Date();
 
 		try {
@@ -1285,6 +1287,8 @@ public class TicketsDao implements TicketsDaoInt {
 							+ ticket.getRecordID() + " esalated to Manager "
 							+ employee.getFirstName() + " "
 							+ employee.getLastName() + ".";
+					//Send mail for escalation
+					JavaMail.sendMailDetailsToTechnicianForEscalation(ticket, employee);
 
 				} else if (status.equalsIgnoreCase("Resolved")) {
 

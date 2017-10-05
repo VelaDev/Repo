@@ -1,5 +1,9 @@
 package com.demo.dao.impl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -87,20 +91,18 @@ public class JavaMail {
 		}
 	}	
 	//User feedback from system to client
-	public static void sendMailFeedBackFromSystemToClient(Tickets ticket,Employee employee) {
+	public static void sendMailFeedBackFromSystemToClient(Tickets ticket,Employee employee) throws ParseException {
 		String userEmail = employee.getEmail();
 		String[] to = { userEmail };
 		String from = emailFrom;
 		String pass = password;
-		String body = "Hi " + ticket.getEmployee().getFirstName() + " " + ticket.getEmployee().getLastName()
+		String slaFourHours = slaEndTime(ticket.getSlaStart());
+		String body = "Hi " + ticket.getFirstName() + " " + ticket.getLastName()
 				
 				+ "\n\nYour Ticket Details are as follows:" +"\n\n"
 				+ "Ticket Number: " + newTicketNum+ticket.getRecordID() + "\n"
-				+ "Device Model: " + ticket.getDevice().getModelNumber() + "\n"
-				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
-				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"
 				+ "Time Logged: " + ticket.getDateTime() + "\n"
-				+ "SLA End Time: " + ticket.getSlaStart() +"\n"	
+				+ "SLA End Time: " + slaFourHours +"\n"	
 				
 				+ "Heldesk Agent Details:\n\n"
 				
@@ -629,6 +631,17 @@ public class JavaMail {
 		} catch (MessagingException me) {
 			me.printStackTrace();
 		}
+	}
+	private static String slaEndTime(String slaStart) throws ParseException{
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date currentDate =formatter.parse(slaStart);
+		Calendar cal = Calendar.getInstance();
+		// remove next line if you're always using the current time.
+		cal.setTime(currentDate);
+		cal.add(Calendar.HOUR, +4);
+		Date slaFourHour = cal.getTime();
+		
+		return ""+slaFourHour;
 	}
 
 }

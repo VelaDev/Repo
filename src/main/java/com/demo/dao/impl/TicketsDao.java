@@ -64,7 +64,7 @@ public class TicketsDao implements TicketsDaoInt {
 	private HttpSession session = null;
 	private Session session2;
 
-	private Employee technician = null;
+	private Employee technician,ticketLoggedBy = null;
 	private OrderHeader order = null;
 	private Device device = null;
 	private Tickets ticket = null;
@@ -1144,18 +1144,19 @@ public class TicketsDao implements TicketsDaoInt {
 						ticket.setContactTelephoneNumber(tickets
 								.getContactTelephoneNumber());
 						ticket.setContactEmail(tickets.getContactEmail());
-
+						ticketLoggedBy = (Employee) session.getAttribute("loggedInUser");
+						String userEmail = ticketLoggedBy.getEmail();
+						ticket.setTicketLoggedBy(userEmail);
 						ticket.setDevice(device);
 						sessionFactory.getCurrentSession().save(ticket);
 
 						historyDaoInt.insertTicketHistory(ticket);
-
 						retMessage = "Ticket " + tempTicketNum
 								+ ticket.getRecordID()
 								+ " is assigned to technician "
 								+ ticket.getEmployee().getFirstName() + ".";
 						JavaMail.sendEmailMessageDetailsToTechnician(ticket);
-						//JavaMail.sendMailFeedBackFromSystemToClient(ticket, employee);
+						//JavaMail.sendMailFeedBackFromSystemToClient(ticket, employee)
 						
 					} else {
 						retMessage = "Contract for device "

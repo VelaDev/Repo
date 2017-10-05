@@ -92,6 +92,8 @@ public class Tickets implements Serializable{
 	private String bridgedReason;
 	@Column (name="ReopenReason")
 	private String reopenReason;
+	@Column(name="TicketLoggedBy")
+	private String ticketLoggedBy;
 	
 	
 	

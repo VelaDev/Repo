@@ -64,8 +64,8 @@ public class SparePartsController {
 	private String globalCustomerName = null;
 	
 	//spare management
-		@RequestMapping(value = {"sparemanagement","techsparemanagement","usersparemanagement"}, method = RequestMethod.GET)
-		public ModelAndView displayOrderTechManagement() {
+	@RequestMapping(value = {"sparemanagement","techsparemanagement","usersparemanagement"}, method = RequestMethod.GET)
+	public ModelAndView displayOrderTechManagement() {
 			
 			model = new ModelAndView();
 			globalCustomerName = null;
@@ -340,6 +340,11 @@ public class SparePartsController {
 				model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
 				model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));	
 				model.setViewName("stockSiteOrdersForTechnician");
+			}else if(userName.getRole().equalsIgnoreCase("User")){
+				model.addObject("orders", siteStock.getOrdersForCustomer(globalCustomerName));
+				model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+				model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+				model.setViewName("stockSiteOrdersForUser");
 			}
 
 		}
@@ -357,10 +362,20 @@ public class SparePartsController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		String techfullname = userName.getFirstName() + " " + userName.getLastName();
 		if(userName != null){
-			model.addObject("countPartForTech",bootStock.countPartsForTechnician(techfullname));
-			model.addObject("countTonerForTech",bootStock.countTonerForTechnician(techfullname));
-			model.addObject("orders",bootStock.getAllOrders(techfullname));
-			model.setViewName("bootSiteOrdersForTechnician");
+			if (userName.getRole().equalsIgnoreCase("Technician"))
+			{
+				model.addObject("countPartForTech",bootStock.countPartsForTechnician(techfullname));
+				model.addObject("countTonerForTech",bootStock.countTonerForTechnician(techfullname));
+				model.addObject("orders",bootStock.getAllOrders(techfullname));				
+				model.setViewName("bootSiteOrdersForTechnician");
+				
+			}else if(userName.getRole().equalsIgnoreCase("User")){
+				
+				model.addObject("countPartForTech",bootStock.countPartsForTechnician(techfullname));
+				model.addObject("countTonerForTech",bootStock.countTonerForTechnician(techfullname));
+				model.addObject("orders",bootStock.getAllOrders(techfullname));				
+				model.setViewName("bootSiteOrdersForUser");
+			}
 		}
 		else{
 			model.setViewName("login");
@@ -449,15 +464,13 @@ public class SparePartsController {
 				if (globalTechnicianName != null){
 					model.addObject("countPartForTech",bootStock.countPartsForTechnician(globalTechnicianName));
 					model.addObject("countTonerForTech",bootStock.countTonerForTechnician(globalTechnicianName));
-					model.addObject("orders", bootStock.getPartsForTechnician(globalTechnicianName));
-					
+					model.addObject("orders", bootStock.getPartsForTechnician(globalTechnicianName));					
 					model.setViewName("bootSiteOrders");	
 				}
 				else if (globalCustomerName != null){
 					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
 					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
-					model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));
-					
+					model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));					
 					model.setViewName("stockSiteOrders");
 				}
 				
@@ -470,21 +483,37 @@ public class SparePartsController {
 					if (localTechnician != null){
 						model.addObject("countPartForTech",bootStock.countPartsForTechnician(localTechnician));
 						model.addObject("countTonerForTech",bootStock.countTonerForTechnician(localTechnician));
-						model.addObject("orders", bootStock.getPartsForTechnician(localTechnician));
-						
+						model.addObject("orders", bootStock.getPartsForTechnician(localTechnician));						
 						model.setViewName("bootSiteOrdersForTechnician");	
 					}
 				}
 				else if (globalCustomerName != null)
 				{
-
 						model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
 						model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
-						model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));
-						
-						model.setViewName("stockSiteOrdersForTechnician");
-					
-					
+						model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));						
+						model.setViewName("stockSiteOrdersForTechnician");			
+				}
+				
+			}
+			else if (userName.getRole().equalsIgnoreCase("User"))
+			{ 
+				String localTechnician = userName.getFirstName() + " " + userName.getLastName();
+				if (globalTechnicianName != null)
+				{
+					if (localTechnician != null){
+						model.addObject("countPartForTech",bootStock.countPartsForTechnician(localTechnician));
+						model.addObject("countTonerForTech",bootStock.countTonerForTechnician(localTechnician));
+						model.addObject("orders", bootStock.getPartsForTechnician(localTechnician));						
+						model.setViewName("bootSiteOrdersForUser");	
+					}
+				}
+				else if (globalCustomerName != null)
+				{
+						model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+						model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+						model.addObject("orders", siteStock.getPartsForCustomer(globalCustomerName));						
+						model.setViewName("stockSiteOrdersForUser");			
 				}
 				
 			}
@@ -538,6 +567,26 @@ public class SparePartsController {
 					model.addObject("orders", siteStock.getTonerForCustomer(globalCustomerName));
 					
 					model.setViewName("stockSiteOrdersForTechnician");
+				}			
+			}else if (userName.getRole().equalsIgnoreCase("User"))	{
+				String localTechnician = userName.getFirstName() + " " + userName.getLastName();
+				if (globalTechnicianName != null)
+				{
+					if (localTechnician != null){
+						model.addObject("countPartForTech",bootStock.countPartsForTechnician(localTechnician));
+						model.addObject("countTonerForTech",bootStock.countTonerForTechnician(localTechnician));
+						model.addObject("orders", bootStock.getTonerForTechnician(localTechnician));
+						
+						model.setViewName("bootSiteOrdersForUser");	
+					}
+				}
+				else if (globalCustomerName != null)
+				{
+					model.addObject("countPartForCustomer",siteStock.countPartsForCustomer(globalCustomerName));
+					model.addObject("countTonerForCustomer",siteStock.countTonerForCustomer(globalCustomerName));
+					model.addObject("orders", siteStock.getTonerForCustomer(globalCustomerName));
+					
+					model.setViewName("stockSiteOrdersForUser");
 				}			
 			}
 			else{

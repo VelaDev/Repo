@@ -994,8 +994,9 @@ public class TicketsDao implements TicketsDaoInt {
 
 						ticket.setComments("Ticket Escalated");
 						historyDaoInt.insertTicketHistory(ticket);
+						JavaMail.sendMailDetailsToTechnicianForEscalation(ticket, ticket.getEmployee());
 
-						retMessage = "Ticket " + ticketNumber
+						retMessage = "Ticket " +tempTicketNum + ticketNumber
 								+ " successfully Escalated to "
 								+ ticketsBean.getEscalatedTo();
 

@@ -171,7 +171,16 @@ public class EmployeeController {
 						}
 						
 						serviceInt.userLoggeIn(employee);
-						model.setViewName("ticket");
+						model.addObject("openTickets", ticketsServiceInt.getTicketCount("Open", "Last 14 Days", "", "", 0L));
+						model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCount("Acknowledged", "Last 14 Days", "", "",0L));
+						model.addObject("countTakenTickets", ticketsServiceInt.getTicketCount("Taken", "Last 14 Days", "", "",0L));
+						model.addObject("escalatedTickets", ticketsServiceInt.getTicketCount("Escalated", "Last 14 Days", "", "", 0L));
+						model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCount("Awaiting Spares", "Last 14 Days", "", "", 0L));
+						model.addObject("bridgedTickets", ticketsServiceInt.getTicketCount("SLA Bridged", "Last 14 Days", "", "", 0L));
+						model.addObject("resolvedTickets", ticketsServiceInt.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
+						model.addObject("closedTickets", ticketsServiceInt.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
+					
+						model.setViewName("userdashboard");
 					}else{
 						
 						
@@ -207,38 +216,57 @@ public class EmployeeController {
 		}
 		else{//retRole= "redirect:error";
 			   model.setViewName("error");
-		}
-			
-			
+		}	
 		return model;
 	}
-	
-	
-	@RequestMapping(value="home",method=RequestMethod.GET)
-	public ModelAndView loadAdminPage() {
+	@RequestMapping(value={"home","technicianHome","userdashboard"},method=RequestMethod.GET)
+	public ModelAndView loadHomePages() {
 		
 		model = new ModelAndView();
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if(userName !=null){
-			
-			beanList = ticketsServiceInt.ticketsResults();
-			model.addObject("ticketResults",beanList);
-			model.addObject("openTickets", ticketsServiceInt.getTicketCount("Open", "Last 14 Days", "", "", 0L));
-			model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCount("Acknowledged", "Last 14 Days", "", "",0L));
-			model.addObject("countTakenTickets", ticketsServiceInt.getTicketCount("Taken", "Last 14 Days", "", "",0L));
-			model.addObject("escalatedTickets", ticketsServiceInt.getTicketCount("Escalated", "Last 14 Days", "", "", 0L));
-			model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCount("Awaiting Spares", "Last 14 Days", "", "",0L));
-			model.addObject("bridgedTickets", ticketsServiceInt.getTicketCount("SLA Bridged", "Last 14 Days", "", "", 0L));
-			model.addObject("resolvedTickets", ticketsServiceInt.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
-			model.addObject("closedTickets", ticketsServiceInt.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
-		
-			model.setViewName("home");
+			if(userName.getRole().equalsIgnoreCase("Manager") || (userName.getRole().equalsIgnoreCase("Admin"))){
+				beanList = ticketsServiceInt.ticketsResults();
+				model.addObject("ticketResults",beanList);
+				model.addObject("openTickets", ticketsServiceInt.getTicketCount("Open", "Last 14 Days", "", "", 0L));
+				model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCount("Acknowledged", "Last 14 Days", "", "",0L));
+				model.addObject("countTakenTickets", ticketsServiceInt.getTicketCount("Taken", "Last 14 Days", "", "",0L));
+				model.addObject("escalatedTickets", ticketsServiceInt.getTicketCount("Escalated", "Last 14 Days", "", "", 0L));
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCount("Awaiting Spares", "Last 14 Days", "", "",0L));
+				model.addObject("bridgedTickets", ticketsServiceInt.getTicketCount("SLA Bridged", "Last 14 Days", "", "", 0L));
+				model.addObject("resolvedTickets", ticketsServiceInt.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
+				model.addObject("closedTickets", ticketsServiceInt.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
+			    model.setViewName("home");
+			}else if(userName.getRole().equalsIgnoreCase("Technicain")){
+				model.addObject("openTickets", ticketsServiceInt.getTicketCountForTechnician("Open", "Last 14 Days", userName.getEmail(), "",0L));
+				model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail(), "",0L));
+				model.addObject("countTakenTickets", ticketsServiceInt.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail(), "",0L));
+				model.addObject("escalatedTickets", ticketsServiceInt.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail(), "", 0L));
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail(), "",0L));
+				model.addObject("bridgedTickets", ticketsServiceInt.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail(), "",0L));
+				model.addObject("resolvedTickets", ticketsServiceInt.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail(), "", 0L));
+				model.addObject("closedTickets", ticketsServiceInt.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail(), "", 0L));
+				model.setViewName("technicianHome");				
+			}else if(userName.getRole().equalsIgnoreCase("User")){
+				beanList = ticketsServiceInt.ticketsResults();
+				model.addObject("ticketResults",beanList);
+				model.addObject("openTickets", ticketsServiceInt.getTicketCount("Open", "Last 14 Days", "", "", 0L));
+				model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCount("Acknowledged", "Last 14 Days", "", "",0L));
+				model.addObject("countTakenTickets", ticketsServiceInt.getTicketCount("Taken", "Last 14 Days", "", "",0L));
+				model.addObject("escalatedTickets", ticketsServiceInt.getTicketCount("Escalated", "Last 14 Days", "", "", 0L));
+				model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCount("Awaiting Spares", "Last 14 Days", "", "",0L));
+				model.addObject("bridgedTickets", ticketsServiceInt.getTicketCount("SLA Bridged", "Last 14 Days", "", "", 0L));
+				model.addObject("resolvedTickets", ticketsServiceInt.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
+				model.addObject("closedTickets", ticketsServiceInt.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
+				model.setViewName("userdashboard");
+			}
 		}
 		else{
 			model.setViewName("login");
 		}
 		return model;
 	}
+
 	//Search for technician
 	@RequestMapping(value="searchtechnicianName")
 	public ModelAndView searchTechnicianName(@RequestParam("technicianName") String technicianName) {
@@ -304,46 +332,7 @@ public class EmployeeController {
 		}
 		return model;
 	}
-		
-	@RequestMapping(value = {"technicianHome"})
-    public ModelAndView displayLoggedTickets() {
-
-		 model = new ModelAndView();
-		 userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName != null){
-				model.addObject("openTickets", ticketsServiceInt.getTicketCountForTechnician("Open", "Last 14 Days", userName.getEmail(), "",0L));
-				model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail(), "",0L));
-				model.addObject("countTakenTickets", ticketsServiceInt.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail(), "",0L));
-				model.addObject("escalatedTickets", ticketsServiceInt.getTicketCountForTechnician("Escalated", "Last 14 Days", userName.getEmail(), "", 0L));
-				model.addObject("awaitingSparesTickets", ticketsServiceInt.getTicketCountForTechnician("Awaiting Spares", "Last 14 Days", userName.getEmail(), "",0L));
-				model.addObject("bridgedTickets", ticketsServiceInt.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", userName.getEmail(), "",0L));
-				model.addObject("resolvedTickets", ticketsServiceInt.getTicketCountForTechnician("Resolved", "Last 14 Days", userName.getEmail(), "", 0L));
-				model.addObject("closedTickets", ticketsServiceInt.getTicketCountForTechnician("Closed", "Last 14 Days", userName.getEmail(), "", 0L));
-				model.setViewName("technicianHome");
-			}
-			else{
-				model.setViewName("login");
-			}
-		return model;
-       
-    }
-	@RequestMapping(value="userHome",method=RequestMethod.GET)
-	public ModelAndView loadUserPage() {
-		userName = (Employee) session.getAttribute("loggedInUser");
-		if(userName !=null){
-			model = new ModelAndView();
-			
-			model.setViewName("userHome");
-		}
-		else
-		{
-			model.setViewName("login");
-			
-		}
-		 
-		return model;
-		
-	}
+	
 	
 	@RequestMapping(value="displayEmployees",method=RequestMethod.GET)
 	public ModelAndView displayEmployees(){

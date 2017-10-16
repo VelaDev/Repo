@@ -77,7 +77,6 @@ table#toOrder thead {
                                     <form:form class="well form-horizontal" modelAttribute="makeOrder"
                                           method="post" action="makeOrder" id="putInOrder">
 
-
                                           <!-- Select type Stock Type-->
                                           <div class="form-group">
                                                 <label class="col-md-3 control-label">Stock Type</label>

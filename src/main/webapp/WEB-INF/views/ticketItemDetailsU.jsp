@@ -47,7 +47,7 @@ table#toOrder thead {
 </head>
 <body>
 	<div class="velaphanda_containter">
-		<c:import url="templates/navbar.jsp"></c:import>
+		<c:import url="templates/usernavbar.jsp"></c:import>
 		<div class="container">
 
 			<form:form action="searchOrderNumber" method="post"

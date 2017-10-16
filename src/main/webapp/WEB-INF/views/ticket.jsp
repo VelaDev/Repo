@@ -275,8 +275,6 @@
 								</div>
 								<!--/S Column-->
 
-
-
 								<div class="form-group row">
 									<div class="col-sm-offset-2 col-sm-8">
 										<br> <br> <input type="submit" value="Log Ticket"
@@ -291,8 +289,6 @@
 						<c:if test="${empty product.serialNumber}">
 
 						</c:if>
-
-
 
 					</div>
 					<!-- /tab-content -->

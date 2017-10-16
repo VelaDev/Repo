@@ -68,6 +68,15 @@ a.confirmtions {
 							 	           Click<a href="userleavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
 							 	    </c:when>
 						 	    </c:choose>
+						 	    
+						 	    <!-- performTicketAciton -->
+						 	    <c:choose>
+						 	    
+						 	    	 <c:when test="${performTicketAction =='performTicketAction' }">
+							 	       <c:out value="${retMessage}"></c:out> 
+							 	          Click<a href="techticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
+							 	    </c:when>
+						 	    </c:choose>
 						 					 	     
 					 	    </div>
 					 	    
@@ -88,14 +97,22 @@ a.confirmtions {
 						 	    <!-- Log a Ticket -->
 							 	<c:choose>
 							 	   <c:when test="${tickets =='tickets' }">
-							 	       <c:out value="${retMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket. 
+							 	       <c:out value="${retErrorMessage}"></c:out> Click<a href="ticket.html" class="confirmtions"><b> here</b></a> to log another Ticket. 
 							 	   </c:when>
 							 	</c:choose>
 							 	 <!-- create leave -->
 						 	  	 <c:choose>
 							 	    <c:when test="${techAddLeave =='techAddLeave' }">
-							 	    <c:out value="${retMessage}"></c:out> 
+							 	    <c:out value="${retErrorMessage}"></c:out> 
 							 	           Click<a href="userleavemanagement.html" class="confirmtions"><b> here</b></a> to go to leave management.                         
+							 	    </c:when>
+						 	    </c:choose>
+						 	    
+						 	    <!-- performTicketAciton -->
+						 	    <c:choose>						 	    
+						 	    	 <c:when test="${performTicketAction =='performTicketAction' }">
+							 	       <c:out value="${retErrorMessage}"></c:out> 
+							 	          Click<a href="techticketmanagement.html" class="confirmtions"><b> here</b></a> to go to ticket management.	                            
 							 	    </c:when>
 						 	    </c:choose>
 					 	  

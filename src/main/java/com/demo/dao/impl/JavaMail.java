@@ -178,8 +178,8 @@ public class JavaMail {
 				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
 				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"				
 				+ "Problem Description: " + ticket.getDescription() + "\n"
-				+ "Reason for Escalation: " + ticket.getEscalateReason() + "\n"
-				+ "Previous technician: " + "technicianName"+ "\n"			 	
+				+ "Reason for Escalation: " + ticket.getComments() + "\n"
+				+ "Previous technician: " + ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() + "\n"			 	
 				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
 				
 				+ "User Contact Details:\n\n"
@@ -234,7 +234,7 @@ public class JavaMail {
 	//Escalation Notification to manager
 	public static void sendMailEscalationNotificationToManager(Tickets ticket,String managerEmails) {
 		
-		String[] to = { ticket.getEmployee().getEmail(), managerEmails };
+		String[] to = { ticket.getEmployee().getEmail() };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + ticket.getEmployee().getFirstName() + " " + ticket.getEmployee().getLastName() + " The following service call has been escalated to you:"
@@ -246,8 +246,8 @@ public class JavaMail {
 				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
 				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"				
 				+ "Problem Description: " + ticket.getDescription() + "\n"
-				+ "Reason for Escalation: " + ticket.getEscalateReason() + "\n"
-				+ "Previous technician: " + "technicianName"+ "\n"			 	
+				+ "Reason for Escalation: " + ticket.getComments() + "\n"
+				+ "Previous technician: " + ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() + "\n"			 	
 				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
 				
 				+ "User Contact Details:\n\n"
@@ -259,7 +259,7 @@ public class JavaMail {
 				+ "\n\nKind Regards,\nVelaphanda Team"
 				+ "\nWebsite: www.velaphanda.com";
 		
-		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + "Escalated To Senior Technician";
+		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + " Escalated To Senior Manager";
 		
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";

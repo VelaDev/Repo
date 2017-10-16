@@ -13,7 +13,7 @@
 <p><span class="motto">Velaphanda</span> <span class="techsystem">Technical System</span></p>
 </div>
 <div class="velatp_logo">
-	<a href="ticket.html"><img
+	<a href="userdashboard.html"><img
 		src="resources/images/mainlogoo.jpg"></a>
 	<div class="userloggedin">
 	 <ul class="nav navbar-nav navbar-right">        
@@ -36,7 +36,7 @@
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href='<c:url value="ticket.html"/>' ><span class="glyphicon glyphicon-home"></span></a>
+				<a class="navbar-brand" href='<c:url value="userdashboard.html"/>' ><span class="glyphicon glyphicon-home"></span></a>
 				      
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
@@ -63,6 +63,10 @@
 								</li>
 								
 							</ul>
+						</li>
+						<li>
+					    <a href='<c:url value="userticketmanagement.html"/>' role="button" aria-haspopup="true"
+								aria-expanded="false">Ticket Management</a>
 						</li>
 						
 						<li>

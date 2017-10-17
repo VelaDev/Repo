@@ -24,9 +24,11 @@
 	href="<c:url value="/resources/datatables/1.10.13/css/jquery-ui.css" />">
 <style type="text/css">
 .orderDetails {
-	margin-left: -14px;
+    margin-left: 1px;
 }
-
+.machinedetailsfloatright {
+	padding-left: 19px;
+}
 table#orderDetails {
 	margin-left: 14%;
 	/* margin-right: -9%; */
@@ -186,8 +188,7 @@ table#orderDetails {
 								</div>
 								</aside>
 
-								<div class="limeItems" style="margin-left: 1%;">
-
+								<div id="content" style="margin-left: 1%; width: 97%;">
 									<legend style="font-size: 12px; line-height: 1.42857143;">Line
 										Items</legend>
 									<table id="orderInfo" class="display datatable">

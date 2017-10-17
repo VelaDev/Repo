@@ -45,7 +45,7 @@ public class JavaMail {
 				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
 				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"				
 				+ "Problem Description: " + ticket.getDescription() + "\n"
-				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
+				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" "+ ticket.getDevice().getCity_town() +" "+ ticket.getDevice().getProvince() +"\n\n"
 				
 				+ "User Contact Details:\n\n"
 				
@@ -56,7 +56,7 @@ public class JavaMail {
 				+ "\n\nKind Regards,\nVelaphanda Team"
 		        + "\nWebsite: www.velaphanda.com";
 				
-		String subject = "Ticket No " + newTicketNum+ticket.getRecordID();
+		String subject = "Velaphanda Ticket Ref No " + newTicketNum+ticket.getRecordID();
 		
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -113,8 +113,8 @@ public class JavaMail {
 				+ "Heldesk Agent Details:\n\n"
 				
 				+ "Name & Surname: " +employee.getFirstName()+" "+employee.getLastName() +"\n"
-				+ "Email: " +employee.getEmail()+ "\n" 
-				+ "Contact Number: " + employee.getCellNumber()+ "\n\n"
+				+ "Email: " + "helpdesk@velaphanda.co.za" + "\n" 
+				+ "Call Center Number: " + "012 765 0200 / 087 701 1691" + "\n\n"
 				+ "Assigned Technician Details:\n\n"
 				+ "Name & Surname: " +ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() +"\n"
 				+ "Email: " +ticket.getEmployee().getEmail()+ "\n" 
@@ -123,7 +123,7 @@ public class JavaMail {
 				+ "\n\nKind Regards,\nVelaphanda Team"
 				+ "\nWebsite: www.velaphanda.com";
 				
-		String subject = "Ticket No " + newTicketNum+ticket.getRecordID();
+		String subject = "Velaphanda Ticket Ref No " + newTicketNum+ticket.getRecordID();
 		
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -180,7 +180,7 @@ public class JavaMail {
 				+ "Problem Description: " + ticket.getDescription() + "\n"
 				+ "Reason for Escalation: " + ticket.getComments() + "\n"
 				+ "Previous technician: " + ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() + "\n"			 	
-				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
+				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" "+ ticket.getDevice().getCity_town() +" "+ ticket.getDevice().getProvince() +"\n\n"
 				
 				+ "User Contact Details:\n\n"
 				
@@ -191,7 +191,7 @@ public class JavaMail {
 				+ "\n\nKind Regards,\nVelaphanda Team"
 				+ "\nWebsite: www.velaphanda.com";
 		
-		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + "Escalated To You";
+		String subject = "Velaphanda Ticket Ref No " + newTicketNum+ticket.getRecordID() + "Escalated To You";
 		
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -248,7 +248,7 @@ public class JavaMail {
 				+ "Problem Description: " + ticket.getDescription() + "\n"
 				+ "Reason for Escalation: " + ticket.getComments() + "\n"
 				+ "Previous technician: " + ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() + "\n"			 	
-				+ "Location: " + ticket.getDevice().getFloorNumber()+" "+ticket.getDevice().getBuildingName() + "\n\n"
+				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" "+ ticket.getDevice().getCity_town() +" "+ ticket.getDevice().getProvince() +"\n\n"
 				
 				+ "User Contact Details:\n\n"
 				
@@ -259,7 +259,7 @@ public class JavaMail {
 				+ "\n\nKind Regards,\nVelaphanda Team"
 				+ "\nWebsite: www.velaphanda.com";
 		
-		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + " Escalated To Senior Manager";
+		String subject = "Velaphanda Ticket Ref No " + newTicketNum+ticket.getRecordID() + " Escalated To Senior Manager";
 		
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";

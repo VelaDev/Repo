@@ -379,15 +379,10 @@
 														validators : {
 															stringLength : {
 																min : 2,
-
 															},
 															notEmpty : {
 																message : 'Customer name is required and cannot be empty'
-															},
-															regexp: {
-											                    regexp: /^[-_ a-zA-Z0-9]+$/,
-											                    message: 'Customer name can consist of only alphabetical characters'
-											                }
+															}
 														}
 													},
 													firstName : {

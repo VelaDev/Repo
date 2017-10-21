@@ -105,10 +105,13 @@ public class OrderDao implements OrdersDaoInt {
 		emp = employeeDaoInt.getEmployeeByEmpNum(orderHeader.getApprover());
 		try {
 			sessionFactory.getCurrentSession().save(orderHeader);
-			JavaMail.sendEmail(orderHeader.getApprover(), orderHeader
-					.getEmployee().getEmail(), emp.getFirstName(), orderHeader);
-			
-			
+			if(orderHeader.getStockType().equalsIgnoreCase("Site")){
+				JavaMail.sendEmailOrderForSiteStock(orderHeader.getApprover(), orderHeader.getEmployee().getEmail(), emp.getFirstName(), orderHeader);
+			}else if(orderHeader.getStockType().equalsIgnoreCase("Boot")){
+				JavaMail.sendEmailOrderForBootStock(orderHeader.getApprover(), orderHeader
+						.getEmployee().getEmail(), emp.getFirstName(), orderHeader);
+			}
+				
 			historyDaoInt.insetOrderHistory(orderHeader);
 			deliveryNoteHeaderInt.saveDeliveryNoteHeader(orderHeader);
 			retMessage = "Order : " + " " + orderNumber + orderHeader.getRecordID() + " "

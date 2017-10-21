@@ -966,7 +966,7 @@ public class TicketsDao implements TicketsDaoInt {
 								sessionFactory.getCurrentSession()
 										.saveOrUpdate(ticket);
 								historyDaoInt.insertTicketHistory(ticket);
-
+								JavaMail.sendEmailForResolvedTickets(ticket,ticket.getEmployee());
 								retMessage = "Ticket " + tempTicketNum
 										+ ticket.getRecordID()
 										+ " successfully resolved.";

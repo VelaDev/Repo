@@ -46,7 +46,7 @@ public class JavaMail {
 				+ "Serial Number: " + ticket.getDevice().getSerialNumber() +"\n"
 				+ "Device Brand: " + ticket.getDevice().getModelBrand() +"\n"				
 				+ "Problem Description: " + ticket.getDescription() + "\n"
-				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" "+ ticket.getDevice().getCity_town() +" "+ ticket.getDevice().getProvince() +"\n\n"
+				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" , "+ ticket.getDevice().getCity_town() +" , "+ ticket.getDevice().getProvince() +"\n\n"
 				
 				+ "User Contact Details:\n\n"
 				
@@ -181,7 +181,7 @@ public class JavaMail {
 				+ "Problem Description: " + ticket.getDescription() + "\n"
 				+ "Reason for Escalation: " + ticket.getComments() + "\n"
 				+ "Previous technician: " + ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() + "\n"			 	
-				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" "+ ticket.getDevice().getCity_town() +" "+ ticket.getDevice().getProvince() +"\n\n"
+				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" , "+ ticket.getDevice().getCity_town() +" , "+ ticket.getDevice().getProvince() +"\n\n"
 				
 				+ "User Contact Details:\n\n"
 				
@@ -249,7 +249,7 @@ public class JavaMail {
 				+ "Problem Description: " + ticket.getDescription() + "\n"
 				+ "Reason for Escalation: " + ticket.getComments() + "\n"
 				+ "Previous technician: " + ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() + "\n"			 	
-				+ "Location: " + ticket.getDevice().getStreetNumber()+", "+ticket.getDevice().getStreetName()+", "+ ticket.getDevice().getCity_town() +", "+ ticket.getDevice().getProvince() +"\n\n"
+				+ "Location: " + ticket.getDevice().getStreetNumber()+" "+ticket.getDevice().getStreetName()+" , "+ ticket.getDevice().getCity_town() +"  , "+ ticket.getDevice().getProvince() +"\n\n"
 				
 				+ "User Contact Details:\n\n"
 				
@@ -565,9 +565,9 @@ public class JavaMail {
 				+ "Please review and attend to the following order:" +"\n\n"
 				
 				+ "Order Number: " + newOrderNum+order.getRecordID() + "\n"
-				+ "Name of Site: " + order.getCustomer().getCustomerName() + "," + order.getCustomer().getStreetNumber() + "," 
-								   + order.getCustomer().getStreetName() + "," + order.getCustomer().getCity_town() 
-								   + "," +order.getCustomer().getProvince()+ "," + order.getCustomer().getZipcode() + "\n"
+				+ "Name of Site: " + order.getCustomer().getCustomerName() + " , " + order.getCustomer().getStreetNumber() + " " 
+								   + order.getCustomer().getStreetName() + " , " + order.getCustomer().getCity_town() 
+								   + "," +order.getCustomer().getProvince()+ " , " + order.getCustomer().getZipcode() + "\n"
 				+ "Technician Name: " + order.getEmployee().getFirstName() + " " + order.getEmployee().getLastName() + "\n"
 				+ "List Ordered Items: " + order +"\n\n"
 				

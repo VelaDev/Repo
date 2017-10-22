@@ -969,6 +969,8 @@ public class TicketsDao implements TicketsDaoInt {
 								retMessage = "Ticket " + tempTicketNum
 										+ ticket.getRecordID()
 										+ " successfully resolved.";
+								Employee employee = employeeDaoInt.getEmployeeByEmpNum(ticket.getTicketLoggedBy());
+				    			JavaMail.sendEmailForResolvedTickets(ticket, employee);
 							}
 
 						} else {

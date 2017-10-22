@@ -13,7 +13,6 @@ import java.util.Set;
 import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -275,12 +274,18 @@ public class OrderDao implements OrdersDaoInt {
   			}else{
   				cusOrder.setCustomer(null);
   			}
-  			if(emp.getRole().equalsIgnoreCase("Manager")){
+  			if(emp.getRole().equalsIgnoreCase("Manager") || emp.getRole().equalsIgnoreCase("Admin")){
   				cusOrder.setApprover(emp.getEmail());
   				
   				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
   				cusOrder.setEmployee(emp);
   				String tempTechnician = emp.getFirstName() + " " +emp.getLastName();
+  			}else if(emp.getRole().equalsIgnoreCase("User")){
+                 
+  				cusOrder.setApprover(emp.getEmail());
+  				
+  				emp = employeeDaoInt.getEmployeeByEmpNum(orderBean.getTechnicianUserName());
+  				cusOrder.setEmployee(emp);
   			}
   			else{
   				cusOrder.setEmployee(emp);

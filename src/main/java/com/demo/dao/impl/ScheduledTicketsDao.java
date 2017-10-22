@@ -53,7 +53,6 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	@Scheduled(fixedRate = 600000)
 	@Override
 	public void calculateSLAHours() {
-
 		long day =0,diff=0;
 		try {
 			Calendar cal = Calendar.getInstance();
@@ -142,8 +141,7 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	    			ticket.setStatus("Closed");
 	    			sessionFactory.getCurrentSession().update(ticket);
 	    			historyDaoInt.insertTicketHistory(ticket);
-	    			Employee employee = employeeDaoInt.getEmployeeByEmpNum(ticket.getTicketLoggedBy());
-	    			JavaMail.sendEmailForResolvedTickets(ticket, employee);
+	    			
 	    		}
 	    		
 	    	}
@@ -151,7 +149,6 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	    }catch(Exception e){
 	    	e.getMessage();
 	    }
-		
 	}
 	private List<Tickets> getResolvedTickets() {
 	    aList = new ArrayList<Tickets>();

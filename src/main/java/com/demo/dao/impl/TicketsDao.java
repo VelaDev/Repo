@@ -969,8 +969,7 @@ public class TicketsDao implements TicketsDaoInt {
 								retMessage = "Ticket " + tempTicketNum
 										+ ticket.getRecordID()
 										+ " successfully resolved.";
-								Employee employee = employeeDaoInt.getEmployeeByEmpNum(ticket.getTicketLoggedBy());
-				    			JavaMail.sendEmailForResolvedTickets(ticket, employee);
+								
 							}
 
 						} else {
@@ -985,7 +984,8 @@ public class TicketsDao implements TicketsDaoInt {
 									+ ticket.getRecordID()
 									+ " successfully resolved.";
 						}
-
+						Employee employee = employeeDaoInt.getEmployeeByEmpNum(ticket.getTicketLoggedBy());
+		    			JavaMail.sendEmailForResolvedTickets(ticket, employee);
 					} else if (action.equalsIgnoreCase("escalate")) {
 						ticket.setStatus("Escalated");
 						ticket.setEscalateReason(ticketsBean

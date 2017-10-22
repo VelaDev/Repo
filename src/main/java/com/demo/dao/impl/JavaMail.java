@@ -685,7 +685,7 @@ public class JavaMail {
 	//send email to person who locked the call upon ticket been resolved
 	public static void sendEmailForResolvedTickets(Tickets ticket, Employee employee) {
 		
-		String[] to = {ticket.getContactEmail() };
+		String[] to = {employee.getEmail() };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + employee.getFirstName()+" "+employee.getLastName()

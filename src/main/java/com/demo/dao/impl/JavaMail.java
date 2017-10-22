@@ -688,13 +688,16 @@ public class JavaMail {
 		String[] to = {employee.getEmail() };
 		String from = emailFrom;
 		String pass = password;
+		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Date now = new Date();
+		String timeCallClosed = sdfDate.format(now);
 		String body = "Hi " + employee.getFirstName()+" "+employee.getLastName()
 				
-				+ "\n\nTicket Ref No " + newTicketNum+ticket.getRecordID() + "has been resolved:" +"\n\n"
+				+ "\n\nTicket Ref No " + newTicketNum+ticket.getRecordID() + " has been resolved:" +"\n\n"
 			
 				+ "Device Fault: " + ticket.getDescription() + "\n"
 				+ "Action Taken: " + ticket.getComments()+ "\n"
-				+ "Time Call Closed: " + ticket.getDateTime() +"\n"
+				+ "Time Call Closed: " + timeCallClosed +"\n\n"
 					
 				+ "Technician Contact Details:\n\n"
 				+ "Name & Surname: " +ticket.getEmployee().getFirstName()+" "+ticket.getEmployee().getLastName() +"\n"
@@ -709,7 +712,7 @@ public class JavaMail {
 				+ "\n\nKind Regards,\nVelaphanda Team"
 				+ "\nWebsite: www.velaphanda.com";
 		
-		String subject = "Ticket Ref No " + newTicketNum+ticket.getRecordID() + "has been resolved";
+		String subject = "Ticket Ref No " + newTicketNum+ticket.getRecordID() + " has been resolved";
 		
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -796,6 +799,7 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
+	//calculate sla end time for ticket
 	private static String slaEndTime(String slaStart) throws ParseException{
 		
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -807,5 +811,6 @@ public class JavaMail {
 		String slaFourHour = format.format(cal.getTime());
 		return ""+slaFourHour;
 	}
+	
 
 }

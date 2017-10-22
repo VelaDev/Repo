@@ -20,7 +20,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.demo.bean.EmployeeBean;
 import com.demo.bean.PieChart;
 import com.demo.bean.TicketsBean;
 import com.demo.dao.BootStockDaoInt;
@@ -966,7 +965,7 @@ public class TicketsDao implements TicketsDaoInt {
 								sessionFactory.getCurrentSession()
 										.saveOrUpdate(ticket);
 								historyDaoInt.insertTicketHistory(ticket);
-								JavaMail.sendEmailForResolvedTickets(ticket,ticket.getEmployee());
+
 								retMessage = "Ticket " + tempTicketNum
 										+ ticket.getRecordID()
 										+ " successfully resolved.";

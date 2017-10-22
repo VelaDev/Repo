@@ -16,8 +16,10 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.demo.dao.EmployeeDaoInt;
 import com.demo.dao.ScheduledTickets;
 import com.demo.dao.TicketHistoryDaoInt;
+import com.demo.model.Employee;
 import com.demo.model.Tickets;
 
 
@@ -30,6 +32,8 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	private SessionFactory sessionFactory;
 	@Autowired
 	private TicketHistoryDaoInt historyDaoInt;
+	@Autowired
+	private EmployeeDaoInt employeeDaoInt;
 	
 	Calendar cal = Calendar.getInstance();
 	DateFormat dateFormat = null;
@@ -53,7 +57,7 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 		long day =0,diff=0;
 		try {
 			Calendar cal = Calendar.getInstance();
-			dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+			dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String currentDate =  dateFormat.format(cal.getTime());
 			
 			Date systemDate = dateFormat.parse(currentDate);
@@ -138,6 +142,8 @@ public class ScheduledTicketsDao implements ScheduledTickets{
 	    			ticket.setStatus("Closed");
 	    			sessionFactory.getCurrentSession().update(ticket);
 	    			historyDaoInt.insertTicketHistory(ticket);
+	    			Employee employee = employeeDaoInt.getEmployeeByEmpNum(ticket.getTicketLoggedBy());
+	    			JavaMail.sendEmailForResolvedTickets(ticket, employee);
 	    		}
 	    		
 	    	}

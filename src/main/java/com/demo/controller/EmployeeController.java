@@ -148,8 +148,7 @@ public class EmployeeController {
 							userLogDetailsServiceInt.saveUserLogDetails(details);
 						}
 						serviceInt.userLoggeIn(employee);
-						
-							
+													
 						model.addObject("openTickets", ticketsServiceInt.getTicketCountForTechnician("Open", "Last 14 Days", employee.getEmail() , "", 0L));
 						model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCountForTechnician("Acknowledged", "Last 14 Days", employee.getEmail(), "",0L));
 						model.addObject("countTakenTickets", ticketsServiceInt.getTicketCountForTechnician("Taken", "Last 14 Days", employee.getEmail() , "",0L));
@@ -158,6 +157,7 @@ public class EmployeeController {
 						model.addObject("bridgedTickets", ticketsServiceInt.getTicketCountForTechnician("SLA Bridged", "Last 14 Days", employee.getEmail(), "", 0L));
 						model.addObject("resolvedTickets", ticketsServiceInt.getTicketCountForTechnician("Resolved", "Last 14 Days", employee.getEmail(), "", 0L));
 						model.addObject("closedTickets", ticketsServiceInt.getTicketCountForTechnician("Closed", "Last 14 Days", employee.getEmail(), "", 0L));
+						
 						model.setViewName("technicianHome");
 												
 					}
@@ -237,7 +237,7 @@ public class EmployeeController {
 				model.addObject("resolvedTickets", ticketsServiceInt.getTicketCount("Resolved", "Last 14 Days", "", "", 0L));
 				model.addObject("closedTickets", ticketsServiceInt.getTicketCount("Closed", "Last 14 Days", "", "", 0L));
 			    model.setViewName("home");
-			}else if(userName.getRole().equalsIgnoreCase("Technicain")){
+			}else if(userName.getRole().equalsIgnoreCase("TECHNICIAN")){
 				model.addObject("openTickets", ticketsServiceInt.getTicketCountForTechnician("Open", "Last 14 Days", userName.getEmail(), "",0L));
 				model.addObject("countAcknowledgedTickets", ticketsServiceInt.getTicketCountForTechnician("Acknowledged", "Last 14 Days", userName.getEmail(), "",0L));
 				model.addObject("countTakenTickets", ticketsServiceInt.getTicketCountForTechnician("Taken", "Last 14 Days", userName.getEmail(), "",0L));

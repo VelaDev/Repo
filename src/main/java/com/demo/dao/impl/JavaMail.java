@@ -299,7 +299,7 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
-
+	//Email for password
 	public static void sendPasswordToEmployee(Employee emp, String passw) {
 		String[] to = { emp.getEmail() };
 		String from = emailFrom;
@@ -311,7 +311,7 @@ public class JavaMail {
 				+ ","
 				+ "\n\nYour password is "
 				+ passw
-				+ "\n\nRemember to change your password on your first login\n\nKind Regards\nVelaphanda Support Team" +"\n";
+				+ "\n\nRemember to change your password on your first login\n\nKind Regards\nVelaphanda Support Team\nWebsite: www.velaphanda.com" +"\n";
 		String subject = "Password Reset";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -361,7 +361,7 @@ public class JavaMail {
 				+ "\n\nKindly note that ticket "
 				+ newTicketNum+ticket.getRecordID()
 				+ " is assigned to you and it needs to be closed within three hours from now."
-				+ "\n\nKind Regards\nVelaphanda Team";
+				+ "\n\nKind Regards\nVelaphanda Team\nWebsite: www.velaphanda.com";
 		String subject = "Ticket No " + newTicketNum+ticket.getRecordID() + " Reminder";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -400,7 +400,7 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
-
+	//send email for blocked accounts
 	public static void accountLocked(Employee employee, String managerMail) {
 		String[] to = { employee.getEmail(), managerMail };
 		String from = emailFrom;
@@ -409,8 +409,7 @@ public class JavaMail {
 				+ employee.getFirstName()
 				+ ","
 				+ "\n\nYour account has been blocked. Please consult your manager for password reset."
-				+ "\n\nKind Regards\nVelaphanda Team"
-				+ "\nContact Us: 086 584 5455";
+				+ "\n\nKind Regards\nVelaphanda Team\nWebsite: www.velaphanda.com";
 		String subject = "Password Reset Required";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";
@@ -449,14 +448,14 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
-
+	//send email for four hour reminder
 	public static void fourHourReminder(Tickets ticket, String managerEmails) {
 		String[] to = { ticket.getEmployee().getEmail(), managerEmails };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + ticket.getEmployee().getFirstName() + ","
 				+ "\n\nSLA for ticket " + newTicketNum+ticket.getRecordID()
-				+ " is bridged." + "\n\nKind Regards\nVelaphanda Team";
+				+ " is bridged." + "\n\nKind Regards\nVelaphanda Team\nWebsite: www.velaphanda.com";
 		String subject = "Ticket No " + newTicketNum+ticket.getRecordID()
 				+ " SLA Bridged";
 		Properties props = System.getProperties();
@@ -496,17 +495,16 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
-
+	//send email fofr approved oders
 	public static void sendEmailForOrderApproved(String technicianEmail,String managerEmail, String managerFirstName,String technicianFirstName,
 			OrderHeader order) {
-
 
 		String[] to = { technicianEmail,managerEmail };
 		String from = emailFrom;
 		String pass = password;
 		String body = "Hi " + technicianFirstName
 				
-				+ ",\n\nOrder Number : "+ newOrderNum+order.getRecordID()+ " is approved by "+  managerFirstName + ".n/"
+				+ ",\n\nOrder Number : "+ newOrderNum+order.getRecordID()+ " is approved by "+  managerFirstName + "\n\n"
 				
 				+ "Contact Details:\n\n"
 		
@@ -569,14 +567,13 @@ public class JavaMail {
 								   + order.getCustomer().getStreetName() + " , " + order.getCustomer().getCity_town() 
 								   + "," +order.getCustomer().getProvince()+ " , " + order.getCustomer().getZipcode() + "\n"
 				+ "Technician Name: " + order.getEmployee().getFirstName() + " " + order.getEmployee().getLastName() + "\n"
-				+ "List Ordered Items: " + order +"\n\n"
-				
+								
 				+ "Contact Details:\n\n"
 				
 				+ "Email: " + "helpdesk@velaphanda.co.za" + "\n" 
 				+ "Call Center Number: " + "012 765 0200 / 087 701 1691" + "\n\n"
 				
-				+ "\n\nKind Regards,\nVelaphanda Team";		
+				+ "\n\nKind Regards,\nVelaphanda Team\nWebsite: www.velaphanda.com";		
 			
 		
 		String subject = "New Order " + newOrderNum+order.getRecordID() +" "+ order.getStockType() + " Stock";
@@ -617,7 +614,6 @@ public class JavaMail {
 		} catch (MessagingException me) {
 			me.printStackTrace();
 		}
-
 		
 	}
 	// send email for boot stock order
@@ -632,8 +628,7 @@ public class JavaMail {
 				
 				+ "Order Number: " + newOrderNum+order.getRecordID() + "\n"
 				+ "Technician Name: " + order.getEmployee().getFirstName() + " " + order.getEmployee().getLastName() + "\n"
-				+ "List Ordered Items: " + order.getOrderDetails()+"\n\n"
-				
+								
 				+ "Contact Details:\n\n"
 				
 				+ "Email: " + "helpdesk@velaphanda.co.za" + "\n" 
@@ -751,6 +746,7 @@ public class JavaMail {
 			me.printStackTrace();
 		}
 	}
+	//send email for shipped orders
 	public static void sendEmailForShipment(String managerEmail,
 			OrderHeader order) {
 
@@ -760,7 +756,7 @@ public class JavaMail {
 		String pass = password;
 		String body = "Hi " + order.getEmployee().getFirstName()
 				+ ",\n\nYou order is shipped please confirm if you received the order : "
-				+ newOrderNum+order.getRecordID() + ".\n\nKind Regards\nVelaphanda Team";
+				+ newOrderNum+order.getRecordID() + ".\n\nKind Regards\nVelaphanda Team\nWebsite: www.velaphanda.com";
 		String subject = "Order " + newOrderNum+order.getRecordID()+ " Shipment";
 		Properties props = System.getProperties();
 		String host = "smtp.mweb.co.za";

@@ -341,9 +341,7 @@
 													},
 													modelNumber : {
 														validators : {
-															stringLength : {
-																min : 3,
-															},
+															
 															notEmpty : {
 																message : 'Model number is required to search and cannot be empty'
 															}

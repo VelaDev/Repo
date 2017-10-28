@@ -30,9 +30,10 @@ public class OrderDeliveryService implements OrderDeliveryServiceInt{
 
 	@Autowired
 	private OrderReportsDaoInt reportsDaoInt;
+
 	@Override
-	public void createPdf(Long recordID) throws ParserConfigurationException, SAXException, TransformerException, IOException, DocumentException, XMPException, ParseException, DataIncompleteException, InvalidCodeException{
-		reportsDaoInt.createPdf(recordID);
+	public void printReports(Long recordID) {
 		
-	}
+		reportsDaoInt.printReports(recordID);	}
+	
 }

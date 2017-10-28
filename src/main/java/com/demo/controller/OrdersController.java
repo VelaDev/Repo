@@ -464,7 +464,7 @@ public class OrdersController {
 		userName = (Employee) session.getAttribute("loggedInUser");
 		if (userName != null) {
 			if(userName.getRole().equalsIgnoreCase("Manager") || userName.getRole().equalsIgnoreCase("Admin")){
-				deliveryServiceInt.createPdf(recordID);
+				deliveryServiceInt.printReports(recordID);
 				OrderHeader order = ordersServiceInt.getOrder(recordID);
 				List<OrderDetails> list = orderDetailsInt.getOrderDetailsByOrderNum("key", recordID);
 				model.addObject("pendingOrderList", list);
@@ -473,7 +473,7 @@ public class OrdersController {
 				model.addObject("contactPerson", contactDetailsServiceInt.getContactPerson(userName.getFirstName()));
 				model.setViewName("ordersItemHistory");
 			}else if (userName.getRole().equalsIgnoreCase("Technician")){
-				deliveryServiceInt.createPdf(recordID);
+				deliveryServiceInt.printReports(recordID);
 				OrderHeader order = ordersServiceInt.getOrder(recordID);
 				List<OrderDetails> list = orderDetailsInt.getOrderDetailsByOrderNum("key", recordID);
 				model.addObject("pendingOrderList", list);

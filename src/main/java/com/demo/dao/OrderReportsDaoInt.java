@@ -14,6 +14,6 @@ import com.itextpdf.text.zugferd.exceptions.InvalidCodeException;
 import com.itextpdf.xmp.XMPException;
 public interface OrderReportsDaoInt {
 
-	void createPdf(Long recordID)throws ParserConfigurationException, SAXException, TransformerException, IOException, DocumentException, XMPException, ParseException, DataIncompleteException, InvalidCodeException;
+	void printReports(Long recordID);
 
 }

@@ -100,9 +100,9 @@ table#orderDetails {
 
 											</ul></li>
 									</c:if>
-							<%-- <li><a
+							<li><a
 								href="printdeliveryNote?recordID=<c:out value='${OrderNum.recordID}'/>">Download
-									PDF </a></li> --%>
+									PDF </a></li>
 						</ul>
 					</div>
 					<legend></legend>

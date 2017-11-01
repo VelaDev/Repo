@@ -1,18 +1,14 @@
 package com.demo.service.impl;
 
-
-
 import java.io.IOException;
 import java.text.ParseException;
-
-import javax.transaction.Transactional;
-
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.xml.sax.SAXException;
 
 import com.demo.dao.OrderReportsDaoInt;
@@ -27,13 +23,14 @@ import com.itextpdf.xmp.XMPException;
 @Transactional
 public class OrderDeliveryService implements OrderDeliveryServiceInt{
 
-
+	
 	@Autowired
 	private OrderReportsDaoInt reportsDaoInt;
-
 	@Override
-	public void printReports(Long recordID) {
-		
-		reportsDaoInt.printReports(recordID);	}
+	public void printReports(Long recordID){
+			reportsDaoInt.printReports(recordID);
+	}
+
+
 	
 }
